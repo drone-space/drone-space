@@ -1,0 +1,6 @@
+.col {
+	border-top: 4px solid var(--mantine-color-sec-3);
+	background-color: var(--mantine-color-pri-6);
+	border-radius: var(--mantine-radius-sm);
+	padding: var(--mantinespacing-xs);
+}

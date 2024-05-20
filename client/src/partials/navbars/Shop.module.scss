@@ -1,0 +1,41 @@
+.navbar {
+	background-color: var(--mantine-color-pri-6);
+	border-top: 2px solid var(--mantine-color-sec-3);
+	color: var(--mantine-color-white);
+	padding: var(--mantine-spacing-xs) 0;
+	box-shadow: var(--mantine-shadow-xl);
+	z-index: 100;
+}
+
+.link {
+	transition: 0.25s all ease;
+	text-decoration: none;
+	color: var(--mantine-color-white);
+	font-weight: 500;
+	font-size: var(--mantine-font-size-sm);
+
+	@include hover {
+		color: var(--mantine-color-sec-3);
+	}
+}
+
+.dropdown {
+	padding: calc(var(--mantine-spacing-xs) / 2);
+	min-width: 120px;
+}
+
+.item {
+	transition: 0.25s all ease;
+	color: var(--mantine-color-pri-6);
+	font-weight: 500;
+	padding: calc(var(--mantine-spacing-xs) / 2);
+	font-size: var(--mantine-font-size-sm);
+
+	@include hover {
+		background-color: var(--mantine-color-pri-light);
+	}
+}
+
+.drawerContent {
+	background-color: var(--mantine-color-pri-6);
+}

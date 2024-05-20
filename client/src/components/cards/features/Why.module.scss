@@ -1,0 +1,36 @@
+.card {
+	transition: 0.25s all ease;
+	background-color: var(--mantine-color-pri-light);
+	border-radius: var(--mantine-radius-xs);
+	padding: var(--mantine-spacing-xl);
+	height: 100%;
+
+	@include hover {
+		background-color: var(--mantine-color-pri-6);
+		color: var(--mantine-color-white);
+
+		.icon {
+			background-color: var(--mantine-color-sec-3);
+			color: var(--mantine-color-pri-6);
+		}
+
+		.title {
+			color: var(--mantine-color-sec-3);
+		}
+	}
+}
+
+.icon {
+	transition: 0.25s all ease;
+	color: var(--mantine-color-sec-3);
+}
+
+.title {
+	transition: 0.25s all ease;
+	color: var(--mantine-color-pri-6);
+	font-size: var(--mantine-font-size-md);
+}
+
+.desc {
+	font-size: var(--mantine-font-size-sm);
+}

@@ -1,0 +1,27 @@
+.card {
+	text-decoration: none;
+	color: inherit;
+	border-bottom: 2px solid var(--mantine-color-pri-light);
+	padding-bottom: var(--mantine-spacing-xs);
+
+	@include hover {
+		.imageContainer {
+			transform: scale(1.05);
+		}
+
+		.title {
+			color: var(--mantine-color-pri-6);
+		}
+	}
+}
+
+.imageContainer {
+	transition: 0.25s all ease;
+	transform: scale(1.1);
+}
+
+.title {
+	transition: 0.25s all ease;
+	font-size: var(--mantine-font-size-xs);
+	font-weight: 500;
+}

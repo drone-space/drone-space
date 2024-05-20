@@ -1,0 +1,51 @@
+.card {
+	position: relative;
+	height: 120px;
+	border-radius: var(--mantine-radius-xs);
+	overflow: hidden;
+
+	@include hover {
+		cursor: pointer;
+
+		.image {
+			transform: scale(0.9);
+		}
+
+		.overlay {
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	}
+}
+
+.imageContainer {
+	position: absolute;
+	left: -8px;
+	top: -8px;
+	right: -8px;
+	bottom: -8px;
+	z-index: -8px;
+}
+
+.image {
+	transition: 0.25s all ease;
+	transform: scale(0.95);
+}
+
+.overlay {
+	transition: 0.25s all ease;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+
+	background-color: rgba(0, 0, 0, 0.33);
+}
+
+.title {
+	font-size: var(--mantine-font-size-md);
+	font-weight: 500;
+	color: var(--mantine-color-white);
+	z-index: 2;
+}

@@ -1,0 +1,36 @@
+.card {
+	background-color: var(--mantine-color-gray-1);
+	transition: 0.25s all ease;
+
+	@include hover {
+		.image {
+			transform: scale(1.05);
+		}
+
+		.title {
+			color: var(--mantine-color-pri-6);
+		}
+	}
+}
+
+.title {
+	transition: 0.25s all ease;
+}
+
+.image {
+	transition: 0.25s all ease;
+	transform: scale(1.1);
+}
+
+.imageSection {
+	overflow: hidden;
+	height: 240px;
+}
+
+.overlay {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+
+	transition: 0.25s all ease;
+}

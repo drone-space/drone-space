@@ -1,0 +1,36 @@
+.card {
+	background-color: var(--mantine-color-pri-6);
+	color: var(--mantine-color-white);
+	padding: var(--mantine-spacing-xl);
+	border-radius: var(--mantine-radius-sm);
+	box-shadow: var(--mantine-shadow-xl);
+
+	&:hover {
+		.price {
+			background-color: var(--mantine-color-sec-3);
+			color: var(--mantine-color-pri-6);
+		}
+
+		.title {
+			color: var(--mantine-color-sec-3);
+		}
+	}
+}
+
+.title {
+	transition: 0.25s all ease;
+}
+
+.grid {
+	border-bottom: 1px solid var(--mantine-color-sec-3);
+	margin-bottom: calc(var(--mantine-spacing-xs) / 5);
+}
+
+.price {
+	background-color: transparent;
+	border-radius: var(--mantine-radius-sm);
+	padding: 0 var(--mantine-spacing-xs);
+	color: var(--mantine-color-sec-3);
+
+	transition: 0.25s all ease;
+}

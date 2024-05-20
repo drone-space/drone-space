@@ -1,0 +1,32 @@
+.categories {
+	background-color: var(--mantine-color-pri-light);
+	border-radius: var(--mantine-radius-xs);
+	padding: calc(var(--mantine-spacing-lg));
+}
+
+.objectives {
+	background-color: var(--mantine-color-pri-6);
+	border-radius: var(--mantine-radius-xs);
+	padding: var(--mantine-spacing-lg);
+	color: var(--mantine-color-white);
+}
+
+.modules {
+	background-color: var(--mantine-color-sec-1);
+	border-radius: var(--mantine-radius-xs);
+	padding: var(--mantine-spacing-xl);
+	color: var(--mantine-color-pri-6);
+}
+
+.ctaDoctors {
+	padding: var(--mantine-spacing-md);
+	background-color: var(--mantine-color-pri-light);
+}
+
+.cardDoctors {
+	margin: var(--mantine-spacing-xs);
+	border-radius: var(--mantine-radius-xs);
+	padding: var(--mantine-spacing-md);
+	color: var(--mantine-color-white);
+	background-color: var(--mantine-color-pri-6);
+}

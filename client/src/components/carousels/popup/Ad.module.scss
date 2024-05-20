@@ -1,0 +1,16 @@
+.root {
+	&:hover {
+		.control {
+			opacity: 1;
+		}
+	}
+}
+
+.control {
+	transition: 0.25s all ease;
+	background-color: var(--mantine-color-pri-6);
+	color: var(--mantine-color-sec-3);
+	border: 1px solid transparent;
+
+	opacity: 0;
+}

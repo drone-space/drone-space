@@ -1,0 +1,14 @@
+.crumb {
+	/* background-color: var(--mantine-color-white-light); */
+	border-radius: var(--mantine-radius-sm);
+}
+
+.link {
+	color: var(--mantine-color-white);
+	transition: 0.25s all ease;
+
+	@include hover {
+		text-decoration: none;
+		color: var(--mantine-color-sec-4);
+	}
+}

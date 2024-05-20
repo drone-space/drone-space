@@ -1,0 +1,13 @@
+.features {
+	background-color: var(--mantine-color-pri-6);
+	border-radius: var(--mantine-radius-xs);
+	padding: calc(var(--mantine-spacing-xl));
+	color: var(--mantine-color-white);
+}
+
+.modules {
+	background-color: var(--mantine-color-sec-light);
+	border-radius: var(--mantine-radius-xs);
+	padding: calc(var(--mantine-spacing-lg));
+	columns: var(--mantine-color-pri-6);
+}

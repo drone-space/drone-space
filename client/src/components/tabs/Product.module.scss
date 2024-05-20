@@ -1,0 +1,25 @@
+.tab {
+	transition: 0.25s all ease;
+
+	@include hover {
+		background-color: var(--mantine-color-pri-light);
+	}
+}
+
+.panel {
+	padding: var(--mantine-spacing-xl) 0;
+}
+
+.imageContainer {
+	border: 2px solid var(--mantine-color-pri-light);
+	background-color: var(--mantine-color-white);
+	border-radius: var(--mantine-radius-sm);
+	overflow: hidden;
+	padding: var(--mantine-spacing-xl);
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 500;
+	color: var(--mantine-color-pri-6);
+}

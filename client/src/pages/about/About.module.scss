@@ -1,0 +1,16 @@
+.image {
+	border-radius: var(--mantine-radius-xs);
+	overflow: hidden;
+}
+
+.cta {
+	background: linear-gradient(
+			rgba(0, 0, 0, 0.5) 100%,
+			rgba(0, 0, 0, 0.5) 100%
+		),
+		url("../../assets/images/gallery/graduation/yr2022/image-7.webp");
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	color: var(--mantine-color-white);
+}

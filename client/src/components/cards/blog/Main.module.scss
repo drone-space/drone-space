@@ -1,0 +1,44 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	gap: var(--mantine-spacing-xs);
+	padding-bottom: var(--mantine-spacing-xs);
+
+	@include hover {
+		.image {
+			top: 0;
+		}
+
+		.title {
+			color: var(--mantine-color-pri-6);
+		}
+	}
+}
+
+.image {
+	transition: 0.25s all ease;
+	position: relative;
+	top: calc(var(--mantine-spacing-xs) / 2);
+	border-radius: var(--mantine-radius-xs);
+	overflow: hidden;
+}
+
+.overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-image: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.66) 90%
+	);
+}
+
+.title {
+	font-size: var(--mantine-font-size-md);
+	font-weight: bold;
+}

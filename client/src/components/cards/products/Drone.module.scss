@@ -1,0 +1,55 @@
+.card {
+	color: var(--mantine-color-white);
+	border-radius: var(--mantine-radius-xs);
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		.title {
+			color: var(--mantine-color-sec-3);
+		}
+
+		.image {
+			transform: scale(1.05);
+		}
+
+		.overlay {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+
+		.button {
+			bottom: 8px;
+		}
+	}
+}
+
+.title {
+	transition: 0.25s all ease;
+	text-transform: capitalize;
+	font-size: var(--mantine-font-size-md);
+}
+
+.image {
+	transition: 0.25s all ease;
+	transform: scale(1.1);
+}
+
+.button {
+	transition: 0.25s all ease;
+	position: absolute;
+	bottom: -24px;
+	left: 8px;
+	right: 8px;
+}
+
+.overlay {
+	transition: 0.25s all ease;
+	position: absolute;
+	padding: calc(var(--mantine-spacing-xs) / 2);
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.05);
+	overflow: hidden;
+}

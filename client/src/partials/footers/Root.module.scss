@@ -1,0 +1,14 @@
+.footer {
+	background-color: var(--mantine-color-pri-6);
+	color: var(--mantine-color-white);
+	// border-top: 2px solid var(--mantine-color-sec-3);
+}
+
+.link {
+	transition: 0.25s all ease;
+	color: var(--mantine-color-white);
+
+	&:hover {
+		color: var(--mantine-color-sec-3);
+	}
+}

@@ -1,0 +1,20 @@
+.card {
+	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+	box-shadow: var(--mantine-shadow-sm);
+	border-radius: var(--mantine-radius-sm);
+	transition: 0.25s all ease;
+
+	@include hover {
+		cursor: pointer;
+		background-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9)) !important;
+		color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
+
+		.title {
+			color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3)) !important;
+		}
+	}
+}
+
+.title {
+	transition: 0.25s all ease;
+}

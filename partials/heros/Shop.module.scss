@@ -1,0 +1,16 @@
+.navbar {
+	padding: var(--mantine-spacing-xs) 0;
+	background-color: rgba($color: #85dcd7, $alpha: 0.1);
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(2px);
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+
+	z-index: 1;
+}
+
+.hero {
+	position: relative;
+}

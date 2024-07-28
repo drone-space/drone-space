@@ -1,0 +1,17 @@
+.bar {
+	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+	color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+	padding: var(--mantine-spacing-xs) 0;
+}
+
+.close {
+	position: absolute;
+	right: 16px;
+}
+
+.group {
+	@include hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
+}

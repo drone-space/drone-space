@@ -1,0 +1,33 @@
+.card {
+	text-decoration: none;
+	color: inherit;
+
+	@include hover {
+		.image {
+			transform: scale(1.05);
+		}
+
+		.title {
+			color: var(--mantine-color-pri-6);
+		}
+
+		.link {
+			color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+		}
+	}
+}
+
+.imageContainer {
+	overflow: hidden;
+	border-radius: var(--mantine-radius-sm);
+}
+
+.image {
+	transition: 0.25s all ease;
+	transform: scale(1.1);
+}
+
+.link {
+	transition: 0.25s all ease;
+	color: light-dark(var(--mantine-color-text), var(--mantine-color-text));
+}

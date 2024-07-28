@@ -1,0 +1,16 @@
+.header {
+	// background-color: var(--mantine-color-body);
+	// border-top: 1px solid var(--mantine-color-default-border);
+}
+
+.link {
+	transition: 0.25s all ease;
+
+	color: var(--mantine-color-dimmed);
+
+	@include hover {
+		text-decoration: none;
+
+		color: var(--mantine-color-anchor);
+	}
+}

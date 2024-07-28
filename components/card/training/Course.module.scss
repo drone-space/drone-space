@@ -1,0 +1,44 @@
+.card {
+	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+
+	transition: 0.25s all ease;
+
+	@include hover {
+		box-shadow: var(--mantine-shadow-sm);
+
+		.image {
+			transform: scale(1.1);
+		}
+	}
+}
+
+.imageContainer {
+	overflow: hidden;
+}
+
+.image {
+	transition: 0.25s all ease;
+	transform: scale(1.05);
+}
+
+.title {
+	transition: 0.25s all ease;
+}
+
+.desc {
+}
+
+.overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+
+	background-color: rgba($color: #000000, $alpha: 0.2);
+	backdrop-filter: blur(2px);
+	-webkit-backdrop-filter: blur(2px);
+}

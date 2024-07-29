@@ -1,0 +1,52 @@
+.dropdown {
+	padding: 0;
+	overflow: hidden;
+	min-width: 120px;
+}
+
+.arrow {
+}
+
+.divider {
+}
+
+.label {
+}
+
+.item {
+	transition: 0.25s all ease;
+	border-radius: 0;
+
+	@include hover {
+		.itemLabel {
+			color: light-dark(var(--mantine-color-anchor), var(--mantine-color-anchor));
+		}
+
+		background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+	}
+}
+
+.itemActive {
+	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+
+	.itemLabel {
+		color: light-dark(var(--mantine-color-anchor), var(--mantine-color-anchor));
+	}
+
+	@include hover {
+		background-color: light-dark(var(--mantine-color-sec-light), var(--mantine-color-sec-light));
+
+		.itemLabel {
+			color: light-dark(var(--mantine-color-sec-4), var(--mantine-color-sec-4));
+		}
+	}
+}
+
+.itemLabel {
+	transition: 0.25s all ease;
+	font-size: var(--mantine-font-size-xs);
+	font-weight: 500;
+}
+
+.itemSection {
+}

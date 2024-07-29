@@ -1,0 +1,23 @@
+.slide {
+	color: var(--mantine-color-white);
+}
+
+.control {
+	transition: 0.25s all ease;
+	background-color: transparent;
+	border: 1px solid transparent;
+	color: var(--mantine-color-white);
+
+	@include hover {
+		background-color: var(--mantine-color-pri-6);
+		color: var(--mantine-color-sec-3);
+	}
+}
+
+.title {
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
+}
+
+.indicator {
+	background-color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
+}

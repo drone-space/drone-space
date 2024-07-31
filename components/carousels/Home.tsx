@@ -16,6 +16,7 @@ import videos from "@/assets/videos";
 
 import ModalPoster from "../modal/Poster";
 import LayoutSection from "@/layouts/Section";
+import ModalAdvertisment from "../modal/Advertisment";
 
 import classes from "./Home.module.scss";
 
@@ -64,6 +65,7 @@ export default function Home() {
 				Brochure
 			</Button>
 			<ModalPoster />
+			<ModalAdvertisment />
 		</Group>
 	);
 
@@ -153,6 +155,7 @@ export default function Home() {
 								Brochure
 							</Button>
 							<ModalPoster active={true} />
+							<ModalAdvertisment />
 						</Group>
 					</Stack>
 				</LayoutSection>

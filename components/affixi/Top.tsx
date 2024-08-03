@@ -11,7 +11,7 @@ export default function Top() {
 	const [scroll, scrollTo] = useWindowScroll();
 
 	return (
-		<Affix position={{ bottom: "var(--mantine-spacing-xl)", right: "var(--mantine-spacing-xl)" }}>
+		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * 2.66)", right: "var(--mantine-spacing-md)" }}>
 			<Transition transition="slide-left" mounted={scroll.y > 80}>
 				{transitionStyles => (
 					<div style={transitionStyles}>

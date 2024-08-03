@@ -10,6 +10,7 @@ import FooterMain from "@/partials/footers/Main";
 import contact from "@/data/contact";
 import AffixTop from "@/components/affixi/Top";
 import AffixNavbar from "@/components/affixi/Navbar";
+import AffixAssistant from "@/components/affixi/Assistant";
 
 export const metadata: Metadata = {
 	title: { default: `Drone Space`, template: `%s - ${contact.name.company}` },
@@ -26,6 +27,7 @@ export default function Marketing({
 				{children}
 				<AffixTop />
 				<AffixNavbar />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

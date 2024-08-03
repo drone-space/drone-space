@@ -1,0 +1,15 @@
+.child {
+	background-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
+	border-radius: var(--mantine-radius-sm);
+	padding-left: calc(var(--mantine-spacing-xs));
+
+	@include hover {
+		cursor: pointer;
+	}
+}
+
+// modal
+.body {
+	padding: 0;
+}

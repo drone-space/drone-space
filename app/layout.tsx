@@ -29,6 +29,8 @@ import contact from "@/data/contact";
 
 import AffixTheme from "@/components/affixi/Theme";
 
+import { ClaudeProvider } from "@/contexts/Claude";
+
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -57,11 +59,12 @@ export default async function App({
 					withGlobalClasses={true}
 				>
 					<Notifications limit={3} />
-
 					<ModalsProvider>
-						{children}
+						<ClaudeProvider>
+							{children}
 
-						{/* <AffixTheme /> */}
+							{/* <AffixTheme /> */}
+						</ClaudeProvider>
 					</ModalsProvider>
 				</MantineProvider>
 			</body>

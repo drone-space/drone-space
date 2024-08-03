@@ -78,6 +78,7 @@ const icons = {
 		vite: "/icons/tools/icons8-vite.svg",
 		sequelize: "/icons/tools/sequelize-svgrepo-com.svg",
 		mantine: "/icons/tools/mantine-logo.svg",
+		claude: "/icons/tools/icons8-claude.svg",
 	},
 };
 

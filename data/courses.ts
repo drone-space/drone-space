@@ -275,7 +275,7 @@ const courses = {
 				},
 				price: {
 					discount: null,
-					full: 30000,
+					full: 35000,
 				},
 				priceFeatures: [
 					{

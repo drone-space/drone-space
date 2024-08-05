@@ -357,6 +357,11 @@ const images = {
 				aug: { landscape: null, portrait: "/images/posters/intakes/image-7.webp" },
 			},
 		},
+		camps: {
+			yr2024: {
+				aug: { landscape: null, portrait: "/images/posters/camps/24.08.webp" },
+			},
+		},
 		courses: {
 			yr2024: {
 				feb: {

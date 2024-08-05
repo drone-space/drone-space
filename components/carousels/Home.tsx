@@ -17,6 +17,7 @@ import videos from "@/assets/videos";
 import ModalPoster from "../modal/Poster";
 import LayoutSection from "@/layouts/Section";
 import ModalAdvertisment from "../modal/Advertisment";
+import ModalCamp from "../modal/Camp";
 
 import classes from "./Home.module.scss";
 
@@ -65,7 +66,6 @@ export default function Home() {
 				Brochure
 			</Button>
 			<ModalPoster />
-			<ModalAdvertisment />
 		</Group>
 	);
 
@@ -91,6 +91,12 @@ export default function Home() {
 					>
 						{slide.desc}
 					</Text>
+
+					<Group gap={"xs"}>
+						<ModalAdvertisment />
+						<ModalCamp />
+					</Group>
+
 					{anchors}
 				</Stack>
 			</LayoutSection>
@@ -144,6 +150,12 @@ export default function Home() {
 							License (RPL) training program is the perfect place to begin your journey. Join us and
 							become a licensed drone operator today!
 						</Text>
+
+						<Group gap={"xs"}>
+							<ModalAdvertisment />
+							<ModalCamp />
+						</Group>
+
 						<Group gap={"xs"}>
 							<Button
 								size="xs"
@@ -155,7 +167,6 @@ export default function Home() {
 								Brochure
 							</Button>
 							<ModalPoster active={true} />
-							<ModalAdvertisment />
 						</Group>
 					</Stack>
 				</LayoutSection>

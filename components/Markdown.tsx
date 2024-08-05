@@ -1,5 +1,6 @@
+import { ClaudeContext } from "@/contexts/Claude";
 import { Text } from "@mantine/core";
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import Markdown from "react-markdown";
 import Typed from "typed.js";
@@ -15,6 +16,14 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({ markdown, 
 	const hiddenMarkdownRef = useRef<HTMLDivElement>(null);
 	const typedRef = useRef<Typed | null>(null); // Reference to store Typed instance
 
+	const claude = useContext(ClaudeContext);
+
+	if (!claude) {
+		throw new Error("Outside Claude Context");
+	}
+
+	const { conversation, newConversation } = claude;
+
 	useEffect(() => {
 		if (hiddenMarkdownRef.current && markdownRef.current) {
 			const renderedHTML = hiddenMarkdownRef.current.innerHTML;
@@ -25,6 +34,7 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({ markdown, 
 			const options = {
 				strings: [renderedHTML],
 				typeSpeed: 1,
+				showCursor: false,
 				cursorChar: " ",
 				contentType: "html", // Important to tell typed.js to treat the string as HTML
 			};
@@ -39,7 +49,7 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({ markdown, 
 				}
 			};
 		}
-	}, [markdown]);
+	}, [markdown, conversation, newConversation]);
 
 	return animate ? (
 		<>
@@ -55,6 +65,14 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({ markdown, 
 
 // Create a root and render the MarkdownComponent on the client side
 const App: React.FC = () => {
+	const claude = useContext(ClaudeContext);
+
+	if (!claude) {
+		throw new Error("Outside Claude Context");
+	}
+
+	const { conversation, newConversation } = claude;
+
 	const markdown = "# Hi, *Pluto*!"; // This is just for demonstration, remove or modify this as needed
 
 	useEffect(() => {
@@ -63,7 +81,7 @@ const App: React.FC = () => {
 			const root = createRoot(rootElement);
 			root.render(<MarkdownComponent markdown={markdown} animate />);
 		}
-	}, [markdown]);
+	}, [markdown, conversation, newConversation]);
 
 	return <div id="root"></div>;
 };

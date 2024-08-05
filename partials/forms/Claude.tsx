@@ -27,18 +27,39 @@ interface typePrompt {
 	content: string;
 }
 
-export default function Claude() {
+export default function Claude({
+	query,
+	chaff,
+	children,
+	regenerating,
+	automatic,
+}: {
+	query?: string;
+	chaff?: string;
+	children?: React.ReactNode;
+	regenerating?: boolean;
+	automatic?: boolean;
+}) {
 	const claude = useContext(ClaudeContext);
 
 	if (!claude) {
 		throw new Error("Outside Claude Context");
 	}
 
-	const { submitted, setSubmitted, generating, setGenerating, conversation, setConversation, clearConversation } =
-		claude;
+	const {
+		submitted,
+		setSubmitted,
+		generating,
+		setGenerating,
+		conversation,
+		setConversation,
+		newConversation,
+		setNewConversation,
+		clearConversation,
+	} = claude;
 
 	const form = useForm({
-		initialValues: { content: "" },
+		initialValues: { content: query ? query : "" },
 		validate: { content: value => value.trim().length < 1 },
 	});
 
@@ -48,13 +69,11 @@ export default function Claude() {
 
 	const handleSubmit = async (formValues: typePrompt) => {
 		if (form.isValid()) {
-			try {
-				setConversation([...conversation, { role: "user", content: parse(formValues) }]);
+			setNewConversation(false);
 
+			try {
 				setSubmitted(true);
 				setGenerating(true);
-
-				console.log(conversation);
 
 				const res = await request.post(process.env.NEXT_PUBLIC_API_URL + "/api/claude", {
 					method: "POST",
@@ -78,17 +97,25 @@ export default function Claude() {
 						variant: "failed",
 					});
 
-					// remove last user input
+					// remove latest turn to context
 					conversation.pop();
 				} else {
-					conversation.push(
-						{ role: "user", content: parse(formValues) },
-						{ role: "assistant", content: `ai response: ${parse(formValues)}` }
-					);
-
-					console.log(conversation);
-
-					res.content && conversation.push({ role: "assistant", content: res.content });
+					// add latest exchange to context
+					if (regenerating) {
+						setConversation(
+							conversation
+								.filter(t => t.content != chaff)
+								.concat({ role: "assistant", content: `ai response: ${form.values.content}` })
+						);
+						// res.content && setConversation([...conversation, { role: "assistant", content: res.content }]);
+					} else {
+						setConversation([
+							...conversation,
+							{ role: "user", content: parse(formValues) },
+							{ role: "assistant", content: `ai response: ${form.values.content}` },
+						]);
+						// res.content && setConversation([...conversation, { role: "assistant", content: res.content }]);
+					}
 				}
 			} catch (error) {
 				notifications.show({
@@ -99,7 +126,7 @@ export default function Claude() {
 					variant: "failed",
 				});
 
-				// remove last user input
+				// remove latest turn to context
 				conversation.pop();
 			} finally {
 				form.reset();
@@ -109,13 +136,17 @@ export default function Claude() {
 		}
 	};
 
-	// useEffect(()=>{
-	// 	form.reset();
-	// },[])
-
-	return (
-		<Box component="form" onSubmit={form.onSubmit(values => handleSubmit(values))} noValidate>
-			<Group wrap="nowrap" gap={"xs"} align="end" className={classes.group}>
+	return automatic || regenerating ? (
+		<form onClick={form.onSubmit(values => handleSubmit(values))}>{children}</form>
+	) : (
+		<form onSubmit={form.onSubmit(values => handleSubmit(values))} noValidate>
+			<Group
+				// display={regenerating ? "none" : undefined}
+				wrap="nowrap"
+				gap={"xs"}
+				align="end"
+				className={classes.group}
+			>
 				<Textarea
 					required
 					placeholder={`Ask Claude about ${contact.name.company}`}
@@ -135,6 +166,6 @@ export default function Claude() {
 					</ActionIcon>
 				</Stack>
 			</Group>
-		</Box>
+		</form>
 	);
 }

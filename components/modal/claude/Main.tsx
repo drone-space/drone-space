@@ -46,9 +46,10 @@ export default function Main() {
 
 	const claude = useContext(ClaudeContext);
 
-	// start: scroll logic
-	const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView<HTMLDivElement, HTMLDivElement>({});
-	// end: scroll logic
+	const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView<HTMLDivElement, HTMLDivElement>({
+		duration: 250,
+		offset: 100,
+	});
 
 	if (!claude) {
 		throw new Error("Outside Claude Context");
@@ -66,17 +67,14 @@ export default function Main() {
 		clearConversation,
 	} = claude;
 
-	console.log(conversation);
-
-	setNewConversation(conversation.length == 1);
-
 	const handleScroll = useDebouncedCallback(() => {
 		scrollIntoView();
-	}, 500);
+	}, 100);
 
 	useEffect(() => {
 		opened && handleScroll();
-	}, [opened, handleScroll]);
+		// console.log(conversation);
+	}, [opened, submitted]);
 
 	return (
 		<>
@@ -100,8 +98,6 @@ export default function Main() {
 								Hide Chat
 							</Text>
 						</Button>
-
-						{/* <Button onClick={() => scrollIntoView()}>Scroll to target</Button> */}
 					</Group>
 				</LayoutSection>
 
@@ -114,98 +110,135 @@ export default function Main() {
 						style={{ overflowY: "auto", scrollbarWidth: "thin" }}
 					>
 						{conversation.map(item => (
-							<Transition
-								key={item.content}
-								mounted={true}
-								transition="fade"
-								duration={250}
-								timingFunction="ease"
-							>
-								{styles => (
-									<GridCol
-										span={12}
-										style={styles}
-										fz={{ base: "sm", lg: "md" }}
-										ref={conversation.indexOf(item) == conversation.length - 1 ? targetRef : null}
-									>
-										<Grid
-											gutter={0}
-											py={"md"}
-											style={{
-												borderTop:
-													conversation.indexOf(item) > 0
-														? `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`
-														: "",
-											}}
+							<>
+								<Transition
+									key={item.content}
+									mounted={true}
+									transition="fade"
+									duration={250}
+									enterDelay={0}
+									exitDelay={0}
+									timingFunction="ease"
+								>
+									{styles => (
+										<GridCol
+											span={12}
+											style={styles}
+											fz={{ base: "sm", lg: "md" }}
+											ref={
+												conversation.indexOf(item) == conversation.length - 1 ? targetRef : null
+											}
 										>
-											<GridCol span={{ md: 1 }}>
-												{item.role == "assistant" ? (
-													<Stack h={40} w={40} my={-4}>
-														<Image
-															src={icons.tools.claude}
-															alt={"Claude AI"}
-															loading="lazy"
-															radius={"sm"}
-															component={NextImage}
-															width={40}
-															height={40}
-														/>
-													</Stack>
-												) : (
-													<Avatar color="pri" radius={"sm"} ml={5} size={32} />
-												)}
-											</GridCol>
+											<Grid
+												gutter={0}
+												py={"md"}
+												style={{
+													borderTop:
+														conversation.indexOf(item) > 0
+															? `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`
+															: "",
+												}}
+											>
+												<GridCol span={{ md: 1 }}>
+													{item.role == "assistant" ? (
+														<Stack h={40} w={40} my={-4}>
+															<Image
+																src={icons.tools.claude}
+																alt={"Claude AI"}
+																loading="lazy"
+																radius={"sm"}
+																component={NextImage}
+																width={40}
+																height={40}
+															/>
+														</Stack>
+													) : (
+														<Avatar color="pri" radius={"sm"} ml={5} size={32} />
+													)}
+												</GridCol>
 
-											<GridCol span={{ md: 11 }} mt={6}>
-												{item.role == "assistant" ? (
-													<MarkdownComponent
-														markdown={item.content}
-														animate={conversation.indexOf(item) == conversation.length - 1}
-													/>
-												) : (
-													<Text inherit>{item.content}</Text>
-												)}
+												<GridCol span={{ md: 11 }} mt={6}>
+													{item.role == "assistant" ? (
+														<MarkdownComponent
+															markdown={item.content}
+															animate={
+																conversation.indexOf(item) == conversation.length - 1
+															}
+														/>
+													) : (
+														<Text inherit>{item.content}</Text>
+													)}
+												</GridCol>
+											</Grid>
+										</GridCol>
+									)}
+								</Transition>
+
+								{newConversation && (
+									<Transition
+										key={"questions"}
+										mounted={newConversation}
+										transition="fade"
+										duration={250}
+										enterDelay={0}
+										exitDelay={0}
+										timingFunction="ease"
+									>
+										{styles => (
+											<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
+												<Grid gutter={0} pb={"md"}>
+													<GridCol span={1}></GridCol>
+													<GridCol span={11}>
+														<Stack gap={"xs"}>
+															<Text inherit>Some example questions:</Text>
+
+															<Stack gap={"xs"} align="start" ml={{ md: "md" }}>
+																{sample.questions.map(question => (
+																	<FormClaude
+																		key={question}
+																		automatic
+																		query={question}
+																	>
+																		<Button
+																			variant="outline"
+																			color="gray.6"
+																			fz={{ base: 10, lg: "sm" }}
+																			p={0}
+																			h={"fit-content"}
+																			data-autofocus={
+																				sample.questions.indexOf(question) == 0
+																			}
+																		>
+																			<Text
+																				component="span"
+																				inherit
+																				p={6}
+																				fw={500}
+																			>
+																				{question}
+																			</Text>
+																		</Button>
+																	</FormClaude>
+																))}
+															</Stack>
+														</Stack>
+													</GridCol>
+												</Grid>
 											</GridCol>
-										</Grid>
-									</GridCol>
+										)}
+									</Transition>
 								)}
-							</Transition>
+							</>
 						))}
 
-						<Transition mounted={newConversation} transition="fade" duration={250} timingFunction="ease">
-							{styles => (
-								<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
-									<Grid gutter={0}>
-										<GridCol span={1}></GridCol>
-										<GridCol span={11}>
-											<Stack gap={"xs"}>
-												<Text inherit>Some example questions:</Text>
-
-												<Stack gap={"xs"} align="start" ml={{ md: "md" }}>
-													{sample.questions.map(question => (
-														<Button
-															key={question}
-															variant="outline"
-															color="gray.6"
-															fz={{ base: 10, lg: "sm" }}
-															p={0}
-															h={"fit-content"}
-															data-autofocus={sample.questions.indexOf(question) == 0}
-														>
-															<Text component="span" inherit p={6} fw={500}>
-																{question}
-															</Text>
-														</Button>
-													))}
-												</Stack>
-											</Stack>
-										</GridCol>
-									</Grid>
-								</GridCol>
-							)}
-						</Transition>
-
-						<Transition mounted={generating} transition="fade" duration={250} timingFunction="ease">
+						<Transition
+							mounted={generating}
+							transition="fade"
+							duration={250}
+							enterDelay={250}
+							exitDelay={0}
+							timingFunction="ease"
+						>
 							{styles => (
 								<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
 									<Grid
@@ -260,7 +293,7 @@ export default function Main() {
 								Claude 3 Haiku model from{" "}
 								<Anchor href="https://anthropic.com" target="_blank" inherit fw={500}>
 									ANTHROP\C{" "}
-									<Stack h={24} w={24} display={"inline-flex"}>
+									{/* <Stack h={24} w={24} display={"inline-flex"}>
 										<Image
 											src={icons.tools.claude}
 											alt={"Claude AI"}
@@ -270,31 +303,43 @@ export default function Main() {
 											width={24}
 											height={24}
 										/>
-									</Stack>
+									</Stack> */}
 								</Anchor>
 							</Text>
 
 							<Group gap={"xs"}>
 								<Transition
-									mounted={conversation.length > 1}
+									mounted={conversation.length > 2}
 									transition="fade"
 									duration={250}
 									timingFunction="ease"
 								>
 									{styles => (
 										<div style={styles}>
-											<Button
-												size="xs"
-												h={"fit-content"}
-												variant="light"
-												color="pri"
-												fw={500}
-												p={0}
+											<FormClaude
+												automatic
+												regenerating
+												query={
+													conversation.length > 2
+														? conversation[conversation.length - 2].content
+														: undefined
+												}
+												chaff={conversation[conversation.length - 1].content}
 											>
-												<Text component="span" inherit px={6} py={6}>
-													{generating ? "Stop Generating" : "Regenerate"}
-												</Text>
-											</Button>
+												<Button
+													size="xs"
+													h={"fit-content"}
+													variant="light"
+													color="pri"
+													fw={500}
+													p={0}
+													disabled={generating}
+												>
+													<Text component="span" inherit px={6} py={6}>
+														Regenerate
+													</Text>
+												</Button>
+											</FormClaude>
 										</div>
 									)}
 								</Transition>
@@ -310,6 +355,7 @@ export default function Main() {
 												fw={500}
 												p={0}
 												onClick={clearConversation}
+												disabled={newConversation}
 											>
 												<Text component="span" inherit px={6} py={6}>
 													Clear Chat

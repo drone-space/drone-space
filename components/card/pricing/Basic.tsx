@@ -21,7 +21,7 @@ import classes from "./Basic.module.scss";
 import { typeUnit } from "@/types/course";
 import { IconCheck } from "@tabler/icons-react";
 
-export default function Basic({ data }: { data: typeUnit }) {
+export default function Basic({ data, offset }: { data: typeUnit; offset?: boolean }) {
 	return (
 		<Card
 			className={classes.card}
@@ -33,7 +33,7 @@ export default function Basic({ data }: { data: typeUnit }) {
 				<Stack gap={"xl"} mb={"xl"}>
 					<Stack>
 						{data.advanced && (
-							<Group justify="end">
+							<Group justify="end" opacity={offset ? 0 : 1}>
 								<Badge className={data.featured ? classes.badgeFeatured : classes.badge}>
 									Advanced Course
 								</Badge>

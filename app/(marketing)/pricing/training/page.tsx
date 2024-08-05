@@ -35,7 +35,7 @@ export default async function Gallery() {
 				<Grid>
 					{courses.advanced.units.map(course => (
 						<GridCol key={course.title.full} span={{ sm: 6, md: 4 }}>
-							<CardPricingBasic data={course} />
+							<CardPricingBasic data={course} offset={course.title.short == "RadTel"} />
 						</GridCol>
 					))}
 				</Grid>

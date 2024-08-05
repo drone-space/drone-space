@@ -222,52 +222,6 @@ const courses = {
 		units: [
 			{
 				advanced: true,
-				image: images.training.mapSur,
-				title: {
-					short: "Masterclass",
-					full: "Drone Mapping and Survey",
-				},
-				price: {
-					discount: null,
-					full: 110000,
-				},
-				priceFeatures: [
-					{
-						item: "Drone Mapping & Survey",
-						duration: null,
-						price: null,
-					},
-					{
-						item: "Photogammetry",
-						duration: null,
-						price: null,
-					},
-					{
-						item: "LiDAR",
-						duration: null,
-						price: null,
-					},
-				],
-				desc: "The Drone Mapping and Survey course is a 5-day course designed for RPL holders who want to learn how to use drones for mapping and surveying purposes. This course is suitable for engineers, surveyors, environmental scientists, among others. It is also ideal for individuals interested in starting a drone mapping and surveying business. By completing this course, students will acquire practical skills in drone operation, surveying techniques, and data analysis. They will also learn how to process and interpret data obtained from drone surveys to generate accurate maps and 3D models.",
-				modules: [
-					"Mapping drones and payloads",
-					"Missions, mission planning software & flight planning",
-					"GCP's pre-marking & GNSS survey",
-					"Aerial LiDAR mapping",
-					"Mission planning with the DJI Pilot & Drone Deploy",
-					"Data collection using the Zenmuse L1",
-					"Data processing & analysis using the DJI TERRA, Pix 4D Mapper & Global Mapper",
-					"Workflow review and project accuracy verification procedures",
-					"Practical session using the DJI Matrice 300",
-				],
-				qualifications: [
-					"One of the key benefits of our Drone Mapping course is the opportunity to gain hands-on experience with state-of-the-art mapping software and technology.",
-					"Masterclass(Drone Mapping) Rating",
-					"Drone Space course completion certificate",
-				],
-			},
-			{
-				advanced: true,
 				image: images.training.radTel,
 				title: {
 					short: "RadTel",
@@ -310,6 +264,52 @@ const courses = {
 					"Develop proficiency in radio telephony procedures for drone operations in controlled airspace and BVLOS missions.",
 					"Acquire comprehensive knowledge of radio phraseology, air traffic control communication, emergency procedures, and airspace regulations",
 					"Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.",
+				],
+			},
+			{
+				advanced: true,
+				image: images.training.mapSur,
+				title: {
+					short: "Masterclass",
+					full: "Drone Mapping and Survey",
+				},
+				price: {
+					discount: null,
+					full: 110000,
+				},
+				priceFeatures: [
+					{
+						item: "Drone Mapping & Survey",
+						duration: null,
+						price: null,
+					},
+					{
+						item: "Photogammetry",
+						duration: null,
+						price: null,
+					},
+					{
+						item: "LiDAR",
+						duration: null,
+						price: null,
+					},
+				],
+				desc: "The Drone Mapping and Survey course is a 5-day course designed for RPL holders who want to learn how to use drones for mapping and surveying purposes. This course is suitable for engineers, surveyors, environmental scientists, among others. It is also ideal for individuals interested in starting a drone mapping and surveying business. By completing this course, students will acquire practical skills in drone operation, surveying techniques, and data analysis. They will also learn how to process and interpret data obtained from drone surveys to generate accurate maps and 3D models.",
+				modules: [
+					"Mapping drones and payloads",
+					"Missions, mission planning software & flight planning",
+					"GCP's pre-marking & GNSS survey",
+					"Aerial LiDAR mapping",
+					"Mission planning with the DJI Pilot & Drone Deploy",
+					"Data collection using the Zenmuse L1",
+					"Data processing & analysis using the DJI TERRA, Pix 4D Mapper & Global Mapper",
+					"Workflow review and project accuracy verification procedures",
+					"Practical session using the DJI Matrice 300",
+				],
+				qualifications: [
+					"One of the key benefits of our Drone Mapping course is the opportunity to gain hands-on experience with state-of-the-art mapping software and technology.",
+					"Masterclass(Drone Mapping) Rating",
+					"Drone Space course completion certificate",
 				],
 			},
 			{

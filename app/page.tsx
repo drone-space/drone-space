@@ -44,6 +44,7 @@ import CtaTraining from "@/partials/cta/Training";
 import array from "@/utilities/arrays";
 import AffixTop from "@/components/affixi/Top";
 import AffixNavbar from "@/components/affixi/Navbar";
+import AffixAssistant from "@/components/affixi/Assistant";
 
 export default function Home() {
 	const drones = {
@@ -283,6 +284,7 @@ export default function Home() {
 
 				<AffixTop />
 				<AffixNavbar />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

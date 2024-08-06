@@ -18,19 +18,19 @@ const courses = {
 			"An overview of future UAS technology and their role in enhancing UAS operational safety.",
 		],
 		units: [
-			{
-				image: images.training.fixWin,
-				title: {
-					short: "FW",
-					full: "Fixed-Wing",
-				},
-				price: null,
-				priceFeatures: null,
-				desc: "The Aeroplane category is commonly referred to as the Fixed-Wing Category. The course prepares a candidate to add the category of drones to their licence and opens another avenue of drone flying to the delegate/student.",
-				modules: null,
-				qualifications: ["Fixed-Wing Rating", "Drone Space course completion certificate"],
-				available: false,
-			},
+			// {
+			// 	image: images.training.fixWin,
+			// 	title: {
+			// 		short: "FW",
+			// 		full: "Fixed-Wing",
+			// 	},
+			// 	price: null,
+			// 	priceFeatures: null,
+			// 	desc: "The Aeroplane category is commonly referred to as the Fixed-Wing Category. The course prepares a candidate to add the category of drones to their licence and opens another avenue of drone flying to the delegate/student.",
+			// 	modules: null,
+			// 	qualifications: ["Fixed-Wing Rating", "Drone Space course completion certificate"],
+			// 	available: false,
+			// },
 			{
 				featured: true,
 				image: images.training.mulRot,
@@ -157,71 +157,6 @@ const courses = {
 				],
 			},
 			{
-				image: images.training.bvlos,
-				title: {
-					short: "BVLOS",
-					full: "Beyond Visual Line of Sight",
-				},
-				price: null,
-				priceFeatures: null,
-				desc: "This course aims at advanced training that allows experienced remote pilots acquire the skills to operate in category c operations which is high risk or rather manned aviation approach. BVLOS training allows the delegate to gain the skill to adequately plan and execute BVLOS operations. The seven-day course which include theory classroom, briefings, mission planning on simulator, Hands on training on Drone Space Unmanned aircraft and examination will introduce the professionally licensed pilot operators to the new opportunities and regulatory requirements to be considered with this service delivery. You will be examined in a range of current systems designed for BVLOS flight. Lesson topics will range between Ground Station control to loading of mission into the drone, and from auto pilot technology to safety management.",
-				modules: [
-					"Air Law and UAS Regulations that Govern BVLOS Operations",
-					"Crew Resource Management (CRM) & Situational awareness in unmanned aviation",
-					"Unmanned Aircraft Systems (UAS) and other technologies",
-					"BVLOS Safety Management Systems",
-					"BVLOS Operational Manuals (CONOPS)",
-					"Meteorology",
-					"Mission Planning ",
-					"Instrument Flying",
-					"Case Studies - UAS accident investigation",
-				],
-				qualifications: [
-					"Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices",
-					"Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations",
-					"Provide more insight into the Drone Technology and Drone components of VTOLs.",
-				],
-				available: false,
-			},
-		],
-		process: [
-			{
-				title: "Theory",
-				desc: "The course consists of several modules",
-			},
-			{
-				title: "Practicals",
-				desc: "One on One instruction with professional flight instructors with a recommendation of 5 hours of flight time.",
-			},
-			{
-				title: "Checkout (Skills Test)",
-				desc: "Students undergo a checkout flight by a qualified designated flight examiner (DFE) where their knowledge of the rules of the air, regulations, airmanship & flight ability will be tested and evaluated in accordance with the KCAA's Manual of Implementing Standards.",
-			},
-			{
-				title: "RPL Certification",
-				desc: "Passing this test will qualify our students to complete an application for a Remote Pilot. License (RPL) at KCAA.",
-			},
-		],
-	},
-	advanced: {
-		title: {
-			short: "Advanced",
-			full: "Advanced Training",
-		},
-		desc: "The advanced training courses are each divided into three sections i.e. theory, practical and skills test.",
-		overview:
-			"The courses provide you with the fundamental knowledge & skills required to operate drones safely and legally for commercial purposes. The course also provides students with an understanding of The Civil Aviation (Unmaned Aircraft Systems) Regulations 2020, associated with the operation of unmanned aircraft systems (UAS). Students gain knowledge and an understanding of the evolving regulations and how they apply to the training as well as to commercial UAS operations. students explore guidance on the requirements, operational and technical aspects and the risk-based processes underpinning the application and granting of authorizations for UAS operations.",
-		objectives: [
-			"The current and future regulatory framework and how it impacts on UAS operations.",
-			"The role of the regulator (KCAA).",
-			"The different types of UAS platform and what their functionality is.",
-			"The fundamental principles of UAS operation (VLOS, BVLOS).",
-			"The fundamental of aviation safety and the role of specific operational risk assessments.",
-			"An overview of future UAS technology and their role in enhancing UAS operational safety.",
-		],
-		units: [
-			{
-				advanced: true,
 				image: images.training.radTel,
 				title: {
 					short: "RadTel",
@@ -266,6 +201,70 @@ const courses = {
 					"Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.",
 				],
 			},
+			// {
+			// 	image: images.training.bvlos,
+			// 	title: {
+			// 		short: "BVLOS",
+			// 		full: "Beyond Visual Line of Sight",
+			// 	},
+			// 	price: null,
+			// 	priceFeatures: null,
+			// 	desc: "This course aims at advanced training that allows experienced remote pilots acquire the skills to operate in category c operations which is high risk or rather manned aviation approach. BVLOS training allows the delegate to gain the skill to adequately plan and execute BVLOS operations. The seven-day course which include theory classroom, briefings, mission planning on simulator, Hands on training on Drone Space Unmanned aircraft and examination will introduce the professionally licensed pilot operators to the new opportunities and regulatory requirements to be considered with this service delivery. You will be examined in a range of current systems designed for BVLOS flight. Lesson topics will range between Ground Station control to loading of mission into the drone, and from auto pilot technology to safety management.",
+			// 	modules: [
+			// 		"Air Law and UAS Regulations that Govern BVLOS Operations",
+			// 		"Crew Resource Management (CRM) & Situational awareness in unmanned aviation",
+			// 		"Unmanned Aircraft Systems (UAS) and other technologies",
+			// 		"BVLOS Safety Management Systems",
+			// 		"BVLOS Operational Manuals (CONOPS)",
+			// 		"Meteorology",
+			// 		"Mission Planning ",
+			// 		"Instrument Flying",
+			// 		"Case Studies - UAS accident investigation",
+			// 	],
+			// 	qualifications: [
+			// 		"Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices",
+			// 		"Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations",
+			// 		"Provide more insight into the Drone Technology and Drone components of VTOLs.",
+			// 	],
+			// 	available: false,
+			// },
+		],
+		process: [
+			{
+				title: "Theory",
+				desc: "The course consists of several modules",
+			},
+			{
+				title: "Practicals",
+				desc: "One on One instruction with professional flight instructors with a recommendation of 5 hours of flight time.",
+			},
+			{
+				title: "Checkout (Skills Test)",
+				desc: "Students undergo a checkout flight by a qualified designated flight examiner (DFE) where their knowledge of the rules of the air, regulations, airmanship & flight ability will be tested and evaluated in accordance with the KCAA's Manual of Implementing Standards.",
+			},
+			{
+				title: "RPL Certification",
+				desc: "Passing this test will qualify our students to complete an application for a Remote Pilot. License (RPL) at KCAA.",
+			},
+		],
+	},
+	advanced: {
+		title: {
+			short: "Advanced",
+			full: "Advanced Training",
+		},
+		desc: "The advanced training courses are each divided into three sections i.e. theory, practical and skills test.",
+		overview:
+			"The courses provide you with the fundamental knowledge & skills required to operate drones safely and legally for commercial purposes. The course also provides students with an understanding of The Civil Aviation (Unmaned Aircraft Systems) Regulations 2020, associated with the operation of unmanned aircraft systems (UAS). Students gain knowledge and an understanding of the evolving regulations and how they apply to the training as well as to commercial UAS operations. students explore guidance on the requirements, operational and technical aspects and the risk-based processes underpinning the application and granting of authorizations for UAS operations.",
+		objectives: [
+			"The current and future regulatory framework and how it impacts on UAS operations.",
+			"The role of the regulator (KCAA).",
+			"The different types of UAS platform and what their functionality is.",
+			"The fundamental principles of UAS operation (VLOS, BVLOS).",
+			"The fundamental of aviation safety and the role of specific operational risk assessments.",
+			"An overview of future UAS technology and their role in enhancing UAS operational safety.",
+		],
+		units: [
 			{
 				advanced: true,
 				image: images.training.mapSur,

@@ -22,6 +22,7 @@ import classes from "./Claude.module.scss";
 
 import { ClaudeContext, typeClaudeTurn } from "@/contexts/Claude";
 import { getHotkeyHandler } from "@mantine/hooks";
+import ai from "@/data/ai";
 
 interface typePrompt {
 	content: string;
@@ -46,22 +47,14 @@ export default function Claude({
 		throw new Error("Outside Claude Context");
 	}
 
-	const {
-		submitted,
-		setSubmitted,
-		generating,
-		setGenerating,
-		conversation,
-		setConversation,
-		newConversation,
-		setNewConversation,
-		clearConversation,
-	} = claude;
+	const { submitted, setSubmitted, conversation, setConversation } = claude;
 
 	const form = useForm({
 		initialValues: { content: query ? query : "" },
-		validate: { content: value => value.trim().length < 1 },
+		validate: { content: value => !regenerating && value.trim().length < 1 },
 	});
+
+	const error = { title: "", message: "" };
 
 	const parse = (rawData: typePrompt) => {
 		return rawData.content.trim();
@@ -69,18 +62,18 @@ export default function Claude({
 
 	const handleSubmit = async (formValues: typePrompt) => {
 		if (form.isValid()) {
-			setNewConversation(false);
-
 			try {
 				setSubmitted(true);
-				setGenerating(true);
 
 				const res = await request.post(process.env.NEXT_PUBLIC_API_URL + "/api/claude", {
 					method: "POST",
 					body: JSON.stringify({
 						model: process.env.NEXT_PUBLIC_CLAUDE_MODEL,
-						max_tokens: 96, // 1024
-						messages: [...conversation, { role: "user", content: parse(formValues) }],
+						max_tokens: 1024,
+						messages: !regenerating
+							? [...conversation, { role: "user", content: parse(formValues) }]
+							: conversation,
+						system: ai.system,
 					}),
 					headers: {
 						"Content-Type": "application/json",
@@ -96,42 +89,40 @@ export default function Claude({
 						message: `There was no response from the server.`,
 						variant: "failed",
 					});
-
-					// remove latest turn to context
-					conversation.pop();
 				} else {
 					// add latest exchange to context
-					if (regenerating) {
-						setConversation(
-							conversation
-								.filter(t => t.content != chaff)
-								.concat({ role: "assistant", content: `ai response: ${form.values.content}` })
-						);
-						// res.content && setConversation([...conversation, { role: "assistant", content: res.content }]);
-					} else {
+					if (!regenerating) {
 						setConversation([
 							...conversation,
 							{ role: "user", content: parse(formValues) },
-							{ role: "assistant", content: `ai response: ${form.values.content}` },
+							{ role: res.role, content: res.content[0].text },
 						]);
-						// res.content && setConversation([...conversation, { role: "assistant", content: res.content }]);
+					} else {
+						conversation.length > 0 &&
+							(conversation[conversation.length - 1].role == "assistant"
+								? setConversation(
+										conversation
+											.filter(t => t.content != conversation[conversation.length - 1].content)
+											.concat({ role: res.role, content: res.content[0].text })
+								  )
+								: setConversation(
+										conversation.concat({ role: res.role, content: res.content[0].text })
+								  ));
 					}
 				}
 			} catch (error) {
 				notifications.show({
 					id: "form-contact-failed",
 					icon: <IconX size={16} stroke={1.5} />,
-					title: "Submisstion Failed",
-					message: (error as Error).message,
+					title: "Prompt Failed",
+					message: "Could not generate response.",
 					variant: "failed",
 				});
 
-				// remove latest turn to context
-				conversation.pop();
+				console.log(error);
 			} finally {
-				form.reset();
+				!automatic && form.reset();
 				setSubmitted(false);
-				setGenerating(false);
 			}
 		}
 	};
@@ -157,11 +148,11 @@ export default function Claude({
 					onKeyDown={getHotkeyHandler([["mod+Enter", form.onSubmit(values => handleSubmit(values))]])}
 					classNames={{ input: classes.input }}
 					w={"100%"}
-					disabled={submitted || generating}
+					disabled={submitted}
 				/>
 
 				<Stack align="end" justify="end">
-					<ActionIcon w={32} h={32} variant="light" type="submit" loading={submitted || generating}>
+					<ActionIcon w={32} h={32} variant="light" type="submit" loading={submitted}>
 						<IconSend size={24} stroke={2} />
 					</ActionIcon>
 				</Stack>

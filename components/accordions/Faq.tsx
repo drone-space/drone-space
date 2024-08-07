@@ -30,7 +30,7 @@ export default function Faq({ section }: { section?: "training" | "shop" }) {
 			{
 				q: "Who should attend these courses?",
 				a: (
-					<List size="sm">
+					<List size="sm" pr={"md"}>
 						<ListItem>
 							This course is suitable for 18 years and above and requires a generic overview of UAS
 							training and operations
@@ -57,7 +57,7 @@ export default function Faq({ section }: { section?: "training" | "shop" }) {
 			{
 				q: "Why choose dronespace for BVLOS operations training?",
 				a: (
-					<List size="sm">
+					<List size="sm" pr={"md"}>
 						<ListItem>
 							Hands-on training and mission loading on an actual Drone Space VTOL Aircraft
 						</ListItem>
@@ -91,7 +91,7 @@ export default function Faq({ section }: { section?: "training" | "shop" }) {
 			{
 				q: "Where am I allowed to fly my drone?",
 				a: (
-					<List size="sm">
+					<List size="sm" pr={"md"}>
 						<ListItem>
 							The drone shall be operated no less than 50m from a road, people or property
 						</ListItem>
@@ -129,7 +129,7 @@ export default function Faq({ section }: { section?: "training" | "shop" }) {
 			{
 				q: "Who are the KCAA aproved doctors?",
 				a: (
-					<List size="sm">
+					<List size="sm" pr={"md"}>
 						<ListItem>Dr. Wanjohi: (0722 833 492, wambakiwanjohi@gmail.com)</ListItem>
 						<ListItem>Dr. Phenny: (0722 302 086, kphenny123@gmail.com)</ListItem>
 					</List>
@@ -152,7 +152,7 @@ export default function Faq({ section }: { section?: "training" | "shop" }) {
 	const items = selection().map(item => (
 		<AccordionItem key={item.q} value={item.q}>
 			<AccordionControl icon={<IconHelpCircle size={16} />}>{item.q}</AccordionControl>
-			<AccordionPanel ml={{ xs: "xl" }}>{item.a}</AccordionPanel>
+			<AccordionPanel>{item.a}</AccordionPanel>
 		</AccordionItem>
 	));
 
@@ -163,6 +163,7 @@ export default function Faq({ section }: { section?: "training" | "shop" }) {
 				label: classes.label,
 				item: classes.item,
 				icon: classes.icon,
+				content: classes.content,
 			}}
 			defaultValue={selection()[0].q}
 		>

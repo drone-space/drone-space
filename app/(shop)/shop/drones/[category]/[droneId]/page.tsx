@@ -36,7 +36,8 @@ import link from "@/handlers/parsers/string/link";
 import CardShopAccessory from "@/components/card/shop/Accessory";
 import CarouselImage from "@/components/carousels/Image";
 
-import { typeParams } from "./layout";
+import { typeParams } from "../layout";
+
 import {
 	IconBattery3,
 	IconCheck,
@@ -138,11 +139,7 @@ export default function AccessoryDetail({ params }: typeParams) {
 							)}
 
 							<ModalContactShop>
-								<Button
-									variant="light"
-									fullWidth
-									rightSection={<IconChevronRight size={16} stroke={2} />}
-								>
+								<Button fullWidth rightSection={<IconChevronRight size={16} stroke={2} />}>
 									Order the {product?.title.short ? product.title.short : product?.title.long}
 								</Button>
 							</ModalContactShop>

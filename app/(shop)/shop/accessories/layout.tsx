@@ -3,6 +3,7 @@ import React from "react";
 import { Metadata } from "next";
 
 import LayoutBody from "@/layouts/Body";
+import LayoutHeroMain from "@/layouts/heros/Main";
 import NavbarShop from "@/partials/navbars/Shop";
 
 import contact from "@/data/contact";
@@ -17,7 +18,7 @@ export default function AccessoriesLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<LayoutBody nav={<NavbarShop />}>
+		<LayoutBody nav={<NavbarShop />} hero={<LayoutHeroMain />}>
 			<main>{children}</main>
 		</LayoutBody>
 	);

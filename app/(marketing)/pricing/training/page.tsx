@@ -21,7 +21,7 @@ export default async function Gallery() {
 			<LayoutSection containerized="responsive" padded bordered>
 				<Grid>
 					{courses.basic.units.map(course => (
-						<GridCol key={course.title.full} span={{ sm: 6, lg: 4 }}>
+						<GridCol key={course.title.full} span={{ sm: 6, md: 4 }}>
 							<CardPricingBasic data={course} />
 						</GridCol>
 					))}
@@ -31,7 +31,7 @@ export default async function Gallery() {
 			<LayoutSection containerized="responsive" padded shadowed>
 				<Grid>
 					{courses.advanced.units.map(course => (
-						<GridCol key={course.title.full} span={{ sm: 6, md: 4 }}>
+						<GridCol key={course.title.full} span={{ sm: 6, lg: 4 }}>
 							<CardPricingBasic data={course} offset={course.title.short == "RadTel"} />
 						</GridCol>
 					))}

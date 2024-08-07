@@ -14,7 +14,7 @@
 .link {
 	transition: 0.25s all ease;
 
-	color: var(--mantine-color-dimmed);
+	color: var(--mantine-color-text);
 
 	@include hover {
 		text-decoration: none;

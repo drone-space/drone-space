@@ -14,7 +14,7 @@ export default function Whatsapp() {
 	const link = contact.socials.find(s => s.title.includes("WhatsApp"));
 
 	return (
-		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * 1)", right: 0 }}>
+		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * 2)", right: 0 }}>
 			<Transition transition="slide-left" mounted={scroll.y > 80}>
 				{transitionStyles => (
 					<div style={transitionStyles}>

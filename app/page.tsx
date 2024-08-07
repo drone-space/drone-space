@@ -44,7 +44,7 @@ import CtaTraining from "@/partials/cta/Training";
 import array from "@/utilities/arrays";
 import AffixTop from "@/components/affixi/Top";
 import AffixNavbar from "@/components/affixi/Navbar";
-// import AffixAssistant from "@/components/affixi/Assistant";
+import AffixAssistant from "@/components/affixi/Assistant";
 import AffixWhatsapp from "@/components/affixi/Whatsapp";
 
 export default function Home() {
@@ -285,7 +285,7 @@ export default function Home() {
 
 				<AffixTop />
 				<AffixNavbar />
-				{/* <AffixAssistant /> */}
+				<AffixAssistant />
 				<AffixWhatsapp />
 			</main>
 		</LayoutBody>

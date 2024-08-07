@@ -25,7 +25,7 @@ import {
 } from "@mantine/core";
 
 import CardShowsAdvantages from "@/components/card/shows/Advantages";
-import CardShowApplications from "@/components/card/shows/Applications";
+import CardShowsApplications from "@/components/card/shows/Applications";
 
 import {
 	IconBuildingSkyscraper,
@@ -157,7 +157,7 @@ export default async function LighShow() {
 					<Grid>
 						{data.applications.map(application => (
 							<GridCol key={application.label} span={{ base: 12, md: 3 }}>
-								<CardShowApplications data={application} />
+								<CardShowsApplications data={application} />
 							</GridCol>
 						))}
 					</Grid>

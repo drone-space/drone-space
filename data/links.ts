@@ -41,6 +41,7 @@ const links = {
 					{ link: "/shop/accessories", label: "Drone Accessories" },
 				],
 			},
+			{ link: "/light-shows", label: "Drone Light Shows" },
 			{
 				link: "/stories",
 				disabled: true,

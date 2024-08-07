@@ -47,6 +47,7 @@ const links = [
 	},
 	{ link: "/pricing/training", label: "Pricing" },
 	{ link: "/shop", label: "Shop" },
+	{ link: "/light-shows", label: "Drone Light Shows" },
 	{
 		link: "/stories",
 		disabled: true,

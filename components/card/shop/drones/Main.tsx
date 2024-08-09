@@ -29,7 +29,11 @@ export default function Main({ data }: { data: typeDrone }) {
 			<Stack justify="space-between" h={"100%"}>
 				<Stack>
 					<CardSection className={classes.imageSection}>
-						<Anchor component={Link} inherit href={`/shop/drones/${link.linkify(data.title.long)}`}>
+						<Anchor
+							component={Link}
+							inherit
+							href={`/shop/drones/${data.category}/${link.linkify(data.title.long)}`}
+						>
 							<Flex
 								direction={"column"}
 								justify={"center"}
@@ -62,7 +66,11 @@ export default function Main({ data }: { data: typeDrone }) {
 
 					<Stack>
 						<Title order={3} className={classes.title} fz={{ md: "md" }}>
-							<Anchor component={Link} inherit href={`/shop/drones/${link.linkify(data.title.long)}`}>
+							<Anchor
+								component={Link}
+								inherit
+								href={`/shop/drones/${data.category}/${link.linkify(data.title.long)}`}
+							>
 								{data.title.short ? data.title.short : data.title.long}
 							</Anchor>
 						</Title>

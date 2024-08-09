@@ -107,7 +107,13 @@ export default function Main() {
 										<List listStyleType="none">
 											{linkSet.links.map(link => (
 												<ListItem key={link.link} className={classes.listItem}>
-													<Anchor component={Link} href={link.link} className={classes.link}>
+													<Anchor
+														component={Link}
+														href={link.link}
+														inherit
+														fz={{ base: "sm", lg: "md" }}
+														className={classes.link}
+													>
 														{link.label}
 													</Anchor>
 												</ListItem>

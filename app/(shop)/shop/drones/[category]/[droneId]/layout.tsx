@@ -9,9 +9,7 @@ import link from "@/handlers/parsers/string/link";
 
 import products from "@/data/products";
 
-export interface typeParams {
-	params: { droneId: string };
-}
+import { typeParams } from "../layout";
 
 export const generateMetadata = ({ params }: typeParams): Metadata => {
 	const product = products.find(p => link.linkify(p.title.long) == params.droneId);

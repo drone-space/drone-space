@@ -23,7 +23,14 @@ export default function Main({ title }: { title?: string }) {
 
 	const counterRoutes = ["/training"];
 
-	const dynamicRoutes = ["/stories/blog", "/services", "/training/basic", "/training/advanced"];
+	const dynamicRoutes = [
+		"/stories/blog",
+		"/services",
+		"/training/basic",
+		"/training/advanced",
+		"/shop/drones",
+		"/shop/accessories",
+	];
 
 	const dynamic = dynamicRoutes.find(r => pathname.includes(r));
 
@@ -46,7 +53,7 @@ export default function Main({ title }: { title?: string }) {
 			<Group justify="space-between" align="center">
 				<Stack>
 					{selectTitle() && (
-						<Title order={1} fw={"bolder"} fz={24}>
+						<Title order={1} fw={"bolder"} fz={24} c={"white"}>
 							{title ? title : selectTitle()}
 						</Title>
 					)}

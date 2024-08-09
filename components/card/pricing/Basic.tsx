@@ -85,7 +85,7 @@ export default function Basic({ data, offset }: { data: typeUnit; offset?: boole
 							>
 								{data.title.full == "Multi-Rotor" ? "Remote Pilot License (RPL)" : data.title.full}
 							</Title>
-							{data.featured && (
+							{/* {data.featured && (
 								<Badge
 									radius={"sm"}
 									color={data.featured ? "sec.4" : "pri.9"}
@@ -93,7 +93,7 @@ export default function Basic({ data, offset }: { data: typeUnit; offset?: boole
 								>
 									Most Popular
 								</Badge>
-							)}
+							)} */}
 						</Group>
 
 						{data.advanced && (
@@ -110,7 +110,7 @@ export default function Basic({ data, offset }: { data: typeUnit; offset?: boole
 						c={
 							data.featured
 								? "light-dark(var(--mantine-color-white),var(--mantine-color-white))"
-								: "light-dark(var(--mantine-color-gray-8),var(--mantine-color-gray-8))"
+								: "light-dark(var(--mantine-color-text),var(--mantine-color-text))"
 						}
 						icon={
 							<ThemeIcon size={16} radius={"xl"} color="green.6" c={"white"}>
@@ -125,7 +125,7 @@ export default function Basic({ data, offset }: { data: typeUnit; offset?: boole
 				</Stack>
 
 				<ModalCoursePricing data={data}>
-					<Button color={data.featured ? "sec.4" : "pri"} c={"white"} fullWidth>
+					<Button color={data.featured ? "sec.4" : "pri"} c={data.featured ? "pri.9" : "white"} fullWidth>
 						{data.title.full} Details
 					</Button>
 				</ModalCoursePricing>

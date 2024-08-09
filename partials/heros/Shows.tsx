@@ -30,7 +30,7 @@ export default function Shows() {
 			<div className={classes.underlay}>
 				<AspectRatio ratio={1920 / 1080} h={"100%"}>
 					<video
-						controls
+						controls={false}
 						autoPlay
 						muted
 						loop

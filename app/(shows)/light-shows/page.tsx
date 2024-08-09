@@ -333,8 +333,8 @@ export default async function LighShow() {
 			</LayoutSection>
 
 			<LayoutSection padded shadowed containerized={"responsive"}>
-				<Grid gutter={{ base: 48, md: "md" }}>
-					<GridCol span={{ basE: 12, md: 5.5 }}>
+				<Grid gutter={{ base: "xl", md: "md" }}>
+					<GridCol span={{ base: 12, md: 5.5 }}>
 						<Stack gap={48}>
 							<Stack gap={"xs"} align="center">
 								<Title
@@ -362,7 +362,7 @@ export default async function LighShow() {
 						</Center>
 					</GridCol>
 
-					<GridCol span={{ basE: 12, md: 5.5 }}>
+					<GridCol span={{ base: 12, md: 5.5 }}>
 						<Stack gap={48}>
 							<Stack gap={"xs"} align="center">
 								<Title

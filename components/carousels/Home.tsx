@@ -94,10 +94,8 @@ export default function Home() {
 
 					<Group gap={"xs"}>
 						<ModalAdvertisment />
-						<ModalCamp />
+						{anchors}
 					</Group>
-
-					{anchors}
 				</Stack>
 			</LayoutSection>
 		</CarouselSlide>
@@ -156,10 +154,6 @@ export default function Home() {
 
 						<Group gap={"xs"}>
 							<ModalAdvertisment />
-							<ModalCamp />
-						</Group>
-
-						<Group gap={"xs"}>
 							<Button
 								size="xs"
 								component={"a"}

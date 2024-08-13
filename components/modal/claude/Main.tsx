@@ -428,7 +428,7 @@ export default function Main() {
 					Ask AI
 				</Text>
 
-				<Box h={32} w={32}>
+				<Box h={31} w={31}>
 					<Stack>
 						<Image
 							src={icons.tools.claude}
@@ -436,8 +436,8 @@ export default function Main() {
 							loading="lazy"
 							radius={"sm"}
 							component={NextImage}
-							width={32}
-							height={32}
+							width={31}
+							height={31}
 						/>
 					</Stack>
 				</Box>

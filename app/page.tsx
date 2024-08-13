@@ -283,10 +283,11 @@ export default function Home() {
 					<CtaTraining data={{ type: "basic" }} />
 				</LayoutPage>
 
-				<AffixTop />
 				<AffixNavbar />
+        
+        <AffixTop />
+        <AffixWhatsapp />
 				<AffixAssistant />
-				<AffixWhatsapp />
 			</main>
 		</LayoutBody>
 	);

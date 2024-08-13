@@ -3,7 +3,7 @@
 import React from "react";
 import { useRef } from "react";
 
-import { Box, Button, Container, Group, Stack, Text, Title } from "@mantine/core";
+import { AspectRatio, Box, Button, Container, Group, Stack, Text, Title } from "@mantine/core";
 import { Carousel, CarouselSlide } from "@mantine/carousel";
 
 import { IconFileDownload } from "@tabler/icons-react";
@@ -94,10 +94,8 @@ export default function Home() {
 
 					<Group gap={"xs"}>
 						<ModalAdvertisment />
-						<ModalCamp />
+						{anchors}
 					</Group>
-
-					{anchors}
 				</Stack>
 			</LayoutSection>
 		</CarouselSlide>
@@ -114,21 +112,24 @@ export default function Home() {
 			// onMouseLeave={autoplay.current.reset}
 		>
 			<CarouselSlide key={"Empowering Drone Professionals in Kenya"} pos={"relative"}>
-				<Box
-					pos={"absolute"}
-					style={{ zIndex: -2 }}
-					component="video"
-					src={videos.hero.video1}
-					controls
-					autoPlay
-					playsInline
-					preload="auto"
-					poster={images.gallery.innovation.jamuhuri.yr2020.image4}
-					muted
-					loop
-					h={mobile ? "100%" : undefined}
-					w={!mobile ? "100%" : undefined}
-				></Box>
+				<div className={classes.underlay}>
+					<AspectRatio ratio={1920 / 1080} h={"100%"}>
+						<video
+							controls={false}
+							autoPlay
+							muted
+							loop
+							playsInline
+							preload="auto"
+							poster={images.gallery.innovation.jamuhuri.yr2020.image9}
+							height={"100%"}
+						>
+							<source src={videos.hero.video1} type="video/mp4" />
+							Your browser does not support the video tag.
+						</video>
+					</AspectRatio>
+				</div>
+
 				<Box
 					pos={"absolute"}
 					top={0}
@@ -153,10 +154,6 @@ export default function Home() {
 
 						<Group gap={"xs"}>
 							<ModalAdvertisment />
-							<ModalCamp />
-						</Group>
-
-						<Group gap={"xs"}>
 							<Button
 								size="xs"
 								component={"a"}

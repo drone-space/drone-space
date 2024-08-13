@@ -28,7 +28,7 @@ export default function ShopLayout({
 				{children}
 
 				<AffixNavbar />
-
+        
 				<AffixTop />
 				<AffixWhatsapp />
 				<AffixAssistant />

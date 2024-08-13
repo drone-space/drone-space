@@ -45,6 +45,7 @@ export default function Main() {
 								variant="subtle"
 								className={classes.close}
 								onClick={() => setVisible(false)}
+								aria-label="close notification"
 							>
 								<IconX size={16} stroke={1.5} />
 							</ActionIcon>

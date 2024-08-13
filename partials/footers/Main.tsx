@@ -126,7 +126,7 @@ export default function Main() {
 					</GridCol>
 				</Grid>
 			</LayoutSection>
-			{/* <Divider my={"sm"} color="var(--mantine-color-default-border)" /> */}
+
 			<LayoutSection
 				padded={"sm"}
 				bg={"light-dark(var(--mantine-color-sec-light),var(--mantine-color-sec-light))"}
@@ -138,7 +138,7 @@ export default function Main() {
 					justify={{ xs: "space-between" }}
 					gap={{ base: "xs", xs: "md" }}
 				>
-					<Text c={"dimmed"} fz={{ base: "xs", xs: "sm" }}>
+					<Text c={"dark.4"} fz={{ base: "xs", xs: "sm" }}>
 						© {year}{" "}
 						<Text component="span" inherit fw={500}>
 							{contact.name.app}

@@ -29,6 +29,7 @@ export default function Marketing({
 				<AffixTop />
 				<AffixNavbar />
 				<AffixAssistant />
+        <AffixAssistant />
 				<AffixWhatsapp />
 			</main>
 		</LayoutBody>

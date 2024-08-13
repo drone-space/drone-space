@@ -286,6 +286,7 @@ export default function Home() {
 				<AffixTop />
 				<AffixNavbar />
 				<AffixAssistant />
+				<AffixAssistant />
 				<AffixWhatsapp />
 			</main>
 		</LayoutBody>

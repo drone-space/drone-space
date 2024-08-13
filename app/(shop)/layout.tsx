@@ -26,11 +26,12 @@ export default function ShopLayout({
 		<LayoutBody header={<HeaderMain />} nav={<NavbarMain />} footer={<FooterMain />}>
 			<main style={{ position: "relative" }}>
 				{children}
-				<AffixTop />
+
 				<AffixNavbar />
-				<AffixAssistant />
-<AffixAssistant />
+        
+				<AffixTop />
 				<AffixWhatsapp />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

@@ -23,7 +23,7 @@ export default function Contact({
 	inquiry,
 }: {
 	data?: { subject?: string };
-	inquiry?: "training" | "callback" | "shop" | "technical" | "general";
+	inquiry?: "training" | "callback" | "shop" | "technical" | "general" | "shows";
 }) {
 	const [submitted, setSubmitted] = useState(false);
 

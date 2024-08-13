@@ -15,7 +15,7 @@ import {
 import classes from "./Main.module.scss";
 import { IconHelpCircle } from "@tabler/icons-react";
 
-export default function Faq({ section }: { section?: "training" | "shop" }) {
+export default function Main({ section }: { section?: "training" | "shop" }) {
 	const faqs = {
 		training: [
 			{

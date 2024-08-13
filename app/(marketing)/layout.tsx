@@ -26,11 +26,12 @@ export default function Marketing({
 		<LayoutBody header={<HeaderMain />} nav={<NavbarMain />} hero={<LayoutHeroMain />} footer={<FooterMain />}>
 			<main>
 				{children}
-				<AffixTop />
+
 				<AffixNavbar />
-				<AffixAssistant />
-        <AffixAssistant />
+
+				<AffixTop />
 				<AffixWhatsapp />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

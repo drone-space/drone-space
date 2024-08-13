@@ -376,7 +376,7 @@ export default async function LighShow() {
 								</Title>
 
 								<Text fz={{ base: "sm", lg: "md" }} ta={"center"}>
-									Here are some general considerations and typical pricing ranges
+									The following are some factors that determine the pricing
 								</Text>
 							</Stack>
 
@@ -397,6 +397,10 @@ export default async function LighShow() {
 						<Title order={2} fw={"bold"} ta={"center"} fz={{ md: 24 }} w={{ md: "80%" }}>
 							Typical Pricing Ranges
 						</Title>
+
+						<Text fz={{ base: "sm", lg: "md" }} ta={"center"}>
+							Here are some general considerations and typical pricing ranges
+						</Text>
 					</Stack>
 
 					<Grid justify="center">
@@ -418,6 +422,13 @@ export default async function LighShow() {
 								)
 						)}
 					</Grid>
+
+					<Text ta={"center"}>
+						<Text component="span" inherit fw={500} c={"pri"}>
+							Note:
+						</Text>{" "}
+						All our drone light shows take 12-15 minutes.
+					</Text>
 				</Stack>
 			</LayoutSection>
 
@@ -427,10 +438,6 @@ export default async function LighShow() {
 						<Title order={2} fw={"bold"} ta={"center"} fz={{ md: 24 }} w={{ md: "80%" }}>
 							Project Timeline
 						</Title>
-
-						<Text ta={"center"} w={{ md: "80%" }}>
-							All our drone light shows take 12-15 minutes
-						</Text>
 					</Stack>
 
 					<Grid>

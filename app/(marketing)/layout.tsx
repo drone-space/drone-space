@@ -10,7 +10,7 @@ import FooterMain from "@/partials/footers/Main";
 import contact from "@/data/contact";
 import AffixTop from "@/components/affixi/Top";
 import AffixNavbar from "@/components/affixi/Navbar";
-// import AffixAssistant from "@/components/affixi/Assistant";
+import AffixAssistant from "@/components/affixi/Assistant";
 import AffixWhatsapp from "@/components/affixi/Whatsapp";
 
 export const metadata: Metadata = {
@@ -26,10 +26,12 @@ export default function Marketing({
 		<LayoutBody header={<HeaderMain />} nav={<NavbarMain />} hero={<LayoutHeroMain />} footer={<FooterMain />}>
 			<main>
 				{children}
-				<AffixTop />
+
 				<AffixNavbar />
-				{/* <AffixAssistant /> */}
+
+				<AffixTop />
 				<AffixWhatsapp />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

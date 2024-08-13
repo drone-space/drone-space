@@ -85,7 +85,7 @@ export default function Basic({ data, offset }: { data: typeUnit; offset?: boole
 							>
 								{data.title.full == "Multi-Rotor" ? "Remote Pilot License (RPL)" : data.title.full}
 							</Title>
-							{/* {data.featured && (
+							{data.featured && (
 								<Badge
 									radius={"sm"}
 									color={data.featured ? "sec.4" : "pri.9"}
@@ -93,7 +93,7 @@ export default function Basic({ data, offset }: { data: typeUnit; offset?: boole
 								>
 									Most Popular
 								</Badge>
-							)} */}
+							)}
 						</Group>
 
 						{data.advanced && (

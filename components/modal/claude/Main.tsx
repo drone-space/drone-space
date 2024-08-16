@@ -199,7 +199,7 @@ export default function Main() {
 													: "",
 										}}
 									>
-										<GridCol span={{ md: 1 }}>
+										<GridCol span={{ base: 2, xs: 1 }}>
 											<Stack h={40} w={40} my={-4}>
 												<Image
 													src={icons.tools.claude}
@@ -213,7 +213,7 @@ export default function Main() {
 											</Stack>
 										</GridCol>
 
-										<GridCol span={{ md: 11 }} mt={6}>
+										<GridCol span={{ base: 10, xs: 11 }} mt={6}>
 											<MarkdownComponent
 												markdown={
 													"Hi! I'm Hekima, an AI model trained provide Drone Space related content. Ask me anything you wish to know about the company."
@@ -238,8 +238,8 @@ export default function Main() {
 							{styles => (
 								<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
 									<Grid gutter={0} pb={"md"}>
-										<GridCol span={1}></GridCol>
-										<GridCol span={11}>
+										<GridCol span={{ base: 2, xs: 1 }}></GridCol>
+										<GridCol span={{ base: 10, xs: 11 }}>
 											<Stack gap={"xs"}>
 												<Text inherit>Some example questions:</Text>
 
@@ -296,7 +296,7 @@ export default function Main() {
 											}}
 											ref={ref}
 										>
-											<GridCol span={{ md: 1 }}>
+											<GridCol span={{ base: 2, xs: 1 }}>
 												{item.role == "assistant" ? (
 													<Stack h={40} w={40} my={-4}>
 														<Image
@@ -314,7 +314,7 @@ export default function Main() {
 												)}
 											</GridCol>
 
-											<GridCol span={{ md: 11 }} mt={6}>
+											<GridCol span={{ base: 10, xs: 11 }} mt={6}>
 												{item.role == "assistant" ? (
 													<MarkdownComponent
 														markdown={item.content}
@@ -347,7 +347,7 @@ export default function Main() {
 											borderTop: `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`,
 										}}
 									>
-										<GridCol span={{ md: 1 }}>
+										<GridCol span={{ base: 2, xs: 1 }}>
 											<Stack h={40} w={40}>
 												<Image
 													src={icons.tools.claude}
@@ -360,7 +360,7 @@ export default function Main() {
 												/>
 											</Stack>
 										</GridCol>
-										<GridCol span={{ md: 11 }}>
+										<GridCol span={{ base: 10, xs: 11 }}>
 											<Stack gap={4} mt={6}>
 												<Skeleton height={8} radius="sm" />
 												<Skeleton height={8} mt={6} radius="sm" />

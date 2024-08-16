@@ -26,10 +26,14 @@ import {
 	Transition,
 	Skeleton,
 	LoadingOverlay,
+	Menu,
+	MenuTarget,
+	MenuDropdown,
 } from "@mantine/core";
 import {
 	useDebouncedCallback,
 	useDebouncedState,
+	useDebouncedValue,
 	useDisclosure,
 	useElementSize,
 	useResizeObserver,
@@ -48,6 +52,7 @@ import { ClaudeContext } from "@/contexts/Claude";
 import { IconX } from "@tabler/icons-react";
 import request from "@/hooks/request";
 import { notifications } from "@mantine/notifications";
+import { usePathname } from "next/navigation";
 
 export default function Main() {
 	const [opened, { open, close }] = useDisclosure(false);
@@ -83,7 +88,60 @@ export default function Main() {
 	useEffect(() => {
 		opened && handleScroll();
 		// console.log(conversation);
+
+		// To cancel the timeout before it elapses
+		clear();
 	}, [opened, handleScroll, submitted, conversation, height]);
+
+	// menu logic
+	const pathname = usePathname();
+
+	const routes = ["services", "/training", "/shop"];
+
+	const routeIncluded = routes.find(r => pathname.includes(r));
+
+	const getRoute = () => {
+		switch (routeIncluded) {
+			case routes[0]:
+				return "If you would like to know more about our services, ";
+			case routes[1]:
+				return "For course details, course prices or any other training inquiries, ";
+			case routes[2]:
+				return "To see available drones and drone prices or if you have drone purchase inquiries, ";
+			default:
+				return "If you're short for time and need to go through the website's content quickly, ";
+		}
+	};
+
+	const [menuOpened, setMenuOpened] = useState(false);
+	const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
+
+	useEffect(() => {
+		// sessionStorage.clear();
+
+		if (pathname == "/" || routeIncluded) {
+			try {
+				const count = sessionStorage.getItem("modalClaudeCount");
+
+				if (!count) {
+					start();
+
+					sessionStorage.setItem("modalClaudeCount", "0");
+				} else {
+					if (Number(count) <= routes.length) {
+						start();
+
+						sessionStorage.setItem("modalClaudeCount", (Number(count) + 1).toString());
+					}
+				}
+
+				console.log("count", count);
+			} catch (e) {
+				console.error("Couldn't fetch from local storage", (e as Error).message);
+			}
+		}
+	}, []);
+	// end menu logic
 
 	return (
 		<>
@@ -96,6 +154,7 @@ export default function Main() {
 				withCloseButton={false}
 				closeButtonProps={{ "aria-label": "Close modal" }}
 				keepMounted={true}
+				// style={{ zIndex: 10000 }}
 			>
 				<LayoutSection containerized="responsive" padded="xs" shadowed>
 					<Group justify="space-between">
@@ -144,7 +203,7 @@ export default function Main() {
 											<Stack h={40} w={40} my={-4}>
 												<Image
 													src={icons.tools.claude}
-													alt={"Claude AI"}
+													alt={"Hekima AI"}
 													loading="lazy"
 													radius={"sm"}
 													component={NextImage}
@@ -157,7 +216,7 @@ export default function Main() {
 										<GridCol span={{ md: 11 }} mt={6}>
 											<MarkdownComponent
 												markdown={
-													"Hi! I'm Claude, an AI model trained provide Drone Space related content. Ask me anything you wish to know about the company"
+													"Hi! I'm Hekima, an AI model trained provide Drone Space related content. Ask me anything you wish to know about the company."
 												}
 												animate={conversation.length < 1}
 											/>
@@ -242,7 +301,7 @@ export default function Main() {
 													<Stack h={40} w={40} my={-4}>
 														<Image
 															src={icons.tools.claude}
-															alt={"Claude AI"}
+															alt={"Hekima AI"}
 															loading="lazy"
 															radius={"sm"}
 															component={NextImage}
@@ -292,7 +351,7 @@ export default function Main() {
 											<Stack h={40} w={40}>
 												<Image
 													src={icons.tools.claude}
-													alt={"Claude AI"}
+													alt={"Hekima AI"}
 													loading="lazy"
 													radius={"sm"}
 													component={NextImage}
@@ -330,7 +389,7 @@ export default function Main() {
 					<Stack>
 						<Group align="end" justify="space-between" fz={"sm"}>
 							<Text inherit fz={{ base: "xs", lg: "sm" }}>
-								Claude 3 Haiku model from{" "}
+								Model from{" "}
 								<Anchor href="https://anthropic.com" target="_blank" inherit fw={500}>
 									ANTHROP\C{" "}
 									{/* <Stack h={24} w={24} display={"inline-flex"}>
@@ -400,7 +459,7 @@ export default function Main() {
 
 						<Stack gap={0}>
 							<Text inherit fz={{ base: 9, lg: 10 }} ta={"center"}>
-								Claude may produce incorrect information about Drone Space. Double-check responses and
+								Hekima may produce incorrect information about Drone Space. Double-check responses and
 								contact the company directly for important information.
 							</Text>
 
@@ -423,25 +482,53 @@ export default function Main() {
 				</LayoutSection>
 			</Modal>
 
-			<Group gap={4} onClick={open} className={classes.child}>
-				<Text inherit fz={{ base: "xs", lg: "sm" }} fw={500}>
-					Ask AI
-				</Text>
+			<Menu
+				width={280}
+				shadow="xs"
+				withArrow
+				position="top-end"
+				transitionProps={{ transition: "pop-bottom-right" }}
+				opened={menuOpened}
+				// trigger="hover"
+				// onChange={setMenuOpened}
+			>
+				<MenuTarget>
+					<div className={classes.box}>
+						<Center onClick={() => setMenuOpened(false)}>
+							<Group gap={4} onClick={open} className={classes.child}>
+								<Text inherit fz={{ base: "xs", lg: "sm" }} fw={500}>
+									Ask Hekima
+								</Text>
 
-				<Box h={31} w={31}>
-					<Stack>
-						<Image
-							src={icons.tools.claude}
-							alt={"Claude AI"}
-							loading="lazy"
-							radius={"sm"}
-							component={NextImage}
-							width={31}
-							height={31}
-						/>
-					</Stack>
-				</Box>
-			</Group>
+								<Box h={39} w={39}>
+									<Stack>
+										<Image
+											src={icons.tools.claude}
+											alt={"Claude AI"}
+											loading="lazy"
+											radius={"sm"}
+											component={NextImage}
+											width={31}
+											height={31}
+										/>
+									</Stack>
+								</Box>
+							</Group>
+						</Center>
+					</div>
+				</MenuTarget>
+
+				<MenuDropdown
+					p={"xs"}
+					bg={"var(--mantine-color-pri-9)"}
+					c={"var(--mantine-color-white)"}
+					style={{ zIndex: 1000 }}
+				>
+					<Text inherit fz={"xs"}>
+						{getRoute()} ask our AI
+					</Text>
+				</MenuDropdown>
+			</Menu>
 		</>
 	);
 }

@@ -18,6 +18,7 @@ import ModalPoster from "../modal/Poster";
 import LayoutSection from "@/layouts/Section";
 import ModalAdvertisment from "../modal/Advertisment";
 import ModalCamp from "../modal/Camp";
+import ModalShows from "../modal/Shows";
 
 import classes from "./Home.module.scss";
 
@@ -92,9 +93,11 @@ export default function Home() {
 						{slide.desc}
 					</Text>
 
+					<Group gap={"xs"}>{anchors}</Group>
+
 					<Group gap={"xs"}>
 						<ModalAdvertisment />
-						{anchors}
+						<ModalShows />
 					</Group>
 				</Stack>
 			</LayoutSection>
@@ -153,7 +156,6 @@ export default function Home() {
 						</Text>
 
 						<Group gap={"xs"}>
-							<ModalAdvertisment />
 							<Button
 								size="xs"
 								component={"a"}
@@ -163,7 +165,12 @@ export default function Home() {
 							>
 								Brochure
 							</Button>
-							<ModalPoster active={true} />
+							<ModalPoster />
+						</Group>
+
+						<Group gap={"xs"}>
+							<ModalAdvertisment />
+							<ModalShows active={true} />
 						</Group>
 					</Stack>
 				</LayoutSection>

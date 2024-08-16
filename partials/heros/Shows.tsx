@@ -6,24 +6,10 @@ import classes from "./Shows.module.scss";
 import { AspectRatio, Button, Card, Grid, GridCol, Group, Stack, Text, Title } from "@mantine/core";
 import images from "@/assets/images";
 import videos from "@/assets/videos";
+import shows from "@/data/shows";
 
 export default function Shows() {
-	const data = {
-		features: [
-			{
-				label: "Advanced Drones",
-				item: "Equipped with state-of-the-art LED lights, our drones are capable of producing vibrant colors and dynamic light patterns.",
-			},
-			{
-				label: "Precision Synchronization",
-				item: "Our drones are meticulously programmed to perform intricate and perfectly synchronized movements, creating stunning visual effects.",
-			},
-			{
-				label: "Choreographed Displays",
-				item: "Each show is expertly choreographed to deliver a seamless and captivating performance, often synchronized with music or other multimedia elements.",
-			},
-		],
-	};
+	const data = shows;
 
 	return (
 		<div className={classes.hero}>

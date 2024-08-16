@@ -4,22 +4,22 @@ import classes from "./Price.module.scss";
 import { Card, Group, NumberFormatter, Stack, Text, ThemeIcon, Title } from "@mantine/core";
 import { Icon } from "@tabler/icons-react";
 
-export default function Price({ data }: { data: { title: string; desc: string; price: number; custom?: boolean } }) {
+export default function Price({ data }: { data: { title: string; desc: string; price: number } }) {
 	return (
 		<Card className={classes.card}>
 			<Stack align="center">
-				<Text fw={"bold"} fz={{ md: 24 }} ta={"center"}>
-					<Text component="span" inherit fw={"normal"} fz={"md"}>
-						${" "}
+				<Stack align="center" gap={0}>
+					<Text ta={"center"} component="sub" inherit fz={"xs"}>
+						(starts from)
 					</Text>
-					<NumberFormatter value={data.price} thousandSeparator />
-					{data.custom && (
-						<Text ta={"center"} component="sup" inherit fz={"xs"}>
-							{" "}
-							(and above)
+
+					<Text fw={"bold"} fz={{ md: 24 }} ta={"center"}>
+						<Text component="span" inherit fw={"normal"} fz={"md"}>
+							${" "}
 						</Text>
-					)}
-				</Text>
+						<NumberFormatter value={data.price} thousandSeparator />
+					</Text>
+				</Stack>
 
 				<Stack align="center">
 					<Title ta={"center"} order={3} fz={"lg"} className={classes.title}>

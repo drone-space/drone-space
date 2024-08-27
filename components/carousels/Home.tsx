@@ -97,7 +97,7 @@ export default function Home() {
 
 					<Group gap={"xs"}>
 						<ModalAdvertisment />
-						<ModalShows />
+						{/* <ModalShows /> */}
 					</Group>
 				</Stack>
 			</LayoutSection>
@@ -118,13 +118,13 @@ export default function Home() {
 				<div className={classes.underlay}>
 					<AspectRatio ratio={1920 / 1080} h={"100%"}>
 						<video
-							controls={false}
+							// controls={false}
 							autoPlay
 							muted
 							loop
 							playsInline
 							preload="auto"
-							poster={images.gallery.innovation.jamuhuri.yr2020.image9}
+							// poster={images.gallery.innovation.jamuhuri.yr2020.image9}
 							height={"100%"}
 						>
 							<source src={videos.hero.video1} type="video/mp4" />
@@ -170,7 +170,7 @@ export default function Home() {
 
 						<Group gap={"xs"}>
 							<ModalAdvertisment />
-							<ModalShows active={true} />
+							{/* <ModalShows active={true} /> */}
 						</Group>
 					</Stack>
 				</LayoutSection>

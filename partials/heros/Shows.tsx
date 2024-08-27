@@ -16,13 +16,13 @@ export default function Shows() {
 			<div className={classes.underlay}>
 				<AspectRatio ratio={1920 / 1080} h={"100%"}>
 					<video
-						controls={false}
+						// controls={false}
 						autoPlay
 						muted
 						loop
 						playsInline
 						preload="auto"
-						poster={images.gallery.innovation.jamuhuri.yr2020.image9}
+						// poster={images.gallery.innovation.jamuhuri.yr2020.image9}
 						height={"100%"}
 					>
 						<source src={videos.hero.lightShow} type="video/mp4" />

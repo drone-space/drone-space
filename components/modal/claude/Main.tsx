@@ -29,6 +29,7 @@ import {
 	Menu,
 	MenuTarget,
 	MenuDropdown,
+	Tooltip,
 } from "@mantine/core";
 import {
 	useDebouncedCallback,
@@ -36,6 +37,7 @@ import {
 	useDebouncedValue,
 	useDisclosure,
 	useElementSize,
+	useMediaQuery,
 	useResizeObserver,
 	useScrollIntoView,
 	useTimeout,
@@ -58,6 +60,8 @@ export default function Main() {
 	const [opened, { open, close }] = useDisclosure(false);
 
 	const claude = useContext(ClaudeContext);
+
+	const mobile = useMediaQuery("(max-width: 36em)");
 
 	const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView<HTMLDivElement, HTMLDivElement>({
 		duration: 250,
@@ -88,60 +92,7 @@ export default function Main() {
 	useEffect(() => {
 		opened && handleScroll();
 		// console.log(conversation);
-
-		// To cancel the timeout before it elapses
-		clear();
 	}, [opened, handleScroll, submitted, conversation, height]);
-
-	// menu logic
-	const pathname = usePathname();
-
-	const routes = ["services", "/training", "/shop"];
-
-	const routeIncluded = routes.find(r => pathname.includes(r));
-
-	const getRoute = () => {
-		switch (routeIncluded) {
-			case routes[0]:
-				return "If you would like to know more about our services, ";
-			case routes[1]:
-				return "For course details, course prices or any other training inquiries, ";
-			case routes[2]:
-				return "To see available drones and drone prices or if you have drone purchase inquiries, ";
-			default:
-				return "If you're short for time and need to go through the website's content quickly, ";
-		}
-	};
-
-	const [menuOpened, setMenuOpened] = useState(false);
-	const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
-
-	useEffect(() => {
-		// sessionStorage.clear();
-
-		if (pathname == "/" || routeIncluded) {
-			try {
-				const count = sessionStorage.getItem("modalClaudeCount");
-
-				if (!count) {
-					start();
-
-					sessionStorage.setItem("modalClaudeCount", "0");
-				} else {
-					if (Number(count) <= routes.length) {
-						start();
-
-						sessionStorage.setItem("modalClaudeCount", (Number(count) + 1).toString());
-					}
-				}
-
-				console.log("count", count);
-			} catch (e) {
-				console.error("Couldn't fetch from local storage", (e as Error).message);
-			}
-		}
-	}, []);
-	// end menu logic
 
 	return (
 		<>
@@ -150,7 +101,8 @@ export default function Main() {
 				onClose={close}
 				centered
 				classNames={{ body: classes.body }}
-				size={"xl"}
+				size={mobile ? undefined : "xl"}
+				fullScreen={mobile}
 				withCloseButton={false}
 				closeButtonProps={{ "aria-label": "Close modal" }}
 				keepMounted={true}
@@ -482,53 +434,27 @@ export default function Main() {
 				</LayoutSection>
 			</Modal>
 
-			<Menu
-				width={280}
-				shadow="xs"
-				withArrow
-				position="top-end"
-				transitionProps={{ transition: "pop-bottom-right" }}
-				opened={menuOpened}
-				// trigger="hover"
-				// onChange={setMenuOpened}
-			>
-				<MenuTarget>
-					<div className={classes.box}>
-						<Center onClick={() => setMenuOpened(false)}>
-							<Group gap={4} onClick={open} className={classes.child}>
-								<Text inherit fz={{ base: "xs", lg: "sm" }} fw={500}>
-									Ask Hekima
-								</Text>
-
-								<Box h={39} w={39}>
-									<Stack>
-										<Image
-											src={icons.tools.claude}
-											alt={"Claude AI"}
-											loading="lazy"
-											radius={"sm"}
-											component={NextImage}
-											width={31}
-											height={31}
-										/>
-									</Stack>
-								</Box>
-							</Group>
-						</Center>
-					</div>
-				</MenuTarget>
-
-				<MenuDropdown
-					p={"xs"}
-					bg={"var(--mantine-color-pri-9)"}
-					c={"var(--mantine-color-white)"}
-					style={{ zIndex: 1000 }}
-				>
-					<Text inherit fz={"xs"}>
-						{getRoute()} ask our AI
+			<Center>
+				<Group gap={4} onClick={open} className={classes.child}>
+					<Text inherit fz={{ base: "xs", lg: "sm" }} fw={500}>
+						Ask Hekima
 					</Text>
-				</MenuDropdown>
-			</Menu>
+
+					<Box h={39} w={39}>
+						<Stack>
+							<Image
+								src={icons.tools.claude}
+								alt={"Claude AI"}
+								loading="lazy"
+								radius={"sm"}
+								component={NextImage}
+								width={31}
+								height={31}
+							/>
+						</Stack>
+					</Box>
+				</Group>
+			</Center>
 		</>
 	);
 }

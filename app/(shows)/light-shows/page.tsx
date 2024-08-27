@@ -2,6 +2,7 @@ import React from "react";
 
 import { Metadata } from "next";
 import Link from "next/link";
+import NextImage from "next/image";
 
 import LayoutPage from "@/layouts/Page";
 import LayoutSection from "@/layouts/Section";
@@ -12,14 +13,19 @@ import {
 	Anchor,
 	AspectRatio,
 	Avatar,
+	Box,
 	Button,
 	Card,
 	Center,
+	Container,
 	Divider,
 	Flex,
 	Grid,
 	GridCol,
 	Group,
+	Image,
+	List,
+	ListItem,
 	Stack,
 	Text,
 	ThemeIcon,
@@ -33,11 +39,13 @@ import AccordionShows from "@/components/accordions/Shows";
 import CardShowsPrice from "@/components/card/shows/Price";
 import TableShows from "@/components/tables/Shows";
 import ModalContactShows from "@/components/modal/contact/Shows";
+import CardShowsUnderstand from "@/components/card/shows/Understand";
 
 import {
 	IconBallAmericanFootball,
 	IconBuildingSkyscraper,
 	IconCalendarPlus,
+	IconChevronsRight,
 	IconConfetti,
 	IconDeviceGamepad,
 	IconNumber1,
@@ -63,48 +71,185 @@ export default async function LighShow() {
 		<LayoutPage>
 			<HeroShows />
 
-			<LayoutSection padded shadowed containerized={"responsive"}>
-				<Stack gap={48}>
-					<Stack gap={"xs"} align="center">
-						<Title order={2} fw={"bold"} ta={"center"} fz={{ md: 24 }} w={{ md: "80%" }}>
-							Advantages of Drone Space Light Shows
-						</Title>
-					</Stack>
+			<LayoutSection
+				shadowed
+				style={{ borderTop: "3px solid var(--mantine-color-sec-3)" }}
+				bg={"light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))"}
+			>
+				<Grid gutter={0}>
+					<GridCol span={{ base: 12, sm: 6 }}>
+						<Stack h={"100%"}>
+							<Image
+								src={images.shows.talk}
+								alt={"Let's Talk Drone Light Shows"}
+								loading="lazy"
+								mih={"100%"}
+								component={NextImage}
+								width={1920}
+								height={1080}
+							/>
+						</Stack>
+					</GridCol>
+					<GridCol span={{ base: 12, sm: 6 }}>
+						<Container size={"sm"} py={64} px={{ md: "xl" }}>
+							<Stack>
+								<Title order={2} fw={"bold"} ta={{ base: "center", md: "start" }} fz={{ md: 24 }}>
+									Let&apos;s Talk Drone Light Shows
+								</Title>
 
-					<Grid gutter={"xl"}>
-						<GridCol span={{ base: 12, sm: 6 }}>
-							<AspectRatio ratio={1920 / 1080} h={"100%"}>
-								<video
-									width="100%"
-									controls
-									autoPlay
-									muted
-									loop
-									style={{ borderRadius: "var(--mantine-radius-sm)", overflow: "hidden" }}
-									poster={images.gallery.innovation.jamuhuri.yr2020.image9}
-									height={"100%"}
+								<Divider color="sec.3" size={2} />
+
+								<List
+									spacing={"xs"}
+									icon={<IconChevronsRight size={32} stroke={2} color="var(--mantine-color-pri-9)" />}
 								>
-									<source src={videos.hero.lightShow} type="video/mp4" />
-									Your browser does not support the video tag.
-								</video>
-							</AspectRatio>
-						</GridCol>
-						<GridCol span={{ base: 12, sm: 6 }}>
-							<Grid>
-								{data.advantages.map(advantage => (
-									<GridCol key={advantage.label} span={{ base: 12 }}>
-										<CardShowsAdvantages
-											data={{
-												...advantage,
-												icon: data.icons[data.advantages.indexOf(advantage)],
-											}}
-										/>
-									</GridCol>
-								))}
-							</Grid>
-						</GridCol>
-					</Grid>
-				</Stack>
+									{data.talk.map(item => (
+										<ListItem key={item}>{item}</ListItem>
+									))}
+								</List>
+							</Stack>
+						</Container>
+					</GridCol>
+				</Grid>
+			</LayoutSection>
+
+			<LayoutSection
+				// padded
+				shadowed
+				// containerized={"responsive"}
+			>
+				<Grid gutter={0}>
+					<GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
+						<Stack h={"100%"}>
+							<Image
+								src={images.shows.understanding}
+								alt={"Understanding Drone Light Shows"}
+								loading="lazy"
+								mih={"100%"}
+								component={NextImage}
+								width={1920}
+								height={1080}
+							/>
+						</Stack>
+					</GridCol>
+					<GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
+						<Container size={"sm"} py={64} px={{ md: "xl" }}>
+							<Stack gap={"xl"}>
+								<Title order={2} fw={"bold"} ta={{ base: "center", sm: "start" }} fz={{ md: 24 }}>
+									Understanding Drone Light Shows
+								</Title>
+
+								<Grid>
+									{data.understand.map(item => (
+										<GridCol key={item.label} span={{ base: 12, md: 6 }}>
+											<CardShowsUnderstand data={item} />
+										</GridCol>
+									))}
+								</Grid>
+							</Stack>
+						</Container>
+					</GridCol>
+				</Grid>
+			</LayoutSection>
+
+			<LayoutSection shadowed bg={"light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))"}>
+				<Grid gutter={0}>
+					<GridCol span={{ base: 12, sm: 6 }}>
+						<AspectRatio ratio={1920 / 1080} h={"100%"}>
+							<video
+								width="100%"
+								controls
+								autoPlay
+								muted
+								loop
+								// style={{ borderRadius: "var(--mantine-radius-sm)", overflow: "hidden" }}
+								poster={images.gallery.innovation.jamuhuri.yr2020.image9}
+								height={"100%"}
+							>
+								<source src={videos.hero.lightShow} type="video/mp4" />
+								Your browser does not support the video tag.
+							</video>
+						</AspectRatio>
+					</GridCol>
+					<GridCol span={{ base: 12, sm: 6 }}>
+						<Container size={"sm"} py={64} px={{ md: "xl" }}>
+							<Stack gap={"xl"}>
+								<Title
+									order={2}
+									fw={"bold"}
+									ta={{ base: "center", sm: "start" }}
+									fz={{ md: 24 }}
+									w={{ md: "75%" }}
+								>
+									Advantages of Drone Space Light Shows
+								</Title>
+
+								<Grid>
+									{data.advantages.map(advantage => (
+										<GridCol key={advantage.label} span={{ base: 12 }}>
+											<CardShowsAdvantages
+												data={{
+													...advantage,
+													icon: data.icons[data.advantages.indexOf(advantage)],
+												}}
+											/>
+										</GridCol>
+									))}
+								</Grid>
+							</Stack>
+						</Container>
+					</GridCol>
+				</Grid>
+			</LayoutSection>
+
+			<LayoutSection shadowed>
+				<Grid gutter={0}>
+					<GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
+						<Stack h={"100%"}>
+							<Image
+								src={images.shows.hny}
+								alt={"Why Choose Drone Light Shows?"}
+								loading="lazy"
+								mih={"100%"}
+								component={NextImage}
+								width={1920}
+								height={1080}
+							/>
+						</Stack>
+					</GridCol>
+					<GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
+						<Container size={"sm"} py={64} px={{ md: "xl" }}>
+							<Stack gap={"xl"}>
+								<Title
+									order={2}
+									fw={"bold"}
+									ta={{ base: "center", sm: "start" }}
+									fz={{ md: 24 }}
+									w={{ md: "80%" }}
+								>
+									Why Choose Drone Light Shows Over Fireworks?
+								</Title>
+
+								<List spacing={"xs"} listStyleType="none">
+									{data.why.map(item => (
+										<Stack key={item.label} gap={0}>
+											{data.why.indexOf(item) > 0 && (
+												<Divider size={3} color="sec.3" variant="dotted" my={"xs"} />
+											)}
+
+											<ListItem>
+												<Text component="span" inherit fw={"bold"} c={"pri.9"}>
+													{item.label}
+												</Text>
+												: {item.item}
+											</ListItem>
+										</Stack>
+									))}
+								</List>
+							</Stack>
+						</Container>
+					</GridCol>
+				</Grid>
 			</LayoutSection>
 
 			<LayoutSection
@@ -131,6 +276,83 @@ export default async function LighShow() {
 								<CardShowsApplications data={application} />
 							</GridCol>
 						))}
+					</Grid>
+				</Stack>
+			</LayoutSection>
+
+			<LayoutSection
+				padded={96}
+				containerized={"responsive"}
+				c={"light-dark(var(--mantine-color-white),var(--mantine-color-white))"}
+				style={{
+					backgroundImage: `url(${images.shows.ready})`,
+					backgroundPosition: "center center",
+					backgroundSize: "cover",
+				}}
+				pos={"relative"}
+			>
+				<Box
+					pos={"absolute"}
+					left={0}
+					top={0}
+					right={0}
+					bottom={0}
+					style={{ backgroundColor: "rgba(0,0,0,0.40)" }}
+				></Box>
+
+				<Stack gap={48} pos={"relative"}>
+					<Grid align="center">
+						<GridCol span={{ base: 12, md: 8, lg: 9 }}>
+							<Stack gap={"xs"}>
+								<Title
+									order={2}
+									fw={"bold"}
+									ta={{ base: "center", md: "start" }}
+									fz={{ base: "lg", sm: "xl", md: 28 }}
+									c={"light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))"}
+								>
+									Your Brand, Your Story, Our Drones:
+									<br />
+									Be the First to Make a Statement in Kenya!
+								</Title>
+
+								<Text ta={{ base: "center", md: "start" }} fz={{ base: "xs", md: "sm" }}>
+									As one of the leading providers of drone light shows in Kenya, Drone Space is at the
+									forefront of this innovative technology. Join the ranks of innovative brands by
+									booking your exclusive drone light show with us.
+								</Text>
+							</Stack>
+						</GridCol>
+
+						<GridCol span={{ base: 12, md: 4, lg: 3 }}>
+							<Flex
+								direction={{ base: "column", sm: "row", md: "column" }}
+								justify={"center"}
+								align={{ base: "center", md: "end" }}
+								gap={"md"}
+							>
+								<ModalContactShows>
+									<Button
+										miw={200}
+										color="sec.3"
+										c={"pri"}
+										leftSection={<IconCalendarPlus size={16} stroke={1.5} />}
+									>
+										Book Show
+									</Button>
+								</ModalContactShows>
+								<Button
+									component="a"
+									href={`tel:${contact.phones.find(p => p.type == "primary")?.value}`}
+									miw={200}
+									color="sec.3"
+									c={"pri"}
+									leftSection={<IconPhone size={16} stroke={1.5} />}
+								>
+									{contact.phones.find(p => p.type == "primary")?.value}
+								</Button>
+							</Flex>
+						</GridCol>
 					</Grid>
 				</Stack>
 			</LayoutSection>
@@ -193,7 +415,7 @@ export default async function LighShow() {
 				padded
 				shadowed
 				containerized={"responsive"}
-				bg={"light-dark(var(--mantine-color-sec-light),var(--mantine-color-sec-light))"}
+				bg={"light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))"}
 			>
 				<Stack gap={48}>
 					<Stack gap={"xs"} align="center">
@@ -269,12 +491,26 @@ export default async function LighShow() {
 			</LayoutSection>
 
 			<LayoutSection
-				padded
+				padded={96}
 				containerized={"responsive"}
-				bg={"light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"}
 				c={"light-dark(var(--mantine-color-white),var(--mantine-color-white))"}
+				style={{
+					backgroundImage: `url(${images.shows.talk})`,
+					backgroundPosition: "top center",
+					backgroundSize: "cover",
+				}}
+				pos={"relative"}
 			>
-				<Stack gap={48}>
+				<Box
+					pos={"absolute"}
+					left={0}
+					top={0}
+					right={0}
+					bottom={0}
+					style={{ backgroundColor: "rgba(0,0,0,0.40)" }}
+				></Box>
+
+				<Stack gap={48} pos={"relative"}>
 					<Grid align="center">
 						<GridCol span={{ base: 12, md: 8, lg: 9 }}>
 							<Stack gap={"xs"}>
@@ -282,7 +518,7 @@ export default async function LighShow() {
 									order={2}
 									fw={"bold"}
 									ta={{ base: "center", md: "start" }}
-									fz={{ base: "lg", sm: "xl" }}
+									fz={{ base: "lg", sm: "xl", md: 28 }}
 									c={"light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))"}
 								>
 									Book Your Drone Light Show Today

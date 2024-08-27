@@ -44,6 +44,15 @@ const images = {
 		holCam: "/images/courses/image-8.webp",
 	},
 
+	shows: {
+		brand1: "/images/shows/brand-1.webp",
+		brand2: "/images/shows/brand-2.webp",
+		ready: "/images/shows/ready.webp",
+		understanding: "/images/shows/understanding.webp",
+		hny: "/images/shows/hny.webp",
+		talk: "/images/shows/talk.webp",
+	},
+
 	error: {
 		err404: "/images/error/404.svg",
 	},

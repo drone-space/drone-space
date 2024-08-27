@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useDeferredValue, useEffect, useState } from "react";
+import React, { useContext, useDeferredValue, useEffect, useRef, useState } from "react";
 
 import { ReactTyped } from "react-typed";
 
@@ -94,13 +94,18 @@ export default function Main() {
 		// console.log(conversation);
 	}, [opened, handleScroll, submitted, conversation, height]);
 
+	// layout logic
+	const { ref: ref2, width: width2, height: height2 } = useElementSize();
+	const { ref: ref3, width: width3, height: height3 } = useElementSize();
+	// end layout logic
+
 	return (
 		<>
 			<Modal
 				opened={opened}
 				onClose={close}
 				centered
-				classNames={{ body: classes.body }}
+				classNames={{ body: classes.body, inner: classes.inner }}
 				size={mobile ? undefined : "xl"}
 				fullScreen={mobile}
 				withCloseButton={false}
@@ -108,7 +113,7 @@ export default function Main() {
 				keepMounted={true}
 				// style={{ zIndex: 10000 }}
 			>
-				<LayoutSection containerized="responsive" padded="xs" shadowed>
+				<LayoutSection containerized="responsive" padded="xs" shadowed ref={ref2}>
 					<Group justify="space-between">
 						<Title order={1} fz={"sm"}>
 							Ask AI
@@ -126,8 +131,8 @@ export default function Main() {
 					<Grid
 						gutter={0}
 						ref={scrollableRef}
-						h={{ md: 240, lg: 360 }}
 						pr={4}
+						h={{ base: `calc(92.5vh - ${height2 + height3}px)`, md: 240, lg: 360 }}
 						style={{ overflowY: "auto", scrollbarWidth: "thin" }}
 					>
 						<Transition
@@ -326,25 +331,26 @@ export default function Main() {
 					</Grid>
 				</LayoutSection>
 
-				<LayoutSection
-					containerized="sm"
-					pt={"xs"}
-					mb={"xs"}
-					style={{
-						boxShadow: "0px -1px 3px rgba(0, 0, 0, 0.05), 0px -1px 2px rgba(0, 0, 0, 0.1)",
-					}}
-				>
-					<FormClaude />
-				</LayoutSection>
+				<Stack gap={0} ref={ref3}>
+					<LayoutSection
+						containerized="sm"
+						pt={"xs"}
+						mb={"xs"}
+						style={{
+							boxShadow: "0px -1px 3px rgba(0, 0, 0, 0.05), 0px -1px 2px rgba(0, 0, 0, 0.1)",
+						}}
+					>
+						<FormClaude />
+					</LayoutSection>
 
-				<LayoutSection containerized="sm" margined="xs">
-					<Stack>
-						<Group align="end" justify="space-between" fz={"sm"}>
-							<Text inherit fz={{ base: "xs", lg: "sm" }}>
-								Model from{" "}
-								<Anchor href="https://anthropic.com" target="_blank" inherit fw={500}>
-									ANTHROP\C{" "}
-									{/* <Stack h={24} w={24} display={"inline-flex"}>
+					<LayoutSection containerized="sm" margined="xs">
+						<Stack>
+							<Group align="end" justify="space-between" fz={"sm"}>
+								<Text inherit fz={{ base: "xs", lg: "sm" }}>
+									Model from{" "}
+									<Anchor href="https://anthropic.com" target="_blank" inherit fw={500}>
+										ANTHROP\C{" "}
+										{/* <Stack h={24} w={24} display={"inline-flex"}>
 										<Image
 											src={icons.tools.claude}
 											alt={"Claude AI"}
@@ -355,11 +361,11 @@ export default function Main() {
 											height={24}
 										/>
 									</Stack> */}
-								</Anchor>
-							</Text>
+									</Anchor>
+								</Text>
 
-							<Group gap={"xs"}>
-								{/* <Transition
+								<Group gap={"xs"}>
+									{/* <Transition
 									mounted={conversation.length > 0}
 									transition="fade"
 									duration={250}
@@ -386,52 +392,53 @@ export default function Main() {
 									)}
 								</Transition> */}
 
-								<Transition mounted={true} transition="fade" duration={250} timingFunction="ease">
-									{styles => (
-										<div style={styles}>
-											<Button
-												size="xs"
-												h={"fit-content"}
-												variant="light"
-												color="pri"
-												fw={500}
-												p={0}
-												onClick={clearConversation}
-												disabled={conversation.length < 1}
-											>
-												<Text component="span" inherit px={6} py={6}>
-													Clear Chat
-												</Text>
-											</Button>
-										</div>
-									)}
-								</Transition>
+									<Transition mounted={true} transition="fade" duration={250} timingFunction="ease">
+										{styles => (
+											<div style={styles}>
+												<Button
+													size="xs"
+													h={"fit-content"}
+													variant="light"
+													color="pri"
+													fw={500}
+													p={0}
+													onClick={clearConversation}
+													disabled={conversation.length < 1}
+												>
+													<Text component="span" inherit px={6} py={6}>
+														Clear Chat
+													</Text>
+												</Button>
+											</div>
+										)}
+									</Transition>
+								</Group>
 							</Group>
-						</Group>
 
-						<Stack gap={0}>
-							<Text inherit fz={{ base: 9, lg: 10 }} ta={"center"}>
-								Hekima may produce incorrect information about Drone Space. Double-check responses and
-								contact the company directly for important information.
-							</Text>
+							<Stack gap={0}>
+								<Text inherit fz={{ base: 9, lg: 10 }} ta={"center"}>
+									Hekima may produce incorrect information about Drone Space. Double-check responses
+									and contact the company directly for important information.
+								</Text>
 
-							<Group gap={"xs"} justify="center">
-								{links.map(link => (
-									<Anchor
-										key={link.link}
-										href={link.link}
-										target="_blank"
-										underline="always"
-										c="gray.6"
-										fz={{ base: 9, lg: 11 }}
-									>
-										{link.label}
-									</Anchor>
-								))}
-							</Group>
+								<Group gap={"xs"} justify="center">
+									{links.map(link => (
+										<Anchor
+											key={link.link}
+											href={link.link}
+											target="_blank"
+											underline="always"
+											c="gray.6"
+											fz={{ base: 9, lg: 11 }}
+										>
+											{link.label}
+										</Anchor>
+									))}
+								</Group>
+							</Stack>
 						</Stack>
-					</Stack>
-				</LayoutSection>
+					</LayoutSection>
+				</Stack>
 			</Modal>
 
 			<Center>

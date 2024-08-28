@@ -163,7 +163,7 @@ export default async function LighShow() {
 								muted
 								loop
 								// style={{ borderRadius: "var(--mantine-radius-sm)", overflow: "hidden" }}
-								poster={images.gallery.innovation.jamuhuri.yr2020.image9}
+								// poster={images.gallery.innovation.jamuhuri.yr2020.image9}
 								height={"100%"}
 							>
 								<source src={videos.hero.lightShow} type="video/mp4" />

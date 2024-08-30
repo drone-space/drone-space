@@ -165,7 +165,7 @@ export default function Home() {
 							>
 								Brochure
 							</Button>
-							<ModalPoster />
+							<ModalPoster active={true} />
 						</Group>
 
 						<Group gap={"xs"}>

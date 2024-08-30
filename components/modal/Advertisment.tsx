@@ -22,9 +22,9 @@ export default function Advertisment({ active }: { active?: boolean }) {
 
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-	const dataMobile = [{ title: "August Intake", image: images.posters.intakes.yr2024.aug.portrait }];
+	const dataMobile = [{ title: "August Intake", image: images.posters.intakes.yr2024.sep.portrait }];
 
-	const data = [{ title: "August Intake", image: images.posters.intakes.yr2024.aug.portrait }];
+	const data = [{ title: "August Intake", image: images.posters.intakes.yr2024.sep.portrait }];
 
 	const slides = (mobile ? dataMobile : data).map(slide => (
 		<CarouselSlide key={slide.title}>

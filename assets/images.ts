@@ -381,6 +381,9 @@ const images = {
 				jul: {
 					radiotelephony: { landscape: null, portrait: "/images/posters/courses/image-3.webp" },
 				},
+				sep: {
+					mapping: { landscape: null, portrait: "/images/posters/courses/image-4.webp" },
+				},
 			},
 		},
 		workshops: {

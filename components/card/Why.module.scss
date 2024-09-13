@@ -1,24 +1,19 @@
 .card {
 	transition: 0.25s all ease;
-	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+	background-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 	border-radius: var(--mantine-radius-sm);
 	padding: var(--mantine-spacing-xl) var(--mantine-spacing-md);
 	box-shadow: var(--mantine-shadow-xs);
 	height: 100%;
-
-	@include hover {
-		.icon {
-			background-color: var(--mantine-color-sec-3);
-			color: var(--mantine-color-pri-6);
-		}
-
-		.title {
-			color: var(--mantine-color-sec-3);
-		}
-	}
 }
 
 .icon {
 	transition: 0.25s all ease;
-	color: var(--mantine-color-sec-3);
+	background-color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
+	color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+}
+
+.title {
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
 }

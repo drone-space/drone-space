@@ -5,12 +5,25 @@ import { Metadata } from "next";
 import LayoutPage from "@/layouts/Page";
 import LayoutSection from "@/layouts/Section";
 import services from "@/data/services";
-import { Grid, GridCol, Stack, Image, Title, Text, List, ThemeIcon, ListItem, Button } from "@mantine/core";
+import {
+	Grid,
+	GridCol,
+	Stack,
+	Image,
+	Title,
+	Text,
+	List,
+	ThemeIcon,
+	ListItem,
+	Button,
+	Group,
+	Anchor,
+} from "@mantine/core";
 
 import NextImage from "next/image";
 import Link from "next/link";
 import link from "@/handlers/parsers/string/link";
-import { IconArrowRight, IconCheck } from "@tabler/icons-react";
+import { IconArrowRight, IconCheck, IconChevronRight } from "@tabler/icons-react";
 
 export const metadata: Metadata = { title: "Drone Solutions" };
 
@@ -61,15 +74,18 @@ export default async function Services() {
 									</List>
 								</Stack>
 
-								<Button
-									variant="subtle"
-									rightSection={<IconArrowRight size={16} stroke={2} />}
-									size="xs"
+								<Anchor
+									underline="hover"
 									component={Link}
 									href={`/services/${link.linkify(service.title)}`}
 								>
-									More on {service.title}
-								</Button>
+									<Group gap={"xs"}>
+										<Text component="span" inherit fz={"sm"}>
+											More on {service.title}
+										</Text>
+										<IconChevronRight color="var(--mantine-color-pri-9)" size={16} stroke={2} />
+									</Group>
+								</Anchor>
 							</Stack>
 						</GridCol>
 						<GridCol

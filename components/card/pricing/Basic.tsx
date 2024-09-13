@@ -21,7 +21,7 @@ import classes from "./Basic.module.scss";
 import { typeUnit } from "@/types/course";
 import { IconCheck } from "@tabler/icons-react";
 
-export default function Basic({ data }: { data: typeUnit }) {
+export default function Basic({ data, offset }: { data: typeUnit; offset?: boolean }) {
 	return (
 		<Card
 			className={classes.card}
@@ -33,7 +33,7 @@ export default function Basic({ data }: { data: typeUnit }) {
 				<Stack gap={"xl"} mb={"xl"}>
 					<Stack>
 						{data.advanced && (
-							<Group justify="end">
+							<Group justify="end" opacity={offset ? 0 : 1}>
 								<Badge className={data.featured ? classes.badgeFeatured : classes.badge}>
 									Advanced Course
 								</Badge>
@@ -110,7 +110,7 @@ export default function Basic({ data }: { data: typeUnit }) {
 						c={
 							data.featured
 								? "light-dark(var(--mantine-color-white),var(--mantine-color-white))"
-								: "light-dark(var(--mantine-color-gray-8),var(--mantine-color-gray-8))"
+								: "light-dark(var(--mantine-color-text),var(--mantine-color-text))"
 						}
 						icon={
 							<ThemeIcon size={16} radius={"xl"} color="green.6" c={"white"}>
@@ -125,7 +125,7 @@ export default function Basic({ data }: { data: typeUnit }) {
 				</Stack>
 
 				<ModalCoursePricing data={data}>
-					<Button color={data.featured ? "sec.4" : "pri"} c={"white"} fullWidth>
+					<Button color={data.featured ? "sec.4" : "pri"} c={data.featured ? "pri.9" : "white"} fullWidth>
 						{data.title.full} Details
 					</Button>
 				</ModalCoursePricing>

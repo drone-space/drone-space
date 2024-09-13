@@ -16,12 +16,12 @@ import classes from "./Shop.module.scss";
 
 export default async function Shop() {
 	return (
-		<LayoutSection padded="md" shadowed className={classes.navbar}>
+		<LayoutSection padded="md" shadowed className={classes.navbar} visibleFrom="sm">
 			<Container size={"responsive"}>
 				<Flex justify={{ base: "end", sm: "start" }}>
 					<DrawerNavMain
 						data={links.navbar.shop}
-						color="white"
+						// color="white"
 						hiddenFrom="sm"
 						aria-label="Toggle Navigation"
 					/>

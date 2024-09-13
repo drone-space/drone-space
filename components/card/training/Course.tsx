@@ -30,7 +30,12 @@ export default function Course({ data, type }: { data: typeUnit; type: "basic" |
 
 				<Stack gap={"xs"}>
 					<Title order={3} fz={{ md: "lg", lg: "xl" }}>
-						<Anchor component={Link} inherit href={`/training/${type}/${link.linkify(data.title.full)}`}>
+						<Anchor
+							component={Link}
+							inherit
+							href={`/training/${type}/${link.linkify(data.title.full)}`}
+							className={classes.title}
+						>
 							{data.title.full}
 						</Anchor>
 					</Title>

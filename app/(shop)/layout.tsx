@@ -8,6 +8,8 @@ import NavbarMain from "@/partials/navbars/Main";
 import FooterMain from "@/partials/footers/Main";
 import AffixTop from "@/components/affixi/Top";
 import AffixNavbar from "@/components/affixi/Navbar";
+import AffixAssistant from "@/components/affixi/Assistant";
+import AffixWhatsapp from "@/components/affixi/Whatsapp";
 
 import contact from "@/data/contact";
 
@@ -24,8 +26,12 @@ export default function ShopLayout({
 		<LayoutBody header={<HeaderMain />} nav={<NavbarMain />} footer={<FooterMain />}>
 			<main style={{ position: "relative" }}>
 				{children}
-				<AffixTop />
+
 				<AffixNavbar />
+        
+				<AffixTop />
+				<AffixWhatsapp />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

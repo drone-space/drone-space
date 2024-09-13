@@ -79,18 +79,18 @@ export default function Main({ data, ...restProps }: { data: typeMenuNavbar[] } 
 					root: classes.root,
 					title: classes.title,
 				}}
-				title={
-					<Stack w={160}>
-						<Image
-							src={images.brand.logo.landscape.brandColor}
-							alt="Drone Space"
-							component={NextImage}
-							priority
-							width={6161}
-							height={1034}
-						/>
-					</Stack>
-				}
+				// title={
+				// 	<Stack w={160}>
+				// 		<Image
+				// 			src={images.brand.logo.landscape.brandColor}
+				// 			alt="Drone Space"
+				// 			component={NextImage}
+				// 			priority
+				// 			width={6161}
+				// 			height={1034}
+				// 		/>
+				// 	</Stack>
+				// }
 			>
 				{navMobile}
 			</Drawer>

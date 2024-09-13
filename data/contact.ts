@@ -48,7 +48,7 @@ const contact = {
 	locations: [
 		{
 			place: "Main Office",
-			label: "73 Westlands Road, Westlands, Nairobi, KE 00100",
+			label: "6th Floor Prosperity House, Chiromo - Westlands",
 			link: "#",
 		},
 	],

@@ -1,5 +1,6 @@
 .card {
-	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+	background-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 	height: 100%;
 	position: relative;
 	overflow: hidden;
@@ -11,6 +12,10 @@
 
 		.image {
 			transform: scale(1.1);
+		}
+
+		.title {
+			color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3)) !important;
 		}
 	}
 }
@@ -26,6 +31,7 @@
 
 .title {
 	transition: 0.25s all ease;
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
 }
 
 .desc {

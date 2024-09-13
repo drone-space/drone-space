@@ -20,22 +20,19 @@ export default async function Gallery() {
 		<LayoutPage>
 			<LayoutSection containerized="responsive" padded bordered>
 				<Grid>
-					{courses.basic.units.map(
-						course =>
-							course.available != false && (
-								<GridCol key={course.title.full} span={{ sm: 6, lg: 4 }}>
-									<CardPricingBasic data={course} />
-								</GridCol>
-							)
-					)}
+					{courses.basic.units.map(course => (
+						<GridCol key={course.title.full} span={{ sm: 6, md: 4 }}>
+							<CardPricingBasic data={course} />
+						</GridCol>
+					))}
 				</Grid>
 			</LayoutSection>
 
 			<LayoutSection containerized="responsive" padded shadowed>
 				<Grid>
 					{courses.advanced.units.map(course => (
-						<GridCol key={course.title.full} span={{ sm: 6, md: 4 }}>
-							<CardPricingBasic data={course} />
+						<GridCol key={course.title.full} span={{ sm: 6, lg: 4 }}>
+							<CardPricingBasic data={course} offset={course.title.short == "RadTel"} />
 						</GridCol>
 					))}
 				</Grid>

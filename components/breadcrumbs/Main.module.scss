@@ -2,10 +2,10 @@
 	text-decoration: none;
 	font-size: var(--mantine-font-size-sm);
 	font-weight: 500;
-	color: var(--mantine-color-text);
+	color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 	transition: 0.25s all ease;
 
-	&:hover {
-		color: var(--mantine-color-pri-8);
+	@include hover {
+		color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
 	}
 }

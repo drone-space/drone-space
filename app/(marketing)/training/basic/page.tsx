@@ -320,7 +320,7 @@ export default async function Basic() {
 
 					<Grid justify="center">
 						{data.units.map(unit => (
-							<GridCol key={unit.title.short} span={{ sm: 6, lg: 3 }}>
+							<GridCol key={unit.title.short} span={{ sm: 6, md: 4, lg: 3 }}>
 								<CardTrainingCourse data={unit} type="basic" />
 							</GridCol>
 						))}

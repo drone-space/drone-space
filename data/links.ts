@@ -31,7 +31,17 @@ const links = {
 				label: "Pricing",
 				subLinks: [{ link: "/pricing/training", label: "Training Pricing" }],
 			},
-			{ link: "/shop", label: "Shop" },
+			{
+				link: "/shop",
+				label: "Shop",
+				subLinks: [
+					{ link: "/shop/drones/camera", label: "Camera Drones" },
+					{ link: "/shop/drones/enterprise", label: "Enterprise Drones" },
+					{ link: "/shop/drones/agriculture", label: "Agriculture Drones" },
+					{ link: "/shop/accessories", label: "Drone Accessories" },
+				],
+			},
+			{ link: "/light-shows", label: "Drone Light Shows" },
 			{
 				link: "/stories",
 				disabled: true,

@@ -21,3 +21,12 @@
 .indicator {
 	background-color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 }
+
+.underlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}

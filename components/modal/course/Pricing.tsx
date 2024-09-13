@@ -56,9 +56,7 @@ export default function Pricing({ children, data }: { children: React.ReactNode;
 									<Title order={2} fz={"md"} fw={"bold"}>
 										{data.title.full}
 									</Title>
-									<Text fz={{ base: "xs", lg: "sm" }} c={"gray.8"}>
-										{data.desc}
-									</Text>
+									<Text fz={{ base: "xs", lg: "sm" }}>{data.desc}</Text>
 								</Stack>
 
 								{data.priceFeatures && (

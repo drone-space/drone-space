@@ -9,7 +9,6 @@ import NavbarMain from "@/partials/navbars/Main";
 import FooterMain from "@/partials/footers/Main";
 import NotificationMain from "@/partials/notifications/Main";
 import HeaderMain from "@/partials/headers/Main";
-import CarouselHome from "@/components/carousels/Home";
 import { Button, Grid, GridCol, Image, List, ListItem, Stack, Text, ThemeIcon, Title } from "@mantine/core";
 import Link from "next/link";
 import {
@@ -44,6 +43,9 @@ import CtaTraining from "@/partials/cta/Training";
 import array from "@/utilities/arrays";
 import AffixTop from "@/components/affixi/Top";
 import AffixNavbar from "@/components/affixi/Navbar";
+import AffixAssistant from "@/components/affixi/Assistant";
+import AffixWhatsapp from "@/components/affixi/Whatsapp";
+import HeroHome from "@/partials/heros/Home";
 
 export default function Home() {
 	const drones = {
@@ -74,7 +76,7 @@ export default function Home() {
 		<LayoutBody bar={<NotificationMain />} header={<HeaderMain />} nav={<NavbarMain />} footer={<FooterMain />}>
 			<main>
 				<LayoutPage>
-					<CarouselHome />
+					<HeroHome />
 
 					<LayoutSection
 						padded
@@ -281,8 +283,11 @@ export default function Home() {
 					<CtaTraining data={{ type: "basic" }} />
 				</LayoutPage>
 
-				<AffixTop />
 				<AffixNavbar />
+        
+        <AffixTop />
+        <AffixWhatsapp />
+				<AffixAssistant />
 			</main>
 		</LayoutBody>
 	);

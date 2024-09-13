@@ -1,11 +1,14 @@
 import React from "react";
 
-import { Title } from "@mantine/core";
-
 import LayoutSection from "@/layouts/Section";
+import CarouselHome from "@/components/carousels/Home";
 
 import classes from "./Home.module.scss";
 
 export default function Home() {
-	return <LayoutSection className={classes.hero}>hero home</LayoutSection>;
+	return (
+		<LayoutSection className={classes.hero}>
+			<CarouselHome />
+		</LayoutSection>
+	);
 }

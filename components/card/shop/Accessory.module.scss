@@ -1,7 +1,6 @@
 .card {
 	height: 100%;
 	background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
-	color: light-dark(var(--mantine-color-dark-3), var(--mantine-color-dark-3));
 	box-shadow: var(--mantine-shadow-xs);
 
 	@include hover {

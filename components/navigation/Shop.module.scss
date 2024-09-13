@@ -1,22 +1,18 @@
 .link {
 	padding: 0 calc(var(--mantine-spacing-xs) / 2);
 	text-decoration: none;
-	color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
+	color: light-dark(var(--mantine-color-text), var(--mantine-color-text));
 	font-size: var(--mantine-font-size-sm);
 	font-weight: 500;
 	transition: 0.25s color ease;
 
 	@include hover {
-		color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
+		color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
 	}
 }
 
 .linkActive {
-	color: var(--mantine-color-sec-3);
-
-	@include hover {
-		color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
-	}
+	color: var(--mantine-color-pri-9);
 }
 
 .linkHero {

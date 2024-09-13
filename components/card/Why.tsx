@@ -21,7 +21,7 @@ export default function Why({ data }: { data: typeCardFeatureWhy }) {
 				</ThemeIcon>
 
 				<Stack gap={"xs"} align="center">
-					<Title ta={"center"} order={2} fz={"xl"}>
+					<Title ta={"center"} order={2} fz={"xl"} className={classes.title}>
 						{data.title}
 					</Title>
 					<Text ta={"center"} fz={{ base: "sm", lg: "md" }}>

@@ -48,7 +48,7 @@ export default function Featured({ data }: { data: typeDrone }) {
 								variant="transparent"
 								rightSection={<IconChevronRight size={16} stroke={2} />}
 								component={Link}
-								href={`/shop/drones/${link.linkify(data.title.long)}`}
+								href={`/shop/drones/${data.category}/${link.linkify(data.title.long)}`}
 							>
 								Learn More
 							</Button>
@@ -61,7 +61,7 @@ export default function Featured({ data }: { data: typeDrone }) {
 					</Flex>
 				</GridCol>
 				<GridCol span={{ sm: 6 }}>
-					<Anchor component={Link} href={`/shop/drones/${link.linkify(data.title.long)}`}>
+					<Anchor component={Link} href={`/shop/drones/${data.category}/${link.linkify(data.title.long)}`}>
 						<Stack className={classes.imageContainer} w={"100%"}>
 							<Image
 								src={data.images.find(i => i.includes("front")) || data.images[0]}

@@ -23,7 +23,7 @@ export default function Main({ data }: { data: typeLink[] }) {
 				<IconChevronRight
 					size={12}
 					stroke={2.5}
-					color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-sec-4))"
+					color="light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))"
 				/>
 			}
 		>
@@ -35,7 +35,7 @@ export default function Main({ data }: { data: typeLink[] }) {
 							key={item.link}
 							component={Link}
 							href={item.link}
-							c={active(item) ? "pri" : undefined}
+							c={active(item) ? "sec.3" : undefined}
 							className={classes.link}
 							onClick={e => e.preventDefault()} // remove top directive if you don't need this
 						>

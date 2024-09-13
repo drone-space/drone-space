@@ -49,7 +49,6 @@ export default function Categories() {
 										miw={{ xs: 160 }}
 										component={Link}
 										href={`/shop/drones/${link.linkify(category.label)}`}
-										variant="light"
 									>
 										<Flex direction={{ base: "row", xs: "column" }} gap={"md"} align="center">
 											<category.icon size={24} stroke={1.5} />

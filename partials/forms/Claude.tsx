@@ -73,7 +73,13 @@ export default function Claude({
 						messages: !regenerating
 							? [...conversation, { role: "user", content: parse(formValues) }]
 							: conversation,
-						system: ai.system,
+						system: [
+							{
+								type: "text",
+								text: ai.system,
+								cache_control: { type: "ephemeral" },
+							},
+						],
 					}),
 					headers: {
 						"Content-Type": "application/json",

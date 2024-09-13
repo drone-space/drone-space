@@ -5,7 +5,7 @@ export async function POST(req: Request) {
 		const data = await req.json();
 
 		// create message
-		const message = await anthropic.messages.create(data);
+		const message = await anthropic.beta.promptCaching.messages.create(data);
 
 		console.log("Usage for current prompt:", message.usage);
 

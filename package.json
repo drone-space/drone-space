@@ -9,7 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^0.25.0",
+		"@anthropic-ai/sdk": "^0.27.3",
 		"@auth/prisma-adapter": "^2.4.1",
 		"@mantine/carousel": "^7.11.2",
 		"@mantine/charts": "^7.11.2",

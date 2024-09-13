@@ -41,19 +41,17 @@ export default function Assistant() {
 
 				if (!count) {
 					start();
-					// setTimeout(() => setMenuOpened(false), 14000);
+					setTimeout(() => setMenuOpened(false), 14000);
 
 					sessionStorage.setItem("modalClaudeCount", "0");
 				} else {
 					if (Number(count) <= routes.length) {
 						start();
-						// setTimeout(() => setMenuOpened(false), 14000);
+						setTimeout(() => setMenuOpened(false), 14000);
 
 						sessionStorage.setItem("modalClaudeCount", (Number(count) + 1).toString());
 					}
 				}
-
-				console.log("count", count);
 			} catch (e) {
 				console.error("Couldn't fetch from local storage", (e as Error).message);
 			}

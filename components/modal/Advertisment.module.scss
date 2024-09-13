@@ -6,3 +6,13 @@
 .body {
 	padding: 0;
 }
+
+.control {
+	background-color: var(--mantine-color-pri-9);
+	color: var(--mantine-color-sec-3);
+}
+
+.indicator {
+	background-color: var(--mantine-color-pri-9);
+	// color: var(--mantine-color-sec-3);
+}

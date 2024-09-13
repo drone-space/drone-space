@@ -22,9 +22,15 @@ export default function Advertisment({ active }: { active?: boolean }) {
 
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-	const dataMobile = [{ title: "August Intake", image: images.posters.intakes.yr2024.aug.portrait }];
+	const dataMobile = [
+		{ title: "August Intake", image: images.posters.intakes.yr2024.sep.portrait },
+		{ title: "Mapping Intake", image: images.posters.courses.yr2024.sep.mapping.portrait },
+	];
 
-	const data = [{ title: "August Intake", image: images.posters.intakes.yr2024.aug.portrait }];
+	const data = [
+		{ title: "August Intake", image: images.posters.intakes.yr2024.sep.portrait },
+		{ title: "Mapping Intake", image: images.posters.courses.yr2024.sep.mapping.portrait },
+	];
 
 	const slides = (mobile ? dataMobile : data).map(slide => (
 		<CarouselSlide key={slide.title}>
@@ -50,11 +56,11 @@ export default function Advertisment({ active }: { active?: boolean }) {
 				onClose={close}
 				centered
 				size={mobile ? "md" : tablet ? "sm" : laptopmd ? "sm" : "lg"}
-				classNames={{ content: classes.content, body: classes.body }}
+				classNames={classes}
 				withCloseButton={false}
 			>
 				<Carousel
-					withIndicators={data.length > 1}
+					withIndicators={false}
 					withControls={data.length > 1}
 					slidesToScroll={1}
 					slideSize={"100%"}

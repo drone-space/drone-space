@@ -24,6 +24,47 @@ const shows = {
 			item: "Each show is expertly choreographed to deliver a seamless and captivating performance, often synchronized with music or other multimedia elements.",
 		},
 	],
+	why: [
+		{
+			label: "Safety and environmental friendliness",
+			item: "Drone light shows are safer and more environmentally friendly than traditional fireworks, with no fire hazards, explosions, or debris.",
+		},
+		{
+			label: "Customization and flexibility",
+			item: "Drone light shows can be easily customized to match your brand's identity and messaging, while fireworks offer limited customization options.",
+		},
+		{
+			label: "Precision and control",
+			item: "Drone light shows offer greater precision and control over the display, allowing for intricate designs and synchronized movements.",
+		},
+		{
+			label: "Unique experience",
+			item: "Drone light shows create a unique and unforgettable experience that sets your brand apart from competitors.",
+		},
+	],
+	talk: [
+		"Imagine a sky filled with thousands of dancing lights, choreographed to create breathtaking patterns and messages.",
+		"Drone light shows are not just a form of entertainment but also a powerful marketing tool. They offer a unique and unforgettable way to capture attention, make a statement, and create lasting memories.",
+		"From product launches to corporate events and national holidays, drone light shows can be adapted to suit a wide range of occasions",
+	],
+	understand: [
+		{
+			label: "Technology",
+			item: "Drone light shows are made possible through advanced technology, including GPS synchronization, LED lights, and flight control systems.",
+		},
+		{
+			label: "Versatility",
+			item: "These shows can create a wide range of shapes, patterns, and messages, making them suitable for various events and occasions.",
+		},
+		{
+			label: "Customization",
+			item: "Drone light shows can be customized to match your brand's identity, values, and messaging.",
+		},
+		{
+			label: "Precision",
+			item: "The precise control of drones allows for intricate and detailed designs, ensuring a visually stunning performance.",
+		},
+	],
 	advantages: [
 		{
 			label: "Eco-Friendly",

@@ -44,6 +44,15 @@ const images = {
 		holCam: "/images/courses/image-8.webp",
 	},
 
+	shows: {
+		brand1: "/images/shows/brand-1.webp",
+		brand2: "/images/shows/brand-2.webp",
+		ready: "/images/shows/ready.webp",
+		understanding: "/images/shows/understanding.webp",
+		hny: "/images/shows/hny.webp",
+		talk: "/images/shows/talk.webp",
+	},
+
 	error: {
 		err404: "/images/error/404.svg",
 	},
@@ -355,6 +364,7 @@ const images = {
 				jun: { landscape: null, portrait: "/images/posters/intakes/image-5.webp" },
 				jul: { landscape: null, portrait: "/images/posters/intakes/image-6.webp" },
 				aug: { landscape: null, portrait: "/images/posters/intakes/image-7.webp" },
+				sep: { landscape: null, portrait: "/images/posters/intakes/image-8.webp" },
 			},
 		},
 		camps: {
@@ -370,6 +380,9 @@ const images = {
 				},
 				jul: {
 					radiotelephony: { landscape: null, portrait: "/images/posters/courses/image-3.webp" },
+				},
+				sep: {
+					mapping: { landscape: null, portrait: "/images/posters/courses/image-4.webp" },
 				},
 			},
 		},

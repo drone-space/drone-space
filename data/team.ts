@@ -10,7 +10,7 @@ const team = {
 			bio: "Provides overall leadership to the board, ensuring governance, strategic alignment, and accountability. With his FAA UAS Pilot license, Davies brings extensive knowledge of drone regulations and best practices in aviation, guiding the company's strategic decisions.",
 		},
 		{
-			image: null,
+			image: images.team.hannah,
 			name: "Hannah Mathu",
 			position: "Director of Strategy, Partnerships, and Enterprises (Africa)",
 			qualification: "Holds an RPL from SACAA",

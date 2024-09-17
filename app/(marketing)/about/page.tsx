@@ -4,13 +4,15 @@ import { Metadata } from "next";
 
 import LayoutPage from "@/layouts/Page";
 import LayoutSection from "@/layouts/Section";
-import { AspectRatio, Grid, GridCol, List, ListItem, Stack, Text, ThemeIcon, Title } from "@mantine/core";
+import { AspectRatio, Divider, Grid, GridCol, List, ListItem, Stack, Text, ThemeIcon, Title } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 import stats from "@/data/stats";
 import CardStat from "@/components/card/Stat";
 import CardHub from "@/components/card/Hub";
 import videos from "@/assets/videos";
 import images from "@/assets/images";
+import team from "@/data/team";
+import CardTeamMain from "@/components/card/team/Main";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -118,7 +120,7 @@ export default async function About() {
 				</Grid>
 			</LayoutSection>
 
-			<LayoutSection padded containerized={"responsive"}>
+			<LayoutSection padded bordered containerized={"responsive"}>
 				<Stack gap={"xl"}>
 					<Stack gap={"xs"} align="center">
 						<Title order={2} fw={"bold"} ta={"center"} fz={{ md: 24 }} w={{ md: "80%" }}>
@@ -134,6 +136,48 @@ export default async function About() {
 								<CardHub data={item} />
 							</GridCol>
 						))}
+					</Grid>
+				</Stack>
+			</LayoutSection>
+
+			<LayoutSection
+				padded
+				containerized={"responsive"}
+				bg={"light-dark(var(--mantine-color-gray-1),var(--mantine-color-gray-1))"}
+			>
+				<Stack gap={"xl"}>
+					<Stack gap={"xs"} align="center">
+						<Title order={2} fw={"bold"} ta={"center"} fz={{ md: 24 }} w={{ md: "80%" }}>
+							Board & Management
+						</Title>
+
+						{/* <Text ta={"center"}>{data.hub.prose}</Text> */}
+					</Stack>
+
+					<Grid gutter={32}>
+						<GridCol span={12}>
+							<Grid justify="center">
+								{team.board.map(item => (
+									<GridCol key={item.name} span={{ xs: 6, md: 5, lg: 4 }}>
+										<CardTeamMain data={item} />
+									</GridCol>
+								))}
+							</Grid>
+						</GridCol>
+
+						<GridCol span={12}>
+							<Divider color="pri" size={"xs"} />
+						</GridCol>
+
+						<GridCol span={12}>
+							<Grid justify="center">
+								{team.management.map(item => (
+									<GridCol key={item.name} span={{ xs: 6, md: 5 }}>
+										<CardTeamMain data={item} />
+									</GridCol>
+								))}
+							</Grid>
+						</GridCol>
 					</Grid>
 				</Stack>
 			</LayoutSection>

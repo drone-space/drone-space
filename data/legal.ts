@@ -95,7 +95,7 @@ const legal = {
 			],
 		},
 		{
-			title: "No warranties",
+			title: "No Warranties",
 			prose: [
 				{
 					id: 1,
@@ -104,7 +104,7 @@ const legal = {
 			],
 		},
 		{
-			title: "Limitation of liability",
+			title: "Limitation of Liability",
 			prose: [
 				{
 					id: 1,

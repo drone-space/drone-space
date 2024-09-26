@@ -7,7 +7,10 @@ import LayoutBody from "@/layouts/Body";
 import contact from "@/data/contact";
 
 export const metadata: Metadata = {
-	title: { default: "Remote Pilot License", template: `%s - Remote Pilot License - Training - ${contact.name.app}` },
+	title: {
+		default: "Basic Training",
+		template: `%s - Basic Training - Drone Training / Drone School - ${contact.name.app}`,
+	},
 };
 
 export default function Basic({

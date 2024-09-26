@@ -11,6 +11,7 @@ import contact from "@/data/contact";
 import images from "@/assets/images";
 
 import classes from "./Main.module.scss";
+import { IconCircleFilled } from "@tabler/icons-react";
 
 export default function Main() {
 	const email = {
@@ -90,6 +91,23 @@ export default function Main() {
 							<Text ta={{ base: "center", md: "start" }} fz={{ base: "sm", md: "xs", lg: "md" }}>
 								{contact.desc}
 							</Text>
+							<Group gap={0}>
+								{contact.socials.map(social => (
+									<Anchor key={social.link} href={social.link} target="_blank">
+										<Stack>
+											<Image
+												src={social.icon}
+												alt={social.title}
+												title={social.title}
+												component={NextImage}
+												width={24}
+												height={24}
+												priority
+											/>
+										</Stack>
+									</Anchor>
+								))}
+							</Group>
 						</Flex>
 					</GridCol>
 					<GridCol span={{ base: 12, md: 8 }} visibleFrom="sm">
@@ -137,30 +155,26 @@ export default function Main() {
 					align={"center"}
 					justify={{ xs: "space-between" }}
 					gap={{ base: "xs", xs: "md" }}
+					fw={500}
+					fz={{ base: "xs", lg: "sm" }}
 				>
-					<Text c={"dark.4"} fz={{ base: "xs", xs: "sm" }}>
+					<Text c={"dark.4"} inherit>
 						© {year}{" "}
 						<Text component="span" inherit fw={500}>
 							{contact.name.app}
 						</Text>
 						. All rights reserved.
 					</Text>
-					<Group gap={0}>
-						{contact.socials.map(social => (
-							<Anchor key={social.link} href={social.link} target="_blank">
-								<Stack>
-									<Image
-										src={social.icon}
-										alt={social.title}
-										title={social.title}
-										component={NextImage}
-										width={24}
-										height={24}
-										priority
-									/>
-								</Stack>
-							</Anchor>
-						))}
+					<Group gap={"xs"} c={"dark.4"}>
+						<Anchor component={Link} href={"/terms-conditions"} inherit>
+							Terms and Conditions
+						</Anchor>
+
+						<IconCircleFilled size={6} color="var(--mantine-color-pri-9)" />
+
+						<Anchor component={Link} href={"/privacy-policy"} inherit>
+							Privacy Policy
+						</Anchor>
 					</Group>
 				</Flex>
 			</LayoutSection>

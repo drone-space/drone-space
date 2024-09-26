@@ -23,13 +23,13 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
-		{ title: "August Intake", image: images.posters.intakes.yr2024.sep.portrait },
-		{ title: "Mapping Intake", image: images.posters.courses.yr2024.sep.mapping.portrait },
+		{ title: "August Intake", image: images.posters.intakes.yr2024.oct.portrait },
+		// { title: "Mapping Intake", image: images.posters.courses.yr2024.sep.mapping.portrait },
 	];
 
 	const data = [
-		{ title: "August Intake", image: images.posters.intakes.yr2024.sep.portrait },
-		{ title: "Mapping Intake", image: images.posters.courses.yr2024.sep.mapping.portrait },
+		{ title: "August Intake", image: images.posters.intakes.yr2024.oct.portrait },
+		// { title: "Mapping Intake", image: images.posters.courses.yr2024.sep.mapping.portrait },
 	];
 
 	const slides = (mobile ? dataMobile : data).map(slide => (

@@ -66,7 +66,7 @@ export default function Home() {
 			>
 				Brochure
 			</Button>
-			<ModalPoster />
+			{/* <ModalPoster /> */}
 		</Group>
 	);
 
@@ -93,10 +93,12 @@ export default function Home() {
 						{slide.desc}
 					</Text>
 
-					<Group gap={"xs"}>{anchors}</Group>
+					<Group gap={"xs"}>
+						{anchors} <ModalAdvertisment />
+					</Group>
 
 					<Group gap={"xs"}>
-						<ModalAdvertisment />
+						{/* <ModalAdvertisment /> */}
 						{/* <ModalShows /> */}
 					</Group>
 				</Stack>
@@ -165,11 +167,12 @@ export default function Home() {
 							>
 								Brochure
 							</Button>
-							<ModalPoster active={true} />
+							{/* <ModalPoster active={true} /> */}
+							<ModalAdvertisment />
 						</Group>
 
 						<Group gap={"xs"}>
-							<ModalAdvertisment />
+							{/* <ModalAdvertisment /> */}
 							{/* <ModalShows active={true} /> */}
 						</Group>
 					</Stack>

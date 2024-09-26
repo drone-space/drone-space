@@ -3,85 +3,38 @@ import React from "react";
 import { Metadata } from "next";
 import NextImage from "next/image";
 
+import { Grid, GridCol, Group, Image, List, ListItem, Stack, Text, ThemeIcon, Title } from "@mantine/core";
+import { IconCheck, IconCheckbox } from "@tabler/icons-react";
+
 import LayoutPage from "@/layouts/Page";
 import LayoutSection from "@/layouts/Section";
-import {
-	Button,
-	Flex,
-	Grid,
-	GridCol,
-	Group,
-	Image,
-	List,
-	ListItem,
-	Stack,
-	Text,
-	ThemeIcon,
-	Title,
-} from "@mantine/core";
-import courses from "@/data/courses";
-import { IconArrowRight, IconCheck, IconCheckbox, IconFileDownload } from "@tabler/icons-react";
-import images from "@/assets/images";
 import CtaTraining from "@/partials/cta/Training";
 import CardTrainingCourse from "@/components/card/training/Course";
 
-export const metadata: Metadata = { title: "Remote Pilot License" };
+import images from "@/assets/images";
+import courses from "@/data/courses";
+
+export const metadata: Metadata = { title: "Basic Training" };
 
 export default async function Basic() {
 	const data = courses.basic;
 
 	const dataImages = {
 		section2: [
-			{
-				src: images.gallery.graduation.yr2022.image1,
-				alt: "graduation image 1",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image2,
-				alt: "graduation image 2",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image5,
-				alt: "graduation image 5",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image7,
-				alt: "graduation image 7",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image9,
-				alt: "graduation image 9",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image12,
-				alt: "graduation image 12",
-			},
+			{ src: images.gallery.graduation.yr2022.image1, alt: "graduation image 1" },
+			{ src: images.gallery.graduation.yr2022.image2, alt: "graduation image 2" },
+			{ src: images.gallery.graduation.yr2022.image5, alt: "graduation image 5" },
+			{ src: images.gallery.graduation.yr2022.image7, alt: "graduation image 7" },
+			{ src: images.gallery.graduation.yr2022.image9, alt: "graduation image 9" },
+			{ src: images.gallery.graduation.yr2022.image12, alt: "graduation image 12" },
 		],
 		section3: [
-			{
-				src: images.gallery.graduation.yr2022.image3,
-				alt: "graduation image 3",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image4,
-				alt: "graduation image 4",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image6,
-				alt: "graduation image 6",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image8,
-				alt: "graduation image 8",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image10,
-				alt: "graduation image 10",
-			},
-			{
-				src: images.gallery.graduation.yr2022.image11,
-				alt: "graduation image 11",
-			},
+			{ src: images.gallery.graduation.yr2022.image3, alt: "graduation image 3" },
+			{ src: images.gallery.graduation.yr2022.image4, alt: "graduation image 4" },
+			{ src: images.gallery.graduation.yr2022.image6, alt: "graduation image 6" },
+			{ src: images.gallery.graduation.yr2022.image8, alt: "graduation image 8" },
+			{ src: images.gallery.graduation.yr2022.image10, alt: "graduation image 10" },
+			{ src: images.gallery.graduation.yr2022.image11, alt: "graduation image 11" },
 		],
 	};
 

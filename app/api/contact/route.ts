@@ -28,11 +28,7 @@ export async function POST(req: Request) {
 
 		// add to newsletter
 		if (dataForm.newsletter) {
-			const result = await addSubscriber(dataForm.email);
-
-			if (result.status >= 400) {
-				return Response.error();
-			}
+			await addSubscriber(dataForm.email);
 		}
 
 		return Response.json({

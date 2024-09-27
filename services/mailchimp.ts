@@ -5,7 +5,7 @@ declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
 			NEXT_MAILCHIMP_KEY_GENERAL: string;
-			NEXT_PUBLIC_SERVERNAME_PREFIX: string;
+			NEXT_PUBLIC_MAILCHIMP_SERVERNAME_PREFIX: string;
 		}
 	}
 }
@@ -13,7 +13,7 @@ declare global {
 // Mailchimp configuration
 mailchimp.setConfig({
 	apiKey: process.env.NEXT_MAILCHIMP_KEY_GENERAL,
-	server: process.env.NEXT_PUBLIC_SERVERNAME_PREFIX,
+	server: process.env.NEXT_PUBLIC_MAILCHIMP_SERVERNAME_PREFIX,
 });
 
 export default mailchimp;

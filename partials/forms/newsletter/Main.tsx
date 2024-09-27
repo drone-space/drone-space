@@ -66,7 +66,33 @@ export default function Main() {
 						variant: "failed",
 					});
 				} else {
-					if (res.status >= 400) {
+					if (res.title == "Invalid Resource") {
+						notifications.show({
+							id: "form-contact-failed-invalid",
+							icon: <IconX size={16} stroke={1.5} />,
+							title: res.title,
+							message: "Please provide a real email address",
+							variant: "failed",
+						});
+					} else if (res.title == "Member Exists") {
+						notifications.show({
+							id: "form-contact-failed-exists",
+							icon: <IconX size={16} stroke={1.5} />,
+							title: res.title,
+							message: `The owner of that email is already a subscriber.`,
+							variant: "failed",
+						});
+					} else if (res.title == "Forgotten Email Not Subscribed") {
+						notifications.show({
+							id: "form-contact-failed-forgotten",
+							icon: <IconX size={16} stroke={1.5} />,
+							title: res.title,
+							message: `That email was permanently deleted. You will be redirected to the re-subscribe page`,
+							variant: "failed",
+						});
+
+						setTimeout(() => window.open(res.url, "_blank"), 5000);
+					} else if (res.status >= 400) {
 						notifications.show({
 							id: "form-contact-failed",
 							icon: <IconX size={16} stroke={1.5} />,

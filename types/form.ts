@@ -5,6 +5,7 @@ export interface typeContact {
 	phone: string | null;
 	subject: string;
 	message: string;
+	newsletter: boolean;
 }
 
 export interface typeSignUp {

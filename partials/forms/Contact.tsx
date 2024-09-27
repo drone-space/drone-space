@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-import { Box, Button, Center, Grid, GridCol, TextInput, Textarea } from "@mantine/core";
+import { Box, Button, Center, Checkbox, Grid, GridCol, TextInput, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { notifications } from "@mantine/notifications";
 
@@ -35,6 +35,7 @@ export default function Contact({
 			phone: "",
 			subject: data?.subject ? data.subject : "",
 			message: "",
+			newsletter: true,
 		},
 
 		validate: {
@@ -56,6 +57,7 @@ export default function Contact({
 			phone: rawData.phone?.trim() ? (rawData.phone.trim().length > 0 ? rawData.phone : null) : null,
 			subject: capitalize.words(rawData.subject.trim()),
 			message: rawData.message.trim(),
+			newsletter: rawData.newsletter,
 		};
 	};
 
@@ -162,7 +164,15 @@ export default function Contact({
 					/>
 				</GridCol>
 				<GridCol span={12}>
-					<Grid gutter={"xs"}>
+					<Checkbox
+						label="Sign up for Drone Space newsletter"
+						key={form.key("newsletter")}
+						{...form.getInputProps("newsletter", { type: "checkbox" })}
+						size="xs"
+					/>
+				</GridCol>
+				<GridCol span={12}>
+					<Grid gutter={"xs"} mt={"md"}>
 						<GridCol span={{ base: 12, md: 6 }} visibleFrom="md">
 							<Center>
 								<Button

@@ -338,6 +338,13 @@ const images = {
 		},
 	},
 
+	patterns: {
+		image1: {
+			pri: "/images/patterns/image-1-pri.webp",
+			sec: "/images/patterns/image-1-sec.webp",
+		},
+	},
+
 	partners: {
 		image1: "/images/partners/image-1.webp",
 		image2: "/images/partners/image-2.webp",
@@ -366,6 +373,7 @@ const images = {
 				aug: { landscape: null, portrait: "/images/posters/intakes/image-7.webp" },
 				sep: { landscape: null, portrait: "/images/posters/intakes/image-8.webp" },
 				oct: { landscape: null, portrait: "/images/posters/intakes/image-9.webp" },
+				oct2: { landscape: null, portrait: "/images/posters/intakes/image-10.webp" },
 			},
 		},
 		camps: {

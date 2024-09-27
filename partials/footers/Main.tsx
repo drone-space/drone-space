@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Flex, Grid, Image, Text, Title, List, Anchor, Group, GridCol, ListItem, Stack } from "@mantine/core";
 
 import LayoutSection from "@/layouts/Section";
+import FormNewsletterMain from "@/partials/forms/newsletter/Main";
 
 import contact from "@/data/contact";
 import images from "@/assets/images";
@@ -73,6 +74,8 @@ export default function Main() {
 
 	return (
 		<LayoutSection className={classes.footer}>
+			<FormNewsletterMain />
+
 			<LayoutSection containerized={"responsive"} padded shadowed>
 				<Grid>
 					<GridCol span={{ base: 12, md: 4 }}>

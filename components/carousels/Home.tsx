@@ -168,7 +168,7 @@ export default function Home() {
 								Brochure
 							</Button>
 							{/* <ModalPoster active={true} /> */}
-							<ModalAdvertisment />
+							<ModalAdvertisment active={true} />
 						</Group>
 
 						<Group gap={"xs"}>
@@ -178,6 +178,7 @@ export default function Home() {
 					</Stack>
 				</LayoutSection>
 			</CarouselSlide>
+
 			{slides}
 		</Carousel>
 	);

@@ -1,5 +1,6 @@
 import inquiry from "@/handlers/resend/email/inquiry";
 import contact from "@/handlers/resend/contact";
+import addSubscriber from "@/handlers/mailchimp";
 
 export async function POST(req: Request) {
 	try {
@@ -23,6 +24,15 @@ export async function POST(req: Request) {
 			default:
 				emailHandler = await inquiry.general(dataForm);
 				break;
+		}
+
+		// add to newsletter
+		if (dataForm.newsletter) {
+			const result = await addSubscriber(dataForm.email);
+
+			if (result.status >= 400) {
+				return Response.error();
+			}
 		}
 
 		return Response.json({

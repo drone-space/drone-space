@@ -33,7 +33,7 @@ export interface typeDrone {
 			contents: { qty: number; item: string; image: string }[];
 			price: typePrice;
 		} | null;
-	};
+	} | null;
 	accessories?: {
 		battery: typeAccessory | null | undefined;
 		other: typeAccessory[] | null | undefined | any;

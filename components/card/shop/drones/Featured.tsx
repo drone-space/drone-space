@@ -27,7 +27,7 @@ export default function Featured({ data }: { data: typeDrone }) {
 								fz={"xs"}
 								className={classes.miniTitle}
 							>
-								Starter Pack Mini Drone
+								Your Personal Videographer
 							</Text>
 							<Title ta={{ base: "center", sm: "start" }} order={2} className={classes.title}>
 								{data.title.long}
@@ -39,7 +39,7 @@ export default function Featured({ data }: { data: typeDrone }) {
 								fz={"lg"}
 								className={classes.slogan}
 							>
-								Fly Mini, Create Big
+								Rise and Shine
 							</Text>
 						</Stack>
 

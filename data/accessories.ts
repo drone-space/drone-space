@@ -2,6 +2,45 @@ import images from "@/assets/images";
 
 const accessories = [
 	{
+		images: images.products.drones.dji.avata.avata2.accessories.battery,
+		title: { long: "DJI Avata 2 Intelligent Flight Battery", short: "Avata 2 Battery" },
+		specs: [
+			{
+				label: "Capacity",
+				desc: "2150 mAh",
+			},
+			{
+				label: "Weight",
+				desc: "145 g",
+			},
+			{
+				label: "Standard Voltage",
+				desc: "14.76 V",
+			},
+			{
+				label: "Max Charging Voltage",
+				desc: "17 V",
+			},
+			{
+				label: "Battery Type",
+				desc: "Li-ion",
+			},
+			{
+				label: "Energy",
+				desc: "31.7 Wh@0.5C",
+			},
+			{
+				label: "Charging Temp",
+				desc: "5° to 40° C (41° to 104° F)",
+			},
+		],
+		price: {
+			former: "TBD",
+			latter: null,
+		},
+	},
+
+	{
 		images: images.products.drones.dji.air.air2s.accessories.battery,
 		title: { long: "Mavic Air 2 Intelligent Flight Battery", short: "Mavic Air 2 Battery" },
 		specs: [

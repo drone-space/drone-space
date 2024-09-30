@@ -3,6 +3,154 @@ import accessories from "./accessories";
 
 const products = [
 	{
+		images: images.products.drones.dji.avata.avata2.drone,
+		title: { long: "DJI Avata 2", short: "Avata 2" },
+		specs: {
+			intro: [
+				"Googles 3 HD micro-OLED display",
+				"RC Motion 3 Easy Acro",
+				"Tight Shots in Super-Wide 4K",
+				"1/1.3-inch Image Sensor",
+				"Built-in Propeller Guard",
+			],
+			aircraft: [
+				{
+					label: "Takeoff Weight",
+					desc: "377 g",
+				},
+				{
+					label: "Max Takeoff Altitude",
+					desc: "5000 m",
+				},
+				{
+					label: "Max Flight Time",
+					desc: "23 minutes",
+				},
+				{
+					label: "Max Hovering Time",
+					desc: "21 minutes",
+				},
+				{
+					label: "Max Flight Distance",
+					desc: "13 km",
+				},
+				{
+					label: "Max Wind Speed Resistance",
+					desc: "10.7 m/s",
+				},
+				{
+					label: "Internal Storage",
+					desc: "46 GB",
+				},
+			],
+		},
+		price: {
+			former: "TBD",
+			latter: null,
+		},
+		kit: {
+			basic: {
+				image: "/images/products/drones/dji/avata/avata2/box/collective.webp",
+				contents: [
+					{
+						qty: 1,
+						item: "Aircraft",
+						image: "/images/products/drones/dji/avata/avata2/box/aircraft.webp",
+					},
+					{
+						qty: 1,
+						item: "Intelligent Flight Battery",
+						image: "/images/products/drones/dji/avata/avata2/box/battery.webp",
+					},
+					{
+						qty: 4,
+						item: "Low Noise Propellers (Pairs)",
+						image: "/images/products/drones/dji/avata/avata2/box/propellers.webp",
+					},
+					{
+						qty: 16,
+						item: "DJI Avata 2 Propeller Screw",
+						image: "/images/products/drones/dji/avata/avata2/more/propeller-screw.webp",
+					},
+					{
+						qty: 1,
+						item: "Gimbal Protector",
+						image: "/images/products/drones/dji/avata/avata2/box/protector.webp",
+					},
+					{
+						qty: 1,
+						item: "Screwdriver",
+						image: "/images/products/drones/dji/avata/avata2/box/screwdriver.webp",
+					},
+					{
+						qty: 1,
+						item: "Type-C to Type-C PD Cable",
+						image: "/images/products/drones/dji/avata/avata2/box/type-c-to-type-c-pd-cable.webp",
+					},
+				],
+			},
+			flyMore: {
+				contents: [
+					{
+						qty: 2,
+						item: "Intelligent Flight Battery",
+						image: "/images/products/drones/dji/avata/avata2/more/battery.webp",
+					},
+					{
+						qty: 1,
+						item: "Two-Way Charging Hub",
+						image: "/images/products/drones/dji/avata/avata2/more/charging-hub.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI Googles 3",
+						image: "/images/products/drones/dji/avata/avata2/more/googles.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI Goggles 3 -2.0D Corrective Lenses (Pairs)",
+						image: "/images/products/drones/dji/avata/avata2/more/lenses.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI RC Motion 3",
+						image: "/images/products/drones/dji/avata/avata2/more/motion.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI RC Motion 3 Lanyard",
+						image: "/images/products/drones/dji/avata/avata2/more/lanyard.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI Sling Bag",
+						image: "/images/products/drones/dji/avata/avata2/more/sling-bag.webp",
+					},
+					{
+						qty: 1,
+						item: "USB-C OTG Cable",
+						image: "/images/products/drones/dji/avata/avata2/more/usb-c-otg-cable.webp",
+					},
+				],
+
+				price: {
+					former: "TBD",
+					latter: null,
+				},
+			},
+		},
+		accessories: {
+			battery: accessories.find(a => a.title.short == "Avata 2 Battery"),
+			other: null,
+		},
+		category: "camera",
+		available: true,
+		brand: "dji",
+		make: "avata",
+		model: null,
+	},
+
+	{
 		images: images.products.drones.dji.air.air2s.drone,
 		title: { long: "DJI Mavic Air 2S", short: "Air 2S" },
 		specs: {

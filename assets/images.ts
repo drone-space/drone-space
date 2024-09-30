@@ -624,6 +624,23 @@ const images = {
 						},
 					},
 				},
+				avata: {
+					avata2: {
+						drone: [
+							"/images/products/drones/dji/avata/avata2/drone/drone-front.webp",
+							"/images/products/drones/dji/avata/avata2/drone/drone-skew.webp",
+							"/images/products/drones/dji/avata/avata2/drone/drone-top.webp",
+							"/images/products/drones/dji/avata/avata2/drone/drone-back.webp",
+						],
+						accessories: {
+							battery: [
+								"/images/products/drones/dji/avata/avata2/battery/battery-skew.webp",
+								"/images/products/drones/dji/avata/avata2/battery/battery-back.webp",
+								"/images/products/drones/dji/avata/avata2/battery/battery-side.webp",
+							],
+						},
+					},
+				},
 			},
 		},
 	},

@@ -656,6 +656,100 @@ const products = [
 	},
 
 	{
+		images: images.products.drones.huida.hd540s.drone,
+		title: {
+			long: "HUIDA HD540S (Drone Spraying System)",
+			short: "HUIDA HD540S",
+		},
+		specs: {
+			intro: [
+				"Higher spraying load (40L Spraying)",
+				"High Spreading Efficieancy (110 Kg/min)",
+				"Higher spreading load (60L Spreading)",
+				"Double Magnetic Impeller Pump (24 L/min )",
+				"8500W Intelligent charger",
+				"HD 5.0 Core computing system",
+				"2KM Image Transmission",
+			],
+			aircraft: [
+				{
+					label: "Structural layout",
+					desc: "Six-axis layout 2100mm",
+				},
+				{
+					label: "Maximum wheelbase",
+					desc: "2100mm (six axes)",
+				},
+				{
+					label: "Pesticide container capacity",
+					desc: "40L",
+				},
+				{
+					label: "Seed container capacity",
+					desc: "60L",
+				},
+				{
+					label: "Container installation mode",
+					desc: "Plug-in",
+				},
+				{
+					label: "Max Configurable Flight Radius",
+					desc: "2000 m",
+				},
+				{
+					label: "No-load mass (including battery)",
+					desc: "47.5KG",
+				},
+				{
+					label: "Power battery",
+					desc: "30000mAh",
+				},
+				{
+					label: "Battery charging time (Lithium)",
+					desc: "20%-95% about 13min",
+				},
+				{
+					label: "Reference fuel consumption",
+					desc: "500ml/kWh",
+				},
+				{
+					label: "FPV camera",
+					desc: "Front camera, rear camera",
+				},
+				{
+					label: "Motor rated power",
+					desc: "2000w*6pcs",
+				},
+				{
+					label: "Remote control signal distance",
+					desc: "≤1500m",
+				},
+				{
+					label: "Flight speed limit",
+					desc: "≤10m/s",
+				},
+			],
+		},
+		price: {
+			former: "TBD",
+			latter: null,
+		},
+		kit: null,
+		accessories: {
+			battery: accessories.find(a => a.title.short == "HUIDA HD540S Battery"),
+			other: [
+				accessories.find(a => a.title.short == "HUIDA HD540S Generator"),
+				accessories.find(a => a.title.short == "HUIDA HD540S Spreading System"),
+			].filter(i => i != undefined),
+		},
+		category: "agriculture",
+		available: true,
+		brand: "huida",
+		make: "HD",
+		model: null,
+	},
+
+	{
 		images: images.products.drones.dji.matrice.matrice30t.drone,
 		title: { long: "DJI Matrice 30T", short: "Matrice 30T" },
 		specs: {
@@ -1909,8 +2003,138 @@ const products = [
 		brand: "dji",
 		make: "mini",
 		model: null,
-		featured: true,
 		starter: true,
+	},
+
+	{
+		images: images.products.drones.dji.neo.drone,
+		title: { long: "DJI Neo", short: "DJI Neo" },
+		specs: {
+			intro: [
+				"Palm Takeoff & Landing",
+				"Easy Editing With QuickShots",
+				"Multiple Control Options",
+				"4K Ultra-Stabilized Video",
+				"135 g, Light and Portable",
+				"Full-Coverage Propeller Guards",
+			],
+			aircraft: [
+				{
+					label: "Takeoff Weight",
+					desc: "135 g",
+				},
+				{
+					label: "Takeoff Altitude",
+					desc: "2000 m",
+				},
+				{
+					label: "Flight Time",
+					desc: "18 mins",
+				},
+				{
+					label: "Flight Time (with propeller guards)",
+					desc: "17 mins",
+				},
+				{
+					label: "Hovering Time",
+					desc: "18 mins",
+				},
+				{
+					label: "Hovering Time (with propeller guards)",
+					desc: "17 mins",
+				},
+				{
+					label: "Flight Distance",
+					desc: "7 km",
+				},
+				{
+					label: "Wind Speed Resistance",
+					desc: "8 m/s (Level 4)",
+				},
+			],
+		},
+		price: {
+			former: "TBD",
+			latter: null,
+		},
+		kit: {
+			basic: {
+				image: "/images/products/drones/dji/neo/box/collective.webp",
+				contents: [
+					{
+						qty: 1,
+						item: "Aircraft",
+						image: "/images/products/drones/dji/neo/box/aircraft.webp",
+					},
+					{
+						qty: 1,
+						item: "Mini 3 Pro Intelligent Flight Battery",
+						image: "/images/products/drones/dji/neo/box/battery.webp",
+					},
+					{
+						qty: 1,
+						item: "Propeller Guard (Pair)",
+						image: "/images/products/drones/dji/neo/box/guard.webp",
+					},
+					{
+						qty: 1,
+						item: "Spare Propellers (Pair)",
+						image: "/images/products/drones/dji/neo/box/propellers.webp",
+					},
+					{
+						qty: 1,
+						item: "Gimbal Protector",
+						image: "/images/products/drones/dji/neo/box/protector.webp",
+					},
+					{
+						qty: 1,
+						item: "Type-C to Type-C PD Cable",
+						image: "/images/products/drones/dji/neo/box/data-cable.webp",
+					},
+					{
+						qty: 1,
+						item: "Screwdriver",
+						image: "/images/products/drones/dji/neo/box/screwdriver.webp",
+					},
+					{
+						qty: 4,
+						item: "Spare Propeller Screw",
+						image: "/images/products/drones/dji/neo/box/screw.webp",
+					},
+				],
+			},
+
+			flyMore: {
+				image: "/images/products/drones/dji/neo/more/collective.webp",
+				contents: [
+					{
+						qty: 2,
+						item: "Mini 3 Pro Intelligent Flight Battery",
+						image: "/images/products/drones/dji/neo/more/battery.webp",
+					},
+					{
+						qty: 1,
+						item: "Two-way Charging Hub",
+						image: "/images/products/drones/dji/neo/more/charging-hub.webp",
+					},
+				],
+
+				price: {
+					former: "TBD",
+					latter: null,
+				},
+			},
+		},
+		accessories: {
+			battery: accessories.find(a => a.title.short == "Neo Battery"),
+			other: null,
+		},
+		category: "camera",
+		available: true,
+		brand: "dji",
+		make: "neo",
+		model: null,
+		featured: true,
 	},
 ];
 

@@ -167,22 +167,24 @@ export default function AccessoryDetail({ params }: typeParams) {
 									Specifications
 								</TabsTab>
 							</GridCol>
-							<GridCol span={{ base: 12, xs: 6, md: "auto" }}>
-								<TabsTab
-									w={"100%"}
-									value="basic"
-									leftSection={
-										<IconCube
-											color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
-											size={24}
-											stroke={2}
-										/>
-									}
-								>
-									What&apos;s in the Box?
-								</TabsTab>
-							</GridCol>
-							{product?.kit.flyMore && (
+							{product?.kit?.basic && (
+								<GridCol span={{ base: 12, xs: 6, md: "auto" }}>
+									<TabsTab
+										w={"100%"}
+										value="basic"
+										leftSection={
+											<IconCube
+												color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+												size={24}
+												stroke={2}
+											/>
+										}
+									>
+										What&apos;s in the Box?
+									</TabsTab>
+								</GridCol>
+							)}
+							{product?.kit?.flyMore && (
 								<GridCol span={{ base: 12, xs: 6, md: "auto" }}>
 									<TabsTab
 										w={"100%"}
@@ -243,8 +245,12 @@ export default function AccessoryDetail({ params }: typeParams) {
 									<Card withBorder shadow="xs">
 										<Stack w={"100%"}>
 											<Image
-												src={product?.kit.basic.image}
-												alt={"In the Box"}
+												src={
+													product?.kit?.basic.image
+														? product?.kit.basic.image
+														: product?.images[0]
+												}
+												alt={"Specs"}
 												loading="lazy"
 												component={NextImage}
 												width={1920}
@@ -296,39 +302,41 @@ export default function AccessoryDetail({ params }: typeParams) {
 						</LayoutSection>
 					</TabsPanel>
 
-					<TabsPanel value="basic">
-						<LayoutSection padded>
-							<Grid gutter={{ base: 32, lg: 64 }}>
-								{product?.kit.basic.contents.map(item => (
-									<GridCol key={item.item} span={{ base: 6, sm: 3, md: 2 }}>
-										<Stack>
-											<Card withBorder shadow="xs">
-												<Stack w={"100%"}>
-													<Image
-														src={item.image}
-														alt={item.item}
-														loading="lazy"
-														component={NextImage}
-														width={1920}
-														height={1080}
-													/>
-												</Stack>
-											</Card>
+					{product?.kit?.basic && (
+						<TabsPanel value="basic">
+							<LayoutSection padded>
+								<Grid gutter={{ base: 32, lg: 64 }}>
+									{product?.kit.basic.contents.map(item => (
+										<GridCol key={item.item} span={{ base: 6, sm: 3, md: 2 }}>
+											<Stack>
+												<Card withBorder shadow="xs">
+													<Stack w={"100%"}>
+														<Image
+															src={item.image}
+															alt={item.item}
+															loading="lazy"
+															component={NextImage}
+															width={1920}
+															height={1080}
+														/>
+													</Stack>
+												</Card>
 
-											<Text fz={{ md: "xs", lg: "sm" }} ta={"center"}>
-												<Text component="span" inherit fw={500}>
-													x{item.qty}
-												</Text>{" "}
-												- {item.item}
-											</Text>
-										</Stack>
-									</GridCol>
-								))}
-							</Grid>
-						</LayoutSection>
-					</TabsPanel>
+												<Text fz={{ md: "xs", lg: "sm" }} ta={"center"}>
+													<Text component="span" inherit fw={500}>
+														x{item.qty}
+													</Text>{" "}
+													- {item.item}
+												</Text>
+											</Stack>
+										</GridCol>
+									))}
+								</Grid>
+							</LayoutSection>
+						</TabsPanel>
+					)}
 
-					{product?.kit.flyMore && (
+					{product?.kit?.flyMore && (
 						<TabsPanel value="flyMore">
 							<LayoutSection padded>
 								<Grid gutter={{ base: 64, md: "md" }}>

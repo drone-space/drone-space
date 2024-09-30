@@ -624,6 +624,22 @@ const images = {
 						},
 					},
 				},
+				neo: {
+					drone: [
+						"/images/products/drones/dji/neo/drone/drone-front.webp",
+						"/images/products/drones/dji/neo/drone/drone-skew.webp",
+						"/images/products/drones/dji/neo/drone/drone-bottom.webp",
+						"/images/products/drones/dji/neo/drone/drone-top.webp",
+					],
+					accessories: {
+						battery: [
+							"/images/products/drones/dji/neo/battery/battery-back.webp",
+							"/images/products/drones/dji/neo/battery/battery-front.webp",
+							"/images/products/drones/dji/neo/battery/battery-skew.webp",
+							"/images/products/drones/dji/neo/battery/battery-side.webp",
+						],
+					},
+				},
 				avata: {
 					avata2: {
 						drone: [
@@ -638,6 +654,23 @@ const images = {
 								"/images/products/drones/dji/avata/avata2/battery/battery-back.webp",
 								"/images/products/drones/dji/avata/avata2/battery/battery-side.webp",
 							],
+						},
+					},
+				},
+			},
+			huida: {
+				hd540s: {
+					drone: [
+						"/images/products/drones/huida/hd540s/drone/drone-front.webp",
+						"/images/products/drones/huida/hd540s/drone/drone-skew.webp",
+						"/images/products/drones/huida/hd540s/drone/drone-top.webp",
+						"/images/products/drones/huida/hd540s/drone/drone-folded.webp",
+					],
+					accessories: {
+						battery: ["/images/products/drones/huida/hd540s/battery/battery-skew.webp"],
+						other: {
+							spreader: ["/images/products/drones/huida/hd540s/accessories/spreader.webp"],
+							generator: ["/images/products/drones/huida/hd540s/accessories/generator.webp"],
 						},
 					},
 				},

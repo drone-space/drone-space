@@ -109,6 +109,48 @@ const accessories = [
 	},
 
 	{
+		images: images.products.drones.huida.hd540s.accessories.other.generator,
+		title: {
+			long: "HUIDA HD540S Generator",
+			short: "HUIDA HD540S Generator",
+		},
+		specs: [
+			{
+				label: "Power (fast charging)",
+				desc: "230V/8500W socket",
+			},
+			{
+				label: "Power (slow charging)",
+				desc: "230V/2300W socket (also as mains power)",
+			},
+			{
+				label: "Principle",
+				desc: "Single-phase AC gasoline generator",
+			},
+			{
+				label: "Maximum Power",
+				desc: " 8.5KW",
+			},
+			{
+				label: "Rated Power",
+				desc: "8KW",
+			},
+			{
+				label: "Tank",
+				desc: "38L gasoline tank (No. 92)",
+			},
+			{
+				label: "Ambient Temperature",
+				desc: "Upper limit (40°C), lower limit (-5°C)",
+			},
+		],
+		price: {
+			former: "TBD",
+			latter: null,
+		},
+	},
+
+	{
 		images: images.products.drones.dji.agras.t40.accessories.other.generator,
 		title: {
 			long: "Agras Series Multifunctional Inverter Generator (D12000iE)",
@@ -163,6 +205,44 @@ const accessories = [
 	},
 
 	{
+		images: images.products.drones.huida.hd540s.accessories.other.spreader,
+		title: {
+			long: "HUIDA HD540S Spreading System",
+			short: "HUIDA HD540S Spreading System",
+		},
+		specs: [
+			{
+				label: "Maximum spreading capacity",
+				desc: "60L/50kg",
+			},
+			{
+				label: "Broadcast width",
+				desc: "4-9m",
+			},
+			{
+				label: "Sowing method",
+				desc: "Dial type",
+			},
+			{
+				label: "Turntable maximum speed",
+				desc: "1100r/min",
+			},
+			{
+				label: "Support particle diameter",
+				desc: "0.5 - 6mm dry solid particles",
+			},
+			{
+				label: "Spreading up to",
+				desc: "360kg/battery",
+			},
+		],
+		price: {
+			former: "TBD",
+			latter: null,
+		},
+	},
+
+	{
 		images: images.products.drones.dji.agras.t40.accessories.other.spreader,
 		title: {
 			long: "Agras Series Spreading System",
@@ -192,6 +272,64 @@ const accessories = [
 		],
 		price: {
 			former: "140,000",
+			latter: null,
+		},
+	},
+
+	{
+		images: images.products.drones.huida.hd540s.accessories.battery,
+		title: {
+			long: "HUIDA HD540S Intelligent Flight Battery",
+			short: "HUIDA HD540S Battery",
+		},
+		specs: [
+			{
+				label: "Battery assembly specifications",
+				desc: "(3.8V30Ah) 18S 30000mAh",
+			},
+			{
+				label: "Shell size",
+				desc: "175*275*309mm",
+			},
+			{
+				label: "Battery weight",
+				desc: "~ 13.5KG",
+			},
+			{
+				label: "Shell size",
+				desc: "175*275*309mm",
+			},
+			{
+				label: "Nominal capacity",
+				desc: "30000mAh",
+			},
+			{
+				label: "Minimum capacity",
+				desc: "29500mAH",
+			},
+			{
+				label: "Charging voltage",
+				desc: "DC 78.3V",
+			},
+			{
+				label: "Nominal voltage",
+				desc: "68.4V",
+			},
+			{
+				label: "Protection level",
+				desc: "IP54",
+			},
+			{
+				label: "Maximum charging current",
+				desc: "120A",
+			},
+			{
+				label: "Maximum discharge current",
+				desc: "IP54240A",
+			},
+		],
+		price: {
+			former: "TBD",
 			latter: null,
 		},
 	},
@@ -480,6 +618,45 @@ const accessories = [
 		],
 		price: {
 			former: "25,000",
+			latter: null,
+		},
+	},
+
+	{
+		images: images.products.drones.dji.neo.accessories.battery,
+		title: { long: "Neo Intelligent Flight Battery", short: "DJI Neo Battery" },
+		specs: [
+			{
+				label: "Capacity",
+				desc: "1435 mAh",
+			},
+			{
+				label: "Weight",
+				desc: "Approx. 45 g",
+			},
+			{
+				label: "Nominal Voltage",
+				desc: "7.3 V",
+			},
+			{
+				label: "Max Charging Voltage",
+				desc: "8.6 V",
+			},
+			{
+				label: "Battery Type",
+				desc: "Li-ion",
+			},
+			{
+				label: "Energy",
+				desc: "10.5 Wh",
+			},
+			{
+				label: "Charging Temperature",
+				desc: "5° to 40° C",
+			},
+		],
+		price: {
+			former: "TBD",
 			latter: null,
 		},
 	},

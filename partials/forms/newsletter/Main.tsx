@@ -91,7 +91,7 @@ export default function Main() {
 							variant: "failed",
 						});
 
-						setTimeout(() => window.open(res.url, "_blank"), 5000);
+						setTimeout(() => (window.location.href = res.url), 5000);
 					} else if (res.status >= 400) {
 						notifications.show({
 							id: "form-contact-failed",

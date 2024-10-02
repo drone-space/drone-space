@@ -393,6 +393,9 @@ const images = {
 				sep: {
 					mapping: { landscape: null, portrait: "/images/posters/courses/image-4.webp" },
 				},
+				oct: {
+					mapping: { landscape: null, portrait: "/images/posters/courses/image-5.webp" },
+				},
 			},
 		},
 		workshops: {

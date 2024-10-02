@@ -25,11 +25,13 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const dataMobile = [
 		{ title: "August Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
 		{ title: "August Intake", image: images.posters.intakes.yr2024.oct.portrait },
+		{ title: "August Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
 	];
 
 	const data = [
 		{ title: "Mapping Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
 		{ title: "August Intake", image: images.posters.intakes.yr2024.oct.portrait },
+		{ title: "August Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
 	];
 
 	const slides = (mobile ? dataMobile : data).map(slide => (

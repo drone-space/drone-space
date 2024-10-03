@@ -8,6 +8,7 @@ import {
 	Image,
 	List,
 	ListItem,
+	NumberFormatter,
 	Stack,
 	Text,
 	ThemeIcon,
@@ -118,7 +119,7 @@ export default function Main({ data }: { data: typeDrone }) {
 							fw={500}
 							c={"light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9))"}
 						>
-							{data.price.former}
+							{data.price ? <NumberFormatter value={data.price.former} thousandSeparator /> : "TBD"}
 						</Text>
 					</Text>
 				</Group>

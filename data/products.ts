@@ -3,6 +3,148 @@ import accessories from "./accessories";
 
 const products = [
 	{
+		images: images.products.drones.dji.avata.avata2.drone,
+		title: { long: "DJI Avata 2", short: "Avata 2" },
+		specs: {
+			intro: [
+				"Googles 3 HD micro-OLED display",
+				"RC Motion 3 Easy Acro",
+				"Tight Shots in Super-Wide 4K",
+				"1/1.3-inch Image Sensor",
+				"Built-in Propeller Guard",
+			],
+			aircraft: [
+				{
+					label: "Takeoff Weight",
+					desc: "377 g",
+				},
+				{
+					label: "Max Takeoff Altitude",
+					desc: "5000 m",
+				},
+				{
+					label: "Max Flight Time",
+					desc: "23 minutes",
+				},
+				{
+					label: "Max Hovering Time",
+					desc: "21 minutes",
+				},
+				{
+					label: "Max Flight Distance",
+					desc: "13 km",
+				},
+				{
+					label: "Max Wind Speed Resistance",
+					desc: "10.7 m/s",
+				},
+				{
+					label: "Internal Storage",
+					desc: "46 GB",
+				},
+			],
+		},
+		price: null,
+		kit: {
+			basic: {
+				image: "/images/products/drones/dji/avata/avata2/box/collective.webp",
+				contents: [
+					{
+						qty: 1,
+						item: "Aircraft",
+						image: "/images/products/drones/dji/avata/avata2/box/aircraft.webp",
+					},
+					{
+						qty: 1,
+						item: "Intelligent Flight Battery",
+						image: "/images/products/drones/dji/avata/avata2/box/battery.webp",
+					},
+					{
+						qty: 4,
+						item: "Low Noise Propellers (Pairs)",
+						image: "/images/products/drones/dji/avata/avata2/box/propellers.webp",
+					},
+					{
+						qty: 16,
+						item: "DJI Avata 2 Propeller Screw",
+						image: "/images/products/drones/dji/avata/avata2/more/propeller-screw.webp",
+					},
+					{
+						qty: 1,
+						item: "Gimbal Protector",
+						image: "/images/products/drones/dji/avata/avata2/box/protector.webp",
+					},
+					{
+						qty: 1,
+						item: "Screwdriver",
+						image: "/images/products/drones/dji/avata/avata2/box/screwdriver.webp",
+					},
+					{
+						qty: 1,
+						item: "Type-C to Type-C PD Cable",
+						image: "/images/products/drones/dji/avata/avata2/box/type-c-to-type-c-pd-cable.webp",
+					},
+				],
+			},
+			flyMore: {
+				contents: [
+					{
+						qty: 2,
+						item: "Intelligent Flight Battery",
+						image: "/images/products/drones/dji/avata/avata2/more/battery.webp",
+					},
+					{
+						qty: 1,
+						item: "Two-Way Charging Hub",
+						image: "/images/products/drones/dji/avata/avata2/more/charging-hub.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI Googles 3",
+						image: "/images/products/drones/dji/avata/avata2/more/googles.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI Goggles 3 -2.0D Corrective Lenses (Pairs)",
+						image: "/images/products/drones/dji/avata/avata2/more/lenses.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI RC Motion 3",
+						image: "/images/products/drones/dji/avata/avata2/more/motion.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI RC Motion 3 Lanyard",
+						image: "/images/products/drones/dji/avata/avata2/more/lanyard.webp",
+					},
+					{
+						qty: 1,
+						item: "DJI Sling Bag",
+						image: "/images/products/drones/dji/avata/avata2/more/sling-bag.webp",
+					},
+					{
+						qty: 1,
+						item: "USB-C OTG Cable",
+						image: "/images/products/drones/dji/avata/avata2/more/usb-c-otg-cable.webp",
+					},
+				],
+
+				price: null,
+			},
+		},
+		accessories: {
+			battery: accessories.find(a => a.title.short == "Avata 2 Battery"),
+			other: null,
+		},
+		category: "camera",
+		available: true,
+		brand: "dji",
+		make: "avata",
+		model: null,
+	},
+
+	{
 		images: images.products.drones.dji.air.air2s.drone,
 		title: { long: "DJI Mavic Air 2S", short: "Air 2S" },
 		specs: {
@@ -45,7 +187,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "250,000",
+			former: 250000,
 			latter: null,
 		},
 		kit: {
@@ -149,7 +291,7 @@ const products = [
 				],
 
 				price: {
-					former: "59,000",
+					former: 59000,
 					latter: null,
 				},
 			},
@@ -210,7 +352,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "290,000",
+			former: 290000,
 			latter: null,
 		},
 		kit: {
@@ -283,7 +425,7 @@ const products = [
 					},
 				],
 				price: {
-					former: "59,000",
+					former: 59000,
 					latter: null,
 				},
 			},
@@ -299,109 +441,109 @@ const products = [
 		model: "air",
 	},
 
-	{
-		images: images.products.drones.dji.agras.t40.drone,
-		title: {
-			long: "DJI Agras T40 (Drone Spraying System)",
-			short: "Agras T40",
-		},
-		specs: {
-			intro: [
-				"40kg spraying payload",
-				"50kg spreading payload",
-				"Active Phased Array Radar + Binocular Vision",
-				"Dual Atomized Spraying System",
-				"Supports flight spraying/spreading",
-				"Supports flight RC mapping",
-				"Core Modules IPX6K",
-				"EFI Generator 15% fuel saving",
-			],
-			aircraft: [
-				{
-					label: "Total Weight (without battery)",
-					desc: "38 kg",
-				},
-				{
-					label: "Total Weight (with battery)",
-					desc: "50 kg",
-				},
-				{
-					label: "Takeoff Weight (spraying)",
-					desc: "90 kg (at sea level)",
-				},
-				{
-					label: "Takeoff Weight (spreading)",
-					desc: "101 kg (at sea level)",
-				},
-				{
-					label: "Max Diagonal Wheelbase",
-					desc: "2184 mm",
-				},
-				{
-					label: "Max flight radius can be set",
-					desc: "2000 m",
-				},
-				{
-					label: "Max Wind Speed Resistance",
-					desc: "6 m/s",
-				},
-			],
-		},
-		price: {
-			former: "1,950,000",
-			latter: null,
-		},
-		kit: {
-			basic: {
-				image: "/images/products/drones/dji/agras/t40/box/collective.webp",
-				contents: [
-					{
-						qty: 1,
-						item: "Aircraft",
-						image: "/images/products/drones/dji/agras/t40/box/aircraft.webp",
-					},
-					{
-						qty: 1,
-						item: "Remote Controller",
-						image: "/images/products/drones/dji/agras/t40/box/controller.webp",
-					},
-					{
-						qty: 1,
-						item: "Intelligent Flight Battery",
-						image: "/images/products/drones/dji/agras/t40/box/battery.webp",
-					},
-					{
-						qty: 1,
-						item: "Charging Hub",
-						image: "/images/products/drones/dji/agras/t40/box/charging-hub.webp",
-					},
-					{
-						qty: 1,
-						item: "Coaxial Twin Rotor",
-						image: "/images/products/drones/dji/agras/t40/box/coaxial.webp",
-					},
-					{
-						qty: 1,
-						item: "Remote Controller Lanyard",
-						image: "/images/products/drones/dji/agras/t40/box/lanyard.webp",
-					},
-				],
-			},
-			flyMore: null,
-		},
-		accessories: {
-			battery: accessories.find(a => a.title.short == "Agras Series Battery"),
-			other: [
-				accessories.find(a => a.title.short == "Agras Series Generator (D12000iE)"),
-				accessories.find(a => a.title.short == "Agras Series Spreading System"),
-			].filter(i => i != undefined),
-		},
-		category: "agriculture",
-		available: true,
-		brand: "dji",
-		make: "agras",
-		model: null,
-	},
+	// {
+	// 	images: images.products.drones.dji.agras.t40.drone,
+	// 	title: {
+	// 		long: "DJI Agras T40 (Drone Spraying System)",
+	// 		short: "Agras T40",
+	// 	},
+	// 	specs: {
+	// 		intro: [
+	// 			"40kg spraying payload",
+	// 			"50kg spreading payload",
+	// 			"Active Phased Array Radar + Binocular Vision",
+	// 			"Dual Atomized Spraying System",
+	// 			"Supports flight spraying/spreading",
+	// 			"Supports flight RC mapping",
+	// 			"Core Modules IPX6K",
+	// 			"EFI Generator 15% fuel saving",
+	// 		],
+	// 		aircraft: [
+	// 			{
+	// 				label: "Total Weight (without battery)",
+	// 				desc: "38 kg",
+	// 			},
+	// 			{
+	// 				label: "Total Weight (with battery)",
+	// 				desc: "50 kg",
+	// 			},
+	// 			{
+	// 				label: "Takeoff Weight (spraying)",
+	// 				desc: "90 kg (at sea level)",
+	// 			},
+	// 			{
+	// 				label: "Takeoff Weight (spreading)",
+	// 				desc: "101 kg (at sea level)",
+	// 			},
+	// 			{
+	// 				label: "Max Diagonal Wheelbase",
+	// 				desc: "2184 mm",
+	// 			},
+	// 			{
+	// 				label: "Max flight radius can be set",
+	// 				desc: "2000 m",
+	// 			},
+	// 			{
+	// 				label: "Max Wind Speed Resistance",
+	// 				desc: "6 m/s",
+	// 			},
+	// 		],
+	// 	},
+	// 	price: {
+	// 		former: 1950000,
+	// 		latter: null,
+	// 	},
+	// 	kit: {
+	// 		basic: {
+	// 			image: "/images/products/drones/dji/agras/t40/box/collective.webp",
+	// 			contents: [
+	// 				{
+	// 					qty: 1,
+	// 					item: "Aircraft",
+	// 					image: "/images/products/drones/dji/agras/t40/box/aircraft.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Remote Controller",
+	// 					image: "/images/products/drones/dji/agras/t40/box/controller.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Intelligent Flight Battery",
+	// 					image: "/images/products/drones/dji/agras/t40/box/battery.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Charging Hub",
+	// 					image: "/images/products/drones/dji/agras/t40/box/charging-hub.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Coaxial Twin Rotor",
+	// 					image: "/images/products/drones/dji/agras/t40/box/coaxial.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Remote Controller Lanyard",
+	// 					image: "/images/products/drones/dji/agras/t40/box/lanyard.webp",
+	// 				},
+	// 			],
+	// 		},
+	// 		flyMore: null,
+	// 	},
+	// 	accessories: {
+	// 		battery: accessories.find(a => a.title.short == "Agras Series Battery"),
+	// 		other: [
+	// 			accessories.find(a => a.title.short == "Agras Series Generator (D12000iE)"),
+	// 			accessories.find(a => a.title.short == "Agras Series Spreading System"),
+	// 		].filter(i => i != undefined),
+	// 	},
+	// 	category: "agriculture",
+	// 	available: true,
+	// 	brand: "dji",
+	// 	make: "agras",
+	// 	model: null,
+	// },
 
 	{
 		images: images.products.drones.dji.agras.t50.drone,
@@ -452,7 +594,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "2,315,000",
+			former: 2315000,
 			latter: null,
 		},
 		kit: {
@@ -508,6 +650,97 @@ const products = [
 	},
 
 	{
+		images: images.products.drones.huida.hd540s.drone,
+		title: {
+			long: "HUIDA HD540S (Drone Spraying System)",
+			short: "HUIDA HD540S",
+		},
+		specs: {
+			intro: [
+				"Higher spraying load (40L Spraying)",
+				"High Spreading Efficieancy (110 Kg/min)",
+				"Higher spreading load (60L Spreading)",
+				"Double Magnetic Impeller Pump (24 L/min )",
+				"8500W Intelligent charger",
+				"HD 5.0 Core computing system",
+				"2KM Image Transmission",
+			],
+			aircraft: [
+				{
+					label: "Structural layout",
+					desc: "Six-axis layout 2100mm",
+				},
+				{
+					label: "Maximum wheelbase",
+					desc: "2100mm (six axes)",
+				},
+				{
+					label: "Pesticide container capacity",
+					desc: "40L",
+				},
+				{
+					label: "Seed container capacity",
+					desc: "60L",
+				},
+				{
+					label: "Container installation mode",
+					desc: "Plug-in",
+				},
+				{
+					label: "Max Configurable Flight Radius",
+					desc: "2000 m",
+				},
+				{
+					label: "No-load mass (including battery)",
+					desc: "47.5KG",
+				},
+				{
+					label: "Power battery",
+					desc: "30000mAh",
+				},
+				{
+					label: "Battery charging time (Lithium)",
+					desc: "20%-95% about 13min",
+				},
+				{
+					label: "Reference fuel consumption",
+					desc: "500ml/kWh",
+				},
+				{
+					label: "FPV camera",
+					desc: "Front camera, rear camera",
+				},
+				{
+					label: "Motor rated power",
+					desc: "2000w*6pcs",
+				},
+				{
+					label: "Remote control signal distance",
+					desc: "≤1500m",
+				},
+				{
+					label: "Flight speed limit",
+					desc: "≤10m/s",
+				},
+			],
+		},
+		price: null,
+		kit: null,
+		accessories: {
+			battery: accessories.find(a => a.title.short == "HUIDA HD540S Battery"),
+			other: [
+				accessories.find(a => a.title.short == "HUIDA HD540S Generator"),
+				accessories.find(a => a.title.short == "HUIDA HD540S Spreading System"),
+			].filter(i => i != undefined),
+		},
+		category: "agriculture",
+		available: true,
+		brand: "huida",
+		make: "HD",
+		model: null,
+	},
+
+	{
 		images: images.products.drones.dji.matrice.matrice30t.drone,
 		title: { long: "DJI Matrice 30T", short: "Matrice 30T" },
 		specs: {
@@ -544,7 +777,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "1,650,000",
+			former: 1650000,
 			latter: null,
 		},
 		kit: {
@@ -666,7 +899,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "1,270,000",
+			former: 1270000,
 			latter: null,
 		},
 		kit: {
@@ -803,7 +1036,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "900,000",
+			former: 900000,
 			latter: null,
 		},
 		kit: {
@@ -904,7 +1137,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "396,000",
+			former: 396000,
 			latter: null,
 		},
 		kit: {
@@ -985,7 +1218,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1049,7 +1282,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "530,000",
+			former: 530000,
 			latter: null,
 		},
 		kit: {
@@ -1145,7 +1378,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1202,7 +1435,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "951,400",
+			former: 951400,
 			latter: null,
 		},
 		kit: {
@@ -1298,7 +1531,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1355,7 +1588,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "690,000",
+			former: 690000,
 			latter: null,
 		},
 		kit: {
@@ -1451,7 +1684,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1511,7 +1744,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "909,000",
+			former: 909000,
 			latter: null,
 		},
 		kit: {
@@ -1646,7 +1879,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "215,000",
+			former: 215000,
 			latter: null,
 		},
 		kit: {
@@ -1747,7 +1980,7 @@ const products = [
 				],
 
 				price: {
-					former: "55,000",
+					former: 55000,
 					latter: null,
 				},
 			},
@@ -1761,8 +1994,138 @@ const products = [
 		brand: "dji",
 		make: "mini",
 		model: null,
-		featured: true,
 		starter: true,
+	},
+
+	{
+		images: images.products.drones.dji.neo.drone,
+		title: { long: "DJI Neo", short: "DJI Neo" },
+		specs: {
+			intro: [
+				"Palm Takeoff & Landing",
+				"Easy Editing With QuickShots",
+				"Multiple Control Options",
+				"4K Ultra-Stabilized Video",
+				"135 g, Light and Portable",
+				"Full-Coverage Propeller Guards",
+			],
+			aircraft: [
+				{
+					label: "Takeoff Weight",
+					desc: "135 g",
+				},
+				{
+					label: "Takeoff Altitude",
+					desc: "2000 m",
+				},
+				{
+					label: "Flight Time",
+					desc: "18 mins",
+				},
+				{
+					label: "Flight Time (with propeller guards)",
+					desc: "17 mins",
+				},
+				{
+					label: "Hovering Time",
+					desc: "18 mins",
+				},
+				{
+					label: "Hovering Time (with propeller guards)",
+					desc: "17 mins",
+				},
+				{
+					label: "Flight Distance",
+					desc: "7 km",
+				},
+				{
+					label: "Wind Speed Resistance",
+					desc: "8 m/s (Level 4)",
+				},
+			],
+		},
+		price: {
+			former: 45000,
+			latter: null,
+		},
+		kit: {
+			basic: {
+				image: "/images/products/drones/dji/neo/box/collective.webp",
+				contents: [
+					{
+						qty: 1,
+						item: "Aircraft",
+						image: "/images/products/drones/dji/neo/box/aircraft.webp",
+					},
+					{
+						qty: 1,
+						item: "Mini 3 Pro Intelligent Flight Battery",
+						image: "/images/products/drones/dji/neo/box/battery.webp",
+					},
+					{
+						qty: 1,
+						item: "Propeller Guard (Pair)",
+						image: "/images/products/drones/dji/neo/box/guard.webp",
+					},
+					{
+						qty: 1,
+						item: "Spare Propellers (Pair)",
+						image: "/images/products/drones/dji/neo/box/propellers.webp",
+					},
+					{
+						qty: 1,
+						item: "Gimbal Protector",
+						image: "/images/products/drones/dji/neo/box/protector.webp",
+					},
+					{
+						qty: 1,
+						item: "Type-C to Type-C PD Cable",
+						image: "/images/products/drones/dji/neo/box/data-cable.webp",
+					},
+					{
+						qty: 1,
+						item: "Screwdriver",
+						image: "/images/products/drones/dji/neo/box/screwdriver.webp",
+					},
+					{
+						qty: 4,
+						item: "Spare Propeller Screw",
+						image: "/images/products/drones/dji/neo/box/screw.webp",
+					},
+				],
+			},
+
+			flyMore: {
+				image: "/images/products/drones/dji/neo/more/collective.webp",
+				contents: [
+					{
+						qty: 2,
+						item: "Mini 3 Pro Intelligent Flight Battery",
+						image: "/images/products/drones/dji/neo/more/battery.webp",
+					},
+					{
+						qty: 1,
+						item: "Two-way Charging Hub",
+						image: "/images/products/drones/dji/neo/more/charging-hub.webp",
+					},
+				],
+
+				price: {
+					former: 35000,
+					latter: null,
+				},
+			},
+		},
+		accessories: {
+			battery: accessories.find(a => a.title.short == "Neo Battery"),
+			other: null,
+		},
+		category: "camera",
+		available: true,
+		brand: "dji",
+		make: "neo",
+		model: null,
+		featured: true,
 	},
 ];
 

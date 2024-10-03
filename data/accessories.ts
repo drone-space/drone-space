@@ -34,10 +34,7 @@ const accessories = [
 				desc: "5° to 40° C (41° to 104° F)",
 			},
 		],
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 	},
 
 	{
@@ -144,10 +141,7 @@ const accessories = [
 				desc: "Upper limit (40°C), lower limit (-5°C)",
 			},
 		],
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 	},
 
 	{
@@ -199,7 +193,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "670,000",
+			former: 670000,
 			latter: null,
 		},
 	},
@@ -236,10 +230,7 @@ const accessories = [
 				desc: "360kg/battery",
 			},
 		],
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 	},
 
 	{
@@ -271,7 +262,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "140,000",
+			former: 140000,
 			latter: null,
 		},
 	},
@@ -328,10 +319,7 @@ const accessories = [
 				desc: "IP54240A",
 			},
 		],
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 	},
 
 	{
@@ -364,7 +352,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "390,000",
+			former: 390000,
 			latter: null,
 		},
 	},
@@ -399,7 +387,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "75,000",
+			former: 75000,
 			latter: null,
 		},
 	},
@@ -518,7 +506,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "49,000",
+			former: 49000,
 			latter: null,
 		},
 	},
@@ -570,7 +558,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "680,000",
+			former: 680000,
 			latter: null,
 		},
 	},
@@ -617,7 +605,7 @@ const accessories = [
 			},
 		],
 		price: {
-			former: "25,000",
+			former: 25000,
 			latter: null,
 		},
 	},
@@ -655,10 +643,7 @@ const accessories = [
 				desc: "5° to 40° C",
 			},
 		],
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 	},
 ];
 

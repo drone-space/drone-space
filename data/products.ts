@@ -44,10 +44,7 @@ const products = [
 				},
 			],
 		},
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 		kit: {
 			basic: {
 				image: "/images/products/drones/dji/avata/avata2/box/collective.webp",
@@ -133,10 +130,7 @@ const products = [
 					},
 				],
 
-				price: {
-					former: "TBD",
-					latter: null,
-				},
+				price: null,
 			},
 		},
 		accessories: {
@@ -193,7 +187,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "250,000",
+			former: 250000,
 			latter: null,
 		},
 		kit: {
@@ -297,7 +291,7 @@ const products = [
 				],
 
 				price: {
-					former: "59,000",
+					former: 59000,
 					latter: null,
 				},
 			},
@@ -358,7 +352,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "290,000",
+			former: 290000,
 			latter: null,
 		},
 		kit: {
@@ -431,7 +425,7 @@ const products = [
 					},
 				],
 				price: {
-					former: "59,000",
+					former: 59000,
 					latter: null,
 				},
 			},
@@ -447,109 +441,109 @@ const products = [
 		model: "air",
 	},
 
-	{
-		images: images.products.drones.dji.agras.t40.drone,
-		title: {
-			long: "DJI Agras T40 (Drone Spraying System)",
-			short: "Agras T40",
-		},
-		specs: {
-			intro: [
-				"40kg spraying payload",
-				"50kg spreading payload",
-				"Active Phased Array Radar + Binocular Vision",
-				"Dual Atomized Spraying System",
-				"Supports flight spraying/spreading",
-				"Supports flight RC mapping",
-				"Core Modules IPX6K",
-				"EFI Generator 15% fuel saving",
-			],
-			aircraft: [
-				{
-					label: "Total Weight (without battery)",
-					desc: "38 kg",
-				},
-				{
-					label: "Total Weight (with battery)",
-					desc: "50 kg",
-				},
-				{
-					label: "Takeoff Weight (spraying)",
-					desc: "90 kg (at sea level)",
-				},
-				{
-					label: "Takeoff Weight (spreading)",
-					desc: "101 kg (at sea level)",
-				},
-				{
-					label: "Max Diagonal Wheelbase",
-					desc: "2184 mm",
-				},
-				{
-					label: "Max flight radius can be set",
-					desc: "2000 m",
-				},
-				{
-					label: "Max Wind Speed Resistance",
-					desc: "6 m/s",
-				},
-			],
-		},
-		price: {
-			former: "1,950,000",
-			latter: null,
-		},
-		kit: {
-			basic: {
-				image: "/images/products/drones/dji/agras/t40/box/collective.webp",
-				contents: [
-					{
-						qty: 1,
-						item: "Aircraft",
-						image: "/images/products/drones/dji/agras/t40/box/aircraft.webp",
-					},
-					{
-						qty: 1,
-						item: "Remote Controller",
-						image: "/images/products/drones/dji/agras/t40/box/controller.webp",
-					},
-					{
-						qty: 1,
-						item: "Intelligent Flight Battery",
-						image: "/images/products/drones/dji/agras/t40/box/battery.webp",
-					},
-					{
-						qty: 1,
-						item: "Charging Hub",
-						image: "/images/products/drones/dji/agras/t40/box/charging-hub.webp",
-					},
-					{
-						qty: 1,
-						item: "Coaxial Twin Rotor",
-						image: "/images/products/drones/dji/agras/t40/box/coaxial.webp",
-					},
-					{
-						qty: 1,
-						item: "Remote Controller Lanyard",
-						image: "/images/products/drones/dji/agras/t40/box/lanyard.webp",
-					},
-				],
-			},
-			flyMore: null,
-		},
-		accessories: {
-			battery: accessories.find(a => a.title.short == "Agras Series Battery"),
-			other: [
-				accessories.find(a => a.title.short == "Agras Series Generator (D12000iE)"),
-				accessories.find(a => a.title.short == "Agras Series Spreading System"),
-			].filter(i => i != undefined),
-		},
-		category: "agriculture",
-		available: true,
-		brand: "dji",
-		make: "agras",
-		model: null,
-	},
+	// {
+	// 	images: images.products.drones.dji.agras.t40.drone,
+	// 	title: {
+	// 		long: "DJI Agras T40 (Drone Spraying System)",
+	// 		short: "Agras T40",
+	// 	},
+	// 	specs: {
+	// 		intro: [
+	// 			"40kg spraying payload",
+	// 			"50kg spreading payload",
+	// 			"Active Phased Array Radar + Binocular Vision",
+	// 			"Dual Atomized Spraying System",
+	// 			"Supports flight spraying/spreading",
+	// 			"Supports flight RC mapping",
+	// 			"Core Modules IPX6K",
+	// 			"EFI Generator 15% fuel saving",
+	// 		],
+	// 		aircraft: [
+	// 			{
+	// 				label: "Total Weight (without battery)",
+	// 				desc: "38 kg",
+	// 			},
+	// 			{
+	// 				label: "Total Weight (with battery)",
+	// 				desc: "50 kg",
+	// 			},
+	// 			{
+	// 				label: "Takeoff Weight (spraying)",
+	// 				desc: "90 kg (at sea level)",
+	// 			},
+	// 			{
+	// 				label: "Takeoff Weight (spreading)",
+	// 				desc: "101 kg (at sea level)",
+	// 			},
+	// 			{
+	// 				label: "Max Diagonal Wheelbase",
+	// 				desc: "2184 mm",
+	// 			},
+	// 			{
+	// 				label: "Max flight radius can be set",
+	// 				desc: "2000 m",
+	// 			},
+	// 			{
+	// 				label: "Max Wind Speed Resistance",
+	// 				desc: "6 m/s",
+	// 			},
+	// 		],
+	// 	},
+	// 	price: {
+	// 		former: 1950000,
+	// 		latter: null,
+	// 	},
+	// 	kit: {
+	// 		basic: {
+	// 			image: "/images/products/drones/dji/agras/t40/box/collective.webp",
+	// 			contents: [
+	// 				{
+	// 					qty: 1,
+	// 					item: "Aircraft",
+	// 					image: "/images/products/drones/dji/agras/t40/box/aircraft.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Remote Controller",
+	// 					image: "/images/products/drones/dji/agras/t40/box/controller.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Intelligent Flight Battery",
+	// 					image: "/images/products/drones/dji/agras/t40/box/battery.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Charging Hub",
+	// 					image: "/images/products/drones/dji/agras/t40/box/charging-hub.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Coaxial Twin Rotor",
+	// 					image: "/images/products/drones/dji/agras/t40/box/coaxial.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Remote Controller Lanyard",
+	// 					image: "/images/products/drones/dji/agras/t40/box/lanyard.webp",
+	// 				},
+	// 			],
+	// 		},
+	// 		flyMore: null,
+	// 	},
+	// 	accessories: {
+	// 		battery: accessories.find(a => a.title.short == "Agras Series Battery"),
+	// 		other: [
+	// 			accessories.find(a => a.title.short == "Agras Series Generator (D12000iE)"),
+	// 			accessories.find(a => a.title.short == "Agras Series Spreading System"),
+	// 		].filter(i => i != undefined),
+	// 	},
+	// 	category: "agriculture",
+	// 	available: true,
+	// 	brand: "dji",
+	// 	make: "agras",
+	// 	model: null,
+	// },
 
 	{
 		images: images.products.drones.dji.agras.t50.drone,
@@ -600,7 +594,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "2,315,000",
+			former: 2315000,
 			latter: null,
 		},
 		kit: {
@@ -730,10 +724,7 @@ const products = [
 				},
 			],
 		},
-		price: {
-			former: "TBD",
-			latter: null,
-		},
+		price: null,
 		kit: null,
 		accessories: {
 			battery: accessories.find(a => a.title.short == "HUIDA HD540S Battery"),
@@ -786,7 +777,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "1,650,000",
+			former: 1650000,
 			latter: null,
 		},
 		kit: {
@@ -908,7 +899,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "1,270,000",
+			former: 1270000,
 			latter: null,
 		},
 		kit: {
@@ -1045,7 +1036,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "900,000",
+			former: 900000,
 			latter: null,
 		},
 		kit: {
@@ -1146,7 +1137,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "396,000",
+			former: 396000,
 			latter: null,
 		},
 		kit: {
@@ -1227,7 +1218,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1291,7 +1282,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "530,000",
+			former: 530000,
 			latter: null,
 		},
 		kit: {
@@ -1387,7 +1378,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1444,7 +1435,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "951,400",
+			former: 951400,
 			latter: null,
 		},
 		kit: {
@@ -1540,7 +1531,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1597,7 +1588,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "690,000",
+			former: 690000,
 			latter: null,
 		},
 		kit: {
@@ -1693,7 +1684,7 @@ const products = [
 				],
 
 				price: {
-					former: "135,000",
+					former: 135000,
 					latter: null,
 				},
 			},
@@ -1753,7 +1744,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "909,000",
+			former: 909000,
 			latter: null,
 		},
 		kit: {
@@ -1888,7 +1879,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "215,000",
+			former: 215000,
 			latter: null,
 		},
 		kit: {
@@ -1989,7 +1980,7 @@ const products = [
 				],
 
 				price: {
-					former: "55,000",
+					former: 55000,
 					latter: null,
 				},
 			},
@@ -2054,7 +2045,7 @@ const products = [
 			],
 		},
 		price: {
-			former: "TBD",
+			former: 45000,
 			latter: null,
 		},
 		kit: {
@@ -2120,7 +2111,7 @@ const products = [
 				],
 
 				price: {
-					former: "TBD",
+					former: 35000,
 					latter: null,
 				},
 			},

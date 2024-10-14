@@ -29,6 +29,7 @@ import {
 } from "@tabler/icons-react";
 import ModalContactCallback from "@/components/modal/contact/Callback";
 import ModalContactTraining from "@/components/modal/contact/Training";
+import ModalDownloadBrochure from "@/components/modal/download/Brochure";
 import documents from "@/assets/documents";
 import services from "@/data/services";
 import link from "@/handlers/parsers/string/link";
@@ -86,20 +87,16 @@ export default function Home() {
 					>
 						<Grid gutter={{ base: "md", md: 64 }} justify="center">
 							<GridCol span={{ base: 12, xs: 6, sm: 3, lg: 2 }}>
-								<Button
-									component="a"
-									href={documents.brochure}
-									download={"brochure"}
-									h={"100%"}
-									fullWidth
-								>
-									<Stack align="center" py={"md"}>
-										<IconFileDownload size={24} stroke={2} />
-										<Text inherit component="span" ta={"center"}>
-											Download Brochure
-										</Text>
-									</Stack>
-								</Button>
+								<ModalDownloadBrochure>
+									<Button h={"100%"} fullWidth>
+										<Stack align="center" py={"md"}>
+											<IconFileDownload size={24} stroke={2} />
+											<Text inherit component="span" ta={"center"}>
+												Download Brochure
+											</Text>
+										</Stack>
+									</Button>
+								</ModalDownloadBrochure>
 							</GridCol>
 							<GridCol span={{ base: 12, xs: 6, sm: 3, lg: 2 }}>
 								<ModalContactCallback>
@@ -284,9 +281,9 @@ export default function Home() {
 				</LayoutPage>
 
 				<AffixNavbar />
-        
-        <AffixTop />
-        <AffixWhatsapp />
+
+				<AffixTop />
+				<AffixWhatsapp />
 				<AffixAssistant />
 			</main>
 		</LayoutBody>

@@ -51,6 +51,7 @@ export default function Main() {
 					body: JSON.stringify(parse(formValues)),
 					headers: {
 						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin": "*", // Allows requests from any origin
 						Accept: "application/json",
 					},
 				});
@@ -142,12 +143,11 @@ export default function Main() {
 			<Stack gap={"xl"} py={"xl"} pos={"relative"} align="center">
 				<Stack align="center">
 					<Title order={2} c={"white"} ta={"center"}>
-						Join the {contact.name.company} Community!
+						Join Our Community!
 					</Title>
 					<Text ta={"center"} w={{ md: "80%" }}>
-						Stay in the loop with the latest updates, exclusive offers, and insider news from{" "}
-						{contact.name.company}. Sign up for our newsletter and be the first to know about everything we
-						have in store!
+						Subscribe to our monthly newsletter to receive the latest drone industry news, helpful tips, and
+						exclusive offers from us
 					</Text>
 				</Stack>
 

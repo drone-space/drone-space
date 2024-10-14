@@ -19,6 +19,7 @@ import LayoutSection from "@/layouts/Section";
 import ModalAdvertisment from "../modal/Advertisment";
 import ModalCamp from "../modal/Camp";
 import ModalShows from "../modal/Shows";
+import ModalDownloadBrochure from "../modal/download/Brochure";
 
 import classes from "./Home.module.scss";
 
@@ -57,15 +58,11 @@ export default function Home() {
 
 	const anchors = (
 		<Group gap={"xs"}>
-			<Button
-				size="xs"
-				component={"a"}
-				href={documents.brochure}
-				download={"brochure"}
-				leftSection={<IconFileDownload size={16} stroke={1.5} />}
-			>
-				Brochure
-			</Button>
+			<ModalDownloadBrochure>
+				<Button size="xs" leftSection={<IconFileDownload size={16} stroke={1.5} />}>
+					Brochure
+				</Button>
+			</ModalDownloadBrochure>
 			{/* <ModalPoster /> */}
 		</Group>
 	);
@@ -158,15 +155,12 @@ export default function Home() {
 						</Text>
 
 						<Group gap={"xs"}>
-							<Button
-								size="xs"
-								component={"a"}
-								href={documents.brochure}
-								download={"brochure"}
-								leftSection={<IconFileDownload size={16} stroke={1.5} />}
-							>
-								Brochure
-							</Button>
+							<ModalDownloadBrochure>
+								<Button size="xs" leftSection={<IconFileDownload size={16} stroke={1.5} />}>
+									Brochure
+								</Button>
+							</ModalDownloadBrochure>
+
 							{/* <ModalPoster active={true} /> */}
 							<ModalAdvertisment active={true} />
 						</Group>

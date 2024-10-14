@@ -9,20 +9,14 @@ import { notifications } from "@mantine/notifications";
 import { IconCheck, IconX } from "@tabler/icons-react";
 
 import text from "@/handlers/validators/form/special/text";
-import hasLength from "@/handlers/validators/form/generic/length";
 import email from "@/handlers/validators/form/special/email";
 import phone from "@/handlers/validators/form/special/phone";
 import capitalize from "@/handlers/parsers/string/capitalize";
 
 import request from "@/hooks/request";
+import { downloadBrochure } from "@/handlers/downloaders/brochure";
 
-export default function Contact({
-	data,
-	inquiry,
-}: {
-	data?: { subject?: string };
-	inquiry?: "training" | "callback" | "shop" | "technical" | "general" | "shows" | "brochure";
-}) {
+export default function Brochure() {
 	const [submitted, setSubmitted] = useState(false);
 
 	const form = useForm({
@@ -32,19 +26,14 @@ export default function Contact({
 			email: "",
 			phone: "",
 			company: "",
-			subject: data?.subject ? data.subject : "",
-			message: "",
-			newsletter: true,
 		},
 
 		validate: {
 			fname: value => text(value, 2, 24),
 			lname: value => text(value, 2, 24),
 			email: value => email(value),
-			phone: value => (inquiry == "callback" ? phone(value) : value.trim().length > 0 && phone(value)),
+			phone: value => phone(value),
 			company: value => value.trim().length > 0 && text(value, 2, 24),
-			subject: value => (inquiry == "callback" ? null : hasLength.string(value, 3, 255, () => null)),
-			message: value => (inquiry == "callback" ? null : hasLength.string(value, 3, 2048, () => null)),
 		},
 	});
 
@@ -55,9 +44,6 @@ export default function Contact({
 			email: form.values.email.trim().toLowerCase(),
 			phone: form.values.phone?.trim() ? (form.values.phone.trim().length > 0 ? form.values.phone : null) : null,
 			company: capitalize.words(form.values.company.trim()),
-			subject: capitalize.words(form.values.subject.trim()),
-			message: form.values.message.trim(),
-			newsletter: form.values.newsletter,
 		};
 	};
 
@@ -66,9 +52,9 @@ export default function Contact({
 			try {
 				setSubmitted(true);
 
-				const res = await request.post(process.env.NEXT_PUBLIC_API_URL + "/api/contact", {
+				const res = await request.post(process.env.NEXT_PUBLIC_API_URL + "/api/mailchimp", {
 					method: "POST",
-					body: JSON.stringify({ ...parse(), inquiry: inquiry ? inquiry : "general" }),
+					body: JSON.stringify(parse()),
 					headers: {
 						"Content-Type": "application/json",
 						Accept: "application/json",
@@ -77,7 +63,7 @@ export default function Contact({
 
 				if (!res) {
 					notifications.show({
-						id: "form-contact-failed-no-response",
+						id: "subscribe-failed-no-response",
 						icon: <IconX size={16} stroke={1.5} />,
 						title: "Server Unavailable",
 						message: `There was no response from the server.`,
@@ -85,16 +71,19 @@ export default function Contact({
 					});
 				} else {
 					notifications.show({
-						id: "form-contact-success",
+						id: "subscribe-success",
 						icon: <IconCheck size={16} stroke={1.5} />,
-						title: "Form Submitted",
-						message: "Someone will get back to you within 24 hours",
+						title: "Submitted",
+						message: "Your download will start momentarily",
 						variant: "success",
 					});
+
+					// trigger download
+					await downloadBrochure();
 				}
 			} catch (error) {
 				notifications.show({
-					id: "form-contact-failed",
+					id: "subscribe-failed",
 					icon: <IconX size={16} stroke={1.5} />,
 					title: "Submisstion Failed",
 					message: (error as Error).message,
@@ -139,9 +128,9 @@ export default function Contact({
 
 				<GridCol span={{ base: 12, xs: 6, sm: 12, md: 6 }}>
 					<TextInput
-						required={inquiry == "callback"}
+						required
 						// label={"Phone"}
-						placeholder={`Phone${inquiry == "callback" ? " *" : ""}`}
+						placeholder="Phone *"
 						{...form.getInputProps("phone")}
 					/>
 				</GridCol>
@@ -151,40 +140,6 @@ export default function Contact({
 						// label={"Company"}
 						placeholder="Company"
 						{...form.getInputProps("company")}
-					/>
-				</GridCol>
-
-				{inquiry != "callback" && (
-					<GridCol span={12}>
-						<TextInput
-							required
-							// label="Inquiry"
-							placeholder="Inquiry *"
-							{...form.getInputProps("subject")}
-						/>
-					</GridCol>
-				)}
-
-				{inquiry != "callback" && (
-					<GridCol span={12}>
-						<Textarea
-							required
-							// label={"Message"}
-							placeholder={`Message *`}
-							autosize
-							minRows={5}
-							maxRows={10}
-							{...form.getInputProps("message")}
-						/>
-					</GridCol>
-				)}
-
-				<GridCol span={12}>
-					<Checkbox
-						label="Sign up for Drone Space newsletter"
-						key={form.key("newsletter")}
-						{...form.getInputProps("newsletter", { type: "checkbox" })}
-						size="xs"
 					/>
 				</GridCol>
 
@@ -206,7 +161,7 @@ export default function Contact({
 						<GridCol span={{ base: 12, md: 6 }}>
 							<Center>
 								<Button fullWidth type="submit" loading={submitted}>
-									{submitted ? "Submitting" : "Submit"}
+									{submitted ? "Downloading" : "Download"}
 								</Button>
 							</Center>
 						</GridCol>

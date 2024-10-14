@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
 		// add to newsletter
 		if (dataForm.newsletter) {
-			await addSubscriber(dataForm.email);
+			await addSubscriber(dataForm);
 		}
 
 		return Response.json({

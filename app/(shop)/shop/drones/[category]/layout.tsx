@@ -20,7 +20,7 @@ export const generateMetadata = ({ params }: typeParams): Metadata => {
 	return {
 		title: {
 			default: link.unlinkify(params.category),
-			template: `%s - ${link.unlinkify(params.category)} Drones - Drones - Shop - ${contact.name.company}`,
+			template: `%s - ${link.unlinkify(params.category)} Drones - Drones - Drone Shop - ${contact.name.company}`,
 		},
 	};
 };

@@ -56,10 +56,10 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({ markdown, 
 			<div ref={hiddenMarkdownRef} style={{ display: "none" }}>
 				<Markdown>{markdown}</Markdown>
 			</div>
-			<div ref={markdownRef}></div>
+			<div ref={markdownRef} className="markdown-render"></div>
 		</>
 	) : (
-		<Text inherit>{markdown}</Text>
+		<div className="markdown-render">{markdown}</div>
 	);
 };
 

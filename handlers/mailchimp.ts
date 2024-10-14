@@ -5,6 +5,7 @@ const addSubscriber = async (email: string) => {
 
 			{
 				body: JSON.stringify({ email_address: email, status: "subscribed" }),
+				mode: "cors",
 				headers: {
 					Authorization: `apikey ${process.env.NEXT_MAILCHIMP_KEY_GENERAL}`,
 					"Content-Type": "application/json",

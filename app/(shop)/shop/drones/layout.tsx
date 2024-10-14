@@ -9,7 +9,7 @@ import NavbarShop from "@/partials/navbars/Shop";
 import contact from "@/data/contact";
 
 export const metadata: Metadata = {
-	title: { default: `Drones`, template: `%s - Drones - Shop - ${contact.name.company}` },
+	title: { default: `Drones`, template: `%s - Drones - Drone Shop - ${contact.name.company}` },
 };
 
 export default function DronesLayout({

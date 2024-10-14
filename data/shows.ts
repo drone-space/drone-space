@@ -10,6 +10,98 @@ import {
 } from "@tabler/icons-react";
 
 const shows = {
+	guide: [
+		{
+			title: "Venue & Logistics",
+			list: [
+				{
+					id: 1,
+					desc: "Venue Hire",
+				},
+			],
+		},
+		{
+			title: "Technical Infrastructure",
+			list: [
+				{
+					id: 1,
+					desc: "High Speed Internet",
+				},
+				{
+					id: 2,
+					desc: "Power Extensions",
+				},
+				{
+					id: 3,
+					desc: "Generator",
+				},
+			],
+		},
+		{
+			title: "Permits & Licenses",
+			list: [
+				{
+					id: 1,
+					desc: "Drone Import Licenses",
+				},
+				{
+					id: 2,
+					desc: "NEMA Licenses",
+				},
+				{
+					id: 3,
+					desc: "Music Licenses",
+				},
+				{
+					id: 4,
+					desc: "ROC (Remote Operator Certificate)",
+				},
+			],
+		},
+		{
+			title: "Audio-Visual & Entertainment",
+			list: [
+				{
+					id: 1,
+					desc: "Sound & Music",
+				},
+			],
+		},
+		{
+			title: "Catering & Amenities",
+			list: [
+				{
+					id: 1,
+					desc: "Water Bottles",
+				},
+				{
+					id: 1,
+					desc: "Snacks",
+				},
+				{
+					id: 1,
+					desc: "Meals",
+				},
+				{
+					id: 1,
+					desc: "Per Diem",
+				},
+			],
+		},
+		{
+			title: "Travel & Accommodation",
+			list: [
+				{
+					id: 1,
+					desc: "Accommodation",
+				},
+				{
+					id: 1,
+					desc: "Transport",
+				},
+			],
+		},
+	],
 	features: [
 		{
 			label: "Advanced Drones",
@@ -110,22 +202,22 @@ const shows = {
 		{
 			title: "Small Shows",
 			desc: "Up to 100 Drones",
-			price: 87000,
+			price: 71000,
 		},
 		{
 			title: "Medium Shows",
 			desc: "Up to 200 Drones",
-			price: 117000,
+			price: 93000,
 		},
 		{
 			title: "Mid-Large Shows",
 			desc: "Up to 300 Drones",
-			price: 147000,
+			price: 120000,
 		},
 		{
 			title: "Large Shows",
-			desc: "Up to 500+ Drones",
-			price: 250000,
+			desc: "500+ Drones",
+			price: 200000,
 		},
 		{
 			title: "High-End Custom",

@@ -55,7 +55,7 @@ export default async function About() {
 	return (
 		<LayoutPage>
 			<LayoutSection padded containerized={"responsive"}>
-				<Grid gutter={48}>
+				<Grid gutter={{ base: "xl", md: 48 }}>
 					<GridCol span={{ md: 6.5, lg: 6 }}>
 						<Stack gap={"xl"}>
 							<Title order={2} fw={"bold"} fz={{ md: 24 }} w={{ md: "80%" }}>

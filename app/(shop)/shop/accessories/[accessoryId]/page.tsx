@@ -15,6 +15,7 @@ import {
 	Image,
 	List,
 	ListItem,
+	NumberFormatter,
 	Stack,
 	Tabs,
 	TabsList,
@@ -70,7 +71,7 @@ export default function AccessoryDetails({ params }: typeParams) {
 											c={"light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"}
 											fz={{ md: "xl" }}
 										>
-											{product?.price.former}
+											<NumberFormatter value={product.price.former} thousandSeparator />
 										</Text>
 									</Text>
 								)}

@@ -76,7 +76,7 @@ export default function Claude({
 						system: [
 							{
 								type: "text",
-								text: ai.system,
+								text: ai,
 								cache_control: { type: "ephemeral" },
 							},
 						],

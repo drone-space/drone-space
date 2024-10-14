@@ -1,12 +1,13 @@
 import React from "react";
 
 import classes from "./Price.module.scss";
-import { Card, Group, NumberFormatter, Stack, Text, ThemeIcon, Title } from "@mantine/core";
-import { Icon } from "@tabler/icons-react";
+import { ActionIcon, Card, NumberFormatter, Stack, Text, Title, Tooltip } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
+import ModalShowPrice from "@/components/modal/ShowPrice";
 
 export default function Price({ data }: { data: { title: string; desc: string; price: number } }) {
 	return (
-		<Card className={classes.card}>
+		<Card className={classes.card} pos={"relative"}>
 			<Stack align="center">
 				<Stack align="center" gap={0}>
 					<Text ta={"center"} component="sub" inherit fz={"xs"}>
@@ -31,6 +32,14 @@ export default function Price({ data }: { data: { title: string; desc: string; p
 					</Text>
 				</Stack>
 			</Stack>
+
+			<ModalShowPrice>
+				<Tooltip label="Learn More" withArrow color="sec.3" c="pri.9">
+					<ActionIcon size={24} pos={"absolute"} top={8} right={8} color="sec.3" variant="light">
+						<IconInfoCircle size={16} stroke={2} />
+					</ActionIcon>
+				</Tooltip>
+			</ModalShowPrice>
 		</Card>
 	);
 }

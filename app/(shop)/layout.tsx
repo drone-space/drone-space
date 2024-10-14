@@ -14,7 +14,7 @@ import AffixWhatsapp from "@/components/affixi/Whatsapp";
 import contact from "@/data/contact";
 
 export const metadata: Metadata = {
-	title: { default: `Shop`, template: `%s - Shop - ${contact.name.company}` },
+	title: { default: `Shop`, template: `%s - Drone Shop - ${contact.name.company}` },
 };
 
 export default function ShopLayout({
@@ -28,7 +28,7 @@ export default function ShopLayout({
 				{children}
 
 				<AffixNavbar />
-        
+
 				<AffixTop />
 				<AffixWhatsapp />
 				<AffixAssistant />

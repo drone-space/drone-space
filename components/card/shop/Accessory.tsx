@@ -8,6 +8,7 @@ import {
 	Image,
 	List,
 	ListItem,
+	NumberFormatter,
 	Stack,
 	Text,
 	ThemeIcon,
@@ -108,7 +109,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
 								fw={500}
 								c={"light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9))"}
 							>
-								{data.price.former}
+								<NumberFormatter value={data.price.former} thousandSeparator />
 							</Text>
 						</Text>
 					</Group>

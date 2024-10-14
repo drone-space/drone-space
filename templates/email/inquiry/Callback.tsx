@@ -53,15 +53,10 @@ export default function Callback(data?: { fname: string; lname: string; phone: s
 
 					<Section style={section}>
 						<br />
-						<Text style={{ ...text, fontSize: 9, lineHeight: 1.66, color: "#13259a" }}>
+						{/* <Text style={{ ...text, fontSize: 9, lineHeight: 1.66, color: "#13259a" }}>
 							This is a callback request. <em>Do not</em> reply to this email.
-						</Text>
-						{templateData.phone ? (
-							<Text style={{ ...text, fontSize: 9, lineHeight: 1.66, color: "#13259a" }}>
-								Get in touch with <span style={{ fontWeight: "bold" }}>{templateData.fname}</span>{" "}
-								through the phone number provided above instead.
-							</Text>
-						) : (
+						</Text> */}
+						{!templateData.phone && (
 							<Text style={{ ...text, fontSize: 9, lineHeight: 1.66, color: "#13259a" }}>
 								Get in touch with <span style={{ fontWeight: "bold" }}>{templateData.fname}</span> by
 								replying directly to this email.

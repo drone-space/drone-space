@@ -17,3 +17,11 @@ export interface typeSignIn {
 	email: string;
 	password: string;
 }
+
+export interface Subscribe {
+	fname?: string;
+	lname?: string;
+	email: string;
+	company?: string;
+	phone?: string;
+}

@@ -5,6 +5,7 @@ import NextImage from "next/image";
 import {
 	Badge,
 	Blockquote,
+	Box,
 	Button,
 	Card,
 	Center,
@@ -57,17 +58,23 @@ export default function AccessoryDetail({ params }: typeParams) {
 		<LayoutPage>
 			<LayoutSection containerized="responsive" padded shadowed>
 				<Grid gutter={{ base: 32, lg: 64 }}>
-					<GridCol span={{ md: 5 }} className={classes.card}>
-						{product?.images && <CarouselImage data={product.images} />}
+					<GridCol span={{ base: 12, sm: 5 }} className={classes.card}>
+						<Box pos={"sticky"} top={64}>
+							{product?.images && <CarouselImage data={product.images} />}
+						</Box>
 					</GridCol>
-					<GridCol span={{ md: 7 }}>
+					<GridCol span={{ sm: 7 }}>
 						<Stack gap={"xl"}>
 							<Stack>
 								<Title order={2} fz={{ md: 32 }}>
 									{product?.title.long}
 								</Title>
 
-								<Group gap={"xl"}>
+								<Flex
+									direction={{ base: "column", xs: "row" }}
+									align={{ xs: "center" }}
+									gap={{ base: "xs", xs: "xl" }}
+								>
 									<Text>
 										Kshs.{" "}
 										<Text
@@ -89,10 +96,9 @@ export default function AccessoryDetail({ params }: typeParams) {
 											</Text>
 										)}
 									</Text>
-
 									{product?.price && product?.kit?.flyMore && (
 										<>
-											<Divider orientation="vertical" color="pri" />
+											<Divider orientation="vertical" color="pri" visibleFrom="xs" />
 
 											<Text>
 												Kshs.{" "}
@@ -116,7 +122,7 @@ export default function AccessoryDetail({ params }: typeParams) {
 											</Text>
 										</>
 									)}
-								</Group>
+								</Flex>
 
 								<Stack fz={"sm"} gap={"xs"}>
 									<Text inherit>
@@ -369,7 +375,7 @@ export default function AccessoryDetail({ params }: typeParams) {
 					{product?.kit?.basic && (
 						<TabsPanel value="basic">
 							<LayoutSection padded>
-								<Grid gutter={{ base: 64, md: "md" }}>
+								<Grid>
 									<GridCol span={{ base: 12, md: 6 }} order={{ base: 3, md: 1 }}>
 										<Grid>
 											{product?.kit.basic.contents.map(item => (
@@ -407,7 +413,7 @@ export default function AccessoryDetail({ params }: typeParams) {
 									</GridCol>
 
 									<GridCol span={12} order={2} hiddenFrom="md">
-										<Divider />
+										<Divider my={"xl"} />
 									</GridCol>
 
 									<GridCol span={{ base: 12, md: 5 }} order={{ base: 1, md: 3 }}>
@@ -461,7 +467,7 @@ export default function AccessoryDetail({ params }: typeParams) {
 					{product?.kit?.flyMore && (
 						<TabsPanel value="flyMore">
 							<LayoutSection padded>
-								<Grid gutter={{ base: 64, md: "md" }}>
+								<Grid>
 									<GridCol span={{ base: 12, md: 6 }} order={{ base: 3, md: 1 }}>
 										<Stack>
 											<Text
@@ -509,7 +515,7 @@ export default function AccessoryDetail({ params }: typeParams) {
 									</GridCol>
 
 									<GridCol span={12} order={2} hiddenFrom="md">
-										<Divider />
+										<Divider my={"xl"} />
 									</GridCol>
 
 									<GridCol span={{ base: 12, md: 5 }} order={{ base: 1, md: 3 }}>

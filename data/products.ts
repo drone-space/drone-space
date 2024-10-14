@@ -2,147 +2,147 @@ import images from "@/assets/images";
 import accessories from "./accessories";
 
 const products = [
-	{
-		images: images.products.drones.dji.avata.avata2.drone,
-		title: { long: "DJI Avata 2", short: "Avata 2" },
-		specs: {
-			intro: [
-				"Googles 3 HD micro-OLED display",
-				"RC Motion 3 Easy Acro",
-				"Tight Shots in Super-Wide 4K",
-				"1/1.3-inch Image Sensor",
-				"Built-in Propeller Guard",
-			],
-			aircraft: [
-				{
-					label: "Takeoff Weight",
-					desc: "377 g",
-				},
-				{
-					label: "Max Takeoff Altitude",
-					desc: "5000 m",
-				},
-				{
-					label: "Max Flight Time",
-					desc: "23 minutes",
-				},
-				{
-					label: "Max Hovering Time",
-					desc: "21 minutes",
-				},
-				{
-					label: "Max Flight Distance",
-					desc: "13 km",
-				},
-				{
-					label: "Max Wind Speed Resistance",
-					desc: "10.7 m/s",
-				},
-				{
-					label: "Internal Storage",
-					desc: "46 GB",
-				},
-			],
-		},
-		price: null,
-		kit: {
-			basic: {
-				image: "/images/products/drones/dji/avata/avata2/box/collective.webp",
-				contents: [
-					{
-						qty: 1,
-						item: "Aircraft",
-						image: "/images/products/drones/dji/avata/avata2/box/aircraft.webp",
-					},
-					{
-						qty: 1,
-						item: "Intelligent Flight Battery",
-						image: "/images/products/drones/dji/avata/avata2/box/battery.webp",
-					},
-					{
-						qty: 4,
-						item: "Low Noise Propellers (Pairs)",
-						image: "/images/products/drones/dji/avata/avata2/box/propellers.webp",
-					},
-					{
-						qty: 16,
-						item: "DJI Avata 2 Propeller Screw",
-						image: "/images/products/drones/dji/avata/avata2/more/propeller-screw.webp",
-					},
-					{
-						qty: 1,
-						item: "Gimbal Protector",
-						image: "/images/products/drones/dji/avata/avata2/box/protector.webp",
-					},
-					{
-						qty: 1,
-						item: "Screwdriver",
-						image: "/images/products/drones/dji/avata/avata2/box/screwdriver.webp",
-					},
-					{
-						qty: 1,
-						item: "Type-C to Type-C PD Cable",
-						image: "/images/products/drones/dji/avata/avata2/box/type-c-to-type-c-pd-cable.webp",
-					},
-				],
-			},
-			flyMore: {
-				contents: [
-					{
-						qty: 2,
-						item: "Intelligent Flight Battery",
-						image: "/images/products/drones/dji/avata/avata2/more/battery.webp",
-					},
-					{
-						qty: 1,
-						item: "Two-Way Charging Hub",
-						image: "/images/products/drones/dji/avata/avata2/more/charging-hub.webp",
-					},
-					{
-						qty: 1,
-						item: "DJI Googles 3",
-						image: "/images/products/drones/dji/avata/avata2/more/googles.webp",
-					},
-					{
-						qty: 1,
-						item: "DJI Goggles 3 -2.0D Corrective Lenses (Pairs)",
-						image: "/images/products/drones/dji/avata/avata2/more/lenses.webp",
-					},
-					{
-						qty: 1,
-						item: "DJI RC Motion 3",
-						image: "/images/products/drones/dji/avata/avata2/more/motion.webp",
-					},
-					{
-						qty: 1,
-						item: "DJI RC Motion 3 Lanyard",
-						image: "/images/products/drones/dji/avata/avata2/more/lanyard.webp",
-					},
-					{
-						qty: 1,
-						item: "DJI Sling Bag",
-						image: "/images/products/drones/dji/avata/avata2/more/sling-bag.webp",
-					},
-					{
-						qty: 1,
-						item: "USB-C OTG Cable",
-						image: "/images/products/drones/dji/avata/avata2/more/usb-c-otg-cable.webp",
-					},
-				],
+	// {
+	// 	images: images.products.drones.dji.avata.avata2.drone,
+	// 	title: { long: "DJI Avata 2", short: "Avata 2" },
+	// 	specs: {
+	// 		intro: [
+	// 			"Googles 3 HD micro-OLED display",
+	// 			"RC Motion 3 Easy Acro",
+	// 			"Tight Shots in Super-Wide 4K",
+	// 			"1/1.3-inch Image Sensor",
+	// 			"Built-in Propeller Guard",
+	// 		],
+	// 		aircraft: [
+	// 			{
+	// 				label: "Takeoff Weight",
+	// 				desc: "377 g",
+	// 			},
+	// 			{
+	// 				label: "Max Takeoff Altitude",
+	// 				desc: "5000 m",
+	// 			},
+	// 			{
+	// 				label: "Max Flight Time",
+	// 				desc: "23 minutes",
+	// 			},
+	// 			{
+	// 				label: "Max Hovering Time",
+	// 				desc: "21 minutes",
+	// 			},
+	// 			{
+	// 				label: "Max Flight Distance",
+	// 				desc: "13 km",
+	// 			},
+	// 			{
+	// 				label: "Max Wind Speed Resistance",
+	// 				desc: "10.7 m/s",
+	// 			},
+	// 			{
+	// 				label: "Internal Storage",
+	// 				desc: "46 GB",
+	// 			},
+	// 		],
+	// 	},
+	// 	price: null,
+	// 	kit: {
+	// 		basic: {
+	// 			image: "/images/products/drones/dji/avata/avata2/box/collective.webp",
+	// 			contents: [
+	// 				{
+	// 					qty: 1,
+	// 					item: "Aircraft",
+	// 					image: "/images/products/drones/dji/avata/avata2/box/aircraft.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Intelligent Flight Battery",
+	// 					image: "/images/products/drones/dji/avata/avata2/box/battery.webp",
+	// 				},
+	// 				{
+	// 					qty: 4,
+	// 					item: "Low Noise Propellers (Pairs)",
+	// 					image: "/images/products/drones/dji/avata/avata2/box/propellers.webp",
+	// 				},
+	// 				{
+	// 					qty: 16,
+	// 					item: "DJI Avata 2 Propeller Screw",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/propeller-screw.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Gimbal Protector",
+	// 					image: "/images/products/drones/dji/avata/avata2/box/protector.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Screwdriver",
+	// 					image: "/images/products/drones/dji/avata/avata2/box/screwdriver.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Type-C to Type-C PD Cable",
+	// 					image: "/images/products/drones/dji/avata/avata2/box/type-c-to-type-c-pd-cable.webp",
+	// 				},
+	// 			],
+	// 		},
+	// 		flyMore: {
+	// 			contents: [
+	// 				{
+	// 					qty: 2,
+	// 					item: "Intelligent Flight Battery",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/battery.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Two-Way Charging Hub",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/charging-hub.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "DJI Googles 3",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/googles.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "DJI Goggles 3 -2.0D Corrective Lenses (Pairs)",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/lenses.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "DJI RC Motion 3",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/motion.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "DJI RC Motion 3 Lanyard",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/lanyard.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "DJI Sling Bag",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/sling-bag.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "USB-C OTG Cable",
+	// 					image: "/images/products/drones/dji/avata/avata2/more/usb-c-otg-cable.webp",
+	// 				},
+	// 			],
 
-				price: null,
-			},
-		},
-		accessories: {
-			battery: accessories.find(a => a.title.short == "Avata 2 Battery"),
-			other: null,
-		},
-		category: "camera",
-		available: true,
-		brand: "dji",
-		make: "avata",
-		model: null,
-	},
+	// 			price: null,
+	// 		},
+	// 	},
+	// 	accessories: {
+	// 		battery: accessories.find(a => a.title.short == "Avata 2 Battery"),
+	// 		other: null,
+	// 	},
+	// 	category: "camera",
+	// 	available: true,
+	// 	brand: "dji",
+	// 	make: "avata",
+	// 	model: null,
+	// },
 
 	{
 		images: images.products.drones.dji.air.air2s.drone,
@@ -649,96 +649,96 @@ const products = [
 		model: null,
 	},
 
-	{
-		images: images.products.drones.huida.hd540s.drone,
-		title: {
-			long: "HUIDA HD540S (Drone Spraying System)",
-			short: "HUIDA HD540S",
-		},
-		specs: {
-			intro: [
-				"Higher spraying load (40L Spraying)",
-				"High Spreading Efficieancy (110 Kg/min)",
-				"Higher spreading load (60L Spreading)",
-				"Double Magnetic Impeller Pump (24 L/min )",
-				"8500W Intelligent charger",
-				"HD 5.0 Core computing system",
-				"2KM Image Transmission",
-			],
-			aircraft: [
-				{
-					label: "Structural layout",
-					desc: "Six-axis layout 2100mm",
-				},
-				{
-					label: "Maximum wheelbase",
-					desc: "2100mm (six axes)",
-				},
-				{
-					label: "Pesticide container capacity",
-					desc: "40L",
-				},
-				{
-					label: "Seed container capacity",
-					desc: "60L",
-				},
-				{
-					label: "Container installation mode",
-					desc: "Plug-in",
-				},
-				{
-					label: "Max Configurable Flight Radius",
-					desc: "2000 m",
-				},
-				{
-					label: "No-load mass (including battery)",
-					desc: "47.5KG",
-				},
-				{
-					label: "Power battery",
-					desc: "30000mAh",
-				},
-				{
-					label: "Battery charging time (Lithium)",
-					desc: "20%-95% about 13min",
-				},
-				{
-					label: "Reference fuel consumption",
-					desc: "500ml/kWh",
-				},
-				{
-					label: "FPV camera",
-					desc: "Front camera, rear camera",
-				},
-				{
-					label: "Motor rated power",
-					desc: "2000w*6pcs",
-				},
-				{
-					label: "Remote control signal distance",
-					desc: "≤1500m",
-				},
-				{
-					label: "Flight speed limit",
-					desc: "≤10m/s",
-				},
-			],
-		},
-		price: null,
-		kit: null,
-		accessories: {
-			battery: accessories.find(a => a.title.short == "HUIDA HD540S Battery"),
-			other: [
-				accessories.find(a => a.title.short == "HUIDA HD540S Generator"),
-				accessories.find(a => a.title.short == "HUIDA HD540S Spreading System"),
-			].filter(i => i != undefined),
-		},
-		category: "agriculture",
-		available: true,
-		brand: "huida",
-		make: "HD",
-		model: null,
-	},
+	// {
+	// 	images: images.products.drones.huida.hd540s.drone,
+	// 	title: {
+	// 		long: "HUIDA HD540S (Drone Spraying System)",
+	// 		short: "HUIDA HD540S",
+	// 	},
+	// 	specs: {
+	// 		intro: [
+	// 			"Higher spraying load (40L Spraying)",
+	// 			"High Spreading Efficieancy (110 Kg/min)",
+	// 			"Higher spreading load (60L Spreading)",
+	// 			"Double Magnetic Impeller Pump (24 L/min )",
+	// 			"8500W Intelligent charger",
+	// 			"HD 5.0 Core computing system",
+	// 			"2KM Image Transmission",
+	// 		],
+	// 		aircraft: [
+	// 			{
+	// 				label: "Structural layout",
+	// 				desc: "Six-axis layout 2100mm",
+	// 			},
+	// 			{
+	// 				label: "Maximum wheelbase",
+	// 				desc: "2100mm (six axes)",
+	// 			},
+	// 			{
+	// 				label: "Pesticide container capacity",
+	// 				desc: "40L",
+	// 			},
+	// 			{
+	// 				label: "Seed container capacity",
+	// 				desc: "60L",
+	// 			},
+	// 			{
+	// 				label: "Container installation mode",
+	// 				desc: "Plug-in",
+	// 			},
+	// 			{
+	// 				label: "Max Configurable Flight Radius",
+	// 				desc: "2000 m",
+	// 			},
+	// 			{
+	// 				label: "No-load mass (including battery)",
+	// 				desc: "47.5KG",
+	// 			},
+	// 			{
+	// 				label: "Power battery",
+	// 				desc: "30000mAh",
+	// 			},
+	// 			{
+	// 				label: "Battery charging time (Lithium)",
+	// 				desc: "20%-95% about 13min",
+	// 			},
+	// 			{
+	// 				label: "Reference fuel consumption",
+	// 				desc: "500ml/kWh",
+	// 			},
+	// 			{
+	// 				label: "FPV camera",
+	// 				desc: "Front camera, rear camera",
+	// 			},
+	// 			{
+	// 				label: "Motor rated power",
+	// 				desc: "2000w*6pcs",
+	// 			},
+	// 			{
+	// 				label: "Remote control signal distance",
+	// 				desc: "≤1500m",
+	// 			},
+	// 			{
+	// 				label: "Flight speed limit",
+	// 				desc: "≤10m/s",
+	// 			},
+	// 		],
+	// 	},
+	// 	price: null,
+	// 	kit: null,
+	// 	accessories: {
+	// 		battery: accessories.find(a => a.title.short == "HUIDA HD540S Battery"),
+	// 		other: [
+	// 			accessories.find(a => a.title.short == "HUIDA HD540S Generator"),
+	// 			accessories.find(a => a.title.short == "HUIDA HD540S Spreading System"),
+	// 		].filter(i => i != undefined),
+	// 	},
+	// 	category: "agriculture",
+	// 	available: true,
+	// 	brand: "huida",
+	// 	make: "HD",
+	// 	model: null,
+	// },
 
 	{
 		images: images.products.drones.dji.matrice.matrice30t.drone,
@@ -1831,171 +1831,170 @@ const products = [
 		model: null,
 	},
 
-	{
-		images: images.products.drones.dji.mini.m3pro.drone,
-		title: { long: "DJI Mini 3 Pro", short: "Mini 3 Pro" },
-		specs: {
-			intro: [
-				"Lightweight (Under 249 g)",
-				"Tri-Directional Obstacle Sensing",
-				"4K HDR Video",
-				"Extended Battery Life",
-				"True Vertical Shooting",
-				"FocusTrack Feature",
-			],
-			aircraft: [
-				{
-					label: "Takeoff Weight",
-					desc: "<249 g",
-				},
-				{
-					label: "Flight Time (Intelligent Battery, 21.6 kph, no wind)",
-					desc: "34 mins",
-				},
-				{
-					label: "Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)",
-					desc: "47 mins",
-				},
-				{
-					label: "Hovering Time (Intelligent Battery, no wind)",
-					desc: "30 mins",
-				},
-				{
-					label: "Hovering Time (Intelligent Battery Plus, no wind)",
-					desc: "40 mins",
-				},
-				{
-					label: "Flight Distance (Intelligent Battery, 43.2 kph, no wind)",
-					desc: "18 km",
-				},
-				{
-					label: "Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)",
-					desc: "25 km",
-				},
-				{
-					label: "Wind Speed Resistance",
-					desc: "10.7 m/s (Level 5)",
-				},
-			],
-		},
-		price: {
-			former: 215000,
-			latter: null,
-		},
-		kit: {
-			basic: {
-				image: "/images/products/drones/dji/mini/3pro/box/collective.webp",
-				contents: [
-					{
-						qty: 1,
-						item: "Aircraft",
-						image: "/images/products/drones/dji/mini/3pro/box/aircraft.webp",
-					},
-					{
-						qty: 1,
-						item: "Remote Controller",
-						image: "/images/products/drones/dji/mini/3pro/box/controller.webp",
-					},
-					{
-						qty: 1,
-						item: "RC Cable (USB Type-C Connector)",
-						image: "/images/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(usb-type-c-connector).webp",
-					},
-					{
-						qty: 1,
-						item: "RC Cable (Lightning Connector)",
-						image: "/images/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(lightning-connector).webp",
-					},
-					{
-						qty: 1,
-						item: "RC Cable (Standard Micro-USB Connector)",
-						image: "/images/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(standard-micro-usb-connector).webp",
-					},
-					{
-						qty: 1,
-						item: "Mini 3 Pro Intelligent Flight Battery",
-						image: "/images/products/drones/dji/mini/3pro/box/battery.webp",
-					},
-					{
-						qty: 1,
-						item: "Mini 3 Pro Spare Propellers (Pair)",
-						image: "/images/products/drones/dji/mini/3pro/box/propellers.webp",
-					},
-					{
-						qty: 1,
-						item: "Gimbal Protector",
-						image: "/images/products/drones/dji/mini/3pro/box/protector.webp",
-					},
-					{
-						qty: 1,
-						item: "Type-C to Type-C PD Cable",
-						image: "/images/products/drones/dji/mini/3pro/box/usb-c-data-cable.webp",
-					},
-					{
-						qty: 1,
-						item: "Screwdriver",
-						image: "/images/products/drones/dji/mini/3pro/box/screwdriver.webp",
-					},
-					{
-						qty: 1,
-						item: "Screws",
-						image: "/images/products/drones/dji/mini/3pro/box/screws.webp",
-					},
-				],
-			},
+	// {
+	// 	images: images.products.drones.dji.mini.m3pro.drone,
+	// 	title: { long: "DJI Mini 3 Pro", short: "Mini 3 Pro" },
+	// 	specs: {
+	// 		intro: [
+	// 			"Lightweight (Under 249 g)",
+	// 			"Tri-Directional Obstacle Sensing",
+	// 			"4K HDR Video",
+	// 			"Extended Battery Life",
+	// 			"True Vertical Shooting",
+	// 			"FocusTrack Feature",
+	// 		],
+	// 		aircraft: [
+	// 			{
+	// 				label: "Takeoff Weight",
+	// 				desc: "<249 g",
+	// 			},
+	// 			{
+	// 				label: "Flight Time (Intelligent Battery, 21.6 kph, no wind)",
+	// 				desc: "34 mins",
+	// 			},
+	// 			{
+	// 				label: "Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)",
+	// 				desc: "47 mins",
+	// 			},
+	// 			{
+	// 				label: "Hovering Time (Intelligent Battery, no wind)",
+	// 				desc: "30 mins",
+	// 			},
+	// 			{
+	// 				label: "Hovering Time (Intelligent Battery Plus, no wind)",
+	// 				desc: "40 mins",
+	// 			},
+	// 			{
+	// 				label: "Flight Distance (Intelligent Battery, 43.2 kph, no wind)",
+	// 				desc: "18 km",
+	// 			},
+	// 			{
+	// 				label: "Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)",
+	// 				desc: "25 km",
+	// 			},
+	// 			{
+	// 				label: "Wind Speed Resistance",
+	// 				desc: "10.7 m/s (Level 5)",
+	// 			},
+	// 		],
+	// 	},
+	// 	price: {
+	// 		former: 215000,
+	// 		latter: null,
+	// 	},
+	// 	kit: {
+	// 		basic: {
+	// 			image: "/images/products/drones/dji/mini/3pro/box/collective.webp",
+	// 			contents: [
+	// 				{
+	// 					qty: 1,
+	// 					item: "Aircraft",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/aircraft.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Remote Controller",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/controller.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "RC Cable (USB Type-C Connector)",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(usb-type-c-connector).webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "RC Cable (Lightning Connector)",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(lightning-connector).webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "RC Cable (Standard Micro-USB Connector)",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(standard-micro-usb-connector).webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Mini 3 Pro Intelligent Flight Battery",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/battery.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Mini 3 Pro Spare Propellers (Pair)",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/propellers.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Gimbal Protector",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/protector.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Type-C to Type-C PD Cable",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/usb-c-data-cable.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Screwdriver",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/screwdriver.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Screws",
+	// 					image: "/images/products/drones/dji/mini/3pro/box/screws.webp",
+	// 				},
+	// 			],
+	// 		},
 
-			flyMore: {
-				image: "/images/products/drones/dji/mini/3pro/more/collective.webp",
-				contents: [
-					{
-						qty: 2,
-						item: "Intelligent Flight Battery",
-						image: "/images/products/drones/dji/mini/3pro/more/battery.webp",
-					},
-					{
-						qty: 1,
-						item: "Two-way Charging Hub",
-						image: "/images/products/drones/dji/mini/3pro/more/charging-hub.webp",
-					},
-					{
-						qty: 2,
-						item: "Mini 3 Pro Propellers (pair)",
-						image: "/images/products/drones/dji/mini/3pro/more/propellers.webp",
-					},
-					{
-						qty: 1,
-						item: "Shoulder Bag",
-						image: "/images/products/drones/dji/mini/3pro/more/shoulder-bag.webp",
-					},
-					{
-						qty: 1,
-						item: "USB 3.0 Type-C Data Cable ",
-						image: "/images/products/drones/dji/mini/3pro/more/usb-c-data-cable.webp",
-					},
-					{
-						qty: 12,
-						item: "Screws",
-						image: "/images/products/drones/dji/mini/3pro/more/screws.webp",
-					},
-				],
+	// 		flyMore: {
+	// 			image: "/images/products/drones/dji/mini/3pro/more/collective.webp",
+	// 			contents: [
+	// 				{
+	// 					qty: 2,
+	// 					item: "Intelligent Flight Battery",
+	// 					image: "/images/products/drones/dji/mini/3pro/more/battery.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Two-way Charging Hub",
+	// 					image: "/images/products/drones/dji/mini/3pro/more/charging-hub.webp",
+	// 				},
+	// 				{
+	// 					qty: 2,
+	// 					item: "Mini 3 Pro Propellers (pair)",
+	// 					image: "/images/products/drones/dji/mini/3pro/more/propellers.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "Shoulder Bag",
+	// 					image: "/images/products/drones/dji/mini/3pro/more/shoulder-bag.webp",
+	// 				},
+	// 				{
+	// 					qty: 1,
+	// 					item: "USB 3.0 Type-C Data Cable ",
+	// 					image: "/images/products/drones/dji/mini/3pro/more/usb-c-data-cable.webp",
+	// 				},
+	// 				{
+	// 					qty: 12,
+	// 					item: "Screws",
+	// 					image: "/images/products/drones/dji/mini/3pro/more/screws.webp",
+	// 				},
+	// 			],
 
-				price: {
-					former: 55000,
-					latter: null,
-				},
-			},
-		},
-		accessories: {
-			battery: accessories.find(a => a.title.short == "Mini 3 Pro Battery"),
-			other: null,
-		},
-		category: "camera",
-		available: true,
-		brand: "dji",
-		make: "mini",
-		model: null,
-		starter: true,
-	},
+	// 			price: {
+	// 				former: 55000,
+	// 				latter: null,
+	// 			},
+	// 		},
+	// 	},
+	// 	accessories: {
+	// 		battery: accessories.find(a => a.title.short == "Mini 3 Pro Battery"),
+	// 		other: null,
+	// 	},
+	// 	category: "camera",
+	// 	available: true,
+	// 	brand: "dji",
+	// 	make: "mini",
+	// 	model: null,
+	// },
 
 	{
 		images: images.products.drones.dji.neo.drone,
@@ -2126,6 +2125,7 @@ const products = [
 		make: "neo",
 		model: null,
 		featured: true,
+		starter: true,
 	},
 ];
 

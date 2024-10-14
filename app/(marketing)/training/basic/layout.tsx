@@ -9,7 +9,7 @@ import contact from "@/data/contact";
 export const metadata: Metadata = {
 	title: {
 		default: "Basic Training",
-		template: `%s - Basic Training - Drone Training / Drone School - ${contact.name.app}`,
+		template: `%s - Basic Training - Drone Training & Drone School - ${contact.name.app}`,
 	},
 };
 

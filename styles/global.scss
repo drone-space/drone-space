@@ -47,3 +47,26 @@ body {
 		font-size: var(--mantine-font-size-md) !important;
 	}
 }
+
+.markdown-render {
+	p {
+		margin-top: var(--mantine-spacing-md);
+
+		// Remove margin-top for the first child 'p'
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	ul,
+	ol {
+		margin-left: var(--mantine-spacing-xl);
+		margin-top: calc(var(--mantine-spacing-xs) / 2);
+
+		// Nested lists inherit margin-left
+		ul,
+		ol {
+			margin-left: var(--mantine-spacing-xl);
+		}
+	}
+}

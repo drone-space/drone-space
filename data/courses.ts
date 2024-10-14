@@ -315,12 +315,12 @@ const courses = {
 				advanced: true,
 				image: images.training.thermograpgy,
 				title: {
-					short: "Thermo",
-					full: "Thermography",
+					short: "Thermography",
+					full: "Thermography (ITC Level I)",
 				},
 				price: {
 					discount: null,
-					full: 200000,
+					full: 220000,
 				},
 				priceFeatures: null,
 				desc: "The Level 1 Thermography Certification course is designed for professionals who want to develop practical skills in using thermography for inspections and diagnostics. This course is suitable for individuals working in industries such as electrical, mechanical, and building inspections, as well as professionals involved in research and development. The certification is offered in collaboration with the Infrared Training Centre (ITC) and is globally recognized. By completing this course, students will learn how to use thermal imaging cameras to identify and diagnose faults in various systems, including electrical equipment, buildings, and mechanical systems. They will also gain an understanding of infrared theory, heat transfer concepts, and thermal imaging standards. Upon completion, students will receive an internationally recognized Level 1 Thermography Certification, which can enhance their career prospects and credibility in the industry.",

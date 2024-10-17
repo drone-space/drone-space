@@ -10,7 +10,7 @@ const team = [
 		groups: ["board", "management"],
 	},
 	{
-		image: null,
+		image: images.team.nick,
 		name: "Nick Njuguna",
 		position: "Chief Operating Officer (COO)",
 		qualification: "RPL and Instructor Rating Holder",

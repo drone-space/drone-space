@@ -1,17 +1,5 @@
-.card {
-	transition: 0.25s all ease;
-	border: 2px solid transparent;
-	box-shadow: var(--mantine-shadow-xs);
-	height: 100%;
-
-	@include hover {
-		border: 2px solid light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
-	}
-}
-
 .imageContainer {
 	box-shadow: var(--mantine-shadow-xs);
-	border: 2px solid light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
-	border-radius: 999px;
+	border-radius: var(--mantine-radius-sm);
 	overflow: hidden;
 }

@@ -632,6 +632,7 @@ const images = {
 		kevon: "/images/team/image-1.webp",
 		priscah: "/images/team/image-2.webp",
 		hannah: "/images/team/image-3.webp",
+		michael: "/images/team/image-4.webp",
 	},
 
 	training: {

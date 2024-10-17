@@ -145,40 +145,74 @@ export default async function About() {
 				containerized={"responsive"}
 				bg={"light-dark(var(--mantine-color-gray-1),var(--mantine-color-gray-1))"}
 			>
-				<Stack gap={"xl"}>
+				<Stack gap={64}>
 					<Stack gap={"xs"} align="center">
 						<Title order={2} fw={"bold"} ta={"center"} fz={{ md: 24 }} w={{ md: "80%" }}>
+							Our Team
+						</Title>
+
+						<Text ta={"center"}>Meet the passionate minds driving our vision forward.</Text>
+					</Stack>
+
+					<Stack gap={"xl"} align="center">
+						<Title order={3} fw={"bold"} ta={"center"} fz={{ md: 20 }} w={{ md: "80%" }}>
 							Board & Management
 						</Title>
 
-						{/* <Text ta={"center"}>{data.hub.prose}</Text> */}
+						<Grid>
+							<GridCol span={12}>
+								<Grid justify="center">
+									{team
+										.filter(member => member.groups?.includes("management"))
+										.map(
+											member =>
+												team
+													.filter(member => member.groups?.includes("management"))
+													.indexOf(member) < 2 && (
+													<GridCol key={member.name} span={{ xs: 6, sm: 4, md: 3 }}>
+														<CardTeamMain data={member} />
+													</GridCol>
+												)
+										)}
+								</Grid>
+							</GridCol>
+
+							<GridCol span={12}>
+								<Grid justify="center">
+									{team
+										.filter(member => member.groups?.includes("management"))
+										.map(
+											member =>
+												team
+													.filter(member => member.groups?.includes("management"))
+													.indexOf(member) > 1 && (
+													<GridCol key={member.name} span={{ xs: 6, sm: 4, md: 3 }}>
+														<CardTeamMain data={member} />
+													</GridCol>
+												)
+										)}
+								</Grid>
+							</GridCol>
+
+							<GridCol span={12}>
+								<LayoutSection containerized={"sm"}>
+									<Divider my={"md"} color="pri" variant="dashed" />
+								</LayoutSection>
+							</GridCol>
+
+							<GridCol span={12}>
+								<Grid justify="center">
+									{team
+										.filter(member => !member.groups)
+										.map(member => (
+											<GridCol key={member.name} span={{ xs: 6, sm: 4, md: 3 }}>
+												<CardTeamMain data={member} />
+											</GridCol>
+										))}
+								</Grid>
+							</GridCol>
+						</Grid>
 					</Stack>
-
-					<Grid gutter={32}>
-						<GridCol span={12}>
-							<Grid justify="center">
-								{team.board.map(item => (
-									<GridCol key={item.name} span={{ xs: 6, md: 5, lg: 4 }}>
-										<CardTeamMain data={item} />
-									</GridCol>
-								))}
-							</Grid>
-						</GridCol>
-
-						<GridCol span={12}>
-							<Divider color="pri" size={"xs"} />
-						</GridCol>
-
-						<GridCol span={12}>
-							<Grid justify="center">
-								{team.management.map(item => (
-									<GridCol key={item.name} span={{ xs: 6, md: 5 }}>
-										<CardTeamMain data={item} />
-									</GridCol>
-								))}
-							</Grid>
-						</GridCol>
-					</Grid>
 				</Stack>
 			</LayoutSection>
 		</LayoutPage>

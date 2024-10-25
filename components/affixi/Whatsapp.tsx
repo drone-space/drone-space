@@ -11,12 +11,12 @@ import contact from "@/data/contact";
 
 export default function Whatsapp() {
 	const [scroll, scrollTo] = useWindowScroll();
-	const link = contact.socials.find(s => s.title.includes("WhatsApp"));
+	const link = contact.socials.find((s) => s.title.includes("WhatsApp"));
 
 	return (
-		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * 2)", right: 0 }}>
+		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * 2.75)", right: 0 }}>
 			<Transition transition="slide-left" mounted={scroll.y > 80}>
-				{transitionStyles => (
+				{(transitionStyles) => (
 					<div style={transitionStyles}>
 						<ActionIcon
 							size={28}
@@ -24,7 +24,7 @@ export default function Whatsapp() {
 							color="sec.3"
 							style={{
 								borderBottomRightRadius: 0,
-								borderTopRightRadius: 0,
+								borderTopRightRadius: 0
 							}}
 							component="a"
 							href={link?.link}

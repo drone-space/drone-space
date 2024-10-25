@@ -17,7 +17,7 @@ export default function Assistant() {
 	const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
 
 	const routes = ["services", "/training", "/shop"];
-	const routeIncluded = routes.find(r => pathname.includes(r));
+	const routeIncluded = routes.find((r) => pathname.includes(r));
 
 	const getRoute = () => {
 		switch (routeIncluded) {
@@ -59,9 +59,9 @@ export default function Assistant() {
 	}, []);
 
 	return (
-		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * .75)", right: 0 }}>
+		<Affix position={{ bottom: "calc(var(--mantine-spacing-xl) * 1.5)", right: 0 }}>
 			<Transition transition="slide-left" mounted={true}>
-				{transitionStyles => (
+				{(transitionStyles) => (
 					<div style={transitionStyles} className={classes.box}>
 						<Tooltip
 							color="pri"

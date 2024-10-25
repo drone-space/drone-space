@@ -23,18 +23,18 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
-		{ title: "August Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
-		{ title: "August Intake", image: images.posters.intakes.yr2024.oct.portrait },
-		{ title: "August Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
+		{ title: "October Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
+		{ title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait }
+		// { title: "October Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
 	];
 
 	const data = [
 		{ title: "Mapping Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
-		{ title: "August Intake", image: images.posters.intakes.yr2024.oct.portrait },
-		{ title: "August Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
+		{ title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait }
+		// { title: "October Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
 	];
 
-	const slides = (mobile ? dataMobile : data).map(slide => (
+	const slides = (mobile ? dataMobile : data).map((slide) => (
 		<CarouselSlide key={slide.title}>
 			<Stack h={"100%"}>
 				<Image

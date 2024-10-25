@@ -16,7 +16,7 @@ import {
 	Textarea,
 	Title,
 	createTheme,
-	rem,
+	rem
 } from "@mantine/core";
 
 const projectName = createTheme({
@@ -47,7 +47,7 @@ const projectName = createTheme({
 			"#313fdb",
 			"#2431c3",
 			"#1e2caf",
-			"#13259a", // src
+			"#13259a" // src
 		],
 		sec: [
 			"#e1fdfd",
@@ -59,8 +59,8 @@ const projectName = createTheme({
 			"#3bc8c0",
 			"#28b1a9",
 			"#149d97",
-			"#008982",
-		],
+			"#008982"
+		]
 	},
 
 	/** Key of `theme.colors`, hex/rgb/hsl values are not supported.
@@ -83,7 +83,7 @@ const projectName = createTheme({
 	defaultGradient: {
 		from: "pri",
 		to: "sec",
-		deg: 45,
+		deg: 45
 	},
 
 	/** Key of `theme.radius` or any valid CSS value. Default `border-radius` used by most components */
@@ -94,64 +94,6 @@ const projectName = createTheme({
 	 *  Default value – `false`
 	 * */
 	autoContrast: true,
-
-	/** Determines which luminance value is used to determine if text color should be light or dark.
-	 *  Used only if `theme.autoContrast` is set to `true`.
-	 *  Default value is `0.3`
-	 * */
-	luminanceThreshold: 0.3,
-
-	//font
-	// fontFamily: "Arial, sans-serif",
-
-	fontFamilyMonospace: "Courier New, monospace",
-
-	fontSmoothing: true,
-
-	fontSizes: {
-		xs: rem(12),
-		sm: rem(14),
-		md: rem(16),
-		lg: rem(18),
-		xl: rem(20),
-		xxl: "2rem",
-	},
-
-	lineHeights: {
-		xs: "1.4",
-		sm: "1.45",
-		md: "1.55",
-		lg: "1.6",
-		xl: "1.65",
-	},
-
-	headings: {
-		// properties for all headings
-		fontWeight: "400",
-		fontFamily: "Roboto",
-
-		// properties for individual headings, all of them are optional
-		// sizes: {
-		// 	h1: {
-		// 		fontSize: "2rem",
-		// 		lineHeight: "1.5",
-		// 		fontWeight: "500",
-		// 	},
-		// 	h2: {
-		// 		fontSize: "1.5rem",
-		// 		lineHeight: "1.6",
-		// 		fontWeight: "500",
-		// 	},
-		// },
-	},
-
-	spacing: {
-		xs: rem(10),
-		sm: rem(12),
-		md: rem(16),
-		lg: rem(20),
-		xl: rem(32),
-	},
 
 	/** Determines which cursor type will be used for interactive elements
 	 * - `default` – cursor that is used by native HTML elements, for example, `input[type="checkbox"]` has `cursor: default` styles
@@ -168,8 +110,8 @@ const projectName = createTheme({
 		Container: Container.extend(container),
 		Title: Title.extend(title),
 		Text: Text.extend(text),
-		Notification: Notification.extend(notification),
-	},
+		Notification: Notification.extend(notification)
+	}
 });
 
 export default projectName;

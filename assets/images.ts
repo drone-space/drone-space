@@ -4,15 +4,15 @@ const images = {
 			b0831: {
 				image1: "/images/blogs/yr2023/blog-08-31/image-1.webp",
 				image2: "/images/blogs/yr2023/blog-08-31/image-2.webp",
-				image3: "/images/blogs/yr2023/blog-08-31/image-3.webp",
+				image3: "/images/blogs/yr2023/blog-08-31/image-3.webp"
 			},
 			b1012: {
 				image1: "/images/blogs/yr2023/blog-10-12/image-1.webp",
 				image2: "/images/blogs/yr2023/blog-10-12/image-2.webp",
 				image3: "/images/blogs/yr2023/blog-10-12/image-3.webp",
-				image4: "/images/blogs/yr2023/blog-10-12/image-4.webp",
-			},
-		},
+				image4: "/images/blogs/yr2023/blog-10-12/image-4.webp"
+			}
+		}
 	},
 
 	brand: {
@@ -20,17 +20,17 @@ const images = {
 			landscape: {
 				brandColor: "/images/brand/logo/landscape/image-1.webp",
 				brandBlack: "/images/brand/logo/landscape/image-2.webp",
-				brandWhite: "/images/brand/logo/landscape/image-3.webp",
-			},
-		},
+				brandWhite: "/images/brand/logo/landscape/image-3.webp"
+			}
+		}
 	},
 
 	carousel: {
 		shop: {
 			image1: "/images/carousel/shop/image-1.webp",
 			image2: "/images/carousel/shop/image-2.webp",
-			image3: "/images/carousel/shop/image-3.webp",
-		},
+			image3: "/images/carousel/shop/image-3.webp"
+		}
 	},
 
 	courses: {
@@ -41,7 +41,7 @@ const images = {
 		mapSur: "/images/courses/image-5.webp",
 		thermography: "/images/courses/image-6.webp",
 		radioTelephony: "/images/courses/image-7.webp",
-		holCam: "/images/courses/image-8.webp",
+		holCam: "/images/courses/image-8.webp"
 	},
 
 	shows: {
@@ -50,17 +50,17 @@ const images = {
 		ready: "/images/shows/ready.webp",
 		understanding: "/images/shows/understanding.webp",
 		hny: "/images/shows/hny.webp",
-		talk: "/images/shows/talk.webp",
+		talk: "/images/shows/talk.webp"
 	},
 
 	error: {
-		err404: "/images/error/404.svg",
+		err404: "/images/error/404.svg"
 	},
 
 	gallery: {
 		airfield: {
 			image1: "/images/gallery/airfield/image-1.webp",
-			image2: "/images/gallery/airfield/image-2.webp",
+			image2: "/images/gallery/airfield/image-2.webp"
 		},
 
 		conference: {
@@ -69,7 +69,7 @@ const images = {
 				image2: "/images/gallery/conference/yr2022/image-2.webp",
 				image3: "/images/gallery/conference/yr2022/image-3.webp",
 				image4: "/images/gallery/conference/yr2022/image-4.webp",
-				image5: "/images/gallery/conference/yr2022/image-5.webp",
+				image5: "/images/gallery/conference/yr2022/image-5.webp"
 			},
 			yr2024: {
 				image1: "/images/gallery/conference/yr2024/conference-1.webp",
@@ -215,8 +215,8 @@ const images = {
 				image141: "/images/gallery/conference/yr2024/conference-141.webp",
 				image142: "/images/gallery/conference/yr2024/conference-142.webp",
 				image143: "/images/gallery/conference/yr2024/conference-143.webp",
-				image144: "/images/gallery/conference/yr2024/conference-144.webp",
-			},
+				image144: "/images/gallery/conference/yr2024/conference-144.webp"
+			}
 		},
 
 		expo: {
@@ -235,7 +235,7 @@ const images = {
 				image12: "/images/gallery/expo/yr2022/image-12.webp",
 				image13: "/images/gallery/expo/yr2022/image-13.webp",
 				image14: "/images/gallery/expo/yr2022/image-14.webp",
-				image15: "/images/gallery/expo/yr2022/image-15.webp",
+				image15: "/images/gallery/expo/yr2022/image-15.webp"
 			},
 			yr2024: {
 				image1: "/images/gallery/expo/yr2024/expo-1.webp",
@@ -273,8 +273,8 @@ const images = {
 				image33: "/images/gallery/expo/yr2024/expo-33.webp",
 				image34: "/images/gallery/expo/yr2024/expo-34.webp",
 				image35: "/images/gallery/expo/yr2024/expo-35.webp",
-				image36: "/images/gallery/expo/yr2024/expo-36.webp",
-			},
+				image36: "/images/gallery/expo/yr2024/expo-36.webp"
+			}
 		},
 
 		graduation: {
@@ -291,8 +291,8 @@ const images = {
 				image10: "/images/gallery/graduation/yr2022/image-10.webp",
 				image11: "/images/gallery/graduation/yr2022/image-11.webp",
 				image12: "/images/gallery/graduation/yr2022/image-12.webp",
-				image13: "/images/gallery/graduation/yr2022/image-13.webp",
-			},
+				image13: "/images/gallery/graduation/yr2022/image-13.webp"
+			}
 		},
 
 		hackathon: {
@@ -305,8 +305,8 @@ const images = {
 				image6: "/images/gallery/hackathon/yr2024/hackathon-6.webp",
 				image7: "/images/gallery/hackathon/yr2024/hackathon-7.webp",
 				image8: "/images/gallery/hackathon/yr2024/hackathon-8.webp",
-				image9: "/images/gallery/hackathon/yr2024/hackathon-9.webp",
-			},
+				image9: "/images/gallery/hackathon/yr2024/hackathon-9.webp"
+			}
 		},
 
 		innovation: {
@@ -321,9 +321,9 @@ const images = {
 					image7: "/images/gallery/innovation-forum/jamuhuri/image-7.webp",
 					image8: "/images/gallery/innovation-forum/jamuhuri/image-8.webp",
 					image9: "/images/gallery/innovation-forum/jamuhuri/image-9.webp",
-					image10: "/images/gallery/innovation-forum/jamuhuri/image-10.webp",
-				},
-			},
+					image10: "/images/gallery/innovation-forum/jamuhuri/image-10.webp"
+				}
+			}
 		},
 
 		projects: {
@@ -333,16 +333,16 @@ const images = {
 				image3: "/images/gallery/projects/project-1/image-3.webp",
 				image4: "/images/gallery/projects/project-1/image-4.webp",
 				image5: "/images/gallery/projects/project-1/image-5.webp",
-				image6: "/images/gallery/projects/project-1/image-6.webp",
-			},
-		},
+				image6: "/images/gallery/projects/project-1/image-6.webp"
+			}
+		}
 	},
 
 	patterns: {
 		image1: {
 			pri: "/images/patterns/image-1-pri.webp",
-			sec: "/images/patterns/image-1-sec.webp",
-		},
+			sec: "/images/patterns/image-1-sec.webp"
+		}
 	},
 
 	partners: {
@@ -358,10 +358,14 @@ const images = {
 		image10: "/images/partners/image-10.webp",
 		image11: "/images/partners/image-11.webp",
 		image12: "/images/partners/image-12.webp",
-		image13: "/images/partners/image-13.webp",
+		image13: "/images/partners/image-13.webp"
 	},
 
 	posters: {
+		ads: {
+			image1: "/images/posters/ad/image-1.webp"
+		},
+
 		intakes: {
 			yr2024: {
 				jan: { landscape: null, portrait: "/images/posters/intakes/image-1.jpg" },
@@ -374,42 +378,43 @@ const images = {
 				sep: { landscape: null, portrait: "/images/posters/intakes/image-8.webp" },
 				oct: { landscape: null, portrait: "/images/posters/intakes/image-9.webp" },
 				oct2: { landscape: null, portrait: "/images/posters/intakes/image-10.webp" },
-			},
+				nov: { landscape: null, portrait: "/images/posters/intakes/image-11.webp" }
+			}
 		},
 		camps: {
 			yr2024: {
-				aug: { landscape: null, portrait: "/images/posters/camps/24.08.webp" },
-			},
+				aug: { landscape: null, portrait: "/images/posters/camps/24.08.webp" }
+			}
 		},
 		courses: {
 			yr2024: {
 				feb: {
 					masterclass: { landscape: null, portrait: "/images/posters/courses/image-1.jpg" },
-					radiotelephony: { landscape: null, portrait: "/images/posters/courses/image-2.jpg" },
+					radiotelephony: { landscape: null, portrait: "/images/posters/courses/image-2.jpg" }
 				},
 				jul: {
-					radiotelephony: { landscape: null, portrait: "/images/posters/courses/image-3.webp" },
+					radiotelephony: { landscape: null, portrait: "/images/posters/courses/image-3.webp" }
 				},
 				sep: {
-					mapping: { landscape: null, portrait: "/images/posters/courses/image-4.webp" },
+					mapping: { landscape: null, portrait: "/images/posters/courses/image-4.webp" }
 				},
 				oct: {
-					mapping: { landscape: null, portrait: "/images/posters/courses/image-5.webp" },
-				},
-			},
+					mapping: { landscape: null, portrait: "/images/posters/courses/image-5.webp" }
+				}
+			}
 		},
 		workshops: {
 			yr2024: {
 				julSept: {
 					portrait: {
-						image1: "/images/posters/workshops/portrait/image-1.svg",
+						image1: "/images/posters/workshops/portrait/image-1.svg"
 					},
 					landscape: {
-						image1: "/images/posters/workshops/landscape/image-1.svg",
-					},
-				},
-			},
-		},
+						image1: "/images/posters/workshops/landscape/image-1.svg"
+					}
+				}
+			}
+		}
 	},
 
 	products: {
@@ -419,33 +424,33 @@ const images = {
 					drone: [
 						"/images/products/drones/autel/evo2/drone/drone-front.webp",
 						"/images/products/drones/autel/evo2/drone/drone-skew.webp",
-						"/images/products/drones/autel/evo2/drone/drone-folded.webp",
+						"/images/products/drones/autel/evo2/drone/drone-folded.webp"
 					],
 					accessories: {
 						battery: [
 							"/images/products/drones/autel/evo2/battery/battery-front.webp",
 							"/images/products/drones/autel/evo2/battery/battery-skew.webp",
 							"/images/products/drones/autel/evo2/battery/battery-back.webp",
-							"/images/products/drones/autel/evo2/battery/battery-side.webp",
-						],
-					},
-				},
+							"/images/products/drones/autel/evo2/battery/battery-side.webp"
+						]
+					}
+				}
 			},
 			dji: {
 				agras: {
 					t40: {
 						drone: [
 							"/images/products/drones/dji/agras/t40/drone/drone-front.webp",
-							"/images/products/drones/dji/agras/t40/drone/drone-skew.webp",
+							"/images/products/drones/dji/agras/t40/drone/drone-skew.webp"
 						],
 						kit: { basic: "/images/products/drones/dji/agras/t40/image-2.webp", flyMore: null },
 						accessories: {
 							battery: ["/images/products/drones/dji/agras/t40/battery/battery-skew.webp"],
 							other: {
 								spreader: ["/images/products/drones/dji/agras/t40/accessories/spreader.webp"],
-								generator: ["/images/products/drones/dji/agras/t40/accessories/generator.webp"],
-							},
-						},
+								generator: ["/images/products/drones/dji/agras/t40/accessories/generator.webp"]
+							}
+						}
 					},
 					t50: {
 						drone: ["/images/products/drones/dji/agras/t50/drone/drone-front.webp"],
@@ -454,10 +459,10 @@ const images = {
 							battery: ["/images/products/drones/dji/agras/t50/battery/battery-skew.webp"],
 							other: {
 								spreader: ["/images/products/drones/dji/agras/t50/accessories/spreader.webp"],
-								generator: ["/images/products/drones/dji/agras/t50/accessories/generator.webp"],
-							},
-						},
-					},
+								generator: ["/images/products/drones/dji/agras/t50/accessories/generator.webp"]
+							}
+						}
+					}
 				},
 				air: {
 					air2s: {
@@ -466,16 +471,16 @@ const images = {
 							"/images/products/drones/dji/air/2s/drone/drone-skew.webp",
 							"/images/products/drones/dji/air/2s/drone/drone-bottom.webp",
 							"/images/products/drones/dji/air/2s/drone/drone-folded.webp",
-							"/images/products/drones/dji/air/2s/drone/drone-top.webp",
+							"/images/products/drones/dji/air/2s/drone/drone-top.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/air/2s/battery/battery-front.webp",
 								"/images/products/drones/dji/air/2s/battery/battery-skew.webp",
 								"/images/products/drones/dji/air/2s/battery/battery-back.webp",
-								"/images/products/drones/dji/air/2s/battery/battery-side.webp",
-							],
-						},
+								"/images/products/drones/dji/air/2s/battery/battery-side.webp"
+							]
+						}
 					},
 					air3: {
 						drone: [
@@ -483,44 +488,44 @@ const images = {
 							"/images/products/drones/dji/air/air3/drone/drone-skew.webp",
 							"/images/products/drones/dji/air/air3/drone/drone-bottom.webp",
 							"/images/products/drones/dji/air/air3/drone/drone-top.webp",
-							"/images/products/drones/dji/air/air3/drone/drone-folded.webp",
+							"/images/products/drones/dji/air/air3/drone/drone-folded.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/air/air3/battery/battery-back.webp",
 								"/images/products/drones/dji/air/air3/battery/battery-skew.webp",
-								"/images/products/drones/dji/air/air3/battery/battery-side.webp",
-							],
-						},
-					},
+								"/images/products/drones/dji/air/air3/battery/battery-side.webp"
+							]
+						}
+					}
 				},
 				matrice: {
 					matrice30t: {
 						drone: [
 							"/images/products/drones/dji/matrice/matrice30t/drone/drone-front.webp",
 							"/images/products/drones/dji/matrice/matrice30t/drone/drone-skew.webp",
-							"/images/products/drones/dji/matrice/matrice30t/drone/drone-folded.webp",
+							"/images/products/drones/dji/matrice/matrice30t/drone/drone-folded.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/matrice/matrice30t/battery/battery-front.webp",
 								"/images/products/drones/dji/matrice/matrice30t/battery/battery-side.webp",
-								"/images/products/drones/dji/matrice/matrice30t/battery/battery-skew.webp",
-							],
-						},
+								"/images/products/drones/dji/matrice/matrice30t/battery/battery-skew.webp"
+							]
+						}
 					},
 					matrice350: {
 						drone: [
 							"/images/products/drones/dji/matrice/matrice350/drone/drone-front.webp",
-							"/images/products/drones/dji/matrice/matrice350/drone/drone-skew.webp",
+							"/images/products/drones/dji/matrice/matrice350/drone/drone-skew.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/matrice/matrice350/battery/battery-front.webp",
-								"/images/products/drones/dji/matrice/matrice350/battery/battery-skew.webp",
-							],
-						},
-					},
+								"/images/products/drones/dji/matrice/matrice350/battery/battery-skew.webp"
+							]
+						}
+					}
 				},
 				mavic: {
 					m3c: {
@@ -529,30 +534,30 @@ const images = {
 							"/images/products/drones/dji/mavic/3c/drone/drone-skew.webp",
 							"/images/products/drones/dji/mavic/3c/drone/drone-top.webp",
 							"/images/products/drones/dji/mavic/3c/drone/drone-folded.webp",
-							"/images/products/drones/dji/mavic/3c/drone/drone-bottom.webp",
+							"/images/products/drones/dji/mavic/3c/drone/drone-bottom.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/mavic/3c/battery/battery-back.webp",
 								"/images/products/drones/dji/mavic/3c/battery/battery-skew.webp",
-								"/images/products/drones/dji/mavic/3c/battery/battery-side.webp",
-							],
-						},
+								"/images/products/drones/dji/mavic/3c/battery/battery-side.webp"
+							]
+						}
 					},
 					m3e: {
 						drone: [
 							"/images/products/drones/dji/mavic/3e/drone/drone-front.webp",
 							"/images/products/drones/dji/mavic/3e/drone/drone-skew.webp",
 							"/images/products/drones/dji/mavic/3e/drone/drone-bottom.webp",
-							"/images/products/drones/dji/mavic/3e/drone/drone-top.webp",
+							"/images/products/drones/dji/mavic/3e/drone/drone-top.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/mavic/3e/battery/battery-back.webp",
 								"/images/products/drones/dji/mavic/3e/battery/battery-skew.webp",
-								"/images/products/drones/dji/mavic/3e/battery/battery-side.webp",
-							],
-						},
+								"/images/products/drones/dji/mavic/3e/battery/battery-side.webp"
+							]
+						}
 					},
 					m3m: {
 						drone: [
@@ -560,53 +565,53 @@ const images = {
 							"/images/products/drones/dji/mavic/3m/drone/drone-skew.webp",
 							"/images/products/drones/dji/mavic/3m/drone/drone-bottom.webp",
 							"/images/products/drones/dji/mavic/3m/drone/drone-top.webp",
-							"/images/products/drones/dji/mavic/3m/drone/drone-folded.webp",
+							"/images/products/drones/dji/mavic/3m/drone/drone-folded.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/mavic/3m/battery/battery-back.webp",
 								"/images/products/drones/dji/mavic/3m/battery/battery-skew.webp",
-								"/images/products/drones/dji/mavic/3m/battery/battery-side.webp",
+								"/images/products/drones/dji/mavic/3m/battery/battery-side.webp"
 							],
 							other: {
 								tripod: [
 									"/images/products/drones/dji/mavic/3m/accessories/rtk-tripod.webp",
 									"/images/products/drones/dji/mavic/3m/accessories/rtk.webp",
-									"/images/products/drones/dji/mavic/3m/accessories/tripod.webp",
-								],
-							},
-						},
+									"/images/products/drones/dji/mavic/3m/accessories/tripod.webp"
+								]
+							}
+						}
 					},
 					m3pro: {
 						drone: [
 							"/images/products/drones/dji/mavic/3pro/drone/drone-front.webp",
 							"/images/products/drones/dji/mavic/3pro/drone/drone-skew.webp",
 							"/images/products/drones/dji/mavic/3pro/drone/drone-bottom.webp",
-							"/images/products/drones/dji/mavic/3pro/drone/drone-folded.webp",
+							"/images/products/drones/dji/mavic/3pro/drone/drone-folded.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/mavic/3pro/battery/battery-back.webp",
 								"/images/products/drones/dji/mavic/3pro/battery/battery-skew.webp",
-								"/images/products/drones/dji/mavic/3pro/battery/battery-side.webp",
-							],
-						},
+								"/images/products/drones/dji/mavic/3pro/battery/battery-side.webp"
+							]
+						}
 					},
 					m3t: {
 						drone: [
 							"/images/products/drones/dji/mavic/3t/drone/drone-front.webp",
 							"/images/products/drones/dji/mavic/3t/drone/drone-skew.webp",
 							"/images/products/drones/dji/mavic/3t/drone/drone-bottom.webp",
-							"/images/products/drones/dji/mavic/3t/drone/drone-top.webp",
+							"/images/products/drones/dji/mavic/3t/drone/drone-top.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/mavic/3t/battery/battery-back.webp",
 								"/images/products/drones/dji/mavic/3t/battery/battery-skew.webp",
-								"/images/products/drones/dji/mavic/3t/battery/battery-side.webp",
-							],
-						},
-					},
+								"/images/products/drones/dji/mavic/3t/battery/battery-side.webp"
+							]
+						}
+					}
 				},
 				mini: {
 					m3pro: {
@@ -615,33 +620,33 @@ const images = {
 							"/images/products/drones/dji/mini/3pro/drone/drone-skew.webp",
 							"/images/products/drones/dji/mini/3pro/drone/drone-bottom.webp",
 							"/images/products/drones/dji/mini/3pro/drone/drone-top.webp",
-							"/images/products/drones/dji/mini/3pro/drone/drone-folded.webp",
+							"/images/products/drones/dji/mini/3pro/drone/drone-folded.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/mini/3pro/battery/battery-back.webp",
 								"/images/products/drones/dji/mini/3pro/battery/battery-front.webp",
 								"/images/products/drones/dji/mini/3pro/battery/battery-skew.webp",
-								"/images/products/drones/dji/mini/3pro/battery/battery-side.webp",
-							],
-						},
-					},
+								"/images/products/drones/dji/mini/3pro/battery/battery-side.webp"
+							]
+						}
+					}
 				},
 				neo: {
 					drone: [
 						"/images/products/drones/dji/neo/drone/drone-front.webp",
 						"/images/products/drones/dji/neo/drone/drone-skew.webp",
 						"/images/products/drones/dji/neo/drone/drone-bottom.webp",
-						"/images/products/drones/dji/neo/drone/drone-top.webp",
+						"/images/products/drones/dji/neo/drone/drone-top.webp"
 					],
 					accessories: {
 						battery: [
 							"/images/products/drones/dji/neo/battery/battery-back.webp",
 							"/images/products/drones/dji/neo/battery/battery-front.webp",
 							"/images/products/drones/dji/neo/battery/battery-skew.webp",
-							"/images/products/drones/dji/neo/battery/battery-side.webp",
-						],
-					},
+							"/images/products/drones/dji/neo/battery/battery-side.webp"
+						]
+					}
 				},
 				avata: {
 					avata2: {
@@ -649,17 +654,17 @@ const images = {
 							"/images/products/drones/dji/avata/avata2/drone/drone-front.webp",
 							"/images/products/drones/dji/avata/avata2/drone/drone-skew.webp",
 							"/images/products/drones/dji/avata/avata2/drone/drone-top.webp",
-							"/images/products/drones/dji/avata/avata2/drone/drone-back.webp",
+							"/images/products/drones/dji/avata/avata2/drone/drone-back.webp"
 						],
 						accessories: {
 							battery: [
 								"/images/products/drones/dji/avata/avata2/battery/battery-skew.webp",
 								"/images/products/drones/dji/avata/avata2/battery/battery-back.webp",
-								"/images/products/drones/dji/avata/avata2/battery/battery-side.webp",
-							],
-						},
-					},
-				},
+								"/images/products/drones/dji/avata/avata2/battery/battery-side.webp"
+							]
+						}
+					}
+				}
 			},
 			huida: {
 				hd540s: {
@@ -667,18 +672,18 @@ const images = {
 						"/images/products/drones/huida/hd540s/drone/drone-front.webp",
 						"/images/products/drones/huida/hd540s/drone/drone-skew.webp",
 						"/images/products/drones/huida/hd540s/drone/drone-top.webp",
-						"/images/products/drones/huida/hd540s/drone/drone-folded.webp",
+						"/images/products/drones/huida/hd540s/drone/drone-folded.webp"
 					],
 					accessories: {
 						battery: ["/images/products/drones/huida/hd540s/battery/battery-skew.webp"],
 						other: {
 							spreader: ["/images/products/drones/huida/hd540s/accessories/spreader.webp"],
-							generator: ["/images/products/drones/huida/hd540s/accessories/generator.webp"],
-						},
-					},
-				},
-			},
-		},
+							generator: ["/images/products/drones/huida/hd540s/accessories/generator.webp"]
+						}
+					}
+				}
+			}
+		}
 	},
 
 	services: {
@@ -687,7 +692,7 @@ const images = {
 		solIns: "/images/services/image-3.webp",
 		droSee: "/images/services/image-4.webp",
 		rocSup: "/images/services/image-5.webp",
-		mappSur: "/images/services/image-6.webp",
+		mappSur: "/images/services/image-6.webp"
 	},
 
 	team: { kevon: "/images/team/image-1.webp" },
@@ -700,8 +705,8 @@ const images = {
 		mapSur: "/images/training/image-5.webp",
 		thermograpgy: "/images/training/image-6.webp",
 		radTel: "/images/training/image-7.webp",
-		holCam: "/images/training/image-8.webp",
-	},
+		holCam: "/images/training/image-8.webp"
+	}
 };
 
 export default images;

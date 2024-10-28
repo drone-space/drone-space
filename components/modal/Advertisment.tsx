@@ -23,15 +23,15 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
-		{ title: "October Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
-		{ title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait }
-		// { title: "October Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
+		{ title: "November Ad", image: images.posters.ads.image1 },
+		{ title: "October Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait }
+		// { title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait },
 	];
 
 	const data = [
-		{ title: "Mapping Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait },
-		{ title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait }
-		// { title: "October Mapping", image: images.posters.courses.yr2024.oct.mapping.portrait },
+		{ title: "November Ad", image: images.posters.ads.image1 },
+		{ title: "Mapping Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait }
+		// { title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait },
 	];
 
 	const slides = (mobile ? dataMobile : data).map((slide) => (

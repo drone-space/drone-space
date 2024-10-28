@@ -1,6 +1,12 @@
 .content {
 	border-radius: var(--mantine-radius-sm);
 	overflow: hidden;
+
+	@include hover {
+		.control {
+			opacity: 0.75;
+		}
+	}
 }
 
 .body {
@@ -8,6 +14,9 @@
 }
 
 .control {
+	transition: 0.25s all ease;
+
+	opacity: 0;
 	background-color: var(--mantine-color-pri-9);
 	color: var(--mantine-color-sec-3);
 }

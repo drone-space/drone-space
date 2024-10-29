@@ -16,12 +16,12 @@ import { IconCircleFilled } from "@tabler/icons-react";
 
 export default function Main() {
 	const email = {
-		info: contact.email.find(e => e.type == "info"),
-		training: contact.email.find(e => e.type == "training"),
+		info: contact.email.find((e) => e.type == "info"),
+		training: contact.email.find((e) => e.type == "training")
 	};
 	const phone = {
-		pri: contact.phones.find(p => p.type == "primary"),
-		sec: contact.phones.find(p => p.type == "secondary"),
+		pri: contact.phones.find((p) => p.type == "primary"),
+		sec: contact.phones.find((p) => p.type == "secondary")
 	};
 
 	const linkSets = [
@@ -31,8 +31,8 @@ export default function Main() {
 				{ label: "Camera Drones", link: "/shop/drones/camera" },
 				{ label: "Enterprise Drones", link: "/shop/drones/enterprise" },
 				{ label: "Agriculture Drones", link: "/shop/drones/agriculture" },
-				{ label: "Drone Accessories", link: "/shop/accessories" },
-			],
+				{ label: "Drone Accessories", link: "/shop/accessories" }
+			]
 		},
 		{
 			title: "Useful Links",
@@ -41,34 +41,34 @@ export default function Main() {
 				{ label: "Our Drone Solutions", link: "/services" },
 				{ label: "Basic Training (RPL)", link: "/training/basic" },
 				{ label: "Advanced Training", link: "/training/advanced" },
-				{ label: "Drone Shop", link: "/shop" },
-			],
+				{ label: "Drone Shop", link: "/shop" }
+			]
 		},
 		{
 			title: "Drone Solutions",
 			links: [
 				{ label: "Consultancy & Resale", link: "/services/drone-consultancy-and-resale" },
-				{ label: "Drone Mapping & Survey", link: "/services/drone-mapping-and-survey" },
+				{ label: "Mapping & Survey", link: "/services/drone-mapping-and-survey" },
 				{ label: "Aerial Cinematography", link: "/services/aerial-cinematography" },
 				{ label: "Solar Inspection", link: "/services/solar-inspection" },
 				{ label: "Drone Seeding", link: "/services/drone-seeding" },
-				{ label: "ROC Support", link: "/services/roc-support" },
-			],
+				{ label: "ROC Support", link: "/services/roc-support" }
+			]
 		},
 		{
 			title: "Contact",
 			links: [
 				{
 					label: "Prosperity House, Westlands",
-					link: "https://www.google.com/maps/place/Prosperity+House,+Nairobi/@-1.2723743,36.8091986,17z/data=!3m1!4b1!4m6!3m5!1s0x182f17307ceb423b:0x2b6f26cf176c4f6f!8m2!3d-1.2723743!4d36.8117789!16s%2Fg%2F12hlt4d1k?entry=ttu",
+					link: "https://www.google.com/maps/place/Prosperity+House,+Nairobi/@-1.2723743,36.8091986,17z/data=!3m1!4b1!4m6!3m5!1s0x182f17307ceb423b:0x2b6f26cf176c4f6f!8m2!3d-1.2723743!4d36.8117789!16s%2Fg%2F12hlt4d1k?entry=ttu"
 				},
 				{ label: email.training?.value, link: `mailto:${email.training?.value}` },
 				{ label: email.info?.value, link: `mailto:${email.info?.value}` },
 				{ label: phone.pri?.value, link: `tel:${phone.pri?.value}` },
-				{ label: phone.sec?.value, link: `tel:${phone.sec?.value}` },
+				{ label: phone.sec?.value, link: `tel:${phone.sec?.value}` }
 				// { label: "GitHub discussions", link: "#GitHub" },
-			],
-		},
+			]
+		}
 	];
 
 	const year = new Date().getFullYear();
@@ -95,7 +95,7 @@ export default function Main() {
 								{contact.desc}
 							</Text>
 							<Group gap={0}>
-								{contact.socials.map(social => (
+								{contact.socials.map((social) => (
 									<Anchor key={social.link} href={social.link} target="_blank">
 										<Stack>
 											<Image
@@ -115,7 +115,7 @@ export default function Main() {
 					</GridCol>
 					<GridCol span={{ base: 12, md: 8 }} visibleFrom="sm">
 						<Grid mt={{ sm: "xl", md: 0 }}>
-							{linkSets.map(linkSet => (
+							{linkSets.map((linkSet) => (
 								<GridCol
 									key={linkSet.title}
 									span={"auto"}
@@ -126,7 +126,7 @@ export default function Main() {
 											{linkSet.title}
 										</Title>
 										<List listStyleType="none">
-											{linkSet.links.map(link => (
+											{linkSet.links.map((link) => (
 												<ListItem key={link.link} className={classes.listItem}>
 													<Anchor
 														component={Link}

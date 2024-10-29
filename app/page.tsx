@@ -25,7 +25,7 @@ import {
 	IconReportAnalytics,
 	IconSchool,
 	IconSeeding,
-	IconShoppingCart,
+	IconShoppingCart
 } from "@tabler/icons-react";
 import ModalContactCallback from "@/components/modal/contact/Callback";
 import ModalContactTraining from "@/components/modal/contact/Training";
@@ -50,27 +50,27 @@ import HeroHome from "@/partials/heros/Home";
 
 export default function Home() {
 	const drones = {
-		camera: array.shuffle(products.filter(p => p.category == "camera")),
-		enterprise: array.shuffle(products.filter(p => p.category == "enterprise")),
-		agriculture: array.shuffle(products.filter(p => p.category == "agriculture")),
+		camera: array.shuffle(products.filter((p) => p.category == "camera")),
+		enterprise: array.shuffle(products.filter((p) => p.category == "enterprise")),
+		agriculture: array.shuffle(products.filter((p) => p.category == "agriculture"))
 	};
 
 	const whyUs = [
 		{
 			icon: IconSchool,
 			title: "Skilled Instructors",
-			desc: "Our highly skilled trainers use a rigorous teaching technique that ensures efficient learning.",
+			desc: "Our highly skilled trainers use a rigorous teaching technique that ensures efficient learning."
 		},
 		{
 			icon: IconCertificate,
 			title: "KCAA Certified",
-			desc: "Approved and licensed by Kenya Civil Aviation Authority (KCAA).",
+			desc: "Approved and licensed by Kenya Civil Aviation Authority (KCAA)."
 		},
 		{
 			icon: IconCertificate2,
 			title: "KFCB Certified",
-			desc: "Approved and licensed by Kenya Film Classification Board (KFCB) as a local film agent.",
-		},
+			desc: "Approved and licensed by Kenya Film Classification Board (KFCB) as a local film agent."
+		}
 	];
 
 	return (
@@ -81,12 +81,12 @@ export default function Home() {
 
 					<LayoutSection
 						padded
-						containerized={"responsive"}
+						containerized={"md"}
 						bg={"light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light))"}
 						shadowed
 					>
-						<Grid gutter={{ base: "md", md: 64 }} justify="center">
-							<GridCol span={{ base: 12, xs: 6, sm: 3, lg: 2 }}>
+						<Grid gutter={{ base: "md", md: "xl" }} justify="center">
+							<GridCol span={{ base: 12, xs: 6, sm: 3 }}>
 								<ModalDownloadBrochure>
 									<Button h={"100%"} fullWidth>
 										<Stack align="center" py={"md"}>
@@ -98,7 +98,7 @@ export default function Home() {
 									</Button>
 								</ModalDownloadBrochure>
 							</GridCol>
-							<GridCol span={{ base: 12, xs: 6, sm: 3, lg: 2 }}>
+							<GridCol span={{ base: 12, xs: 6, sm: 3 }}>
 								<ModalContactCallback>
 									<Button h={"100%"} fullWidth>
 										<Stack align="center" py={"md"}>
@@ -110,7 +110,7 @@ export default function Home() {
 									</Button>
 								</ModalContactCallback>
 							</GridCol>
-							<GridCol span={{ base: 12, xs: 6, sm: 3, lg: 2 }}>
+							<GridCol span={{ base: 12, xs: 6, sm: 3 }}>
 								<ModalContactTraining>
 									<Button h={"100%"} fullWidth>
 										<Stack align="center" py={"md"}>
@@ -122,7 +122,7 @@ export default function Home() {
 									</Button>
 								</ModalContactTraining>
 							</GridCol>
-							<GridCol span={{ base: 12, xs: 6, sm: 3, lg: 2 }}>
+							<GridCol span={{ base: 12, xs: 6, sm: 3 }}>
 								<Button component={Link} href={"/shop"} h={"100%"} fullWidth>
 									<Stack align="center" py={"md"}>
 										<IconShoppingCart size={24} stroke={2} />
@@ -142,7 +142,7 @@ export default function Home() {
 							</Title>
 
 							<Grid justify="center">
-								{services.map(service => (
+								{services.map((service) => (
 									<GridCol key={service.title} span={{ md: 4, xs: 6, lg: 3 }}>
 										<CardService data={service} />
 									</GridCol>
@@ -164,7 +164,7 @@ export default function Home() {
 
 							<Grid>
 								{drones.camera.map(
-									product =>
+									(product) =>
 										drones.camera.indexOf(product) < 2 && (
 											<GridCol key={product.title.long} span={{ base: 12, xs: 6, md: 4 }}>
 												<CardSHoDroneMain data={product} />
@@ -173,7 +173,7 @@ export default function Home() {
 								)}
 
 								{drones.enterprise.map(
-									product =>
+									(product) =>
 										drones.enterprise.indexOf(product) < 2 && (
 											<GridCol key={product.title.long} span={{ base: 12, xs: 6, md: 4 }}>
 												<CardSHoDroneMain data={product} />
@@ -182,7 +182,7 @@ export default function Home() {
 								)}
 
 								{drones.agriculture.map(
-									product =>
+									(product) =>
 										drones.agriculture.indexOf(product) < 1 && (
 											<GridCol key={product.title.long} span={{ base: 12, xs: 6, md: 4 }}>
 												<CardSHoDroneMain data={product} />
@@ -208,7 +208,7 @@ export default function Home() {
 											</Stack>
 										</Button>
 
-										{categories.map(category => (
+										{categories.map((category) => (
 											<Button
 												key={category.label}
 												component={Link}
@@ -239,7 +239,7 @@ export default function Home() {
 							</Title>
 
 							<Grid>
-								{partners.map(partner => (
+								{partners.map((partner) => (
 									<GridCol key={partner.title} span={{ base: 6, xs: 4, md: 3, lg: 2 }}>
 										<CardPartner data={partner} />
 									</GridCol>
@@ -268,7 +268,7 @@ export default function Home() {
 							</Stack>
 
 							<Grid justify="center">
-								{whyUs.map(item => (
+								{whyUs.map((item) => (
 									<GridCol key={item.title} span={{ base: 12, xs: 6, sm: 4, lg: 3 }}>
 										<CardWhy data={item} />
 									</GridCol>

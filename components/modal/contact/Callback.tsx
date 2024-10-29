@@ -19,7 +19,6 @@ export default function Callback({ children }: { children: React.ReactNode }) {
 			<Modal
 				opened={opened}
 				onClose={close}
-				size={"md"}
 				centered
 				title={
 					<Text component="span" inherit fw={"bold"} c={"pri"}>

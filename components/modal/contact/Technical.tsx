@@ -22,7 +22,7 @@ export default function Technical({ children }: { children: React.ReactNode }) {
 			<Modal
 				opened={opened}
 				onClose={close}
-				size={desktoplg ? "60%" : "95%"}
+				size={desktoplg ? 960 : "xl"}
 				centered
 				title={
 					<Text component="span" inherit fw={"bold"} c={"pri"}>
@@ -31,7 +31,7 @@ export default function Technical({ children }: { children: React.ReactNode }) {
 				}
 			>
 				<Grid>
-					<GridCol span={{ base: 12, sm: 6, lg: 7 }} visibleFrom="sm">
+					<GridCol span={{ base: 12, sm: 6 }} visibleFrom="sm">
 						<Stack h={"100%"}>
 							<Image
 								src={images.gallery.graduation.yr2022.image9}
@@ -45,7 +45,7 @@ export default function Technical({ children }: { children: React.ReactNode }) {
 							/>
 						</Stack>
 					</GridCol>
-					<GridCol span={{ base: 12, sm: 6, lg: 5 }}>
+					<GridCol span={{ base: 12, sm: 6 }}>
 						<FormContact data={{ subject: "Technical Inquiry" }} inquiry="technical" />
 					</GridCol>
 				</Grid>

@@ -26,7 +26,7 @@ export default function Pricing({ children, data }: { children: React.ReactNode;
 			<Modal
 				opened={opened}
 				onClose={close}
-				size={desktoplg ? "60%" : "100%"}
+				size={desktoplg ? 960 : "xl"}
 				centered
 				title={
 					<Text component="span" inherit fw={"bold"} c={"pri"}>
@@ -61,7 +61,7 @@ export default function Pricing({ children, data }: { children: React.ReactNode;
 
 								{data.priceFeatures && (
 									<Stack gap={0} fz="xs">
-										{data.priceFeatures.map(feature => (
+										{data.priceFeatures.map((feature) => (
 											<Grid
 												key={feature.item}
 												gutter={0}

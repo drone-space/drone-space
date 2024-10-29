@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 
 import NextImage from "next/image";
 
-import { Modal, Image, Stack, Button } from "@mantine/core";
+import { Modal, Image, Stack, Button, Group, AspectRatio } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 
 import classes from "./Advertisment.module.scss";
@@ -18,49 +18,29 @@ export default function Advertisment({ active }: { active?: boolean }) {
 
 	const mobile = useMediaQuery("(max-width: 36em)");
 	const tablet = useMediaQuery("(max-width: 48em)");
-	const laptopmd = useMediaQuery("(max-width: 75em)");
+	const laptop = useMediaQuery("(max-width: 75em)");
 
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
 		{ title: "November Ad", image: images.posters.ads.image1 },
-		{ title: "October Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait }
-		// { title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait },
+		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait }
 	];
 
 	const data = [
 		{ title: "November Ad", image: images.posters.ads.image1 },
-		{ title: "Mapping Intake (With Drone)", image: images.posters.intakes.yr2024.oct2.portrait }
-		// { title: "October Intake", image: images.posters.intakes.yr2024.oct.portrait },
+		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait }
 	];
 
-	const slides = (mobile ? dataMobile : data).map((slide) => (
+	const slides = (mobile ? dataMobile : data).map((slide, index) => (
 		<CarouselSlide key={slide.title}>
-			<Stack h={"100%"}>
-				<Image
-					src={slide.image}
-					alt={"Training Workshop"}
-					loading="lazy"
-					radius={"sm"}
-					component={NextImage}
-					width={1080}
-					height={1920}
-					w={"100%"}
-				/>
-			</Stack>
+			<Image src={slide.image} alt={`Poster ${index + 1}`} loading="lazy" radius={"sm"} w={"auto"} h={480} />
 		</CarouselSlide>
 	));
 
 	return (
 		<>
-			<Modal
-				opened={opened}
-				onClose={close}
-				centered
-				size={mobile ? "md" : tablet ? "sm" : laptopmd ? "sm" : "lg"}
-				classNames={classes}
-				withCloseButton={false}
-			>
+			<Modal opened={opened} size={384} onClose={close} centered classNames={classes} withCloseButton={false}>
 				<Carousel
 					withIndicators={false}
 					withControls={data.length > 1}

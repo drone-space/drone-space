@@ -29,7 +29,7 @@ import {
 	Menu,
 	MenuTarget,
 	MenuDropdown,
-	Tooltip,
+	Tooltip
 } from "@mantine/core";
 import {
 	useDebouncedCallback,
@@ -40,7 +40,7 @@ import {
 	useMediaQuery,
 	useResizeObserver,
 	useScrollIntoView,
-	useTimeout,
+	useTimeout
 } from "@mantine/hooks";
 import LayoutSection from "@/layouts/Section";
 import FormClaude from "@/partials/forms/Claude";
@@ -65,7 +65,7 @@ export default function Main() {
 
 	const { scrollIntoView, targetRef, scrollableRef } = useScrollIntoView<HTMLDivElement, HTMLDivElement>({
 		duration: 250,
-		offset: -1080,
+		offset: -1080
 	});
 	const { ref, width, height } = useElementSize();
 
@@ -82,7 +82,7 @@ export default function Main() {
 		setGenerating,
 		conversation,
 		setConversation,
-		clearConversation,
+		clearConversation
 	} = claude;
 
 	const handleScroll = useDebouncedCallback(() => {
@@ -132,7 +132,7 @@ export default function Main() {
 						gutter={0}
 						ref={scrollableRef}
 						pr={4}
-						h={{ base: `calc(92.5vh - ${height2 + height3}px)`, md: 240, lg: 360 }}
+						h={{ base: `calc(92.5vh - ${height2 + height3}px)`, md: 240, lg: 280 }}
 						style={{ overflowY: "auto", scrollbarWidth: "thin" }}
 					>
 						<Transition
@@ -144,7 +144,7 @@ export default function Main() {
 							exitDelay={0}
 							timingFunction="ease"
 						>
-							{styles => (
+							{(styles) => (
 								<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
 									<Grid
 										gutter={0}
@@ -153,7 +153,7 @@ export default function Main() {
 											borderBottom:
 												conversation.length > 0
 													? `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`
-													: "",
+													: ""
 										}}
 									>
 										<GridCol span={{ base: 2, xs: 1 }}>
@@ -192,7 +192,7 @@ export default function Main() {
 							exitDelay={0}
 							timingFunction="ease"
 						>
-							{styles => (
+							{(styles) => (
 								<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
 									<Grid gutter={0} pb={"md"}>
 										<GridCol span={{ base: 2, xs: 1 }}></GridCol>
@@ -201,7 +201,7 @@ export default function Main() {
 												<Text inherit>Some example questions:</Text>
 
 												<Stack gap={"xs"} align="start" ml={{ md: "md" }}>
-													{sample.questions.map(question => (
+													{sample.questions.map((question) => (
 														<FormClaude key={question} automatic query={question}>
 															<Button
 																variant="outline"
@@ -225,7 +225,7 @@ export default function Main() {
 							)}
 						</Transition>
 
-						{conversation.map(item => (
+						{conversation.map((item) => (
 							<Transition
 								key={item.content}
 								mounted={true}
@@ -235,7 +235,7 @@ export default function Main() {
 								exitDelay={0}
 								timingFunction="ease"
 							>
-								{styles => (
+								{(styles) => (
 									<GridCol
 										span={12}
 										style={styles}
@@ -249,7 +249,7 @@ export default function Main() {
 												borderTop:
 													conversation.indexOf(item) > 0
 														? `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`
-														: "",
+														: ""
 											}}
 											ref={ref}
 										>
@@ -295,13 +295,13 @@ export default function Main() {
 							exitDelay={0}
 							timingFunction="ease"
 						>
-							{styles => (
+							{(styles) => (
 								<GridCol span={12} style={styles} fz={{ base: "sm", lg: "md" }}>
 									<Grid
 										gutter={0}
 										py={"md"}
 										style={{
-											borderTop: `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`,
+											borderTop: `1px solid light-dark(var(--mantine-color-gray-4),var(--mantine-color-gray-4))`
 										}}
 									>
 										<GridCol span={{ base: 2, xs: 1 }}>
@@ -337,7 +337,7 @@ export default function Main() {
 						pt={"xs"}
 						mb={"xs"}
 						style={{
-							boxShadow: "0px -1px 3px rgba(0, 0, 0, 0.05), 0px -1px 2px rgba(0, 0, 0, 0.1)",
+							boxShadow: "0px -1px 3px rgba(0, 0, 0, 0.05), 0px -1px 2px rgba(0, 0, 0, 0.1)"
 						}}
 					>
 						<FormClaude />
@@ -393,7 +393,7 @@ export default function Main() {
 								</Transition> */}
 
 									<Transition mounted={true} transition="fade" duration={250} timingFunction="ease">
-										{styles => (
+										{(styles) => (
 											<div style={styles}>
 												<Button
 													size="xs"
@@ -422,7 +422,7 @@ export default function Main() {
 								</Text>
 
 								<Group gap={"xs"} justify="center">
-									{links.map(link => (
+									{links.map((link) => (
 										<Anchor
 											key={link.link}
 											href={link.link}
@@ -470,21 +470,21 @@ const sample = {
 	questions: [
 		"What does Drone Space do?",
 		"What kind of drones does Drone Space sell?",
-		"How long is the RPL training course?",
-	],
+		"How long is the RPL training course?"
+	]
 };
 
 const links = [
 	{
 		link: "https://www.anthropic.com/legal/consumer-terms",
-		label: "Terms of Service",
+		label: "Terms of Service"
 	},
 	{
 		link: "https://www.anthropic.com/legal/privacy",
-		label: "Privacy Policy",
+		label: "Privacy Policy"
 	},
 	{
 		link: "https://www.anthropic.com/legal/aup",
-		label: "Usage Policy",
-	},
+		label: "Usage Policy"
+	}
 ];

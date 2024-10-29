@@ -21,7 +21,7 @@ export default function Shows({ children }: { children: React.ReactNode }) {
 			<Modal
 				opened={opened}
 				onClose={close}
-				size={desktoplg ? "60%" : "95%"}
+				size={desktoplg ? 960 : "xl"}
 				centered
 				title={
 					<Text component="span" inherit fw={"bold"} c={"pri"}>
@@ -30,7 +30,7 @@ export default function Shows({ children }: { children: React.ReactNode }) {
 				}
 			>
 				<Grid>
-					<GridCol span={{ base: 12, sm: 6, lg: 7 }} visibleFrom="sm">
+					<GridCol span={{ base: 12, sm: 6 }} visibleFrom="sm">
 						<AspectRatio ratio={1920 / 1080} h={"100%"}>
 							<video
 								width="100%"
@@ -46,7 +46,7 @@ export default function Shows({ children }: { children: React.ReactNode }) {
 							</video>
 						</AspectRatio>
 					</GridCol>
-					<GridCol span={{ base: 12, sm: 6, lg: 5 }}>
+					<GridCol span={{ base: 12, sm: 6 }}>
 						<FormContact data={{ subject: "Drone Light Show Inquiry" }} inquiry="shows" />
 					</GridCol>
 				</Grid>

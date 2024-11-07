@@ -23,18 +23,24 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
+		{ title: "November Radiotelephony", image: images.posters.courses.yr2024.nov.radiotelephony.portrait },
+		{ title: "November Rating", image: images.posters.courses.yr2024.nov.rating.portrait },
+		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait },
 		{ title: "November Ad", image: images.posters.ads.image1 },
-		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait }
 	];
 
 	const data = [
+		{ title: "November Radiotelephony", image: images.posters.courses.yr2024.nov.radiotelephony.portrait },
+		{ title: "November Rating", image: images.posters.courses.yr2024.nov.rating.portrait },
+		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait },
 		{ title: "November Ad", image: images.posters.ads.image1 },
-		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait }
 	];
 
 	const slides = (mobile ? dataMobile : data).map((slide, index) => (
-		<CarouselSlide key={slide.title}>
-			<Image src={slide.image} alt={`Poster ${index + 1}`} loading="lazy" radius={"sm"} w={"auto"} h={480} />
+		<CarouselSlide key={slide.title} mah={"fit-content"}>
+			<Group h={"100%"}>
+				<Image src={slide.image} alt={`Poster ${index + 1}`} loading="lazy" radius={"sm"} />
+			</Group>
 		</CarouselSlide>
 	));
 
@@ -62,7 +68,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
 				leftSection={<IconSchool size={16} stroke={2} />}
 				c={"pri"}
 			>
-				Weekly Intakes
+				Courses & Intakes
 			</Button>
 		</>
 	);

@@ -31,9 +31,15 @@ jobs:
           NEXT_MAILCHIMP_AUDIENCE_ID_DST: ${{ secrets.NEXT_MAILCHIMP_AUDIENCE_ID_DST }}
           NEXT_MAILCHIMP_KEY_GENERAL: ${{ secrets.NEXT_MAILCHIMP_KEY_GENERAL }}
         run: |
+          echo "NEXT_RESEND_KEY: $NEXT_RESEND_KEY"
+          echo "NEXT_RESEND_KEY_GENERAL: $NEXT_RESEND_KEY_GENERAL"
+          echo "NEXT_RESEND_AUDIENCE_ID_GENERAL: $NEXT_RESEND_AUDIENCE_ID_GENERAL"
+          echo "NEXT_ANTHROPIC_KEY: $NEXT_ANTHROPIC_KEY"
+          echo "NEXT_MAILCHIMP_AUDIENCE_ID_DST: $NEXT_MAILCHIMP_AUDIENCE_ID_DST"
+          echo "NEXT_MAILCHIMP_KEY_GENERAL: $NEXT_MAILCHIMP_KEY_GENERAL"
           npm install
           npm run build
-        #   npm run export  # Exports static files to the `out` folder
+          npm run export
 
       # Step 4: Deploy files via FTP
       - name: Deploy via FTP

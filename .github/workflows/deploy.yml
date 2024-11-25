@@ -23,6 +23,13 @@ jobs:
 
       # Step 3: Install dependencies and build the project
       - name: Install dependencies and build
+        env:
+          NEXT_RESEND_KEY: ${{ secrets.NEXT_RESEND_KEY }}
+          NEXT_RESEND_KEY_GENERAL: ${{ secrets.NEXT_RESEND_KEY_GENERAL }}
+          NEXT_RESEND_AUDIENCE_ID_GENERAL: ${{ secrets.NEXT_RESEND_AUDIENCE_ID_GENERAL }}
+          NEXT_ANTHROPIC_KEY: ${{ secrets.NEXT_ANTHROPIC_KEY }}
+          NEXT_MAILCHIMP_AUDIENCE_ID_DST: ${{ secrets.NEXT_MAILCHIMP_AUDIENCE_ID_DST }}
+          NEXT_MAILCHIMP_KEY_GENERAL: ${{ secrets.NEXT_MAILCHIMP_KEY_GENERAL }}
         run: |
           npm install
           npm run build

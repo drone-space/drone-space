@@ -35,5 +35,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-        #   local-dir: ./out # Path to the exported static files
+          #   local-dir: ./out # Path to the exported static files
           server-dir: /public_html/drone-space # Target directory on the server

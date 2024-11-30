@@ -379,6 +379,7 @@ const images = {
 				oct: { landscape: null, portrait: "/images/posters/intakes/image-9.webp" },
 				oct2: { landscape: null, portrait: "/images/posters/intakes/image-10.webp" },
 				nov: { landscape: null, portrait: "/images/posters/intakes/image-11.webp" },
+				dec: { landscape: null, portrait: "/images/posters/intakes/image-12.webp" },
 			},
 		},
 		camps: {

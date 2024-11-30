@@ -23,16 +23,12 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
-		// { title: "November Radiotelephony", image: images.posters.courses.yr2024.nov.radiotelephony.portrait },
-		{ title: "November Rating", image: images.posters.courses.yr2024.nov.rating.portrait },
-		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait },
+		{ title: "December Intake", image: images.posters.intakes.yr2024.dec.portrait },
 		{ title: "November Ad", image: images.posters.ads.image1 },
 	];
 
 	const data = [
-		// { title: "November Radiotelephony", image: images.posters.courses.yr2024.nov.radiotelephony.portrait },
-		{ title: "November Rating", image: images.posters.courses.yr2024.nov.rating.portrait },
-		{ title: "November Intake", image: images.posters.intakes.yr2024.nov.portrait },
+		{ title: "December Intake", image: images.posters.intakes.yr2024.dec.portrait },
 		{ title: "November Ad", image: images.posters.ads.image1 },
 	];
 

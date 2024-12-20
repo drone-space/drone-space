@@ -85,10 +85,55 @@ export default function Home() {
 			loop
 			withControls={false}
 			classNames={{ slide: classes.slide, control: classes.control, indicator: classes.indicator }}
-			// plugins={[autoplay.current]}
+			plugins={[autoplay.current]}
 			// onMouseEnter={autoplay.current.stop}
 			// onMouseLeave={autoplay.current.reset}
 		>
+			<CarouselSlide key={"AI Conference"} style={{
+				background: `linear-gradient( rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%), url('${images.posters.conference.ai.poster1.landscape}')`,
+				backgroundSize: "cover",
+				backgroundRepeat: "no-repeat",
+				backgroundPosition: "center center",
+			}}>
+				<LayoutSection containerized="responsive">
+					<Stack align={"center"} justify="center" mih={520}>
+					<Stack className={classes.imageContainer} h={80}>
+						<Image
+							src={images.brand.conference.ai.landscape.dark}
+							alt={'AI Conference'}
+							loading="lazy"
+							h={80}
+							component={NextImage}
+							width={1920}
+							height={1080}
+						/>
+					</Stack>
+
+						<Text w={{ base: "100%", md: "75%" }} ta={"center"} fz={{base:'md',xs:'lg',sm:'xl'}} c={'yellow.4	'} fw={'bold'}>
+						Explore the Fusion of AI, Drones, and Data Analytics
+						</Text>
+
+						<Title order={1} className={classes.title} ta={"center"} fz={{base:'lg',xs:'xl',sm:24,md:32}}>
+						JW Marriott Hotel, Westlands <br/>
+						Tue 6th - Wed 7th May, 2025
+						</Title>
+
+						<Text w={{ base: "100%", md: "75%",lg:'60%' }} ta={'center'} fz={'sm'}>
+							Drone Space hosted Kenya&apos;s first public AI Conference on March 26th - 27th, 2024, and will hold the 2nd AI Conference Nairobi on May 6th - 7th, 2025, at the JW Marriott Hotel in Westlands
+							</Text>
+
+						<Group gap={"xs"}>
+							<Button component={'a'} href="https://aiconference.co.ke" target="_blank" color="white" variant="outline" radius={'xl'} size="xs" rightSection={<IconExternalLink size={16} stroke={1.5} />}>
+
+							<Text component="span" inherit>
+							<Text visibleFrom="xs" component="span" inherit>Visit Our AI Conference Website to </Text>Learn More
+							</Text>
+							</Button>
+						</Group>
+					</Stack>
+				</LayoutSection>
+			</CarouselSlide>
+
 			<CarouselSlide key={"Empowering Drone Professionals in Kenya"} pos={"relative"}>
 				<div className={classes.underlay}>
 					<AspectRatio ratio={1920 / 1080} h={"100%"}>
@@ -145,51 +190,6 @@ export default function Home() {
 						<Group gap={"xs"}>
 							{/* <ModalAdvertisment /> */}
 							{/* <ModalShows active={true} /> */}
-						</Group>
-					</Stack>
-				</LayoutSection>
-			</CarouselSlide>
-
-			<CarouselSlide key={"AI Conference"} style={{
-				background: `linear-gradient( rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%), url('${images.posters.conference.ai.poster1.landscape}')`,
-				backgroundSize: "cover",
-				backgroundRepeat: "no-repeat",
-				backgroundPosition: "center center",
-			}}>
-				<LayoutSection containerized="responsive">
-					<Stack align={"center"} justify="center" mih={520}>
-					<Stack className={classes.imageContainer} h={80}>
-						<Image
-							src={images.brand.conference.ai.landscape.dark}
-							alt={'AI Conference'}
-							loading="lazy"
-							h={80}
-							component={NextImage}
-							width={1920}
-							height={1080}
-						/>
-					</Stack>
-
-						<Text w={{ base: "100%", md: "75%" }} ta={"center"} fz={{base:'md',xs:'lg',sm:'xl'}} c={'yellow.4	'} fw={'bold'}>
-						Explore the Fusion of AI, Drones, and Data Analytics
-						</Text>
-
-						<Title order={1} className={classes.title} ta={"center"} fz={{base:'lg',xs:'xl',sm:24,md:32}}>
-						JW Marriott Hotel, Westlands <br/>
-						Tue 6th - Wed 7th May, 2025
-						</Title>
-
-						<Text w={{ base: "100%", md: "75%",lg:'60%' }} ta={'center'} fz={'sm'}>
-							Drone Space hosted Kenya&apos;s first public AI Conference on March 26th - 27th, 2024, and will hold the 2nd AI Conference Nairobi on May 6th - 7th, 2025, at the JW Marriott Hotel in Westlands
-							</Text>
-
-						<Group gap={"xs"}>
-							<Button component={'a'} href="https://aiconference.co.ke" target="_blank" color="white" variant="outline" radius={'xl'} size="xs" rightSection={<IconExternalLink size={16} stroke={1.5} />}>
-
-							<Text component="span" inherit>
-							<Text visibleFrom="xs" component="span" inherit>Visit Our AI Conference Website to </Text>Learn More
-							</Text>
-							</Button>
 						</Group>
 					</Stack>
 				</LayoutSection>

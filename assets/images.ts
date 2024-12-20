@@ -23,6 +23,14 @@ const images = {
 				brandWhite: "/images/brand/logo/landscape/image-3.webp",
 			},
 		},
+
+		conference:{
+			ai:{
+				landscape:{
+					dark:'/images/brand/conference/ai/logo/landscape-dark.webp'
+				}
+			}
+		}
 	},
 
 	carousel: {
@@ -362,6 +370,15 @@ const images = {
 	},
 
 	posters: {
+		conference: {
+			ai: {
+				poster1:{
+					landscape: '/images/posters/conference/ai/poster-1.jpg',
+					portrait: null,
+				}
+			},
+		},
+
 		ads: {
 			image1: "/images/posters/ad/image-1.webp",
 		},

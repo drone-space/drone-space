@@ -1,11 +1,11 @@
 const stats = [
 	{
-		stat: "2018",
-		title: "Founded",
+		stat: "10+",
+		title: "Strategic Partners",
 	},
 	{
-		stat: "10+",
-		title: "Instructors",
+		stat: "20+",
+		title: "Instructor Ratings",
 	},
 	{
 		stat: "5+",
@@ -13,11 +13,11 @@ const stats = [
 	},
 	{
 		stat: "2",
-		title: "Expos Hosted",
+		title: "Major Industry Events",
 	},
 	{
-		stat: "210+",
-		title: "Trained Pilots",
+		stat: "250+",
+		title: "RPL Certifications",
 	},
 ];
 

@@ -383,6 +383,10 @@ const images = {
 			image1: "/images/posters/ad/image-1.webp",
 		},
 
+		holidays: {
+			image1: "/images/posters/holidays/image-1.webp",
+		},
+
 		intakes: {
 			yr2024: {
 				jan: { landscape: null, portrait: "/images/posters/intakes/image-1.jpg" },
@@ -397,6 +401,9 @@ const images = {
 				oct2: { landscape: null, portrait: "/images/posters/intakes/image-10.webp" },
 				nov: { landscape: null, portrait: "/images/posters/intakes/image-11.webp" },
 				dec: { landscape: null, portrait: "/images/posters/intakes/image-12.webp" },
+			},
+			yr2025: {
+				jan: { landscape: null, portrait: "/images/posters/intakes/image-13.webp" },
 			},
 		},
 		camps: {

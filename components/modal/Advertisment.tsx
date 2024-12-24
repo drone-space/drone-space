@@ -23,16 +23,22 @@ export default function Advertisment({ active }: { active?: boolean }) {
 	const autoplay = useRef(Autoplay({ delay: 5000 }));
 
 	const dataMobile = [
-		{ title: "December Intake", image: images.posters.intakes.yr2024.dec.portrait },
-		{ title: "November Ad", image: images.posters.ads.image1 },
+		{ title: "Christmas Ad", image: images.posters.holidays.image1 },
+		{ title: "January Intake", image: images.posters.intakes.yr2025.jan.portrait },
 	];
 
 	const data = [
-		{ title: "December Intake", image: images.posters.intakes.yr2024.dec.portrait },
-		{ title: "November Ad", image: images.posters.ads.image1 },
+		{ title: "Christmas Ad", image: images.posters.holidays.image1 },
+		{ title: "January Intake", image: images.posters.intakes.yr2025.jan.portrait },
 	];
 
-	const slides = (mobile ? dataMobile : data).map((slide, index) => (
+	const now = new Date();
+	const cutoffDate = new Date(2025, 0, 1); // January 1, 2025, 00:00
+	const render = now < cutoffDate;
+
+	const slideData = mobile ? dataMobile : data
+
+	const slides = slideData.map((slide, index) => slideData.indexOf(slide) != (render ? undefined : 0) && (
 		<CarouselSlide key={slide.title} mah={"fit-content"}>
 			<Group h={"100%"}>
 				<Image src={slide.image} alt={`Poster ${index + 1}`} loading="lazy" radius={"sm"} />

@@ -89,7 +89,7 @@ export default function Home() {
 			// onMouseEnter={autoplay.current.stop}
 			// onMouseLeave={autoplay.current.reset}
 		>
-			{/* <CarouselSlide key={"AI Conference"} style={{
+			<CarouselSlide key={"AI Conference"} style={{
 				background: `linear-gradient( rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%), url('${images.posters.conference.ai.poster1.landscape}')`,
 				backgroundSize: "cover",
 				backgroundRepeat: "no-repeat",
@@ -132,7 +132,7 @@ export default function Home() {
 						</Group>
 					</Stack>
 				</LayoutSection>
-			</CarouselSlide> */}
+			</CarouselSlide>
 
 			<CarouselSlide key={"Empowering Drone Professionals in Kenya"} pos={"relative"}>
 				<div className={classes.underlay}>
@@ -203,7 +203,7 @@ export default function Home() {
 const data = [
 	{
 		image: images.gallery.graduation.yr2022.image8,
-		title: "Over 200 Pilots Trained",
+		title: "Over 250 RPL Certifications",
 		desc: "The Remote Pilot Licence (RPL) Training is the initial license required for a delegate/student to start their professional drone pilot career. Join us today and experience the power of flight.",
 	},
 	{

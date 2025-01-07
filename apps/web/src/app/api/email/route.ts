@@ -4,8 +4,11 @@ import { EmailInquiry } from '@/types/email';
 
 export async function POST(request: NextRequest) {
   try {
-    const email: EmailInquiry & { message: string; phone: string } =
-      await request.json();
+    const email: EmailInquiry & {
+      message: string;
+      phone: string;
+      inquiry?: string;
+    } = await request.json();
 
     return NextResponse.json(
       {
@@ -15,6 +18,7 @@ export async function POST(request: NextRequest) {
           subject: email.subject,
           message: email.message,
           phone: email.phone,
+          inquiry: email.inquiry,
         }),
         message: 'Email sent successfully',
       },

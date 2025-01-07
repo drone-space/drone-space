@@ -10,6 +10,7 @@ export const sendEmailMarketingInquiry = async (params: {
   phone: string;
   subject: TypeEmailInquiry['subject'];
   message: string;
+  inquiry?: string;
 }) => {
   const { data, error } = await resend.emails.send({
     from: `${params.from.name} <${
@@ -17,7 +18,11 @@ export const sendEmailMarketingInquiry = async (params: {
         ? process.env.NEXT_PUBLIC_EMAIL_INFO || ''
         : process.env.NEXT_RESEND_EMAIL || ''
     }>`,
-    to: [process.env.NEXT_PUBLIC_EMAIL_INFO || ''],
+    to: [
+      params.inquiry == 'technical'
+        ? process.env.NEXT_PUBLIC_EMAIL_TECHNICAL || ''
+        : process.env.NEXT_PUBLIC_EMAIL_INFO || '',
+    ],
     subject: params.subject,
     html: await render(
       EmailInquiry({

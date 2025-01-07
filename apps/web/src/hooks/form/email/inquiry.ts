@@ -61,6 +61,7 @@ export const useFormEmailInquiry = (
       message: form.values.message.trim(),
       company: form.values.company.trim(),
       newsletter: form.values.newsletter,
+      inquiry: options?.inquiry,
     };
   };
 

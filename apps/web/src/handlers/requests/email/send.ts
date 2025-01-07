@@ -11,6 +11,7 @@ export const emailSend = async (
     message: string;
     company: string;
     newsletter: boolean;
+    inquiry?: string;
   }
 ) => {
   try {

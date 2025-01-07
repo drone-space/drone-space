@@ -1,0 +1,31 @@
+import React from 'react';
+
+import { Metadata } from 'next';
+
+import LayoutBody from '@/components/layout/body';
+import { capitalizeWords, linkify } from '@repo/utils/formatters';
+import products from '@/data/products';
+import appData from '@/data/app';
+
+export interface typeParams {
+  params: { category: string; droneId: string };
+}
+
+export const generateMetadata = ({ params }: typeParams): Metadata => {
+  const product = products.find((p) => linkify(p.category) == params.category);
+
+  return {
+    title: {
+      default: capitalizeWords(product?.category || 'Category'),
+      template: `%s - ${capitalizeWords(product?.category || 'Category')} Drones - Drones - Drone Shop - ${appData.name.company}`,
+    },
+  };
+};
+
+export default function Category({
+  children, // will be a page or nested layout
+}: {
+  children: React.ReactNode;
+}) {
+  return <LayoutBody>{children}</LayoutBody>;
+}

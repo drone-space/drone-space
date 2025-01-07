@@ -1,0 +1,48 @@
+.control {
+  transition: 0.25s all ease;
+  border-radius: 0;
+  background-color: light-dark(
+    var(--mantine-color-pri-9),
+    var(--mantine-color-pri-9)
+  );
+  color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
+
+  @include hover {
+    background-color: light-dark(
+      var(--mantine-color-sec-3),
+      var(--mantine-color-sec-3)
+    );
+    color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+
+    .label {
+      color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+    }
+
+    .icon {
+      color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+    }
+  }
+}
+
+.label {
+  transition: 0.25s all ease;
+  font-weight: 500;
+}
+
+.icon {
+  transition: 0.25s all ease;
+}
+
+.item {
+  border-radius: var(--mantine-radius-sm);
+  border-bottom: 0px solid inherit;
+  box-shadow: var(--mantine-shadow-xs);
+  border: 1px solid
+    light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+  overflow: hidden;
+}
+
+.content {
+  padding-top: var(--mantine-spacing-md);
+  // background-color: light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+}

@@ -1,0 +1,26 @@
+.link {
+  padding: var(--mantine-spacing-md) 0;
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-text) !important;
+  transition: 0.25s color ease;
+  font-weight: 500;
+
+  @include hover {
+    color: var(--mantine-color-pri-9) !important;
+  }
+}
+
+.linkAbsolute {
+  padding: var(--mantine-spacing-md) 0;
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-white) !important;
+  transition: 0.25s color ease;
+
+  @include hover {
+    color: var(--mantine-color-pri-9) !important;
+  }
+}
+
+.linkActive {
+  color: var(--mantine-color-pri-9) !important;
+}

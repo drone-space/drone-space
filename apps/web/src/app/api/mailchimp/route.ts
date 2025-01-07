@@ -4,9 +4,11 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     // Add CORS headers
-    const origin = request.headers.get('origin') || '*';
+
+    // const origin = request.headers.get('origin') || '*';
+
     const headers = {
-      'Access-Control-Allow-Origin': origin, // Allow requests from any origin
+      // 'Access-Control-Allow-Origin': origin, // Allow requests from any origin
       'Access-Control-Allow-Methods': 'POST', // Specify allowed methods
       'Access-Control-Allow-Headers': 'Content-Type', // Specify allowed headers
     };

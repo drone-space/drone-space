@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
     );
     response.headers.set(
       'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+      'Content-Type, Authorization, X-Requested-With'
     );
 
     // Handle preflight

@@ -7,6 +7,8 @@ export async function middleware(request: NextRequest) {
   // Get the origin from the request
   const origin = request.headers.get('origin') || '';
 
+  console.log('origin', origin);
+
   // Allow requests from your Vercel deployment URLs
   if (origin.includes('vercel.app')) {
     response.headers.set('Access-Control-Allow-Credentials', 'true');

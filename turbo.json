@@ -50,6 +50,9 @@
     "types#build": {
       "dependsOn": ["enums#build"]
     },
+    "schemas#build": {
+      "dependsOn": ["types#build"]
+    },
     "lint": {
       "dependsOn": ["^lint"],
       "outputs": []

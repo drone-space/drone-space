@@ -3,6 +3,24 @@ import { updateSession } from './libraries/supabase/middleware';
 
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next({ request });
+
+  // Get the origin from the request
+  const origin = request.headers.get('origin') || '';
+
+  // Allow requests from your Vercel deployment URLs
+  if (origin.includes('vercel.app')) {
+    response.headers.set('Access-Control-Allow-Credentials', 'true');
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set(
+      'Access-Control-Allow-Methods',
+      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
+    );
+    response.headers.set(
+      'Access-Control-Allow-Headers',
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
+  }
+
   return await updateSession(request, response);
 }
 

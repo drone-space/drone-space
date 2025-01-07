@@ -41,7 +41,7 @@ import { COOKIE_NAME } from '@/data/constants';
 
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
-import AffixiCookies from '@/components/common/affixi/cookies';
+// import AffixiCookies from '@/components/common/affixi/cookies';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -96,7 +96,7 @@ export default async function RootLayout({
             <Notifications limit={3} />
 
             <AffixOffline />
-            <AffixiCookies />
+            {/* <AffixiCookies /> */}
           </MantineProvider>
         </ProviderStore>
 

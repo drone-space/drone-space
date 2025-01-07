@@ -38,7 +38,6 @@ import BlogContent from '@/components/partial/blog-content';
 
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
-  console.log('postId', postId);
 
   if (!postId) redirect('/not-found');
 

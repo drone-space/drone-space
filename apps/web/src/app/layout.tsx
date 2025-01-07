@@ -36,11 +36,11 @@ import { linkify } from '@repo/utils/formatters';
 
 import { createClient } from '@/libraries/supabase/server';
 
-import AffixOffline from '@/components/common/affixi/offline';
 import { COOKIE_NAME } from '@/data/constants';
 
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
+// import AffixOffline from '@/components/common/affixi/offline';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
@@ -95,7 +95,7 @@ export default async function RootLayout({
 
             <Notifications limit={3} />
 
-            <AffixOffline />
+            {/* <AffixOffline /> */}
             {/* <AffixiCookies /> */}
           </MantineProvider>
         </ProviderStore>

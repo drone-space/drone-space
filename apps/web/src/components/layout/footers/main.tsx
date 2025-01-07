@@ -142,13 +142,23 @@ export default function Main() {
           </Text>
 
           <Group gap={'xs'}>
-            <Anchor inherit href="/privacy-policy" className={classes.link}>
+            <Anchor
+              component={Link}
+              inherit
+              href="/privacy-policy"
+              className={classes.link}
+            >
               Terms and Conditions
             </Anchor>
 
             <IconCircleFilled size={4} />
 
-            <Anchor inherit href="/terms-conditions" className={classes.link}>
+            <Anchor
+              component={Link}
+              inherit
+              href="/terms-conditions"
+              className={classes.link}
+            >
               Privacy Policy
             </Anchor>
           </Group>

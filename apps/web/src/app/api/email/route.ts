@@ -7,8 +7,6 @@ export async function POST(request: NextRequest) {
     const email: EmailInquiry & { message: string; phone: string } =
       await request.json();
 
-    console.log('email.message', email.message);
-
     return NextResponse.json(
       {
         email: await sendEmailMarketingInquiry({

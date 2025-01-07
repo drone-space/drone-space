@@ -11,4 +11,9 @@
 .input {
   background-color: transparent !important;
   padding: 0px !important;
+  padding-right: 8px !important;
+
+  &:focus {
+    border-color: transparent !important;
+  }
 }

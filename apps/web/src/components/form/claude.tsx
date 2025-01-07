@@ -44,7 +44,7 @@ export default function Claude({
           placeholder={`Ask Claude about ${appData.name.company}`}
           autosize
           minRows={1}
-          maxRows={5}
+          maxRows={4}
           {...form.getInputProps('content')}
           onKeyDown={getHotkeyHandler([
             ['mod+Enter', form.onSubmit(handleSubmit)],

@@ -67,9 +67,10 @@ export default function Contact({
               span={{ base: 12, xs: 6, md: options?.modal ? 12 : undefined }}
             >
               <TextInput
+                required={options?.inquiry == 'callback'}
                 label={options?.modal ? undefined : 'Phone'}
                 aria-label={options?.modal ? 'Phone' : undefined}
-                placeholder="Your Phone"
+                placeholder={`Your Phone${options?.modal && options?.inquiry == 'callback' ? ' *' : ''}`}
                 {...form.getInputProps('phone')}
               />
             </GridCol>

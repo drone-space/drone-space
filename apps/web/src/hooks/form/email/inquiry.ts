@@ -42,7 +42,7 @@ export const useFormEmailInquiry = (
           ? undefined
           : hasLength({ min: 3, max: 2048 }, 'Between 3 and 2048 characters'),
       phone:
-        options?.inquiry == 'callback'
+        options?.inquiry != 'callback'
           ? undefined
           : hasLength({ min: 7, max: 15 }, 'Between 7 and 15 characters'),
       company: hasLength({ min: 0, max: 24 }, 'Between 0 and 24 characters'),

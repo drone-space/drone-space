@@ -4,13 +4,8 @@ import { updateSession } from './libraries/supabase/middleware';
 export async function middleware(request: NextRequest) {
   const response = NextResponse.next({ request });
 
-  // // Get the origin from the request
-  // const origin = request.url || '';
-
   // Get the origin from the request headers
   const origin = request.headers.get('origin') || '';
-
-  console.log('origin', origin);
 
   // Allow requests from your Vercel deployment URLs
   if (origin.includes('vercel.app')) {

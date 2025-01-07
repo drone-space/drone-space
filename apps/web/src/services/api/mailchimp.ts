@@ -8,7 +8,7 @@ export const addSubscriber = async (params: Subscribe) => {
       body: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // Allows requests from any origin
+        // 'Access-Control-Allow-Origin': '*', // Allows requests from any origin
         Accept: 'application/json',
       },
     });

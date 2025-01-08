@@ -7,18 +7,17 @@ export async function middleware(request: NextRequest) {
   // Get the origin from the request headers
   const origin = request.headers.get('origin') || '';
 
-  if (origin && origin.includes('vercel.app')) {
+  if (origin.includes('vercel.app')) {
     // Set CORS headers
     response.headers.set('Access-Control-Allow-Credentials', 'true');
     response.headers.set('Access-Control-Allow-Origin', origin);
-    // Optionally, specify allowed methods and headers
     response.headers.set(
       'Access-Control-Allow-Methods',
-      'GET, POST, PUT, DELETE'
+      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
     );
     response.headers.set(
       'Access-Control-Allow-Headers',
-      'Content-Type, Authorization, Access-Control-Allow-Origin'
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
     );
   }
 

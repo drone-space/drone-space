@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
   if (origin && origin.includes('vercel.app')) {
     // Set CORS headers
     response.headers.set('Access-Control-Allow-Credentials', 'true');
-    response.headers.set('Access-Control-Allow-Origin', 'https://*.vercel.app');
+    response.headers.set('Access-Control-Allow-Origin', '*');
     // Optionally, specify allowed methods and headers
     response.headers.set(
       'Access-Control-Allow-Methods',

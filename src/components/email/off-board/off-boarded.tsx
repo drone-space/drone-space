@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Hr, Link, Section, Text } from '@react-email/components';
 import appData from '@/data/app';
-import { dimmedText, Email as LayoutEmail, text } from '../layout';
+import { colors, dimmedText, Email as LayoutEmail, text } from '../layout';
 
 export const Offboarded = (props: { userName: string }) => {
   const message = `${appData.name.app} is sorry to see you go.`;
@@ -22,7 +22,7 @@ export const Offboarded = (props: { userName: string }) => {
           <Link
             href={`mailto:${appData.emails.info}`}
             style={{
-              color: 'gray',
+              color: colors.pri,
               textDecorationLine: 'underline',
             }}
           >
@@ -37,9 +37,9 @@ export const Offboarded = (props: { userName: string }) => {
       </Section>
 
       <Section style={{ marginTop: '2rem' }}>
-        <Text style={dimmedText}>
+        <Text style={{ ...dimmedText, textAlign: 'center' }}>
           {appData.name.app} will never email you and ask you to disclose any
-          sensitive personal information.
+          personal information.
         </Text>
       </Section>
     </LayoutEmail>

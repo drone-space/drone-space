@@ -5,7 +5,6 @@ import React from 'react';
 import { Box, Button, Grid, GridCol, TextInput } from '@mantine/core';
 import TooltipInputInfo from '../common/tooltips/input/info';
 import { useFormNewsletter } from '@/hooks/form/newsletter';
-
 import classes from './newsletter.module.scss';
 
 export default function Newsletter() {

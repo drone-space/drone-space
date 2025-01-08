@@ -18,7 +18,7 @@ import CardBlogReplyComment from './reply/comment';
 import ModalReply from '@/components/common/modals/reply';
 import { IconCircleFilled } from '@tabler/icons-react';
 import { useFetchRepliesComment } from '@/hooks/fetch/replies/comment';
-import { PostComment } from '@/types/static';
+import { PostComment } from '@/types/static/blog';
 import { initialize } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
 
@@ -65,7 +65,7 @@ export default function Comment({ props }: { props: PostComment }) {
                 size="compact-sm"
                 px={0}
                 variant="transparent"
-                color="pri.6"
+                color="pri.9"
               >
                 Reply
               </Button>

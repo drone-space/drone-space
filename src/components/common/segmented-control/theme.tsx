@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-
 import { SegmentedControl, Group } from '@mantine/core';
-
 import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import { useColorSchemeHandler } from '@/hooks/color-scheme';

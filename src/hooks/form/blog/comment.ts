@@ -1,9 +1,9 @@
 import { commentCreate } from '@/handlers/requests/database/comment';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { Variant } from '@/enums/notification';
+import { showNotification } from '@/utilities/notifications';
 import { capitalizeWords } from '@/utilities/formatters/string';
 import { email } from '@/utilities/validators/email';
-import { showNotification } from '@/utilities/notifications';
 import { hasLength, useForm } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';
 import { useState } from 'react';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Hr, Link, Section, Text } from '@react-email/components';
 import appData from '@/data/app';
-import { dimmedText, Email as LayoutEmail, text } from '../layout';
+import { colors, dimmedText, Email as LayoutEmail, text } from '../layout';
 
 export const Welcome = (props: { userName: string }) => {
   const message = `Thanks for creating an account with ${appData.name.app}.`;
@@ -22,7 +22,7 @@ export const Welcome = (props: { userName: string }) => {
           <Link
             href={`mailto:${appData.emails.info}`}
             style={{
-              color: 'gray',
+              color: colors.pri,
               textDecorationLine: 'underline',
             }}
           >
@@ -37,7 +37,7 @@ export const Welcome = (props: { userName: string }) => {
       </Section>
 
       <Section style={{ marginTop: '2rem' }}>
-        <Text style={dimmedText}>
+        <Text style={{ ...dimmedText, textAlign: 'center' }}>
           If you didn&apos;t create an account with {appData.name.app}, you can
           safely ignore this email.
         </Text>

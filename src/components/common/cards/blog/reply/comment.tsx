@@ -18,7 +18,7 @@ import CardBlodReplyReply from './reply';
 import ModalReply from '@/components/common/modals/reply';
 import { useFetchRepliesReply } from '@/hooks/fetch/replies/reply';
 import { IconCircleFilled } from '@tabler/icons-react';
-import { PostCommentReply } from '@/types/static';
+import { PostCommentReply } from '@/types/static/blog';
 import { initialize } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
 
@@ -64,7 +64,7 @@ export default function Comment({ props }: { props: PostCommentReply }) {
 
           <Group fz={'sm'} gap={4}>
             <ModalReply props={{ name, replyId: props.id }}>
-              <Button size="compact-sm" variant="transparent" color="pri.6">
+              <Button size="compact-sm" variant="transparent" color="pri.9">
                 Reply
               </Button>
             </ModalReply>

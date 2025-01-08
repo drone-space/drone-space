@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import { Platform } from '@/enums/social';
 import {
   ActionIconProps,
@@ -22,7 +21,6 @@ import {
 import { usePathname } from 'next/navigation';
 import { BASE_URL, ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import { capitalizeWord } from '@/utilities/formatters/string';
-
 import classes from './share.module.scss';
 
 export default function Share({
@@ -39,7 +37,7 @@ export default function Share({
       classNames={classes}
     >
       <MenuTarget>
-        <Group gap={6} c={'pri.6'} className={classes.target}>
+        <Group gap={6} c={'pri.9'} className={classes.target}>
           <IconShare size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
           <Text component="span" inherit>
             Share

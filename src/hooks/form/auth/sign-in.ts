@@ -1,10 +1,10 @@
 'use client';
 
+import { email } from '@/utilities/validators/email';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { showNotification } from '@/utilities/notifications';
 import { Variant } from '@/enums/notification';
-import { email } from '@/utilities/validators/email';
 import { useNetwork } from '@mantine/hooks';
 import { signIn } from '@/handlers/events/auth';
 import { AuthAction } from '@/types/auth';

@@ -14,6 +14,8 @@ import {
 } from '@react-email/components';
 import appData from '@/data/app';
 
+const baseUrl = `https://xnaswiiqkdfkeirriwxj.supabase.co/storage/v1/object/public/images`;
+
 export const Email = ({
   props,
   options = { withHeader: true, withFooter: true },
@@ -34,19 +36,19 @@ export const Email = ({
           <Container style={content}>
             {options.withHeader && (
               <Section style={{ textAlign: 'center' }}>
-                <a href="https://example.com">
+                <a href="https://dronespace.co.ke">
                   <img
-                    src={
-                      'https://spewyluxhudgxpuhjjam.supabase.co/storage/v1/object/public/avatars/brand/icon/icon-light.png'
-                    }
-                    width={40}
+                    src={`${baseUrl}/brand/logo/landscape/default.png`}
+                    width={180}
                     height={'auto'}
                     alt={appData.name.company}
                   />
                 </a>
 
                 {props.title && (
-                  <Heading style={{ marginTop: '2rem' }}>{props.title}</Heading>
+                  <Heading style={{ marginTop: '2rem', color: colors.pri }}>
+                    {props.title}
+                  </Heading>
                 )}
               </Section>
             )}
@@ -58,12 +60,12 @@ export const Email = ({
             {options.withFooter && (
               <Section>
                 <Container>
-                  <Text style={dimmedText}>
+                  <Text style={{ ...dimmedText, textAlign: 'center' }}>
                     Copyright © {new Date().getFullYear()},{' '}
                     <Link
-                      href="https://example.com"
+                      href="https://dronespace.co.ke"
                       style={{
-                        color: 'black',
+                        color: colors.pri,
                         textDecorationLine: 'underline',
                       }}
                     >
@@ -100,4 +102,9 @@ export const link = {
   margin: 0,
   fontWeight: 'bold',
   color: 'black',
+};
+
+export const colors = {
+  pri: '#13259a',
+  priLight: '#edeffd',
 };

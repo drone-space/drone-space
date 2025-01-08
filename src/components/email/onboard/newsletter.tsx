@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Hr, Link, Section, Text } from '@react-email/components';
 import appData from '@/data/app';
-import { dimmedText, Email as LayoutEmail, text } from '../layout';
+import { colors, dimmedText, Email as LayoutEmail, text } from '../layout';
 
 export const Newsletter = () => {
   const message = `You have successfully subscribed to the ${appData.name.app} newsletter. You will be recieving occational marketing and news emails.`;
@@ -25,7 +25,7 @@ export const Newsletter = () => {
           <Link
             href={`mailto:${appData.emails.info}`}
             style={{
-              color: 'gray',
+              color: colors.pri,
               textDecorationLine: 'underline',
             }}
           >
@@ -40,9 +40,9 @@ export const Newsletter = () => {
       </Section>
 
       <Section style={{ marginTop: '2rem' }}>
-        <Text style={dimmedText}>
+        <Text style={{ ...dimmedText, textAlign: 'center' }}>
           {appData.name.app} will never email you and ask you to disclose any
-          sensitive personal information.
+          personal information.
         </Text>
       </Section>
     </LayoutEmail>

@@ -6,7 +6,13 @@ import { contactCreate } from './contact';
 const baseRequestUrl = `${API_URL}/email`;
 
 export const emailSend = async (
-  options: Omit<EmailInquiry, 'to'> & { phone: string; message: string }
+  options: Omit<EmailInquiry, 'to'> & {
+    phone: string;
+    message: string;
+    company: string;
+    newsletter: boolean;
+    inquiry?: string;
+  }
 ) => {
   try {
     const request = new Request(baseRequestUrl, {
@@ -17,7 +23,12 @@ export const emailSend = async (
 
     const response = await fetch(request);
 
-    await contactCreate({ params: options.from, options: { notify: false } }); // add contact to audience
+    if (options.newsletter) {
+      await contactCreate({
+        params: { ...options.from, company: options.company },
+        options: { notify: false },
+      }); // add contact to audience
+    }
 
     return response;
   } catch (error) {

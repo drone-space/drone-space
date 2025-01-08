@@ -2,7 +2,6 @@
 
 import { Modal, Button, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-
 import LayoutModal from '@/components/layout/modal';
 import { Alert } from '@/enums/notification';
 

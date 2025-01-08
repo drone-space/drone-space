@@ -9,7 +9,7 @@ import {
   PasswordInput,
   Textarea,
   TextInput,
-  virtualColor,
+  Title,
 } from '@mantine/core';
 
 import cx from 'clsx';
@@ -23,50 +23,45 @@ const appTheme = createTheme({
   activeClassName: 'active',
 
   colors: {
-    priWhite: [
-      '#000000', // Black
-      '#1a1a1a',
-      '#333333',
-      '#666666',
-      '#808080', // Medium Gray
-      '#999999',
-      '#b3b3b3',
-      '#cccccc',
-      '#f2f2f2',
-      '#ffffff', // White
+    pri: [
+      '#edeffd',
+      '#d6daf5',
+      '#aab1ec',
+      '#7a86e6',
+      '#5362df',
+      '#3c4adc',
+      '#313fdb',
+      '#2431c3',
+      '#1e2caf',
+      '#13259a', // src
     ],
-
-    priBlack: [
-      '#ffffff', // White
-      '#f2f2f2',
-      '#cccccc',
-      '#b3b3b3',
-      '#999999', // Medium Gray
-      '#808080',
-      '#666666',
-      '#333333',
-      '#1a1a1a',
-      '#000000', // Black
+    sec: [
+      '#e1fdfd',
+      '#d3f6f4',
+      '#aeeae6',
+      '#85dcd7', // src
+      '#63d2cb',
+      '#4ccbc4',
+      '#3bc8c0',
+      '#28b1a9',
+      '#149d97',
+      '#008982',
     ],
-
-    pri: virtualColor({
-      name: 'pri',
-      light: 'blue',
-      dark: 'yellow',
-    }),
   },
 
   primaryColor: 'pri',
 
   defaultRadius: 'sm',
 
-  primaryShade: { light: 6, dark: 6 },
+  primaryShade: { light: 9, dark: 9 },
 
   defaultGradient: {
-    from: 'red',
-    to: 'blue',
+    from: 'pri',
+    to: 'sec',
     deg: 45,
   },
+
+  headings: { fontFamily: 'Bahnschrift, sans-serif' },
 
   cursorType: 'pointer',
 
@@ -103,6 +98,9 @@ const appTheme = createTheme({
 
     PasswordInput: PasswordInput.extend({
       defaultProps: { variant: 'filled' },
+    }),
+    Title: Title.extend({
+      defaultProps: { c: 'pri', fw: 'bold' },
     }),
 
     Notification: Notification.extend({ classNames: classesNotification }),

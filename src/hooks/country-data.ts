@@ -3,8 +3,8 @@ import { fetchCountryData } from '@/services/api/geo';
 import { CountryData, CountryDataOptions } from '@/types/bodies/response';
 import { getCookie, setCookie } from '@/utilities/helpers/cookie';
 import {
-  getFromLocalStorage,
   saveToLocalStorage,
+  getFromLocalStorage,
 } from '@/utilities/helpers/storage';
 import { useThrottledCallback } from '@mantine/hooks';
 import { useEffect, useState } from 'react';

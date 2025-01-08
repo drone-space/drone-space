@@ -6,9 +6,9 @@ import {
   Anchor,
   Box,
   Button,
+  Checkbox,
   Grid,
   GridCol,
-  Select,
   SimpleGrid,
   Text,
   TextInput,
@@ -18,19 +18,32 @@ import { useFormEmailInquiry } from '@/hooks/form/email/inquiry';
 import TooltipInputInfo from '../common/tooltips/input/info';
 import Link from 'next/link';
 
+export type Inquiry =
+  | 'training'
+  | 'callback'
+  | 'shop'
+  | 'technical'
+  | 'general'
+  | 'shows'
+  | 'brochure';
+
 export default function Contact({
   props,
   options,
 }: {
   props?: { subject?: string; message?: string };
-  options?: { modal?: boolean; close?: () => void };
+  options?: {
+    modal?: boolean;
+    close?: () => void;
+    inquiry?: Inquiry;
+  };
 }) {
   const { form, submitted, handleSubmit } = useFormEmailInquiry(
     {
       subject: props?.subject,
       message: props?.message,
     },
-    { close: options?.close }
+    { close: options?.close, inquiry: options?.inquiry }
   );
 
   return (
@@ -54,9 +67,10 @@ export default function Contact({
               span={{ base: 12, xs: 6, md: options?.modal ? 12 : undefined }}
             >
               <TextInput
+                required={options?.inquiry == 'callback'}
                 label={options?.modal ? undefined : 'Phone'}
                 aria-label={options?.modal ? 'Phone' : undefined}
-                placeholder="Your Phone"
+                placeholder={`Your Phone${options?.modal && options?.inquiry == 'callback' ? ' *' : ''}`}
                 {...form.getInputProps('phone')}
               />
             </GridCol>
@@ -71,52 +85,82 @@ export default function Contact({
                 rightSection={<TooltipInputInfo />}
               />
             </GridCol>
+
+            {/* <GridCol span={{ base: 12, xs: 6, sm: 12, md: 6 }}>
+              <TextInput
+                required={options?.inquiry == 'callback'}
+                // label={"Phone"}
+                placeholder={`Phone${options?.inquiry == 'callback' ? ' *' : ''}`}
+                {...form.getInputProps('phone')}
+              />
+            </GridCol> */}
+
+            <GridCol span={{ base: 12, xs: 6, sm: 12 }}>
+              <TextInput
+                label={options?.modal ? undefined : 'Company'}
+                aria-label={options?.modal ? 'Company' : undefined}
+                placeholder="Company"
+                {...form.getInputProps('company')}
+              />
+            </GridCol>
           </Grid>
         </GridCol>
 
         <GridCol span={{ base: 12, md: options?.modal ? 6 : undefined }}>
           <Grid>
+            {options?.inquiry != 'callback' && (
+              <GridCol span={12}>
+                <TextInput
+                  required
+                  label={options?.modal ? undefined : 'Inquiry'}
+                  aria-label={options?.modal ? 'Inquiry' : undefined}
+                  placeholder={
+                    options?.modal
+                      ? 'Inquiry *'
+                      : 'What are you inquiring about?'
+                  }
+                  {...form.getInputProps('subject')}
+                />
+              </GridCol>
+            )}
+
+            {options?.inquiry != 'callback' && (
+              <GridCol span={12}>
+                <Textarea
+                  required
+                  label={options?.modal ? undefined : 'Message'}
+                  aria-label={options?.modal ? 'Message' : undefined}
+                  placeholder={
+                    options?.modal ? 'Message *' : 'Write your message here...'
+                  }
+                  autosize
+                  minRows={2}
+                  styles={{ input: { height: '100%' } }}
+                  maxRows={15}
+                  resize="vertical"
+                  {...form.getInputProps('message')}
+                />
+              </GridCol>
+            )}
+
             <GridCol span={12}>
-              <Select
-                required
-                label={options?.modal ? undefined : 'Inquiry'}
-                aria-label={options?.modal ? 'Inquiry' : undefined}
-                placeholder={
-                  options?.modal ? 'Inquiry *' : 'What are you inquiring about?'
-                }
-                {...form.getInputProps('subject')}
-                data={[
-                  { label: 'What are you inquiring about?', value: '' },
-                  { label: 'Technical Support', value: 'Technical Support' },
-                  { label: 'Sales Support', value: 'Sales Support' },
-                  { label: 'Bug Report', value: 'Bug Report' },
-                ]}
-                checkIconPosition={'right'}
-                allowDeselect={false}
+              <Checkbox
+                label="Sign up for Drone Space newsletter"
+                key={form.key('newsletter')}
+                {...form.getInputProps('newsletter', { type: 'checkbox' })}
+                size="xs"
               />
             </GridCol>
 
             <GridCol span={12}>
-              <Textarea
-                required
-                label={options?.modal ? undefined : 'Message'}
-                aria-label={options?.modal ? 'Message' : undefined}
-                placeholder={
-                  options?.modal ? 'Message *' : 'Write your message here...'
-                }
-                autosize
-                minRows={2}
-                styles={{ input: { height: '100%' } }}
-                maxRows={15}
-                resize="vertical"
-                {...form.getInputProps('message')}
-              />
-            </GridCol>
-
-            <GridCol span={12}>
-              <Text fz={'sm'} c={'dimmed'}>
+              <Text fz={'xs'} c={'dimmed'}>
                 By submitting this form, I agree to the{' '}
-                <Anchor component={Link} href="#pp" inherit fw={500}>
+                <Anchor
+                  component={Link}
+                  href="/privacy-policy"
+                  inherit
+                  fw={500}
+                >
                   privacy policy
                 </Anchor>
                 .

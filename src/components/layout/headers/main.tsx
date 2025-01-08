@@ -1,58 +1,160 @@
 import React from 'react';
 
-import { Anchor, Group, ThemeIcon } from '@mantine/core';
-
-import LayoutSection from '@/components/layout/section';
-
-import classes from './main.module.scss';
-import { dataContact, dataSocials } from '@/app/(marketing)/contact/page';
 import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@/data/constants';
+  Anchor,
+  Button,
+  Flex,
+  Grid,
+  GridCol,
+  Group,
+  Image,
+  Stack,
+  Text,
+} from '@mantine/core';
+import NextImage from 'next/image';
+import LayoutSection from '@/components/layout/section';
+import classes from './main.module.scss';
+import appData from '@/data/app';
+import { IconPhone } from '@tabler/icons-react';
+import Link from 'next/link';
+import { images } from '@/assets/images';
 
 export default function Main() {
   return (
-    <LayoutSection
-      id="partial-header-main"
-      padded="sm"
-      className={classes.header}
-      visibleFrom="xs"
-    >
-      <Group justify="space-between">
-        <Group gap={'lg'}>
-          {dataContact.map((item) => (
-            <Group key={item.link} gap={6}>
-              <item.icon
-                size={ICON_SIZE}
-                stroke={ICON_STROKE_WIDTH}
-                style={{ marginTop: 2 }}
-              />
-              <Anchor
+    <>
+      <LayoutSection
+        id="layout-header-main"
+        padded="xs"
+        shadowed
+        bg={'var(--mantine-color-pri-9)'}
+        c={'var(--mantine-color-white)'}
+      >
+        <Flex
+          direction={{ base: 'column', sm: 'row' }}
+          align={'center'}
+          gap={'xs'}
+          justify="space-between"
+        >
+          <Text inherit fz={{ base: 'xs', lg: 'sm' }} fw={500} c={'white'}>
+            {location}
+          </Text>
+
+          <Group gap={'xs'}>
+            {data.left.map((item) => (
+              <Button
+                key={item.link}
+                size="xs"
+                variant="transparent"
+                color="white"
+                px={0}
+                component={'a'}
                 href={item.link}
-                underline="hover"
-                inherit
-                fz={{ base: 'xs', lg: 'sm' }}
+                leftSection={<item.icon size={16} stroke={1.5} />}
               >
                 {item.label}
+              </Button>
+            ))}
+          </Group>
+        </Flex>
+      </LayoutSection>
+
+      <LayoutSection
+        id="layout-header-main-tablet"
+        visibleFrom="xs"
+        padded="xs"
+        bg={'var(--mantine-color-sec-light)'}
+        shadowed
+        className={classes.header}
+      >
+        <Grid align="center" gutter={0}>
+          <GridCol span={{ base: 12, xs: 6, md: 4 }}>
+            <Anchor
+              href={`mailto:${email}`}
+              fz={{ base: 'xs', lg: 'sm' }}
+              fw={500}
+            >
+              {email}
+            </Anchor>
+          </GridCol>
+          <GridCol span={{ base: 12, md: 4 }} visibleFrom="md">
+            <Group justify="center">
+              <Anchor component={Link} href={'/'}>
+                <Stack w={240}>
+                  <Image
+                    src={images.brand.droneSpace.logo.landscape.default}
+                    alt="Drone Space"
+                    component={NextImage}
+                    width={6161}
+                    height={1034}
+                    priority
+                  />
+                </Stack>
               </Anchor>
             </Group>
-          ))}
-        </Group>
-
-        <Group>
-          {dataSocials.map((social) => (
-            <Anchor key={social.link} title={social.label} href={social.link}>
-              <Group>
-                <ThemeIcon size={ICON_WRAPPER_SIZE} variant="default">
-                  <social.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                </ThemeIcon>
+          </GridCol>
+          <GridCol span={{ base: 12, xs: 6, md: 4 }}>
+            <Group justify="end" gap={'xs'}>
+              <Group gap={0}>
+                {socials.map((social) => (
+                  <Anchor key={social.link} href={social.link} target="_blank">
+                    <Stack>
+                      <Image
+                        src={social.image}
+                        alt={social.title}
+                        title={social.title}
+                        component={NextImage}
+                        height={24}
+                        width={24}
+                        priority
+                      />
+                    </Stack>
+                  </Anchor>
+                ))}
               </Group>
-            </Anchor>
-          ))}
-        </Group>
-      </Group>
-    </LayoutSection>
+            </Group>
+          </GridCol>
+        </Grid>
+      </LayoutSection>
+    </>
   );
 }
+
+const email = appData.emails.info;
+const phone1 = appData.phones.main;
+const phone2 = appData.phones.other;
+const location = appData.locations.main.location;
+
+const data = {
+  left: [
+    { icon: IconPhone, label: phone1, link: `tel:${phone1}` },
+    { icon: IconPhone, label: phone2, link: `tel:${phone2}` },
+  ],
+};
+
+export const socials = [
+  {
+    image: images.icons.social.twitterx,
+    title: appData.socials.twitter.platform,
+    link: appData.socials.twitter.link,
+  },
+  {
+    image: images.icons.social.facebook,
+    title: appData.socials.facebook.platform,
+    link: appData.socials.facebook.link,
+  },
+  {
+    image: images.icons.social.instagram,
+    title: appData.socials.instagram.platform,
+    link: appData.socials.instagram.link,
+  },
+  {
+    image: images.icons.social.linkedin,
+    title: appData.socials.linkedin.platform,
+    link: appData.socials.linkedin.link,
+  },
+  {
+    image: images.icons.social.whatsapp,
+    title: appData.socials.whatsapp.platform,
+    link: appData.socials.whatsapp.link,
+  },
+];

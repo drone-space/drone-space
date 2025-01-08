@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
-
 import { Divider, NavLink, Stack, Title } from '@mantine/core';
 import {
   IconBellRinging,
@@ -18,10 +16,8 @@ import {
   IconStar,
   IconUser,
 } from '@tabler/icons-react';
-
 import LayoutSection from '@/components/layout/section';
 import PartialUser from '@/components/partial/user';
-
 import {
   AUTH_URLS,
   ICON_SIZE,
@@ -29,7 +25,6 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import { usePathname } from 'next/navigation';
-
 import classes from './account.module.scss';
 
 export default function Account() {

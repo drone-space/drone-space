@@ -1,6 +1,5 @@
 import appData from '@/data/app';
 import resend from '@/libraries/resend';
-
 import EmailOnboardWelcome from '@/components/email/onboard/welcome';
 import { isProduction } from '@/utilities/helpers/environment';
 import { EmailInquiry } from '@/types/email';

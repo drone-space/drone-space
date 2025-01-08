@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ReplyRelations } from '@/types/models/reply';
 import { initialize } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import { Avatar, Card, Group, Stack, Text, Title } from '@mantine/core';
+import { ReplyRelations } from '@/types/models/reply';
 
 export default function Reply({ props }: { props: ReplyRelations }) {
   const usersName =

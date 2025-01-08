@@ -4,69 +4,107 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import IntroPage from '@/components/layout/intro/page';
-import IntroSection from '@/components/layout/intro/section';
+// import IntroPage from '@/components/layout/intro/page';
+import ModalContactTraining from '@/components/common/modals/contact/training';
 import AccordionFaq from '@/components/common/accordions/faq';
-import CardCtaFaq from '@/components/common/cards/cta/faq';
-
-import { Box, Grid, GridCol } from '@mantine/core';
-import { SECTION_SPACING } from '@/data/constants';
-
+import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
+import { Anchor, Stack, Text, Title } from '@mantine/core';
+import Link from 'next/link';
+import appData from '@/data/app';
 export const metadata: Metadata = { title: 'FAQ' };
 
 export default async function Faq() {
   return (
     <LayoutPage>
-      <IntroPage
+      {/* <IntroPage
         props={{
           path: `Q & A`,
           title: 'Frequently Asked Questions',
           desc: `Need a help with something? Here are our most frequently asked questions.`,
         }}
-      />
+      /> */}
 
-      <LayoutSection id={'page-faq'} margined>
-        <Grid>
-          <GridCol span={{ base: 12, sm: 4.5 }}>
-            <Box pos={'sticky'} top={SECTION_SPACING} pr={{ md: 'xl' }}>
-              <IntroSection
-                props={{
-                  title: `General`,
-                  desc: "Can't find the answer you're looking for? Reach out to our customer support team.",
-                }}
-                options={{ alignment: 'start' }}
-              />
-            </Box>
-          </GridCol>
+      <LayoutSection
+        id="page-help-training"
+        padded
+        containerized={'sm'}
+        shadowed
+      >
+        <Stack gap={'xl'}>
+          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
+            Drone Training
+          </Title>
 
-          <GridCol span={{ base: 12, sm: 7.5 }}>
-            <AccordionFaq />
-          </GridCol>
-        </Grid>
+          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
+            For further information, please visit our training section, for
+            course prices go to{' '}
+            <Anchor component={Link} href="/pricing/training" inherit fw={500}>
+              pricing
+            </Anchor>{' '}
+            and for any other training inquiries, please send us a{' '}
+            <ModalContactTraining>
+              <Anchor inherit fw={500}>
+                training inquiry
+              </Anchor>
+            </ModalContactTraining>
+            .
+          </Text>
+
+          <AccordionFaq section="training" />
+        </Stack>
       </LayoutSection>
 
-      <LayoutSection id={'page-faq-billing'} margined>
-        <Grid>
-          <GridCol span={{ base: 12, sm: 4.5 }}>
-            <Box pos={'sticky'} top={SECTION_SPACING} pr={{ md: 'xl' }}>
-              <IntroSection
-                props={{
-                  title: `Billing`,
-                  desc: "Have a different question and can't find the answer you're looking for? Reach out to our support team by sending us an email and we'll get back to you as soon as we can.",
-                }}
-                options={{ alignment: 'start' }}
-              />
-            </Box>
-          </GridCol>
+      {/* <LayoutSection id='help-faq-purchases' padded containerized={"sm"} shadowed>
+				<Stack gap={"xl"}>
+					<Title ta={"center"} order={2} fz={"xl"} fw={"bold"}>
+						Drone Purchases
+					</Title>
 
-          <GridCol span={{ base: 12, sm: 7.5 }}>
-            <AccordionFaq />
-          </GridCol>
-        </Grid>
-      </LayoutSection>
+					<Text w={{ md: "75%" }} mx={"auto"} ta={"center"} fz={"sm"}>
+						To see available drones and drone prices please visit our{" "}
+						<Anchor component={Link} href="/shop" inherit fw={500}>
+							shop section
+						</Anchor>
+						, for drone importation or other drone purchase inquiries, please send us a{" "}
+						<ModalContactShop>
+							<Anchor inherit fw={500}>
+								product/purchase inquiry
+							</Anchor>
+						</ModalContactShop>
+						.
+					</Text>
 
-      <LayoutSection id={'page-faq-cta'} margined>
-        <CardCtaFaq />
+					<AccordionFaq section="shop" />
+				</Stack>
+			</LayoutSection> */}
+
+      <LayoutSection id="help-faq-general" padded containerized={'sm'} shadowed>
+        <Stack gap={'xl'}>
+          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
+            General Questions
+          </Title>
+
+          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
+            For any other questions,{' '}
+            <Anchor component={Link} inherit fw={500} href={'/contact'}>
+              submit an inquiry
+            </Anchor>{' '}
+            or{' '}
+            <TooltipWhatsApp>
+              <Anchor
+                inherit
+                fw={500}
+                href={`${appData.socials.whatsapp.link}`}
+                target="_blank"
+              >
+                start a chat with us
+              </Anchor>
+            </TooltipWhatsApp>
+            .
+          </Text>
+
+          <AccordionFaq />
+        </Stack>
       </LayoutSection>
     </LayoutPage>
   );

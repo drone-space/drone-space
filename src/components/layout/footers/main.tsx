@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Link from 'next/link';
-
 import {
   Flex,
   Grid,
@@ -13,39 +11,37 @@ import {
   Group,
   GridCol,
   ListItem,
-  ThemeIcon,
   Stack,
+  Image,
 } from '@mantine/core';
-
 import LayoutSection from '@/components/layout/section';
-
 import { images } from '@/assets/images';
-
 import classes from './main.module.scss';
 import appData from '@/data/app';
-import { dataSocials } from '@/app/(marketing)/contact/page';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@/data/constants';
-import SegmentedControlTheme from '@/components/common/segmented-control/theme';
+import { socials } from '../headers/main';
+import NextImage from 'next/image';
+import { SECTION_SPACING } from '@/data/constants';
+// import SegmentedControlTheme from '@/components/common/segmented-control/theme';
 import { IconCircleFilled } from '@tabler/icons-react';
 import FormNewsletter from '@/components/form/newsletter';
 import ImageDefault from '@/components/common/images/default';
 
 export default function Main() {
   return (
-    <LayoutSection id={'partial-footer-main'} padded className={classes.footer}>
+    <LayoutSection
+      id={'partial-footer-main'}
+      padded
+      pb={SECTION_SPACING * 1.5}
+      className={classes.footer}
+    >
       <Stack gap={SECTION_SPACING}>
         <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
           <Anchor component={Link} href={'/'}>
             <ImageDefault
-              src={images.brand.logo.light}
+              src={images.brand.droneSpace.logo.landscape.default}
               alt={appData.name.app}
               height={{ base: 40 }}
-              width={{ base: 96 }}
+              width={{ base: 200 }}
               fit="contain"
               mode="grid"
             />
@@ -60,7 +56,7 @@ export default function Main() {
                 align={{ base: 'center', md: 'start' }}
                 gap={'xl'}
               >
-                <Title order={4} fw={500}>
+                <Title order={4} fw={'bold'}>
                   {linkSet.title}
                 </Title>
 
@@ -99,22 +95,28 @@ export default function Main() {
                 Subscribe to our newsletter
               </Title>
               <Text c={'dimmed'} ta={{ base: 'center', sm: 'start' }}>
-                The latest news, articles, and resources, sent to your inbox
-                weekly.
+                The latest drone industry news, helpful tips, and exclusive
+                offers monthly.
               </Text>
             </Stack>
 
             <FormNewsletter />
           </Flex>
 
-          <Group>
-            {dataSocials.map((social) => (
-              <Anchor key={social.link} title={social.label} href={social.link}>
-                <Group>
-                  <ThemeIcon size={ICON_WRAPPER_SIZE} variant="default">
-                    <social.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                  </ThemeIcon>
-                </Group>
+          <Group gap={0} wrap="nowrap">
+            {socials.map((social) => (
+              <Anchor key={social.link} href={social.link} target="_blank">
+                <Stack>
+                  <Image
+                    src={social.image}
+                    alt={social.title}
+                    title={social.title}
+                    component={NextImage}
+                    height={24}
+                    width={24}
+                    priority
+                  />
+                </Stack>
               </Anchor>
             ))}
           </Group>
@@ -135,70 +137,149 @@ export default function Main() {
           gap={'md'}
         >
           <Text component="span" inherit>
-            © {new Date().getFullYear()} {appData.name.app}, Inc. All Rights
+            © {new Date().getFullYear()} {appData.name.app}. All Rights
             Reserved.
           </Text>
 
           <Group gap={'xs'}>
-            <Anchor inherit href="#tc" className={classes.link}>
+            <Anchor
+              component={Link}
+              inherit
+              href="/privacy-policy"
+              className={classes.link}
+            >
               Terms and Conditions
             </Anchor>
 
             <IconCircleFilled size={4} />
 
-            <Anchor inherit href="#pp" className={classes.link}>
+            <Anchor
+              component={Link}
+              inherit
+              href="/terms-conditions"
+              className={classes.link}
+            >
               Privacy Policy
             </Anchor>
           </Group>
         </Flex>
 
-        <Flex justify={{ base: 'center', sm: 'start' }}>
+        {/* <Flex justify={{ base: 'center', sm: 'start' }}>
           <SegmentedControlTheme />
-        </Flex>
+        </Flex> */}
       </Stack>
     </LayoutSection>
   );
 }
 
+const email = {
+  info: appData.emails.info,
+  training: appData.emails.training,
+};
+const phone = {
+  pri: appData.phones.main,
+  sec: appData.phones.other,
+};
+
 const linkSets = [
   {
-    title: 'About Us',
+    title: 'Drone Shop',
     links: [
-      { label: 'Mission', link: '#Mission' },
-      { label: 'Our Team', link: '#Team' },
-      { label: 'Awards', link: '#Awards' },
-      { label: 'Testimonials', link: '#Testimonials' },
-      { label: 'Privacy Policy', link: '#Policy' },
+      {
+        label: 'Camera Drones',
+        link: '/shop/drones/camera',
+      },
+      {
+        label: 'Enterprise Drones',
+        link: '/shop/drones/enterprise',
+      },
+      {
+        label: 'Agriculture Drones',
+        link: '/shop/drones/agriculture',
+      },
+      {
+        label: 'Drone Accessories',
+        link: '/shop/accessories',
+      },
     ],
   },
   {
-    title: 'Services',
+    title: 'Useful Links',
     links: [
-      { label: 'Web Design', link: '#Design' },
-      { label: 'Web Development', link: '#Development' },
-      { label: 'Mobile Design', link: '#Mobile' },
-      { label: 'UI/UX Design', link: '#UX' },
-      { label: 'Branding Design', link: '#Branding' },
+      {
+        label: 'About Drone Space',
+        link: '/about',
+      },
+      {
+        label: 'Our Drone Solutions',
+        link: '/services',
+      },
+      {
+        label: 'Basic Training (RPL)',
+        link: '/training/basic',
+      },
+      {
+        label: 'Advanced Training',
+        link: '/training/advanced',
+      },
+      {
+        label: 'Drone Shop',
+        link: '/shop',
+      },
     ],
   },
   {
-    title: 'Portfolio',
+    title: 'Drone Solutions',
     links: [
-      { label: 'Corporate Websites', link: '#Corporate' },
-      { label: 'E-commerce', link: '#commerce' },
-      { label: 'Mobile Apps', link: '#Apps' },
-      { label: 'Landing Pages', link: '#Landing' },
-      { label: 'UI/UX Projects', link: '#Projects' },
+      {
+        label: 'Consultancy & Resale',
+        link: '/services/drone-consultancy-and-resale',
+      },
+      {
+        label: 'Mapping & Survey',
+        link: '/services/drone-mapping-and-survey',
+      },
+      {
+        label: 'Aerial Cinematography',
+        link: '/services/aerial-cinematography',
+      },
+      {
+        label: 'Solar Inspection',
+        link: '/services/solar-inspection',
+      },
+      {
+        label: 'Drone Seeding',
+        link: '/services/drone-seeding',
+      },
+      {
+        label: 'ROC Support',
+        link: '/services/roc-support',
+      },
     ],
   },
   {
-    title: 'Contact Us',
+    title: 'Contact',
     links: [
-      { label: 'Information', link: '#Information' },
-      { label: 'Request a Quote', link: '#Quote' },
-      { label: 'Consultation', link: '#Consultation' },
-      { label: 'Help Center', link: '#Help' },
-      { label: "T's and C's", link: '#Terms' },
+      {
+        label: 'Prosperity House, Westlands',
+        link: 'https://www.google.com/maps/place/Prosperity+House,+Nairobi/@-1.2723743,36.8091986,17z/data=!3m1!4b1!4m6!3m5!1s0x182f17307ceb423b:0x2b6f26cf176c4f6f!8m2!3d-1.2723743!4d36.8117789!16s%2Fg%2F12hlt4d1k?entry=ttu',
+      },
+      {
+        label: email.training,
+        link: `mailto:${email.training}`,
+      },
+      {
+        label: email.info,
+        link: `mailto:${email.info}`,
+      },
+      {
+        label: phone.pri,
+        link: `tel:${phone.pri}`,
+      },
+      {
+        label: phone.sec,
+        link: `tel:${phone.sec}`,
+      },
     ],
   },
 ];

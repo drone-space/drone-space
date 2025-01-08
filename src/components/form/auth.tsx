@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import {
   Button,
   Divider,
@@ -10,9 +9,7 @@ import {
   Stack,
   TextInput,
 } from '@mantine/core';
-
 import AuthProviders from '@/components/common/buttons/auth-providers';
-
 import { useFormAuthSignIn } from '@/hooks/form/auth/sign-in';
 import { AuthAction } from '@/types/auth';
 

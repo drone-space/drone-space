@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import LayoutSection from '../layout/section';
 import {
   Button,
@@ -17,7 +16,7 @@ import {
 import FormBlogComment from '@/components/form/blog/comment';
 import CardBlogComment from '@/components/common/cards/blog/comment';
 import { useFetchComments } from '@/hooks/fetch/comments';
-import { PostRelations } from '@/types/static';
+import { PostRelations } from '@/types/static/blog';
 
 export default function Comments({
   props,

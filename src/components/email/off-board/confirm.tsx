@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Hr, Link, Section, Text } from '@react-email/components';
 import appData from '@/data/app';
-import { dimmedText, Email as LayoutEmail, text } from '../layout';
+import { colors, dimmedText, Email as LayoutEmail, text } from '../layout';
 
 export const Confirm = (props: { link: string; userName: string }) => {
   const message = `We want to make sure it's really you. Please click the following link to confirm the account deletion request. If you didn't request to delete your ${appData.name.app} account, you can ignore this message.`;
@@ -18,8 +18,8 @@ export const Confirm = (props: { link: string; userName: string }) => {
           <Link
             href="#"
             style={{
-              backgroundColor: '#e4e6ed',
-              color: 'black',
+              backgroundColor: colors.priLight,
+              color: colors.pri,
               padding: '0.5rem',
               borderRadius: '0.25rem',
               textDecoration: 'none',
@@ -44,14 +44,14 @@ export const Confirm = (props: { link: string; userName: string }) => {
       </Section>
 
       <Section style={{ marginTop: '2rem' }}>
-        <Text style={dimmedText}>
+        <Text style={{ ...dimmedText, textAlign: 'center' }}>
           If you didn&apos;t request to delete your {appData.name.app} account,
           you can safely ignore this email. If you are concerned about the
           security of your account, please{' '}
           <Link
             href={`mailto:${appData.emails.info}`}
             style={{
-              color: 'black',
+              color: colors.pri,
               textDecorationLine: 'underline',
             }}
           >

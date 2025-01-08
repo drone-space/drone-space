@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import {
   Box,
   Button,
@@ -14,9 +13,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-
 import { useFormUserAccountNotifications } from '@/hooks/form/account/notifications';
-
 import classes from './notifications.module.scss';
 
 export default function Notifications() {

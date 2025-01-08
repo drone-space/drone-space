@@ -1,15 +1,11 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
-
 import { Burger, Button, Drawer, NavLink, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { SignIn as WrapperSignIn } from '../../../wrapper/auth';
-
 import classes from './main.module.scss';
-
 import { typeMenuNavbar } from '@/types/components/menu';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import { useAppSelector } from '@/hooks/redux';
@@ -18,10 +14,11 @@ import { usePathname } from 'next/navigation';
 export default function Main({
   props,
   options,
+  ...restProps
 }: {
   props: typeMenuNavbar[];
   options?: { absolute?: boolean };
-}) {
+} & React.ComponentProps<typeof Burger>) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const session = useAppSelector((state) => state.session.value);
   const pathname = usePathname();
@@ -133,6 +130,7 @@ export default function Main({
         size={'sm'}
         aria-label="Toggle Main Navbar"
         color={options?.absolute ? 'white' : undefined}
+        {...restProps}
       />
     </>
   );

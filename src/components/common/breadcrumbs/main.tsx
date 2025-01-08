@@ -18,16 +18,22 @@ export default function Main({ props }: { props: typeLink[] }) {
   return (
     <Breadcrumbs
       separator={
-        <IconChevronRight size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+        <IconChevronRight
+          size={ICON_SIZE - 4}
+          stroke={ICON_STROKE_WIDTH}
+          color="light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))"
+        />
       }
     >
       {props.map((item) => (
         <Anchor
+          underline="never"
           key={item.link}
           component={Link}
           href={item.link}
-          c={active(item) ? 'pri' : undefined}
+          c={active(item) ? 'sec.3' : undefined}
           className={classes.link}
+          onClick={(e) => e.preventDefault()} // remove top directive if you don't need this
         >
           {item.label}
         </Anchor>

@@ -1,13 +1,11 @@
 import { hasLength, useForm } from '@mantine/form';
 import { useState } from 'react';
 import { Variant } from '@/enums/notification';
-import {
-  capitalizeWords,
-  segmentFullName,
-} from '@/utilities/formatters/string';
 import { showNotification } from '@/utilities/notifications';
 import { useNetwork } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { capitalizeWords } from '@/utilities/formatters/string';
+import { segmentFullName } from '@/utilities/formatters/string';
 import { updateSession } from '@/libraries/redux/slices/session';
 import { profileUpdate } from '@/services/database/profile';
 import { createClient } from '@/libraries/supabase/client';

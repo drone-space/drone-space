@@ -35,3 +35,24 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Webkit-based browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mantine-color-sec-light);
+  // border-radius: var(--mantine-radius-sm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mantine-color-sec-3);
+  // border-radius: var(--mantine-radius-sm);
+}
+
+/* Firefox */
+element {
+  scrollbar-color: var(--mantine-color-sec-3) var(--mantine-color-sec-light);
+  scrollbar-width: 8px;
+}

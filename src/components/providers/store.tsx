@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-
 import { Provider } from 'react-redux';
-
 import { makeStore, AppStore } from '@/libraries/redux/store';
 import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
 import { updateSession } from '@/libraries/redux/slices/session';

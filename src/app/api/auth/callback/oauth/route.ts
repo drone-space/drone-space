@@ -33,8 +33,7 @@ export async function GET(request: Request) {
       avatar: data.user.user_metadata.avatar_url || '',
     });
 
-    const name =
-      `${profile?.firstName || ''} ${profile?.lastName || ''}`.trim();
+    const name = `${profile?.firstName} ${profile?.lastName}`.trim();
 
     // update user
     const {

@@ -3,7 +3,7 @@
 import React from 'react';
 import LayoutSection from '../section';
 import { usePathname } from 'next/navigation';
-import { Container, Stack, Text, Title } from '@mantine/core';
+import { Container, Group, Stack, Text, Title } from '@mantine/core';
 // import BreadcrumbMain from '@/components/common/breadcrumbs/main';
 import { crumbify } from '@/utilities/formatters/string';
 
@@ -32,14 +32,14 @@ export default function Page({
           <Text
             fw={'bold'}
             ta={'center'}
-            c={'pri.6'}
+            c={'pri.9'}
             tt={'uppercase'}
             fz={'sm'}
           >
             {props.path ? props.path : segments[segments.length - 1].label}
           </Text>
         ) : (
-          props.path
+          <Group justify="center">{props.path}</Group>
         )}
 
         <Container size={'sm'}>
@@ -49,7 +49,7 @@ export default function Page({
             </Title>
 
             {props.desc && (
-              <Text ta={'center'} fz={'xl'}>
+              <Text ta={'center'} fz={'lg'}>
                 {props.desc}
               </Text>
             )}

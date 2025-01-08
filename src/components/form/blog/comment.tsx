@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import {
   Box,
   Button,
@@ -12,7 +11,6 @@ import {
   Textarea,
 } from '@mantine/core';
 import { useFormBlogComment } from '@/hooks/form/blog/comment';
-
 import TooltipInputInfo from '@/components/common/tooltips/input/info';
 
 export default function Comment({ postId }: { postId: string }) {

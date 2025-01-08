@@ -6,6 +6,9 @@ export type EmailInquiry = Omit<CreateEmailOptions, 'from' | 'to'> & {
 };
 
 export type EmailContactCreate = {
-  params: Omit<EmailInquiry['from'], 'name'> & { name?: string };
+  params: Omit<EmailInquiry['from'], 'name'> & {
+    name?: string;
+    company?: string;
+  };
   options?: { notify?: boolean };
 };

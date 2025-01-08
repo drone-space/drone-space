@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
-
 import {
   Menu,
   MenuDivider,
@@ -17,9 +15,7 @@ import {
   MenuLabel,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-
 import AvatarMain from '../avatars/main';
-
 import classes from './user.module.scss';
 import { navLinkItems } from '@/components/layout/asides/account';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';

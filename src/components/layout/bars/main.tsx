@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import WrapperTransition from '@/components/wrapper/transition';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
-
 import classes from './main.module.scss';
 
 export default function Main() {

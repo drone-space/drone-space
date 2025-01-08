@@ -26,7 +26,7 @@ import ImageDefault from '@/components/common/images/default';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function New({ post }: { post: PostRelations }) {
-  const path = `/blog/${linkify(post.title)}-${post.id}`;
+  const path = `/stories/blog/${linkify(post.title)}-${post.id}`;
 
   return (
     <Card className={classes.card} withBorder bg={'transparent'}>
@@ -43,7 +43,7 @@ export default function New({ post }: { post: PostRelations }) {
             <ImageDefault
               src={post.image}
               alt={post.title}
-              height={400}
+              height={420}
               mode="grid"
             />
 
@@ -104,7 +104,7 @@ export default function New({ post }: { post: PostRelations }) {
 
                   <Anchor
                     component={Link}
-                    href={`/blog/categories/${post.category?.id}`}
+                    href={`/stories/blog/categories/${post.category?.id}`}
                     underline="never"
                     inherit
                   >

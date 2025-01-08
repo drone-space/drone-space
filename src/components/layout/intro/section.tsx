@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-
 import LayoutSection from '../section';
-
 import { Stack, Text, Title } from '@mantine/core';
 import { SECTION_SPACING } from '@/data/constants';
 
@@ -21,7 +19,7 @@ export default function Section({
           <Text
             fw={'bold'}
             ta={options?.alignment || 'center'}
-            c={'pri.6'}
+            c={'pri.9'}
             tt={'uppercase'}
             fz={'sm'}
           >

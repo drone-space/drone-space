@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { DM_Sans } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles/global.css';
-
 import '@mantine/core/styles.css';
+
 import '@mantine/carousel/styles.css';
 import '@mantine/charts/styles.css';
 import '@mantine/code-highlight/styles.css';
@@ -36,14 +36,14 @@ import { linkify } from '@/utilities/formatters/string';
 
 import { createClient } from '@/libraries/supabase/server';
 
-import AffixOffline from '@/components/common/affixi/offline';
 import { COOKIE_NAME } from '@/data/constants';
 
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
-import AffixiCookies from '@/components/common/affixi/cookies';
+// import AffixOffline from '@/components/common/affixi/offline';
+// import AffixiCookies from '@/components/common/affixi/cookies';
 
-const noto = DM_Sans({ subsets: ['latin'] });
+const openSans = Open_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
@@ -80,7 +80,7 @@ export default async function RootLayout({
         />
       </head>
 
-      <body className={noto.className}>
+      <body className={openSans.className}>
         <ProviderStore
           colorScheme={colorSchemeState || 'light'}
           session={session.user}
@@ -95,8 +95,8 @@ export default async function RootLayout({
 
             <Notifications limit={3} />
 
-            <AffixOffline />
-            <AffixiCookies />
+            {/* <AffixOffline /> */}
+            {/* <AffixiCookies /> */}
           </MantineProvider>
         </ProviderStore>
 

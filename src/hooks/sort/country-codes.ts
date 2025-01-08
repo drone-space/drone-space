@@ -1,6 +1,6 @@
 import { Order } from '@/enums/sort';
-import { CountryData } from '@/types/bodies/response';
 import { sortArray } from '@/utilities/helpers/array';
+import { CountryData } from '@/types/bodies/response';
 
 export const useSortCountryCodes = (list: CountryData[] = []) => {
   const filteredList = filterCodes(list);

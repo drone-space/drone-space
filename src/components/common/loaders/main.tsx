@@ -14,7 +14,7 @@ export default function Main() {
 
   return (
     <Overlay fixed className={classes.overlay}>
-      <Loader color="pri" type="dots" />
+      <Loader color="pri" size={'sm'} />
 
       <Transition
         mounted={mounted}

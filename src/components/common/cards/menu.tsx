@@ -26,12 +26,12 @@ export default function Menu({ props }: { props: typeMenuNavbar }) {
               <ThemeIcon
                 size={ICON_WRAPPER_SIZE + 4}
                 variant="default"
-                color="pri.6"
+                color="pri.9"
               >
                 <props.leftSection
                   size={ICON_SIZE + 4}
                   stroke={ICON_STROKE_WIDTH}
-                  color="var(--mantine-color-pri-6)"
+                  color="var(--mantine-color-pri-9)"
                 />
               </ThemeIcon>
             </Center>

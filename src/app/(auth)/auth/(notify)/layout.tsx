@@ -34,7 +34,7 @@ export default function LayoutNotify({
             <Center h={'100vh'} px={{ xs: 32 }}>
               <Anchor component={Link} href={'/'}>
                 <ImageDefault
-                  src={images.brand.logo.light}
+                  src={images.brand.droneSpace.logo.landscape.default}
                   alt={appData.name.app}
                   height={48}
                   width={160}

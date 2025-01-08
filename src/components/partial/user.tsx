@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-
 import { Flex, Stack, Text, Title } from '@mantine/core';
-
 import AvatarMain from '@/components/common/avatars/main';
 import { useAppSelector } from '@/hooks/redux';
 

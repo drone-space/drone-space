@@ -1,10 +1,8 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
 import {
   Button,
   Card,
@@ -19,9 +17,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-
 import { typeMenuNavbar } from '@/types/components/menu';
-
 import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
@@ -69,6 +65,9 @@ export default function Navbar({
       trigger="click-hover"
       openDelay={50}
       closeDelay={50}
+      offset={{
+        mainAxis: 0,
+      }}
       transitionProps={{ transition: 'fade-down' }}
       classNames={{
         dropdown: classes.dropdown,
@@ -97,7 +96,7 @@ export default function Navbar({
               </Grid>
 
               <Card
-                bg={'var(--mantine-color-pri-6)'}
+                bg={'var(--mantine-color-pri-9)'}
                 c={'var(--mantine-color-body)'}
                 radius={0}
               >

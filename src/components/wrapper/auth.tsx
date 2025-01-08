@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-
 import { usePathname, useRouter } from 'next/navigation';
 import { setRedirectUrl } from '@/utilities/helpers/url';
 import { Box, LoadingOverlay } from '@mantine/core';

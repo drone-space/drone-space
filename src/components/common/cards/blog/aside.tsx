@@ -14,7 +14,6 @@ import {
 } from '@mantine/core';
 
 import { PostRelations } from '@/types/models/post';
-
 import { linkify } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import { IconCircleFilled, IconMessageCircle } from '@tabler/icons-react';
@@ -22,7 +21,7 @@ import ImageDefault from '@/components/common/images/default';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Aside({ post }: { post: PostRelations }) {
-  const path = `/blog/${linkify(post.title)}-${post.id}`;
+  const path = `/stories/blog/${linkify(post.title)}-${post.id}`;
 
   return (
     <Grid>
@@ -72,7 +71,7 @@ export default function Aside({ post }: { post: PostRelations }) {
 
             <Anchor
               component={Link}
-              href={`/blog/categories/${post.category?.id}`}
+              href={`/stories/blog/categories/${post.category?.id}`}
               underline="never"
               inherit
             >

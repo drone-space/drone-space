@@ -7,24 +7,19 @@ export async function middleware(request: NextRequest) {
   // Get the origin from the request headers
   const origin = request.headers.get('origin') || '';
 
-  // More specific check for Vercel preview deployments
-  if (origin.includes('vercel.app')) {
+  if (origin && origin.includes('vercel.app')) {
     // Set CORS headers
     response.headers.set('Access-Control-Allow-Credentials', 'true');
-    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Origin', 'https://*.vercel.app');
+    // Optionally, specify allowed methods and headers
     response.headers.set(
       'Access-Control-Allow-Methods',
-      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
+      'GET, POST, PUT, DELETE'
     );
     response.headers.set(
       'Access-Control-Allow-Headers',
-      'Content-Type, Authorization, X-Requested-With'
+      'Content-Type, Authorization'
     );
-
-    // Handle preflight
-    if (request.method === 'OPTIONS') {
-      return response;
-    }
   }
 
   return await updateSession(request, response);

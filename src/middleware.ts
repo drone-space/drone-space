@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
   // Get the origin from the request headers
   const origin = request.headers.get('origin') || '';
 
-  if (origin.includes('vercel.app')) {
+  if (origin.includes('vercel.app') || origin.includes('dronespace.co.ke')) {
     // Set CORS headers
     response.headers.set('Access-Control-Allow-Credentials', 'true');
     response.headers.set('Access-Control-Allow-Origin', origin);

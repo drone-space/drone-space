@@ -6,6 +6,11 @@
 .pnp.js
 .yarn/install-state.gz
 
+# outputs
+.next.zip
+drone-space.zip
+public.zip
+
 # testing
 /coverage
 

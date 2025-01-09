@@ -53,24 +53,24 @@ const links = {
       {
         link: '/shop',
         label: 'Shop',
-        // subLinks: [
-        //   {
-        //     link: '/shop/drones/camera',
-        //     label: 'Camera Drones',
-        //   },
-        //   {
-        //     link: '/shop/drones/enterprise',
-        //     label: 'Enterprise Drones',
-        //   },
-        //   {
-        //     link: '/shop/drones/agriculture',
-        //     label: 'Agriculture Drones',
-        //   },
-        //   {
-        //     link: '/shop/accessories',
-        //     label: 'Drone Accessories',
-        //   },
-        // ],
+        subLinks: [
+          {
+            link: '/shop/drones/camera',
+            label: 'Camera Drones',
+          },
+          {
+            link: '/shop/drones/enterprise',
+            label: 'Enterprise Drones',
+          },
+          {
+            link: '/shop/drones/agriculture',
+            label: 'Agriculture Drones',
+          },
+          {
+            link: '/shop/accessories',
+            label: 'Drone Accessories',
+          },
+        ],
       },
       {
         link: '/light-shows',

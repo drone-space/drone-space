@@ -36,6 +36,7 @@ export default function Shop({ options }: { options?: { variant?: string } }) {
       padded="md"
       shadowed
       className={classes.navbar}
+      visibleFrom="sm"
     >
       <Flex
         gap={'md'}

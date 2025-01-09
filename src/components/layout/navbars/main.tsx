@@ -25,42 +25,52 @@ export default function Main({
   // const desktop = useMediaQuery('(min-width: 62em)');
 
   const matchesPath = (link: string) => {
-    return pathname == link || (link != '/' && pathname.includes(link));
+    return pathname == link;
   };
 
-  const navLinks = links.navbar.main.map((link) => (
-    <MenuNavbar key={link.link} subLinks={link.subLinks}>
-      {!link.subLinks ? (
-        <Anchor
-          component={Link}
-          href={link.link}
-          className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
-            matchesPath(link.link) ? classes.linkActive : ''
-          }`}
-        >
-          {link.label}
-        </Anchor>
-      ) : (
-        <Anchor
-          component={Link}
-          href={link.link}
-          className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
-            matchesPath(link.link) ? classes.linkActive : ''
-          }`}
-          onClick={(e) => e.preventDefault()}
-        >
-          <Group gap={4}>
-            <span>{link.label}</span>
-            <IconChevronDown
-              size={ICON_SIZE - 4}
-              stroke={ICON_STROKE_WIDTH}
-              style={{ marginTop: 2 }}
-            />
-          </Group>
-        </Anchor>
-      )}
-    </MenuNavbar>
-  ));
+  const navLinks = links.navbar.main.map((link) => {
+    const linkIsShop = link.link != '/shop';
+
+    return (
+      <MenuNavbar
+        key={link.link}
+        subLinks={linkIsShop ? link.subLinks : undefined}
+      >
+        {!link.subLinks ? (
+          <Anchor
+            component={Link}
+            href={link.link}
+            className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
+              matchesPath(link.link) ? classes.linkActive : ''
+            }`}
+          >
+            {link.label}
+          </Anchor>
+        ) : (
+          <Anchor
+            component={Link}
+            href={link.link}
+            className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
+              matchesPath(link.link) ? classes.linkActive : ''
+            }`}
+            onClick={(e) => e.preventDefault()}
+          >
+            <Group gap={4}>
+              <span>{link.label}</span>
+
+              {linkIsShop && (
+                <IconChevronDown
+                  size={ICON_SIZE - 4}
+                  stroke={ICON_STROKE_WIDTH}
+                  style={{ marginTop: 2 }}
+                />
+              )}
+            </Group>
+          </Anchor>
+        )}
+      </MenuNavbar>
+    );
+  });
 
   const imageBrand = (
     <ImageDefault

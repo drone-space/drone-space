@@ -2,22 +2,19 @@
 
 import React from 'react';
 import { useRef } from 'react';
-// import NextImage from 'next/image';
+import NextImage from 'next/image';
 import {
   AspectRatio,
   Box,
   Button,
   Group,
-  // Image,
+  Image,
   Stack,
   Text,
   Title,
 } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
-import {
-  // IconExternalLink,
-  IconFileDownload,
-} from '@tabler/icons-react';
+import { IconExternalLink, IconFileDownload } from '@tabler/icons-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { images } from '@/assets/images';
 import videos from '@/assets/videos';
@@ -94,7 +91,7 @@ export default function Home() {
       // onMouseEnter={autoplay.current.stop}
       // onMouseLeave={autoplay.current.reset}
     >
-      {/* <CarouselSlide
+      <CarouselSlide
         key={'AI Conference'}
         style={{
           background: `linear-gradient( rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%), url('${images.posters.conference.poster1.landscape}')`,
@@ -107,7 +104,7 @@ export default function Home() {
           <Stack align={'center'} justify="center" mih={520}>
             <Stack className={classes.imageContainer} h={80}>
               <Image
-                src={images.brand.conference.logo.landscape.dark}
+                src={images.brand.conference.logo.landscape.light}
                 alt={'AI Conference'}
                 loading="lazy"
                 h={80}
@@ -169,7 +166,7 @@ export default function Home() {
             </Group>
           </Stack>
         </LayoutSection>
-      </CarouselSlide> */}
+      </CarouselSlide>
 
       <CarouselSlide
         key={'Empowering Drone Professionals in Kenya'}

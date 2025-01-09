@@ -25,7 +25,7 @@ export default function Main({
   // const desktop = useMediaQuery('(min-width: 62em)');
 
   const matchesPath = (link: string) => {
-    return pathname == link;
+    return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
   const navLinks = links.navbar.main.map((link) => {

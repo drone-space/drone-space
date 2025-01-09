@@ -48,9 +48,17 @@ export default function Main() {
           </Anchor>
         </Flex>
 
-        <Grid gutter={{ base: 'xl', md: 'md' }}>
+        <Grid gutter={{ base: 'xl', md: 'md' }} visibleFrom="sm">
           {linkSets.map((linkSet) => (
-            <GridCol key={linkSet.title} span={{ base: 6, sm: 3 }}>
+            <GridCol
+              key={linkSet.title}
+              span={{ base: 6, sm: 4, md: 3 }}
+              visibleFrom={
+                linkSets.indexOf(linkSet) == linkSets.length - 1
+                  ? 'md'
+                  : undefined
+              }
+            >
               <Flex
                 direction={'column'}
                 align={{ base: 'center', md: 'start' }}

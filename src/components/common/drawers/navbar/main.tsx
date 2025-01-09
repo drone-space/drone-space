@@ -2,13 +2,19 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Burger, Button, Drawer, NavLink, Stack } from '@mantine/core';
+import {
+  Burger,
+  // Button,
+  Drawer,
+  NavLink,
+  Stack,
+} from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { SignIn as WrapperSignIn } from '../../../wrapper/auth';
+// import { SignIn as WrapperSignIn } from '../../../wrapper/auth';
 import classes from './main.module.scss';
 import { typeMenuNavbar } from '@/types/components/menu';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
-import { useAppSelector } from '@/hooks/redux';
+// import { useAppSelector } from '@/hooks/redux';
 import { usePathname } from 'next/navigation';
 
 export default function Main({
@@ -20,11 +26,11 @@ export default function Main({
   options?: { absolute?: boolean };
 } & React.ComponentProps<typeof Burger>) {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const session = useAppSelector((state) => state.session.value);
+  // const session = useAppSelector((state) => state.session.value);
   const pathname = usePathname();
 
   const matchesPath = (link: string) => {
-    return pathname == link || (link != '/' && pathname.includes(link));
+    return pathname == link;
   };
 
   const navMobile = props.map((link) => {
@@ -103,7 +109,7 @@ export default function Main({
         opened={opened}
         onClose={close}
         withCloseButton={false}
-        size={240}
+        size={280}
         classNames={{
           body: classes.body,
           header: classes.header,
@@ -112,7 +118,7 @@ export default function Main({
         <Stack>
           <Stack gap={0}>{navMobile}</Stack>
 
-          <Stack gap={'xs'} px={'xs'}>
+          {/*<Stack gap={'xs'} px={'xs'}>
             {!session && (
               <WrapperSignIn>
                 <Button size="xs" variant="light">
@@ -120,7 +126,7 @@ export default function Main({
                 </Button>
               </WrapperSignIn>
             )}
-          </Stack>
+          </Stack>*/}
         </Stack>
       </Drawer>
 

@@ -9,7 +9,7 @@ import appData from '@/data/app';
 export const metadata: Metadata = {
   title: {
     default: 'Categories',
-    template: `%s - Categories - Blog - ${appData.name.app}`,
+    template: `%s - Categories - Blog - Stories - ${appData.name.app}`,
   },
 };
 

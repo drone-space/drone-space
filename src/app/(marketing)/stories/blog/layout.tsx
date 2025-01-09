@@ -1,9 +1,6 @@
 import React from 'react';
-
 import { Metadata } from 'next';
-
 import LayoutBody from '@/components/layout/body';
-
 import appData from '@/data/app';
 
 export interface typeParams {
@@ -13,7 +10,10 @@ export interface typeParams {
 }
 
 export const metadata: Metadata = {
-  title: { default: 'Blog', template: `%s - Blog - ${appData.name.app}` },
+  title: {
+    default: 'Blog',
+    template: `%s - Blog - Stories - ${appData.name.app}`,
+  },
 };
 
 export default function LayoutBlog({

@@ -3,11 +3,10 @@ import { CommentRelations } from '../models/comment';
 import { PostRelations as typePostRelations } from '../models/post';
 
 export interface Testimonial {
-  content: string;
-  cite: {
-    person: { image: string; name: string; title: string };
-    company: { image: string; name: string };
-  };
+  name: string;
+  position: string;
+  image: string;
+  quote: string;
 }
 
 export interface PostCommentReply extends ReplyRelations {

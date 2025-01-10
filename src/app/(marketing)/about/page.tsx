@@ -22,10 +22,14 @@ import CardStat from '@/components/common/cards/stat';
 import CardHub from '@/components/common/cards/hub';
 import stats from '@/data/stats';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
+import { studentsGet } from '@/handlers/requests/database/student';
+import { shuffleArray } from '@/utilities/helpers/array';
 
 export const metadata: Metadata = { title: 'About' };
 
 export default async function About() {
+  const { students } = await studentsGet();
+
   return (
     <LayoutPage>
       {/* <IntroPage
@@ -158,7 +162,7 @@ export default async function About() {
             <Text ta={'center'}>{data.testimonials.prose}</Text>
           </Stack>
 
-          <CarouselTestimonials />
+          <CarouselTestimonials props={shuffleArray(students)} />
         </Stack>
       </LayoutSection>
     </LayoutPage>

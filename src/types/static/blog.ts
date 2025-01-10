@@ -2,13 +2,6 @@ import { ReplyRelations } from '../models/reply';
 import { CommentRelations } from '../models/comment';
 import { PostRelations as typePostRelations } from '../models/post';
 
-export interface Testimonial {
-  name: string;
-  position: string;
-  image: string;
-  quote: string;
-}
-
 export interface PostCommentReply extends ReplyRelations {
   replies?: ReplyRelations[];
   _count?: { replies: number };

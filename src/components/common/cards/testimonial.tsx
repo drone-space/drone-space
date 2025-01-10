@@ -1,9 +1,9 @@
-import { Testimonial as typeTestimonial } from '@/types/static/blog';
 import { Card, Flex, Group, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
 import ImageDefault from '@/components/common/images/default';
+import { Student } from '@prisma/client';
 
-export default function Testimonial({ props }: { props: typeTestimonial }) {
+export default function Testimonial({ props }: { props: Student }) {
   return (
     <Card shadow="xs" bg={'white'} h={'100%'}>
       <Flex

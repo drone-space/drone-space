@@ -25,6 +25,7 @@ import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { studentsGet } from '@/handlers/requests/database/student';
 import { shuffleArray } from '@/utilities/helpers/array';
 
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'About' };
 
 export default async function About() {

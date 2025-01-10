@@ -81,6 +81,13 @@ export const images = {
     },
   },
 
+  alumni: {
+    image1: `${baseUrl.droneSpace}/alumni/image-1.webp`,
+    image2: `${baseUrl.droneSpace}/alumni/image-2.webp`,
+    image3: `${baseUrl.droneSpace}/alumni/image-3.webp`,
+    image4: `${baseUrl.droneSpace}/alumni/image-4.webp`,
+  },
+
   courses: {
     fixWin: `${baseUrl.droneSpace}/courses/image-1.webp`,
     mulRotr: `${baseUrl.droneSpace}/courses/image-2.webp`,

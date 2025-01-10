@@ -41,7 +41,7 @@ export default function Claude({
       >
         <Textarea
           required
-          placeholder={`Ask Claude about ${appData.name.company}`}
+          placeholder={`Ask Hekima about ${appData.name.company}`}
           autosize
           minRows={1}
           maxRows={4}

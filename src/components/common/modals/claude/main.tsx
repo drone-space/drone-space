@@ -370,7 +370,7 @@ export default function Main() {
                     {/* <Stack h={24} w={24} display={"inline-flex"}>
 										<Image
 											src={icons.tools.claude}
-											alt={"Claude AI"}
+											alt={"Hekima AI"}
 											loading="lazy"
 											radius={"sm"}
 											component={NextImage}
@@ -474,7 +474,7 @@ export default function Main() {
             <Stack>
               <Image
                 src={images.icons.claude}
-                alt={'Claude AI'}
+                alt={'Hekima AI'}
                 loading="lazy"
                 radius={'sm'}
                 component={NextImage}

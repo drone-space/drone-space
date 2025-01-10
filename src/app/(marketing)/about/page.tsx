@@ -37,7 +37,7 @@ export default async function About() {
         }}
       /> */}
 
-      <LayoutSection id="about-intro" padded containerized={'responsive'}>
+      <LayoutSection id="intro" padded containerized={'responsive'}>
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ md: 6.5, lg: 6 }}>
             <Stack gap={'xl'}>
@@ -111,7 +111,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="about-hub" padded containerized={'responsive'}>
+      <LayoutSection id="spaces-and-hub" padded containerized={'responsive'}>
         <Stack gap={'xl'}>
           <Stack gap={'xs'} align="center">
             <Title

@@ -2,7 +2,6 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutBody from '@/components/layout/body';
 import LayoutHeroMain from '@/components/layout/hero/main';
-import NavbarShop from '@/components/layout/navbars/shop';
 import appData from '@/data/app';
 
 export const metadata: Metadata = {
@@ -18,7 +17,7 @@ export default function DronesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutBody nav={<NavbarShop />} hero={<LayoutHeroMain />}>
+    <LayoutBody hero={<LayoutHeroMain />}>
       <main>{children}</main>
     </LayoutBody>
   );

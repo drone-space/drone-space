@@ -14,7 +14,7 @@ export default function Main({ title }: { title?: string }) {
   const segments = crumbify(pathname);
 
   const dynamicRoutes = [
-    '/stories/blog',
+    '/resources/blog',
     '/services',
     '/training/basic',
     '/training/advanced',
@@ -27,20 +27,20 @@ export default function Main({ title }: { title?: string }) {
   const selectTitle = () => {
     if (segments.length > 2) {
       return dynamic
-        ? links.navbar.main
+        ? links
             .find(
               (l) =>
                 l.link == segments[segments.length - (segments.length - 1)].link
             )
             ?.subLinks?.find((sl) => pathname.includes(sl.link))?.label
-        : links.navbar.main
+        : links
             .find(
               (l) =>
                 l.link == segments[segments.length - (segments.length - 1)].link
             )
             ?.subLinks?.find((sl) => sl.link == pathname)?.label;
     } else {
-      return links.navbar.main.find((l) => l.link == pathname)?.label;
+      return links.find((l) => l.link == pathname)?.label;
     }
   };
 
@@ -52,7 +52,7 @@ export default function Main({ title }: { title?: string }) {
       className={classes.hero}
     >
       <Group justify="space-between" align="center">
-        <Stack>
+        <Stack gap={0}>
           {selectTitle() && (
             <Title order={1} fw={'bolder'} fz={24} c={'white'}>
               {title ? title : selectTitle()}

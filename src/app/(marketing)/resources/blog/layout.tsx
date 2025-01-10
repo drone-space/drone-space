@@ -12,7 +12,7 @@ export interface typeParams {
 export const metadata: Metadata = {
   title: {
     default: 'Blog',
-    template: `%s - Blog - Stories - ${appData.name.app}`,
+    template: `%s - Blog - About - ${appData.name.app}`,
   },
 };
 

@@ -58,7 +58,7 @@ export default async function Post({ params }: { params: typeParams }) {
               fz={'sm'}
               style={{ cursor: 'pointer' }}
               component={Link}
-              href={`/stories/blog/categories/${post.category?.id}`}
+              href={`/resources/blog/categories/${post.category?.id}`}
             >
               {post.category?.title}
             </Badge>

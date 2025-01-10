@@ -20,7 +20,7 @@ import { CategoryRelations } from '@/types/models/category';
 import { TagRelations } from '@/types/models/tag';
 import { categoriesGet } from '@/handlers/requests/database/category';
 import { tagsGet } from '@/handlers/requests/database/tag';
-import { typeParams } from '@/app/(marketing)/stories/blog/layout';
+import { typeParams } from '@/app/(marketing)/resources/blog/layout';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 
 export default async function Blog({ params }: { params: typeParams }) {
@@ -54,7 +54,7 @@ export default async function Blog({ params }: { params: typeParams }) {
 
                 <Anchor
                   component={Link}
-                  href={`/stories/blog/categories/${c.id}`}
+                  href={`/resources/blog/categories/${c.id}`}
                   underline="never"
                   c={'gray'}
                 >
@@ -104,7 +104,7 @@ export default async function Blog({ params }: { params: typeParams }) {
               <Anchor
                 key={t.id}
                 component={Link}
-                href={`/stories/blog/tags/${t.id}`}
+                href={`/resources/blog/tags/${t.id}`}
                 underline="never"
               >
                 <Badge

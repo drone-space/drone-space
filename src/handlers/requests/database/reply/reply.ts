@@ -5,9 +5,9 @@ import { ReplyReplyCreate } from '@/types/bodies/request';
 
 const baseRequestUrl = `${API_URL}/replies/reply`;
 
-export const repliesReplyGet = async (slug: { replyId: string }) => {
+export const repliesReplyGet = async (params: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
@@ -62,9 +62,9 @@ export const replyReplyUpdate = async (
   }
 };
 
-export const replyReplyDelete = async (slug: { replyId: string }) => {
+export const replyReplyDelete = async (params: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
       method: EnumRequest.DELETE,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,

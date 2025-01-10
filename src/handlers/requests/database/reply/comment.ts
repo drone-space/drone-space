@@ -5,9 +5,9 @@ import { ReplyUpdate } from '@/types/models/reply';
 
 const baseRequestUrl = `${API_URL}/replies/comment`;
 
-export const repliesCommentGet = async (slug: { commentId: string }) => {
+export const repliesCommentGet = async (params: { commentId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.commentId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.commentId}`, {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
@@ -62,9 +62,9 @@ export const replyCommentUpdate = async (
   }
 };
 
-export const replyCommentDelete = async (slug: { replyId: string }) => {
+export const replyCommentDelete = async (params: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
       method: EnumRequest.DELETE,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,

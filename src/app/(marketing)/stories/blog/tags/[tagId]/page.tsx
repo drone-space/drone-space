@@ -11,9 +11,12 @@ import { typeParams } from '../../layout';
 import { tagGet } from '@/handlers/requests/database/tag';
 import { TagRelations } from '@/types/models/tag';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Tag({ params }: { params: typeParams }) {
   const { tag }: { tag: TagRelations } = await tagGet({
     tagId: params.tagId,
+    options: { cache: 'no-store' },
   });
 
   return (

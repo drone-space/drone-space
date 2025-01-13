@@ -4,8 +4,6 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-// import IntroPage from '@/components/layout/intro/page';
-// import appData from '@/data/app';
 import {
   AspectRatio,
   Grid,
@@ -23,10 +21,16 @@ import { IconCheck } from '@tabler/icons-react';
 import CardStat from '@/components/common/cards/stat';
 import CardHub from '@/components/common/cards/hub';
 import stats from '@/data/stats';
+import CarouselTestimonials from '@/components/common/carousels/testimonials';
+import { studentsGet } from '@/handlers/requests/database/student';
+import { shuffleArray } from '@/utilities/helpers/array';
 
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'About' };
 
 export default async function About() {
+  const { students } = await studentsGet();
+
   return (
     <LayoutPage>
       {/* <IntroPage
@@ -37,7 +41,7 @@ export default async function About() {
         }}
       /> */}
 
-      <LayoutSection id="about-intro" padded containerized={'responsive'}>
+      <LayoutSection id="about-intro" padded>
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ md: 6.5, lg: 6 }}>
             <Stack gap={'xl'}>
@@ -98,7 +102,6 @@ export default async function About() {
       <LayoutSection
         id="about-stats"
         padded={24}
-        containerized={'responsive'}
         bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
@@ -111,7 +114,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="about-hub" padded containerized={'responsive'}>
+      <LayoutSection id="about-hub" padded shadowed>
         <Stack gap={'xl'}>
           <Stack gap={'xs'} align="center">
             <Title
@@ -134,6 +137,33 @@ export default async function About() {
               </GridCol>
             ))}
           </Grid>
+        </Stack>
+      </LayoutSection>
+
+      <LayoutSection
+        id="about-testimonials"
+        padded
+        bg={
+          'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
+        }
+        // c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
+      >
+        <Stack gap={'xl'}>
+          <Stack gap={'xs'} align="center">
+            <Title
+              order={2}
+              fw={'bold'}
+              ta={'center'}
+              fz={{ md: 24 }}
+              w={{ md: '80%' }}
+            >
+              What Our Clients Say
+            </Title>
+
+            <Text ta={'center'}>{data.testimonials.prose}</Text>
+          </Stack>
+
+          <CarouselTestimonials props={shuffleArray(students)} />
         </Stack>
       </LayoutSection>
     </LayoutPage>
@@ -175,5 +205,9 @@ const data = {
         ],
       },
     ],
+  },
+  testimonials: {
+    prose:
+      "At [Your Company Name], we take pride in delivering exceptional results that exceed expectations. But don't just take our word for it! Here's what some of our satisfied clients have to say about their experience working with us. Their stories reflect our commitment to quality, innovation, and customer satisfaction. Take a moment to hear directly from the people who matter most: our valued clients.",
   },
 };

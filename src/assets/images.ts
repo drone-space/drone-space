@@ -1,9 +1,10 @@
-const baseUrl = {
-  droneSpace: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images`,
-  conference:
-    'https://ttzhsqdoyaytittaoqqc.supabase.co/storage/v1/object/public/images',
-};
+import { HOSTED_BASE_URL } from '@/data/constants';
+
 const iconUrl = `https://img.icons8.com`;
+const baseUrl = {
+  droneSpace: `${HOSTED_BASE_URL.DRONE_SPACE}/images`,
+  conference: `${HOSTED_BASE_URL.CONFERENCE}/images`,
+};
 
 export const images = {
   icons: {

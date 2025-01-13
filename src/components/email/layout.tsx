@@ -14,7 +14,7 @@ import {
 } from '@react-email/components';
 import appData from '@/data/app';
 
-const baseUrl = `https://xnaswiiqkdfkeirriwxj.supabase.co/storage/v1/object/public/images`;
+const baseUrl = `https://dronespace.co.ke/images`;
 
 export const Email = ({
   props,

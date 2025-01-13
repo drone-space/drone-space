@@ -21,15 +21,15 @@ import { IconCheck } from '@tabler/icons-react';
 import CardStat from '@/components/common/cards/stat';
 import CardHub from '@/components/common/cards/hub';
 import stats from '@/data/stats';
-import CarouselTestimonials from '@/components/common/carousels/testimonials';
-import { studentsGet } from '@/handlers/requests/database/student';
-import { shuffleArray } from '@/utilities/helpers/array';
+// import CarouselTestimonials from '@/components/common/carousels/testimonials';
+// import { studentsGet } from '@/handlers/requests/database/student';
+// import { shuffleArray } from '@/utilities/helpers/array';
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'About' };
 
 export default async function About() {
-  const { students } = await studentsGet();
+  // const { students } = await studentsGet();
 
   return (
     <LayoutPage>
@@ -140,7 +140,7 @@ export default async function About() {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection
+      {/* <LayoutSection
         id="about-testimonials"
         padded
         bg={
@@ -165,7 +165,7 @@ export default async function About() {
 
           <CarouselTestimonials props={shuffleArray(students)} />
         </Stack>
-      </LayoutSection>
+      </LayoutSection> */}
     </LayoutPage>
   );
 }

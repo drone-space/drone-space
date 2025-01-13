@@ -21,26 +21,19 @@ import { IconCheck } from '@tabler/icons-react';
 import CardStat from '@/components/common/cards/stat';
 import CardHub from '@/components/common/cards/hub';
 import stats from '@/data/stats';
-// import CarouselTestimonials from '@/components/common/carousels/testimonials';
-// import { studentsGet } from '@/handlers/requests/database/student';
-// import { shuffleArray } from '@/utilities/helpers/array';
+import CarouselTestimonials from '@/components/common/carousels/testimonials';
+import { studentsGet } from '@/handlers/requests/database/student';
+import { shuffleArray } from '@/utilities/helpers/array';
+import appData from '@/data/app';
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'About' };
 
 export default async function About() {
-  // const { students } = await studentsGet();
+  const { students } = await studentsGet();
 
   return (
     <LayoutPage>
-      {/* <IntroPage
-        props={{
-          path: `About ${appData.name.company}`,
-          title: 'Empowering the World to Design',
-          desc: `We are ${appData.name.company}, a Digital Product Design & Branding Agency. As a team of Designers, Business Analysts, Strategists, Content Writers, and Project Managers, we collaborate on a result-oriented design process.`,
-        }}
-      /> */}
-
       <LayoutSection id="about-intro" padded>
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ md: 6.5, lg: 6 }}>
@@ -140,7 +133,7 @@ export default async function About() {
         </Stack>
       </LayoutSection>
 
-      {/* <LayoutSection
+      <LayoutSection
         id="about-testimonials"
         padded
         bg={
@@ -165,7 +158,7 @@ export default async function About() {
 
           <CarouselTestimonials props={shuffleArray(students)} />
         </Stack>
-      </LayoutSection> */}
+      </LayoutSection>
     </LayoutPage>
   );
 }
@@ -207,7 +200,6 @@ const data = {
     ],
   },
   testimonials: {
-    prose:
-      "At [Your Company Name], we take pride in delivering exceptional results that exceed expectations. But don't just take our word for it! Here's what some of our satisfied clients have to say about their experience working with us. Their stories reflect our commitment to quality, innovation, and customer satisfaction. Take a moment to hear directly from the people who matter most: our valued clients.",
+    prose: `At ${appData.name.company}, we take pride in delivering exceptional results that exceed expectations. But don't just take our word for it! Here's what some of our satisfied clients have to say about their experience working with us. Their stories reflect our commitment to quality, innovation, and customer satisfaction. Take a moment to hear directly from the people who matter most: our valued clients.`,
   },
 };

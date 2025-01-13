@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic';
-
 import React from 'react';
 
 import { Grid, GridCol } from '@mantine/core';
@@ -12,6 +10,8 @@ import CardBlogMain from '@/components/common/cards/blog/main';
 
 import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Blog() {
   const { posts }: { posts: PostRelations[] } = await postsGet();

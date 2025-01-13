@@ -12,6 +12,10 @@ export const HOSTED_BASE_URL = {
 };
 
 export const BASE_URL = `${URL_PREFIX}${HOSTNAME}`;
+export const HOSTED_BASE_URL = {
+  DRONE_SPACE: `https://dronespace.co.ke`,
+  CONFERENCE: `https://aiconference.co.ke`,
+};
 
 export const API_URL = `${BASE_URL}/api`;
 

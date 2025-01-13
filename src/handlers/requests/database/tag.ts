@@ -9,6 +9,7 @@ export const tagsGet = async () => {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
+      cache: 'no-store',
     });
 
     const response = await fetch(request);
@@ -22,12 +23,16 @@ export const tagsGet = async () => {
   }
 };
 
-export const tagGet = async (slug: { tagId: string }) => {
+export const tagGet = async (params: {
+  tagId: string;
+  options?: { cache?: RequestCache };
+}) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.tagId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.tagId}`, {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
+      cache: params.options?.cache,
     });
 
     const response = await fetch(request);

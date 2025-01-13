@@ -1,4 +1,6 @@
-const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/videos`;
+import { HOSTED_BASE_URL } from '@/data/constants';
+
+const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/videos`;
 
 const videos = {
   hero: {
@@ -10,7 +12,7 @@ const videos = {
     },
   },
 
-  video1: '/videos/video-1.mp4',
+  video1: `${baseUrl}/video-1.mp4`,
 };
 
 export default videos;

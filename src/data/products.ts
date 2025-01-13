@@ -1,7 +1,8 @@
 import { images } from '@/assets/images';
 import accessories from './accessories';
+import { HOSTED_BASE_URL } from './constants';
 
-const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images`;
+const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/images`;
 
 const products = [
   // {

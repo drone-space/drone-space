@@ -6,6 +6,10 @@ const URL_PREFIX =
     : 'http://';
 
 export const HOSTNAME = process.env.NEXT_PUBLIC_HOST;
+export const HOSTED_BASE_URL = {
+  DRONE_SPACE: `https://dronespace.co.ke`,
+  CONFERENCE: `https://aiconference.co.ke`,
+};
 
 export const BASE_URL = `${URL_PREFIX}${HOSTNAME}`;
 export const HOSTED_BASE_URL = {

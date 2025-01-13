@@ -1,4 +1,6 @@
-const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/documents`;
+import { HOSTED_BASE_URL } from '@/data/constants';
+
+const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/documents`;
 
 const documents = {
   droneSpace: {

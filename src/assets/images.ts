@@ -1,9 +1,10 @@
-const baseUrl = {
-  droneSpace: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/images`,
-  conference:
-    'https://ttzhsqdoyaytittaoqqc.supabase.co/storage/v1/object/public/images',
-};
+import { HOSTED_BASE_URL } from '@/data/constants';
+
 const iconUrl = `https://img.icons8.com`;
+const baseUrl = {
+  droneSpace: `${HOSTED_BASE_URL.DRONE_SPACE}/images`,
+  conference: `${HOSTED_BASE_URL.CONFERENCE}/images`,
+};
 
 export const images = {
   icons: {
@@ -79,6 +80,13 @@ export const images = {
       image2: `${baseUrl.droneSpace}/carousel/shop/image-2.webp`,
       image3: `${baseUrl.droneSpace}/carousel/shop/image-3.webp`,
     },
+  },
+
+  alumni: {
+    image1: `${baseUrl.droneSpace}/alumni/image-1.webp`,
+    image2: `${baseUrl.droneSpace}/alumni/image-2.webp`,
+    image3: `${baseUrl.droneSpace}/alumni/image-3.webp`,
+    image4: `${baseUrl.droneSpace}/alumni/image-4.webp`,
   },
 
   courses: {

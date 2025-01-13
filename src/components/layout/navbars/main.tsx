@@ -29,14 +29,14 @@ export default function Main({
   };
 
   const navLinks = links.navbar.main.map((link) => {
-    const linkIsShop = link.link != '/shop';
+    const linkIsShop = link.link == '/shop';
 
     return (
       <MenuNavbar
         key={link.link}
-        subLinks={linkIsShop ? link.subLinks : undefined}
+        subLinks={linkIsShop ? undefined : link.subLinks}
       >
-        {!link.subLinks ? (
+        {!link.subLinks || linkIsShop ? (
           <Anchor
             component={Link}
             href={link.link}
@@ -53,22 +53,16 @@ export default function Main({
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
-            onClick={(e) => {
-              if (!linkIsShop) {
-                e.preventDefault();
-              }
-            }}
+            onClick={(e) => e.preventDefault()}
           >
             <Group gap={4}>
               <span>{link.label}</span>
 
-              {linkIsShop && (
-                <IconChevronDown
-                  size={ICON_SIZE - 4}
-                  stroke={ICON_STROKE_WIDTH}
-                  style={{ marginTop: 2 }}
-                />
-              )}
+              <IconChevronDown
+                size={ICON_SIZE - 4}
+                stroke={ICON_STROKE_WIDTH}
+                style={{ marginTop: 2 }}
+              />
             </Group>
           </Anchor>
         )}

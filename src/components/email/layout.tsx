@@ -13,8 +13,9 @@ import {
   Heading,
 } from '@react-email/components';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
 
-const baseUrl = `https://dronespace.co.ke/images`;
+const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/images`;
 
 export const Email = ({
   props,

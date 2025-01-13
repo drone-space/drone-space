@@ -36,15 +36,14 @@ import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partial/blog-content';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
 
   if (!postId) redirect('/not-found');
 
-  const { post }: { post: PostRelations } = await postGet(
-    { postId: postId },
-    { cache: 'no-store' }
-  );
+  const { post }: { post: PostRelations } = await postGet({ postId: postId });
 
   return (
     <LayoutPage>

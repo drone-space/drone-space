@@ -1,46 +1,58 @@
-import { Testimonial as typeTestimonial } from '@/types/static/blog';
-import { Card, Flex, Group, Stack, Text, Title } from '@mantine/core';
+import { Card, Flex, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
 import ImageDefault from '@/components/common/images/default';
+import { Student } from '@prisma/client';
+import { IconBlockquote } from '@tabler/icons-react';
+import { ICON_SIZE } from '@/data/constants';
 
-export default function Testimonial({ props }: { props: typeTestimonial }) {
+export default function Testimonial({ props }: { props: Student }) {
   return (
-    <Card withBorder shadow="xs" bg={'transparent'} h={'100%'} mx={'md'}>
+    <Card shadow="xs" bg={'white'} h={'100%'}>
+      <Overlay backgroundOpacity={0} opacity={0.33} p={'md'}>
+        <Group h={'100%'} align="end" justify="end">
+          <IconBlockquote
+            size={ICON_SIZE * 4}
+            color="var(--mantine-color-sec-3)"
+          />
+        </Group>
+      </Overlay>
+
       <Flex
         direction={'column'}
-        gap={'lg'}
+        gap={'xl'}
         justify={'space-between'}
         h={'100%'}
       >
-        <Stack gap={'lg'}>
-          <ImageDefault
-            src={props.cite.company.image}
-            alt={props.cite.company.name}
-            height={32}
-            width={80}
-            mode="grid"
-          />
+        {props.quote ? (
+          <Text>&quot;{props.quote}&quot;</Text>
+        ) : (
+          <Text>&quot;quote missing&quot;</Text>
+        )}
 
-          <Text>&quot;{props.content}&quot;</Text>
-        </Stack>
-
-        <Group>
-          <Group style={{ borderRadius: 99, overflow: 'hidden' }}>
+        <Group wrap="nowrap" align="start">
+          <Group
+            style={{
+              borderRadius: 'var(--mantine-radius-sm)',
+              boxShadow: 'var(--mantine-shadow-xs)',
+              overflow: 'hidden',
+            }}
+            miw={64}
+          >
             <ImageDefault
-              src={props.cite.person.image}
-              alt={props.cite.person.name}
-              height={48}
-              width={48}
+              src={props.image}
+              alt={props.name}
+              height={64}
+              width={64}
               mode="grid"
             />
           </Group>
 
           <Stack gap={0}>
-            <Title order={3} fz={'sm'}>
-              {props.cite.person.name}
+            <Title order={3} fz={'md'}>
+              {props.name}
             </Title>
             <Text fz={'sm'} c={'dimmed'}>
-              {props.cite.person.title}
+              {props.position}
             </Text>
           </Stack>
         </Group>

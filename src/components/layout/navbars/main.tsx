@@ -46,7 +46,11 @@ export default function Main({
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              if (!linkIsShop) {
+                e.preventDefault();
+              }
+            }}
           >
             <Group gap={4}>{link.label}</Group>
           </Anchor>

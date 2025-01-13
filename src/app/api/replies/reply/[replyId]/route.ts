@@ -22,7 +22,7 @@ export async function GET(
         }
 
         const replyRecords = await prisma.reply.findMany({
-          where: { replyId: params.replyId },
+          where: { replyId: params.replyId, status: 'ACTIVE' },
 
           select: {
             id: true,

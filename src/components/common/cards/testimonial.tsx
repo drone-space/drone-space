@@ -1,11 +1,22 @@
-import { Card, Flex, Group, Stack, Text, Title } from '@mantine/core';
+import { Card, Flex, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
 import ImageDefault from '@/components/common/images/default';
 import { Student } from '@prisma/client';
+import { IconBlockquote } from '@tabler/icons-react';
+import { ICON_SIZE } from '@/data/constants';
 
 export default function Testimonial({ props }: { props: Student }) {
   return (
     <Card shadow="xs" bg={'white'} h={'100%'}>
+      <Overlay backgroundOpacity={0} opacity={0.33} p={'md'}>
+        <Group h={'100%'} align="end" justify="end">
+          <IconBlockquote
+            size={ICON_SIZE * 4}
+            color="var(--mantine-color-sec-3)"
+          />
+        </Group>
+      </Overlay>
+
       <Flex
         direction={'column'}
         gap={'xl'}

@@ -5,7 +5,9 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const studentRecords = await prisma.student.findMany();
+    const studentRecords = await prisma.student.findMany({
+      where: { status: 'ACTIVE' },
+    });
 
     return NextResponse.json(
       { students: studentRecords },

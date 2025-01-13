@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const postRecords = await prisma.post.findMany({
+      where: { status: 'ACTIVE' },
       select: {
         id: true,
         image: true,

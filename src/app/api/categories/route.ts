@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const categoryRecords = await prisma.category.findMany({
+      where: { status: 'ACTIVE' },
       include: { _count: { select: { posts: true } } },
     });
 

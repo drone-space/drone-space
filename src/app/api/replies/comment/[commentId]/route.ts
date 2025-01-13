@@ -49,7 +49,7 @@ export async function GET(
 
         // Fetch all reply replies in a single query
         const replyReplies = await prisma.reply.findMany({
-          where: { replyId: { in: commentReplyIds } },
+          where: { replyId: { in: commentReplyIds }, status: 'ACTIVE' },
           select: { replyId: true },
         });
 

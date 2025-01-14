@@ -26,9 +26,7 @@ import { extractUuidFromParam } from '@/utilities/helpers/string';
 export default async function Blog({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
 
-  const { posts }: { posts: PostRelations[] } = await postsGet({
-    options: { cache: 'no-store' },
-  });
+  const { posts }: { posts: PostRelations[] } = await postsGet();
   const { tags }: { tags: TagRelations[] } = await tagsGet();
   const { categories }: { categories: CategoryRelations[] } =
     await categoriesGet();

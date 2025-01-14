@@ -15,9 +15,7 @@ export const generateMetadata = async ({
 }: {
   params: typeParams;
 }): Promise<Metadata> => {
-  const { posts }: { posts: PostRelations[] } = await postsGet({
-    options: { cache: 'no-store' },
-  });
+  const { posts }: { posts: PostRelations[] } = await postsGet();
 
   const postId = extractUuidFromParam(params['postTitle-postId']);
 

@@ -21,8 +21,8 @@ export default function Testimonial({ props }: { props: Student }) {
         justify={'space-between'}
         h={'100%'}
       >
-        <Text pt={'xl'} pr={32}>
-          &quot;{props.quote}&quot;
+        <Text pt={'xl'} pr={32} fz={'sm'}>
+          {props.quote}
         </Text>
 
         <Group wrap="nowrap" align="start">
@@ -47,7 +47,7 @@ export default function Testimonial({ props }: { props: Student }) {
             <Title order={3} fz={'md'}>
               {props.name}
             </Title>
-            <Text fz={'sm'} c={'dimmed'}>
+            <Text fz={'xs'} c={'dimmed'}>
               {props.position}
             </Text>
           </Stack>

@@ -36,6 +36,14 @@ import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
 import CtaTraining from '@/components/partial/cta/training';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import { Metadata } from 'next';
+import appData from '@/data/app';
+
+export const metadata: Metadata = {
+  title: `${appData.name.app} Kenya - Premier Drone Training & Services`,
+  description:
+    "Discover professional drone training, cutting-edge aerial services, and resources to elevate your skills. Join Drone Space, Kenya's trusted drone school.",
+};
 
 export default function Home() {
   return (

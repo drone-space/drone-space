@@ -26,12 +26,18 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
+import appData from '@/data/app';
 // import CarouselTestimonials from '@/components/common/carousels/testimonials';
 // import { studentsGet } from '@/handlers/requests/database/student';
 // import { shuffleArray } from '@/utilities/helpers/array';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'About' };
+
+export const metadata: Metadata = {
+  title: `About ${appData.name.app} - Kenya's Leading Drone Training Academy`,
+  description:
+    'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.',
+};
 
 export default async function About() {
   // const { students } = await studentsGet();

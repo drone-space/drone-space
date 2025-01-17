@@ -11,7 +11,12 @@ import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import { Anchor, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import appData from '@/data/app';
-export const metadata: Metadata = { title: 'FAQ' };
+
+export const metadata: Metadata = {
+  title: `${appData.name.app} FAQ - Answers to Your Drone Training Questions`,
+  description:
+    'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.',
+};
 
 export default async function Faq() {
   return (

@@ -40,7 +40,11 @@ import appData from '@/data/app';
 import shows from '@/data/shows';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
-export const metadata: Metadata = { title: 'Drone Light Show' };
+export const metadata: Metadata = {
+  title: 'Drone Light Shows - Stunning Aerial Displays by Drone Space',
+  description:
+    'Experience breathtaking drone light shows for events and celebrations. Discover how Drone Space creates unforgettable aerial art.',
+};
 
 export default async function LighShow() {
   const data = shows;

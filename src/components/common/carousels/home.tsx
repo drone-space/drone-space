@@ -100,7 +100,7 @@ export default function Home() {
           backgroundPosition: 'center center',
         }}
       >
-        <LayoutSection id="carousel-slide">
+        <LayoutSection id="carousel-slide" containerized={'md'}>
           <Stack align={'center'} justify="center" mih={520}>
             <Stack className={classes.imageContainer} h={80}>
               <Image
@@ -113,6 +113,17 @@ export default function Home() {
                 height={1080}
               />
             </Stack>
+
+            <Text
+              inherit
+              fz={{ base: 'xs', xs: 'sm', sm: 'md', md: 'lg' }}
+              ta={'center'}
+            >
+              Following the success of the 2024 AI Conference Nairobi, which
+              attracted over 900 attendees, Drone Space is excited to announce
+              that it will host the 2nd AI Conference Nairobi on May 6th and
+              7th, 2025.
+            </Text>
 
             <Text
               w={{ base: '100%', md: '75%' }}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Stack, Group, Text, Button, Title } from '@mantine/core';
-import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
+import { IconExternalLink, IconPhoneCall } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import documents from '@/assets/documents';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Service() {
   return (
@@ -32,14 +33,18 @@ export default function Service() {
           <Button
             component="a"
             href={documents.droneSpace.profile}
-            download={'company-profile'}
-            leftSection={<IconFileDownload size={16} stroke={1.5} />}
+            target="_blank"
+            leftSection={
+              <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            }
           >
             Company Profile
           </Button>
           <ModalContactCallback>
             <Button
-              leftSection={<IconPhoneCall size={16} stroke={1.5} />}
+              leftSection={
+                <IconPhoneCall size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
               variant="light"
             >
               Request Callback

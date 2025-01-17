@@ -20,7 +20,8 @@ import { typeMenuNavbar } from '@/types/components/menu';
 import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
-import { IconFileDownload } from '@tabler/icons-react';
+import { IconExternalLink } from '@tabler/icons-react';
+import documents from '@/assets/documents';
 
 export default function Navbar({
   children,
@@ -119,7 +120,7 @@ export default function Navbar({
                     <Stack gap={0} h={'100%'} justify="space-between">
                       <Button
                         leftSection={
-                          <IconFileDownload
+                          <IconExternalLink
                             size={ICON_SIZE - 4}
                             stroke={ICON_STROKE_WIDTH}
                             color="var(--mantine-color-pri-9)"
@@ -129,13 +130,16 @@ export default function Navbar({
                         color="sec.3"
                         c="pri.9"
                         size="compact-sm"
+                        component="a"
+                        target="_blank"
+                        href={documents.droneSpace.brochure}
                       >
                         Brochure
                       </Button>
 
                       <Button
                         leftSection={
-                          <IconFileDownload
+                          <IconExternalLink
                             size={ICON_SIZE - 4}
                             stroke={ICON_STROKE_WIDTH}
                             color="var(--mantine-color-white)"
@@ -145,6 +149,9 @@ export default function Navbar({
                         variant="outline"
                         color="white"
                         size="compact-sm"
+                        component="a"
+                        target="_blank"
+                        href={documents.droneSpace.profile}
                       >
                         Profile
                       </Button>

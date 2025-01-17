@@ -26,9 +26,9 @@ export default function Main({
     return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
-  const navLinks = links.map((link) => {
+  const navLinks = links.map((link, index) => {
     return (
-      <MenuNavbar key={link.link} subLinks={link.subLinks}>
+      <MenuNavbar key={index} subLinks={link.subLinks}>
         {!link.subLinks ? (
           <Anchor
             component={Link}

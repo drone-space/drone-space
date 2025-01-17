@@ -33,12 +33,12 @@ export default function Main({
     return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
-  const navMobile = props.map((link) => {
+  const navMobile = props.map((link, index) => {
     const subLinks =
       link.subLinks &&
-      link.subLinks.map((subLink) => (
+      link.subLinks.map((subLink, index2) => (
         <NavLink
-          key={subLink.link}
+          key={index2}
           component={Link}
           href={subLink.link}
           label={subLink.label}
@@ -50,7 +50,7 @@ export default function Main({
 
     return !subLinks ? (
       <NavLink
-        key={link.link}
+        key={index}
         component={Link}
         href={link.link}
         label={link.label}

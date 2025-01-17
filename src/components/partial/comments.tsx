@@ -48,8 +48,8 @@ export default function Comments({
           <Title order={2}>Comments</Title>
 
           <Grid gutter={0} mt={'xl'}>
-            {comments.map((comment) => (
-              <GridCol key={comment.id} span={12}>
+            {comments.map((comment, index) => (
+              <GridCol key={index} span={12}>
                 <Stack gap={0}>
                   <CardBlogComment
                     props={{

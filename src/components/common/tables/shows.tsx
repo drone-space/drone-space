@@ -14,8 +14,8 @@ export default function Shows({
 }: {
   data: { item: string; duration: string | null }[];
 }) {
-  const rows = data.map((item) => (
-    <TableTr key={item.item}>
+  const rows = data.map((item, index) => (
+    <TableTr key={index}>
       <TableTd
         w={{ base: '80%', sm: '70%', md: '80%' }}
         fz={{ base: 'xs', lg: 'sm' }}

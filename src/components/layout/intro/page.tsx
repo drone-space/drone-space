@@ -32,7 +32,7 @@ export default function Page({
           <Text
             fw={'bold'}
             ta={'center'}
-            c={'pri.9'}
+            c={'sec.4'}
             tt={'uppercase'}
             fz={'sm'}
           >
@@ -48,11 +48,7 @@ export default function Page({
               {props.title}
             </Title>
 
-            {props.desc && (
-              <Text ta={'center'} fz={'lg'}>
-                {props.desc}
-              </Text>
-            )}
+            {props.desc && <Text ta={'center'}>{props.desc}</Text>}
           </Stack>
         </Container>
       </Stack>

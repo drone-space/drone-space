@@ -193,12 +193,8 @@ export default function Main() {
                         <Text inherit>Some example questions:</Text>
 
                         <Stack gap={'xs'} align="start" ml={{ md: 'md' }}>
-                          {sample.questions.map((question) => (
-                            <FormClaude
-                              key={question}
-                              automatic
-                              query={question}
-                            >
+                          {sample.questions.map((question, index) => (
+                            <FormClaude key={index} automatic query={question}>
                               <Button
                                 variant="outline"
                                 color="gray.6"
@@ -223,9 +219,9 @@ export default function Main() {
               )}
             </Transition>
 
-            {conversation.map((item) => (
+            {conversation.map((item, index) => (
               <Transition
-                key={item.content}
+                key={index}
                 mounted={true}
                 transition="fade"
                 duration={250}
@@ -445,9 +441,9 @@ export default function Main() {
                 </Text>
 
                 <Group gap={'xs'} justify="center">
-                  {links.map((link) => (
+                  {links.map((link, index) => (
                     <Anchor
-                      key={link.link}
+                      key={index}
                       href={link.link}
                       target="_blank"
                       underline="always"

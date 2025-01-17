@@ -17,11 +17,8 @@ export default async function Camera() {
     <LayoutPage>
       <LayoutSection id="page-drones-agri" padded containerized={'responsive'}>
         <Grid>
-          {drones.map((drone) => (
-            <GridCol
-              key={drone.title.long}
-              span={{ base: 12, xs: 6, md: 4, lg: 3 }}
-            >
+          {drones.map((drone, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
               <CardShopDronesMain data={drone} />
             </GridCol>
           ))}

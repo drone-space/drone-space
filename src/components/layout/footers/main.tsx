@@ -47,9 +47,9 @@ export default function Main() {
         </Flex>
 
         <Grid gutter={{ base: 'xl', md: 'md' }} visibleFrom="sm">
-          {linkSets.map((linkSet) => (
+          {linkSets.map((linkSet, index) => (
             <GridCol
-              key={linkSet.title}
+              key={index}
               span={{ base: 6, sm: 4, md: 3 }}
               visibleFrom={
                 linkSets.indexOf(linkSet) == linkSets.length - 1
@@ -110,8 +110,8 @@ export default function Main() {
           </Flex>
 
           <Group gap={0} wrap="nowrap">
-            {socials.map((social) => (
-              <Anchor key={social.link} href={social.link} target="_blank">
+            {socials.map((social, index) => (
+              <Anchor key={index} href={social.link} target="_blank">
                 <Stack>
                   <Image
                     src={social.image}

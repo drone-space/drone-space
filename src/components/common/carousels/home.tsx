@@ -49,7 +49,7 @@ export default function Home() {
 
   const slides = data.map((slide, index) => (
     <CarouselSlide
-      key={slide.title}
+      key={index}
       style={{
         background: `linear-gradient( rgba(0, 0, 0, 0.25) 20%, rgba(0, 0, 0, 0.75) 100%), url('${slide.image}')`,
         backgroundSize: 'cover',
@@ -57,7 +57,7 @@ export default function Home() {
         backgroundPosition: 'center center',
       }}
     >
-      <LayoutSection id={`carousel-slide-${index}`}>
+      <LayoutSection id={`carousel-home-slide-${index}`}>
         <Stack align={'center'} justify="center" mih={520}>
           <Title order={1} ta={'center'} className={classes.title}>
             {slide.title}

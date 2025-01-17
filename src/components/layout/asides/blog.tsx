@@ -48,8 +48,8 @@ export default async function Blog({ params }: { params: typeParams }) {
           </Title>
 
           <Stack gap={'xs'}>
-            {categories.map((c) => (
-              <Stack key={c.id}>
+            {categories.map((c, index) => (
+              <Stack key={index}>
                 {categories.indexOf(c) != 0 && <Divider />}
 
                 <Anchor
@@ -81,9 +81,9 @@ export default async function Blog({ params }: { params: typeParams }) {
 
           <Grid>
             {postsFiltered.map(
-              (post) =>
+              (post, index) =>
                 postsFiltered.indexOf(post) < 3 && (
-                  <GridCol key={post.id} span={12}>
+                  <GridCol key={index} span={12}>
                     <Stack>
                       {postsFiltered.indexOf(post) != 0 && <Divider />}
                       <CardBlogAside post={post} />
@@ -100,9 +100,9 @@ export default async function Blog({ params }: { params: typeParams }) {
           </Title>
 
           <Group gap={'xs'}>
-            {tags.map((t) => (
+            {tags.map((t, index) => (
               <Anchor
-                key={t.id}
+                key={index}
                 component={Link}
                 href={`/resources/blog/tags/${t.id}`}
                 underline="never"

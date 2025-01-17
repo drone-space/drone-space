@@ -72,8 +72,8 @@ export default function Training({
               align={'center'}
               gap={{ base: 'xs', md: 'lg' }}
             >
-              {process.map((item) => (
-                <Group gap={'xs'} key={item.title} fw={500}>
+              {process.map((item, index) => (
+                <Group gap={'xs'} key={index} fw={500}>
                   <ThemeIcon
                     size={ICON_WRAPPER_SIZE / 1.5}
                     color="green.6"

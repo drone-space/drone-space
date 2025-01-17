@@ -150,8 +150,8 @@ export default function Basic({
               </ThemeIcon>
             }
           >
-            {data.modules?.map((module) => (
-              <ListItem key={module}>{module}</ListItem>
+            {data.modules?.map((module, index) => (
+              <ListItem key={index}>{module}</ListItem>
             ))}
           </List>
         </Stack>

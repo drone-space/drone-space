@@ -139,8 +139,8 @@ export default function Home() {
               </Title>
 
               <Grid justify="center">
-                {services.map((service) => (
-                  <GridCol key={service.title} span={{ md: 4, xs: 6, lg: 3 }}>
+                {services.map((service, index) => (
+                  <GridCol key={index} span={{ md: 4, xs: 6, lg: 3 }}>
                     <CardService data={service} />
                   </GridCol>
                 ))}
@@ -164,36 +164,27 @@ export default function Home() {
 
               <Grid>
                 {drones.camera.map(
-                  (product) =>
+                  (product, index) =>
                     drones.camera.indexOf(product) < 2 && (
-                      <GridCol
-                        key={product.title.long}
-                        span={{ base: 12, xs: 6, md: 4 }}
-                      >
+                      <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
                         <CardShopDroneMain data={product} />
                       </GridCol>
                     )
                 )}
 
                 {drones.enterprise.map(
-                  (product) =>
+                  (product, index) =>
                     drones.enterprise.indexOf(product) < 2 && (
-                      <GridCol
-                        key={product.title.long}
-                        span={{ base: 12, xs: 6, md: 4 }}
-                      >
+                      <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
                         <CardShopDroneMain data={product} />
                       </GridCol>
                     )
                 )}
 
                 {drones.agriculture.map(
-                  (product) =>
+                  (product, index) =>
                     drones.agriculture.indexOf(product) < 1 && (
-                      <GridCol
-                        key={product.title.long}
-                        span={{ base: 12, xs: 6, md: 4 }}
-                      >
+                      <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
                         <CardShopDroneMain data={product} />
                       </GridCol>
                     )
@@ -220,9 +211,9 @@ export default function Home() {
                       </Stack>
                     </Button>
 
-                    {categories.map((category) => (
+                    {categories.map((category, index) => (
                       <Button
-                        key={category.label}
+                        key={index}
                         component={Link}
                         href={`/shop/drones/${linkify(category.label)}`}
                         h={'100%'}
@@ -259,11 +250,8 @@ export default function Home() {
               </Title>
 
               <Grid>
-                {partners.map((partner) => (
-                  <GridCol
-                    key={partner.title}
-                    span={{ base: 6, xs: 4, md: 3, lg: 2 }}
-                  >
+                {partners.map((partner, index) => (
+                  <GridCol key={index} span={{ base: 6, xs: 4, md: 3, lg: 2 }}>
                     <CardPartner data={partner} />
                   </GridCol>
                 ))}
@@ -295,8 +283,8 @@ export default function Home() {
               </Stack>
 
               <Grid justify="center">
-                {whyUs.map((item) => (
-                  <GridCol key={item.title} span={{ base: 12, xs: 6, sm: 4 }}>
+                {whyUs.map((item, index) => (
+                  <GridCol key={index} span={{ base: 12, xs: 6, sm: 4 }}>
                     <CardWhy data={item} />
                   </GridCol>
                 ))}

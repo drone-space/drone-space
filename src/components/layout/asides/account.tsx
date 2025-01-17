@@ -51,9 +51,9 @@ export default function Account() {
             </Title>
 
             <Stack gap={4}>
-              {navLinkItems.activity.map((item) => (
+              {navLinkItems.activity.map((item,index) => (
                 <NavLink
-                  key={item.label}
+                  key={index}
                   component={Link}
                   href={item.link}
                   label={item.label}
@@ -77,9 +77,9 @@ export default function Account() {
             </Title>
 
             <Stack gap={4}>
-              {navLinkItems.account.map((item) => (
+              {navLinkItems.account.map((item, index) => (
                 <NavLink
-                  key={item.label}
+                  key={index}
                   component={Link}
                   href={item.link}
                   label={item.label}
@@ -112,9 +112,9 @@ export default function Account() {
             </Title>
 
             <Stack gap={4}>
-              {navLinkItems.support.map((item) => (
+              {navLinkItems.support.map((item, index) => (
                 <NavLink
-                  key={item.label}
+                  key={index}
                   component={Link}
                   href={item.link}
                   label={item.label}
@@ -142,9 +142,9 @@ export default function Account() {
           <Divider />
 
           <Stack gap={4}>
-            {navLinkItems.danger.map((item) => (
+            {navLinkItems.danger.map((item, index) => (
               <NavLink
-                key={item.label}
+                key={index}
                 component={Link}
                 href={item.link}
                 label={item.label}

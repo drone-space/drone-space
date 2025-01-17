@@ -35,10 +35,10 @@ export default async function PrivacyPolicy() {
         </Stack>
       </LayoutSection>
 
-      {legal.policy.map((t) => (
+      {legal.policy.map((t, index) => (
         <LayoutSection
           id="page-legal-privacy-list"
-          key={t.title}
+          key={index}
           margined={40}
           containerized={'sm'}
         >
@@ -47,20 +47,22 @@ export default async function PrivacyPolicy() {
               {legal.policy.indexOf(t) + 1}. {t.title}
             </Title>
 
-            {t.prose.map((p) => (
-              <Text key={p.id}>{p.content}</Text>
+            {t.prose.map((p, index) => (
+              <Text key={index}>{p.content}</Text>
             ))}
 
             {t.list && (
               <List size="sm" withPadding spacing={4}>
-                {t.list.map((i) => (
-                  <ListItem key={i.id}>{i.content}</ListItem>
+                {t.list.map((i, index) => (
+                  <ListItem key={index}>{i.content}</ListItem>
                 ))}
               </List>
             )}
 
             {t.postProse &&
-              t.postProse.map((p) => <Text key={p.id}>{p.content}</Text>)}
+              t.postProse.map((p, index) => (
+                <Text key={index}>{p.content}</Text>
+              ))}
           </Stack>
         </LayoutSection>
       ))}

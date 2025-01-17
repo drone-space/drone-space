@@ -96,8 +96,8 @@ export default function BasicCourseDetails({ params }: typeParams) {
                         </ThemeIcon>
                       }
                     >
-                      {data?.modules?.map((item) => (
-                        <ListItem key={item} fz={{ md: 'sm', lg: 'md' }}>
+                      {data?.modules?.map((item, index) => (
+                        <ListItem key={index} fz={{ md: 'sm', lg: 'md' }}>
                           {item}
                         </ListItem>
                       ))}
@@ -147,8 +147,8 @@ export default function BasicCourseDetails({ params }: typeParams) {
                       </ThemeIcon>
                     }
                   >
-                    {data?.qualifications?.map((item) => (
-                      <ListItem key={item} fz={{ md: 'sm', lg: 'md' }}>
+                    {data?.qualifications?.map((item, index) => (
+                      <ListItem key={index} fz={{ md: 'sm', lg: 'md' }}>
                         {item}
                       </ListItem>
                     ))}
@@ -170,11 +170,11 @@ export default function BasicCourseDetails({ params }: typeParams) {
           }
         >
           <Grid gutter={{ base: 32, lg: 64 }}>
-            {data.features.map((feature) => {
+            {data.features.map((feature, index) => {
               const selectedIcon = icons[data.features.indexOf(feature)];
 
               return (
-                <GridCol key={feature.title} span={{ md: 'auto' }}>
+                <GridCol key={index} span={{ md: 'auto' }}>
                   <Stack align="center">
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE}

@@ -42,10 +42,10 @@ export default function Main() {
           </Group>
 
           <Group gap={'xs'}>
-            {data.left.map((item) => (
+            {data.left.map((item, index) => (
               <>
                 <Button
-                  key={item.link}
+                  key={index}
                   size="xs"
                   variant="transparent"
                   color="white"
@@ -103,8 +103,8 @@ export default function Main() {
           <GridCol span={{ base: 12, xs: 6, sm: 4 }}>
             <Group justify="end" gap={'xs'}>
               <Group gap={0}>
-                {socials.map((social) => (
-                  <Anchor key={social.link} href={social.link} target="_blank">
+                {socials.map((social, index) => (
+                  <Anchor key={index} href={social.link} target="_blank">
                     <Stack>
                       <Image
                         src={social.image}

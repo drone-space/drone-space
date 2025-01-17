@@ -95,9 +95,9 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                   }
                 >
                   {data.specs.map(
-                    (spec) =>
+                    (spec, index) =>
                       data.specs.indexOf(spec) < 3 && (
-                        <ListItem key={spec.label}>
+                        <ListItem key={index}>
                           <Text
                             component="span"
                             inherit

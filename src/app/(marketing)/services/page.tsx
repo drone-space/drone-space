@@ -32,10 +32,10 @@ export const metadata: Metadata = { title: 'Drone Solutions' };
 export default async function Services() {
   return (
     <LayoutPage>
-      {services.map((service) => (
+      {services.map((service, index) => (
         <LayoutSection
+          key={index}
           id="page-services"
-          key={service.title}
           padded={96}
           containerized={'responsive'}
           bg={
@@ -80,12 +80,9 @@ export default async function Services() {
                     }
                   >
                     {service.desc.features.desc.map(
-                      (item) =>
+                      (item, index) =>
                         service.desc.features.desc.indexOf(item) < 3 && (
-                          <ListItem
-                            key={item.title}
-                            fz={{ md: 'sm', lg: 'md' }}
-                          >
+                          <ListItem key={index} fz={{ md: 'sm', lg: 'md' }}>
                             {item.title}
                           </ListItem>
                         )

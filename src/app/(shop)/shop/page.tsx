@@ -40,8 +40,8 @@ export default async function Shop() {
           </Stack>
 
           <Grid>
-            {factors.map((factor) => (
-              <GridCol key={factor.title} span={{ base: 12, sm: 6, md: 4 }}>
+            {factors.map((factor, index) => (
+              <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
                 <CardShopFactor data={factor} />
               </GridCol>
             ))}

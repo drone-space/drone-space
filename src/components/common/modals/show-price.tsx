@@ -34,8 +34,8 @@ export default function ShowPrice({ children }: { children: React.ReactNode }) {
         closeButtonProps={{ 'aria-label': 'Close modal' }}
       >
         <Grid>
-          {shows.guide.map((item) => (
-            <GridCol key={item.title} span={{ base: 12, xs: 6, md: 4 }}>
+          {shows.guide.map((item, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
               <Card shadow="xs" withBorder h={'100%'}>
                 <Stack gap={'xs'}>
                   <Title order={2} fz={'sm'} fw={'bold'}>
@@ -43,8 +43,8 @@ export default function ShowPrice({ children }: { children: React.ReactNode }) {
                   </Title>
 
                   <List size="xs" spacing={4}>
-                    {item.list.map((li) => (
-                      <ListItem key={li.id}>{li.desc}</ListItem>
+                    {item.list.map((li, index) => (
+                      <ListItem key={index}>{li.desc}</ListItem>
                     ))}
                   </List>
                 </Stack>

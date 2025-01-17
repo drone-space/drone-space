@@ -25,15 +25,13 @@ import { SECTION_SPACING } from '@/data/constants';
 import { IconCircleFilled } from '@tabler/icons-react';
 import FormNewsletter from '@/components/form/newsletter';
 import ImageDefault from '@/components/common/images/default';
+import services from '@/data/services';
+import { linkify } from '@/utilities/formatters/string';
+import { shopLinks } from '@/data/links';
 
 export default function Main() {
   return (
-    <LayoutSection
-      id={'partial-footer-main'}
-      padded
-      pb={SECTION_SPACING * 1.5}
-      className={classes.footer}
-    >
+    <LayoutSection id={'partial-footer-main'} padded className={classes.footer}>
       <Stack gap={SECTION_SPACING}>
         <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
           <Anchor component={Link} href={'/'}>
@@ -69,8 +67,8 @@ export default function Main() {
                 </Title>
 
                 <List listStyleType="none" spacing={'md'}>
-                  {linkSet.links.map((link) => (
-                    <ListItem key={link.link} className={classes.listItem}>
+                  {linkSet.links.map((link, index) => (
+                    <ListItem key={index} className={classes.listItem}>
                       <Anchor
                         component={Link}
                         href={link.link}
@@ -141,7 +139,7 @@ export default function Main() {
         <Flex
           align={'center'}
           justify={{ sm: 'space-between' }}
-          direction={{ base: 'column', sm: 'row' }}
+          direction={{ base: 'column' }}
           gap={'md'}
         >
           <Text component="span" inherit>
@@ -149,7 +147,7 @@ export default function Main() {
             Reserved.
           </Text>
 
-          <Group gap={'xs'}>
+          <Group gap={'xs'} fz={'xs'}>
             <Anchor
               component={Link}
               inherit
@@ -192,24 +190,7 @@ const phone = {
 const linkSets = [
   {
     title: 'Drone Shop',
-    links: [
-      {
-        label: 'Camera Drones',
-        link: '/shop/drones/camera',
-      },
-      {
-        label: 'Enterprise Drones',
-        link: '/shop/drones/enterprise',
-      },
-      {
-        label: 'Agriculture Drones',
-        link: '/shop/drones/agriculture',
-      },
-      {
-        label: 'Drone Accessories',
-        link: '/shop/accessories',
-      },
-    ],
+    links: shopLinks,
   },
   {
     title: 'Useful Links',
@@ -231,37 +212,31 @@ const linkSets = [
         link: '/training/advanced',
       },
       {
+        label: 'Training Pricing',
+        link: '/training/pricing',
+      },
+      {
         label: 'Drone Shop',
         link: '/shop',
+      },
+      {
+        label: 'Get in Touch',
+        link: '/contact',
       },
     ],
   },
   {
     title: 'Drone Solutions',
     links: [
+      ...services.map((service) => {
+        return {
+          link: `/services/${linkify(service.title)}`,
+          label: service.title,
+        };
+      }),
       {
-        label: 'Consultancy & Resale',
-        link: '/services/drone-consultancy-and-resale',
-      },
-      {
-        label: 'Mapping & Survey',
-        link: '/services/drone-mapping-and-survey',
-      },
-      {
-        label: 'Aerial Cinematography',
-        link: '/services/aerial-cinematography',
-      },
-      {
-        label: 'Solar Inspection',
-        link: '/services/solar-inspection',
-      },
-      {
-        label: 'Drone Seeding',
-        link: '/services/drone-seeding',
-      },
-      {
-        label: 'ROC Support',
-        link: '/services/roc-support',
+        label: 'Drone Light Shows',
+        link: '/services/light-shows',
       },
     ],
   },

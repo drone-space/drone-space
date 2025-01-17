@@ -8,7 +8,6 @@ import {
   Card,
   Grid,
   GridCol,
-  Group,
   Menu,
   MenuDropdown,
   MenuItem,
@@ -21,6 +20,7 @@ import { typeMenuNavbar } from '@/types/components/menu';
 import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
+import { IconFileDownload } from '@tabler/icons-react';
 
 export default function Navbar({
   children,
@@ -66,9 +66,9 @@ export default function Navbar({
       openDelay={50}
       closeDelay={50}
       offset={{
-        mainAxis: 0,
+        mainAxis: 4,
       }}
-      transitionProps={{ transition: 'fade-down' }}
+      transitionProps={{ transition: 'fade-up', duration: 250 }}
       classNames={{
         dropdown: classes.dropdown,
         arrow: classes.arrow,
@@ -82,7 +82,7 @@ export default function Navbar({
       <MenuTarget>{children}</MenuTarget>
 
       {menuItems && (
-        <MenuDropdown maw={560}>
+        <MenuDropdown maw={720}>
           {!megaMenu ? (
             menuItems
           ) : (
@@ -100,18 +100,57 @@ export default function Navbar({
                 c={'var(--mantine-color-body)'}
                 radius={0}
               >
-                <Group justify="space-between">
-                  <Stack gap={4}>
-                    <Title order={3} fz={'sm'} lh={1}>
-                      Get started
-                    </Title>
-                    <Text fz={'xs'}>
-                      Their food sources have decreased, and their numbers
-                    </Text>
-                  </Stack>
+                <Grid>
+                  <GridCol span={9}>
+                    <Stack gap={'xs'}>
+                      <Title order={3} fz={'sm'} lh={1} c={'white'}>
+                        Downloads
+                      </Title>
+                      <Text fz={'xs'}>
+                        Get a quick overview of our services, solutions, and
+                        offerings in our brochure. Discover in-depth details
+                        about our mission, expertise, and accomplishments in our
+                        company profile.
+                      </Text>
+                    </Stack>
+                  </GridCol>
 
-                  <Button variant="default">Get Started</Button>
-                </Group>
+                  <GridCol span={3}>
+                    <Stack gap={0} h={'100%'} justify="space-between">
+                      <Button
+                        leftSection={
+                          <IconFileDownload
+                            size={ICON_SIZE - 4}
+                            stroke={ICON_STROKE_WIDTH}
+                            color="var(--mantine-color-pri-9)"
+                          />
+                        }
+                        fullWidth
+                        color="sec.3"
+                        c="pri.9"
+                        size="compact-sm"
+                      >
+                        Brochure
+                      </Button>
+
+                      <Button
+                        leftSection={
+                          <IconFileDownload
+                            size={ICON_SIZE - 4}
+                            stroke={ICON_STROKE_WIDTH}
+                            color="var(--mantine-color-white)"
+                          />
+                        }
+                        fullWidth
+                        variant="outline"
+                        color="white"
+                        size="compact-sm"
+                      >
+                        Profile
+                      </Button>
+                    </Stack>
+                  </GridCol>
+                </Grid>
               </Card>
             </Stack>
           )}

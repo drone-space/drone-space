@@ -7,8 +7,6 @@ import LayoutSection from '@/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import MenuNavbar from '@/components/common/menus/navbar';
 import classes from './main.module.scss';
-import { IconChevronDown } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import { usePathname } from 'next/navigation';
 import links from '@/data/links';
 import ImageDefault from '@/components/common/images/default';
@@ -28,15 +26,10 @@ export default function Main({
     return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
-  const navLinks = links.navbar.main.map((link) => {
-    const linkIsShop = link.link == '/shop';
-
+  const navLinks = links.map((link) => {
     return (
-      <MenuNavbar
-        key={link.link}
-        subLinks={linkIsShop ? undefined : link.subLinks}
-      >
-        {!link.subLinks || linkIsShop ? (
+      <MenuNavbar key={link.link} subLinks={link.subLinks}>
+        {!link.subLinks ? (
           <Anchor
             component={Link}
             href={link.link}
@@ -55,15 +48,7 @@ export default function Main({
             }`}
             onClick={(e) => e.preventDefault()}
           >
-            <Group gap={4}>
-              <span>{link.label}</span>
-
-              <IconChevronDown
-                size={ICON_SIZE - 4}
-                stroke={ICON_STROKE_WIDTH}
-                style={{ marginTop: 2 }}
-              />
-            </Group>
+            <Group gap={4}>{link.label}</Group>
           </Anchor>
         )}
       </MenuNavbar>
@@ -92,28 +77,36 @@ export default function Main({
       style={{ zIndex: 1 }}
     >
       <Grid align="center" gutter={0}>
-        <GridCol span={{ base: 6 }} hiddenFrom="md">
+        <GridCol span={{ base: 6 }} hiddenFrom="sm">
           <Group>
-            <Anchor component={Link} href={'/'} py={'md'}>
+            <Anchor component={Link} href={'/'} py={'sm'}>
               {imageBrand}
             </Anchor>
           </Group>
         </GridCol>
 
-        <GridCol span={{ base: 6, md: 10 }}>
-          <Group gap={'lg'} visibleFrom="md">
-            <Group component={'nav'}>{navLinks}</Group>
+        <GridCol
+          span={{
+            base: 6,
+            // sm: 10,
+            sm: 12,
+          }}
+        >
+          <Group gap={'lg'} visibleFrom="sm" justify="center">
+            <Group component={'nav'} gap={'xl'}>
+              {navLinks}
+            </Group>
           </Group>
 
-          <Group hiddenFrom="md" gap={'xs'} justify="end">
+          <Group hiddenFrom="sm" gap={'xs'} justify="end">
             <DrawerNavbarMain
-              props={links.navbar.main}
+              props={links}
               options={{ absolute: options?.absolute }}
             />
           </Group>
         </GridCol>
 
-        {/* <GridCol span={{ base: 4, md: 2 }} visibleFrom="md">
+        {/* <GridCol span={{ base: 4, sm: 2 }} visibleFrom="sm">
           <Group justify="end">
             {!session ? (
               <Group gap={'xs'}>
@@ -128,7 +121,7 @@ export default function Main({
                 </WrapperSignIn>
 
                 <WrapperSignUp>
-                  <Button size="xs" visibleFrom="md">
+                  <Button size="xs" visibleFrom="sm">
                     Sign Up
                   </Button>
                 </WrapperSignUp>

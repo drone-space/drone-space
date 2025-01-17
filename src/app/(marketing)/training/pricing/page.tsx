@@ -13,7 +13,7 @@ import ModalContactTraining from '@/components/common/modals/contact/training';
 import courses from '@/data/courses';
 
 export const metadata: Metadata = {
-  title: 'Drone Training & Drone School Pricing',
+  title: 'Pricing',
 };
 
 export default async function Gallery() {

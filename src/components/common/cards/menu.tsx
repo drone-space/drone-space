@@ -23,11 +23,7 @@ export default function Menu({ props }: { props: typeMenuNavbar }) {
         <GridCol span={2}>
           {props.leftSection && (
             <Center>
-              <ThemeIcon
-                size={ICON_WRAPPER_SIZE + 4}
-                variant="default"
-                color="pri.9"
-              >
+              <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
                 <props.leftSection
                   size={ICON_SIZE + 4}
                   stroke={ICON_STROKE_WIDTH}

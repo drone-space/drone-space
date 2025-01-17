@@ -4,15 +4,13 @@ import { PostCreate, PostUpdate } from '@/types/models/post';
 
 const baseRequestUrl = `${API_URL}/posts`;
 
-export const postsGet = async (params?: {
-  options?: { cache: RequestCache };
-}) => {
+export const postsGet = async () => {
   try {
     const request = new Request(baseRequestUrl, {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
-      cache: params?.options?.cache,
+      cache: 'no-store',
     });
 
     const response = await fetch(request);

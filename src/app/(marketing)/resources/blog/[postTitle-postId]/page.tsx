@@ -25,7 +25,11 @@ import {
 } from '@tabler/icons-react';
 // import MenuShare from '@/components/common/menus/share';
 import IntroPage from '@/components/layout/intro/page';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import {
+  HOSTED_BASE_URL,
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+} from '@/data/constants';
 // import CardBlogAuthor from '@/components/common/cards/blog/author';
 import PartialComments from '@/components/partial/comments';
 import ImageDefault from '@/components/common/images/default';
@@ -35,6 +39,7 @@ import { getRegionalDate } from '@/utilities/formatters/date';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partial/blog-content';
+import { processUrl } from '@/utilities/formatters/string';
 
 export const dynamic = 'force-dynamic';
 
@@ -133,7 +138,7 @@ export default async function Post({ params }: { params: typeParams }) {
       >
         <Stack gap={'xl'}>
           <ImageDefault
-            src={post.image}
+            src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
             alt={post.title}
             height={{ base: 240, xs: 320, md: 360, lg: 400 }}
             radius={'sm'}

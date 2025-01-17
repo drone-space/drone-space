@@ -18,12 +18,16 @@ import {
 
 import classes from './new.module.scss';
 
-import { linkify } from '@/utilities/formatters/string';
+import { linkify, processUrl } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import { PostRelations } from '@/types/models/post';
 import { IconCircleFilled, IconMessageCircle } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import {
+  HOSTED_BASE_URL,
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+} from '@/data/constants';
 
 export default function New({ post }: { post: PostRelations }) {
   const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
@@ -41,7 +45,7 @@ export default function New({ post }: { post: PostRelations }) {
             pos={'relative'}
           >
             <ImageDefault
-              src={post.image}
+              src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
               alt={post.title}
               height={420}
               mode="grid"

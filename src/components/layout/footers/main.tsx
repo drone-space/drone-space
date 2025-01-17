@@ -67,8 +67,8 @@ export default function Main() {
                 </Title>
 
                 <List listStyleType="none" spacing={'md'}>
-                  {linkSet.links.map((link) => (
-                    <ListItem key={link.link} className={classes.listItem}>
+                  {linkSet.links.map((link, index) => (
+                    <ListItem key={index} className={classes.listItem}>
                       <Anchor
                         component={Link}
                         href={link.link}

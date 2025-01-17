@@ -10,8 +10,15 @@ import CardBlogMain from '@/components/common/cards/blog/main';
 
 import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
+import appData from '@/data/app';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: `${appData.name.app} Blog - Insights on Drone Training & Technology`,
+  description: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appData.name.app} blog.`,
+};
 
 export default async function Blog() {
   const { posts }: { posts: PostRelations[] } = await postsGet();

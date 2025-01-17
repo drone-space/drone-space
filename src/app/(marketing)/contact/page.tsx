@@ -40,7 +40,11 @@ import {
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
 
-export const metadata: Metadata = { title: 'Contact' };
+export const metadata: Metadata = {
+  title: `Contact ${appData.name.app} - Reach Out for Training & Services`,
+  description:
+    'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.',
+};
 
 export default async function Contact() {
   return (

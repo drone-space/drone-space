@@ -14,9 +14,11 @@ export const generateMetadata = async ({
   params: typeParams;
 }): Promise<Metadata> => {
   const { categories }: { categories: CategoryGet[] } = await categoriesGet();
+  const category = categories.find((p) => p.id == params.categoryId);
 
   return {
-    title: categories.find((p) => p.id == params.categoryId)?.title,
+    title: `${category?.title} - Blog Categories - Explore Drone Topics at Drone Space`,
+    description: `Explore ${category?.title} topics on Drone Blog. Stay updated with the latest news and updates in drone training.`,
   };
 };
 

@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 
 // Import styles of packages that you've installed.
@@ -44,14 +43,6 @@ import { cookies } from 'next/headers';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: {
-    default: `${appData.name.app}`,
-    template: `%s - ${appData.name.app}`,
-  },
-  description: 'App description',
-};
 
 export default async function RootLayout({
   children,

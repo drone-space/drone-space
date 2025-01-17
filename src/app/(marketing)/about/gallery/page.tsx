@@ -18,8 +18,13 @@ import ModalGallery from '@/components/common/modals/gallery';
 import tabs from '@/data/tabs';
 
 import classes from './gallery.module.scss';
+import appData from '@/data/app';
 
-export const metadata: Metadata = { title: 'Gallery' };
+export const metadata: Metadata = {
+  title: `${appData.name.app} Gallery - Showcasing Our Training & Aerial Services`,
+  description:
+    'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!',
+};
 
 export default async function Gallery() {
   return (

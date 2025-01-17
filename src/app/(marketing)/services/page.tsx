@@ -21,6 +21,11 @@ import NextImage from 'next/image';
 import Link from 'next/link';
 import { linkify } from '@/utilities/formatters/string';
 import { IconCheck, IconChevronRight } from '@tabler/icons-react';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export const metadata: Metadata = { title: 'Drone Solutions' };
 
@@ -62,12 +67,15 @@ export default async function Services() {
                     withPadding={true}
                     icon={
                       <ThemeIcon
-                        size={16}
+                        size={ICON_WRAPPER_SIZE / 1.5}
                         color="green.6"
                         c={'white'}
                         radius={'xl'}
                       >
-                        <IconCheck size={12} stroke={2} />
+                        <IconCheck
+                          size={ICON_SIZE / 1.5}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
                       </ThemeIcon>
                     }
                   >
@@ -96,8 +104,8 @@ export default async function Services() {
                     </Text>
                     <IconChevronRight
                       color="var(--mantine-color-pri-9)"
-                      size={16}
-                      stroke={2}
+                      size={ICON_SIZE}
+                      stroke={ICON_STROKE_WIDTH}
                     />
                   </Group>
                 </Anchor>

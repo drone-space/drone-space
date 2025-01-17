@@ -38,6 +38,7 @@ import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import appData from '@/data/app';
 import shows from '@/data/shows';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export const metadata: Metadata = { title: 'Drone Light Show' };
 
@@ -89,8 +90,8 @@ export default async function LighShow() {
                   spacing={'xs'}
                   icon={
                     <IconChevronsRight
-                      size={32}
-                      stroke={2}
+                      size={ICON_SIZE * 1.5}
+                      stroke={ICON_STROKE_WIDTH}
                       color="var(--mantine-color-pri-9)"
                     />
                   }
@@ -365,7 +366,12 @@ export default async function LighShow() {
                     miw={200}
                     color="sec.3"
                     c={'pri'}
-                    leftSection={<IconCalendarPlus size={16} stroke={1.5} />}
+                    leftSection={
+                      <IconCalendarPlus
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    }
                   >
                     Book Show
                   </Button>
@@ -376,7 +382,9 @@ export default async function LighShow() {
                   miw={200}
                   color="sec.3"
                   c={'pri'}
-                  leftSection={<IconPhone size={16} stroke={1.5} />}
+                  leftSection={
+                    <IconPhone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                  }
                 >
                   {appData.phones.main}
                 </Button>
@@ -611,7 +619,12 @@ export default async function LighShow() {
                     miw={200}
                     color="sec.3"
                     c={'pri'}
-                    leftSection={<IconCalendarPlus size={16} stroke={1.5} />}
+                    leftSection={
+                      <IconCalendarPlus
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    }
                   >
                     Book Show
                   </Button>
@@ -622,7 +635,9 @@ export default async function LighShow() {
                   miw={200}
                   color="sec.3"
                   c={'pri'}
-                  leftSection={<IconPhone size={16} stroke={1.5} />}
+                  leftSection={
+                    <IconPhone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                  }
                 >
                   {appData.phones.main}
                 </Button>

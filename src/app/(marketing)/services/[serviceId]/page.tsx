@@ -20,6 +20,11 @@ import {
 } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import CardServiceFeature from '@/components/common/cards/service/feature';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 // import CtaService from '@/components/partial/cta/service';
 
 export default function ServiceDetails({ params }: typeParams) {
@@ -57,12 +62,15 @@ export default function ServiceDetails({ params }: typeParams) {
                 withPadding={true}
                 icon={
                   <ThemeIcon
-                    size={16}
+                    size={ICON_WRAPPER_SIZE / 1.5}
                     color="green.6"
                     c={'white'}
                     radius={'xl'}
                   >
-                    <IconCheck size={12} stroke={2} />
+                    <IconCheck
+                      size={ICON_SIZE / 1.5}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
                   </ThemeIcon>
                 }
               >

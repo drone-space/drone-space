@@ -19,6 +19,7 @@ import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { IconSchool } from '@tabler/icons-react';
 import ModalContactTraining from '../contact/training';
 import { typeUnit } from '@/types/static/course';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Pricing({
   children,
@@ -125,8 +126,8 @@ export default function Pricing({
                     size="xs"
                     leftSection={
                       <IconSchool
-                        size={16}
-                        stroke={1.5}
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
                         style={{ marginTop: 2 }}
                       />
                     }

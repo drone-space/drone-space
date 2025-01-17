@@ -29,6 +29,11 @@ import courses from '@/data/courses';
 // import CtaTraining from '@/components/partial/cta/training';
 import ModalContactTraining from '@/components/common/modals/contact/training';
 import AccordionFaq from '@/components/common/accordions/faq';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function BasicCourseDetails({ params }: typeParams) {
   const data = courses.basic.units.find(
@@ -79,12 +84,15 @@ export default function BasicCourseDetails({ params }: typeParams) {
                       fz={{ sm: 'sm' }}
                       icon={
                         <ThemeIcon
-                          size={16}
+                          size={ICON_WRAPPER_SIZE / 1.5}
                           color="green.6"
                           c={'white'}
                           radius={'xl'}
                         >
-                          <IconCheck size={12} stroke={2} />
+                          <IconCheck
+                            size={ICON_SIZE / 1.5}
+                            stroke={ICON_STROKE_WIDTH}
+                          />
                         </ThemeIcon>
                       }
                     >
@@ -126,13 +134,16 @@ export default function BasicCourseDetails({ params }: typeParams) {
                     fz={{ sm: 'sm' }}
                     icon={
                       <ThemeIcon
-                        size={24}
+                        size={ICON_WRAPPER_SIZE}
                         color="pri"
                         variant="light"
                         c={'pri'}
                         radius={'xl'}
                       >
-                        <IconSchool size={16} stroke={2} />
+                        <IconSchool
+                          size={ICON_SIZE}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
                       </ThemeIcon>
                     }
                   >
@@ -165,8 +176,15 @@ export default function BasicCourseDetails({ params }: typeParams) {
               return (
                 <GridCol key={feature.title} span={{ md: 'auto' }}>
                   <Stack align="center">
-                    <ThemeIcon size={32} variant="light" c={'pri'}>
-                      <selectedIcon.icon size={24} stroke={2} />
+                    <ThemeIcon
+                      size={ICON_WRAPPER_SIZE}
+                      variant="light"
+                      c={'pri'}
+                    >
+                      <selectedIcon.icon
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                     </ThemeIcon>
 
                     <Title ta={'center'} order={3} fz={{ md: 'sm', lg: 'xl' }}>

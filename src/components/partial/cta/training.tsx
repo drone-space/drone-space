@@ -8,11 +8,16 @@ import {
   Flex,
   Title,
 } from '@mantine/core';
-import { IconCheck, IconFileDownload, IconSchool } from '@tabler/icons-react';
+import { IconCheck, IconExternalLink, IconSchool } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactTraining from '@/components/common/modals/contact/training';
 import documents from '@/assets/documents';
 import courses from '@/data/courses';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Training({
   data,
@@ -70,12 +75,15 @@ export default function Training({
               {process.map((item) => (
                 <Group gap={'xs'} key={item.title} fw={500}>
                   <ThemeIcon
-                    size={16}
+                    size={ICON_WRAPPER_SIZE / 1.5}
                     color="green.6"
                     c={'white'}
                     radius={'xl'}
                   >
-                    <IconCheck size={12} stroke={2} />
+                    <IconCheck
+                      size={ICON_SIZE / 1.5}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
                   </ThemeIcon>
 
                   <span>{item.title}</span>
@@ -89,14 +97,18 @@ export default function Training({
           <Button
             component="a"
             href={documents.droneSpace.brochure}
-            download={'brochure'}
-            leftSection={<IconFileDownload size={16} stroke={1.5} />}
+            target="_blank"
+            leftSection={
+              <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            }
           >
             Get the Brochure
           </Button>
           <ModalContactTraining>
             <Button
-              leftSection={<IconSchool size={16} stroke={1.5} />}
+              leftSection={
+                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
               variant="light"
             >
               Join the next Class

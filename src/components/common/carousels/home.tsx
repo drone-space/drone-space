@@ -25,6 +25,7 @@ import LayoutSection from '@/components/layout/section';
 // import ModalShows from '../modals/shows';
 import ModalDownloadBrochure from '../modals/download/brochure';
 import classes from './home.module.scss';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 8000 }));
@@ -34,7 +35,9 @@ export default function Home() {
       <ModalDownloadBrochure>
         <Button
           size="xs"
-          leftSection={<IconFileDownload size={16} stroke={1.5} />}
+          leftSection={
+            <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+          }
         >
           Brochure
         </Button>
@@ -165,7 +168,12 @@ export default function Home() {
                 variant="outline"
                 radius={'xl'}
                 size="xs"
-                rightSection={<IconExternalLink size={16} stroke={1.5} />}
+                rightSection={
+                  <IconExternalLink
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
               >
                 <Text component="span" inherit>
                   <Text visibleFrom="xs" component="span" inherit>
@@ -229,7 +237,12 @@ export default function Home() {
               <ModalDownloadBrochure>
                 <Button
                   size="xs"
-                  leftSection={<IconFileDownload size={16} stroke={1.5} />}
+                  leftSection={
+                    <IconFileDownload
+                      size={ICON_SIZE}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
+                  }
                 >
                   Brochure
                 </Button>

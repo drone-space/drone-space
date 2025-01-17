@@ -20,7 +20,11 @@ import {
   DropzoneReject,
   IMAGE_MIME_TYPE,
 } from '@mantine/dropzone';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 import { useFormUserAvatar } from '@/hooks/form/account/profile';
 
 export default function Avatar({ ...restProps }: Partial<DropzoneProps>) {
@@ -53,7 +57,11 @@ export default function Avatar({ ...restProps }: Partial<DropzoneProps>) {
         <Box style={{ pointerEvents: 'none' }}>
           <DropzoneAccept>
             <DropZoneLayout>
-              <ThemeIcon size={80} variant="light" color="blue.6">
+              <ThemeIcon
+                size={ICON_WRAPPER_SIZE * 3}
+                variant="light"
+                color="blue.6"
+              >
                 <IconUpload
                   size={ICON_SIZE * 3}
                   stroke={ICON_STROKE_WIDTH}
@@ -85,7 +93,11 @@ export default function Avatar({ ...restProps }: Partial<DropzoneProps>) {
 
           <DropzoneReject>
             <DropZoneLayout>
-              <ThemeIcon size={80} variant="light" color="red.6">
+              <ThemeIcon
+                size={ICON_WRAPPER_SIZE * 3}
+                variant="light"
+                color="red.6"
+              >
                 <IconX
                   size={ICON_SIZE * 3}
                   stroke={ICON_STROKE_WIDTH}
@@ -106,9 +118,17 @@ export default function Avatar({ ...restProps }: Partial<DropzoneProps>) {
           <DropzoneIdle>
             <DropZoneLayout>
               {file ? (
-                <MantineAvatar src={preview} size={80} radius={'sm'} />
+                <MantineAvatar
+                  src={preview}
+                  size={ICON_WRAPPER_SIZE * 3}
+                  radius={'sm'}
+                />
               ) : (
-                <ThemeIcon size={80} variant="light" color="gray">
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE * 3}
+                  variant="light"
+                  color="gray"
+                >
                   <IconUserCircle
                     size={ICON_SIZE * 3}
                     stroke={ICON_STROKE_WIDTH}

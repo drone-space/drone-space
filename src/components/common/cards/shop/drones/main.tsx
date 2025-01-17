@@ -21,6 +21,11 @@ import { typeDrone } from '@/types/static/product';
 import { IconCheck } from '@tabler/icons-react';
 import { linkify } from '@/utilities/formatters/string';
 import Link from 'next/link';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
@@ -84,12 +89,15 @@ export default function Main({ data }: { data: typeDrone }) {
                   listStyleType="none"
                   icon={
                     <ThemeIcon
-                      size={16}
+                      size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
                       color="green.6"
                       c={'white'}
                     >
-                      <IconCheck size={12} stroke={3} />
+                      <IconCheck
+                        size={ICON_SIZE / 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                     </ThemeIcon>
                   }
                 >

@@ -4,6 +4,7 @@ import { Stack, Text, Button, Flex, Title, Grid, GridCol } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import categories from '@/data/categories';
 import { linkify } from '@/utilities/formatters/string';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Categories() {
   return (
@@ -45,7 +46,10 @@ export default function Categories() {
                       gap={'md'}
                       align="center"
                     >
-                      <category.icon size={24} stroke={1.5} />
+                      <category.icon
+                        size={ICON_SIZE * 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                       <Text component="span" inherit ta={'center'}>
                         {category.label} Drones
                       </Text>

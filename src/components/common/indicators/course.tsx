@@ -3,6 +3,7 @@ import React from 'react';
 import { Badge, Group, Indicator, Text } from '@mantine/core';
 
 import { IconInfoCircle } from '@tabler/icons-react';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Course() {
   return (
@@ -23,7 +24,9 @@ export default function Course() {
           radius={'sm'}
           variant="gradient"
           gradient={{ from: 'pri', to: 'sec', deg: 165 }}
-          leftSection={<IconInfoCircle size={12} stroke={1.5} />}
+          leftSection={
+            <IconInfoCircle size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+          }
           fz={8}
         >
           Radio Telephony Course

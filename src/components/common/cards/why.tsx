@@ -2,6 +2,11 @@ import React from 'react';
 import { ThemeIcon, Text, Title, Card, Stack } from '@mantine/core';
 import { Icon } from '@tabler/icons-react';
 import classes from './why.module.scss';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 interface typeCardFeatureWhy {
   icon: Icon;
@@ -13,8 +18,12 @@ export default function Why({ data }: { data: typeCardFeatureWhy }) {
   return (
     <Card className={classes.card}>
       <Stack align="center">
-        <ThemeIcon size={48} radius={48} className={classes.icon}>
-          <data.icon size={24} stroke={2} />
+        <ThemeIcon
+          size={ICON_WRAPPER_SIZE * 2}
+          radius={48}
+          className={classes.icon}
+        >
+          <data.icon size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
         </ThemeIcon>
 
         <Stack gap={'xs'} align="center">

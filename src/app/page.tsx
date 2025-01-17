@@ -35,6 +35,7 @@ import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
 import CtaTraining from '@/components/partial/cta/training';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Home() {
   return (
@@ -61,7 +62,10 @@ export default function Home() {
                 <ModalDownloadBrochure>
                   <Button h={'100%'} fullWidth>
                     <Stack align="center" py={'md'}>
-                      <IconFileDownload size={24} stroke={2} />
+                      <IconFileDownload
+                        size={ICON_SIZE * 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                       <Text inherit component="span" ta={'center'}>
                         Download Brochure
                       </Text>
@@ -73,7 +77,10 @@ export default function Home() {
                 <ModalContactCallback>
                   <Button h={'100%'} fullWidth>
                     <Stack align="center" py={'md'}>
-                      <IconPhoneCall size={24} stroke={2} />
+                      <IconPhoneCall
+                        size={ICON_SIZE * 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                       <Text inherit component="span" ta={'center'}>
                         Request Callback
                       </Text>
@@ -85,7 +92,10 @@ export default function Home() {
                 <ModalContactTraining>
                   <Button h={'100%'} fullWidth>
                     <Stack align="center" py={'md'}>
-                      <IconSchool size={24} stroke={2} />
+                      <IconSchool
+                        size={ICON_SIZE * 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                       <Text inherit component="span" ta={'center'}>
                         Register for RPL
                       </Text>
@@ -96,7 +106,10 @@ export default function Home() {
               <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
                 <Button component={Link} href={'/shop'} h={'100%'} fullWidth>
                   <Stack align="center" py={'md'}>
-                    <IconShoppingCart size={24} stroke={2} />
+                    <IconShoppingCart
+                      size={ICON_SIZE * 1.5}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
                     <Text inherit component="span" ta={'center'}>
                       Shop for a Drone
                     </Text>
@@ -189,7 +202,10 @@ export default function Home() {
                       style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
                     >
                       <Stack align="center" p={'md'}>
-                        <IconShoppingCart size={24} stroke={2} />
+                        <IconShoppingCart
+                          size={ICON_SIZE * 1.5}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
                         <Text inherit component="span" ta={'center'}>
                           Go to Shop
                         </Text>
@@ -207,7 +223,10 @@ export default function Home() {
                         style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
                       >
                         <Stack align="center" p={'md'}>
-                          <category.icon size={24} stroke={2} />
+                          <category.icon
+                            size={ICON_SIZE * 1.5}
+                            stroke={ICON_STROKE_WIDTH}
+                          />
                           <Text inherit component="span" ta={'center'}>
                             {category.label} Drones
                           </Text>

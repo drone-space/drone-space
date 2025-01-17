@@ -69,10 +69,8 @@ export default async function Advanced() {
                     </ThemeIcon>
                   }
                 >
-                  {data.units.map((unit) => (
-                    <ListItem key={unit.title.short}>
-                      {unit.title.full}
-                    </ListItem>
+                  {data.units.map((unit, index) => (
+                    <ListItem key={index}>{unit.title.full}</ListItem>
                   ))}
                 </List>
               </Stack>
@@ -87,8 +85,8 @@ export default async function Advanced() {
                 boxShadow: 'var(--mantine-shadow-xs)',
               }}
             >
-              {data.units.reverse().map((unit) => (
-                <GridCol key={unit.title.short} span={{ md: 6 }}>
+              {data.units.reverse().map((unit, index) => (
+                <GridCol key={index} span={{ md: 6 }}>
                   <Stack>
                     <Image
                       src={unit.image}
@@ -154,8 +152,8 @@ export default async function Advanced() {
               <Stack>
                 <Text>The course objectives:</Text>
                 <List spacing={'xs'} listStyleType="none" withPadding={true}>
-                  {data.objectives.map((objective) => (
-                    <ListItem key={objective}>
+                  {data.objectives.map((objective, index) => (
+                    <ListItem key={index}>
                       <Group gap={'sm'} align="start" wrap="nowrap">
                         <span>
                           <IconCheckbox
@@ -189,8 +187,8 @@ export default async function Advanced() {
                 boxShadow: 'var(--mantine-shadow-xs)',
               }}
             >
-              {dataImages.section2.map((image) => (
-                <GridCol key={image.alt} span={{ md: 6 }}>
+              {dataImages.section2.map((image, index) => (
+                <GridCol key={index} span={{ md: 6 }}>
                   <Stack>
                     <Image
                       src={image.src}
@@ -241,8 +239,8 @@ export default async function Advanced() {
                   listStyleType="none"
                   withPadding={true}
                 >
-                  {data.process.map((unit) => (
-                    <ListItem key={unit.title}>
+                  {data.process.map((unit, index) => (
+                    <ListItem key={index}>
                       <Group align="start" wrap="nowrap">
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}
@@ -279,8 +277,8 @@ export default async function Advanced() {
                 boxShadow: 'var(--mantine-shadow-xs)',
               }}
             >
-              {dataImages.section3.map((image) => (
-                <GridCol key={image.alt} span={{ md: 6 }}>
+              {dataImages.section3.map((image, index) => (
+                <GridCol key={index} span={{ md: 6 }}>
                   <Stack>
                     <Image
                       src={image.src}
@@ -317,8 +315,8 @@ export default async function Advanced() {
           </Stack>
 
           <Grid justify="center">
-            {data.units.map((unit) => (
-              <GridCol key={unit.title.short} span={{ sm: 6, md: 4, lg: 3 }}>
+            {data.units.map((unit, index) => (
+              <GridCol key={index} span={{ sm: 6, md: 4, lg: 3 }}>
                 <CardTrainingCourse data={unit} type="advanced" />
               </GridCol>
             ))}

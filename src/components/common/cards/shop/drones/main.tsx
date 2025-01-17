@@ -102,9 +102,9 @@ export default function Main({ data }: { data: typeDrone }) {
                   }
                 >
                   {data.specs.intro.map(
-                    (spec) =>
+                    (spec, index) =>
                       data.specs.intro.indexOf(spec) < 3 && (
-                        <ListItem key={spec}>
+                        <ListItem key={index}>
                           <Text
                             component="span"
                             inherit

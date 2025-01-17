@@ -71,8 +71,8 @@ export default function AdvancedCourseDetails({ params }: typeParams) {
                         </ThemeIcon>
                       }
                     >
-                      {data?.modules?.map((item) => (
-                        <ListItem key={item} fz={{ md: 'sm', lg: 'md' }}>
+                      {data?.modules?.map((item, index) => (
+                        <ListItem key={index} fz={{ md: 'sm', lg: 'md' }}>
                           {item}
                         </ListItem>
                       ))}
@@ -122,8 +122,8 @@ export default function AdvancedCourseDetails({ params }: typeParams) {
                       </ThemeIcon>
                     }
                   >
-                    {data?.qualifications?.map((item) => (
-                      <ListItem key={item} fz={{ md: 'sm', lg: 'md' }}>
+                    {data?.qualifications?.map((item, index) => (
+                      <ListItem key={index} fz={{ md: 'sm', lg: 'md' }}>
                         {item}
                       </ListItem>
                     ))}

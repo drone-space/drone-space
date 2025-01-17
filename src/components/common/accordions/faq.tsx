@@ -26,9 +26,9 @@ export default function Faq({ section }: { section?: 'training' | 'shop' }) {
     }
   };
 
-  const items = selection().map((item) => (
+  const items = selection().map((item, index) => (
     <AccordionItem
-      key={item.q}
+      key={index}
       value={item.q}
       mt={isFirstItem(selection(), item) ? undefined : 'md'}
     >

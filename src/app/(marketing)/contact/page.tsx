@@ -98,11 +98,8 @@ export default async function Contact() {
               </Stack>
 
               <Grid gutter={'xl'}>
-                {options.map((option) => (
-                  <GridCol
-                    key={option.title}
-                    span={{ base: 12, xs: 6, sm: 6, md: 6 }}
-                  >
+                {options.map((option, index) => (
+                  <GridCol key={index} span={{ base: 12, xs: 6, sm: 6, md: 6 }}>
                     <Flex
                       direction={'column'}
                       align={{ base: 'center', md: 'start' }}

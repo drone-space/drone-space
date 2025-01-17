@@ -46,9 +46,9 @@ export default function Share({
       </MenuTarget>
 
       <MenuDropdown>
-        {shareLinks.map((link) => (
+        {shareLinks.map((link, index) => (
           <MenuItem
-            key={link.title}
+            key={index}
             leftSection={
               <link.icon size={ICON_SIZE - 6} stroke={ICON_STROKE_WIDTH} />
             }

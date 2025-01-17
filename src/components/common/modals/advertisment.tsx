@@ -34,7 +34,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
   const slideData = mobile ? dataMobile : data;
 
   const slides = slideData.map((slide, index) => (
-    <CarouselSlide key={slide.title} mah={'fit-content'}>
+    <CarouselSlide key={index} mah={'fit-content'}>
       <Group h={'100%'}>
         <Image
           src={slide.image}

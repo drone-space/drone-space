@@ -49,8 +49,8 @@ export default function ServiceDetails({ params }: typeParams) {
 							</Title> */}
 
                 <Stack gap={'xs'}>
-                  {data?.desc.intro.map((item) => (
-                    <Text key={item} fz={{ sm: 'sm', lg: 'md' }}>
+                  {data?.desc.intro.map((item, index) => (
+                    <Text key={index} fz={{ sm: 'sm', lg: 'md' }}>
                       {item}
                     </Text>
                   ))}
@@ -74,8 +74,8 @@ export default function ServiceDetails({ params }: typeParams) {
                   </ThemeIcon>
                 }
               >
-                {data?.desc.features.desc.map((item) => (
-                  <ListItem key={item.title} fz={{ md: 'sm', lg: 'md' }}>
+                {data?.desc.features.desc.map((item, index) => (
+                  <ListItem key={index} fz={{ md: 'sm', lg: 'md' }}>
                     {item.title}
                   </ListItem>
                 ))}
@@ -121,9 +121,9 @@ export default function ServiceDetails({ params }: typeParams) {
             </Stack>
 
             <Grid justify="center">
-              {data?.desc.features.desc.map((feature) => (
+              {data?.desc.features.desc.map((feature, index) => (
                 <GridCol
-                  key={feature.title}
+                  key={index}
                   span={
                     data?.desc.features.desc.length < 4 ? { md: 4 } : { md: 6 }
                   }

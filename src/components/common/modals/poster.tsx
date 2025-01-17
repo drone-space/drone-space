@@ -43,8 +43,8 @@ export default function Poster({ active }: { active?: boolean }) {
     },
   ];
 
-  const slides = (mobile ? dataMobile : data).map((slide) => (
-    <CarouselSlide key={slide.title}>
+  const slides = (mobile ? dataMobile : data).map((slide, index) => (
+    <CarouselSlide key={index}>
       <Stack h={'100%'}>
         <Image
           src={slide.image}

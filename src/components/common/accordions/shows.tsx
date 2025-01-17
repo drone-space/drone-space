@@ -195,8 +195,8 @@ export default function Shows({
     }
   };
 
-  const items = selection()?.data.map((item) => (
-    <AccordionItem key={item.q} value={item.q}>
+  const items = selection()?.data.map((item, index) => (
+    <AccordionItem key={index} value={item.q}>
       <AccordionControl
         icon={
           variant == 'factors' ? (

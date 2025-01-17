@@ -76,8 +76,8 @@ export default function AccessoryDetails({ params }: typeParams) {
                 <Text>{product.specs}</Text>
               ) : (
                 <Grid>
-                  {product?.specs.map((spec) => (
-                    <GridCol key={spec.label} span={12}>
+                  {product?.specs.map((spec, index) => (
+                    <GridCol key={index} span={12}>
                       <Group gap={'xs'}>
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}

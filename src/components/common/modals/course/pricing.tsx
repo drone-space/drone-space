@@ -71,9 +71,9 @@ export default function Pricing({
 
                 {data.priceFeatures && (
                   <Stack gap={0} fz="xs">
-                    {data.priceFeatures.map((feature) => (
+                    {data.priceFeatures.map((feature, index) => (
                       <Grid
-                        key={feature.item}
+                        key={index}
                         gutter={0}
                         bg={
                           data.priceFeatures

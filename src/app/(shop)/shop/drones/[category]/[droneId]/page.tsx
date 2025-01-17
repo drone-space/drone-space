@@ -205,8 +205,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                 <Text>{product.specs.intro}</Text>
               ) : (
                 <Grid>
-                  {product?.specs.intro.map((spec) => (
-                    <GridCol key={spec} span={{ base: 12, md: 6 }}>
+                  {product?.specs.intro.map((spec, index) => (
+                    <GridCol key={index} span={{ base: 12, md: 6 }}>
                       <Group gap={'xs'}>
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}
@@ -373,8 +373,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                     </Title>
 
                     <Grid gutter={'xs'}>
-                      {product?.specs.aircraft.map((item) => (
-                        <GridCol key={item.label} span={{ md: 12 }}>
+                      {product?.specs.aircraft.map((item, index) => (
+                        <GridCol key={index} span={{ md: 12 }}>
                           <Group gap={'xs'}>
                             <ThemeIcon
                               size={ICON_WRAPPER_SIZE / 1.5}
@@ -414,11 +414,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                     order={{ base: 3, md: 1 }}
                   >
                     <Grid>
-                      {product?.kit.basic.contents.map((item) => (
-                        <GridCol
-                          key={item.item}
-                          span={{ base: 6, sm: 4, md: 4 }}
-                        >
+                      {product?.kit.basic.contents.map((item, index) => (
+                        <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
                           <Stack>
                             <Card withBorder shadow="xs" bg={'white'}>
                               <Stack w={'100%'}>
@@ -466,8 +463,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                       </Title>
 
                       <Grid gutter={'xs'}>
-                        {product?.kit.basic.contents.map((item) => (
-                          <GridCol key={item.item} span={{ md: 12 }}>
+                        {product?.kit.basic.contents.map((item, index) => (
+                          <GridCol key={index} span={{ md: 12 }}>
                             <Text fz={{ md: 'sm' }}>
                               <Text component="span" inherit fw={500}>
                                 x{item.qty}
@@ -524,11 +521,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                       </Text>
 
                       <Grid>
-                        {product?.kit.flyMore.contents.map((item) => (
-                          <GridCol
-                            key={item.item}
-                            span={{ base: 6, sm: 4, md: 4 }}
-                          >
+                        {product?.kit.flyMore.contents.map((item, index) => (
+                          <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
                             <Stack>
                               <Card withBorder shadow="xs" bg={'white'}>
                                 <Stack w={'100%'}>
@@ -586,8 +580,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                           </Text>
                         </GridCol>
 
-                        {product?.kit.flyMore.contents.map((item) => (
-                          <GridCol key={item.item} span={{ md: 12 }}>
+                        {product?.kit.flyMore.contents.map((item, index) => (
+                          <GridCol key={index} span={{ md: 12 }}>
                             <Text fz={{ md: 'sm' }}>
                               <Text component="span" inherit fw={500}>
                                 x{item.qty}
@@ -650,31 +644,33 @@ export default function AccessoryDetail({ params }: typeParams) {
                       </Title>
 
                       <Grid gutter={'xs'}>
-                        {product?.accessories?.battery?.specs.map((item) => (
-                          <GridCol key={item.label} span={{ md: 12 }}>
-                            <Group gap={'xs'}>
-                              <ThemeIcon
-                                size={ICON_WRAPPER_SIZE / 1.5}
-                                radius={'xl'}
-                                color="green.6"
-                                c={'white'}
-                                visibleFrom="xs"
-                              >
-                                <IconCheck
-                                  size={ICON_SIZE / 1.5}
-                                  stroke={ICON_STROKE_WIDTH}
-                                />
-                              </ThemeIcon>
+                        {product?.accessories?.battery?.specs.map(
+                          (item, index) => (
+                            <GridCol key={index} span={{ md: 12 }}>
+                              <Group gap={'xs'}>
+                                <ThemeIcon
+                                  size={ICON_WRAPPER_SIZE / 1.5}
+                                  radius={'xl'}
+                                  color="green.6"
+                                  c={'white'}
+                                  visibleFrom="xs"
+                                >
+                                  <IconCheck
+                                    size={ICON_SIZE / 1.5}
+                                    stroke={ICON_STROKE_WIDTH}
+                                  />
+                                </ThemeIcon>
 
-                              <Text fz={{ md: 'sm' }}>
-                                <Text component="span" inherit fw={500}>
-                                  {item.label}
+                                <Text fz={{ md: 'sm' }}>
+                                  <Text component="span" inherit fw={500}>
+                                    {item.label}
+                                  </Text>
+                                  : {item.desc}
                                 </Text>
-                                : {item.desc}
-                              </Text>
-                            </Group>
-                          </GridCol>
-                        ))}
+                              </Group>
+                            </GridCol>
+                          )
+                        )}
                       </Grid>
 
                       {product?.accessories.battery.price && (
@@ -707,9 +703,9 @@ export default function AccessoryDetail({ params }: typeParams) {
             <TabsPanel value="other">
               <LayoutSection id="drone-category-specs-other" padded>
                 <Grid>
-                  {product.accessories.other.map((accessory) => (
+                  {product.accessories.other.map((accessory, index) => (
                     <GridCol
-                      key={accessory?.title.long}
+                      key={index}
                       span={{ base: 12, sm: 6, md: 4, lg: 3 }}
                     >
                       {accessory && <CardShopAccessory data={accessory} />}

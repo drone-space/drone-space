@@ -31,8 +31,8 @@ export default function Categories() {
         <GridCol span={{ md: 7 }}>
           <Flex direction={'column'} align={{ base: 'center', md: 'end' }}>
             <Grid>
-              {categories.map((category) => (
-                <GridCol key={category.label} span={{ base: 12, xs: 4 }}>
+              {categories.map((category, index) => (
+                <GridCol key={index} span={{ base: 12, xs: 4 }}>
                   <Button
                     fullWidth
                     key={category.label}

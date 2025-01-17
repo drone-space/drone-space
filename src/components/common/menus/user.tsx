@@ -82,9 +82,9 @@ export default function User() {
 
         <MenuLabel>Account</MenuLabel>
 
-        {navLinkItems.account.map((item) => (
+        {navLinkItems.account.map((item, index) => (
           <MenuItem
-            key={item.label}
+            key={index}
             leftSection={
               <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             }
@@ -102,9 +102,9 @@ export default function User() {
 
         <MenuLabel>Support</MenuLabel>
 
-        {navLinkItems.support.map((item) => (
+        {navLinkItems.support.map((item, index) => (
           <MenuItem
-            key={item.label}
+            key={index}
             leftSection={
               <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             }
@@ -122,9 +122,9 @@ export default function User() {
 
         <MenuLabel>Danger</MenuLabel>
 
-        {navLinkItems.danger.map((item) => (
+        {navLinkItems.danger.map((item, index) => (
           <MenuItem
-            key={item.label}
+            key={index}
             leftSection={
               <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             }

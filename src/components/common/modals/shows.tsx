@@ -39,8 +39,8 @@ export default function Shows({ active }: { active?: boolean }) {
   const tablet = useMediaQuery('(max-width: 48em)');
   const laptopmd = useMediaQuery('(max-width: 75em)');
 
-  const rows = shows.pricing.map((item) => (
-    <TableTr key={item.title}>
+  const rows = shows.pricing.map((item, index) => (
+    <TableTr key={index}>
       <TableTd w={{ md: '25%' }}>{item.title}</TableTd>
       <TableTd w={{ md: '50%' }} visibleFrom="md">
         {item.desc}
@@ -128,8 +128,8 @@ export default function Shows({ active }: { active?: boolean }) {
                     />
                   }
                 >
-                  {shows.features.map((feature) => (
-                    <ListItem key={feature.label}>{feature.label}</ListItem>
+                  {shows.features.map((feature, index) => (
+                    <ListItem key={index}>{feature.label}</ListItem>
                   ))}
                 </List>
               </Stack>

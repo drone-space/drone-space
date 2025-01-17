@@ -29,8 +29,8 @@ export default async function Category({ params }: { params: typeParams }) {
 
       <LayoutSection id={'page-blog'} margined>
         <Grid gutter={'xl'}>
-          {category.posts.map((post) => (
-            <GridCol key={post.title} span={{ base: 12, sm: 6, md: 4, xl: 3 }}>
+          {category.posts.map((post, index) => (
+            <GridCol key={index} span={{ base: 12, sm: 6, md: 4, xl: 3 }}>
               <CardBlogMain post={post} />
             </GridCol>
           ))}

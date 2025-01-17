@@ -36,9 +36,9 @@ export default function Navbar({
 
   const menuItems =
     subLinks &&
-    subLinks.map((item) => (
+    subLinks.map((item, index) => (
       <MenuItem
-        key={item.link}
+        key={index}
         component={Link}
         href={item.link}
         leftSection={

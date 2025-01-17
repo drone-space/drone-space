@@ -55,8 +55,8 @@ export default function Providers() {
 
   return (
     <Grid>
-      {providers.map((provider) => (
-        <GridCol key={provider.provider} span={{ base: 12 }}>
+      {providers.map((provider, index) => (
+        <GridCol key={index} span={{ base: 12 }}>
           {getButton(provider)}
         </GridCol>
       ))}

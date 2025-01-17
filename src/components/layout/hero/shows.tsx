@@ -62,8 +62,8 @@ export default function Shows() {
           </Stack>
 
           <Grid justify="center">
-            {data.features.map((feature) => (
-              <GridCol key={feature.label} span={{ xs: 6, sm: 4, lg: 3 }}>
+            {data.features.map((feature, index) => (
+              <GridCol key={index} span={{ xs: 6, sm: 4, lg: 3 }}>
                 <Card className={classes.card}>
                   <Stack gap={'xs'}>
                     <Title order={2} fz={'sm'} c={'sec.3'}>

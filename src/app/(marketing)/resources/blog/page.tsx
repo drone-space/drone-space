@@ -44,12 +44,9 @@ export default async function Blog() {
           </GridCol>
 
           {posts.map(
-            (post) =>
+            (post, index) =>
               posts.indexOf(post) != 0 && (
-                <GridCol
-                  key={post.title}
-                  span={{ base: 12, xs: 6, md: 4, xl: 3 }}
-                >
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 4, xl: 3 }}>
                   <CardBlogMain post={post} />
                 </GridCol>
               )

@@ -19,8 +19,8 @@ export default function Hub({ data }: { data: typeCardHub }) {
       <Divider color="light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))" />
 
       <List spacing={'xs'} listStyleType="none">
-        {data.list.map((item) => (
-          <ListItem key={item}>
+        {data.list.map((item, index) => (
+          <ListItem key={index}>
             <Text component="span" inherit fz={{ md: 'xs', lg: 'sm' }}>
               {item}
             </Text>

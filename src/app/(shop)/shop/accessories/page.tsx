@@ -13,11 +13,8 @@ export default async function Accessories() {
     <LayoutPage>
       <LayoutSection id="accessories-grid" padded containerized={'responsive'}>
         <Grid>
-          {accessories.map((accessory) => (
-            <GridCol
-              key={accessory.title.long}
-              span={{ base: 12, sm: 6, md: 4, lg: 3 }}
-            >
+          {accessories.map((accessory, index) => (
+            <GridCol key={index} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
               <CardShopDroneAccessory data={accessory} />
             </GridCol>
           ))}

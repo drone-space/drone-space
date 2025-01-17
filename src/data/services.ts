@@ -1,9 +1,20 @@
 import { images } from '@/assets/images';
+import {
+  IconCertificate,
+  IconHeadset,
+  IconMapQuestion,
+  IconMovie,
+  IconSeeding,
+  IconSolarPanel,
+} from '@tabler/icons-react';
 
 const services = [
   {
     image: images.services.conRes,
     title: 'Drone Consultancy and Resale',
+    leftSection: IconHeadset,
+    linkDesc:
+      'Expert guidance and access to premium drones tailored to your needs.',
     desc: {
       intro: [
         "We are authorized drone importers and resellers, offering a wide range of high-quality drone solutions to meet your needs. Whether you're looking for a new drone for personal or commercial use, or you're interested in upgrading your existing drone, we have the expertise and resources to help.",
@@ -37,6 +48,9 @@ const services = [
   {
     image: images.services.rocSup,
     title: 'ROC Support',
+    leftSection: IconCertificate,
+    linkDesc:
+      'Comprehensive support for obtaining and managing your Remote Operator Certificate.',
     desc: {
       intro: [
         'A ROC is a certification approved and issued by the KCAA that demonstrates that an organization fulfils the legal requirements to commercially operate a drone; Both the drone and the pilot will need to operate under a RPAS Operating Certificate.',
@@ -70,6 +84,9 @@ const services = [
   {
     image: images.services.aerCin,
     title: 'Aerial Cinematography',
+    leftSection: IconMovie,
+    linkDesc:
+      'Capture stunning visuals and dynamic footage from breathtaking aerial perspectives.',
     desc: {
       intro: [
         'We offer professional aerial cinematography services to capture stunning aerial footage of any location. Our experienced drone pilots use state-of-the-art drone technology to produce high-quality aerial footage that will make your project stand out.',
@@ -99,6 +116,9 @@ const services = [
   {
     image: images.services.solIns,
     title: 'Solar Inspection',
+    leftSection: IconSolarPanel,
+    linkDesc:
+      'Drone-powered solar panel inspections for optimized performance and maintenance.',
     desc: {
       intro: [
         'Solar energy is a vast, inexhaustible, and clean resource; and photovoltaic cell arrays are pivotal for a greener future. Unclean or inoperable hardware can negatively impact their functionality, keeping your solar array from experiencing the full benefits of solar energy.',
@@ -129,6 +149,9 @@ const services = [
   {
     image: images.services.droSee,
     title: 'Drone Seeding',
+    leftSection: IconSeeding,
+    linkDesc:
+      'Revolutionize agriculture with drone-enabled precision seeding and land restoration.',
     desc: {
       intro: [
         "We understand the importance of reforestation and climate change mitigation. That's why we offer drone seeding services to help spread seedballs and other seeds for reforestation efforts.",
@@ -165,6 +188,9 @@ const services = [
   {
     image: images.services.mappSur,
     title: 'Drone Mapping and Survey',
+    leftSection: IconMapQuestion,
+    linkDesc:
+      'High-precision aerial mapping and surveying solutions for accurate data collection.',
     desc: {
       intro: [
         'Aerial Mapping redefines how you perceive and interact with your environment. Our state-of-the-art drones and advanced mapping technologies allow us to capture detailed aerial data and transform it into actionable insights for a wide range of industries.',

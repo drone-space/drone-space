@@ -114,7 +114,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="about-hub" padded shadowed>
+      <LayoutSection id="about-hub" padded containerized={'responsive'}>
         <Stack gap={'xl'}>
           <Stack gap={'xs'} align="center">
             <Title

@@ -22,12 +22,10 @@ export const crumbify = (url: string) => {
     .map((item) => {
       currentLink += `/${item}`;
 
-      if (item.length < 24) {
-        crumbs.push({
-          link: currentLink,
-          label: `${capitalizeWords(item.replaceAll('-', ' '))}`,
-        });
-      }
+      crumbs.push({
+        link: currentLink,
+        label: `${capitalizeWords(item.replaceAll('-', ' '))}`,
+      });
     });
 
   return crumbs;

@@ -30,7 +30,7 @@ export default function Main({
   const pathname = usePathname();
 
   const matchesPath = (link: string) => {
-    return pathname == link;
+    return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
   const navMobile = props.map((link) => {
@@ -42,7 +42,7 @@ export default function Main({
           component={Link}
           href={subLink.link}
           label={subLink.label}
-          active={matchesPath(link.link)}
+          active={matchesPath(subLink.link)}
           onClick={close}
           className={`${classes.link} ${pathname == subLink.link ? classes.linkActive : ''}`}
         />

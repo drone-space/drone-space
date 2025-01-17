@@ -63,7 +63,7 @@ export default async function Contact() {
 
               <Text ta={'center'} fz={'sm'}>
                 Please consult the{' '}
-                <Anchor component={Link} inherit fw={500} href="/help/faq">
+                <Anchor component={Link} inherit fw={500} href="/resources/faq">
                   FAQ
                 </Anchor>
                 &apos;s first.
@@ -132,7 +132,7 @@ const options = [
       <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
         For course details please visit our training section, for course prices
         go to{' '}
-        <Anchor component={Link} href="/pricing/training" inherit fw={500}>
+        <Anchor component={Link} href="/training/pricing" inherit fw={500}>
           pricing
         </Anchor>{' '}
         and for any other training inquiries, please send us a{' '}

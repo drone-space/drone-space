@@ -27,7 +27,7 @@ import {
 } from '@/data/constants';
 
 export default function Main({ post }: { post: PostRelations }) {
-  const path = `/stories/blog/${linkify(post.title)}-${post.id}`;
+  const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
 
   return (
     <Card className={classes.card} bg={'transparent'}>
@@ -96,7 +96,7 @@ export default function Main({ post }: { post: PostRelations }) {
 
                 <Anchor
                   component={Link}
-                  href={`/stories/blog/categories/${post.category?.id}`}
+                  href={`/resources/blog/categories/${post.category?.id}`}
                   underline="never"
                   inherit
                 >

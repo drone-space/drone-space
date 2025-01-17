@@ -25,7 +25,7 @@ import {
 } from '@/data/constants';
 
 export default function Aside({ post }: { post: PostRelations }) {
-  const path = `/stories/blog/${linkify(post.title)}-${post.id}`;
+  const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
 
   return (
     <Grid>
@@ -75,7 +75,7 @@ export default function Aside({ post }: { post: PostRelations }) {
 
             <Anchor
               component={Link}
-              href={`/stories/blog/categories/${post.category?.id}`}
+              href={`/resources/blog/categories/${post.category?.id}`}
               underline="never"
               inherit
             >

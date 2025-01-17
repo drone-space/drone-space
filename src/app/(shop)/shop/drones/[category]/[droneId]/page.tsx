@@ -42,6 +42,11 @@ import {
 } from '@tabler/icons-react';
 import classes from './drone.module.scss';
 import { linkify } from '@/utilities/formatters/string';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function AccessoryDetail({ params }: typeParams) {
   const product = products.find((p) => linkify(p.title.long) == params.droneId);
@@ -204,12 +209,15 @@ export default function AccessoryDetail({ params }: typeParams) {
                     <GridCol key={spec} span={{ base: 12, md: 6 }}>
                       <Group gap={'xs'}>
                         <ThemeIcon
-                          size={16}
+                          size={ICON_WRAPPER_SIZE / 1.5}
                           radius={'xl'}
                           color="green.6"
                           c={'white'}
                         >
-                          <IconCheck size={12} stroke={3} />
+                          <IconCheck
+                            size={ICON_SIZE / 1.5}
+                            stroke={ICON_STROKE_WIDTH}
+                          />
                         </ThemeIcon>
 
                         <Text fz={{ md: 'xs', lg: 'sm' }}>{spec}</Text>
@@ -222,7 +230,12 @@ export default function AccessoryDetail({ params }: typeParams) {
               <ModalContactShop>
                 <Button
                   fullWidth
-                  rightSection={<IconChevronRight size={16} stroke={2} />}
+                  rightSection={
+                    <IconChevronRight
+                      size={ICON_SIZE}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
+                  }
                 >
                   Order the{' '}
                   {product?.title.short
@@ -245,9 +258,9 @@ export default function AccessoryDetail({ params }: typeParams) {
                   value="specs"
                   leftSection={
                     <IconListDetails
+                      size={ICON_SIZE}
+                      stroke={ICON_STROKE_WIDTH}
                       color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
-                      size={24}
-                      stroke={2}
                     />
                   }
                 >
@@ -261,9 +274,9 @@ export default function AccessoryDetail({ params }: typeParams) {
                     value="basic"
                     leftSection={
                       <IconCube
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
-                        size={24}
-                        stroke={2}
                       />
                     }
                   >
@@ -278,9 +291,9 @@ export default function AccessoryDetail({ params }: typeParams) {
                     value="flyMore"
                     leftSection={
                       <IconCubePlus
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
-                        size={24}
-                        stroke={2}
                       />
                     }
                   >
@@ -295,9 +308,9 @@ export default function AccessoryDetail({ params }: typeParams) {
                     value="battery"
                     leftSection={
                       <IconBattery3
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
-                        size={24}
-                        stroke={2}
                       />
                     }
                   >
@@ -312,9 +325,9 @@ export default function AccessoryDetail({ params }: typeParams) {
                     value="other"
                     leftSection={
                       <IconCirclePlus
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
-                        size={24}
-                        stroke={2}
                       />
                     }
                   >
@@ -364,13 +377,16 @@ export default function AccessoryDetail({ params }: typeParams) {
                         <GridCol key={item.label} span={{ md: 12 }}>
                           <Group gap={'xs'}>
                             <ThemeIcon
-                              size={16}
+                              size={ICON_WRAPPER_SIZE / 1.5}
                               radius={'xl'}
                               color="green.6"
                               c={'white'}
                               visibleFrom="xs"
                             >
-                              <IconCheck size={12} stroke={3} />
+                              <IconCheck
+                                size={ICON_SIZE / 1.5}
+                                stroke={ICON_STROKE_WIDTH}
+                              />
                             </ThemeIcon>
 
                             <Text fz={{ md: 'sm' }}>
@@ -638,13 +654,16 @@ export default function AccessoryDetail({ params }: typeParams) {
                           <GridCol key={item.label} span={{ md: 12 }}>
                             <Group gap={'xs'}>
                               <ThemeIcon
-                                size={16}
+                                size={ICON_WRAPPER_SIZE / 1.5}
                                 radius={'xl'}
                                 color="green.6"
                                 c={'white'}
                                 visibleFrom="xs"
                               >
-                                <IconCheck size={12} stroke={3} />
+                                <IconCheck
+                                  size={ICON_SIZE / 1.5}
+                                  stroke={ICON_STROKE_WIDTH}
+                                />
                               </ThemeIcon>
 
                               <Text fz={{ md: 'sm' }}>

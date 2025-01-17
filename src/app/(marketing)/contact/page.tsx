@@ -34,6 +34,11 @@ import {
 import { images } from '@/assets/images';
 import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import appData from '@/data/app';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export const metadata: Metadata = { title: 'Contact' };
 
@@ -101,11 +106,14 @@ export default async function Contact() {
                       gap={'md'}
                     >
                       <ThemeIcon
-                        size={32}
+                        size={ICON_WRAPPER_SIZE}
                         variant="light"
                         // display={{ base: undefined, sm: "none", md: "inherit" }}
                       >
-                        <option.icon size={20} stroke={1.5} />
+                        <option.icon
+                          size={ICON_SIZE}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
                       </ThemeIcon>
                       <Stack gap={0}>
                         <Title order={3} fz={'md'} fw={'bold'}>

@@ -8,6 +8,7 @@ import { images } from '@/assets/images';
 import { IconSchool } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Advertisment({ active }: { active?: boolean }) {
   const [opened, { open, close }] = useDisclosure(active ? true : false);
@@ -73,7 +74,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
         onClick={open}
         size="xs"
         variant="default"
-        leftSection={<IconSchool size={16} stroke={2} />}
+        leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
         c={'pri'}
       >
         Courses & Intakes

@@ -9,6 +9,11 @@ import appData from '@/data/app';
 import classes from './claude.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
 import { useFormClaude } from '@/hooks/form/claude';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Claude({
   query,
@@ -56,13 +61,12 @@ export default function Claude({
 
         <Stack align="end" justify="end">
           <ActionIcon
-            w={32}
-            h={32}
+            size={ICON_WRAPPER_SIZE}
             variant="light"
             type="submit"
             loading={submitted}
           >
-            <IconSend size={24} stroke={2} />
+            <IconSend size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
           </ActionIcon>
         </Stack>
       </Group>

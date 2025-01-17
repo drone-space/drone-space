@@ -21,6 +21,11 @@ import { IconCheck } from '@tabler/icons-react';
 import CardStat from '@/components/common/cards/stat';
 import CardHub from '@/components/common/cards/hub';
 import stats from '@/data/stats';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 // import CarouselTestimonials from '@/components/common/carousels/testimonials';
 // import { studentsGet } from '@/handlers/requests/database/student';
 // import { shuffleArray } from '@/utilities/helpers/array';
@@ -80,12 +85,15 @@ export default async function About() {
                 <List
                   icon={
                     <ThemeIcon
-                      size={20}
+                      size={ICON_WRAPPER_SIZE / 1.5}
                       color="green.6"
                       c={'white'}
                       radius={'xl'}
                     >
-                      <IconCheck size={12} />
+                      <IconCheck
+                        size={ICON_SIZE / 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                     </ThemeIcon>
                   }
                 >

@@ -20,6 +20,11 @@ import CtaTraining from '@/components/partial/cta/training';
 import CardTrainingCourse from '@/components/common/cards/training/course';
 import { images } from '@/assets/images';
 import courses from '@/data/courses';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export const metadata: Metadata = { title: 'Basic Training' };
 
@@ -52,12 +57,15 @@ export default async function Basic() {
                   withPadding={true}
                   icon={
                     <ThemeIcon
-                      size={16}
+                      size={ICON_WRAPPER_SIZE / 1.5}
                       color="green.6"
                       c={'white'}
                       radius={'xl'}
                     >
-                      <IconCheck size={12} stroke={2} />
+                      <IconCheck
+                        size={ICON_SIZE / 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                     </ThemeIcon>
                   }
                 >
@@ -141,8 +149,8 @@ export default async function Basic() {
                       <Group gap={'sm'} align="start" wrap="nowrap">
                         <span>
                           <IconCheckbox
-                            size={20}
-                            stroke={2}
+                            size={ICON_SIZE}
+                            stroke={ICON_STROKE_WIDTH}
                             style={{ marginTop: 3 }}
                             color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
                           />
@@ -227,13 +235,16 @@ export default async function Basic() {
                     <ListItem key={unit.title}>
                       <Group align="start" wrap="nowrap">
                         <ThemeIcon
-                          size={16}
+                          size={ICON_WRAPPER_SIZE / 1.5}
                           color="green.6"
                           c={'white'}
                           radius={'xl'}
                           style={{ marginTop: 3 }}
                         >
-                          <IconCheck size={12} stroke={2} />
+                          <IconCheck
+                            size={ICON_SIZE / 1.5}
+                            stroke={ICON_STROKE_WIDTH}
+                          />
                         </ThemeIcon>
 
                         <span>

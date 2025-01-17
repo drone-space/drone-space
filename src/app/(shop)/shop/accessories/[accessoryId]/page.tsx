@@ -21,6 +21,11 @@ import CarouselImage from '@/components/common/carousels/image';
 import { typeParams } from './layout';
 import { IconCheck } from '@tabler/icons-react';
 import classes from './drone.module.scss';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function AccessoryDetails({ params }: typeParams) {
   const product = accessories.find(
@@ -75,13 +80,16 @@ export default function AccessoryDetails({ params }: typeParams) {
                     <GridCol key={spec.label} span={12}>
                       <Group gap={'xs'}>
                         <ThemeIcon
-                          size={16}
+                          size={ICON_WRAPPER_SIZE / 1.5}
                           radius={'xl'}
                           color="green.6"
                           c={'white'}
                           visibleFrom="xs"
                         >
-                          <IconCheck size={12} stroke={3} />
+                          <IconCheck
+                            size={ICON_SIZE / 1.5}
+                            stroke={ICON_STROKE_WIDTH}
+                          />
                         </ThemeIcon>
 
                         <Text fz={{ base: 'xs', xs: 'sm' }}>

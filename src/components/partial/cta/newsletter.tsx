@@ -1,6 +1,11 @@
 'use client';
 
-import { FONT, SECTION_SPACING } from '@/data/constants';
+import {
+  FONT,
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  SECTION_SPACING,
+} from '@/data/constants';
 import { Button, Group, Stack, Text, Title } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import FormNewsletter from '@/components/form/newsletter';
@@ -9,7 +14,7 @@ import classes from './newsletter.module.scss';
 import { images } from '@/assets/images';
 import { usePathname } from 'next/navigation';
 import documents from '@/assets/documents';
-import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
+import { IconExternalLink, IconPhoneCall } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 
 export default function Newsletter() {
@@ -55,15 +60,19 @@ export default function Newsletter() {
           <Button
             component="a"
             href={documents.droneSpace.profile}
-            download={'company-profile'}
-            leftSection={<IconFileDownload size={16} stroke={1.5} />}
+            target="_blank"
+            leftSection={
+              <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            }
             variant="white"
           >
             Company Profile
           </Button>
           <ModalContactCallback>
             <Button
-              leftSection={<IconPhoneCall size={16} stroke={1.5} />}
+              leftSection={
+                <IconPhoneCall size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
               variant="outline"
               color="white"
             >

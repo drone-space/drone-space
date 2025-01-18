@@ -34,7 +34,7 @@ export const ICON_STROKE_WIDTH = 1.5;
 
 export const TRANSITION_DURATION = 250;
 
-export const SECTION_SPACING = 64;
+export const SECTION_SPACING = 120;
 
 export const FONT_CTA_TITLE = 40;
 

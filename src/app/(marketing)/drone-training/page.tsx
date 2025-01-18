@@ -294,8 +294,8 @@ export default async function DroneTraining() {
                     Students undergo a checkout flight by a qualified designated
                     flight examiner (DFE) where their knowledge of the rules of
                     the air, regulations, airmanship & flight ability will be
-                    tested and evaluated in accordance with the KCAA's Manual of
-                    Implementing Standards.
+                    tested and evaluated in accordance with the KCAA&apos;s
+                    Manual of Implementing Standards.
                   </Text>
                 </div>
 
@@ -764,8 +764,8 @@ export default async function DroneTraining() {
                 and safety procedures. They will also learn about the various
                 applications of drones in different industries and participate
                 in drone-related challenges and competitions. This program aims
-                to inspire young people's interest in STEM and encourage them to
-                consider careers in technology and innovation.
+                to inspire young people&apos;s interest in STEM and encourage
+                them to consider careers in technology and innovation.
               </Text>
             </Stack>
           </GridCol>

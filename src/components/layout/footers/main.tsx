@@ -207,16 +207,8 @@ const linkSets = [
         link: '/drone-solutions',
       },
       {
-        label: 'Basic Training (RPL)',
-        link: '/drone-training/basic',
-      },
-      {
-        label: 'Advanced Training',
-        link: '/drone-training/advanced',
-      },
-      {
-        label: 'Training Pricing',
-        link: '/drone-training/pricing',
+        label: 'Drone Training',
+        link: '/drone-training',
       },
       {
         label: 'Drone Shop',
@@ -224,7 +216,7 @@ const linkSets = [
       },
       {
         label: 'Get in Touch',
-        link: '/contact',
+        link: '/about/contact',
       },
     ],
   },
@@ -233,7 +225,7 @@ const linkSets = [
     links: [
       ...services.map((service) => {
         return {
-          link: `/drone-solutions/${linkify(service.title)}`,
+          link: `/drone-solutions#${linkify(service.title)}`,
           label: service.title,
         };
       }),

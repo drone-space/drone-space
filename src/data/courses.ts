@@ -94,6 +94,53 @@ const courses = {
           'Drone Space course completion certificate',
         ],
       },
+
+      {
+        image: images.training.radTel,
+        title: {
+          short: 'RadTel',
+          full: 'Radio Telephony',
+        },
+        price: {
+          discount: null,
+          full: 35000,
+        },
+        priceFeatures: [
+          {
+            item: 'Radio Telephony Exam',
+            duration: null,
+            price: 2000,
+          },
+          {
+            item: 'English Proficiency Exam',
+            duration: null,
+            price: 3000,
+          },
+          {
+            item: 'Radio Telephony License',
+            duration: null,
+            price: 1200,
+          },
+        ],
+        desc: 'The Radio Telephony License course, offered in partnership with the Nairobi Flight Academy, is designed for RPL holders seeking to operate drones in controlled airspace and conduct BVLOS operations. This comprehensive training equips participants with the necessary skills in radio telephony procedures and communication protocols. Upon passing the exam administered by the KCAA, successful participants are granted a Radio Telephony Operator License valid for two years, renewable upon expiration. The Radio Telephony License course is an essential requirement for drone pilots operating in areas that require communication with air traffic control or for those planning BVLOS operations. With this license, participants gain the readiness to conduct missions in controlled airspace, ensuring safe and compliant drone operations. By partnering with the Nairobi Flight Academy, we deliver top-quality training that prepares RPL holders for the KCAA exam.',
+        modules: [
+          'General Phraseology',
+          'Aerodrome Control',
+          'Approach Control',
+          'Flight Information Service',
+          'Weather',
+          'Communication Failure',
+          'Distress and Urgency',
+          'VHF Propagation',
+          'Flight Scenario',
+        ],
+        qualifications: [
+          'Develop proficiency in radio telephony procedures for drone operations in controlled airspace and BVLOS missions.',
+          'Acquire comprehensive knowledge of radio phraseology, air traffic control communication, emergency procedures, and airspace regulations',
+          'Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.',
+        ],
+      },
+
       {
         image: images.training.insRat,
         title: {
@@ -165,51 +212,6 @@ const courses = {
         qualifications: [
           "Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft Instructor's operations",
           'Provide more insight into the Drone Technology',
-        ],
-      },
-      {
-        image: images.training.radTel,
-        title: {
-          short: 'RadTel',
-          full: 'Radio Telephony',
-        },
-        price: {
-          discount: null,
-          full: 35000,
-        },
-        priceFeatures: [
-          {
-            item: 'Radio Telephony Exam',
-            duration: null,
-            price: 2000,
-          },
-          {
-            item: 'English Proficiency Exam',
-            duration: null,
-            price: 3000,
-          },
-          {
-            item: 'Radio Telephony License',
-            duration: null,
-            price: 1200,
-          },
-        ],
-        desc: 'The Radio Telephony License course, offered in partnership with the Nairobi Flight Academy, is designed for RPL holders seeking to operate drones in controlled airspace and conduct BVLOS operations. This comprehensive training equips participants with the necessary skills in radio telephony procedures and communication protocols. Upon passing the exam administered by the KCAA, successful participants are granted a Radio Telephony Operator License valid for two years, renewable upon expiration. The Radio Telephony License course is an essential requirement for drone pilots operating in areas that require communication with air traffic control or for those planning BVLOS operations. With this license, participants gain the readiness to conduct missions in controlled airspace, ensuring safe and compliant drone operations. By partnering with the Nairobi Flight Academy, we deliver top-quality training that prepares RPL holders for the KCAA exam.',
-        modules: [
-          'General Phraseology',
-          'Aerodrome Control',
-          'Approach Control',
-          'Flight Information Service',
-          'Weather',
-          'Communication Failure',
-          'Distress and Urgency',
-          'VHF Propagation',
-          'Flight Scenario',
-        ],
-        qualifications: [
-          'Develop proficiency in radio telephony procedures for drone operations in controlled airspace and BVLOS missions.',
-          'Acquire comprehensive knowledge of radio phraseology, air traffic control communication, emergency procedures, and airspace regulations',
-          'Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.',
         ],
       },
       // {
@@ -381,7 +383,7 @@ export const courseList = [
     image: images.training.rpl,
     leftSection: IconDrone,
     linkDesc:
-      'Learn the skills and earn your Remote Pilot License (RPL) to operate drones professionally in compliance with aviation regulations.',
+      'Earn your Remote Pilot License (RPL) to operate drones professionally.',
     title: 'Remote Pilot License (RPL)',
     desc: 'The RPL course is designed for individuals who are interested in starting a career as a drone pilot or for unlicensed drone pilots who want to fly legally. This course is also suitable for individuals who are looking to add drone operation skills to their CVs. By obtaining an RPL, you will be able to legally operate drones in Kenya and potentially pursue a career in various industries, including cinematography, agriculture, and construction, survey and mapping among others.',
   },
@@ -389,7 +391,7 @@ export const courseList = [
     image: images.training.radTel,
     leftSection: IconAntenna,
     linkDesc:
-      '"Master Radio Telephony skills to effectively communicate with air traffic control and enhance your drone piloting expertise.',
+      'Master Radio Telephony skills to effectively communicate with air traffic control.',
     title: 'Radio Telephony',
     desc: 'The Radio Telephony License course, offered in partnership with the Nairobi Flight Academy, is designed for Remote Pilot License (RPL) holders seeking to operate drones in controlled airspace and conduct Beyond Visual Line of Sight (BVLOS) operations. This comprehensive training equips participants with the necessary skills in radio telephony procedures and communication protocols. Upon passing the exam administered by the Kenya Civil Aviation Authority (KCAA), successful participants are granted a Radio Telephony Operator License valid for two years, renewable upon expiration.',
   },
@@ -397,7 +399,7 @@ export const courseList = [
     image: images.training.insRat,
     leftSection: IconStar,
     linkDesc:
-      'Become a certified drone training instructor and empower others with the knowledge and skills for safe drone operation.',
+      'Become a certified instructor and empower others with drone operation knowledge.',
     title: 'Instructor Rating',
     desc: 'The Instructor Rating course is designed for individuals who already hold an RPL and are interested in becoming certified drone instructors. This course is ideal for RPL holders who have a passion for teaching and want to share their knowledge and experience with others. By completing this course, students will learn how to effectively instruct RPL students, create course materials, and design training programs. Upon completion, students will receive an instructor rating from the Kenya Civil Aviation Authority (KCAA), which will enable them to train and certify future RPL holders.',
   },
@@ -405,7 +407,7 @@ export const courseList = [
     image: images.training.mapSur,
     leftSection: IconMapQuestion,
     linkDesc:
-      'Unlock the potential of drone mapping and surveying with hands-on training in advanced geospatial and imaging techniques.',
+      'Hands-on training in advanced geospatial and imaging techniques.',
     title: 'Drone Mapping and Survey',
     desc: 'The Drone Mapping and Survey course is a 5-day course designed for RPL holders who want to learn how to use drones for mapping and surveying purposes. This course is suitable for engineers, surveyors, environmental scientists, among others. It is also ideal for individuals interested in starting a drone mapping and surveying business. By completing this course, students will acquire practical skills in drone operation, surveying techniques, and data analysis. They will also learn how to process and interpret data obtained from drone surveys to generate accurate maps and 3D models. ',
   },
@@ -413,7 +415,7 @@ export const courseList = [
     image: images.training.thermography,
     leftSection: IconTemperatureCelsius,
     linkDesc:
-      'Get certified in drone thermography with ITC Level I training, ideal for applications in inspection, safety, and more.',
+      'ITC Level I training, ideal for applications in inspection, safety, and more.',
     title: 'Thermography (ITC - Level I)',
     desc: 'The Level I Thermography Certification course is designed for professionals who want to develop practical skills in using thermography for inspections and diagnostics. This course is suitable for individuals working in industries such as electrical, mechanical, and building inspections, as well as professionals involved in research and development.',
   },

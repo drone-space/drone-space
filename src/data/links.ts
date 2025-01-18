@@ -2,11 +2,8 @@ import { linkify } from '@/utilities/formatters/string';
 import services from './services';
 import {
   IconArticle,
-  IconBubble,
   IconCash,
   IconCell,
-  IconCertificate,
-  IconCertificate2,
   IconCirclePlus,
   IconCopyright,
   IconDeviceCameraPhone,
@@ -14,7 +11,6 @@ import {
   IconInfoCircle,
   IconLibraryPhoto,
   IconPlant2,
-  IconSchool,
   IconSpaces,
   IconSun,
   IconUsersGroup,
@@ -101,14 +97,27 @@ const links = [
     link: '/training',
     label: 'Drone Training',
     subLinks: [
-      ...courseList.map((course) => {
-        return {
-          link: `/training#${linkify(course.title)}`,
-          label: course.title,
-          leftSection: course.leftSection,
-          desc: course.linkDesc,
-        };
-      }),
+      ...courseList
+        .map((course) => {
+          if (courseList.indexOf(course) < 5) {
+            return {
+              link: `/training#${linkify(course.title)}`,
+              label: course.title,
+              leftSection: course.leftSection,
+              desc: course.linkDesc,
+            };
+          }
+
+          return null;
+        })
+        .filter((i) => i != null),
+
+      {
+        link: '/training/pricing',
+        label: 'Training Pricing',
+        leftSection: IconCash,
+        desc: 'Find detailed information on costs and packages for all our training programs.',
+      },
     ],
   },
   {

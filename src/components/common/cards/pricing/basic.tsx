@@ -12,7 +12,7 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import ModalCoursePricing from '../../modals/course/pricing';
+import ModalContactTraining from '../../modals/contact/training';
 import classes from './basic.module.scss';
 import { typeUnit } from '@/types/static/course';
 import { IconCheck } from '@tabler/icons-react';
@@ -156,15 +156,19 @@ export default function Basic({
           </List>
         </Stack>
 
-        <ModalCoursePricing data={data}>
+        <ModalContactTraining>
           <Button
             color={data.featured ? 'sec.4' : 'pri'}
             c={data.featured ? 'pri.9' : 'white'}
             fullWidth
+            size="xs"
           >
-            {data.title.full} Details
+            Enroll For{' '}
+            {data.title.full == 'Multi-Rotor'
+              ? 'Remote Pilot License (RPL)'
+              : data.title.full}
           </Button>
-        </ModalCoursePricing>
+        </ModalContactTraining>
       </Stack>
     </Card>
   );

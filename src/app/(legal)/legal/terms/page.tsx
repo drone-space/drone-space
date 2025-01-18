@@ -6,10 +6,14 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import { Divider, List, ListItem, Stack, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
+import appData from '@/data/app';
 
-export const metadata: Metadata = { title: 'Privacy Policy' };
+export const metadata: Metadata = {
+  title: `Terms and Conditions - ${appData.name.app} Kenya`,
+  description: `Review the terms and conditions governing the use of ${appData.name.app} services, training, and products. Stay informed about our policies and commitments.`,
+};
 
-export default async function PrivacyPolicy() {
+export default async function TermsConditions() {
   return (
     <LayoutPage>
       <LayoutSection
@@ -20,7 +24,7 @@ export default async function PrivacyPolicy() {
         <Stack>
           <Stack gap={'xs'}>
             <Title order={1} fz={24}>
-              Privacy Policy
+              Terms and Conditions
             </Title>
 
             <Text inherit c={'dimmed'} fz={'xs'} fw={500}>
@@ -35,7 +39,7 @@ export default async function PrivacyPolicy() {
         </Stack>
       </LayoutSection>
 
-      {legal.policy.map((t, index) => (
+      {legal.terms.map((t, index) => (
         <LayoutSection
           id="page-legal-privacy-list"
           key={index}
@@ -44,7 +48,7 @@ export default async function PrivacyPolicy() {
         >
           <Stack gap={'xs'}>
             <Title order={2} fz={'lg'}>
-              {legal.policy.indexOf(t) + 1}. {t.title}
+              {legal.terms.indexOf(t) + 1}. {t.title}
             </Title>
 
             {t.prose.map((p, index) => (
@@ -58,11 +62,6 @@ export default async function PrivacyPolicy() {
                 ))}
               </List>
             )}
-
-            {t.postProse &&
-              t.postProse.map((p, index) => (
-                <Text key={index}>{p.content}</Text>
-              ))}
           </Stack>
         </LayoutSection>
       ))}

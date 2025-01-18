@@ -11,9 +11,11 @@ import AccordionFaq from '@/components/common/accordions/faq';
 import ModalContactTraining from '@/components/common/modals/contact/training';
 
 import courses from '@/data/courses';
+import appData from '@/data/app';
 
 export const metadata: Metadata = {
-  title: 'Pricing',
+  title: `Drone Training Pricing - Affordable Courses at ${appData.name.app} Kenya`,
+  description: `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`,
 };
 
 export default async function Gallery() {
@@ -32,7 +34,7 @@ export default async function Gallery() {
       <LayoutSection id="pricing-training-advanced" padded shadowed>
         <Grid>
           {courses.advanced.units.map((course, index) => (
-            <GridCol key={index} span={{ sm: 6, lg: 4 }}>
+            <GridCol key={index} span={{ sm: 6 }}>
               <CardPricingBasic
                 data={course}
                 offset={course.title.short == 'RadTel'}

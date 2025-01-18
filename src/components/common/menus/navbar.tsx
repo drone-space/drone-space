@@ -36,28 +36,34 @@ export default function Navbar({
 
   const menuItems =
     subLinks &&
-    subLinks.map((item, index) => (
-      <MenuItem
-        key={index}
-        component={Link}
-        href={item.link}
-        leftSection={
-          item.leftSection &&
-          !megaMenu && (
-            <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          )
-        }
-        rightSection={
-          item.rightSection &&
-          !megaMenu && (
-            <item.rightSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          )
-        }
-        className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
-      >
-        {!item.desc ? item.label : <CardMenu props={item} />}
-      </MenuItem>
-    ));
+    subLinks.map(
+      (item, index) =>
+        subLinks.indexOf(item) < 6 && (
+          <MenuItem
+            key={index}
+            component={Link}
+            href={item.link}
+            leftSection={
+              item.leftSection &&
+              !megaMenu && (
+                <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              )
+            }
+            rightSection={
+              item.rightSection &&
+              !megaMenu && (
+                <item.rightSection
+                  size={ICON_SIZE}
+                  stroke={ICON_STROKE_WIDTH}
+                />
+              )
+            }
+            className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
+          >
+            {!item.desc ? item.label : <CardMenu props={item} />}
+          </MenuItem>
+        )
+    );
 
   return (
     <Menu
@@ -119,7 +125,8 @@ export default function Navbar({
                   <GridCol span={3}>
                     <Stack gap={0} h={'100%'} justify="space-between">
                       <Button
-                        leftSection={
+                        justify="space-between"
+                        rightSection={
                           <IconExternalLink
                             size={ICON_SIZE - 4}
                             stroke={ICON_STROKE_WIDTH}
@@ -138,7 +145,8 @@ export default function Navbar({
                       </Button>
 
                       <Button
-                        leftSection={
+                        justify="space-between"
+                        rightSection={
                           <IconExternalLink
                             size={ICON_SIZE - 4}
                             stroke={ICON_STROKE_WIDTH}

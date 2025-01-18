@@ -395,6 +395,14 @@ export const images = {
     image11: `${baseUrl.droneSpace}/partners/image-11.webp`,
     image12: `${baseUrl.droneSpace}/partners/image-12.webp`,
     image13: `${baseUrl.droneSpace}/partners/image-13.webp`,
+    image14: `${baseUrl.droneSpace}/partners/image-14.webp`,
+    image15: `${baseUrl.droneSpace}/partners/image-15.webp`,
+    image16: `${baseUrl.droneSpace}/partners/image-16.webp`,
+    image17: `${baseUrl.droneSpace}/partners/image-17.webp`,
+    image18: `${baseUrl.droneSpace}/partners/image-18.webp`,
+    image19: `${baseUrl.droneSpace}/partners/image-19.webp`,
+    image20: `${baseUrl.droneSpace}/partners/image-20.webp`,
+    image21: `${baseUrl.droneSpace}/partners/image-21.webp`,
   },
 
   backgrounds: {
@@ -727,12 +735,14 @@ export const images = {
   },
 
   services: {
-    aerCin: `${baseUrl.droneSpace}/services/image-1.webp`,
+    aerCin: `https://cdn.pixabay.com/photo/2018/07/31/23/56/drone-3576233_1280.jpg`,
     conRes: `${baseUrl.droneSpace}/services/image-2.webp`,
     solIns: `${baseUrl.droneSpace}/services/image-3.webp`,
-    droSee: `${baseUrl.droneSpace}/services/image-4.webp`,
+    droSee: `https://cdn.pixabay.com/photo/2019/05/23/08/43/dji-4223416_960_720.jpg`,
     rocSup: `${baseUrl.droneSpace}/services/image-5.webp`,
     mappSur: `${baseUrl.droneSpace}/services/image-6.webp`,
+    sar: `${baseUrl.droneSpace}/services/image-7.webp`,
+    medical: `${baseUrl.droneSpace}/services/image-8.webp`,
   },
 
   shows: {
@@ -745,17 +755,23 @@ export const images = {
   },
 
   team: {
-    kevon: `${baseUrl.droneSpace}/team/image-1.webp`,
+    tony: `${baseUrl.droneSpace}/team/image-1.webp`,
+    nick: `${baseUrl.droneSpace}/team/image-2.webp`,
+    priscah: `${baseUrl.droneSpace}/team/image-3.webp`,
+    kevin: `${baseUrl.droneSpace}/team/image-4.webp`,
+    michael: `${baseUrl.droneSpace}/team/image-5.webp`,
+    hannah: `${baseUrl.droneSpace}/team/image-6.webp`,
   },
 
   training: {
-    fixWin: `${baseUrl.droneSpace}/training/image-1.webp`,
     mulRot: `${baseUrl.droneSpace}/training/image-2.webp`,
     bvlos: `${baseUrl.droneSpace}/training/image-3.webp`,
-    insRat: `${baseUrl.droneSpace}/training/image-4.webp`,
-    mapSur: `${baseUrl.droneSpace}/training/image-5.webp`,
-    thermograpgy: `${baseUrl.droneSpace}/training/image-6.webp`,
+
+    rpl: `https://cdn.pixabay.com/photo/2018/11/20/04/44/drone-3826482_1280.jpg`,
     radTel: `${baseUrl.droneSpace}/training/image-7.webp`,
+    mapSur: `${baseUrl.droneSpace}/services/image-6.webp`,
+    insRat: `${baseUrl.droneSpace}/training/image-4.webp`,
+    thermography: `${baseUrl.droneSpace}/training/image-6.webp`,
     holCam: `${baseUrl.droneSpace}/training/image-8.webp`,
   },
 };

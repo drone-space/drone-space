@@ -16,10 +16,10 @@ export default function Main({ title }: { title?: string }) {
   const dynamicRoutes = [
     '/resources/blog',
     '/services',
-    '/training/basic',
-    '/training/advanced',
     '/shop/drones',
     '/shop/accessories',
+    '/training/basic',
+    '/training/advanced',
   ];
 
   const dynamic = dynamicRoutes.find((r) => pathname.includes(r));

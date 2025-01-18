@@ -6,8 +6,8 @@ import appData from '@/data/app';
 
 export const metadata: Metadata = {
   title: {
-    default: `Accessories`,
-    template: `%s - Accessories - Drone Shop - ${appData.name.company}`,
+    default: `Drone Accessories`,
+    template: `%s - Drone Accessories - ${appData.name.company} Kenya`,
   },
 };
 

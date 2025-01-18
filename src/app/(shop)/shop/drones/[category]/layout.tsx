@@ -16,8 +16,8 @@ export const generateMetadata = ({ params }: typeParams): Metadata => {
 
   return {
     title: {
-      default: capitalizeWords(product?.category || 'Category'),
-      template: `%s - ${capitalizeWords(product?.category || 'Category')} Drones - Drones - Drone Shop - ${appData.name.company}`,
+      default: `${capitalizeWords(product?.category || 'Category')} Drones`,
+      template: `%s - ${capitalizeWords(product?.category || 'Category')} Drones - ${appData.name.company} Kenya`,
     },
   };
 };

@@ -8,7 +8,10 @@ import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 
-export const metadata: Metadata = { title: 'Enterprise Drones' };
+export const metadata: Metadata = {
+  title: 'Enterprise Drones - High-Performance Drones for Business',
+  description: `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`,
+};
 
 export default async function Enterprise() {
   const drones = products.filter((p) => p.category == 'enterprise');

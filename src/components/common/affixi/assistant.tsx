@@ -14,7 +14,7 @@ export default function Assistant() {
   const [scroll] = useWindowScroll();
   const pinned = useHeadroom({ fixedAt: 120 });
 
-  const routes = ['services', '/training', '/shop'];
+  const routes = ['drone-solutions', '/drone-training', '/shop'];
   const routeIncluded = routes.find((r) => pathname.includes(r));
 
   const getRoute = () => {

@@ -154,7 +154,7 @@ export default function Main() {
             <Anchor
               component={Link}
               inherit
-              href="/privacy-policy"
+              href="/legal/policy"
               className={classes.link}
             >
               Terms and Conditions
@@ -165,7 +165,7 @@ export default function Main() {
             <Anchor
               component={Link}
               inherit
-              href="/terms-conditions"
+              href="/legal/terms"
               className={classes.link}
             >
               Privacy Policy
@@ -204,19 +204,19 @@ const linkSets = [
       },
       {
         label: 'Our Drone Solutions',
-        link: '/services',
+        link: '/drone-solutions',
       },
       {
         label: 'Basic Training (RPL)',
-        link: '/training/basic',
+        link: '/drone-training/basic',
       },
       {
         label: 'Advanced Training',
-        link: '/training/advanced',
+        link: '/drone-training/advanced',
       },
       {
         label: 'Training Pricing',
-        link: '/training/pricing',
+        link: '/drone-training/pricing',
       },
       {
         label: 'Drone Shop',
@@ -233,13 +233,13 @@ const linkSets = [
     links: [
       ...services.map((service) => {
         return {
-          link: `/services/${linkify(service.title)}`,
+          link: `/drone-solutions/${linkify(service.title)}`,
           label: service.title,
         };
       }),
       {
         label: 'Drone Light Shows',
-        link: '/services/light-shows',
+        link: '/drone-solutions/light-shows',
       },
     ],
   },

@@ -155,12 +155,7 @@ export default function Contact({
             <GridCol span={12}>
               <Text fz={'xs'} c={'dimmed'}>
                 By submitting this form, I agree to the{' '}
-                <Anchor
-                  component={Link}
-                  href="/privacy-policy"
-                  inherit
-                  fw={500}
-                >
+                <Anchor component={Link} href="/legal/policy" inherit fw={500}>
                   privacy policy
                 </Anchor>
                 .

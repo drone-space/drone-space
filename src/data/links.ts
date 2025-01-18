@@ -94,14 +94,14 @@ const links = [
     ],
   },
   {
-    link: '/training',
+    link: '/drone-training',
     label: 'Drone Training',
     subLinks: [
       ...courseList
         .map((course) => {
           if (courseList.indexOf(course) < 5) {
             return {
-              link: `/training#${linkify(course.title)}`,
+              link: `/drone-training#${linkify(course.title)}`,
               label: course.title,
               leftSection: course.leftSection,
               desc: course.linkDesc,
@@ -113,7 +113,7 @@ const links = [
         .filter((i) => i != null),
 
       {
-        link: '/training/pricing',
+        link: '/drone-training/pricing',
         label: 'Training Pricing',
         leftSection: IconCash,
         desc: 'Find detailed information on costs and packages for all our training programs.',
@@ -121,19 +121,19 @@ const links = [
     ],
   },
   {
-    link: '/services',
+    link: '/drone-solutions',
     label: 'Drone Solutions',
     subLinks: [
       {
         label: 'Drone Light Shows',
-        link: '/services/light-shows',
+        link: '/drone-solutions/light-shows',
         leftSection: IconSun,
         desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
       },
 
       ...services.map((service) => {
         return {
-          link: `/services#${linkify(service.title)}`,
+          link: `/drone-solutions#${linkify(service.title)}`,
           label: service.title,
           leftSection: service.leftSection,
           desc: service.linkDesc,

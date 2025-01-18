@@ -98,7 +98,7 @@ export default function Shows({ active }: { active?: boolean }) {
 
                     <Button
                       component={Link}
-                      href={'/light-shows'}
+                      href={'/drone-solutions/light-shows'}
                       size="xs"
                       py={2}
                       px={4}

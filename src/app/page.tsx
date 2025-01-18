@@ -168,12 +168,12 @@ export default function Home() {
               <Anchor
                 ta={'center'}
                 component={Link}
-                href={'/services'}
+                href={'/drone-solutions'}
                 fz={'sm'}
                 underline="hover"
                 c={'dimmed'}
               >
-                See more services
+                See more drone solutions
               </Anchor>
             </Stack>
           </LayoutSection>

@@ -43,7 +43,12 @@ export default async function Faq() {
           <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
             For further information, please visit our training section, for
             course prices go to{' '}
-            <Anchor component={Link} href="/pricing/training" inherit fw={500}>
+            <Anchor
+              component={Link}
+              href="/drone-training/pricing"
+              inherit
+              fw={500}
+            >
               pricing
             </Anchor>{' '}
             and for any other training inquiries, please send us a{' '}
@@ -91,7 +96,7 @@ export default async function Faq() {
 
           <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
             For any other questions,{' '}
-            <Anchor component={Link} inherit fw={500} href={'/contact'}>
+            <Anchor component={Link} inherit fw={500} href={'/about/contact'}>
               submit an inquiry
             </Anchor>{' '}
             or{' '}

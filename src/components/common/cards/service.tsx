@@ -45,7 +45,7 @@ export default function Service({ data }: { data: typeService }) {
           <Anchor
             inherit
             component={Link}
-            href={`/services/${linkify(data.title)}`}
+            href={`/drone-solutions/${linkify(data.title)}`}
             c={'var(--mantine-color-white)'}
             underline="hover"
             fz={'xs'}

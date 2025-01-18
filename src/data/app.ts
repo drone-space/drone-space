@@ -47,8 +47,10 @@ export const hours = {
 
 export const locations = {
   main: {
-    location: '6th Floor Prosperity House, Chiromo - Westlands',
+    location: '6th Floor Prosperity House, Westlands Road, Nairobi',
     pin: 'https://maps.app.goo.gl/iSZHfscYTWESifVS6',
+    iframe:
+      'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8345672141318!2d36.80919860989597!3d-1.2723689356043535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f17307ceb423b%3A0x2b6f26cf176c4f6f!2sProsperity%20House%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1737159523640!5m2!1sen!2ske',
   },
 };
 

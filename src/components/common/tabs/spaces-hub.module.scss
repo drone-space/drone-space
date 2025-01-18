@@ -1,0 +1,37 @@
+.list {
+  flex-direction: column;
+
+  @include larger-than($mantine-breakpoint-xs) {
+    flex-direction: row;
+  }
+
+  @include larger-than($mantine-breakpoint-md) {
+    gap: var(--mantine-spacing-md);
+  }
+
+  @include larger-than($mantine-breakpoint-md) {
+    flex-direction: column;
+  }
+}
+
+.tab {
+  background-color: var(--mantine-color-gray-light);
+  justify-content: space-between;
+  flex-wrap: nowrap;
+
+  @include larger-than($mantine-breakpoint-md) {
+    padding: var(--mantine-spacing-md);
+  }
+
+  &[data-active] {
+    background-color: var(--mantine-color-pri-9);
+    color: var(--mantine-color-sec-4);
+  }
+}
+
+.tabLabel {
+  @include larger-than($mantine-breakpoint-md) {
+    font-weight: bold;
+    font-size: var(--mantine-font-size-md);
+  }
+}

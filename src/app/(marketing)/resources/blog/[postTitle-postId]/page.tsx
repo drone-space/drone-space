@@ -145,39 +145,12 @@ export default async function Post({ params }: { params: typeParams }) {
             priority
           />
 
-          {/* <Text>{post.content}</Text> */}
           <BlogContent content={post.content} />
         </Stack>
       </LayoutSection>
 
       <LayoutSection id={'page-post-author'} margined containerized={'sm'}>
         <Divider my={'lg'} />
-
-        {/* <Group justify="space-between">
-          <CardBlogAuthor
-            props={{
-              name: !post.profile
-                ? 'Anonymous'
-                : `${post.profile.firstName} ${post.profile.lastName}` ||
-                  'No Name',
-              date: post.createdAt,
-            }}
-          />
-
-          <Text fw={'bold'}>
-            Tags:{' '}
-            <Text component="span" inherit fw={'normal'}>
-              {post.tags.map(
-                (t) =>
-                  `${t.title}${post.tags.indexOf(t) == post.tags.length - 1 ? '' : ', '}`
-              )}
-            </Text>
-          </Text>
-
-          <MenuShare props={{ postTitle: post.title }} />
-        </Group>
-
-        <Divider my={'lg'} /> */}
       </LayoutSection>
 
       <PartialComments props={{ post }} />

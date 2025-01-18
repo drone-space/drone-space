@@ -76,8 +76,8 @@ export default function Training({
                 <Group gap={'xs'} key={index} fw={500}>
                   <ThemeIcon
                     size={ICON_WRAPPER_SIZE / 1.5}
-                    color="green.6"
-                    c={'white'}
+                    color="sec.4"
+                    c={'pri.9'}
                     radius={'xl'}
                   >
                     <IconCheck

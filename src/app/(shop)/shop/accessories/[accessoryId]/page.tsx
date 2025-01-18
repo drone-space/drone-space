@@ -19,7 +19,7 @@ import { linkify } from '@/utilities/formatters/string';
 import CarouselImage from '@/components/common/carousels/image';
 
 import { typeParams } from './layout';
-import { IconCheck } from '@tabler/icons-react';
+import { IconArrowRightDashed } from '@tabler/icons-react';
 import classes from './drone.module.scss';
 import {
   ICON_SIZE,
@@ -82,11 +82,11 @@ export default function AccessoryDetails({ params }: typeParams) {
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}
                           radius={'xl'}
-                          color="green.6"
-                          c={'white'}
+                          color="sec.4"
+                          c={'pri.9'}
                           visibleFrom="xs"
                         >
-                          <IconCheck
+                          <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
                             stroke={ICON_STROKE_WIDTH}
                           />

@@ -32,6 +32,7 @@ import CardShopAccessory from '@/components/common/cards/shop/accessory';
 import CarouselImage from '@/components/common/carousels/image';
 import { typeParams } from '../layout';
 import {
+  IconArrowRightDashed,
   IconBattery3,
   IconCheck,
   IconChevronRight,
@@ -211,10 +212,10 @@ export default function AccessoryDetail({ params }: typeParams) {
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}
                           radius={'xl'}
-                          color="green.6"
-                          c={'white'}
+                          color="sec.4"
+                          c={'pri.9'}
                         >
-                          <IconCheck
+                          <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
                             stroke={ICON_STROKE_WIDTH}
                           />
@@ -379,11 +380,11 @@ export default function AccessoryDetail({ params }: typeParams) {
                             <ThemeIcon
                               size={ICON_WRAPPER_SIZE / 1.5}
                               radius={'xl'}
-                              color="green.6"
-                              c={'white'}
+                              color="sec.4"
+                              c={'pri.9'}
                               visibleFrom="xs"
                             >
-                              <IconCheck
+                              <IconArrowRightDashed
                                 size={ICON_SIZE / 1.5}
                                 stroke={ICON_STROKE_WIDTH}
                               />
@@ -651,11 +652,11 @@ export default function AccessoryDetail({ params }: typeParams) {
                                 <ThemeIcon
                                   size={ICON_WRAPPER_SIZE / 1.5}
                                   radius={'xl'}
-                                  color="green.6"
-                                  c={'white'}
+                                  color="sec.4"
+                                  c={'pri.9'}
                                   visibleFrom="xs"
                                 >
-                                  <IconCheck
+                                  <IconArrowRightDashed
                                     size={ICON_SIZE / 1.5}
                                     stroke={ICON_STROKE_WIDTH}
                                   />

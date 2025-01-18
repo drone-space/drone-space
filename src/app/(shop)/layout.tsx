@@ -14,10 +14,7 @@ import CtaNewsletter from '@/components/partial/cta/newsletter';
 import appData from '@/data/app';
 
 export const metadata: Metadata = {
-  title: {
-    default: `Shop`,
-    template: `%s - Drone Shop - ${appData.name.company}`,
-  },
+  title: `Drone Shop - Top Drones & Accessories at ${appData.name.app} Kenya`,
 };
 
 export default function ShopLayout({

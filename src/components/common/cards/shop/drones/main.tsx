@@ -74,6 +74,7 @@ export default function Main({ data }: { data: typeDrone }) {
                 component={Link}
                 inherit
                 href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
+                c={'var(--mantine-color-white)'}
               >
                 {data.title.short ? data.title.short : data.title.long}
               </Anchor>
@@ -91,8 +92,8 @@ export default function Main({ data }: { data: typeDrone }) {
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
-                      color="green.6"
-                      c={'white'}
+                      color="var(--mantine-color-sec-3)"
+                      c={'var(--mantine-color-pri-9'}
                     >
                       <IconCheck
                         size={ICON_SIZE / 1.5}
@@ -133,9 +134,7 @@ export default function Main({ data }: { data: typeDrone }) {
               component="span"
               inherit
               fw={500}
-              c={
-                'light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9))'
-              }
+              c={'var(--mantine-color-sec-3)'}
             >
               {data.price ? (
                 <NumberFormatter value={data.price.former} thousandSeparator />

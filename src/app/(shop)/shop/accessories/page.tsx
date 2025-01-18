@@ -6,7 +6,10 @@ import CardShopDroneAccessory from '@/components/common/cards/shop/accessory';
 import { Grid, GridCol } from '@mantine/core';
 import accessories from '@/data/accessories';
 
-export const metadata: Metadata = { title: 'Accessories' };
+export const metadata: Metadata = {
+  title: 'Drone Accessories - Enhance Your Drone Experience',
+  description: `Shop high-quality drone accessories, including batteries, propellers, and carrying cases. Everything you need for a seamless drone experience.`,
+};
 
 export default async function Accessories() {
   return (

@@ -8,7 +8,10 @@ import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
 
-export const metadata: Metadata = { title: 'Agriculture Drones' };
+export const metadata: Metadata = {
+  title: 'Agriculture Drones - Optimize Farming with Drone Space',
+  description: `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`,
+};
 
 export default async function Agriculture() {
   const drones = products.filter((p) => p.category == 'agriculture');

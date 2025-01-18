@@ -9,8 +9,14 @@ export default function Partner({
   data: { image: string; title: string; width: string };
 }) {
   return (
-    <Card className={classes.card}>
-      <Stack justify="center" mih={80} className={classes.imageContainer}>
+    <Card className={classes.card} h={'100%'}>
+      <Stack
+        justify="center"
+        align="center"
+        mih={80}
+        h={'100%'}
+        className={classes.imageContainer}
+      >
         <Image
           src={data.image}
           alt={data.title}

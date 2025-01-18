@@ -31,8 +31,12 @@ import { shopLinks } from '@/data/links';
 
 export default function Main() {
   return (
-    <LayoutSection id={'partial-footer-main'} padded className={classes.footer}>
-      <Stack gap={SECTION_SPACING}>
+    <LayoutSection
+      id={'partial-footer-main'}
+      padded={SECTION_SPACING / 2}
+      className={classes.footer}
+    >
+      <Stack gap={SECTION_SPACING / 2}>
         <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
           <Anchor component={Link} href={'/'}>
             <ImageDefault
@@ -130,8 +134,7 @@ export default function Main() {
       </Stack>
 
       <Divider
-        mt={SECTION_SPACING}
-        mb={SECTION_SPACING / 2}
+        my={SECTION_SPACING / 2}
         color="var(--mantine-color-default-border)"
       />
 

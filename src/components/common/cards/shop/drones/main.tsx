@@ -18,7 +18,7 @@ import React from 'react';
 import NextImage from 'next/image';
 import classes from './main.module.scss';
 import { typeDrone } from '@/types/static/product';
-import { IconCheck } from '@tabler/icons-react';
+import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@/utilities/formatters/string';
 import Link from 'next/link';
 import {
@@ -95,7 +95,7 @@ export default function Main({ data }: { data: typeDrone }) {
                       color="var(--mantine-color-sec-3)"
                       c={'var(--mantine-color-pri-9'}
                     >
-                      <IconCheck
+                      <IconArrowRightDashed
                         size={ICON_SIZE / 1.5}
                         stroke={ICON_STROKE_WIDTH}
                       />

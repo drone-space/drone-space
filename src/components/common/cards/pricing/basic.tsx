@@ -143,8 +143,8 @@ export default function Basic({
               <ThemeIcon
                 size={ICON_WRAPPER_SIZE / 1.5}
                 radius={'xl'}
-                color="green.6"
-                c={'white'}
+                color="sec.4"
+                c={'pri.9'}
               >
                 <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>

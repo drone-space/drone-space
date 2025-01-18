@@ -34,7 +34,6 @@ import { typeParams } from '../layout';
 import {
   IconArrowRightDashed,
   IconBattery3,
-  IconCheck,
   IconChevronRight,
   IconCirclePlus,
   IconCube,

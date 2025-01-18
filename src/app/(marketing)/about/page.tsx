@@ -18,7 +18,6 @@ import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
 import { SECTION_SPACING } from '@/data/constants';
 import appData from '@/data/app';
-import IntroPage from '@/components/layout/intro/page';
 // import CarouselTestimonials from '@/components/common/carousels/testimonials';
 // import { studentsGet } from '@/handlers/requests/database/student';
 // import { shuffleArray } from '@/utilities/helpers/array';

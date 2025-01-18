@@ -2,30 +2,35 @@ import { images } from '@/assets/images';
 
 const team = [
   {
-    image: null,
+    image: images.team.tony,
     name: 'Anthony Mwangi',
     position: 'Co-Founder & CEO',
   },
   {
-    image: null,
+    image: images.team.nick,
     name: 'Nicholas Njuguna',
     position: 'Co-Founder',
   },
   {
-    image: null,
-    name: 'Kevin Kamau',
-    position: 'Marketing Strategist',
-  },
-  {
-    image: images.team.kevon,
-    name: 'Kevon Kibochi',
-    position: 'Designer & Developer',
-  },
-  {
-    image: null,
+    image: images.team.priscah,
     name: 'Priscah Kinyanjui',
-    position: 'Business Administrator',
+    position: 'Business Executive Lead',
   },
+  {
+    image: images.team.kevin,
+    name: 'Kevin Kamau',
+    position: 'Marketing Lead',
+  },
+  // {
+  //   image: images.team.michael,
+  //   name: 'Michael Mbae',
+  //   position: '',
+  // },
+  // {
+  //   image: images.team.hannah,
+  //   name: 'Hannah Mathu',
+  //   position: '',
+  // },
 ];
 
 export default team;

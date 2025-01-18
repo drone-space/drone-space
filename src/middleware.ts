@@ -47,7 +47,7 @@ export const config = {
   ],
 };
 
-const redirects = {
+const staticRedirects = {
   '/contact': '/about/contact',
   '/stories/gallery': '/about/gallery',
   '/stories/blog': '/resources/blog',
@@ -60,11 +60,34 @@ const redirects = {
   '/help/faq': '/resources/faq',
   '/terms-conditions': '/legal/terms',
   '/privacy-policy': '/legal/policy',
-  // Add more redirects as needed
 };
 
-const handleRedirect = createRedirectHandler(redirects, {
-  permanent: true,
-  preserveQuery: true,
-  preserveHash: true,
-});
+const dynamicRedirects = [
+  {
+    // Matches "/stories/blog/any-title-123" and preserves the dynamic part
+    pattern: /^\/stories\/blog\/([^\/]+)$/,
+    replacement: '/resources/blog/$1',
+  },
+
+  {
+    // Matches "/stories/blog/categories/any-title-123" and preserves the dynamic part
+    pattern: /^\/stories\/blog\/categories\/([^\/]+)$/,
+    replacement: '/resources/blog/categories/$1',
+  },
+
+  {
+    // Matches "/stories/blog/tags/any-title-123" and preserves the dynamic part
+    pattern: /^\/stories\/blog\/tags\/([^\/]+)$/,
+    replacement: '/resources/blog/tags/$1',
+  },
+];
+
+const handleRedirect = createRedirectHandler(
+  staticRedirects,
+  dynamicRedirects,
+  {
+    permanent: true,
+    preserveQuery: true,
+    preserveHash: true,
+  }
+);

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Metadata } from "next";
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import HeroShop from '@/components/layout/hero/shop';
@@ -16,8 +15,6 @@ import {
   IconPhotoSensor3,
 } from '@tabler/icons-react';
 import products from '@/data/products';
-
-// export const metadata: Metadata = { title: "Shop" };
 
 export default async function Shop() {
   const productFeatured = products.find((p) => p.featured);

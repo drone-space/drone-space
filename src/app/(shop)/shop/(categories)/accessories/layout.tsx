@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 import LayoutBody from '@/components/layout/body';
-import LayoutHeroMain from '@/components/layout/hero/main';
 import appData from '@/data/app';
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export default function AccessoriesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutBody hero={<LayoutHeroMain />}>
+    <LayoutBody>
       <main>{children}</main>
     </LayoutBody>
   );

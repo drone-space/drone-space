@@ -224,12 +224,12 @@ export const navLinkItems = {
     },
     {
       icon: IconLicense,
-      link: `/legal/terms-and-conditions`,
+      link: `/legal/terms`,
       label: 'Terms and Conditions',
     },
     {
       icon: IconInfoCircle,
-      link: `/legal/privacy-policy`,
+      link: `/legal/policy`,
       label: 'Privacy Policy',
     },
   ],

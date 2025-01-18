@@ -40,7 +40,7 @@ export default function Faq() {
               color="var(--mantine-color-body)"
               c={'var(--mantine-color-pri-9)'}
               component={Link}
-              href={'/contact'}
+              href={'/about/contact'}
             >
               Contact Us
             </Button>

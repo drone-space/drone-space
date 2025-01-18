@@ -4,17 +4,14 @@ import { Metadata } from 'next';
 
 import {
   Anchor,
-  Avatar,
   Card,
   Flex,
   Grid,
   GridCol,
-  Group,
   Stack,
   Text,
   ThemeIcon,
   Title,
-  Tooltip,
 } from '@mantine/core';
 
 import ModalContactTraining from '@/components/common/modals/contact/training';
@@ -35,7 +32,6 @@ import {
   IconSchool,
   IconShoppingBag,
 } from '@tabler/icons-react';
-import { images } from '@/assets/images';
 import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import appData from '@/data/app';
 import {
@@ -221,7 +217,12 @@ const options = [
       <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
         For course details please visit our training section, for course prices
         go to{' '}
-        <Anchor component={Link} href="/training/pricing" inherit fw={500}>
+        <Anchor
+          component={Link}
+          href="/drone-training/pricing"
+          inherit
+          fw={500}
+        >
           pricing
         </Anchor>{' '}
         and for any other training inquiries, please send us a{' '}
@@ -263,30 +264,9 @@ const options = [
           Found a persistent bug to report? Have a new feature to suggest or any
           other technical issue to address? Please{' '}
           <ModalContactTechnical>
-            <Tooltip
-              color="pri"
-              withArrow
-              // position="bottom"
-              py={4}
-              pl={4}
-              label={
-                <Group gap={'xs'}>
-                  <Avatar src={images.team.kevon} radius={'xl'} />
-                  <Stack gap={4}>
-                    <Text inherit fz={'xs'} fw={500} lh={1.1}>
-                      Kevon Kibochi
-                    </Text>
-                    <Text inherit fz={10} fw={500} lh={1}>
-                      Software Developer
-                    </Text>
-                  </Stack>
-                </Group>
-              }
-            >
-              <Anchor inherit fw={500}>
-                contact our developer
-              </Anchor>
-            </Tooltip>
+            <Anchor inherit fw={500}>
+              contact our developer
+            </Anchor>
             .
           </ModalContactTechnical>
         </Text>

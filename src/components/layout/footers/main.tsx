@@ -154,7 +154,7 @@ export default function Main() {
             <Anchor
               component={Link}
               inherit
-              href="/legal/policy"
+              href="/legal/terms"
               className={classes.link}
             >
               Terms and Conditions
@@ -165,7 +165,7 @@ export default function Main() {
             <Anchor
               component={Link}
               inherit
-              href="/legal/terms"
+              href="/legal/policy"
               className={classes.link}
             >
               Privacy Policy

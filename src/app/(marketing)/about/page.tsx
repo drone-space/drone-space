@@ -206,7 +206,11 @@ export default async function About() {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection id="about-hub" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection
+        id="spaces-and-hub"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <IntroSection
           props={{
             subTitle: 'Spaces & Hub',

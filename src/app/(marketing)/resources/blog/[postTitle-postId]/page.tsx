@@ -29,6 +29,7 @@ import {
   HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
+  SECTION_SPACING,
 } from '@/data/constants';
 // import CardBlogAuthor from '@/components/common/cards/blog/author';
 import PartialComments from '@/components/partial/comments';
@@ -132,7 +133,7 @@ export default async function Post({ params }: { params: typeParams }) {
 
       <LayoutSection
         id={'page-post-content'}
-        margined
+        margined={SECTION_SPACING / 2}
         mt={'xl'}
         containerized={'sm'}
       >
@@ -149,7 +150,11 @@ export default async function Post({ params }: { params: typeParams }) {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection id={'page-post-author'} margined containerized={'sm'}>
+      <LayoutSection
+        id={'page-post-author'}
+        margined={SECTION_SPACING / 2}
+        containerized={'sm'}
+      >
         <Divider my={'lg'} />
       </LayoutSection>
 

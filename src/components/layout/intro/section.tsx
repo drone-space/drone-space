@@ -31,7 +31,7 @@ export default function Section({
           id="layout-intro-section-desc"
           px={0}
           containerized={options?.alignment ? false : 'sm'}
-          mb={options?.spacing ? SECTION_SPACING : undefined}
+          mb={options?.spacing ? SECTION_SPACING / 2 : undefined}
         >
           <Stack>
             <Title order={2} ta={options?.alignment || 'center'}>

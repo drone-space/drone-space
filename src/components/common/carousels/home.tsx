@@ -179,7 +179,7 @@ export default function Home() {
                   <Text visibleFrom="xs" component="span" inherit>
                     Visit Our AI Conference Website to{' '}
                   </Text>
-                  Learn More
+                  Visit Our Conference Website
                 </Text>
               </Button>
             </Group>

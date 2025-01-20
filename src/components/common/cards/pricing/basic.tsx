@@ -12,10 +12,15 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import ModalCoursePricing from '../../modals/course/pricing';
+import ModalContactTraining from '../../modals/contact/training';
 import classes from './basic.module.scss';
 import { typeUnit } from '@/types/static/course';
 import { IconCheck } from '@tabler/icons-react';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Basic({
   data,
@@ -135,26 +140,35 @@ export default function Basic({
                 : 'light-dark(var(--mantine-color-text),var(--mantine-color-text))'
             }
             icon={
-              <ThemeIcon size={16} radius={'xl'} color="green.6" c={'white'}>
-                <IconCheck size={12} stroke={3} />
+              <ThemeIcon
+                size={ICON_WRAPPER_SIZE / 1.5}
+                radius={'xl'}
+                color="sec.4"
+                c={'pri.9'}
+              >
+                <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>
             }
           >
-            {data.modules?.map((module) => (
-              <ListItem key={module}>{module}</ListItem>
+            {data.modules?.map((module, index) => (
+              <ListItem key={index}>{module}</ListItem>
             ))}
           </List>
         </Stack>
 
-        <ModalCoursePricing data={data}>
+        <ModalContactTraining>
           <Button
             color={data.featured ? 'sec.4' : 'pri'}
             c={data.featured ? 'pri.9' : 'white'}
             fullWidth
+            size="xs"
           >
-            {data.title.full} Details
+            Enroll For{' '}
+            {data.title.full == 'Multi-Rotor'
+              ? 'Remote Pilot License (RPL)'
+              : data.title.full}
           </Button>
-        </ModalCoursePricing>
+        </ModalContactTraining>
       </Stack>
     </Card>
   );

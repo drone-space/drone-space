@@ -19,6 +19,7 @@ import { IconChevronRight } from '@tabler/icons-react';
 import ModalContactShop from '@/components/common/modals/contact/shop';
 import Link from 'next/link';
 import { linkify } from '@/utilities/formatters/string';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Featured({ data }: { data: typeDrone }) {
   return (
@@ -67,7 +68,12 @@ export default function Featured({ data }: { data: typeDrone }) {
             >
               <Button
                 variant="transparent"
-                rightSection={<IconChevronRight size={16} stroke={2} />}
+                rightSection={
+                  <IconChevronRight
+                    size={ICON_SIZE}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
                 component={Link}
                 href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
               >
@@ -76,7 +82,12 @@ export default function Featured({ data }: { data: typeDrone }) {
               <ModalContactShop>
                 <Button
                   variant="transparent"
-                  rightSection={<IconChevronRight size={16} stroke={2} />}
+                  rightSection={
+                    <IconChevronRight
+                      size={ICON_SIZE}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
+                  }
                 >
                   Inquire
                 </Button>

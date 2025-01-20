@@ -17,9 +17,14 @@ import React from 'react';
 import NextImage from 'next/image';
 import classes from './accessory.module.scss';
 import { typeAccessory } from '@/types/static/product';
-import { IconCheck } from '@tabler/icons-react';
+import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@/utilities/formatters/string';
 import Link from 'next/link';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Accessory({ data }: { data: typeAccessory }) {
   return (
@@ -62,6 +67,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                 component={Link}
                 inherit
                 href={`/shop/accessories/${linkify(data.title.long)}`}
+                c={'white'}
               >
                 {data.title.short ? data.title.short : data.title.long}
               </Anchor>
@@ -77,19 +83,22 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                   listStyleType="none"
                   icon={
                     <ThemeIcon
-                      size={16}
+                      size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
-                      color="green.6"
-                      c={'white'}
+                      color="sec.4"
+                      c={'pri.9'}
                     >
-                      <IconCheck size={12} stroke={3} />
+                      <IconArrowRightDashed
+                        size={ICON_SIZE / 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                     </ThemeIcon>
                   }
                 >
                   {data.specs.map(
-                    (spec) =>
+                    (spec, index) =>
                       data.specs.indexOf(spec) < 3 && (
-                        <ListItem key={spec.label}>
+                        <ListItem key={index}>
                           <Text
                             component="span"
                             inherit
@@ -121,9 +130,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                 component="span"
                 inherit
                 fw={500}
-                c={
-                  'light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9))'
-                }
+                c={'var(--mantine-color-sec-3)'}
               >
                 <NumberFormatter value={data.price.former} thousandSeparator />
               </Text>

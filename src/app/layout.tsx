@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 
 // Import styles of packages that you've installed.
@@ -40,18 +39,11 @@ import { COOKIE_NAME } from '@/data/constants';
 
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
+import GoogleAnalytics from '@/components/seo/analytics';
 // import AffixOffline from '@/components/common/affixi/offline';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: {
-    default: `${appData.name.app}`,
-    template: `%s - ${appData.name.app}`,
-  },
-  description: 'App description',
-};
 
 export default async function RootLayout({
   children,
@@ -64,6 +56,8 @@ export default async function RootLayout({
   const supabase = await createClient();
   const { data: session } = await supabase.auth.getUser();
 
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+
   return (
     <html
       lang="en"
@@ -74,10 +68,10 @@ export default async function RootLayout({
           defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
         />
 
-        <meta
+        {/* <meta
           name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
-        />
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        /> */}
       </head>
 
       <body className={openSans.className}>
@@ -101,6 +95,8 @@ export default async function RootLayout({
         </ProviderStore>
 
         {/* <SpeedInsights /> */}
+
+        <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

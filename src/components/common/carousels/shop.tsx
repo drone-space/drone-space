@@ -13,9 +13,9 @@ import classes from './shop.module.scss';
 export default function Shop() {
   const autoplay = useRef(Autoplay({ delay: 8000 }));
 
-  const slides = data.map((slide) => (
+  const slides = data.map((slide, index) => (
     <CarouselSlide
-      key={slide.title}
+      key={index}
       style={{
         background: `linear-gradient( rgba(0, 0, 0, 0.25) 20%, rgba(0, 0, 0, 0.75) 100%), url('${slide.image}')`,
         backgroundSize: 'cover',
@@ -23,7 +23,7 @@ export default function Shop() {
         backgroundPosition: 'center center',
       }}
     >
-      <LayoutSection id={slide.title}>
+      <LayoutSection id={`carousel-shop-slide-${index}`}>
         <Stack align={slide.styles.alignment} justify="center" mih={480}>
           <Title
             order={2}

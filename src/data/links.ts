@@ -4,18 +4,18 @@ import {
   IconArticle,
   IconCash,
   IconCell,
-  IconCertificate,
-  IconCertificate2,
   IconCirclePlus,
   IconCopyright,
   IconDeviceCameraPhone,
   IconHelp,
+  IconInfoCircle,
   IconLibraryPhoto,
   IconPlant2,
-  IconSchool,
   IconSpaces,
   IconSun,
+  IconUsersGroup,
 } from '@tabler/icons-react';
+import { courseList } from './courses';
 
 export const shopLinks = [
   {
@@ -50,7 +50,7 @@ const links = [
     label: 'About',
     subLinks: [
       {
-        link: '/about/#intro',
+        link: '/about/#our-story',
         label: 'Our Story',
         leftSection: IconCopyright,
         desc: 'Discover our story, mission, and the values that drive us forward.',
@@ -73,32 +73,47 @@ const links = [
         leftSection: IconLibraryPhoto,
         desc: 'See a visual showcase of our journey and achievements.',
       },
+      {
+        link: '/about/contact',
+        label: 'Contact Us',
+        leftSection: IconInfoCircle,
+        desc: 'Reach out for any inquiries about drone training, drone reselling and drone services.',
+      },
+      {
+        link: '/about/#team',
+        label: 'Team',
+        leftSection: IconUsersGroup,
+        desc: 'Discover the talented individuals driving our mission forward.',
+      },
+      // {
+      //   link: '/about/#success-stories',
+      //   label: 'Success Stories',
+      //   leftSection: IconBubble,
+      //   desc: 'Discover the talented individuals driving our mission forward.',
+      // },
     ],
   },
   {
-    link: '/training',
+    link: '/drone-training',
     label: 'Drone Training',
     subLinks: [
+      ...courseList
+        .map((course) => {
+          if (courseList.indexOf(course) < 5) {
+            return {
+              link: `/drone-training#${linkify(course.title)}`,
+              label: course.title,
+              leftSection: course.leftSection,
+              desc: course.linkDesc,
+            };
+          }
+
+          return null;
+        })
+        .filter((i) => i != null),
+
       {
-        link: '/training/junior',
-        label: 'Junior Training (Holiday Camp)',
-        leftSection: IconCertificate2,
-        desc: 'A fun and engaging introduction to drones for kids and teens during the holidays.',
-      },
-      {
-        link: '/training/basic',
-        label: 'Basic Training (RPL)',
-        leftSection: IconCertificate,
-        desc: 'Gain a Remote Pilot License (RPL) with comprehensive, hands-on training.',
-      },
-      {
-        link: '/training/advanced',
-        label: 'Advanced Training',
-        leftSection: IconSchool,
-        desc: 'Elevate your skills with expert-level training for complex drone operations and techniques.',
-      },
-      {
-        link: '/training/pricing',
+        link: '/drone-training/pricing',
         label: 'Training Pricing',
         leftSection: IconCash,
         desc: 'Find detailed information on costs and packages for all our training programs.',
@@ -106,23 +121,24 @@ const links = [
     ],
   },
   {
-    link: '/services',
+    link: '/drone-solutions',
     label: 'Drone Solutions',
     subLinks: [
+      {
+        label: 'Drone Light Shows',
+        link: '/drone-solutions/light-shows',
+        leftSection: IconSun,
+        desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
+      },
+
       ...services.map((service) => {
         return {
-          link: `/services/${linkify(service.title)}`,
+          link: `/drone-solutions#${linkify(service.title)}`,
           label: service.title,
           leftSection: service.leftSection,
           desc: service.linkDesc,
         };
       }),
-      {
-        label: 'Drone Light Shows',
-        link: '/services/light-shows',
-        leftSection: IconSun,
-        desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
-      },
     ],
   },
   {

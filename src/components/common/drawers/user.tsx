@@ -34,9 +34,9 @@ export default function User() {
           <PartialUser />
 
           <Stack gap={0}>
-            {navLinkItems.account.map((link) => (
+            {navLinkItems.account.map((link, index) => (
               <NavLink
-                key={link.link}
+                key={index}
                 component={Link}
                 href={link.link}
                 label={link.label}
@@ -51,9 +51,9 @@ export default function User() {
               />
             ))}
 
-            {navLinkItems.support.map((link) => (
+            {navLinkItems.support.map((link, index) => (
               <NavLink
-                key={link.link}
+                key={index}
                 component={Link}
                 href={link.link}
                 label={link.label}
@@ -68,9 +68,9 @@ export default function User() {
               />
             ))}
 
-            {navLinkItems.danger.map((link) => (
+            {navLinkItems.danger.map((link, index) => (
               <NavLink
-                key={link.link}
+                key={index}
                 component={Link}
                 href={link.link}
                 label={link.label}

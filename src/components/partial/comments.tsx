@@ -17,6 +17,7 @@ import FormBlogComment from '@/components/form/blog/comment';
 import CardBlogComment from '@/components/common/cards/blog/comment';
 import { useFetchComments } from '@/hooks/fetch/comments';
 import { PostRelations } from '@/types/static/blog';
+import { SECTION_SPACING } from '@/data/constants';
 
 export default function Comments({
   props,
@@ -30,7 +31,11 @@ export default function Comments({
   return (
     <div>
       {(props.post._count.comments > 0 || loading) && !comments.length && (
-        <LayoutSection id={'page-post-comment'} margined containerized={'sm'}>
+        <LayoutSection
+          id={'page-post-comment'}
+          margined={SECTION_SPACING / 2}
+          containerized={'sm'}
+        >
           <Button variant="default" fullWidth onClick={fetch} loading={loading}>
             Show Comments (
             <NumberFormatter
@@ -44,12 +49,16 @@ export default function Comments({
 
       {((props.post._count.comments > 0 && comments.length > 0) ||
         comments.length > 0) && (
-        <LayoutSection id={'page-post-comment'} margined containerized={'sm'}>
+        <LayoutSection
+          id={'page-post-comment'}
+          margined={SECTION_SPACING / 2}
+          containerized={'sm'}
+        >
           <Title order={2}>Comments</Title>
 
           <Grid gutter={0} mt={'xl'}>
-            {comments.map((comment) => (
-              <GridCol key={comment.id} span={12}>
+            {comments.map((comment, index) => (
+              <GridCol key={index} span={12}>
                 <Stack gap={0}>
                   <CardBlogComment
                     props={{
@@ -72,7 +81,7 @@ export default function Comments({
       {(!props.post._count.comments || comments.length > 0) && (
         <LayoutSection
           id={'page-post-comment-form'}
-          margined
+          margined={SECTION_SPACING / 2}
           containerized={'sm'}
         >
           <Card

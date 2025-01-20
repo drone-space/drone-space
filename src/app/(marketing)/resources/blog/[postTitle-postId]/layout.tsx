@@ -1,14 +1,11 @@
 import React from 'react';
-
 import { Metadata } from 'next';
-
 import LayoutBody from '@/components/layout/body';
-// import AsideBlog from '@/components/layout/asides/blog';
-
 import { typeParams } from '../layout';
 import { PostRelations } from '@/types/models/post';
 import { postsGet } from '@/handlers/requests/database/post';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
+import appData from '@/data/app';
 
 export const generateMetadata = async ({
   params,
@@ -22,7 +19,7 @@ export const generateMetadata = async ({
   const post = posts.find((p) => p.id == postId);
 
   return {
-    title: post?.title,
+    title: `${post?.title} - ${appData.name.app} Blog`,
     description: post?.excerpt,
     category: post?.category?.title,
   };
@@ -30,22 +27,9 @@ export const generateMetadata = async ({
 
 export default function LayoutPost({
   children, // will be a page or nested layout
-  // params,
 }: {
   children: React.ReactNode;
   params: typeParams;
 }) {
-  return (
-    <LayoutBody
-    // aside={{
-    //   gap: 32,
-    //   right: {
-    //     component: <AsideBlog params={params} />,
-    //     width: { md: 33, lg: 33 },
-    //   },
-    // }}
-    >
-      {children}
-    </LayoutBody>
-  );
+  return <LayoutBody>{children}</LayoutBody>;
 }

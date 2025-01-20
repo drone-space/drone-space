@@ -11,8 +11,8 @@ import classes from './image.module.scss';
 export default function Image({ data }: { data: string[] }) {
   const autoplay = useRef(Autoplay({ delay: 4000 }));
 
-  const slides = data.map((slide) => (
-    <CarouselSlide key={slide}>
+  const slides = data.map((slide, index) => (
+    <CarouselSlide key={index}>
       <Stack w={'100%'}>
         <MantineImage
           src={slide}

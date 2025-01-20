@@ -12,6 +12,7 @@ import { images } from '@/assets/images';
 import { IconCertificate } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Camp({ active }: { active?: boolean }) {
   const [opened, { open, close }] = useDisclosure(active ? true : false);
@@ -36,8 +37,8 @@ export default function Camp({ active }: { active?: boolean }) {
     },
   ];
 
-  const slides = (mobile ? dataMobile : data).map((slide) => (
-    <CarouselSlide key={slide.title}>
+  const slides = (mobile ? dataMobile : data).map((slide, index) => (
+    <CarouselSlide key={index}>
       <Stack h={'100%'}>
         <Image
           src={slide.image}
@@ -82,7 +83,9 @@ export default function Camp({ active }: { active?: boolean }) {
         size="xs"
         variant="outline"
         color="white"
-        leftSection={<IconCertificate size={16} stroke={2} />}
+        leftSection={
+          <IconCertificate size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+        }
       >
         Holiday Camp
       </Button>

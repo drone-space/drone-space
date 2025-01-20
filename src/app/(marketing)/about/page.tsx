@@ -1,91 +1,119 @@
 import React from 'react';
-
 import { Metadata } from 'next';
-
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import {
+  Anchor,
   AspectRatio,
+  Divider,
   Grid,
   GridCol,
-  List,
-  ListItem,
+  Group,
   Stack,
   Text,
-  ThemeIcon,
   Title,
 } from '@mantine/core';
 import { images } from '@/assets/images';
 import videos from '@/assets/videos';
-import { IconCheck } from '@tabler/icons-react';
 import CardStat from '@/components/common/cards/stat';
-import CardHub from '@/components/common/cards/hub';
 import stats from '@/data/stats';
+import { SECTION_SPACING } from '@/data/constants';
+import appData from '@/data/app';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { studentsGet } from '@/handlers/requests/database/student';
 import { shuffleArray } from '@/utilities/helpers/array';
-import appData from '@/data/app';
+import IntroSection from '@/components/layout/intro/section';
+import ImageDefault from '@/components/common/images/default';
+import TabSpacesHub from '@/components/common/tabs/spaces-hub';
+import CardTeamMain from '@/components/common/cards/team/main';
+import team from '@/data/team';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = { title: 'About' };
+export const revalidate = 3600; // Revalidate every hour
+
+export const metadata: Metadata = {
+  title: `About ${appData.name.app} - Kenya's Leading Drone Training Academy`,
+  description:
+    'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.',
+};
 
 export default async function About() {
   const { students } = await studentsGet();
 
   return (
     <LayoutPage>
-      <LayoutSection id="about-intro" padded>
+      <LayoutSection id="about-intro" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={{ base: 'xl', md: 48 }}>
-          <GridCol span={{ md: 6.5, lg: 6 }}>
-            <Stack gap={'xl'}>
-              <Title order={2} fw={'bold'} fz={{ md: 24 }} w={{ md: '80%' }}>
-                Approved Unmanned Aircraft Systems Training Organization
-              </Title>
-
-              <Stack gap={'xs'}>
-                {data.prose.map((item) => (
-                  <Text key={item}>{item}</Text>
-                ))}
-              </Stack>
-            </Stack>
+          <GridCol span={{ base: 12, md: 6 }} visibleFrom="sm">
+            <AspectRatio ratio={1920 / 1080} h={'100%'}>
+              <video
+                width="100%"
+                height="100%"
+                controls
+                autoPlay
+                loop
+                muted
+                style={{
+                  borderRadius: 'var(--mantine-radius-sm)',
+                  overflow: 'hidden',
+                }}
+                poster={images.gallery.airfield.image1}
+              >
+                <source src={videos.video1} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </AspectRatio>
           </GridCol>
-          <GridCol span={{ md: 5.5, lg: 6 }}>
+
+          <GridCol span={{ base: 12, md: 6 }}>
             <Stack gap={'xl'}>
-              <AspectRatio ratio={1920 / 1080}>
-                <video
-                  width="100%"
-                  controls
-                  autoPlay
-                  muted
-                  style={{
-                    borderRadius: 'var(--mantine-radius-sm)',
-                    overflow: 'hidden',
+              <Group pr={{ md: 40 }}>
+                <IntroSection
+                  props={{
+                    subTitle: 'Who Are We',
+                    title:
+                      'Approved Unmanned Aircraft Systems Training Organization',
                   }}
-                  poster={images.gallery.airfield.image1}
-                >
-                  <source src={videos.video1} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </AspectRatio>
+                  options={{ alignment: 'start' }}
+                />
+              </Group>
 
               <Stack gap={'xs'}>
-                <Text>We specialize in three key areas:</Text>
-                <List
-                  icon={
-                    <ThemeIcon
-                      size={20}
-                      color="green.6"
-                      c={'white'}
-                      radius={'xl'}
-                    >
-                      <IconCheck size={12} />
-                    </ThemeIcon>
-                  }
-                >
-                  {data.list.map((item) => (
-                    <ListItem key={item}>{item}</ListItem>
-                  ))}
-                </List>
+                <Text>
+                  {appData.name.app} is one of the first certified UTO, ROC and
+                  Drone distributors in Kenya. Established in 2018,{' '}
+                  {appData.name.app} is approved and certified by{' '}
+                  <Anchor
+                    inherit
+                    underline="hover"
+                    href="https://kcaa.or.ke/"
+                    target="_blank"
+                  >
+                    Kenya Civil Aviation Authority (KCAA)
+                  </Anchor>{' '}
+                  to offer Remote Pilot License (RPL) course in multi-rotor and
+                  fixed wing, RPL instructor rating and soon Beyond Visual Line
+                  of Sight (BVLOS) rating. The Academy provides Kenya&apos;s
+                  highest quality drone training with a simple yet comprehensive
+                  model for corporate clients, government agencies, public
+                  safety departments, and individuals.
+                </Text>
+
+                <Text>
+                  {appData.name.app} is a holder of Remote Operator&apos;s
+                  Certificate (ROC) approved by KCAA to conduct drone operations
+                  in search and rescue, power lines inspection, agricultural
+                  spraying, photography and cinematography, solar inspection,
+                  runway calibration among other operations.
+                </Text>
+
+                <Text>
+                  {appData.name.app} is also a certified distributor and a
+                  reseller of Unmanned Aircraft Vehicles/drones.{' '}
+                  {appData.name.app} is one of the few approved importers of UAS
+                  into Kenya having supplied the United Nations-WFP, Museums of
+                  Kenya and Ericson&apos;s
+                </Text>
               </Stack>
             </Stack>
           </GridCol>
@@ -99,38 +127,121 @@ export default async function About() {
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
         <Grid justify="center">
-          {stats.map((stat) => (
-            <GridCol key={stat.title} span={{ base: 12, xs: 4, md: 'auto' }}>
+          {stats.map((stat, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 4, md: 'auto' }}>
               <CardStat data={stat} />
             </GridCol>
           ))}
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="about-hub" padded containerized={'responsive'}>
-        <Stack gap={'xl'}>
-          <Stack gap={'xs'} align="center">
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 24 }}
-              w={{ md: '80%' }}
-            >
-              Drone Spaces & Hub Mission
-            </Title>
+      <LayoutSection id="about-intro" padded>
+        <Stack gap={SECTION_SPACING}>
+          <Grid align="center" gutter={'xl'}>
+            <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2, xs: 1 }}>
+              <Stack pr={{ md: 'xl' }}>
+                <IntroSection
+                  props={{
+                    subTitle: 'Our',
+                    title: 'Mission',
+                  }}
+                  options={{ alignment: 'start' }}
+                />
 
-            <Text ta={'center'}>{data.hub.prose}</Text>
-          </Stack>
+                <Divider w={{ md: '20%' }} size={2} color="sec.4" />
 
-          <Grid>
-            {data.hub.list.map((item) => (
-              <GridCol key={item.title} span={{ md: 4 }}>
-                <CardHub data={item} />
-              </GridCol>
-            ))}
+                <Text>
+                  Our mission is to be the preferred drone training and
+                  commercial operations organization for Government, corporates,
+                  and industry sector by providing quality, high standards, and
+                  reliable services.
+                </Text>
+              </Stack>
+            </GridCol>
+            <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1, xs: 2 }}>
+              <ImageDefault
+                src={
+                  'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'
+                }
+                alt={'Mission'}
+                height={{ base: 240, md: 280 }}
+                mode="grid"
+                radius={'sm'}
+              />
+            </GridCol>
+          </Grid>
+
+          <Grid align="center" gutter={'xl'}>
+            <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2 }}>
+              <Stack pl={{ md: 'xl' }}>
+                <IntroSection
+                  props={{
+                    subTitle: 'Our',
+                    title: 'Vision',
+                  }}
+                  options={{ alignment: 'start' }}
+                />
+
+                <Divider w={{ md: '20%' }} size={2} color="sec.4" />
+
+                <Text>
+                  Our long-term vision is to contribute and empower to the
+                  ever-growing youth in Kenya by equipping them with the drone
+                  technology skill and realization of economic prosperity for
+                  young entrepreneurs who in turn would be able to make a living
+                  through entrepreneurship.
+                </Text>
+              </Stack>
+            </GridCol>
+            <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1 }}>
+              <ImageDefault
+                src={
+                  'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'
+                }
+                alt={'Mission'}
+                height={{ base: 240, md: 280 }}
+                mode="grid"
+                radius={'sm'}
+              />
+            </GridCol>
           </Grid>
         </Stack>
+      </LayoutSection>
+
+      <LayoutSection
+        id="spaces-and-hub"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <IntroSection
+          props={{
+            subTitle: 'Spaces & Hub',
+            title: 'Drone Spaces & Hub Mission',
+            desc: 'The Drone Spaces & Hub will strive to strengthen and accelerate development in technology and innovation through creation of platforms that will enable job creation and entrepreneurship.',
+          }}
+          options={{ spacing: true }}
+        />
+
+        <TabSpacesHub />
+      </LayoutSection>
+
+      <LayoutSection id="team" padded>
+        <IntroSection
+          props={{
+            subTitle: 'Our Team',
+            title: 'Meet The Team',
+            desc: `Our team is dedicated to delivering exceptional results and pushing boundaries. Get to know the people who bring our vision to life, one step at a time.`,
+          }}
+          options={{ spacing: true }}
+        />
+
+        <Grid justify="center">
+          {team.map((item, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
+              <CardTeamMain data={item} />
+            </GridCol>
+          ))}
+        </Grid>
       </LayoutSection>
 
       <LayoutSection
@@ -153,7 +264,15 @@ export default async function About() {
               What Our Clients Say
             </Title>
 
-            <Text ta={'center'}>{data.testimonials.prose}</Text>
+            <Text ta={'center'}>
+              At {appData.name.app}, we take pride in delivering exceptional
+              results that exceed expectations. But don't just take our word for
+              it! Here's what some of our satisfied clients have to say about
+              their experience working with us. Their stories reflect our
+              commitment to quality, innovation, and customer satisfaction. Take
+              a moment to hear directly from the people who matter most: our
+              valued clients.
+            </Text>
           </Stack>
 
           <CarouselTestimonials props={shuffleArray(students)} />
@@ -162,44 +281,3 @@ export default async function About() {
     </LayoutPage>
   );
 }
-
-const data = {
-  prose: [
-    'Drone Space is the leading provider of drone training and drone services in Kenya. The company offers comprehensive drone license training courses designed to educate and equip professionals with the skills and knowledge to safely and effectively operate drones commercially.',
-    'The courses are designed to meet international standards and provide students with hands-on experience and practical knowledge of drone operations. In addition to drone training, Drone Space also offers commercial drone services, including aerial photography and videography, surveying and mapping, inspection and monitoring, and aerial data collection.',
-    "Drone Space is an approved Unmanned Aircraft Systems Training Organization (UTO) licensed and certified by the Kenya Civil Aviation Authority (KCAA) to conduct drone training. Drone Space provides Kenya and East Africa's highest quality drone training with a simple yet comprehensive model for enterprise clients, government agencies, public safety departments, and individuals.",
-  ],
-  list: ['Drone Seeding', 'Solar Monitoring', 'Aerial Cinematography'],
-  hub: {
-    prose:
-      "	The Drone spaces & Hub will strive to strengthen and accelerate development in technology and innovation through creation of platforms that will enable job creation and entrepreneurship. The Drone Spaces & Hub will manage the largest air space dedicated to drone operators in Konza Technopolis, as well as the administration of its building in Westlands, intended to be a place of business incubation and work spaces for its members. The Drone Spaces and Hub Centers are located in two regions i.e. Westlands and Konza Technopolis. The initiative to create the Centre's are supported by two main players: Drone Space and Konza Technopolis.",
-    list: [
-      {
-        title: 'Territorial Ambition',
-        list: [
-          'To generate activities and jobs',
-          'To effectively address the issue of Safety and risks',
-          'To bring together industry players in the emerging “Kenya Drone” sector (manufacturers, engineering, fuel incl. hydrogen, maintenance, start-ups, associations, universities, ROCs, UTOs etc.)',
-        ],
-      },
-      {
-        title: 'National Ambition',
-        list: [
-          'To support the development and integration of all technologies required for the growth of the drone industry',
-          'To position Drone Spaces & Hub as enablers in the development of drone technologies and innovation for all',
-          'To promote local techies in drone technological know-how and innovation during the Kenya Drone Expo and other innovation events',
-        ],
-      },
-      {
-        title: 'Pan-Africanism',
-        list: [
-          'To define and harmonize procedures and regulations in Africa',
-          'To implement drone standards, traffic management systems and communication and surveillance solutions that facilitate market access for the various players in Africa',
-        ],
-      },
-    ],
-  },
-  testimonials: {
-    prose: `At ${appData.name.company}, we take pride in delivering exceptional results that exceed expectations. But don't just take our word for it! Here's what some of our satisfied clients have to say about their experience working with us. Their stories reflect our commitment to quality, innovation, and customer satisfaction. Take a moment to hear directly from the people who matter most: our valued clients.`,
-  },
-};

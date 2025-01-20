@@ -1,57 +1,69 @@
 import React from 'react';
 import Link from 'next/link';
-import NextImage from 'next/image';
 import {
   Anchor,
+  BackgroundImage,
   Card,
-  CardSection,
-  Image,
+  Group,
+  Overlay,
   Stack,
   Text,
   Title,
 } from '@mantine/core';
-import classes from './service.module.scss';
 import typeService from '@/types/static/service';
 import { linkify } from '@/utilities/formatters/string';
+import { IconArrowRight } from '@tabler/icons-react';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Service({ data }: { data: typeService }) {
   return (
-    <Card className={classes.card}>
-      <CardSection>
-        <Anchor
-          inherit
-          component={Link}
-          href={`/services/${linkify(data.title)}`}
-        >
-          <Stack justify="center" className={classes.imageContainer}>
-            <Image
-              src={data.image}
-              alt={data.title}
-              loading="lazy"
-              radius={'sm'}
-              component={NextImage}
-              width={1920}
-              height={1080}
-              className={classes.image}
-            />
-          </Stack>
-        </Anchor>
-      </CardSection>
+    <Card c={'var(--mantine-color-white)'} padding={0} h={'100%'}>
+      <BackgroundImage src={data.image} p={'xl'} h={'100%'}>
+        <Overlay backgroundOpacity={0.5} zIndex={0} />
 
-      <Stack gap={'xs'} align="start" p={'md'}>
-        <Title order={3} fz="lg" className={classes.title}>
+        <Stack
+          gap={'xl'}
+          pos={'relative'}
+          align="start"
+          h={'100%'}
+          justify="space-between"
+        >
+          <Stack gap={'xs'}>
+            <Title
+              order={3}
+              fz={{ base: 'md', lg: 'lg' }}
+              c={'var(--mantine-color-white)'}
+            >
+              {data.title}
+            </Title>
+
+            <Text fz="sm" lineClamp={4}>
+              {data.desc}
+            </Text>
+          </Stack>
+
           <Anchor
             inherit
             component={Link}
-            href={`/services/${linkify(data.title)}`}
+            href={`/drone-solutions#${linkify(data.title)}`}
+            c={'var(--mantine-color-white)'}
+            underline="hover"
+            fz={'xs'}
           >
-            {data.title}
+            <Group gap={'xs'}>
+              <Text component="span" inherit>
+                More on{' '}
+                {data.title.split(' ')[data.title.split(' ').length - 1]}
+              </Text>
+
+              <IconArrowRight
+                size={ICON_SIZE / 1.5}
+                stroke={ICON_STROKE_WIDTH}
+              />
+            </Group>
           </Anchor>
-        </Title>
-        <Text fz="sm" lineClamp={3}>
-          {data.desc.intro[0]}
-        </Text>
-      </Stack>
+        </Stack>
+      </BackgroundImage>
     </Card>
   );
 }

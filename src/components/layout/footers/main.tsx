@@ -31,8 +31,12 @@ import { shopLinks } from '@/data/links';
 
 export default function Main() {
   return (
-    <LayoutSection id={'partial-footer-main'} padded className={classes.footer}>
-      <Stack gap={SECTION_SPACING}>
+    <LayoutSection
+      id={'partial-footer-main'}
+      padded={SECTION_SPACING / 2}
+      className={classes.footer}
+    >
+      <Stack gap={SECTION_SPACING / 2}>
         <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
           <Anchor component={Link} href={'/'}>
             <ImageDefault
@@ -47,9 +51,9 @@ export default function Main() {
         </Flex>
 
         <Grid gutter={{ base: 'xl', md: 'md' }} visibleFrom="sm">
-          {linkSets.map((linkSet) => (
+          {linkSets.map((linkSet, index) => (
             <GridCol
-              key={linkSet.title}
+              key={index}
               span={{ base: 6, sm: 4, md: 3 }}
               visibleFrom={
                 linkSets.indexOf(linkSet) == linkSets.length - 1
@@ -110,8 +114,8 @@ export default function Main() {
           </Flex>
 
           <Group gap={0} wrap="nowrap">
-            {socials.map((social) => (
-              <Anchor key={social.link} href={social.link} target="_blank">
+            {socials.map((social, index) => (
+              <Anchor key={index} href={social.link} target="_blank">
                 <Stack>
                   <Image
                     src={social.image}
@@ -130,8 +134,7 @@ export default function Main() {
       </Stack>
 
       <Divider
-        mt={SECTION_SPACING}
-        mb={SECTION_SPACING / 2}
+        my={SECTION_SPACING / 2}
         color="var(--mantine-color-default-border)"
       />
 
@@ -151,7 +154,7 @@ export default function Main() {
             <Anchor
               component={Link}
               inherit
-              href="/privacy-policy"
+              href="/legal/terms"
               className={classes.link}
             >
               Terms and Conditions
@@ -162,7 +165,7 @@ export default function Main() {
             <Anchor
               component={Link}
               inherit
-              href="/terms-conditions"
+              href="/legal/policy"
               className={classes.link}
             >
               Privacy Policy
@@ -201,19 +204,11 @@ const linkSets = [
       },
       {
         label: 'Our Drone Solutions',
-        link: '/services',
+        link: '/drone-solutions',
       },
       {
-        label: 'Basic Training (RPL)',
-        link: '/training/basic',
-      },
-      {
-        label: 'Advanced Training',
-        link: '/training/advanced',
-      },
-      {
-        label: 'Training Pricing',
-        link: '/training/pricing',
+        label: 'Drone Training',
+        link: '/drone-training',
       },
       {
         label: 'Drone Shop',
@@ -221,7 +216,7 @@ const linkSets = [
       },
       {
         label: 'Get in Touch',
-        link: '/contact',
+        link: '/about/contact',
       },
     ],
   },
@@ -230,13 +225,13 @@ const linkSets = [
     links: [
       ...services.map((service) => {
         return {
-          link: `/services/${linkify(service.title)}`,
+          link: `/drone-solutions#${linkify(service.title)}`,
           label: service.title,
         };
       }),
       {
         label: 'Drone Light Shows',
-        link: '/services/light-shows',
+        link: '/drone-solutions/light-shows',
       },
     ],
   },

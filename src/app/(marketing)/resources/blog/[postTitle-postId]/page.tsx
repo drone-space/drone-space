@@ -29,6 +29,7 @@ import {
   HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
+  SECTION_SPACING,
 } from '@/data/constants';
 // import CardBlogAuthor from '@/components/common/cards/blog/author';
 import PartialComments from '@/components/partial/comments';
@@ -42,6 +43,7 @@ import BlogContent from '@/components/partial/blog-content';
 import { processUrl } from '@/utilities/formatters/string';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
@@ -132,7 +134,7 @@ export default async function Post({ params }: { params: typeParams }) {
 
       <LayoutSection
         id={'page-post-content'}
-        margined
+        margined={SECTION_SPACING / 2}
         mt={'xl'}
         containerized={'sm'}
       >
@@ -145,39 +147,16 @@ export default async function Post({ params }: { params: typeParams }) {
             priority
           />
 
-          {/* <Text>{post.content}</Text> */}
           <BlogContent content={post.content} />
         </Stack>
       </LayoutSection>
 
-      <LayoutSection id={'page-post-author'} margined containerized={'sm'}>
+      <LayoutSection
+        id={'page-post-author'}
+        margined={SECTION_SPACING / 2}
+        containerized={'sm'}
+      >
         <Divider my={'lg'} />
-
-        {/* <Group justify="space-between">
-          <CardBlogAuthor
-            props={{
-              name: !post.profile
-                ? 'Anonymous'
-                : `${post.profile.firstName} ${post.profile.lastName}` ||
-                  'No Name',
-              date: post.createdAt,
-            }}
-          />
-
-          <Text fw={'bold'}>
-            Tags:{' '}
-            <Text component="span" inherit fw={'normal'}>
-              {post.tags.map(
-                (t) =>
-                  `${t.title}${post.tags.indexOf(t) == post.tags.length - 1 ? '' : ', '}`
-              )}
-            </Text>
-          </Text>
-
-          <MenuShare props={{ postTitle: post.title }} />
-        </Group>
-
-        <Divider my={'lg'} /> */}
       </LayoutSection>
 
       <PartialComments props={{ post }} />

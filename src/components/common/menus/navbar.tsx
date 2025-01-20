@@ -20,7 +20,8 @@ import { typeMenuNavbar } from '@/types/components/menu';
 import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
-import { IconFileDownload } from '@tabler/icons-react';
+import { IconExternalLink } from '@tabler/icons-react';
+import documents from '@/assets/documents';
 
 export default function Navbar({
   children,
@@ -35,28 +36,34 @@ export default function Navbar({
 
   const menuItems =
     subLinks &&
-    subLinks.map((item) => (
-      <MenuItem
-        key={item.link}
-        component={Link}
-        href={item.link}
-        leftSection={
-          item.leftSection &&
-          !megaMenu && (
-            <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          )
-        }
-        rightSection={
-          item.rightSection &&
-          !megaMenu && (
-            <item.rightSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          )
-        }
-        className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
-      >
-        {!item.desc ? item.label : <CardMenu props={item} />}
-      </MenuItem>
-    ));
+    subLinks.map(
+      (item, index) =>
+        subLinks.indexOf(item) < 6 && (
+          <MenuItem
+            key={index}
+            component={Link}
+            href={item.link}
+            leftSection={
+              item.leftSection &&
+              !megaMenu && (
+                <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              )
+            }
+            rightSection={
+              item.rightSection &&
+              !megaMenu && (
+                <item.rightSection
+                  size={ICON_SIZE}
+                  stroke={ICON_STROKE_WIDTH}
+                />
+              )
+            }
+            className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
+          >
+            {!item.desc ? item.label : <CardMenu props={item} />}
+          </MenuItem>
+        )
+    );
 
   return (
     <Menu
@@ -118,8 +125,9 @@ export default function Navbar({
                   <GridCol span={3}>
                     <Stack gap={0} h={'100%'} justify="space-between">
                       <Button
-                        leftSection={
-                          <IconFileDownload
+                        justify="space-between"
+                        rightSection={
+                          <IconExternalLink
                             size={ICON_SIZE - 4}
                             stroke={ICON_STROKE_WIDTH}
                             color="var(--mantine-color-pri-9)"
@@ -129,13 +137,17 @@ export default function Navbar({
                         color="sec.3"
                         c="pri.9"
                         size="compact-sm"
+                        component="a"
+                        target="_blank"
+                        href={documents.droneSpace.brochure}
                       >
                         Brochure
                       </Button>
 
                       <Button
-                        leftSection={
-                          <IconFileDownload
+                        justify="space-between"
+                        rightSection={
+                          <IconExternalLink
                             size={ICON_SIZE - 4}
                             stroke={ICON_STROKE_WIDTH}
                             color="var(--mantine-color-white)"
@@ -145,6 +157,9 @@ export default function Navbar({
                         variant="outline"
                         color="white"
                         size="compact-sm"
+                        component="a"
+                        target="_blank"
+                        href={documents.droneSpace.profile}
                       >
                         Profile
                       </Button>

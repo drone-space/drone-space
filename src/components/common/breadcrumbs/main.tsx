@@ -27,10 +27,10 @@ export default function Main({ props }: { props: typeLink[] }) {
         </Box>
       }
     >
-      {props.map((item) => (
+      {props.map((item, index) => (
         <Anchor
+          key={index}
           underline="never"
-          key={item.link}
           component={Link}
           href={item.link}
           c={active(item) ? 'sec.3' : undefined}

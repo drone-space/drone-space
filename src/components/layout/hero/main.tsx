@@ -15,9 +15,6 @@ export default function Main({ title }: { title?: string }) {
 
   const dynamicRoutes = [
     '/resources/blog',
-    '/services',
-    '/training/basic',
-    '/training/advanced',
     '/shop/drones',
     '/shop/accessories',
   ];

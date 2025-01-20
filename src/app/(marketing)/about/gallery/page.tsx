@@ -18,8 +18,13 @@ import ModalGallery from '@/components/common/modals/gallery';
 import tabs from '@/data/tabs';
 
 import classes from './gallery.module.scss';
+import appData from '@/data/app';
 
-export const metadata: Metadata = { title: 'Gallery' };
+export const metadata: Metadata = {
+  title: `${appData.name.app} Gallery - Showcasing Our Training & Aerial Services`,
+  description:
+    'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!',
+};
 
 export default async function Gallery() {
   return (
@@ -70,9 +75,9 @@ export default async function Gallery() {
 
           <TabsPanel value="conference">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.conference.yr2024.map((item, id) => (
+              {tabs.gallery.conference.yr2024.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,
@@ -89,9 +94,9 @@ export default async function Gallery() {
 
           <TabsPanel value="expo">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.expo.yr2024.map((item, id) => (
+              {tabs.gallery.expo.yr2024.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,
@@ -108,9 +113,9 @@ export default async function Gallery() {
 
           <TabsPanel value="hackathon">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.hackathon.yr2024.map((item, id) => (
+              {tabs.gallery.hackathon.yr2024.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,
@@ -127,9 +132,9 @@ export default async function Gallery() {
 
           <TabsPanel value="graduation">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.graduation.yr2022.map((item, id) => (
+              {tabs.gallery.graduation.yr2022.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,
@@ -146,9 +151,9 @@ export default async function Gallery() {
 
           <TabsPanel value="innovation">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.innovation.jamuhuri.map((item, id) => (
+              {tabs.gallery.innovation.jamuhuri.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,
@@ -165,9 +170,9 @@ export default async function Gallery() {
 
           <TabsPanel value="projects">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.projects.project.map((item, id) => (
+              {tabs.gallery.projects.project.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,
@@ -184,9 +189,9 @@ export default async function Gallery() {
 
           <TabsPanel value="airfield">
             <Grid gutter={2} justify="center">
-              {tabs.gallery.airfield.map((item, id) => (
+              {tabs.gallery.airfield.map((item, index) => (
                 <GridCol
-                  key={id}
+                  key={index}
                   span={{
                     base: 12,
                     xs: 6,

@@ -107,8 +107,8 @@ export default function Comment({ props }: { props: PostCommentReply }) {
 
         {props.replies && props.replies.length > 0 && (
           <Grid gutter={0} pl={'xl'}>
-            {props.replies.map((reply) => (
-              <GridCol key={reply.id} span={12}>
+            {props.replies.map((reply, index) => (
+              <GridCol key={index} span={12}>
                 <Stack gap={0}>
                   <CardBlodReplyReply props={reply} />
 

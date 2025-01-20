@@ -11,6 +11,11 @@ import {
 } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 import ModalShowPrice from '../../modals/show-price';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Price({
   data,
@@ -52,14 +57,14 @@ export default function Price({
       <ModalShowPrice>
         <Tooltip label="Learn More" withArrow color="sec.3" c="pri.9">
           <ActionIcon
-            size={24}
+            size={ICON_WRAPPER_SIZE / 1.5}
             pos={'absolute'}
             top={8}
             right={8}
             color="sec.3"
             variant="light"
           >
-            <IconInfoCircle size={16} stroke={2} />
+            <IconInfoCircle size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
           </ActionIcon>
         </Tooltip>
       </ModalShowPrice>

@@ -30,6 +30,7 @@ import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import shows from '@/data/shows';
 import Link from 'next/link';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Shows({ active }: { active?: boolean }) {
   const [opened, { open, close }] = useDisclosure(active ? true : false);
@@ -38,8 +39,8 @@ export default function Shows({ active }: { active?: boolean }) {
   const tablet = useMediaQuery('(max-width: 48em)');
   const laptopmd = useMediaQuery('(max-width: 75em)');
 
-  const rows = shows.pricing.map((item) => (
-    <TableTr key={item.title}>
+  const rows = shows.pricing.map((item, index) => (
+    <TableTr key={index}>
       <TableTd w={{ md: '25%' }}>{item.title}</TableTd>
       <TableTd w={{ md: '50%' }} visibleFrom="md">
         {item.desc}
@@ -97,9 +98,8 @@ export default function Shows({ active }: { active?: boolean }) {
 
                     <Button
                       component={Link}
-                      href={'/light-shows'}
+                      href={'/drone-solutions/light-shows'}
                       size="xs"
-                      // leftSection={<IconInfoCircle size={12} stroke={2} />}
                       py={2}
                       px={4}
                       h={'fit-content'}
@@ -122,14 +122,14 @@ export default function Shows({ active }: { active?: boolean }) {
                   size="xs"
                   icon={
                     <IconChevronRight
-                      size={10}
-                      stroke={2}
+                      size={ICON_SIZE / 1.5}
+                      stroke={ICON_STROKE_WIDTH}
                       color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
                     />
                   }
                 >
-                  {shows.features.map((feature) => (
-                    <ListItem key={feature.label}>{feature.label}</ListItem>
+                  {shows.features.map((feature, index) => (
+                    <ListItem key={index}>{feature.label}</ListItem>
                   ))}
                 </List>
               </Stack>
@@ -165,8 +165,10 @@ export default function Shows({ active }: { active?: boolean }) {
       <Button
         onClick={open}
         size="xs"
-        leftSection={<IconDrone size={16} stroke={2} />}
-        rightSection={<IconArrowRight size={16} stroke={2} />}
+        leftSection={<IconDrone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+        rightSection={
+          <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+        }
         color="white"
         variant="light"
       >

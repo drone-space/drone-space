@@ -18,9 +18,14 @@ import React from 'react';
 import NextImage from 'next/image';
 import classes from './main.module.scss';
 import { typeDrone } from '@/types/static/product';
-import { IconCheck } from '@tabler/icons-react';
+import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@/utilities/formatters/string';
 import Link from 'next/link';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
@@ -69,6 +74,7 @@ export default function Main({ data }: { data: typeDrone }) {
                 component={Link}
                 inherit
                 href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
+                c={'var(--mantine-color-white)'}
               >
                 {data.title.short ? data.title.short : data.title.long}
               </Anchor>
@@ -84,19 +90,22 @@ export default function Main({ data }: { data: typeDrone }) {
                   listStyleType="none"
                   icon={
                     <ThemeIcon
-                      size={16}
+                      size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
-                      color="green.6"
-                      c={'white'}
+                      color="var(--mantine-color-sec-3)"
+                      c={'var(--mantine-color-pri-9'}
                     >
-                      <IconCheck size={12} stroke={3} />
+                      <IconArrowRightDashed
+                        size={ICON_SIZE / 1.5}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
                     </ThemeIcon>
                   }
                 >
                   {data.specs.intro.map(
-                    (spec) =>
+                    (spec, index) =>
                       data.specs.intro.indexOf(spec) < 3 && (
-                        <ListItem key={spec}>
+                        <ListItem key={index}>
                           <Text
                             component="span"
                             inherit
@@ -125,9 +134,7 @@ export default function Main({ data }: { data: typeDrone }) {
               component="span"
               inherit
               fw={500}
-              c={
-                'light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9))'
-              }
+              c={'var(--mantine-color-sec-3)'}
             >
               {data.price ? (
                 <NumberFormatter value={data.price.former} thousandSeparator />

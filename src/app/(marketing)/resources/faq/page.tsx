@@ -11,7 +11,12 @@ import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import { Anchor, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import appData from '@/data/app';
-export const metadata: Metadata = { title: 'FAQ' };
+
+export const metadata: Metadata = {
+  title: `${appData.name.app} FAQ - Answers to Your Drone Training Questions`,
+  description:
+    'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.',
+};
 
 export default async function Faq() {
   return (
@@ -38,7 +43,12 @@ export default async function Faq() {
           <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
             For further information, please visit our training section, for
             course prices go to{' '}
-            <Anchor component={Link} href="/pricing/training" inherit fw={500}>
+            <Anchor
+              component={Link}
+              href="/drone-training/pricing"
+              inherit
+              fw={500}
+            >
               pricing
             </Anchor>{' '}
             and for any other training inquiries, please send us a{' '}
@@ -86,7 +96,7 @@ export default async function Faq() {
 
           <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
             For any other questions,{' '}
-            <Anchor component={Link} inherit fw={500} href={'/contact'}>
+            <Anchor component={Link} inherit fw={500} href={'/about/contact'}>
               submit an inquiry
             </Anchor>{' '}
             or{' '}

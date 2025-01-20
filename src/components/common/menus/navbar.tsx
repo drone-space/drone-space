@@ -21,7 +21,8 @@ import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
 import { IconExternalLink } from '@tabler/icons-react';
-import documents from '@/assets/documents';
+import ModalDownloadBrochure from '../modals/download/brochure';
+import ModalDownloadProfile from '../modals/download/profile';
 
 export default function Navbar({
   children,
@@ -72,6 +73,7 @@ export default function Navbar({
       trigger="click-hover"
       openDelay={50}
       closeDelay={50}
+      keepMounted={true}
       offset={{
         mainAxis: 4,
       }}
@@ -124,45 +126,43 @@ export default function Navbar({
 
                   <GridCol span={3}>
                     <Stack gap={0} h={'100%'} justify="space-between">
-                      <Button
-                        justify="space-between"
-                        rightSection={
-                          <IconExternalLink
-                            size={ICON_SIZE - 4}
-                            stroke={ICON_STROKE_WIDTH}
-                            color="var(--mantine-color-pri-9)"
-                          />
-                        }
-                        fullWidth
-                        color="sec.3"
-                        c="pri.9"
-                        size="compact-sm"
-                        component="a"
-                        target="_blank"
-                        href={documents.droneSpace.brochure}
-                      >
-                        Brochure
-                      </Button>
+                      <ModalDownloadBrochure>
+                        <Button
+                          justify="space-between"
+                          rightSection={
+                            <IconExternalLink
+                              size={ICON_SIZE - 4}
+                              stroke={ICON_STROKE_WIDTH}
+                              color="var(--mantine-color-pri-9)"
+                            />
+                          }
+                          fullWidth
+                          color="sec.3"
+                          c="pri.9"
+                          size="compact-sm"
+                        >
+                          Brochure
+                        </Button>
+                      </ModalDownloadBrochure>
 
-                      <Button
-                        justify="space-between"
-                        rightSection={
-                          <IconExternalLink
-                            size={ICON_SIZE - 4}
-                            stroke={ICON_STROKE_WIDTH}
-                            color="var(--mantine-color-white)"
-                          />
-                        }
-                        fullWidth
-                        variant="outline"
-                        color="white"
-                        size="compact-sm"
-                        component="a"
-                        target="_blank"
-                        href={documents.droneSpace.profile}
-                      >
-                        Profile
-                      </Button>
+                      <ModalDownloadProfile>
+                        <Button
+                          justify="space-between"
+                          rightSection={
+                            <IconExternalLink
+                              size={ICON_SIZE - 4}
+                              stroke={ICON_STROKE_WIDTH}
+                              color="var(--mantine-color-white)"
+                            />
+                          }
+                          fullWidth
+                          variant="outline"
+                          color="white"
+                          size="compact-sm"
+                        >
+                          Profile
+                        </Button>
+                      </ModalDownloadProfile>
                     </Stack>
                   </GridCol>
                 </Grid>

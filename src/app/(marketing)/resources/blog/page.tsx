@@ -14,6 +14,7 @@ import appData from '@/data/app';
 import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
   title: `${appData.name.app} Blog - Insights on Drone Training & Technology`,

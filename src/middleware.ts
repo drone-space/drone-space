@@ -56,6 +56,8 @@ const staticRedirects = {
   '/services': '/drone-solutions',
   '/services/light-shows': '/drone-solutions/light-shows',
   '/training': '/drone-training',
+  '/training/basic': '/drone-training',
+  '/training/advanced': '/drone-training',
   '/training/pricing': '/drone-training/pricing',
   '/help/faq': '/resources/faq',
   '/terms-conditions': '/legal/terms',
@@ -79,6 +81,12 @@ const dynamicRedirects = [
     // Matches "/stories/blog/tags/any-title-123" and preserves the dynamic part
     pattern: /^\/stories\/blog\/tags\/([^\/]+)$/,
     replacement: '/resources/blog/tags/$1',
+  },
+
+  {
+    // Matches "/services/any-service-title" and redirects to /drone-solutions
+    pattern: /^\/services\/[^\/]+$/,
+    replacement: '/drone-solutions',
   },
 ];
 

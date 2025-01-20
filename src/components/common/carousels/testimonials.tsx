@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useRef } from 'react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
+import { useRef } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 import classes from './testimonials.module.scss';
 import CardTestimonial from '@/components/common/cards/testimonial';
@@ -22,9 +22,11 @@ export default function Testimonials({ props }: { props: Student[] }) {
 
   return (
     <Carousel
-      withIndicators
-      loop
+      withIndicators={true}
       withControls={true}
+      draggable={true}
+      loop
+      align="start"
       slideSize={{ base: '100%', md: '50%', lg: '33.333333%' }}
       slidesToScroll={desktopLg ? 1 : desktop ? 2 : 1}
       classNames={classes}

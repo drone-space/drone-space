@@ -18,9 +18,9 @@ import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
 import { SECTION_SPACING } from '@/data/constants';
 import appData from '@/data/app';
-// import CarouselTestimonials from '@/components/common/carousels/testimonials';
-// import { studentsGet } from '@/handlers/requests/database/student';
-// import { shuffleArray } from '@/utilities/helpers/array';
+import CarouselTestimonials from '@/components/common/carousels/testimonials';
+import { studentsGet } from '@/handlers/requests/database/student';
+import { shuffleArray } from '@/utilities/helpers/array';
 import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
@@ -37,11 +37,11 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  // const { students } = await studentsGet();
+  const { students } = await studentsGet();
 
   return (
     <LayoutPage>
-      <LayoutSection id="about-intro" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ base: 12, md: 6 }} visibleFrom="sm">
             <AspectRatio ratio={1920 / 1080} h={'100%'}>
@@ -120,7 +120,7 @@ export default async function About() {
       </LayoutSection>
 
       <LayoutSection
-        id="about-stats"
+        id="stats"
         padded={24}
         bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
@@ -134,7 +134,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="about-intro" padded>
+      <LayoutSection id="mission-vision" padded>
         <Stack gap={SECTION_SPACING}>
           <Grid align="center" gutter={'xl'}>
             <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2, xs: 1 }}>
@@ -207,6 +207,25 @@ export default async function About() {
         </Stack>
       </LayoutSection>
 
+      <LayoutSection id="team" padded>
+        <IntroSection
+          props={{
+            subTitle: 'Our Team',
+            title: 'Meet The Team',
+            desc: `Our team is dedicated to delivering exceptional results and pushing boundaries. Get to know the people who bring our vision to life, one step at a time.`,
+          }}
+          options={{ spacing: true }}
+        />
+
+        <Grid justify="center">
+          {team.map((item, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
+              <CardTeamMain data={item} />
+            </GridCol>
+          ))}
+        </Grid>
+      </LayoutSection>
+
       <LayoutSection
         id="spaces-and-hub"
         padded
@@ -224,26 +243,7 @@ export default async function About() {
         <TabSpacesHub />
       </LayoutSection>
 
-      <LayoutSection id="team" padded>
-        <IntroSection
-          props={{
-            subTitle: 'Out Team',
-            title: 'Meet The Team',
-            desc: `Our team is dedicated to delivering exceptional results and pushing boundaries. Get to know the people who bring our vision to life, one step at a time.`,
-          }}
-          options={{ spacing: true }}
-        />
-
-        <Grid justify="center">
-          {team.map((item, index) => (
-            <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
-              <CardTeamMain data={item} />
-            </GridCol>
-          ))}
-        </Grid>
-      </LayoutSection>
-
-      {/* <LayoutSection
+      <LayoutSection
         id="about-testimonials"
         padded
         bg={
@@ -252,23 +252,20 @@ export default async function About() {
         // c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
         <Stack gap={'xl'}>
-          <Stack gap={'xs'} align="center">
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 24 }}
-              w={{ md: '80%' }}
-            >
-              What Our Clients Say
-            </Title>
-
-            <Text ta={'center'}>At {appData.name.app}, we take pride in delivering exceptional results that exceed expectations. But don't just take our word for it! Here's what some of our satisfied clients have to say about their experience working with us. Their stories reflect our commitment to quality, innovation, and customer satisfaction. Take a moment to hear directly from the people who matter most: our valued clients.</Text>
-          </Stack>
+          <IntroSection
+            props={{
+              subTitle: 'Testimonials',
+              title: 'What Our Clients Say',
+              desc: `At ${appData.name.app}, we take pride in delivering exceptional
+              results that exceed expectations. Take a moment to hear directly from the people who
+              matter most: our valued clients.`,
+            }}
+            options={{ spacing: true }}
+          />
 
           <CarouselTestimonials props={shuffleArray(students)} />
         </Stack>
-      </LayoutSection> */}
+      </LayoutSection>
     </LayoutPage>
   );
 }

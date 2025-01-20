@@ -55,6 +55,8 @@ export default function Advertisment({ active }: { active?: boolean }) {
         centered
         classNames={classes}
         withCloseButton={false}
+        aria-labelledby="Course Intakes"
+        closeButtonProps={{ 'aria-label': 'Close modal' }}
       >
         <Carousel
           withIndicators={false}

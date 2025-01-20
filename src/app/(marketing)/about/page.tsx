@@ -266,12 +266,12 @@ export default async function About() {
 
             <Text ta={'center'}>
               At {appData.name.app}, we take pride in delivering exceptional
-              results that exceed expectations. But don't just take our word for
-              it! Here's what some of our satisfied clients have to say about
-              their experience working with us. Their stories reflect our
-              commitment to quality, innovation, and customer satisfaction. Take
-              a moment to hear directly from the people who matter most: our
-              valued clients.
+              results that exceed expectations. But don&apos;t just take our
+              word for it! Here&apos;s what some of our satisfied clients have
+              to say about their experience working with us. Their stories
+              reflect our commitment to quality, innovation, and customer
+              satisfaction. Take a moment to hear directly from the people who
+              matter most: our valued clients.
             </Text>
           </Stack>
 

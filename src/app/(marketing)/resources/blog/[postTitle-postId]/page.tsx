@@ -43,6 +43,7 @@ import BlogContent from '@/components/partial/blog-content';
 import { processUrl } from '@/utilities/formatters/string';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);

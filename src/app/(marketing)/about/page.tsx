@@ -28,6 +28,7 @@ import CardTeamMain from '@/components/common/cards/team/main';
 import team from '@/data/team';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
   title: `About ${appData.name.app} - Kenya's Leading Drone Training Academy`,

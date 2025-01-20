@@ -58,7 +58,7 @@ const staticRedirects = {
   '/training': '/drone-training',
   '/training/basic': '/drone-training',
   '/training/advanced': '/drone-training',
-  '/training/pricing': '/drone-training/pricing',
+  '/pricing/training': '/drone-training/pricing',
   '/help/faq': '/resources/faq',
   '/terms-conditions': '/legal/terms',
   '/privacy-policy': '/legal/policy',

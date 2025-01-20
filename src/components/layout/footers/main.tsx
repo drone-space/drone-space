@@ -94,6 +94,7 @@ export default function Main() {
           align={{ base: 'center', sm: 'end' }}
           justify={{ sm: 'space-between' }}
           gap={'lg'}
+          visibleFrom="sm"
         >
           <Flex
             direction={'column'}

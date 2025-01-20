@@ -50,7 +50,7 @@ export const createRedirectHandler = (
       }
 
       return NextResponse.redirect(newUrl, {
-        status: permanent ? 308 : 307,
+        status: permanent ? 301 : 307,
       });
     }
 
@@ -71,7 +71,7 @@ export const createRedirectHandler = (
         }
 
         return NextResponse.redirect(newUrl, {
-          status: permanent ? 308 : 307,
+          status: permanent ? 301 : 307,
         });
       }
     }

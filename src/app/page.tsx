@@ -53,9 +53,26 @@ import appData from '@/data/app';
 import IntroSection from '@/components/layout/intro/section';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://dronespace.co.ke'),
   title: `${appData.name.app} Kenya - Premier Drone Training & Services`,
   description:
     "Discover professional drone training, cutting-edge aerial services, and resources to elevate your skills. Join Drone Space, Kenya's trusted drone school.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  // verification: {
+  //   google: 'googlea27f7bc993f72c37',
+  //   bing: '5983CB3ED415F82CBABAACB9D08395E1',
+  //   // Add other search engine verification codes
+  // },
 };
 
 export default function Home() {

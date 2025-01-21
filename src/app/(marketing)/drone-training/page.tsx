@@ -31,7 +31,7 @@ import { linkify } from '@/utilities/formatters/string';
 import { courseList } from '@/data/courses';
 
 export const metadata: Metadata = {
-  title: `Drone Training in Kenya - Professional Courses at ${appData.name.app}`,
+  title: `Drone Training - Professional Courses at ${appData.name.app} Kenya`,
   description: `Join ${appData.name.app} for certified drone training programs in Kenya. Learn to fly, operate, and excel in drone technology with expert instructors.`,
 };
 

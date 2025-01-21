@@ -41,7 +41,7 @@ export default function Shows() {
           <Stack gap={'xs'} align="center">
             <Title
               ta={'center'}
-              order={1}
+              order={2}
               fw={'bold'}
               fz={{ base: 32, sm: 32, md: 48 }}
               w={{ md: '80%' }}

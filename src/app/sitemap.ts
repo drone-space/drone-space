@@ -25,7 +25,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/drone-training',
     '/drone-training/pricing',
     '/resources/blog',
-    '/resources/blog',
     '/resources/faq',
     '/shop',
     '/shop/accessories',

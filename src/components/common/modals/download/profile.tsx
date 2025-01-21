@@ -5,7 +5,7 @@ import { Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FormDownloadDocument from '@/components/form/download/document';
 
-export default function Brochure({ children }: { children: React.ReactNode }) {
+export default function Profile({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -16,11 +16,11 @@ export default function Brochure({ children }: { children: React.ReactNode }) {
         centered
         title={
           <Text component="span" inherit fw={'bold'} c={'pri'}>
-            Brochure Download
+            Profile Download
           </Text>
         }
       >
-        <FormDownloadDocument params={{ document: 'brochure' }} />
+        <FormDownloadDocument params={{ document: 'profile' }} />
       </Modal>
 
       <span style={{ display: 'inline' }} onClick={open}>

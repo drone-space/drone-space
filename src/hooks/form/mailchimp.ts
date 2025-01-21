@@ -7,8 +7,11 @@ import { Variant } from '@/enums/notification';
 import { capitalizeWord, capitalizeWords } from '@/utilities/formatters/string';
 import { email } from '@/utilities/validators/email';
 import { useState } from 'react';
+import { downloadProfile } from '@/handlers/downloaders/profile';
 
-export const useFormAddSubscriber = () => {
+export const useFormAddSubscriber = (params: {
+  document: 'profile' | 'brochure';
+}) => {
   const [submitted, setSubmitted] = useState(false);
 
   const form = useForm({
@@ -64,7 +67,13 @@ export const useFormAddSubscriber = () => {
           });
 
           // trigger download
-          await downloadBrochure();
+          if (params.document === 'profile') {
+            await downloadProfile();
+          }
+
+          if (params.document === 'brochure') {
+            await downloadBrochure();
+          }
         }
       } catch (error) {
         showNotification({

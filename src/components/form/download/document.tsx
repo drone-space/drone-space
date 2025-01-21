@@ -4,8 +4,14 @@ import React from 'react';
 import { Box, Button, Center, Grid, GridCol, TextInput } from '@mantine/core';
 import { useFormAddSubscriber } from '@/hooks/form/mailchimp';
 
-export default function Brochure() {
-  const { form, submitted, handleSubmit } = useFormAddSubscriber();
+export default function Document({
+  params,
+}: {
+  params: { document: 'profile' | 'brochure' };
+}) {
+  const { form, submitted, handleSubmit } = useFormAddSubscriber({
+    document: params.document,
+  });
 
   return (
     <Box component="form" onSubmit={form.onSubmit(handleSubmit)} noValidate>

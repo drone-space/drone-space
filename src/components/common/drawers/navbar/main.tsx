@@ -79,11 +79,7 @@ export default function Main({
         label={link.label}
         active={matchesPath(link.link)}
         fw={pathname == link.link ? 500 : undefined}
-        opened={
-          pathname != link.link && !pathname.includes(link.link)
-            ? undefined
-            : true
-        }
+        opened={true}
         leftSection={
           link.leftSection ? (
             <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />

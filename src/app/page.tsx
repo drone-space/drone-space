@@ -54,7 +54,7 @@ import IntroSection from '@/components/layout/intro/section';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dronespace.co.ke'),
-  title: `${appData.name.app} Kenya - Premier Drone Training & Services`,
+  title: `${appData.name.app} Training - Premier Drone School & Services`,
   description:
     "Discover professional drone training, cutting-edge aerial services, and resources to elevate your skills. Join Drone Space, Kenya's trusted drone school.",
   robots: {

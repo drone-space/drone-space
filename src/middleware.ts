@@ -51,8 +51,6 @@ const staticRedirects = {
   '/contact': '/about/contact',
   '/stories/gallery': '/about/gallery',
   '/stories/blog': '/resources/blog',
-  '/stories/blog/categories': '/resources/blog/categories',
-  '/stories/blog/tags': '/resources/blog/tags',
   '/services': '/drone-solutions',
   '/services/light-shows': '/drone-solutions/light-shows',
   '/training': '/drone-training',

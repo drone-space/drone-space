@@ -25,7 +25,7 @@ import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 import CardTeamMain from '@/components/common/cards/team/main';
-import team from '@/data/team';
+import { team } from '@/data/team';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Revalidate every hour
@@ -218,11 +218,14 @@ export default async function About() {
         />
 
         <Grid justify="center">
-          {team.map((item, index) => (
-            <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
-              <CardTeamMain data={item} />
-            </GridCol>
-          ))}
+          {team.map(
+            (item, index) =>
+              item.type == 'INTERNAL' && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
+                  <CardTeamMain data={item} />
+                </GridCol>
+              )
+          )}
         </Grid>
       </LayoutSection>
 

@@ -5,147 +5,147 @@ import { HOSTED_BASE_URL } from './constants';
 const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/images`;
 
 const products = [
-  // {
-  // 	images: images.products.drones.dji.avata.avata2.drone,
-  // 	title: { long: "DJI Avata 2", short: "Avata 2" },
-  // 	specs: {
-  // 		intro: [
-  // 			"Googles 3 HD micro-OLED display",
-  // 			"RC Motion 3 Easy Acro",
-  // 			"Tight Shots in Super-Wide 4K",
-  // 			"1/1.3-inch Image Sensor",
-  // 			"Built-in Propeller Guard",
-  // 		],
-  // 		aircraft: [
-  // 			{
-  // 				label: "Takeoff Weight",
-  // 				desc: "377 g",
-  // 			},
-  // 			{
-  // 				label: "Max Takeoff Altitude",
-  // 				desc: "5000 m",
-  // 			},
-  // 			{
-  // 				label: "Max Flight Time",
-  // 				desc: "23 minutes",
-  // 			},
-  // 			{
-  // 				label: "Max Hovering Time",
-  // 				desc: "21 minutes",
-  // 			},
-  // 			{
-  // 				label: "Max Flight Distance",
-  // 				desc: "13 km",
-  // 			},
-  // 			{
-  // 				label: "Max Wind Speed Resistance",
-  // 				desc: "10.7 m/s",
-  // 			},
-  // 			{
-  // 				label: "Internal Storage",
-  // 				desc: "46 GB",
-  // 			},
-  // 		],
-  // 	},
-  // 	price: null,
-  // 	kit: {
-  // 		basic: {
-  // 			image: `${baseUrl}/products/drones/dji/avata/avata2/box/collective.webp`,
-  // 			contents: [
-  // 				{
-  // 					qty: 1,
-  // 					item: "Aircraft",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/box/aircraft.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Intelligent Flight Battery",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/box/battery.webp`,
-  // 				},
-  // 				{
-  // 					qty: 4,
-  // 					item: "Low Noise Propellers (Pairs)",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/box/propellers.webp`,
-  // 				},
-  // 				{
-  // 					qty: 16,
-  // 					item: "DJI Avata 2 Propeller Screw",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/propeller-screw.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Gimbal Protector",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/box/protector.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Screwdriver",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/box/screwdriver.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Type-C to Type-C PD Cable",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/box/type-c-to-type-c-pd-cable.webp`,
-  // 				},
-  // 			],
-  // 		},
-  // 		flyMore: {
-  // 			contents: [
-  // 				{
-  // 					qty: 2,
-  // 					item: "Intelligent Flight Battery",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/battery.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Two-Way Charging Hub",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/charging-hub.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "DJI Googles 3",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/googles.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "DJI Goggles 3 -2.0D Corrective Lenses (Pairs)",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/lenses.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "DJI RC Motion 3",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/motion.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "DJI RC Motion 3 Lanyard",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/lanyard.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "DJI Sling Bag",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/sling-bag.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "USB-C OTG Cable",
-  // 					image: `${baseUrl}/products/drones/dji/avata/avata2/more/usb-c-otg-cable.webp`,
-  // 				},
-  // 			],
+  {
+    images: images.products.drones.dji.avata.avata2.drone,
+    title: { long: 'DJI Avata 2', short: 'Avata 2' },
+    specs: {
+      intro: [
+        'Googles 3 HD micro-OLED display',
+        'RC Motion 3 Easy Acro',
+        'Tight Shots in Super-Wide 4K',
+        '1/1.3-inch Image Sensor',
+        'Built-in Propeller Guard',
+      ],
+      aircraft: [
+        {
+          label: 'Takeoff Weight',
+          desc: '377 g',
+        },
+        {
+          label: 'Max Takeoff Altitude',
+          desc: '5000 m',
+        },
+        {
+          label: 'Max Flight Time',
+          desc: '23 minutes',
+        },
+        {
+          label: 'Max Hovering Time',
+          desc: '21 minutes',
+        },
+        {
+          label: 'Max Flight Distance',
+          desc: '13 km',
+        },
+        {
+          label: 'Max Wind Speed Resistance',
+          desc: '10.7 m/s',
+        },
+        {
+          label: 'Internal Storage',
+          desc: '46 GB',
+        },
+      ],
+    },
+    price: null,
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/avata/avata2/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/box/battery.webp`,
+          },
+          {
+            qty: 4,
+            item: 'Low Noise Propellers (Pairs)',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/box/propellers.webp`,
+          },
+          {
+            qty: 16,
+            item: 'DJI Avata 2 Propeller Screw',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/propeller-screw.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/box/protector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Screwdriver',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/box/screwdriver.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Type-C to Type-C PD Cable',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/box/type-c-to-type-c-pd-cable.webp`,
+          },
+        ],
+      },
+      flyMore: {
+        contents: [
+          {
+            qty: 2,
+            item: 'Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Two-Way Charging Hub',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Googles 3',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/googles.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Goggles 3 -2.0D Corrective Lenses (Pairs)',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/lenses.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI RC Motion 3',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/motion.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI RC Motion 3 Lanyard',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/lanyard.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Sling Bag',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/sling-bag.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C OTG Cable',
+            image: `${baseUrl}/products/drones/dji/avata/avata2/more/usb-c-otg-cable.webp`,
+          },
+        ],
 
-  // 			price: null,
-  // 		},
-  // 	},
-  // 	accessories: {
-  // 		battery: accessories.find(a => a.title.short == "Avata 2 Battery"),
-  // 		other: null,
-  // 	},
-  // 	category: "camera",
-  // 	available: true,
-  // 	brand: "dji",
-  // 	make: "avata",
-  // 	model: null,
-  // },
+        price: null,
+      },
+    },
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'Avata 2 Battery'),
+      other: null,
+    },
+    category: 'camera',
+    available: true,
+    brand: 'dji',
+    make: 'avata',
+    model: null,
+  },
 
   {
     images: images.products.drones.dji.air.air2s.drone,
@@ -656,96 +656,98 @@ const products = [
     model: null,
   },
 
-  // {
-  // 	images: images.products.drones.huida.hd540s.drone,
-  // 	title: {
-  // 		long: "HUIDA HD540S (Drone Spraying System)",
-  // 		short: "HUIDA HD540S",
-  // 	},
-  // 	specs: {
-  // 		intro: [
-  // 			"Higher spraying load (40L Spraying)",
-  // 			"High Spreading Efficieancy (110 Kg/min)",
-  // 			"Higher spreading load (60L Spreading)",
-  // 			"Double Magnetic Impeller Pump (24 L/min )",
-  // 			"8500W Intelligent charger",
-  // 			"HD 5.0 Core computing system",
-  // 			"2KM Image Transmission",
-  // 		],
-  // 		aircraft: [
-  // 			{
-  // 				label: "Structural layout",
-  // 				desc: "Six-axis layout 2100mm",
-  // 			},
-  // 			{
-  // 				label: "Maximum wheelbase",
-  // 				desc: "2100mm (six axes)",
-  // 			},
-  // 			{
-  // 				label: "Pesticide container capacity",
-  // 				desc: "40L",
-  // 			},
-  // 			{
-  // 				label: "Seed container capacity",
-  // 				desc: "60L",
-  // 			},
-  // 			{
-  // 				label: "Container installation mode",
-  // 				desc: "Plug-in",
-  // 			},
-  // 			{
-  // 				label: "Max Configurable Flight Radius",
-  // 				desc: "2000 m",
-  // 			},
-  // 			{
-  // 				label: "No-load mass (including battery)",
-  // 				desc: "47.5KG",
-  // 			},
-  // 			{
-  // 				label: "Power battery",
-  // 				desc: "30000mAh",
-  // 			},
-  // 			{
-  // 				label: "Battery charging time (Lithium)",
-  // 				desc: "20%-95% about 13min",
-  // 			},
-  // 			{
-  // 				label: "Reference fuel consumption",
-  // 				desc: "500ml/kWh",
-  // 			},
-  // 			{
-  // 				label: "FPV camera",
-  // 				desc: "Front camera, rear camera",
-  // 			},
-  // 			{
-  // 				label: "Motor rated power",
-  // 				desc: "2000w*6pcs",
-  // 			},
-  // 			{
-  // 				label: "Remote control signal distance",
-  // 				desc: "≤1500m",
-  // 			},
-  // 			{
-  // 				label: "Flight speed limit",
-  // 				desc: "≤10m/s",
-  // 			},
-  // 		],
-  // 	},
-  // 	price: null,
-  // 	kit: null,
-  // 	accessories: {
-  // 		battery: accessories.find(a => a.title.short == "HUIDA HD540S Battery"),
-  // 		other: [
-  // 			accessories.find(a => a.title.short == "HUIDA HD540S Generator"),
-  // 			accessories.find(a => a.title.short == "HUIDA HD540S Spreading System"),
-  // 		].filter(i => i != undefined),
-  // 	},
-  // 	category: "agriculture",
-  // 	available: true,
-  // 	brand: "huida",
-  // 	make: "HD",
-  // 	model: null,
-  // },
+  {
+    images: images.products.drones.huida.hd540s.drone,
+    title: {
+      long: 'HUIDA HD540S (Drone Spraying System)',
+      short: 'HUIDA HD540S',
+    },
+    specs: {
+      intro: [
+        'Higher spraying load (40L Spraying)',
+        'High Spreading Efficieancy (110 Kg/min)',
+        'Higher spreading load (60L Spreading)',
+        'Double Magnetic Impeller Pump (24 L/min )',
+        '8500W Intelligent charger',
+        'HD 5.0 Core computing system',
+        '2KM Image Transmission',
+      ],
+      aircraft: [
+        {
+          label: 'Structural layout',
+          desc: 'Six-axis layout 2100mm',
+        },
+        {
+          label: 'Maximum wheelbase',
+          desc: '2100mm (six axes)',
+        },
+        {
+          label: 'Pesticide container capacity',
+          desc: '40L',
+        },
+        {
+          label: 'Seed container capacity',
+          desc: '60L',
+        },
+        {
+          label: 'Container installation mode',
+          desc: 'Plug-in',
+        },
+        {
+          label: 'Max Configurable Flight Radius',
+          desc: '2000 m',
+        },
+        {
+          label: 'No-load mass (including battery)',
+          desc: '47.5KG',
+        },
+        {
+          label: 'Power battery',
+          desc: '30000mAh',
+        },
+        {
+          label: 'Battery charging time (Lithium)',
+          desc: '20%-95% about 13min',
+        },
+        {
+          label: 'Reference fuel consumption',
+          desc: '500ml/kWh',
+        },
+        {
+          label: 'FPV camera',
+          desc: 'Front camera, rear camera',
+        },
+        {
+          label: 'Motor rated power',
+          desc: '2000w*6pcs',
+        },
+        {
+          label: 'Remote control signal distance',
+          desc: '≤1500m',
+        },
+        {
+          label: 'Flight speed limit',
+          desc: '≤10m/s',
+        },
+      ],
+    },
+    price: null,
+    kit: null,
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'HUIDA HD540S Battery'),
+      other: [
+        accessories.find((a) => a.title.short == 'HUIDA HD540S Generator'),
+        accessories.find(
+          (a) => a.title.short == 'HUIDA HD540S Spreading System'
+        ),
+      ].filter((i) => i != undefined),
+    },
+    category: 'agriculture',
+    available: true,
+    brand: 'huida',
+    make: 'HD',
+    model: null,
+  },
 
   {
     images: images.products.drones.dji.matrice.matrice30t.drone,

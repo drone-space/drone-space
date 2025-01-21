@@ -745,7 +745,7 @@ const products = [
     category: 'agriculture',
     available: true,
     brand: 'huida',
-    make: 'HD',
+    make: 'Huida HD Series',
     model: null,
   },
 

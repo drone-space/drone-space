@@ -95,7 +95,7 @@ export default function Home() {
       // onMouseLeave={autoplay.current.reset}
     >
       <CarouselSlide
-        key={'AI Conference'}
+        key={'slide-conference'}
         style={{
           background: `linear-gradient( rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%), url('${images.posters.conference.poster1.landscape}')`,
           backgroundSize: 'cover',
@@ -187,10 +187,7 @@ export default function Home() {
         </LayoutSection>
       </CarouselSlide>
 
-      <CarouselSlide
-        key={'Empowering Drone Professionals in Kenya'}
-        pos={'relative'}
-      >
+      <CarouselSlide key={'slide-video'} pos={'relative'}>
         <div className={classes.underlay}>
           <AspectRatio ratio={1920 / 1080} h={'100%'}>
             <video

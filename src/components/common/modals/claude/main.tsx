@@ -128,7 +128,7 @@ export default function Main() {
             style={{ overflowY: 'auto', scrollbarWidth: 'thin' }}
           >
             <Transition
-              key={'greeting'}
+              key={'transition-greeting'}
               mounted={true}
               transition="fade"
               duration={250}
@@ -176,7 +176,7 @@ export default function Main() {
             </Transition>
 
             <Transition
-              key={'questions'}
+              key={'transition-questions'}
               mounted={conversation.length < 1}
               transition="fade"
               duration={250}

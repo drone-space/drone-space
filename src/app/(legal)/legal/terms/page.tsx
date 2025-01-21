@@ -41,8 +41,8 @@ export default async function TermsConditions() {
 
       {legal.terms.map((t, index) => (
         <LayoutSection
-          id="page-legal-privacy-list"
           key={index}
+          id="page-legal-privacy-list"
           margined={40}
           containerized={'sm'}
         >

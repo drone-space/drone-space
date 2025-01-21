@@ -36,9 +36,9 @@ export default function Main({
   const navMobile = props.map((link, index) => {
     const subLinks =
       link.subLinks &&
-      link.subLinks.map((subLink, index2) => (
+      link.subLinks.map((subLink) => (
         <NavLink
-          key={index2}
+          key={`${index}-${subLink.link}`}
           component={Link}
           href={subLink.link}
           label={subLink.label}
@@ -73,7 +73,7 @@ export default function Main({
       />
     ) : (
       <NavLink
-        key={link.link}
+        key={`${index}-${link.link}`}
         component={Link}
         href={link.link}
         label={link.label}

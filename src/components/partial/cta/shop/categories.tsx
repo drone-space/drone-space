@@ -35,7 +35,6 @@ export default function Categories() {
                 <GridCol key={index} span={{ base: 12, xs: 4 }}>
                   <Button
                     fullWidth
-                    key={category.label}
                     mih={{ xs: 120 }}
                     miw={{ xs: 180 }}
                     component={Link}

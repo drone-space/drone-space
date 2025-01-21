@@ -33,7 +33,6 @@ export default function Providers() {
 
     return (
       <Button
-        key={providerDetails.provider}
         fullWidth
         variant="default"
         onClick={handleClick}

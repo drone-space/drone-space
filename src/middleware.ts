@@ -16,7 +16,15 @@ export async function middleware(request: NextRequest) {
   // Get the origin from the request headers
   const origin = request.headers.get('origin') || '';
 
-  if (origin.includes('vercel.app') || origin.includes('dronespace.co.ke')) {
+  console.log('origin', origin);
+
+  if (
+    origin.includes('localhost') ||
+    origin.includes('127.0.0.1') ||
+    origin.includes('vercel.app') ||
+    origin.includes('dronespace.co.ke') ||
+    origin.includes('aiconference.co.ke')
+  ) {
     // Set CORS headers
     response.headers.set('Access-Control-Allow-Credentials', 'true');
     response.headers.set('Access-Control-Allow-Origin', origin);

@@ -10,9 +10,10 @@ import IntroPage from '@/components/layout/intro/page';
 import { typeParams } from '../../layout';
 import { categoryGet } from '@/handlers/requests/database/category';
 import { CategoryRelations } from '@/types/models/category';
+import { REVALIDATE } from '@/data/constants';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = REVALIDATE.WEEK;
 
 export default async function Category({ params }: { params: typeParams }) {
   const { category }: { category: CategoryRelations } = await categoryGet({

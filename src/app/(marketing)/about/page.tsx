@@ -16,7 +16,7 @@ import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
-import { SECTION_SPACING } from '@/data/constants';
+import { REVALIDATE, SECTION_SPACING } from '@/data/constants';
 import appData from '@/data/app';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { studentsGet } from '@/handlers/requests/database/student';
@@ -28,7 +28,7 @@ import CardTeamMain from '@/components/common/cards/team/main';
 import { team } from '@/data/team';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = REVALIDATE.WEEK;
 
 export const metadata: Metadata = {
   title: `About ${appData.name.app} - Kenya's Leading Drone Training Academy`,

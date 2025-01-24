@@ -29,6 +29,7 @@ import {
   HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
+  REVALIDATE,
   SECTION_SPACING,
 } from '@/data/constants';
 // import CardBlogAuthor from '@/components/common/cards/blog/author';
@@ -43,7 +44,7 @@ import BlogContent from '@/components/partial/blog-content';
 import { processUrl } from '@/utilities/formatters/string';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = REVALIDATE.WEEK;
 
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);

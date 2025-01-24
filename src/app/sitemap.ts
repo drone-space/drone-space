@@ -1,9 +1,7 @@
 import accessories from '@/data/accessories';
 import { REVALIDATE } from '@/data/constants';
 import products from '@/data/products';
-import { categoriesGet } from '@/handlers/requests/database/category';
 import { postsGet } from '@/handlers/requests/database/post';
-import { CategoryRelations } from '@/types/models/category';
 import { PostRelations } from '@/types/models/post';
 import { linkify } from '@/utilities/formatters/string';
 import { MetadataRoute } from 'next';
@@ -48,16 +46,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  const { categories }: { categories: CategoryRelations[] } =
-    await categoriesGet();
-
-  const categoryRoutes = categories.map((category) => ({
-    url: `${baseUrl}/resources/blog/categories/${category.id}`,
-    lastModified: category.updatedAt,
-    changeFrequency: 'weekly' as const,
-    priority: 0.5,
-  }));
-
   const beginningOfYear = new Date(new Date().getFullYear(), 0, 1);
 
   const accessoryRoutes = accessories.map((accessory) => ({
@@ -96,7 +84,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const dynamicRoutes = [
     ...postRoutes,
-    ...categoryRoutes,
     ...accessoryRoutes,
     ...agricultureDroneRoutes,
     ...cameraDroneRoutes,

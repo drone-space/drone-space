@@ -84,6 +84,16 @@ const dynamicRedirects = [
     pattern: /^\/services\/[^\/]+$/,
     replacement: '/drone-solutions',
   },
+
+  {
+    pattern: /^\/resources\/blog\/categories\/([^\/]+)$/,
+    replacement: '/resources/blog',
+  },
+
+  {
+    pattern: /^\/resources\/blog\/tags\/([^\/]+)$/,
+    replacement: '/resources/blog',
+  },
 ];
 
 const handleRedirect = createRedirectHandler(

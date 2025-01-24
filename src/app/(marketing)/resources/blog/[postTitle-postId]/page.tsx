@@ -7,7 +7,6 @@ import { typeParams } from '../layout';
 import { postGet } from '@/handlers/requests/database/post';
 import {
   Anchor,
-  Badge,
   Center,
   Divider,
   Flex,
@@ -36,7 +35,6 @@ import {
 import PartialComments from '@/components/partial/comments';
 import ImageDefault from '@/components/common/images/default';
 import { PostRelations } from '@/types/static/blog';
-import Link from 'next/link';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
@@ -57,19 +55,6 @@ export default async function Post({ params }: { params: typeParams }) {
     <LayoutPage>
       <IntroPage
         props={{
-          path: (
-            <Badge
-              color="sec.3"
-              c={'pri'}
-              tt={'uppercase'}
-              fz={'sm'}
-              style={{ cursor: 'pointer' }}
-              component={Link}
-              href={`/resources/blog/categories/${post.category?.id}`}
-            >
-              {post.category?.title}
-            </Badge>
-          ),
           title: post.title,
           desc: post.excerpt,
         }}

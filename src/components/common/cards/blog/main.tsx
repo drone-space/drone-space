@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import {
   Anchor,
-  Badge,
   Card,
   CardSection,
   Group,
@@ -18,7 +17,7 @@ import classes from './main.module.scss';
 import { PostRelations } from '@/types/models/post';
 import { linkify, processUrl } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
-import { IconCircleFilled, IconMessageCircle } from '@tabler/icons-react';
+import { IconMessageCircle } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
 import {
   HOSTED_BASE_URL,
@@ -53,13 +52,7 @@ export default function Main({ post }: { post: PostRelations }) {
               mode="grid"
             />
 
-            <Group gap={'xs'} align="start" className={classes.overlay}>
-              {post.tags.map((t, index) => (
-                <Badge key={index} color="white" c={'black'} radius={'sm'}>
-                  {t.title}
-                </Badge>
-              ))}
-            </Group>
+            <div className={classes.overlay}></div>
           </Anchor>
         </CardSection>
 
@@ -89,20 +82,7 @@ export default function Main({ post }: { post: PostRelations }) {
             </Stack>
 
             <Group justify="space-between" fz={'sm'}>
-              <Group gap={'xs'}>
-                <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
-
-                <IconCircleFilled size={4} />
-
-                <Anchor
-                  component={Link}
-                  href={`/resources/blog/categories/${post.category?.id}`}
-                  underline="never"
-                  inherit
-                >
-                  {post.category?.title}
-                </Anchor>
-              </Group>
+              <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
 
               {post._count.comments && (
                 <Group gap={4}>

@@ -21,7 +21,6 @@ export const generateMetadata = async ({
   return {
     title: `${post?.title} - ${appData.name.app} Blog`,
     description: post?.excerpt,
-    category: post?.category?.title,
   };
 };
 

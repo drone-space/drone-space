@@ -71,17 +71,6 @@ export default function Aside({ post }: { post: PostRelations }) {
           <Group gap={'xs'} fz={'xs'}>
             <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
 
-            <IconCircleFilled size={4} />
-
-            <Anchor
-              component={Link}
-              href={`/resources/blog/categories/${post.category?.id}`}
-              underline="never"
-              inherit
-            >
-              {post.category?.title}
-            </Anchor>
-
             {post._count.comments && (
               <>
                 <IconCircleFilled size={4} />

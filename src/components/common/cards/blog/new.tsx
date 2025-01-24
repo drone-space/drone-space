@@ -51,13 +51,7 @@ export default function New({ post }: { post: PostRelations }) {
               mode="grid"
             />
 
-            <Group gap={'xs'} align="start" className={classes.overlay}>
-              {post.tags.map((t, index) => (
-                <Badge key={index} radius={'sm'} color="white" c={'black'}>
-                  {t.title}
-                </Badge>
-              ))}
-            </Group>
+            <div className={classes.overlay}></div>
           </Anchor>
         </GridCol>
 
@@ -101,20 +95,7 @@ export default function New({ post }: { post: PostRelations }) {
               <Divider />
 
               <Group justify="space-between" fz={'sm'}>
-                <Group gap={'xs'}>
-                  <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
-
-                  <IconCircleFilled size={4} />
-
-                  <Anchor
-                    component={Link}
-                    href={`/resources/blog/categories/${post.category?.id}`}
-                    underline="never"
-                    inherit
-                  >
-                    {post.category?.title}
-                  </Anchor>
-                </Group>
+                <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
 
                 {post._count.comments && (
                   <Group gap={4}>

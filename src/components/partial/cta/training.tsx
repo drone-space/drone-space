@@ -8,7 +8,7 @@ import {
   Flex,
   Title,
 } from '@mantine/core';
-import { IconCheck, IconExternalLink, IconSchool } from '@tabler/icons-react';
+import { IconCheck, IconFileDownload, IconSchool } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactTraining from '@/components/common/modals/contact/training';
 import courses from '@/data/courses';
@@ -97,7 +97,7 @@ export default function Training({
           <ModalDownloadBrochure>
             <Button
               leftSection={
-                <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
               Get the Brochure

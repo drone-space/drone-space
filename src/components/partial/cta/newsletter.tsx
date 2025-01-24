@@ -13,7 +13,7 @@ import LayoutSection from '@/components/layout/section';
 import classes from './newsletter.module.scss';
 import { images } from '@/assets/images';
 import { usePathname } from 'next/navigation';
-import { IconExternalLink, IconPhoneCall } from '@tabler/icons-react';
+import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import ModalDowloadProfile from '@/components/common/modals/download/profile';
 
@@ -60,7 +60,7 @@ export default function Newsletter() {
           <ModalDowloadProfile>
             <Button
               leftSection={
-                <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
               variant="white"
             >

@@ -20,7 +20,7 @@ import { typeMenuNavbar } from '@/types/components/menu';
 import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
-import { IconExternalLink } from '@tabler/icons-react';
+import { IconFileDownload } from '@tabler/icons-react';
 import ModalDownloadBrochure from '../modals/download/brochure';
 import ModalDownloadProfile from '../modals/download/profile';
 
@@ -130,7 +130,7 @@ export default function Navbar({
                         <Button
                           justify="space-between"
                           rightSection={
-                            <IconExternalLink
+                            <IconFileDownload
                               size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
                               color="var(--mantine-color-pri-9)"
@@ -149,7 +149,7 @@ export default function Navbar({
                         <Button
                           justify="space-between"
                           rightSection={
-                            <IconExternalLink
+                            <IconFileDownload
                               size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
                               color="var(--mantine-color-white)"

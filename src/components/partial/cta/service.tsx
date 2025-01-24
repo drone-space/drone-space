@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stack, Group, Text, Button, Title } from '@mantine/core';
-import { IconExternalLink, IconPhoneCall } from '@tabler/icons-react';
+import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
@@ -33,7 +33,7 @@ export default function Service() {
           <ModalDownloadProfile>
             <Button
               leftSection={
-                <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
               Company Profile

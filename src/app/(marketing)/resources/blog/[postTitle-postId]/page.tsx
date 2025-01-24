@@ -8,7 +8,7 @@ import { postGet } from '@/handlers/requests/database/post';
 import {
   Anchor,
   Center,
-  Divider,
+  // Divider,
   Flex,
   Group,
   NumberFormatter,
@@ -32,7 +32,7 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 // import CardBlogAuthor from '@/components/common/cards/blog/author';
-import PartialComments from '@/components/partial/comments';
+// import PartialComments from '@/components/partial/comments';
 import ImageDefault from '@/components/common/images/default';
 import { PostRelations } from '@/types/static/blog';
 import { getRegionalDate } from '@/utilities/formatters/date';
@@ -137,7 +137,7 @@ export default async function Post({ params }: { params: typeParams }) {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection
+      {/* <LayoutSection
         id={'page-post-author'}
         margined={SECTION_SPACING / 2}
         containerized={'sm'}
@@ -145,7 +145,7 @@ export default async function Post({ params }: { params: typeParams }) {
         <Divider my={'lg'} />
       </LayoutSection>
 
-      <PartialComments props={{ post }} />
+      <PartialComments props={{ post }} /> */}
     </LayoutPage>
   );
 }

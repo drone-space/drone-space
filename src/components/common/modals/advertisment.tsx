@@ -23,7 +23,10 @@ export default function Advertisment({ active }: { active?: boolean }) {
       try {
         const newList = await Promise.all(
           slideData.map(async (item) => {
-            return { ...item, image: `${item.image}?fileSize=${new Date()}` };
+            return {
+              ...item,
+              image: `${item.image}?fileSize=${new Date().getTime()}`,
+            };
           })
         );
 

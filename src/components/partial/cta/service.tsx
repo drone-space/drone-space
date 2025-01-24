@@ -3,8 +3,8 @@ import { Stack, Group, Text, Button, Title } from '@mantine/core';
 import { IconExternalLink, IconPhoneCall } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
-import documents from '@/assets/documents';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import ModalDownloadProfile from '@/components/common/modals/download/profile';
 
 export default function Service() {
   return (
@@ -30,16 +30,16 @@ export default function Service() {
         </Stack>
 
         <Group justify="center">
-          <Button
-            component="a"
-            href={documents.droneSpace.profile}
-            target="_blank"
-            leftSection={
-              <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            Company Profile
-          </Button>
+          <ModalDownloadProfile>
+            <Button
+              leftSection={
+                <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Company Profile
+            </Button>
+          </ModalDownloadProfile>
+
           <ModalContactCallback>
             <Button
               leftSection={

@@ -81,35 +81,22 @@ export const createRedirectHandler = (
 };
 
 export const setCorsHeaders = (params: {
-  crossOrigins: string[];
   request: NextRequest;
   response: NextResponse;
 }) => {
-  // Get the origin from the request headers
-  const origin = params.request.headers.get('origin') || '';
-
-  const isAllowedOrigin = params.crossOrigins.some((allowedOrigin) =>
-    origin.includes(allowedOrigin)
+  params.response.headers.set('Access-Control-Allow-Credentials', 'true');
+  params.response.headers.set('Access-Control-Allow-Origin', '*');
+  params.response.headers.set(
+    'Access-Control-Allow-Methods',
+    'GET,DELETE,PATCH,POST,PUT,OPTIONS'
+  );
+  params.response.headers.set(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
   );
 
-  console.log('origin', origin);
-  console.log('isAllowedOrigin', isAllowedOrigin);
-
-  if (isAllowedOrigin) {
-    params.response.headers.set('Access-Control-Allow-Credentials', 'true');
-    params.response.headers.set('Access-Control-Allow-Origin', origin);
-    params.response.headers.set(
-      'Access-Control-Allow-Methods',
-      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
-    );
-    params.response.headers.set(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
-    );
-
-    if (params.request.method === 'OPTIONS') {
-      params.response.headers.set('Content-Length', '0');
-      return params.response;
-    }
+  if (params.request.method === 'OPTIONS') {
+    params.response.headers.set('Content-Length', '0');
+    return params.response;
   }
 };

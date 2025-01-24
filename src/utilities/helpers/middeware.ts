@@ -84,13 +84,21 @@ export const setCorsHeaders = (params: {
   crossOrigins: string[];
   request: NextRequest;
   response: NextResponse;
-}): void => {
+}) => {
   // Get the origin from the request headers
   const origin = params.request.headers.get('origin') || '';
 
-  const isAllowedOrigin = params.crossOrigins.some((allowedOrigin) =>
-    origin.includes(allowedOrigin)
+  // const isAllowedOrigin = params.crossOrigins.some((allowedOrigin) =>
+  //   origin.includes(allowedOrigin)
+  // );
+
+  const isAllowedOrigin = params.crossOrigins.some(
+    (allowedOrigin) =>
+      origin === `http://${allowedOrigin}` ||
+      origin === `https://${allowedOrigin}`
   );
+
+  console.log('origin', origin);
 
   if (isAllowedOrigin) {
     params.response.headers.set('Access-Control-Allow-Credentials', 'true');
@@ -103,5 +111,11 @@ export const setCorsHeaders = (params: {
       'Access-Control-Allow-Headers',
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
     );
+  }
+
+  if (params.request.method === 'OPTIONS') {
+    params.response.headers.set('Content-Length', '0');
+    // params.response.status(204); // No content
+    return params.response;
   }
 };

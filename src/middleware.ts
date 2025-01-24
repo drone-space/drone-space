@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
   // If no redirect, proceed with normal middleware
   const response = NextResponse.next({ request });
 
-  setCorsHeaders({ request, response });
+  setCorsHeaders({ crossOrigins, request, response });
 
   return await updateSession(request, response);
 }
@@ -34,6 +34,16 @@ export const config = {
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };
+
+const crossOrigins = [
+  'localhost',
+  '127.0.0.1',
+  'devokrann.vercel.app',
+  'drone-space.vercel.app',
+  'dronespace.co.ke',
+  'conference-ai.vercel.app',
+  'aiconference.co.ke',
+];
 
 const staticRedirects = {
   '/contact': '/about/contact',

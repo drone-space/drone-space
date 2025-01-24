@@ -22,10 +22,7 @@ export const tagsGet = async () => {
   }
 };
 
-export const tagGet = async (params: {
-  tagId: string;
-  options?: { cache?: RequestCache };
-}) => {
+export const tagGet = async () => {
   try {
     const request = new Request(`${baseRequestUrl}/${params.tagId}`, {
       method: EnumRequest.GET,

@@ -9,20 +9,37 @@ import { IconSchool } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import { getFileSize } from '@/utilities/helpers/file';
 
 export default function Advertisment({ active }: { active?: boolean }) {
   const [opened, { open, close }] = useDisclosure(active ? true : false);
-  const [image, setImage] = useState<string | null>(null);
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-  const slideImages = [
-    {
-      title: 'Monthly Intake',
-      image: image,
-    },
-  ];
+  const [slideList, setSlideList] = useState<
+    { title: string; image: string }[] | null
+  >(null);
 
-  const slides = slideImages.map((slide, index) => (
+  useEffect(() => {
+    const getImageUrls = async () => {
+      try {
+        const newList = await Promise.all(
+          slideData.map(async (item) => {
+            const fileSize = await getFileSize(item.image);
+            return { ...item, image: `${item.image}?fileSize=${fileSize}` };
+          })
+        );
+
+        setSlideList(newList);
+      } catch {
+        close();
+      }
+    };
+
+    getImageUrls();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const slides = slideList?.map((slide, index) => (
     <CarouselSlide key={index} mah={'fit-content'}>
       {slide.image && (
         <Group h={'100%'}>
@@ -36,24 +53,6 @@ export default function Advertisment({ active }: { active?: boolean }) {
       )}
     </CarouselSlide>
   ));
-
-  useEffect(() => {
-    const getImageSize = async () => {
-      try {
-        const imageUrl = images.posters.intakes.monthly;
-        const response = await fetch(imageUrl);
-        const blob = await response.blob();
-        setImage(`${imageUrl}?fileSize=${blob.size}`);
-      } catch {
-        close();
-      }
-    };
-
-    if (!image) {
-      getImageSize();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -69,7 +68,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
       >
         <Carousel
           withIndicators={false}
-          withControls={slideImages.length > 1}
+          withControls={!slideList ? false : slideList.length > 1}
           slidesToScroll={1}
           slideSize={'100%'}
           slideGap={0}
@@ -77,7 +76,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
           classNames={{ root: classes.root, control: classes.control }}
           plugins={[autoplay.current]}
         >
-          {slides}
+          {slides && slides}
         </Carousel>
       </Modal>
 
@@ -93,3 +92,10 @@ export default function Advertisment({ active }: { active?: boolean }) {
     </>
   );
 }
+
+const slideData = [
+  {
+    title: 'Monthly Intake',
+    image: images.posters.intakes.monthly,
+  },
+];

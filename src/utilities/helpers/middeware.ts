@@ -98,9 +98,6 @@ export const setCorsHeaders = (params: {
       origin === `https://${allowedOrigin}`
   );
 
-  console.log('isAllowedOrigin', isAllowedOrigin);
-  console.log('origin', origin);
-
   if (isAllowedOrigin) {
     params.response.headers.set('Access-Control-Allow-Credentials', 'true');
     params.response.headers.set('Access-Control-Allow-Origin', origin);

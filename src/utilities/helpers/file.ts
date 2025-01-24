@@ -1,5 +1,5 @@
 export const getFileSize = async (fileUrl: string) => {
-  const response = await fetch(fileUrl, { cache: 'no-store' });
+  const response = await fetch(fileUrl);
   const contentLength = response.headers.get('Content-Length');
   const fileSize = contentLength ? parseInt(contentLength) : 0;
 

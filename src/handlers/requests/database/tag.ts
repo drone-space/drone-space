@@ -9,7 +9,6 @@ export const tagsGet = async () => {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
-      cache: 'no-store',
     });
 
     const response = await fetch(request);
@@ -32,7 +31,6 @@ export const tagGet = async (params: {
       method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
-      cache: params.options?.cache,
     });
 
     const response = await fetch(request);

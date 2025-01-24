@@ -9,7 +9,6 @@ import { IconSchool } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
-import { getFileSize } from '@/utilities/helpers/file';
 
 export default function Advertisment({ active }: { active?: boolean }) {
   const [opened, { open, close }] = useDisclosure(active ? true : false);
@@ -24,8 +23,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
       try {
         const newList = await Promise.all(
           slideData.map(async (item) => {
-            const fileSize = await getFileSize(item.image);
-            return { ...item, image: `${item.image}?fileSize=${fileSize}` };
+            return { ...item, image: `${item.image}?fileSize=${new Date()}` };
           })
         );
 

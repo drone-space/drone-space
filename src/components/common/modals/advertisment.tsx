@@ -99,4 +99,8 @@ const slideData = [
     title: 'Monthly Intake',
     image: images.posters.intakes.monthly,
   },
+  {
+    title: 'Radiotelephony',
+    image: images.posters.intakes.radio,
+  },
 ];

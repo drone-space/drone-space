@@ -34,13 +34,17 @@ export default function Faq({ section }: { section?: 'training' | 'shop' }) {
   ));
 
   return (
-    <Accordion defaultValue={selection()[0].q} classNames={classes}>
+    <Accordion
+      multiple
+      defaultValue={selection().map((i) => i.q)}
+      classNames={classes}
+    >
       {items}
     </Accordion>
   );
 }
 
-const faqs = {
+export const faqs = {
   general: {
     title: 'General Inquiries',
     desc: [
@@ -99,8 +103,89 @@ const faqs = {
     ],
   },
   shop: {
-    title: '',
-    desc: [],
+    title: 'Drone Purchases & Reselling',
+    desc: [
+      {
+        q: 'What types of drones do you sell?',
+        a: 'We offer a wide range of drones, including consumer drones for recreational use, professional-grade drones for commercial applications, and specialty drones for industries like agriculture, surveying, and cinematography.',
+      },
+      {
+        q: 'Do you offer both consumer and professional-grade drones?',
+        a: 'Yes, we cater to both markets, providing high-quality consumer drones as well as advanced professional drones designed for specialized tasks.',
+      },
+      {
+        q: 'What brands of drones do you carry?',
+        a: 'We carry top brands such as DJI, Autel Robotics, Huida, and other reputable manufacturers known for their reliability and innovation.',
+      },
+      {
+        q: 'How do I choose the right drone for my needs?',
+        a: 'Choosing the right drone depends on your purpose. For casual use, a lightweight consumer drone with basic features may suffice. For professional tasks, consider factors like camera quality, flight time, payload capacity, and compatibility with your specific industry requirements. Our team can guide you through this process.',
+      },
+      {
+        q: 'Do your drones come with warranties? If so, how long are they valid?',
+        a: 'Yes, all our drones come with manufacturer warranties, typically ranging from 6 months to 2 years, depending on the brand and model.',
+      },
+      {
+        q: 'Can I upgrade or customize the drones you sell?',
+        a: 'Many of our drones support upgrades and customizations, such as adding advanced cameras, extended batteries, or specialized sensors. Please contact us for details on compatibility and options.',
+      },
+      {
+        q: 'What accessories are available for the drones you offer?',
+        a: 'We provide a variety of accessories, including spare batteries, propellers, carrying cases, filters, gimbals, and chargers. Specialized accessories like thermal cameras and agricultural sensors are also available for certain models.',
+      },
+      {
+        q: 'Do you offer payment plans for drone purchases?',
+        a: "No, we don't offer installment plans. Contact us for details about payment grounds and processes.",
+      },
+      {
+        q: 'Are there any discounts for bulk purchases or corporate clients?',
+        a: "Not at the moment, but we're planning to introduce discounts for bulk purchases and corporate clients soon. Let us know your requirements, and we’ll notify you once the program is available.",
+      },
+      {
+        q: 'Do your prices include taxes and shipping fees?',
+        a: 'Our prices are inclusive of taxes and shipping fees unless otherwise stated. During checkout, you’ll see a breakdown of all costs.',
+      },
+      {
+        q: 'Do you provide technical support for the drones you sell?',
+        a: 'We don’t currently offer dedicated technical support, but we’re working on establishing a support service to help with setup, operation, and troubleshooting.',
+      },
+      {
+        q: 'What is your return or exchange policy for drones?',
+        a: 'We’re in the process of finalizing a return or exchange policy, which will allow returns or exchanges within a specified period. Stay tuned for updates.',
+      },
+      {
+        q: 'Can I purchase drone insurance through your store?',
+        a: 'Not yet, but we’re working on partnering with reputable insurance providers to offer drone insurance options soon.',
+      },
+      {
+        q: 'Do you offer training or guidance for using the drones I purchase?',
+        a: 'Yes, we provide training sessions and resources, including user manuals, online tutorials, and in-person workshops, to ensure you operate your drone safely and effectively.',
+      },
+      {
+        q: 'Are your drones compliant with local aviation regulations?',
+        a: 'Yes, all our drones comply with local aviation laws and safety requirements. We also stay updated on regulatory changes to ensure compliance.',
+      },
+      {
+        q: 'Can you assist with registering my drone with the relevant authorities?',
+        a: 'Yes, we can guide you through the drone registration process or handle it on your behalf, depending on your requirements.',
+      },
+      {
+        q: 'Do you sell drones that meet requirements for commercial use?',
+        a: 'Yes, we offer drones specifically designed for commercial use, meeting the necessary certifications and specifications for professional applications.',
+      },
+      {
+        q: 'Do you offer repair services for drones purchased from your store?',
+        a: 'We don’t currently provide repair services, but we plan to introduce professional repair options in the near future.',
+      },
+      {
+        q: 'Can I buy spare parts for my drone through your shop?',
+        a: 'Not yet, but we’re working on offering a wide range of spare parts, including propellers, motors, batteries, and cameras, for the brands we carry in the near future.',
+      },
+      {
+        q: 'How often should I service my drone, and do you provide maintenance services?',
+        a: 'We’re not offering maintenance services at the moment, but we’re developing plans to introduce them soon, including firmware updates, part replacements, and inspections.',
+      },
+    ],
   },
   training: {
     title: 'Training Logistics',

@@ -6,7 +6,8 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 // import IntroPage from '@/components/layout/intro/page';
 import ModalContactTraining from '@/components/common/modals/contact/training';
-import AccordionFaq from '@/components/common/accordions/faq';
+import ModalContactShop from '@/components/common/modals/contact/shop';
+import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
 import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import { Anchor, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
@@ -29,15 +30,10 @@ export default async function Faq() {
         }}
       /> */}
 
-      <LayoutSection
-        id="page-help-training"
-        padded
-        containerized={'sm'}
-        shadowed
-      >
+      <LayoutSection id="training" padded containerized={'sm'} shadowed>
         <Stack gap={'xl'}>
           <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
-            Drone Training
+            {faqs.training.title}
           </Title>
 
           <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
@@ -64,34 +60,35 @@ export default async function Faq() {
         </Stack>
       </LayoutSection>
 
-      {/* <LayoutSection id='help-faq-purchases' padded containerized={"sm"} shadowed>
-				<Stack gap={"xl"}>
-					<Title ta={"center"} order={2} fz={"xl"} fw={"bold"}>
-						Drone Purchases
-					</Title>
-
-					<Text w={{ md: "75%" }} mx={"auto"} ta={"center"} fz={"sm"}>
-						To see available drones and drone prices please visit our{" "}
-						<Anchor component={Link} href="/shop" inherit fw={500}>
-							shop section
-						</Anchor>
-						, for drone importation or other drone purchase inquiries, please send us a{" "}
-						<ModalContactShop>
-							<Anchor inherit fw={500}>
-								product/purchase inquiry
-							</Anchor>
-						</ModalContactShop>
-						.
-					</Text>
-
-					<AccordionFaq section="shop" />
-				</Stack>
-			</LayoutSection> */}
-
-      <LayoutSection id="help-faq-general" padded containerized={'sm'} shadowed>
+      <LayoutSection id="reselling" padded containerized={'sm'} shadowed>
         <Stack gap={'xl'}>
           <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
-            General Questions
+            {faqs.shop.title}
+          </Title>
+
+          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
+            To see available drones and drone prices please visit our{' '}
+            <Anchor component={Link} href="/shop" inherit fw={500}>
+              shop section
+            </Anchor>
+            , for drone importation or other drone purchase inquiries, please
+            send us a{' '}
+            <ModalContactShop>
+              <Anchor inherit fw={500}>
+                product/purchase inquiry
+              </Anchor>
+            </ModalContactShop>
+            .
+          </Text>
+
+          <AccordionFaq section="shop" />
+        </Stack>
+      </LayoutSection>
+
+      <LayoutSection id="general" padded containerized={'sm'} shadowed>
+        <Stack gap={'xl'}>
+          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
+            {faqs.general.title}
           </Title>
 
           <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>

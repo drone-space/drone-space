@@ -24,8 +24,8 @@ import LayoutSection from '@/components/layout/section';
 // import ModalCamp from '../modals/camp';
 // import ModalShows from '../modals/shows';
 import ModalDownloadBrochure from '../modals/download/brochure';
-import classes from './home.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import classes from './home.module.scss';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 8000 }));

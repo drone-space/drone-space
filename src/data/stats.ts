@@ -1,6 +1,6 @@
 const stats = [
   {
-    stat: '10+',
+    stat: '20+',
     title: 'Strategic Partners',
   },
   {

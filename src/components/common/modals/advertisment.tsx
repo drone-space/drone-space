@@ -23,7 +23,10 @@ export default function Advertisment({ active }: { active?: boolean }) {
       try {
         const newList = await Promise.all(
           slideData.map(async (item) => {
-            return { ...item, image: `${item.image}?fileSize=${new Date()}` };
+            return {
+              ...item,
+              image: `${item.image}?fileSize=${new Date().getTime()}`,
+            };
           })
         );
 
@@ -95,5 +98,9 @@ const slideData = [
   {
     title: 'Monthly Intake',
     image: images.posters.intakes.monthly,
+  },
+  {
+    title: 'Radiotelephony',
+    image: images.posters.intakes.radio,
   },
 ];

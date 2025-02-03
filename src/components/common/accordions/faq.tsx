@@ -10,13 +10,19 @@ import {
 import classes from './faq.module.scss';
 import { isFirstItem } from '@/utilities/helpers/array';
 
-export default function Faq({ section }: { section?: 'training' | 'shop' }) {
+export default function Faq({
+  section,
+}: {
+  section?: 'training' | 'shop' | 'considerations';
+}) {
   const selection = () => {
     switch (section) {
       case 'training':
         return faqs.training.desc;
       case 'shop':
         return faqs.shop.desc;
+      case 'considerations':
+        return faqs.considerations.desc;
       default:
         return faqs.general.desc;
     }
@@ -127,7 +133,7 @@ export const faqs = {
       },
       {
         q: 'Can I upgrade or customize the drones you sell?',
-        a: 'Many of our drones support upgrades and customizations, such as adding advanced cameras, extended batteries, or specialized sensors. Please contact us for details on compatibility and options.',
+        a: 'Yes, many of our drones support upgrades and customizations, but with limitations.',
       },
       {
         q: 'What accessories are available for the drones you offer?',
@@ -159,7 +165,7 @@ export const faqs = {
       },
       {
         q: 'Do you offer training or guidance for using the drones I purchase?',
-        a: 'Yes, we provide training sessions and resources, including user manuals, online tutorials, and in-person workshops, to ensure you operate your drone safely and effectively.',
+        a: 'We offer the Remote Pilot License (RPL) training course, the foundational entry-level program recognized by the Kenya Civil Aviation Authority (KCAA) for drone operation and certification.',
       },
       {
         q: 'Are your drones compliant with local aviation regulations?',
@@ -216,11 +222,11 @@ export const faqs = {
       },
       {
         q: 'What should I bring on the first day of training?',
-        a: "Bring a valid ID, and any personal equipment you'd like to use during training.",
+        a: 'Only a valid ID will be required at first. 3 passport photos (1 regular sized and 2 small ones, 2cm by 2.5cm) and a copy of the medical certificate will be needed after.',
       },
       {
         q: 'What types of drones will I learn to operate during training?',
-        a: 'Training covers both multirotor and fixed-wing drones, with a focus on popular models used in industries such as photography, agriculture, surveying, and security.',
+        a: "Training primarily covers multirotor drones. Fixed-wing drones aren't currently included.",
       },
       {
         q: 'What safety measures are covered in the training?',
@@ -228,11 +234,28 @@ export const faqs = {
       },
       {
         q: 'What certifications do I receive after completing the training?',
-        a: 'Graduates will receive a certificate of completion and, where applicable, assistance in obtaining regulatory certifications required by your local aviation authority.',
+        a: "Upon successfully passing the Skills Test conducted by a Designated Flight Examiner (DFE) appointed by KCAA, candidates receive a Certificate of Completion from Drone Space and a Remote Pilot's License issued by KCAA.",
       },
       {
         q: 'Does holding an RPL qualify me to operate drones commercially?',
         a: 'While a Remote Pilot License (RPL) is an essential component of the RPAS Operator Certification (ROC), it alone does not authorize you to conduct legal commercial drone operations. To operate commercially, you must obtain an ROC. We can assist you with the consultation process to meet the necessary regulatory requirements.',
+      },
+    ],
+  },
+  considerations: {
+    title: 'Important Considerations & Risks',
+    desc: [
+      {
+        q: 'Warranty Voiding',
+        a: 'Unauthorized hardware modifications or firmware hacking may void warranty. Use official DJI channels for software integrations.',
+      },
+      {
+        q: 'Regulatory Compliance',
+        a: 'Certain modifications (e.g., removing geofencing, boosting signal range) may violate aviation laws. Always check with your Civil Aviation Authority.',
+      },
+      {
+        q: 'Flight Safety',
+        a: 'Unapproved changes can affect stability, battery performance, and reliability, increasing the risk of malfunctions or crashes.',
       },
     ],
   },

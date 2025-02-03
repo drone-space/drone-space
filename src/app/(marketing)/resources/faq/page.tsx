@@ -113,6 +113,20 @@ export default async function Faq() {
           <AccordionFaq />
         </Stack>
       </LayoutSection>
+
+      <LayoutSection id="considerations" padded containerized={'sm'} shadowed>
+        <Stack gap={'xl'}>
+          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
+            {faqs.considerations.title}
+          </Title>
+
+          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
+            The factors to consider and potential risks involved.
+          </Text>
+
+          <AccordionFaq section="considerations" />
+        </Stack>
+      </LayoutSection>
     </LayoutPage>
   );
 }

@@ -86,7 +86,7 @@ const courses = {
           'Meteorology',
           'Navigation',
           'Human factors',
-          'Flight planning',
+          // 'Flight planning',
           'Radio telephony (offered separately)',
         ],
         qualifications: [
@@ -190,7 +190,7 @@ const courses = {
           'Techniques of flight instruction',
           'Risk management',
           'Airman-ship',
-          'Flight planning',
+          // 'Flight planning',
           'Preparing a student for a skill test',
           'Air law ',
           'How to prepare a briefing',

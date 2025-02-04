@@ -809,7 +809,7 @@ const rplModules = [
   'Meteorology',
   'Navigation',
   'Human Factors',
-  'Flight Planning',
+  // 'Flight Planning',
   'Radio Telephony (Offered Separately - See below)',
 ];
 

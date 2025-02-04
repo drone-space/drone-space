@@ -103,4 +103,8 @@ const slideData = [
     title: 'Radiotelephony',
     image: images.posters.intakes.radio,
   },
+  {
+    title: 'Masterclass',
+    image: images.posters.intakes.mapping,
+  },
 ];

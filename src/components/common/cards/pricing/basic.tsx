@@ -97,7 +97,7 @@ export default function Basic({
               )}
             </Text>
 
-            <Group>
+            <Stack>
               <Title
                 order={3}
                 fw={'bold'}
@@ -112,19 +112,22 @@ export default function Basic({
                   ? 'Remote Pilot License (RPL)'
                   : data.title.full}
               </Title>
+
               {data.featured && (
-                <Badge
-                  radius={'sm'}
-                  color={data.featured ? 'sec.4' : 'pri.9'}
-                  c={data.featured ? 'pri.9' : undefined}
-                >
-                  Most Popular
-                </Badge>
+                <Text component="span" fz={'xs'} c={'sec.4'}>
+                  Exclusive of Medical
+                </Text>
               )}
-            </Group>
+
+              {data.title.full == 'Radio Telephony' && (
+                <Text component="span" inherit fz={'xs'} c={'dimmed'}>
+                  Exclusive of Exam, English Proficiency and License Fees
+                </Text>
+              )}
+            </Stack>
 
             {data.advanced && (
-              <Text>
+              <Text w={{ md: '75%' }}>
                 For RPL hoders seeking to enhance their abilities and include{' '}
                 {data.title.full} to their skillset.
               </Text>

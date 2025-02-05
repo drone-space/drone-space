@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`,
 };
 
-export default async function Gallery() {
+export default async function Pricing() {
   return (
     <LayoutPage>
       <LayoutSection id="pricing-training-basic" padded bordered>

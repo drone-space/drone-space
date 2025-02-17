@@ -1,9 +1,22 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Affix, Center, Text, Tooltip, Transition } from '@mantine/core';
-import ModalClaudeMain from '../modals/claude/main';
+import {
+  Affix,
+  Box,
+  Center,
+  Group,
+  Image,
+  Stack,
+  Text,
+  Tooltip,
+  Transition,
+} from '@mantine/core';
+import NextImage from 'next/image';
 import { useHeadroom, useTimeout, useWindowScroll } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
+import ModalClaudeNew from '../modals/claude/new';
+import { images } from '@/assets/images';
+import classes from './assistant.module.scss';
 
 export default function Assistant() {
   const pathname = usePathname();
@@ -90,7 +103,27 @@ export default function Assistant() {
                   setMenuOpened(false);
                 }}
               >
-                <ModalClaudeMain />
+                <ModalClaudeNew>
+                  <Group className={classes.child}>
+                    <Text inherit fz={{ base: 'xs', lg: 'sm' }} fw={500}>
+                      Ask Hekima
+                    </Text>
+
+                    <Box h={39} w={39}>
+                      <Stack>
+                        <Image
+                          src={images.icons.claude}
+                          alt={'Hekima AI'}
+                          loading="lazy"
+                          radius={'sm'}
+                          component={NextImage}
+                          width={31}
+                          height={31}
+                        />
+                      </Stack>
+                    </Box>
+                  </Group>
+                </ModalClaudeNew>
               </Center>
             </Tooltip>
           </div>

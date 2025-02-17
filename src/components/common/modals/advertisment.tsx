@@ -96,6 +96,10 @@ export default function Advertisment({ active }: { active?: boolean }) {
 
 const slideData = [
   {
+    title: 'Hiring',
+    image: images.posters.ads.image2,
+  },
+  {
     title: 'Monthly Intake',
     image: images.posters.intakes.monthly,
   },

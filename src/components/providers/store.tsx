@@ -30,10 +30,6 @@ export default function Store({
     // update color scheme
     storeRef.current.dispatch(updateColorScheme(colorScheme));
 
-    // update conversation
-    const storedConversation = getFromLocalStorage(LOCAL_STORAGE_NAME.CLAUDE);
-    storeRef.current.dispatch(updateConversation(storedConversation || []));
-
     if (session) {
       storeRef.current.dispatch(updateSession(session));
     }

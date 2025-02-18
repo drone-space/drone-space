@@ -12,7 +12,8 @@
     "check-format": "prettier --check ."
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.27.3",
+    "@ai-sdk/anthropic": "^1.1.8",
+    "@anthropic-ai/sdk": "^0.36.3",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@mantine/carousel": "^7.13.2",
     "@mantine/charts": "^7.13.2",
@@ -38,6 +39,7 @@
     "@tiptap/pm": "^2.8.0",
     "@tiptap/react": "^2.8.0",
     "@tiptap/starter-kit": "^2.8.0",
+    "ai": "^4.1.41",
     "bcryptjs": "^2.4.3",
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",

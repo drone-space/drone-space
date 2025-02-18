@@ -41,6 +41,7 @@ export default function Claude({
             ],
             ['Enter', props.form.onSubmit(props.handleSubmit)],
           ])}
+          data-autofocus={true}
           classNames={classes}
           w={'100%'}
           disabled={props.submitted}

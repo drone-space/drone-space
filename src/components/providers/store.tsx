@@ -6,9 +6,6 @@ import { makeStore, AppStore } from '@/libraries/redux/store';
 import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
 import { updateSession } from '@/libraries/redux/slices/session';
 import { AuthUser } from '@/types/auth';
-import { updateConversation } from '@/libraries/redux/slices/claude';
-import { getFromLocalStorage } from '@/utilities/helpers/storage';
-import { LOCAL_STORAGE_NAME } from '@/data/constants';
 
 export default function Store({
   colorScheme,

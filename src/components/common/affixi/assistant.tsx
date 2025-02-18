@@ -84,6 +84,7 @@ export default function Assistant() {
     // initialize conversation
     const storedConversation = getFromLocalStorage(LOCAL_STORAGE_NAME.CLAUDE);
     dispatch(updateConversation(storedConversation || []));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

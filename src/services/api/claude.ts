@@ -1,3 +1,5 @@
+'use server';
+
 import { Turn } from '@/types/claude';
 import { API_URL } from '@/data/constants';
 
@@ -8,7 +10,6 @@ export const sendPrompt = async (params: {
   try {
     const response = await fetch(`${API_URL}/claude`, {
       method: 'POST',
-      cache: 'no-store',
       body: JSON.stringify([
         ...params.conversation,
         { role: 'user', content: params.content },
@@ -16,9 +17,9 @@ export const sendPrompt = async (params: {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    const reader = response.body?.getReader();
+    const result = await response.json();
 
-    return reader;
+    return result;
   } catch (error) {
     console.error('---> service error (send prompt):', error);
     throw error;

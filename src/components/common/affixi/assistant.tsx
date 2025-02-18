@@ -90,7 +90,11 @@ export default function Assistant() {
     <Affix
       position={{ bottom: 'calc(var(--mantine-spacing-xl) * 1.5)', right: 0 }}
     >
-      <Transition transition="slide-left" mounted={scroll.y > 0 && !pinned}>
+      <Transition
+        transition="slide-left"
+        mounted={scroll.y > 0 && !pinned}
+        keepMounted={true}
+      >
         {(transitionStyles) => (
           <div style={transitionStyles}>
             <Tooltip

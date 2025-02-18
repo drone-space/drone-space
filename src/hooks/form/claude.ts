@@ -9,19 +9,14 @@ import { saveToLocalStorage } from '@/utilities/helpers/storage';
 import { LOCAL_STORAGE_NAME } from '@/data/constants';
 
 export type FormClaudeType = UseFormReturnType<
-  {
-    content: string;
-  },
-  (values: { content: string }) => {
-    content: string;
-  }
+  { content: string },
+  (values: { content: string }) => { content: string }
 >;
 
 export const useFormClaude = () => {
   const [submitted, setSubmitted] = useState(false);
   const conversation = useAppSelector((state) => state.claude.value);
   const dispatch = useAppDispatch();
-  const [responseState, setResponseState] = useState('');
 
   const form = useForm({
     initialValues: { content: '' },
@@ -38,53 +33,31 @@ export const useFormClaude = () => {
     try {
       setSubmitted(true);
 
-      setResponseState(''); // Clear previous response
-
-      const reader = await sendPrompt({
+      const result = await sendPrompt({
         content: submitedValue.content || submitedValue || parseValues(),
         conversation,
       });
 
-      if (!reader) {
+      if (!result) {
         showNotification({
           variant: Variant.FAILED,
           title: 'Server Unavailable',
           desc: `There was no response from the server.`,
         });
       } else {
-        const decoder = new TextDecoder();
-        let result = '';
-        const textChunks: string[] = []; // To collect chunks of the response
+        const newConversation = [
+          ...conversation,
+          {
+            role: 'user',
+            content: submitedValue.content || submitedValue || parseValues(),
+          },
+          { role: result.role, content: result.content[0].text },
+        ];
 
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          const chunk = decoder.decode(value, { stream: true });
-          textChunks.push(chunk); // Add chunk to the array
-          result += chunk; // Accumulate result
-
-          setResponseState((prev) => prev + chunk); // Append to UI
-
-          console.log('chunk', chunk);
-        }
-
-        console.log('result', result);
-        // console.log('textChunks', textChunks);
-
-        // const newConversation = [
-        //   ...conversation,
-        //   {
-        //     role: 'user',
-        //     content: submitedValue.content || submitedValue || parseValues(),
-        //   },
-        //   { role: result.role, content: result.content[0].text },
-        // ];
-
-        // // add latest exchange to context
-        // dispatch(updateConversation(newConversation));
-        // // add latest exchange to local storage
-        // saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, newConversation);
+        // add latest exchange to context
+        dispatch(updateConversation(newConversation));
+        // add latest exchange to local storage
+        saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, newConversation);
 
         form.reset();
       }

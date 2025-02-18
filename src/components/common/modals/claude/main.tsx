@@ -35,6 +35,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
         opened={opened}
         onClose={close}
         withCloseButton={false}
+        keepMounted={true}
         padding={0}
         size={'lg'}
         centered
@@ -109,8 +110,9 @@ export default function Main({ children }: { children: React.ReactNode }) {
                         variant="light"
                         fw={'normal'}
                         size="compact-xs"
+                        disabled={submitted}
                         onClick={async () =>
-                          await handleSubmit(question.trim())
+                          await handleSubmit(question.trim(), true)
                         }
                       >
                         {question}
@@ -127,7 +129,9 @@ export default function Main({ children }: { children: React.ReactNode }) {
                   <Box my={'xs'}>
                     <MarkdownComponent
                       markdown={item.content}
-                      animate={false}
+                      animate={
+                        conversation.indexOf(item) == conversation.length - 1
+                      }
                     />
                   </Box>
                 ) : (
@@ -249,7 +253,6 @@ const links = {
 
 const sample = {
   questions: [
-    'Hello',
     'What does Drone Space do?',
     'What kind of drones does Drone Space sell?',
     'How long is the RPL training course?',

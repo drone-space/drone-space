@@ -5,10 +5,12 @@ import Markdown from 'react-markdown';
 
 interface MarkdownComponentProps {
   markdown: string;
+  animate: boolean;
 }
 
 export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
   markdown,
+  animate,
 }) => {
   const markdownRef = useRef<HTMLDivElement | null>(null);
   const hiddenMarkdownRef = useRef<HTMLDivElement | null>(null);
@@ -39,7 +41,11 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
 
   return (
     <div className="markdown-wrapper">
-      {<Markdown className="markdown-content">{markdown}</Markdown>}
+      {animate ? (
+        <div ref={markdownRef} className="markdown-content" />
+      ) : (
+        <Markdown className="markdown-content">{markdown}</Markdown>
+      )}
 
       {/* Hidden pre-rendered markdown */}
       <div ref={hiddenMarkdownRef} style={{ display: 'none' }}>

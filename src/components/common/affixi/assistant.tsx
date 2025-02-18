@@ -14,7 +14,7 @@ import {
 import NextImage from 'next/image';
 import { useHeadroom, useTimeout, useWindowScroll } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
-import ModalClaudeNew from '../modals/claude/new';
+import ModalClaudeMain from '../modals/claude/main';
 import { images } from '@/assets/images';
 import classes from './assistant.module.scss';
 
@@ -103,7 +103,7 @@ export default function Assistant() {
                   setMenuOpened(false);
                 }}
               >
-                <ModalClaudeNew>
+                <ModalClaudeMain>
                   <Group className={classes.child}>
                     <Text inherit fz={{ base: 'xs', lg: 'sm' }} fw={500}>
                       Ask Hekima
@@ -123,7 +123,7 @@ export default function Assistant() {
                       </Stack>
                     </Box>
                   </Group>
-                </ModalClaudeNew>
+                </ModalClaudeMain>
               </Center>
             </Tooltip>
           </div>

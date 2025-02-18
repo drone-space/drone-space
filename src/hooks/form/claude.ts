@@ -1,24 +1,29 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux';
-import { useForm } from '@mantine/form';
+import { useForm, UseFormReturnType } from '@mantine/form';
 import { sendPrompt } from '@/services/api/claude';
 import { showNotification } from '@/utilities/notifications';
 import { updateConversation } from '@/libraries/redux/slices/claude';
 import { Variant } from '@/enums/notification';
 
-export const useFormClaude = (params: {
-  query?: string;
-  regenerating?: boolean;
-  automatic?: boolean;
-}) => {
+export type FormClaudeType = UseFormReturnType<
+  {
+    content: string;
+  },
+  (values: { content: string }) => {
+    content: string;
+  }
+>;
+
+export const useFormClaude = (params?: { regenerating?: boolean }) => {
   const [submitted, setSubmitted] = useState(false);
   const conversation = useAppSelector((state) => state.claude.value);
   const dispatch = useAppDispatch();
 
   const form = useForm({
-    initialValues: { content: params.query || '' },
+    initialValues: { content: '' },
     validate: {
-      content: (value) => !params.regenerating && value.trim().length < 1,
+      content: (value) => !params?.regenerating && value.trim().length < 1,
     },
   });
 
@@ -26,15 +31,19 @@ export const useFormClaude = (params: {
     return form.values.content.trim();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (submitedValue?: string) => {
     if (form.isValid()) {
       try {
         setSubmitted(true);
 
+        console.log('submitedValue', submitedValue);
+
         const result = await sendPrompt({
-          content: parseValues(),
+          content: submitedValue?.trim() || parseValues(),
           conversation,
         });
+
+        console.log('result', result);
 
         if (!result) {
           showNotification({
@@ -44,11 +53,14 @@ export const useFormClaude = (params: {
           });
         } else {
           // add latest exchange to context
-          if (!params.regenerating) {
+          if (!params?.regenerating) {
             dispatch(
               updateConversation([
                 ...conversation,
-                { role: 'user', content: parseValues() },
+                {
+                  role: 'user',
+                  content: submitedValue?.trim() || parseValues(),
+                },
                 { role: result.role, content: result.content[0].text },
               ])
             );
@@ -81,6 +93,8 @@ export const useFormClaude = (params: {
               }
             }
           }
+
+          form.reset();
         }
       } catch (error) {
         showNotification({
@@ -91,10 +105,6 @@ export const useFormClaude = (params: {
 
         console.error('---> hook error (send prompt):', error);
       } finally {
-        if (!params.automatic) {
-          form.reset();
-        }
-
         setSubmitted(false);
       }
     }

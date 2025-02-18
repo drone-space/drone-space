@@ -8,16 +8,16 @@ import {
   Flex,
   Title,
 } from '@mantine/core';
-import { IconCheck, IconExternalLink, IconSchool } from '@tabler/icons-react';
+import { IconCheck, IconFileDownload, IconSchool } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactTraining from '@/components/common/modals/contact/training';
-import documents from '@/assets/documents';
 import courses from '@/data/courses';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
+import ModalDownloadBrochure from '@/components/common/modals/download/brochure';
 
 export default function Training({
   data,
@@ -94,16 +94,16 @@ export default function Training({
         </Stack>
 
         <Group justify="center">
-          <Button
-            component="a"
-            href={documents.droneSpace.brochure}
-            target="_blank"
-            leftSection={
-              <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            Get the Brochure
-          </Button>
+          <ModalDownloadBrochure>
+            <Button
+              leftSection={
+                <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Get the Brochure
+            </Button>
+          </ModalDownloadBrochure>
+
           <ModalContactTraining>
             <Button
               leftSection={

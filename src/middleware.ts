@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { updateSession } from './libraries/supabase/middleware';
-import { createRedirectHandler } from './utilities/helpers/middeware';
+import {
+  createRedirectHandler,
+  setCorsHeaders,
+} from './utilities/helpers/middeware';
 
 export async function middleware(request: NextRequest) {
   // First check for redirects
@@ -13,22 +16,7 @@ export async function middleware(request: NextRequest) {
   // If no redirect, proceed with normal middleware
   const response = NextResponse.next({ request });
 
-  // Get the origin from the request headers
-  const origin = request.headers.get('origin') || '';
-
-  if (origin.includes('vercel.app') || origin.includes('dronespace.co.ke')) {
-    // Set CORS headers
-    response.headers.set('Access-Control-Allow-Credentials', 'true');
-    response.headers.set('Access-Control-Allow-Origin', origin);
-    response.headers.set(
-      'Access-Control-Allow-Methods',
-      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
-    );
-    response.headers.set(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
-    );
-  }
+  setCorsHeaders({ crossOrigins, request, response });
 
   return await updateSession(request, response);
 }
@@ -46,6 +34,16 @@ export const config = {
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };
+
+const crossOrigins = [
+  'localhost',
+  '127.0.0.1',
+  'devokrann.vercel.app',
+  'drone-space.vercel.app',
+  'dronespace.co.ke',
+  'conference-ai.vercel.app',
+  'aiconference.co.ke',
+];
 
 const staticRedirects = {
   '/contact': '/about/contact',
@@ -85,6 +83,16 @@ const dynamicRedirects = [
     // Matches "/services/any-service-title" and redirects to /drone-solutions
     pattern: /^\/services\/[^\/]+$/,
     replacement: '/drone-solutions',
+  },
+
+  {
+    pattern: /^\/resources\/blog\/categories\/([^\/]+)$/,
+    replacement: '/resources/blog',
+  },
+
+  {
+    pattern: /^\/resources\/blog\/tags\/([^\/]+)$/,
+    replacement: '/resources/blog',
   },
 ];
 

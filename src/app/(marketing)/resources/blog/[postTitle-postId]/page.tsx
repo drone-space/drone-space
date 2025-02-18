@@ -7,9 +7,8 @@ import { typeParams } from '../layout';
 import { postGet } from '@/handlers/requests/database/post';
 import {
   Anchor,
-  Badge,
   Center,
-  Divider,
+  // Divider,
   Flex,
   Group,
   NumberFormatter,
@@ -29,13 +28,13 @@ import {
   HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
+  REVALIDATE,
   SECTION_SPACING,
 } from '@/data/constants';
 // import CardBlogAuthor from '@/components/common/cards/blog/author';
-import PartialComments from '@/components/partial/comments';
+// import PartialComments from '@/components/partial/comments';
 import ImageDefault from '@/components/common/images/default';
 import { PostRelations } from '@/types/static/blog';
-import Link from 'next/link';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
@@ -43,7 +42,7 @@ import BlogContent from '@/components/partial/blog-content';
 import { processUrl } from '@/utilities/formatters/string';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = REVALIDATE.WEEK;
 
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
@@ -56,19 +55,6 @@ export default async function Post({ params }: { params: typeParams }) {
     <LayoutPage>
       <IntroPage
         props={{
-          path: (
-            <Badge
-              color="sec.3"
-              c={'pri'}
-              tt={'uppercase'}
-              fz={'sm'}
-              style={{ cursor: 'pointer' }}
-              component={Link}
-              href={`/resources/blog/categories/${post.category?.id}`}
-            >
-              {post.category?.title}
-            </Badge>
-          ),
           title: post.title,
           desc: post.excerpt,
         }}
@@ -151,7 +137,7 @@ export default async function Post({ params }: { params: typeParams }) {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection
+      {/* <LayoutSection
         id={'page-post-author'}
         margined={SECTION_SPACING / 2}
         containerized={'sm'}
@@ -159,7 +145,7 @@ export default async function Post({ params }: { params: typeParams }) {
         <Divider my={'lg'} />
       </LayoutSection>
 
-      <PartialComments props={{ post }} />
+      <PartialComments props={{ post }} /> */}
     </LayoutPage>
   );
 }

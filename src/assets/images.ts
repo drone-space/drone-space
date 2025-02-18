@@ -417,6 +417,7 @@ export const images = {
   posters: {
     ads: {
       image1: `${baseUrl.droneSpace}/posters/ads/image-1.webp`,
+      image2: `${baseUrl.droneSpace}/posters/ads/image-2.webp`,
     },
 
     conference: {

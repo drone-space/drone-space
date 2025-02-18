@@ -17,10 +17,15 @@ import { usePathname } from 'next/navigation';
 import ModalClaudeMain from '../modals/claude/main';
 import { images } from '@/assets/images';
 import classes from './assistant.module.scss';
-import { SESSION_STORAGE_NAME } from '@/data/constants';
+import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@/data/constants';
+import { getFromLocalStorage } from '@/utilities/helpers/storage';
+import { updateConversation } from '@/libraries/redux/slices/claude';
+import { useAppDispatch } from '@/hooks/redux';
 
 export default function Assistant() {
   const pathname = usePathname();
+
+  const dispatch = useAppDispatch();
 
   const [menuOpened, setMenuOpened] = useState(false);
   const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
@@ -75,11 +80,21 @@ export default function Assistant() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    // initialize conversation
+    const storedConversation = getFromLocalStorage(LOCAL_STORAGE_NAME.CLAUDE);
+    dispatch(updateConversation(storedConversation || []));
+  }, []);
+
   return (
     <Affix
       position={{ bottom: 'calc(var(--mantine-spacing-xl) * 1.5)', right: 0 }}
     >
-      <Transition transition="slide-left" mounted={scroll.y > 0 && !pinned}>
+      <Transition
+        transition="slide-left"
+        mounted={scroll.y > 0 && !pinned}
+        keepMounted={true}
+      >
         {(transitionStyles) => (
           <div style={transitionStyles}>
             <Tooltip

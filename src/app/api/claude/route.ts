@@ -1,18 +1,41 @@
 import anthropic from '@/libraries/anthropic';
+import { getFileContent } from '@/utilities/helpers/file';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
+    const messages = await req.json();
 
-    // create message
-    const message = await anthropic.beta.promptCaching.messages.create(data);
-
-    // console.log('Usage for current prompt:', message.usage);
-    return NextResponse.json(message, {
-      status: 200,
-      statusText: 'Prompt Sent',
+    const documentContent = await getFileContent({
+      directory: 'public/documents',
+      file: 'anthropic.txt',
+      encoding: 'utf-8',
     });
+
+    const response = await anthropic.messages.create({
+      model: process.env.NEXT_PUBLIC_CLAUDE_MODEL || '',
+      max_tokens: 1024,
+      system: [
+        {
+          type: 'text',
+          text: "You're a consultant at the drone training and reselling company Drone Space.",
+          cache_control: { type: 'ephemeral' },
+        },
+        {
+          type: 'text',
+          text: 'Please refer to the included information for context.',
+          cache_control: { type: 'ephemeral' },
+        },
+        {
+          type: 'text',
+          text: documentContent,
+          cache_control: { type: 'ephemeral' },
+        },
+      ],
+      messages: messages,
+    });
+
+    return NextResponse.json(response, { status: 200 });
   } catch (error) {
     console.error('---> route handler error (send prompt):', error);
     return NextResponse.json(

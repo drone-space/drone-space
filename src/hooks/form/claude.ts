@@ -9,12 +9,8 @@ import { saveToLocalStorage } from '@/utilities/helpers/storage';
 import { LOCAL_STORAGE_NAME } from '@/data/constants';
 
 export type FormClaudeType = UseFormReturnType<
-  {
-    content: string;
-  },
-  (values: { content: string }) => {
-    content: string;
-  }
+  { content: string },
+  (values: { content: string }) => { content: string }
 >;
 
 export const useFormClaude = () => {

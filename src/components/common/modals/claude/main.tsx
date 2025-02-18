@@ -109,10 +109,9 @@ export default function Main({ children }: { children: React.ReactNode }) {
                         variant="light"
                         fw={'normal'}
                         size="compact-xs"
-                        onClick={async () => {
-                          await form.setFieldValue('content', question);
-                          await handleSubmit(question);
-                        }}
+                        onClick={async () =>
+                          await handleSubmit(question.trim())
+                        }
                       >
                         {question}
                       </Button>

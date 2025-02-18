@@ -31,50 +31,50 @@ export const useFormClaude = () => {
     return form.values.content.trim();
   };
 
-  const handleSubmit = async (submitedValue?: string) => {
-    if (form.isValid()) {
-      try {
-        setSubmitted(true);
+  const handleSubmit = async (submitedValue?: any, noValidate?: boolean) => {
+    if (!noValidate && !form.isValid()) return;
 
-        const result = await sendPrompt({
-          content: submitedValue?.trim() || parseValues(),
-          conversation,
-        });
+    try {
+      setSubmitted(true);
 
-        if (!result) {
-          showNotification({
-            variant: Variant.FAILED,
-            title: 'Server Unavailable',
-            desc: `There was no response from the server.`,
-          });
-        } else {
-          const newConversation = [
-            ...conversation,
-            {
-              role: 'user',
-              content: submitedValue?.trim() || parseValues(),
-            },
-            { role: result.role, content: result.content[0].text },
-          ];
+      const result = await sendPrompt({
+        content: submitedValue.content || submitedValue || parseValues(),
+        conversation,
+      });
 
-          // add latest exchange to context
-          dispatch(updateConversation(newConversation));
-          // add latest exchange to local storage
-          saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, newConversation);
-
-          form.reset();
-        }
-      } catch (error) {
+      if (!result) {
         showNotification({
           variant: Variant.FAILED,
-          title: 'Prompt Failed',
-          desc: 'Could not generate response.',
+          title: 'Server Unavailable',
+          desc: `There was no response from the server.`,
         });
+      } else {
+        const newConversation = [
+          ...conversation,
+          {
+            role: 'user',
+            content: submitedValue.content || submitedValue || parseValues(),
+          },
+          { role: result.role, content: result.content[0].text },
+        ];
 
-        console.error('---> hook error (send prompt):', error);
-      } finally {
-        setSubmitted(false);
+        // add latest exchange to context
+        dispatch(updateConversation(newConversation));
+        // add latest exchange to local storage
+        saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, newConversation);
+
+        form.reset();
       }
+    } catch (error) {
+      showNotification({
+        variant: Variant.FAILED,
+        title: 'Prompt Failed',
+        desc: 'Could not generate response.',
+      });
+
+      console.error('---> hook error (send prompt):', error);
+    } finally {
+      setSubmitted(false);
     }
   };
 

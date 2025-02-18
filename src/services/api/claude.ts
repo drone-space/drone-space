@@ -2,9 +2,7 @@
 
 import { Turn } from '@/types/claude';
 import { API_URL } from '@/data/constants';
-
-import fs from 'fs/promises'; // Node.js file system module
-import path from 'path';
+import { getFileContent } from '@/utilities/helpers/file';
 
 export const sendPrompt = async (params: {
   content: string;
@@ -12,12 +10,11 @@ export const sendPrompt = async (params: {
 }) => {
   try {
     // Construct the path to the file in the public folder
-    const filePath = path.join(
-      process.cwd(),
-      'public/documents',
-      'anthropic.txt'
-    );
-    const documentContent = await fs.readFile(filePath, 'utf-8');
+    const documentContent = await getFileContent({
+      directory: 'public/documents',
+      file: 'anthropic.txt',
+      encoding: 'utf-8',
+    });
 
     const response = await fetch(`${API_URL}/claude`, {
       method: 'POST',
@@ -57,6 +54,6 @@ export const sendPrompt = async (params: {
     return result;
   } catch (error) {
     console.error('---> service error (send prompt):', error);
-    // throw error;
+    throw error;
   }
 };

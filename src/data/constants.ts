@@ -60,6 +60,11 @@ export const BUCKET_NAME = {
 export const LOCAL_STORAGE_NAME = {
   COUNTRY: 'country',
   COUNTRIES: 'countries',
+  CLAUDE: 'claude',
+};
+
+export const SESSION_STORAGE_NAME = {
+  CLAUDE_COUNT: 'claude-count',
 };
 
 const WITHOUT_BODY: HeadersInit = {

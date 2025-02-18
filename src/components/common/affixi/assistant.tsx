@@ -17,6 +17,7 @@ import { usePathname } from 'next/navigation';
 import ModalClaudeMain from '../modals/claude/main';
 import { images } from '@/assets/images';
 import classes from './assistant.module.scss';
+import { SESSION_STORAGE_NAME } from '@/data/constants';
 
 export default function Assistant() {
   const pathname = usePathname();
@@ -44,31 +45,29 @@ export default function Assistant() {
   };
 
   useEffect(() => {
-    // sessionStorage.clear();
-
     if (pathname == '/' || routeIncluded) {
       try {
-        const count = sessionStorage.getItem('modalClaudeCount');
+        const count = sessionStorage.getItem(SESSION_STORAGE_NAME.CLAUDE_COUNT);
 
         if (!count) {
           start();
           setTimeout(() => setMenuOpened(false), 14000);
 
-          sessionStorage.setItem('modalClaudeCount', '0');
+          sessionStorage.setItem(SESSION_STORAGE_NAME.CLAUDE_COUNT, '0');
         } else {
           if (Number(count) <= routes.length) {
             start();
             setTimeout(() => setMenuOpened(false), 14000);
 
             sessionStorage.setItem(
-              'modalClaudeCount',
+              SESSION_STORAGE_NAME.CLAUDE_COUNT,
               (Number(count) + 1).toString()
             );
           }
         }
       } catch (e) {
         console.error(
-          "Couldn't fetch from local storage",
+          "Couldn't fetch from session storage",
           (e as Error).message
         );
       }

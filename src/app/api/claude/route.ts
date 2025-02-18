@@ -1,16 +1,20 @@
 import anthropic from '@/libraries/anthropic';
-import { getFileContent } from '@/utilities/helpers/file';
 import { NextRequest, NextResponse } from 'next/server';
+
+const documentUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/documents/anthropic.txt`;
 
 export async function POST(req: NextRequest) {
   try {
     const messages = await req.json();
 
-    const documentContent = await getFileContent({
-      directory: 'public/documents',
-      file: 'anthropic.txt',
-      encoding: 'utf-8',
-    });
+    // Fetch document content from Supabase
+    const documentResponse = await fetch(documentUrl);
+
+    if (!documentResponse.ok) {
+      throw new Error('Failed to fetch document content');
+    }
+
+    const documentContent = await documentResponse.text();
 
     const response = await anthropic.messages.create({
       model: process.env.NEXT_PUBLIC_CLAUDE_MODEL || '',

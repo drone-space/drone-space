@@ -31,6 +31,14 @@ export default function Claude({
           maxRows={4}
           {...props.form.getInputProps('content')}
           onKeyDown={getHotkeyHandler([
+            [
+              'shift + Enter',
+              () =>
+                props.form.setFieldValue(
+                  'content',
+                  props.form.values.content + '\n'
+                ),
+            ],
             ['Enter', props.form.onSubmit(props.handleSubmit)],
           ])}
           classNames={classes}

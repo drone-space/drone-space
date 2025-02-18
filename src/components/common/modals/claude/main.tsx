@@ -18,24 +18,16 @@ import FormClaude from '@/components/form/claude';
 import LayoutSection from '@/components/layout/section';
 import { IconMessageCirclePlus } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { useAppSelector } from '@/hooks/redux';
 import ImageDefault from '../../images/default';
 import { images } from '@/assets/images';
 import { MarkdownComponent } from '@/components/wrapper/markdown';
-import { updateConversation } from '@/libraries/redux/slices/claude';
 import { useFormClaude } from '@/hooks/form/claude';
 
 export default function Main({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
-
+  const { form, submitted, handleSubmit, resetConversation } = useFormClaude();
   const conversation = useAppSelector((state) => state.claude.value);
-  const dispatch = useAppDispatch();
-
-  const clearConversation = () => {
-    dispatch(updateConversation([]));
-  };
-
-  const { form, submitted, handleSubmit } = useFormClaude();
 
   return (
     <>
@@ -188,7 +180,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
               <Group gap={'xs'}>
                 <Button
                   size="compact-xs"
-                  onClick={clearConversation}
+                  onClick={resetConversation}
                   disabled={conversation.length < 1}
                   leftSection={
                     <IconMessageCirclePlus

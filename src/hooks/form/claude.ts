@@ -5,6 +5,8 @@ import { sendPrompt } from '@/services/api/claude';
 import { showNotification } from '@/utilities/notifications';
 import { updateConversation } from '@/libraries/redux/slices/claude';
 import { Variant } from '@/enums/notification';
+import { saveToLocalStorage } from '@/utilities/helpers/storage';
+import { LOCAL_STORAGE_NAME } from '@/data/constants';
 
 export type FormClaudeType = UseFormReturnType<
   {
@@ -15,16 +17,14 @@ export type FormClaudeType = UseFormReturnType<
   }
 >;
 
-export const useFormClaude = (params?: { regenerating?: boolean }) => {
+export const useFormClaude = () => {
   const [submitted, setSubmitted] = useState(false);
   const conversation = useAppSelector((state) => state.claude.value);
   const dispatch = useAppDispatch();
 
   const form = useForm({
     initialValues: { content: '' },
-    validate: {
-      content: (value) => !params?.regenerating && value.trim().length < 1,
-    },
+    validate: { content: (value) => value.trim().length < 1 },
   });
 
   const parseValues = () => {
@@ -36,14 +36,10 @@ export const useFormClaude = (params?: { regenerating?: boolean }) => {
       try {
         setSubmitted(true);
 
-        console.log('submitedValue', submitedValue);
-
         const result = await sendPrompt({
           content: submitedValue?.trim() || parseValues(),
           conversation,
         });
-
-        console.log('result', result);
 
         if (!result) {
           showNotification({
@@ -52,47 +48,19 @@ export const useFormClaude = (params?: { regenerating?: boolean }) => {
             desc: `There was no response from the server.`,
           });
         } else {
+          const newConversation = [
+            ...conversation,
+            {
+              role: 'user',
+              content: submitedValue?.trim() || parseValues(),
+            },
+            { role: result.role, content: result.content[0].text },
+          ];
+
           // add latest exchange to context
-          if (!params?.regenerating) {
-            dispatch(
-              updateConversation([
-                ...conversation,
-                {
-                  role: 'user',
-                  content: submitedValue?.trim() || parseValues(),
-                },
-                { role: result.role, content: result.content[0].text },
-              ])
-            );
-          } else {
-            if (conversation.length > 0) {
-              if (conversation[conversation.length - 1].role == 'assistant') {
-                dispatch(
-                  updateConversation(
-                    conversation
-                      .filter(
-                        (t) =>
-                          t.content !=
-                          conversation[conversation.length - 1].content
-                      )
-                      .concat({
-                        role: result.role,
-                        content: result.content[0].text,
-                      })
-                  )
-                );
-              } else {
-                dispatch(
-                  updateConversation(
-                    conversation.concat({
-                      role: result.role,
-                      content: result.content[0].text,
-                    })
-                  )
-                );
-              }
-            }
-          }
+          dispatch(updateConversation(newConversation));
+          // add latest exchange to local storage
+          saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, newConversation);
 
           form.reset();
         }
@@ -110,5 +78,25 @@ export const useFormClaude = (params?: { regenerating?: boolean }) => {
     }
   };
 
-  return { form, submitted, handleSubmit };
+  const resetConversation = async () => {
+    try {
+      setSubmitted(true);
+
+      await form.reset();
+      await dispatch(updateConversation([]));
+      await saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, []);
+    } catch (error) {
+      showNotification({
+        variant: Variant.FAILED,
+        title: 'Reset Failed',
+        desc: 'Could not reset conversation.',
+      });
+
+      console.error('---> hook error (reset conversation):', error);
+    } finally {
+      setSubmitted(false);
+    }
+  };
+
+  return { form, submitted, handleSubmit, resetConversation };
 };

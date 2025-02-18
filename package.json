@@ -6,13 +6,12 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint",
-    "check-types": "tsc --noEmit",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "lint": "next lint",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^1.1.8",
     "@anthropic-ai/sdk": "^0.36.3",
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@mantine/carousel": "^7.13.2",
@@ -39,7 +38,6 @@
     "@tiptap/pm": "^2.8.0",
     "@tiptap/react": "^2.8.0",
     "@tiptap/starter-kit": "^2.8.0",
-    "ai": "^4.1.41",
     "bcryptjs": "^2.4.3",
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",

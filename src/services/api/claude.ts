@@ -1,7 +1,6 @@
 'use server';
 
 import { Turn } from '@/types/claude';
-import ai from '@/data/ai';
 import { API_URL } from '@/data/constants';
 
 export const sendPrompt = async (params: {
@@ -11,25 +10,11 @@ export const sendPrompt = async (params: {
   try {
     const response = await fetch(`${API_URL}/claude`, {
       method: 'POST',
-      body: JSON.stringify({
-        model: process.env.NEXT_PUBLIC_CLAUDE_MODEL,
-        max_tokens: 1024,
-        messages: [
-          ...params.conversation,
-          { role: 'user', content: params.content },
-        ],
-        system: [
-          {
-            type: 'text',
-            text: ai,
-            cache_control: { type: 'ephemeral' },
-          },
-        ],
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+      body: JSON.stringify([
+        ...params.conversation,
+        { role: 'user', content: params.content },
+      ]),
+      headers: { 'Content-Type': 'application/json' },
     });
 
     const result = await response.json();
@@ -37,6 +22,6 @@ export const sendPrompt = async (params: {
     return result;
   } catch (error) {
     console.error('---> service error (send prompt):', error);
-    // throw error;
+    throw error;
   }
 };

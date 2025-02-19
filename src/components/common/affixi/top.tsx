@@ -31,6 +31,7 @@ export default function Top({
       <WrapperTransition
         transition={'slide-left'}
         mounted={scroll.y > 0 && !pinned}
+        keepMounted={true}
       >
         <ActionIcon
           size={ICON_WRAPPER_SIZE}

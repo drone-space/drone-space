@@ -5,7 +5,7 @@ import HeroShop from '@/components/layout/hero/shop';
 import CardShopFactor from '@/components/common/cards/shop/factor';
 import CtaShopCategories from '@/components/partial/cta/shop/categories';
 import CardShopDroneFeatured from '@/components/common/cards/shop/drones/featured';
-import { Grid, GridCol, Stack, Text, Title } from '@mantine/core';
+import { Grid, GridCol, Text, Title } from '@mantine/core';
 import {
   IconDiscount2,
   IconDropletBolt,
@@ -24,26 +24,22 @@ export default async function Shop() {
       <HeroShop />
 
       <LayoutSection id="page-shop-intro" padded shadowed>
-        <Stack gap={'xl'}>
-          <Stack gap={'xs'}>
-            <Title ta={'center'} order={2}>
-              Which Drone Should I Buy?
-            </Title>
-            <Text ta={'center'}>
-              The drone you get mainly depends on the purpose for which you need
-              it. There are plenty of factors to consider before selecting a
-              drone.
-            </Text>
-          </Stack>
+        <Title ta={'center'} order={2}>
+          Which Drone Should I Buy?
+        </Title>
 
-          <Grid>
-            {factors.map((factor, index) => (
-              <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
-                <CardShopFactor data={factor} />
-              </GridCol>
-            ))}
-          </Grid>
-        </Stack>
+        <Text ta={'center'} mt={'xs'}>
+          The drone you get mainly depends on the purpose for which you need it.
+          There are plenty of factors to consider before selecting a drone.
+        </Text>
+
+        <Grid mt={'xl'}>
+          {factors.map((factor, index) => (
+            <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
+              <CardShopFactor data={factor} />
+            </GridCol>
+          ))}
+        </Grid>
       </LayoutSection>
 
       <LayoutSection
@@ -54,9 +50,7 @@ export default async function Shop() {
           'light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light))'
         }
       >
-        <Stack gap={'xl'} align="center">
-          {productFeatured && <CardShopDroneFeatured data={productFeatured} />}
-        </Stack>
+        {productFeatured && <CardShopDroneFeatured data={productFeatured} />}
       </LayoutSection>
 
       <CtaShopCategories />

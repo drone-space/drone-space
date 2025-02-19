@@ -1,6 +1,5 @@
 import React from 'react';
 import { Metadata } from 'next';
-import NextImage from 'next/image';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import HeroShows from '@/components/layout/hero/shows';
@@ -15,7 +14,6 @@ import {
   Flex,
   Grid,
   GridCol,
-  Image,
   List,
   ListItem,
   Stack,
@@ -39,6 +37,7 @@ import videos from '@/assets/videos';
 import appData from '@/data/app';
 import shows from '@/data/shows';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import ImageDefault from '@/components/common/images/default';
 
 export const metadata: Metadata = {
   title: 'Drone Light Shows - Stunning Aerial Displays by Drone Space',
@@ -64,47 +63,41 @@ export default async function LighShow() {
       >
         <Grid gutter={0}>
           <GridCol span={{ base: 12, sm: 6 }}>
-            <Stack h={'100%'}>
-              <Image
-                src={images.shows.talk}
-                alt={"Let's Talk Drone Light Shows"}
-                loading="lazy"
-                mih={'100%'}
-                component={NextImage}
-                width={1920}
-                height={1080}
-              />
-            </Stack>
+            <ImageDefault
+              src={images.shows.talk}
+              alt={"Let's Talk Drone Light Shows"}
+              loading="lazy"
+              height={{ base: 160, xs: 560, md: 480, lg: 420 }}
+            />
           </GridCol>
           <GridCol span={{ base: 12, sm: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
-              <Stack>
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={{ base: 'center', md: 'start' }}
-                  fz={{ md: 24 }}
-                >
-                  Let&apos;s Talk Drone Light Shows
-                </Title>
+              <Title
+                order={2}
+                fw={'bold'}
+                ta={{ base: 'center', md: 'start' }}
+                fz={{ md: 24 }}
+              >
+                Let&apos;s Talk Drone Light Shows
+              </Title>
 
-                <Divider color="sec.3" size={2} />
+              <Divider color="sec.3" size={2} mt={'md'} />
 
-                <List
-                  spacing={'xs'}
-                  icon={
-                    <IconChevronsRight
-                      size={ICON_SIZE * 1.5}
-                      stroke={ICON_STROKE_WIDTH}
-                      color="var(--mantine-color-pri-9)"
-                    />
-                  }
-                >
-                  {data.talk.map((item, index) => (
-                    <ListItem key={index}>{item}</ListItem>
-                  ))}
-                </List>
-              </Stack>
+              <List
+                mt={'md'}
+                spacing={'xs'}
+                icon={
+                  <IconChevronsRight
+                    size={ICON_SIZE * 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                    color="var(--mantine-color-pri-9)"
+                  />
+                }
+              >
+                {data.talk.map((item, index) => (
+                  <ListItem key={index}>{item}</ListItem>
+                ))}
+              </List>
             </Container>
           </GridCol>
         </Grid>
@@ -118,38 +111,31 @@ export default async function LighShow() {
       >
         <Grid gutter={0}>
           <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
-            <Stack h={'100%'}>
-              <Image
-                src={images.shows.understanding}
-                alt={'Understanding Drone Light Shows'}
-                loading="lazy"
-                mih={'100%'}
-                component={NextImage}
-                width={1920}
-                height={1080}
-              />
-            </Stack>
+            <ImageDefault
+              src={images.shows.understanding}
+              alt={'Understanding Drone Light Shows'}
+              loading="lazy"
+              height={{ base: 160, xs: 560, md: 640, lg: 420 }}
+            />
           </GridCol>
           <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
-              <Stack gap={'xl'}>
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={{ base: 'center', sm: 'start' }}
-                  fz={{ md: 24 }}
-                >
-                  Understanding Drone Light Shows
-                </Title>
+              <Title
+                order={2}
+                fw={'bold'}
+                ta={{ base: 'center', sm: 'start' }}
+                fz={{ md: 24 }}
+              >
+                Understanding Drone Light Shows
+              </Title>
 
-                <Grid>
-                  {data.understand.map((item, index) => (
-                    <GridCol key={index} span={{ base: 12, md: 6 }}>
-                      <CardShowsUnderstand data={item} />
-                    </GridCol>
-                  ))}
-                </Grid>
-              </Stack>
+              <Grid mt={'xl'}>
+                {data.understand.map((item, index) => (
+                  <GridCol key={index} span={{ base: 12, md: 6 }}>
+                    <CardShowsUnderstand data={item} />
+                  </GridCol>
+                ))}
+              </Grid>
             </Container>
           </GridCol>
         </Grid>
@@ -183,30 +169,28 @@ export default async function LighShow() {
           </GridCol>
           <GridCol span={{ base: 12, sm: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
-              <Stack gap={'xl'}>
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={{ base: 'center', sm: 'start' }}
-                  fz={{ md: 24 }}
-                  w={{ md: '75%' }}
-                >
-                  Advantages of Drone Space Light Shows
-                </Title>
+              <Title
+                order={2}
+                fw={'bold'}
+                ta={{ base: 'center', sm: 'start' }}
+                fz={{ md: 24 }}
+                w={{ md: '75%' }}
+              >
+                Advantages of Drone Space Light Shows
+              </Title>
 
-                <Grid>
-                  {data.advantages.map((advantage, index) => (
-                    <GridCol key={index} span={{ base: 12 }}>
-                      <CardShowsAdvantages
-                        data={{
-                          ...advantage,
-                          icon: data.icons[data.advantages.indexOf(advantage)],
-                        }}
-                      />
-                    </GridCol>
-                  ))}
-                </Grid>
-              </Stack>
+              <Grid mt={'xl'}>
+                {data.advantages.map((advantage, index) => (
+                  <GridCol key={index} span={{ base: 12 }}>
+                    <CardShowsAdvantages
+                      data={{
+                        ...advantage,
+                        icon: data.icons[data.advantages.indexOf(advantage)],
+                      }}
+                    />
+                  </GridCol>
+                ))}
+              </Grid>
             </Container>
           </GridCol>
         </Grid>
@@ -215,53 +199,46 @@ export default async function LighShow() {
       <LayoutSection id="page-lightshow-why" containerized={false} shadowed>
         <Grid gutter={0}>
           <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
-            <Stack h={'100%'}>
-              <Image
-                src={images.shows.hny}
-                alt={'Why Choose Drone Light Shows?'}
-                loading="lazy"
-                mih={'100%'}
-                component={NextImage}
-                width={1920}
-                height={1080}
-              />
-            </Stack>
+            <ImageDefault
+              src={images.shows.hny}
+              alt={'Why Choose Drone Light Shows?'}
+              loading="lazy"
+              height={{ base: 160, xs: 560, md: 640, lg: 420 }}
+            />
           </GridCol>
           <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
-              <Stack gap={'xl'}>
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={{ base: 'center', sm: 'start' }}
-                  fz={{ md: 24 }}
-                  w={{ md: '80%' }}
-                >
-                  Why Choose Drone Light Shows Over Fireworks?
-                </Title>
+              <Title
+                order={2}
+                fw={'bold'}
+                ta={{ base: 'center', sm: 'start' }}
+                fz={{ md: 24 }}
+                w={{ md: '80%' }}
+              >
+                Why Choose Drone Light Shows Over Fireworks?
+              </Title>
 
-                <List spacing={'xs'} listStyleType="none">
-                  {data.why.map((item, index) => (
-                    <Stack key={index} gap={0}>
-                      {data.why.indexOf(item) > 0 && (
-                        <Divider
-                          size={3}
-                          color="sec.3"
-                          variant="dotted"
-                          my={'xs'}
-                        />
-                      )}
+              <List spacing={'xs'} listStyleType="none" mt={'xl'}>
+                {data.why.map((item) => (
+                  <>
+                    {data.why.indexOf(item) > 0 && (
+                      <Divider
+                        size={3}
+                        color="sec.3"
+                        variant="dotted"
+                        my={'md'}
+                      />
+                    )}
 
-                      <ListItem>
-                        <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                          {item.label}
-                        </Text>
-                        : {item.item}
-                      </ListItem>
-                    </Stack>
-                  ))}
-                </List>
-              </Stack>
+                    <ListItem mt={'md'}>
+                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                        {item.label}
+                      </Text>
+                      : {item.item}
+                    </ListItem>
+                  </>
+                ))}
+              </List>
             </Container>
           </GridCol>
         </Grid>
@@ -276,32 +253,22 @@ export default async function LighShow() {
           'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
         }
       >
-        <Stack gap={48}>
-          <Stack gap={'xs'} align="center">
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 24 }}
-              w={{ md: '80%' }}
-            >
-              Versatile Applications
-            </Title>
+        <Title order={2} fw={'bold'} ta={'center'} fz={{ md: 24 }}>
+          Versatile Applications
+        </Title>
 
-            <Text ta={'center'} w={{ md: '80%' }}>
-              Drone Space light shows are perfect for a wide range of events and
-              celebrations, adding a unique and memorable touch to any occasion
-            </Text>
-          </Stack>
+        <Text ta={'center'} mt={'xs'}>
+          Drone Space light shows are perfect for a wide range of events and
+          celebrations, adding a unique and memorable touch to any occasion
+        </Text>
 
-          <Grid>
-            {data.applications.map((application, index) => (
-              <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
-                <CardShowsApplications data={application} />
-              </GridCol>
-            ))}
-          </Grid>
-        </Stack>
+        <Grid mt={48}>
+          {data.applications.map((application, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
+              <CardShowsApplications data={application} />
+            </GridCol>
+          ))}
+        </Grid>
       </LayoutSection>
 
       <LayoutSection
@@ -325,34 +292,33 @@ export default async function LighShow() {
           style={{ backgroundColor: 'rgba(0,0,0,0.40)' }}
         ></Box>
 
-        <Stack gap={48} pos={'relative'}>
+        <Stack pos={'relative'}>
           <Grid align="center">
             <GridCol span={{ base: 12, md: 8, lg: 9 }}>
-              <Stack gap={'xs'}>
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={{ base: 'center', md: 'start' }}
-                  fz={{ base: 'lg', sm: 'xl', md: 28 }}
-                  c={
-                    'light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))'
-                  }
-                >
-                  Your Brand, Your Story, Our Drones:
-                  <br />
-                  Be the First to Make a Statement in Kenya!
-                </Title>
+              <Title
+                order={2}
+                fw={'bold'}
+                ta={{ base: 'center', md: 'start' }}
+                fz={{ base: 'lg', sm: 'xl', md: 28 }}
+                c={
+                  'light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))'
+                }
+              >
+                Your Brand, Your Story, Our Drones:
+                <br />
+                Be the First to Make a Statement in Kenya!
+              </Title>
 
-                <Text
-                  ta={{ base: 'center', md: 'start' }}
-                  fz={{ base: 'xs', md: 'sm' }}
-                >
-                  As one of the leading providers of drone light shows in Kenya,
-                  Drone Space is at the forefront of this innovative technology.
-                  Join the ranks of innovative brands by booking your exclusive
-                  drone light show with us.
-                </Text>
-              </Stack>
+              <Text
+                ta={{ base: 'center', md: 'start' }}
+                fz={{ base: 'xs', md: 'sm' }}
+                mt={'xs'}
+              >
+                As one of the leading providers of drone light shows in Kenya,
+                Drone Space is at the forefront of this innovative technology.
+                Join the ranks of innovative brands by booking your exclusive
+                drone light show with us.
+              </Text>
             </GridCol>
 
             <GridCol span={{ base: 12, md: 4, lg: 3 }}>
@@ -403,25 +369,20 @@ export default async function LighShow() {
       >
         <Grid gutter={{ base: 'xl', md: 'md' }}>
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <Stack gap={48}>
-              <Stack gap={'xs'} align="center">
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={'center'}
-                  fz={{ md: 'md', lg: 'lg' }}
-                  w={{ md: '80%' }}
-                >
-                  FAQ&apos;s
-                </Title>
+            <Title
+              order={2}
+              fw={'bold'}
+              ta={'center'}
+              fz={{ md: 'md', lg: 'lg' }}
+            >
+              FAQ&apos;s
+            </Title>
 
-                <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'}>
-                  Below are some general questions to familiarize yourself
-                </Text>
-              </Stack>
+            <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'} mt={'xs'} mb={48}>
+              Below are some general questions to familiarize yourself
+            </Text>
 
-              <AccordionShows variant="default" />
-            </Stack>
+            <AccordionShows variant="default" />
           </GridCol>
 
           <GridCol span={{ md: 1 }} visibleFrom="md">
@@ -431,25 +392,21 @@ export default async function LighShow() {
           </GridCol>
 
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <Stack gap={48}>
-              <Stack gap={'xs'} align="center">
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={'center'}
-                  fz={{ md: 'md', lg: 'lg' }}
-                  w={{ md: '80%' }}
-                >
-                  Factors Affecting the Cost
-                </Title>
+            <Title
+              order={2}
+              fw={'bold'}
+              ta={'center'}
+              fz={{ md: 'md', lg: 'lg' }}
+              w={{ md: '80%' }}
+            >
+              Factors Affecting the Cost
+            </Title>
 
-                <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'}>
-                  The following are some factors that determine the pricing
-                </Text>
-              </Stack>
+            <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'} mt={'xs'} mb={48}>
+              The following are some factors that determine the pricing
+            </Text>
 
-              <AccordionShows variant="factors" />
-            </Stack>
+            <AccordionShows variant="factors" />
           </GridCol>
         </Grid>
       </LayoutSection>
@@ -463,50 +420,40 @@ export default async function LighShow() {
           'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
         }
       >
-        <Stack gap={48}>
-          <Stack gap={'xs'} align="center">
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 24 }}
-              w={{ md: '80%' }}
-            >
-              Typical Pricing Ranges
-            </Title>
+        <Title order={2} fw={'bold'} ta={'center'} fz={{ md: 24 }}>
+          Typical Pricing Ranges
+        </Title>
 
-            <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'}>
-              Here are some general considerations and typical pricing ranges
-            </Text>
-          </Stack>
+        <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'} mt={'xs'}>
+          Here are some general considerations and typical pricing ranges
+        </Text>
 
-          <Grid justify="center">
-            {data.pricing.map(
-              (price, index) =>
-                data.pricing.indexOf(price) < 3 && (
-                  <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
-                    <CardShowsPrice data={price} />
-                  </GridCol>
-                )
-            )}
+        <Grid justify="center" mt={48}>
+          {data.pricing.map(
+            (price, index) =>
+              data.pricing.indexOf(price) < 3 && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
+                  <CardShowsPrice data={price} />
+                </GridCol>
+              )
+          )}
 
-            {data.pricing.map(
-              (price, index) =>
-                data.pricing.indexOf(price) > 2 && (
-                  <GridCol key={index} span={{ base: 12, xs: 6, md: 5 }}>
-                    <CardShowsPrice data={price} />
-                  </GridCol>
-                )
-            )}
-          </Grid>
+          {data.pricing.map(
+            (price, index) =>
+              data.pricing.indexOf(price) > 2 && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 5 }}>
+                  <CardShowsPrice data={price} />
+                </GridCol>
+              )
+          )}
+        </Grid>
 
-          <Text ta={'center'}>
-            <Text component="span" inherit fw={500} c={'pri'}>
-              Note:
-            </Text>{' '}
-            All our drone light shows take 12-15 minutes.
-          </Text>
-        </Stack>
+        <Text ta={'center'} mt={48}>
+          <Text component="span" inherit fw={500} c={'pri'}>
+            Note:
+          </Text>{' '}
+          All our drone light shows take 12-15 minutes.
+        </Text>
       </LayoutSection>
 
       <LayoutSection
@@ -514,47 +461,37 @@ export default async function LighShow() {
         padded
         containerized={'responsive'}
       >
-        <Stack gap={48}>
-          <Stack gap={'xs'} align="center">
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 24 }}
-              w={{ md: '80%' }}
-            >
-              Project Timeline
-            </Title>
-          </Stack>
+        <Title order={2} fw={'bold'} ta={'center'} fz={{ md: 24 }}>
+          Project Timeline
+        </Title>
 
-          <Grid>
-            {data.timeline.map((item, index) => (
-              <GridCol key={index} span={{ base: 12, md: 6 }}>
-                <Card
-                  withBorder
-                  bg={'gray.1'}
-                  style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
-                  h={'100%'}
+        <Grid mt={48}>
+          {data.timeline.map((item, index) => (
+            <GridCol key={index} span={{ base: 12, md: 6 }}>
+              <Card
+                withBorder
+                bg={'gray.1'}
+                style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
+                h={'100%'}
+              >
+                <Title
+                  order={3}
+                  fw={'bold'}
+                  ta={'center'}
+                  fz={{ md: 'lg' }}
+                  mb={'md'}
                 >
-                  <Stack>
-                    <Title
-                      order={3}
-                      fw={'bold'}
-                      ta={'center'}
-                      fz={{ md: 'lg' }}
-                    >
-                      <Text component="span" inherit visibleFrom="md">
-                        {data.timeline.indexOf(item) + 1}.{' '}
-                      </Text>
-                      {item.title}
-                    </Title>
-                    <TableShows data={item.desc} />
-                  </Stack>
-                </Card>
-              </GridCol>
-            ))}
-          </Grid>
-        </Stack>
+                  <Text component="span" inherit visibleFrom="md">
+                    {data.timeline.indexOf(item) + 1}.{' '}
+                  </Text>
+                  {item.title}
+                </Title>
+
+                <TableShows data={item.desc} />
+              </Card>
+            </GridCol>
+          ))}
+        </Grid>
       </LayoutSection>
 
       <LayoutSection
@@ -581,31 +518,30 @@ export default async function LighShow() {
         <Stack gap={48} pos={'relative'}>
           <Grid align="center">
             <GridCol span={{ base: 12, md: 8, lg: 9 }}>
-              <Stack gap={'xs'}>
-                <Title
-                  order={2}
-                  fw={'bold'}
-                  ta={{ base: 'center', md: 'start' }}
-                  fz={{ base: 'lg', sm: 'xl', md: 28 }}
-                  c={
-                    'light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))'
-                  }
-                >
-                  Book Your Drone Light Show Today
-                </Title>
+              <Title
+                order={2}
+                fw={'bold'}
+                ta={{ base: 'center', md: 'start' }}
+                fz={{ base: 'lg', sm: 'xl', md: 28 }}
+                c={
+                  'light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))'
+                }
+              >
+                Book Your Drone Light Show Today
+              </Title>
 
-                <Text
-                  ta={{ base: 'center', md: 'start' }}
-                  fz={{ base: 'xs', md: 'sm' }}
-                >
-                  Drone Space&apos;s commitment to excellence and innovation
-                  ensures that our drone light shows will not only meet but
-                  exceed the expectations of our clients and audiences. As we
-                  continue to lead the way in drone technology, we invite you to
-                  experience the magic and wonder of our drone light shows,
-                  setting new standards for entertainment in Kenya and beyond.
-                </Text>
-              </Stack>
+              <Text
+                ta={{ base: 'center', md: 'start' }}
+                fz={{ base: 'xs', md: 'sm' }}
+                mt={'xs'}
+              >
+                Drone Space&apos;s commitment to excellence and innovation
+                ensures that our drone light shows will not only meet but exceed
+                the expectations of our clients and audiences. As we continue to
+                lead the way in drone technology, we invite you to experience
+                the magic and wonder of our drone light shows, setting new
+                standards for entertainment in Kenya and beyond.
+              </Text>
             </GridCol>
 
             <GridCol span={{ base: 12, md: 4, lg: 3 }}>

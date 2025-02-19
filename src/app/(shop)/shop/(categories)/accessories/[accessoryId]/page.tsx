@@ -7,7 +7,6 @@ import {
   GridCol,
   Group,
   NumberFormatter,
-  Stack,
   Text,
   ThemeIcon,
   Title,
@@ -45,65 +44,61 @@ export default function AccessoryDetails({ params }: typeParams) {
             </Center>
           </GridCol>
           <GridCol span={{ md: 6 }}>
-            <Stack gap={'xl'}>
-              <Stack>
-                <Title order={2} fz={{ md: 32 }}>
-                  {product?.title.long}
-                </Title>
+            <Title order={2} fz={{ md: 32 }}>
+              {product?.title.long}
+            </Title>
 
-                {product?.price && (
-                  <Text>
-                    Kshs.{' '}
-                    <Text
-                      component="span"
-                      inherit
-                      fw={500}
-                      c={
-                        'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                      }
-                      fz={{ md: 'xl' }}
-                    >
-                      <NumberFormatter
-                        value={product.price.former}
-                        thousandSeparator
-                      />
-                    </Text>
-                  </Text>
-                )}
-              </Stack>
+            {product?.price && (
+              <Text mt={'md'}>
+                Kshs.{' '}
+                <Text
+                  component="span"
+                  inherit
+                  fw={500}
+                  c={
+                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                  }
+                  fz={{ md: 'xl' }}
+                >
+                  <NumberFormatter
+                    value={product.price.former}
+                    thousandSeparator
+                  />
+                </Text>
+              </Text>
+            )}
 
-              {typeof product?.specs == 'string' ? (
-                <Text>{product.specs}</Text>
-              ) : (
-                <Grid>
-                  {product?.specs.map((spec, index) => (
-                    <GridCol key={index} span={12}>
-                      <Group gap={'xs'}>
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          radius={'xl'}
-                          color="sec.4"
-                          c={'pri.9'}
-                          visibleFrom="xs"
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
-                        </ThemeIcon>
+            {typeof product?.specs == 'string' ? (
+              <Text mt={'xl'}>{product.specs}</Text>
+            ) : (
+              <Grid mt={'xl'}>
+                {product?.specs.map((spec, index) => (
+                  <GridCol key={index} span={12}>
+                    <Group gap={'xs'}>
+                      <ThemeIcon
+                        size={ICON_WRAPPER_SIZE / 1.5}
+                        radius={'xl'}
+                        color="sec.4"
+                        c={'pri.9'}
+                        visibleFrom="xs"
+                      >
+                        <IconArrowRightDashed
+                          size={ICON_SIZE / 1.5}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      </ThemeIcon>
 
-                        <Text fz={{ base: 'xs', xs: 'sm' }}>
-                          <Text component="span" inherit fw={500}>
-                            {spec.label}
-                          </Text>
-                          : {spec.desc}
+                      <Text fz={{ base: 'xs', xs: 'sm' }}>
+                        <Text component="span" inherit fw={500}>
+                          {spec.label}
                         </Text>
-                      </Group>
-                    </GridCol>
-                  ))}
-                </Grid>
-              )}
-            </Stack>
+                        : {spec.desc}
+                      </Text>
+                    </Group>
+                  </GridCol>
+                ))}
+              </Grid>
+            )}
           </GridCol>
         </Grid>
       </LayoutSection>

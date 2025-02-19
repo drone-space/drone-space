@@ -8,8 +8,6 @@ import {
   Divider,
   Grid,
   GridCol,
-  Group,
-  Stack,
   Text,
 } from '@mantine/core';
 import { images } from '@/assets/images';
@@ -65,56 +63,49 @@ export default async function About() {
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6 }}>
-            <Stack gap={'xl'}>
-              <Group pr={{ md: 40 }}>
-                <IntroSection
-                  props={{
-                    subTitle: 'Who Are We',
-                    title:
-                      'Approved Unmanned Aircraft Systems Training Organization',
-                  }}
-                  options={{ alignment: 'start' }}
-                />
-              </Group>
+            <IntroSection
+              props={{
+                subTitle: 'Who Are We',
+                title:
+                  'Approved Unmanned Aircraft Systems Training Organization',
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack gap={'xs'}>
-                <Text>
-                  {appData.name.app} is one of the first certified UTO, ROC and
-                  Drone distributors in Kenya. Established in 2018,{' '}
-                  {appData.name.app} is approved and certified by{' '}
-                  <Anchor
-                    inherit
-                    underline="hover"
-                    href="https://kcaa.or.ke/"
-                    target="_blank"
-                  >
-                    Kenya Civil Aviation Authority (KCAA)
-                  </Anchor>{' '}
-                  to offer Remote Pilot License (RPL) course in multi-rotor and
-                  fixed wing, RPL instructor rating and soon Beyond Visual Line
-                  of Sight (BVLOS) rating. The Academy provides Kenya&apos;s
-                  highest quality drone training with a simple yet comprehensive
-                  model for corporate clients, government agencies, public
-                  safety departments, and individuals.
-                </Text>
+            <Text mt={'xl'}>
+              {appData.name.app} is one of the first certified UTO, ROC and
+              Drone distributors in Kenya. Established in 2018,{' '}
+              {appData.name.app} is approved and certified by{' '}
+              <Anchor
+                inherit
+                underline="hover"
+                href="https://kcaa.or.ke/"
+                target="_blank"
+              >
+                Kenya Civil Aviation Authority (KCAA)
+              </Anchor>{' '}
+              to offer Remote Pilot License (RPL) course in multi-rotor and
+              fixed wing, RPL instructor rating and soon Beyond Visual Line of
+              Sight (BVLOS) rating. The Academy provides Kenya&apos;s highest
+              quality drone training with a simple yet comprehensive model for
+              corporate clients, government agencies, public safety departments,
+              and individuals.
+            </Text>
 
-                <Text>
-                  {appData.name.app} is a holder of Remote Operator&apos;s
-                  Certificate (ROC) approved by KCAA to conduct drone operations
-                  in search and rescue, power lines inspection, agricultural
-                  spraying, photography and cinematography, solar inspection,
-                  runway calibration among other operations.
-                </Text>
+            <Text mt={'xs'}>
+              {appData.name.app} is a holder of Remote Operator&apos;s
+              Certificate (ROC) approved by KCAA to conduct drone operations in
+              search and rescue, power lines inspection, agricultural spraying,
+              photography and cinematography, solar inspection, runway
+              calibration among other operations.
+            </Text>
 
-                <Text>
-                  {appData.name.app} is also a certified distributor and a
-                  reseller of Unmanned Aircraft Vehicles/drones.{' '}
-                  {appData.name.app} is one of the few approved importers of UAS
-                  into Kenya having supplied the United Nations-WFP, Museums of
-                  Kenya and Ericson&apos;s
-                </Text>
-              </Stack>
-            </Stack>
+            <Text mt={'xs'}>
+              {appData.name.app} is also a certified distributor and a reseller
+              of Unmanned Aircraft Vehicles/drones. {appData.name.app} is one of
+              the few approved importers of UAS into Kenya having supplied the
+              United Nations-WFP, Museums of Kenya and Ericson&apos;s
+            </Text>
           </GridCol>
         </Grid>
       </LayoutSection>
@@ -135,76 +126,80 @@ export default async function About() {
       </LayoutSection>
 
       <LayoutSection id="mission-vision" padded>
-        <Stack gap={SECTION_SPACING}>
-          <Grid align="center" gutter={'xl'}>
-            <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2, xs: 1 }}>
-              <Stack pr={{ md: 'xl' }}>
-                <IntroSection
-                  props={{
-                    subTitle: 'Our',
-                    title: 'Mission',
-                  }}
-                  options={{ alignment: 'start' }}
-                />
+        <Grid align="center" gutter={'xl'}>
+          <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2, xs: 1 }}>
+            <IntroSection
+              props={{
+                subTitle: 'Our',
+                title: 'Mission',
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-                <Divider w={{ md: '20%' }} size={2} color="sec.4" />
+            <Divider
+              w={{ md: '20%' }}
+              size={2}
+              color="sec.4"
+              mt={{ md: 'xl' }}
+            />
 
-                <Text>
-                  Our mission is to be the preferred drone training and
-                  commercial operations organization for Government, corporates,
-                  and industry sector by providing quality, high standards, and
-                  reliable services.
-                </Text>
-              </Stack>
-            </GridCol>
-            <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1, xs: 2 }}>
-              <ImageDefault
-                src={
-                  'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'
-                }
-                alt={'Mission'}
-                height={{ base: 240, md: 280 }}
-                mode="grid"
-                radius={'sm'}
-              />
-            </GridCol>
-          </Grid>
+            <Text mt={{ md: 'xl' }}>
+              Our mission is to be the preferred drone training and commercial
+              operations organization for Government, corporates, and industry
+              sector by providing quality, high standards, and reliable
+              services.
+            </Text>
+          </GridCol>
+          <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1, xs: 2 }}>
+            <ImageDefault
+              src={
+                'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'
+              }
+              alt={'Mission'}
+              height={{ base: 240, md: 280 }}
+              mode="grid"
+              radius={'sm'}
+            />
+          </GridCol>
+        </Grid>
 
-          <Grid align="center" gutter={'xl'}>
-            <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2 }}>
-              <Stack pl={{ md: 'xl' }}>
-                <IntroSection
-                  props={{
-                    subTitle: 'Our',
-                    title: 'Vision',
-                  }}
-                  options={{ alignment: 'start' }}
-                />
+        <Grid align="center" gutter={'xl'} mt={SECTION_SPACING}>
+          <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2 }}>
+            <IntroSection
+              props={{
+                subTitle: 'Our',
+                title: 'Vision',
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-                <Divider w={{ md: '20%' }} size={2} color="sec.4" />
+            <Divider
+              w={{ md: '20%' }}
+              size={2}
+              color="sec.4"
+              mt={{ md: 'xl' }}
+            />
 
-                <Text>
-                  Our long-term vision is to contribute and empower to the
-                  ever-growing youth in Kenya by equipping them with the drone
-                  technology skill and realization of economic prosperity for
-                  young entrepreneurs who in turn would be able to make a living
-                  through entrepreneurship.
-                </Text>
-              </Stack>
-            </GridCol>
-            <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1 }}>
-              <ImageDefault
-                src={
-                  'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'
-                }
-                alt={'Mission'}
-                height={{ base: 240, md: 280 }}
-                mode="grid"
-                radius={'sm'}
-              />
-            </GridCol>
-          </Grid>
-        </Stack>
+            <Text mt={{ md: 'xl' }}>
+              Our long-term vision is to contribute and empower to the
+              ever-growing youth in Kenya by equipping them with the drone
+              technology skill and realization of economic prosperity for young
+              entrepreneurs who in turn would be able to make a living through
+              entrepreneurship.
+            </Text>
+          </GridCol>
+          <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1 }}>
+            <ImageDefault
+              src={
+                'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'
+              }
+              alt={'Mission'}
+              height={{ base: 240, md: 280 }}
+              mode="grid"
+              radius={'sm'}
+            />
+          </GridCol>
+        </Grid>
       </LayoutSection>
 
       <LayoutSection id="team" padded>
@@ -254,20 +249,18 @@ export default async function About() {
         }
         // c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
-        <Stack gap={'xl'}>
-          <IntroSection
-            props={{
-              subTitle: 'Testimonials',
-              title: 'What Our Clients Say',
-              desc: `At ${appData.name.app}, we take pride in delivering exceptional
+        <IntroSection
+          props={{
+            subTitle: 'Testimonials',
+            title: 'What Our Clients Say',
+            desc: `At ${appData.name.app}, we take pride in delivering exceptional
               results that exceed expectations. Take a moment to hear directly from the people who
               matter most: our valued clients.`,
-            }}
-            options={{ spacing: true }}
-          />
+          }}
+          options={{ spacing: true }}
+        />
 
-          <CarouselTestimonials props={shuffleArray(students)} />
-        </Stack>
+        <CarouselTestimonials props={shuffleArray(students)} />
       </LayoutSection>
     </LayoutPage>
   );

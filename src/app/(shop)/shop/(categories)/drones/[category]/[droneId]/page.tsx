@@ -1,7 +1,5 @@
 import React from 'react';
 
-import NextImage from 'next/image';
-
 import {
   Box,
   Button,
@@ -12,9 +10,7 @@ import {
   Grid,
   GridCol,
   Group,
-  Image,
   NumberFormatter,
-  Stack,
   Tabs,
   TabsList,
   TabsPanel,
@@ -47,6 +43,7 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
+import ImageDefault from '@/components/common/images/default';
 
 export default function AccessoryDetail({ params }: typeParams) {
   const product = products.find((p) => linkify(p.title.long) == params.droneId);
@@ -61,17 +58,50 @@ export default function AccessoryDetail({ params }: typeParams) {
             </Box>
           </GridCol>
           <GridCol span={{ sm: 7 }}>
-            <Stack gap={'xl'}>
-              <Stack>
-                <Title order={2} fz={{ md: 32 }}>
-                  {product?.title.long}
-                </Title>
+            <Title order={2} fz={{ md: 32 }}>
+              {product?.title.long}
+            </Title>
 
-                <Flex
-                  direction={{ base: 'column', xs: 'row' }}
-                  align={{ xs: 'center' }}
-                  gap={{ base: 'xs', xs: 'xl' }}
+            <Flex
+              direction={{ base: 'column', xs: 'row' }}
+              align={{ xs: 'center' }}
+              gap={{ base: 'xs', xs: 'xl' }}
+              mt={'md'}
+            >
+              <Text>
+                Kshs.{' '}
+                <Text
+                  component="span"
+                  inherit
+                  fw={500}
+                  c={
+                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                  }
+                  fz={{ md: 'xl' }}
                 >
+                  {product?.price ? (
+                    <NumberFormatter
+                      value={product?.price.former}
+                      thousandSeparator
+                    />
+                  ) : (
+                    'TBD'
+                  )}
+                </Text>{' '}
+                {product?.kit?.flyMore && (
+                  <Text component="sup" inherit fz={'xs'}>
+                    (basic kit)
+                  </Text>
+                )}
+              </Text>
+              {product?.price && product?.kit?.flyMore && (
+                <>
+                  <Divider
+                    orientation="vertical"
+                    color="pri"
+                    visibleFrom="xs"
+                  />
+
                   <Text>
                     Kshs.{' '}
                     <Text
@@ -83,167 +113,130 @@ export default function AccessoryDetail({ params }: typeParams) {
                       }
                       fz={{ md: 'xl' }}
                     >
-                      {product?.price ? (
-                        <NumberFormatter
-                          value={product?.price.former}
-                          thousandSeparator
-                        />
-                      ) : (
-                        'TBD'
-                      )}
-                    </Text>{' '}
-                    {product?.kit?.flyMore && (
-                      <Text component="sup" inherit fz={'xs'}>
-                        (basic kit)
-                      </Text>
-                    )}
-                  </Text>
-                  {product?.price && product?.kit?.flyMore && (
-                    <>
-                      <Divider
-                        orientation="vertical"
-                        color="pri"
-                        visibleFrom="xs"
+                      <NumberFormatter
+                        value={
+                          product.price.former +
+                          product.kit.flyMore.price.former
+                        }
+                        thousandSeparator
                       />
-
-                      <Text>
-                        Kshs.{' '}
-                        <Text
-                          component="span"
-                          inherit
-                          fw={500}
-                          c={
-                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                          }
-                          fz={{ md: 'xl' }}
-                        >
-                          <NumberFormatter
-                            value={
-                              product.price.former +
-                              product.kit.flyMore.price.former
-                            }
-                            thousandSeparator
-                          />
-                        </Text>{' '}
-                        <Text component="sup" inherit fz={'xs'}>
-                          (fly more kit)
-                        </Text>
-                      </Text>
-                    </>
-                  )}
-                </Flex>
-
-                <Stack fz={'sm'} gap={'xs'}>
-                  <Text inherit>
-                    Import Permits:{' '}
-                    <Text component="span" inherit fw={500}>
-                      Kshs.{' '}
-                      <Text component="span" inherit tt={'uppercase'}>
-                        3,000
-                      </Text>{' '}
-                      <Text component="sup" inherit fz={'xs'}>
-                        (included in drone price)
-                      </Text>
+                    </Text>{' '}
+                    <Text component="sup" inherit fz={'xs'}>
+                      (fly more kit)
                     </Text>
                   </Text>
-
-                  <Text inherit>
-                    Facilitiation Fee:{' '}
-                    <Text component="span" inherit fw={500}>
-                      Kshs.{' '}
-                      <Text component="span" inherit tt={'uppercase'}>
-                        18,000
-                      </Text>{' '}
-                      <Text component="sup" inherit fz={'xs'}>
-                        (included in drone price)
-                      </Text>
-                    </Text>
-                  </Text>
-                </Stack>
-
-                <Stack gap={'xs'}>
-                  {!product?.model && (
-                    <Text>
-                      Vendor:{' '}
-                      <Text component="span" inherit fw={500} tt={'uppercase'}>
-                        {product?.brand}
-                      </Text>
-                    </Text>
-                  )}
-                  <Text>
-                    Make:{' '}
-                    <Text component="span" inherit fw={500} tt={'capitalize'}>
-                      {product?.make}
-                    </Text>
-                  </Text>
-                  {product?.model && (
-                    <Text>
-                      Model:{' '}
-                      <Text component="span" inherit fw={500} tt={'capitalize'}>
-                        {product?.model}
-                      </Text>
-                    </Text>
-                  )}
-                </Stack>
-              </Stack>
-
-              <Divider
-                label={
-                  <Text
-                    component="span"
-                    inherit
-                    c={
-                      'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                    }
-                  >
-                    product overview
-                  </Text>
-                }
-              />
-
-              {typeof product?.specs.intro == 'string' ? (
-                <Text>{product.specs.intro}</Text>
-              ) : (
-                <Grid>
-                  {product?.specs.intro.map((spec, index) => (
-                    <GridCol key={index} span={{ base: 12, md: 6 }}>
-                      <Group gap={'xs'}>
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          radius={'xl'}
-                          color="sec.4"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
-                        </ThemeIcon>
-
-                        <Text fz={{ md: 'xs', lg: 'sm' }}>{spec}</Text>
-                      </Group>
-                    </GridCol>
-                  ))}
-                </Grid>
+                </>
               )}
+            </Flex>
 
-              <ModalContactShop>
-                <Button
-                  fullWidth
-                  rightSection={
-                    <IconChevronRight
-                      size={ICON_SIZE}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
+            <Text fz={'sm'}>
+              Import Permits:{' '}
+              <Text component="span" inherit fw={500}>
+                Kshs.{' '}
+                <Text component="span" inherit tt={'uppercase'}>
+                  3,000
+                </Text>{' '}
+                <Text component="sup" inherit fz={'xs'}>
+                  (included in drone price)
+                </Text>
+              </Text>
+            </Text>
+
+            <Text fz={'sm'} mt={'md'}>
+              Facilitiation Fee:{' '}
+              <Text component="span" inherit fw={500}>
+                Kshs.{' '}
+                <Text component="span" inherit tt={'uppercase'}>
+                  18,000
+                </Text>{' '}
+                <Text component="sup" inherit fz={'xs'}>
+                  (included in drone price)
+                </Text>
+              </Text>
+            </Text>
+
+            {!product?.model && (
+              <Text mt={'xs'}>
+                Vendor:{' '}
+                <Text component="span" inherit fw={500} tt={'uppercase'}>
+                  {product?.brand}
+                </Text>
+              </Text>
+            )}
+
+            <Text mt={'xs'}>
+              Make:{' '}
+              <Text component="span" inherit fw={500} tt={'capitalize'}>
+                {product?.make}
+              </Text>
+            </Text>
+
+            {product?.model && (
+              <Text mt={'xs'}>
+                Model:{' '}
+                <Text component="span" inherit fw={500} tt={'capitalize'}>
+                  {product?.model}
+                </Text>
+              </Text>
+            )}
+
+            <Divider
+              label={
+                <Text
+                  component="span"
+                  inherit
+                  c={
+                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
                   }
                 >
-                  Order the{' '}
-                  {product?.title.short
-                    ? product.title.short
-                    : product?.title.long}
-                </Button>
-              </ModalContactShop>
-            </Stack>
+                  product overview
+                </Text>
+              }
+              mt={'xl'}
+            />
+
+            {typeof product?.specs.intro == 'string' ? (
+              <Text my={'xl'}>{product.specs.intro}</Text>
+            ) : (
+              <Grid my={'xl'}>
+                {product?.specs.intro.map((spec, index) => (
+                  <GridCol key={index} span={{ base: 12, md: 6 }}>
+                    <Group gap={'xs'}>
+                      <ThemeIcon
+                        size={ICON_WRAPPER_SIZE / 1.5}
+                        radius={'xl'}
+                        color="sec.4"
+                        c={'pri.9'}
+                      >
+                        <IconArrowRightDashed
+                          size={ICON_SIZE / 1.5}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      </ThemeIcon>
+
+                      <Text fz={{ md: 'xs', lg: 'sm' }}>{spec}</Text>
+                    </Group>
+                  </GridCol>
+                ))}
+              </Grid>
+            )}
+
+            <ModalContactShop>
+              <Button
+                fullWidth
+                rightSection={
+                  <IconChevronRight
+                    size={ICON_SIZE}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Order the{' '}
+                {product?.title.short
+                  ? product.title.short
+                  : product?.title.long}
+              </Button>
+            </ModalContactShop>
           </GridCol>
         </Grid>
       </LayoutSection>
@@ -343,20 +336,16 @@ export default function AccessoryDetail({ params }: typeParams) {
               <Grid gutter={{ base: 12, md: 'md' }}>
                 <GridCol span={{ md: 5 }}>
                   <Card withBorder shadow="xs" bg={'white'}>
-                    <Stack w={'100%'}>
-                      <Image
-                        src={
-                          product?.kit?.basic.image
-                            ? product?.kit.basic.image
-                            : product?.images[0]
-                        }
-                        alt={'Specs'}
-                        loading="lazy"
-                        component={NextImage}
-                        width={1920}
-                        height={1080}
-                      />
-                    </Stack>
+                    <ImageDefault
+                      src={
+                        product?.kit?.basic.image
+                          ? product?.kit.basic.image
+                          : product?.images[0] || ''
+                      }
+                      alt={'Specs'}
+                      loading="lazy"
+                      height={{ base: 320, xs: 400, md: 320, lg: 360 }}
+                    />
                   </Card>
                 </GridCol>
 
@@ -367,39 +356,37 @@ export default function AccessoryDetail({ params }: typeParams) {
                 </GridCol>
 
                 <GridCol span={{ md: 6 }}>
-                  <Stack gap={'xl'}>
-                    <Title order={3} fz={{ md: 'xl' }}>
-                      {product?.title.short} Aircraft Specifications
-                    </Title>
+                  <Title order={3} fz={{ md: 'xl' }}>
+                    {product?.title.short} Aircraft Specifications
+                  </Title>
 
-                    <Grid gutter={'xs'}>
-                      {product?.specs.aircraft.map((item, index) => (
-                        <GridCol key={index} span={{ md: 12 }}>
-                          <Group gap={'xs'}>
-                            <ThemeIcon
-                              size={ICON_WRAPPER_SIZE / 1.5}
-                              radius={'xl'}
-                              color="sec.4"
-                              c={'pri.9'}
-                              visibleFrom="xs"
-                            >
-                              <IconArrowRightDashed
-                                size={ICON_SIZE / 1.5}
-                                stroke={ICON_STROKE_WIDTH}
-                              />
-                            </ThemeIcon>
+                  <Grid gutter={'xs'} mt={'xl'}>
+                    {product?.specs.aircraft.map((item, index) => (
+                      <GridCol key={index} span={{ md: 12 }}>
+                        <Group gap={'xs'}>
+                          <ThemeIcon
+                            size={ICON_WRAPPER_SIZE / 1.5}
+                            radius={'xl'}
+                            color="sec.4"
+                            c={'pri.9'}
+                            visibleFrom="xs"
+                          >
+                            <IconArrowRightDashed
+                              size={ICON_SIZE / 1.5}
+                              stroke={ICON_STROKE_WIDTH}
+                            />
+                          </ThemeIcon>
 
-                            <Text fz={{ md: 'sm' }}>
-                              <Text component="span" inherit fw={500}>
-                                {item.label}
-                              </Text>
-                              : {item.desc}
+                          <Text fz={{ md: 'sm' }}>
+                            <Text component="span" inherit fw={500}>
+                              {item.label}
                             </Text>
-                          </Group>
-                        </GridCol>
-                      ))}
-                    </Grid>
-                  </Stack>
+                            : {item.desc}
+                          </Text>
+                        </Group>
+                      </GridCol>
+                    ))}
+                  </Grid>
                 </GridCol>
               </Grid>
             </LayoutSection>
@@ -416,27 +403,31 @@ export default function AccessoryDetail({ params }: typeParams) {
                     <Grid>
                       {product?.kit.basic.contents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
-                          <Stack>
-                            <Card withBorder shadow="xs" bg={'white'}>
-                              <Stack w={'100%'}>
-                                <Image
-                                  src={item.image}
-                                  alt={item.item}
-                                  loading="lazy"
-                                  component={NextImage}
-                                  width={1920}
-                                  height={1080}
-                                />
-                              </Stack>
-                            </Card>
+                          <Card withBorder shadow="xs" bg={'white'}>
+                            <ImageDefault
+                              src={item.image}
+                              alt={item.item}
+                              loading="lazy"
+                              height={{
+                                base: 120,
+                                xs: 240,
+                                sm: 160,
+                                md: 120,
+                                lg: 160,
+                              }}
+                            />
+                          </Card>
 
-                            <Text fz={{ md: 'xs', lg: 'sm' }} ta={'center'}>
-                              <Text component="span" inherit fw={500}>
-                                x{item.qty}
-                              </Text>{' '}
-                              - {item.item}
-                            </Text>
-                          </Stack>
+                          <Text
+                            fz={{ md: 'xs', lg: 'sm' }}
+                            ta={'center'}
+                            mt={'md'}
+                          >
+                            <Text component="span" inherit fw={500}>
+                              x{item.qty}
+                            </Text>{' '}
+                            - {item.item}
+                          </Text>
                         </GridCol>
                       ))}
                     </Grid>
@@ -456,13 +447,13 @@ export default function AccessoryDetail({ params }: typeParams) {
                     span={{ base: 12, md: 5 }}
                     order={{ base: 1, md: 3 }}
                   >
-                    <Stack gap={'xl'} pos={'sticky'} top={64}>
+                    <Box pos={'sticky'} top={64}>
                       <Title order={3} fz={{ md: 'xl' }}>
                         {product?.title.short}{' '}
                         {product?.kit?.flyMore ? 'Basic Kit' : 'Box Contents'}
                       </Title>
 
-                      <Grid gutter={'xs'}>
+                      <Grid gutter={'xs'} mt={'xl'}>
                         {product?.kit.basic.contents.map((item, index) => (
                           <GridCol key={index} span={{ md: 12 }}>
                             <Text fz={{ md: 'sm' }}>
@@ -475,7 +466,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                         ))}
                       </Grid>
 
-                      <Text>
+                      <Text mt={'xl'}>
                         Kshs.{' '}
                         <Text
                           component="span"
@@ -496,7 +487,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                           )}
                         </Text>
                       </Text>
-                    </Stack>
+                    </Box>
                   </GridCol>
                 </Grid>
               </LayoutSection>
@@ -511,43 +502,45 @@ export default function AccessoryDetail({ params }: typeParams) {
                     span={{ base: 12, md: 6 }}
                     order={{ base: 3, md: 1 }}
                   >
-                    <Stack>
-                      <Text
-                        fw={'bold'}
-                        variant="gradient"
-                        gradient={{ from: 'pri.9', to: 'sec.3', deg: 135 }}
-                      >
-                        Everything in the basic kit plus:
-                      </Text>
+                    <Text
+                      fw={'bold'}
+                      variant="gradient"
+                      gradient={{ from: 'pri.9', to: 'sec.3', deg: 135 }}
+                    >
+                      Everything in the basic kit plus:
+                    </Text>
 
-                      <Grid>
-                        {product?.kit.flyMore.contents.map((item, index) => (
-                          <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
-                            <Stack>
-                              <Card withBorder shadow="xs" bg={'white'}>
-                                <Stack w={'100%'}>
-                                  <Image
-                                    src={item.image}
-                                    alt={item.item}
-                                    loading="lazy"
-                                    component={NextImage}
-                                    width={1920}
-                                    height={1080}
-                                  />
-                                </Stack>
-                              </Card>
+                    <Grid mt={'xl'}>
+                      {product?.kit.flyMore.contents.map((item, index) => (
+                        <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
+                          <Card withBorder shadow="xs" bg={'white'}>
+                            <ImageDefault
+                              src={item.image}
+                              alt={item.item}
+                              loading="lazy"
+                              height={{
+                                base: 120,
+                                xs: 240,
+                                sm: 160,
+                                md: 120,
+                                lg: 160,
+                              }}
+                            />
+                          </Card>
 
-                              <Text fz={{ md: 'xs', lg: 'sm' }} ta={'center'}>
-                                <Text component="span" inherit fw={500}>
-                                  x{item.qty}
-                                </Text>{' '}
-                                - {item.item}
-                              </Text>
-                            </Stack>
-                          </GridCol>
-                        ))}
-                      </Grid>
-                    </Stack>
+                          <Text
+                            fz={{ md: 'xs', lg: 'sm' }}
+                            ta={'center'}
+                            mt={'xl'}
+                          >
+                            <Text component="span" inherit fw={500}>
+                              x{item.qty}
+                            </Text>{' '}
+                            - {item.item}
+                          </Text>
+                        </GridCol>
+                      ))}
+                    </Grid>
                   </GridCol>
 
                   <GridCol span={{ md: 1 }} order={2} visibleFrom="md">
@@ -564,12 +557,12 @@ export default function AccessoryDetail({ params }: typeParams) {
                     span={{ base: 12, md: 5 }}
                     order={{ base: 1, md: 3 }}
                   >
-                    <Stack gap={'xl'} pos={'sticky'} top={64}>
+                    <Box pos={'sticky'} top={64}>
                       <Title order={3} fz={{ md: 'xl' }}>
                         {product?.title.short} Fly More Kit
                       </Title>
 
-                      <Grid gutter={'xs'}>
+                      <Grid mt={'xl'} gutter={'xs'}>
                         <GridCol span={{ md: 12 }}>
                           <Text
                             fw={'bold'}
@@ -592,7 +585,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                         ))}
                       </Grid>
 
-                      <Text>
+                      <Text mt={'xl'}>
                         Kshs.{' '}
                         <Text
                           component="span"
@@ -616,7 +609,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                           )}
                         </Text>
                       </Text>
-                    </Stack>
+                    </Box>
                   </GridCol>
                 </Grid>
               </LayoutSection>
@@ -638,61 +631,59 @@ export default function AccessoryDetail({ params }: typeParams) {
                   </GridCol>
 
                   <GridCol span={{ md: 6 }}>
-                    <Stack gap={'xl'}>
-                      <Title order={3} fz={{ md: 'xl' }}>
-                        {product?.title.short} Intelligent Flight Battery
-                      </Title>
+                    <Title order={3} fz={{ md: 'xl' }}>
+                      {product?.title.short} Intelligent Flight Battery
+                    </Title>
 
-                      <Grid gutter={'xs'}>
-                        {product?.accessories?.battery?.specs.map(
-                          (item, index) => (
-                            <GridCol key={index} span={{ md: 12 }}>
-                              <Group gap={'xs'}>
-                                <ThemeIcon
-                                  size={ICON_WRAPPER_SIZE / 1.5}
-                                  radius={'xl'}
-                                  color="sec.4"
-                                  c={'pri.9'}
-                                  visibleFrom="xs"
-                                >
-                                  <IconArrowRightDashed
-                                    size={ICON_SIZE / 1.5}
-                                    stroke={ICON_STROKE_WIDTH}
-                                  />
-                                </ThemeIcon>
+                    <Grid mt={'xl'} gutter={'xs'}>
+                      {product?.accessories?.battery?.specs.map(
+                        (item, index) => (
+                          <GridCol key={index} span={{ md: 12 }}>
+                            <Group gap={'xs'}>
+                              <ThemeIcon
+                                size={ICON_WRAPPER_SIZE / 1.5}
+                                radius={'xl'}
+                                color="sec.4"
+                                c={'pri.9'}
+                                visibleFrom="xs"
+                              >
+                                <IconArrowRightDashed
+                                  size={ICON_SIZE / 1.5}
+                                  stroke={ICON_STROKE_WIDTH}
+                                />
+                              </ThemeIcon>
 
-                                <Text fz={{ md: 'sm' }}>
-                                  <Text component="span" inherit fw={500}>
-                                    {item.label}
-                                  </Text>
-                                  : {item.desc}
+                              <Text fz={{ md: 'sm' }}>
+                                <Text component="span" inherit fw={500}>
+                                  {item.label}
                                 </Text>
-                              </Group>
-                            </GridCol>
-                          )
-                        )}
-                      </Grid>
-
-                      {product?.accessories.battery.price && (
-                        <Text>
-                          Kshs.{' '}
-                          <Text
-                            component="span"
-                            inherit
-                            fw={500}
-                            c={
-                              'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                            }
-                            fz={{ md: 'xl' }}
-                          >
-                            <NumberFormatter
-                              value={product?.accessories.battery.price.former}
-                              thousandSeparator
-                            />
-                          </Text>
-                        </Text>
+                                : {item.desc}
+                              </Text>
+                            </Group>
+                          </GridCol>
+                        )
                       )}
-                    </Stack>
+                    </Grid>
+
+                    {product?.accessories.battery.price && (
+                      <Text mt={'xl'}>
+                        Kshs.{' '}
+                        <Text
+                          component="span"
+                          inherit
+                          fw={500}
+                          c={
+                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                          }
+                          fz={{ md: 'xl' }}
+                        >
+                          <NumberFormatter
+                            value={product?.accessories.battery.price.former}
+                            thousandSeparator
+                          />
+                        </Text>
+                      </Text>
+                    )}
                   </GridCol>
                 </Grid>
               </LayoutSection>

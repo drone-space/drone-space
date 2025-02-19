@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Metadata } from 'next';
 
-import { Anchor, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
+import { Anchor, Grid, GridCol, Text, Title } from '@mantine/core';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
@@ -45,24 +45,22 @@ export default async function Pricing() {
       </LayoutSection>
 
       <LayoutSection id="pricing-training-faq" padded containerized={'sm'}>
-        <Stack gap={'xl'}>
-          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
-            Frequently Asked Questions
-          </Title>
+        <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
+          Frequently Asked Questions
+        </Title>
 
-          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
-            For further information, please visit our training section, and for
-            any other training inquiries, please send us a{' '}
-            <ModalContactTraining>
-              <Anchor inherit fw={500}>
-                training inquiry
-              </Anchor>
-            </ModalContactTraining>
-            .
-          </Text>
+        <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'} my={'xl'}>
+          For further information, please visit our training section, and for
+          any other training inquiries, please send us a{' '}
+          <ModalContactTraining>
+            <Anchor inherit fw={500}>
+              training inquiry
+            </Anchor>
+          </ModalContactTraining>
+          .
+        </Text>
 
-          <AccordionFaq section="training" />
-        </Stack>
+        <AccordionFaq section="training" />
       </LayoutSection>
     </LayoutPage>
   );

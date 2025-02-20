@@ -9,6 +9,7 @@ import {
   Modal,
   Paper,
   ScrollArea,
+  Skeleton,
   Stack,
   Text,
   Title,
@@ -135,22 +136,25 @@ export default function Main({ children }: { children: React.ReactNode }) {
                     />
                   </Box>
                 ) : (
-                  <Group justify="end" my={'sm'}>
-                    <Paper
-                      bg={'var(--mantine-color-pri-light)'}
-                      c={'var(--mantine-color-pri-9)'}
-                      px={'xs'}
-                      maw={'70%'}
-                      py={5}
-                    >
-                      <Text inherit ta={'end'}>
-                        {item.content}
-                      </Text>
-                    </Paper>
-                  </Group>
+                  <UserTurn props={{ content: item.content }} />
                 )}
               </Box>
             ))}
+
+            {submitted && (
+              <>
+                <UserTurn props={{ content: form.values.content }} />
+
+                <>
+                  <Text fz={'xs'} c={'dimmed'}>
+                    Thinking...
+                  </Text>
+                  <Skeleton h={'0.75rem'} mt={'xs'} />
+                  <Skeleton h={'0.75rem'} mt={'xs'} w={'70%'} />
+                  <Skeleton h={'0.75rem'} my={'xs'} w={'50%'} />
+                </>
+              </>
+            )}
           </ScrollArea>
         </LayoutSection>
 
@@ -257,4 +261,22 @@ const sample = {
     'What kind of drones does Drone Space sell?',
     'How long is the RPL training course?',
   ],
+};
+
+const UserTurn = ({ props }: { props: { content: string } }) => {
+  return (
+    <Group justify="end" my={'sm'}>
+      <Paper
+        bg={'var(--mantine-color-pri-light)'}
+        c={'var(--mantine-color-pri-9)'}
+        px={'xs'}
+        maw={'70%'}
+        py={5}
+      >
+        <Text inherit ta={'end'}>
+          {props.content}
+        </Text>
+      </Paper>
+    </Group>
+  );
 };

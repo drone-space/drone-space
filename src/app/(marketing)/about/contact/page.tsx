@@ -8,7 +8,6 @@ import {
   Flex,
   Grid,
   GridCol,
-  Stack,
   Text,
   ThemeIcon,
   Title,
@@ -75,15 +74,23 @@ export default async function Contact() {
                 bg: 'var(--mantine-color-sec-3)',
               }}
             >
-              <Stack ta={'center'} fz={'sm'} gap={0}>
-                <Anchor inherit href={`mailto:${appData.emails.info}`}>
-                  {appData.emails.info}
-                </Anchor>
+              <Anchor
+                inherit
+                ta={'center'}
+                fz={'sm'}
+                href={`mailto:${appData.emails.info}`}
+              >
+                {appData.emails.info}
+              </Anchor>
 
-                <Anchor inherit href={`mailto:${appData.emails.training}`}>
-                  {appData.emails.training}
-                </Anchor>
-              </Stack>
+              <Anchor
+                inherit
+                ta={'center'}
+                fz={'sm'}
+                href={`mailto:${appData.emails.training}`}
+              >
+                {appData.emails.training}
+              </Anchor>
             </CardContact>
           </GridCol>
 
@@ -115,15 +122,23 @@ export default async function Contact() {
                 bg: 'var(--mantine-color-sec-3)',
               }}
             >
-              <Stack ta={'center'} fz={'sm'} gap={0}>
-                <Anchor inherit href={`tel:${appData.phones.main}`}>
-                  {appData.phones.main}
-                </Anchor>
+              <Anchor
+                inherit
+                ta={'center'}
+                fz={'sm'}
+                href={`tel:${appData.phones.main}`}
+              >
+                {appData.phones.main}
+              </Anchor>
 
-                <Anchor inherit href={`tel:${appData.phones.other}`}>
-                  {appData.phones.other}
-                </Anchor>
-              </Stack>
+              <Anchor
+                inherit
+                ta={'center'}
+                fz={'sm'}
+                href={`tel:${appData.phones.other}`}
+              >
+                {appData.phones.other}
+              </Anchor>
             </CardContact>
           </GridCol>
         </Grid>
@@ -136,73 +151,68 @@ export default async function Contact() {
       >
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 5 }} order={{ base: 2, md: 1 }}>
-            <Stack align="center">
-              <Card
-                withBorder
-                bg={'white'}
-                shadow="xs"
-                w={{ sm: '66%', md: '100%' }}
-              >
-                <FormContact />
-              </Card>
+            <Card
+              withBorder
+              bg={'white'}
+              shadow="xs"
+              w={{ sm: '66%', md: '100%' }}
+            >
+              <FormContact />
+            </Card>
 
-              <Text ta={'center'} fz={'sm'}>
-                Please consult the{' '}
-                <Anchor component={Link} inherit fw={500} href="/resources/faq">
-                  FAQ
-                </Anchor>
-                &apos;s first.
-              </Text>
-            </Stack>
+            <Text ta={'center'} fz={'sm'} mt={'md'}>
+              Please consult the{' '}
+              <Anchor component={Link} inherit fw={500} href="/resources/faq">
+                FAQ
+              </Anchor>
+              &apos;s first.
+            </Text>
           </GridCol>
           <GridCol span={{ base: 12, md: 6, lg: 7 }} order={{ base: 1, md: 2 }}>
-            <Stack gap={'xl'}>
-              <Stack>
-                <Title
-                  order={2}
-                  fz={'xl'}
-                  fw={'bold'}
-                  ta={{ base: 'center', md: 'start' }}
-                >
-                  Thanks for your interest. How can we help?
-                </Title>
-                <Text ta={{ base: 'center', md: 'start' }}>
-                  Please let us know if you have a question about our
-                  enterprise, have an offering or proposal, want to leave a
-                  comment or would like further information.
-                </Text>
-              </Stack>
+            <Title
+              order={2}
+              fz={'xl'}
+              fw={'bold'}
+              ta={{ base: 'center', md: 'start' }}
+            >
+              Thanks for your interest. How can we help?
+            </Title>
 
-              <Grid gutter={'xl'}>
-                {options.map((option, index) => (
-                  <GridCol key={index} span={{ base: 12, xs: 6, sm: 6, md: 6 }}>
-                    <Flex
-                      direction={'column'}
-                      align={{ base: 'center', md: 'start' }}
-                      ta={{ base: 'center', md: 'start' }}
-                      gap={'md'}
+            <Text ta={{ base: 'center', md: 'start' }} mt={'md'}>
+              Please let us know if you have a question about our enterprise,
+              have an offering or proposal, want to leave a comment or would
+              like further information.
+            </Text>
+
+            <Grid gutter={'xl'} mt={'xl'}>
+              {options.map((option, index) => (
+                <GridCol key={index} span={{ base: 12, xs: 6, sm: 6, md: 6 }}>
+                  <Flex
+                    direction={'column'}
+                    align={{ base: 'center', md: 'start' }}
+                    ta={{ base: 'center', md: 'start' }}
+                    gap={'md'}
+                  >
+                    <ThemeIcon
+                      size={ICON_WRAPPER_SIZE}
+                      variant="light"
+                      // display={{ base: undefined, sm: "none", md: "inherit" }}
                     >
-                      <ThemeIcon
-                        size={ICON_WRAPPER_SIZE}
-                        variant="light"
-                        // display={{ base: undefined, sm: "none", md: "inherit" }}
-                      >
-                        <option.icon
-                          size={ICON_SIZE}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
-                      </ThemeIcon>
-                      <Stack gap={0}>
-                        <Title order={3} fz={'md'} fw={'bold'}>
-                          {option.title}
-                        </Title>
-                        {option.description}
-                      </Stack>
-                    </Flex>
-                  </GridCol>
-                ))}
-              </Grid>
-            </Stack>
+                      <option.icon
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </ThemeIcon>
+
+                    <Title order={3} fz={'md'} fw={'bold'}>
+                      {option.title}
+                    </Title>
+
+                    {option.description}
+                  </Flex>
+                </GridCol>
+              ))}
+            </Grid>
           </GridCol>
         </Grid>
       </LayoutSection>
@@ -259,18 +269,16 @@ const options = [
   {
     title: 'Technical Inquiries',
     description: (
-      <Stack gap={'xs'}>
-        <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
-          Found a persistent bug to report? Have a new feature to suggest or any
-          other technical issue to address? Please{' '}
-          <ModalContactTechnical>
-            <Anchor inherit fw={500}>
-              contact our developer
-            </Anchor>
-            .
-          </ModalContactTechnical>
-        </Text>
-      </Stack>
+      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
+        Found a persistent bug to report? Have a new feature to suggest or any
+        other technical issue to address? Please{' '}
+        <ModalContactTechnical>
+          <Anchor inherit fw={500}>
+            contact our developer
+          </Anchor>
+          .
+        </ModalContactTechnical>
+      </Text>
     ),
     icon: IconHeadset,
   },
@@ -304,22 +312,25 @@ const CardContact = ({
   props: { icon: Icon; title: string; bg?: string; c?: string };
   children: React.ReactNode;
 }) => (
-  <Card padding={'xl'} bg={props.bg} h={'100%'}>
-    <Stack align="center">
-      <ThemeIcon
-        size={ICON_WRAPPER_SIZE * 1.5}
-        radius={'xl'}
-        color="white"
-        c={'pri.9'}
-      >
-        <props.icon size={ICON_SIZE * 1.25} stroke={ICON_STROKE_WIDTH} />
-      </ThemeIcon>
+  <Card
+    padding={'xl'}
+    bg={props.bg}
+    h={'100%'}
+    style={{ display: 'flex', alignItems: 'center' }}
+  >
+    <ThemeIcon
+      size={ICON_WRAPPER_SIZE * 1.5}
+      radius={'xl'}
+      color="white"
+      c={'pri.9'}
+    >
+      <props.icon size={ICON_SIZE * 1.25} stroke={ICON_STROKE_WIDTH} />
+    </ThemeIcon>
 
-      <Title ta={'center'} order={3} c={props.c}>
-        {props.title}
-      </Title>
+    <Title ta={'center'} order={3} c={props.c} my={'md'}>
+      {props.title}
+    </Title>
 
-      {children}
-    </Stack>
+    {children}
   </Card>
 );

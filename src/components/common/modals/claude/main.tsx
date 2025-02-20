@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Anchor,
   Box,
@@ -9,11 +9,12 @@ import {
   Modal,
   Paper,
   ScrollArea,
+  Skeleton,
   Stack,
   Text,
   Title,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useScrollIntoView } from '@mantine/hooks';
 import FormClaude from '@/components/form/claude';
 import LayoutSection from '@/components/layout/section';
 import { IconMessageCirclePlus } from '@tabler/icons-react';
@@ -28,6 +29,22 @@ export default function Main({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const { form, submitted, handleSubmit, resetConversation } = useFormClaude();
   const conversation = useAppSelector((state) => state.claude.value);
+  const { targetRef, scrollableRef } = useScrollIntoView<
+    HTMLDivElement,
+    HTMLDivElement
+  >();
+
+  useEffect(() => {
+    if (submitted) {
+      if (targetRef?.current) {
+        targetRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   return (
     <>
@@ -90,6 +107,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
             fz={'xs'}
             px={'xs'}
             type="auto"
+            ref={scrollableRef}
           >
             <Stack gap={'xs'} mt={'xs'}>
               <MarkdownComponent
@@ -126,7 +144,15 @@ export default function Main({ children }: { children: React.ReactNode }) {
             {conversation.map((item, index) => (
               <Box key={index}>
                 {item.role == 'assistant' ? (
-                  <Box my={'xs'}>
+                  <Box
+                    my={'xs'}
+                    mih={
+                      conversation.indexOf(item) == conversation.length - 1 &&
+                      !submitted
+                        ? '30vh'
+                        : undefined
+                    }
+                  >
                     <MarkdownComponent
                       markdown={item.content}
                       animate={
@@ -135,22 +161,25 @@ export default function Main({ children }: { children: React.ReactNode }) {
                     />
                   </Box>
                 ) : (
-                  <Group justify="end" my={'sm'}>
-                    <Paper
-                      bg={'var(--mantine-color-pri-light)'}
-                      c={'var(--mantine-color-pri-9)'}
-                      px={'xs'}
-                      maw={'70%'}
-                      py={5}
-                    >
-                      <Text inherit ta={'end'}>
-                        {item.content}
-                      </Text>
-                    </Paper>
-                  </Group>
+                  <UserTurn props={{ content: item.content }} />
                 )}
               </Box>
             ))}
+
+            {submitted && (
+              <Box h={'37.5vh'} ref={targetRef}>
+                <UserTurn props={{ content: form.values.content }} />
+
+                <>
+                  <Text fz={'xs'} c={'dimmed'}>
+                    Thinking...
+                  </Text>
+                  <Skeleton h={'0.75rem'} mt={'xs'} />
+                  <Skeleton h={'0.75rem'} mt={'xs'} w={'70%'} />
+                  <Skeleton h={'0.75rem'} my={'xs'} w={'50%'} />
+                </>
+              </Box>
+            )}
           </ScrollArea>
         </LayoutSection>
 
@@ -257,4 +286,22 @@ const sample = {
     'What kind of drones does Drone Space sell?',
     'How long is the RPL training course?',
   ],
+};
+
+const UserTurn = ({ props }: { props: { content: string } }) => {
+  return (
+    <Group justify="end" my={'sm'}>
+      <Paper
+        bg={'var(--mantine-color-pri-light)'}
+        c={'var(--mantine-color-pri-9)'}
+        px={'xs'}
+        maw={'70%'}
+        py={5}
+      >
+        <Text inherit ta={'end'}>
+          {props.content}
+        </Text>
+      </Paper>
+    </Group>
+  );
 };

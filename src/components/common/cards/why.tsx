@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeIcon, Text, Title, Card, Stack } from '@mantine/core';
+import { ThemeIcon, Text, Title, Card, Group } from '@mantine/core';
 import { Icon } from '@tabler/icons-react';
 import classes from './why.module.scss';
 import {
@@ -17,7 +17,7 @@ interface typeCardFeatureWhy {
 export default function Why({ data }: { data: typeCardFeatureWhy }) {
   return (
     <Card className={classes.card}>
-      <Stack align="center">
+      <Group justify="center">
         <ThemeIcon
           size={ICON_WRAPPER_SIZE * 2}
           radius={48}
@@ -25,16 +25,21 @@ export default function Why({ data }: { data: typeCardFeatureWhy }) {
         >
           <data.icon size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
         </ThemeIcon>
+      </Group>
 
-        <Stack gap={'xs'} align="center">
-          <Title ta={'center'} order={2} fz={'xl'} className={classes.title}>
-            {data.title}
-          </Title>
-          <Text ta={'center'} fz={{ base: 'sm', lg: 'md' }}>
-            {data.desc}
-          </Text>
-        </Stack>
-      </Stack>
+      <Title
+        mt={'md'}
+        ta={'center'}
+        order={2}
+        fz={'xl'}
+        className={classes.title}
+      >
+        {data.title}
+      </Title>
+
+      <Text mt={'xs'} ta={'center'} fz={{ base: 'sm', lg: 'md' }}>
+        {data.desc}
+      </Text>
     </Card>
   );
 }

@@ -1,12 +1,9 @@
 'use client';
 
 import React from 'react';
-
-import NextImage from 'next/image';
-
-import { ActionIcon, Affix, Image, Stack, Transition } from '@mantine/core';
+import { ActionIcon, Affix, Transition } from '@mantine/core';
 import { useHeadroom, useWindowScroll } from '@mantine/hooks';
-
+import ImageDefault from '../images/default';
 import appData from '@/data/app';
 import { images } from '@/assets/images';
 
@@ -20,7 +17,11 @@ export default function Whatsapp() {
     <Affix
       position={{ bottom: 'calc(var(--mantine-spacing-xl) * 2.75)', right: 0 }}
     >
-      <Transition transition="slide-left" mounted={scroll.y > 0 && !pinned}>
+      <Transition
+        transition="slide-left"
+        mounted={scroll.y > 0 && !pinned}
+        keepMounted={true}
+      >
         {(transitionStyles) => (
           <div style={transitionStyles}>
             <ActionIcon
@@ -34,17 +35,14 @@ export default function Whatsapp() {
               href={whatsapp.link}
               target="_blank"
             >
-              <Stack>
-                <Image
-                  src={images.icons.social.whatsapp}
-                  alt={whatsapp.platform}
-                  title={whatsapp.platform}
-                  component={NextImage}
-                  height={20}
-                  width={20}
-                  priority
-                />
-              </Stack>
+              <ImageDefault
+                src={images.icons.social.whatsapp}
+                alt={whatsapp.platform}
+                title={whatsapp.platform}
+                fit={'contain'}
+                height={20}
+                width={20}
+              />
             </ActionIcon>
           </div>
         )}

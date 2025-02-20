@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Badge,
+  Box,
   Button,
   Card,
   Group,
   List,
   ListItem,
   NumberFormatter,
-  Stack,
   Text,
   ThemeIcon,
   Title,
@@ -44,120 +44,117 @@ export default function Basic({
           : undefined
       }
     >
-      <Stack justify="space-between" h={'100%'}>
-        <Stack gap={'xl'} mb={'xl'}>
-          <Stack>
-            {data.advanced && (
-              <Group justify="end" opacity={offset ? 0 : 1}>
-                <Badge
-                  className={
-                    data.featured ? classes.badgeFeatured : classes.badge
-                  }
-                >
-                  Advanced Course
-                </Badge>
-              </Group>
-            )}
+      <Box
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+        }}
+      >
+        {data.advanced && (
+          <Group justify="end" opacity={offset ? 0 : 1}>
+            <Badge
+              className={data.featured ? classes.badgeFeatured : classes.badge}
+            >
+              Advanced Course
+            </Badge>
+          </Group>
+        )}
 
-            <Text fz={'md'} fw={500}>
-              Kshs.{' '}
-              <Text
-                component="span"
-                inherit
-                fz={28}
-                fw={'bold'}
-                className={
-                  data.featured ? classes.titleFeatured : classes.title
-                }
-              >
-                <NumberFormatter
-                  value={
-                    data.price?.discount
-                      ? data.price.discount
-                      : data.price?.full
-                  }
-                  thousandSeparator
-                />
-                /-
-              </Text>
-              {data.price?.discount && (
-                <Text
-                  component="sup"
-                  inherit
-                  fw={'bold'}
-                  td={'line-through'}
-                  pos={'relative'}
-                  bottom={12}
-                  left={8}
-                  c={data.featured ? undefined : 'dimmed'}
-                >
-                  <NumberFormatter value={data.price?.full} thousandSeparator />
-                  /-
-                </Text>
-              )}
-            </Text>
-
-            <Stack>
-              <Title
-                order={3}
-                fw={'bold'}
-                fz={{ base: 'lg', lg: 'xl' }}
-                c={
-                  data.featured
-                    ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
-                    : 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                }
-              >
-                {data.title.full == 'Multi-Rotor'
-                  ? 'Remote Pilot License (RPL)'
-                  : data.title.full}
-              </Title>
-
-              {data.featured && (
-                <Text component="span" fz={'xs'} c={'sec.4'}>
-                  Exclusive of Medical
-                </Text>
-              )}
-
-              {data.title.full == 'Radio Telephony' && (
-                <Text component="span" inherit fz={'xs'} c={'dimmed'}>
-                  Exclusive of Exam, English Proficiency and License Fees
-                </Text>
-              )}
-            </Stack>
-
-            {data.advanced && (
-              <Text w={{ md: '75%' }}>
-                For RPL hoders seeking to enhance their abilities and include{' '}
-                {data.title.full} to their skillset.
-              </Text>
-            )}
-          </Stack>
-
-          <List
-            className={classes.list}
-            spacing={'xs'}
-            c={
-              data.featured
-                ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
-                : 'light-dark(var(--mantine-color-text),var(--mantine-color-text))'
-            }
-            icon={
-              <ThemeIcon
-                size={ICON_WRAPPER_SIZE / 1.5}
-                radius={'xl'}
-                color="sec.4"
-                c={'pri.9'}
-              >
-                <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
-              </ThemeIcon>
-            }
+        <Text mt={'md'} fz={'md'} fw={500}>
+          Kshs.{' '}
+          <Text
+            component="span"
+            inherit
+            fz={28}
+            fw={'bold'}
+            className={data.featured ? classes.titleFeatured : classes.title}
           >
-            {data.modules?.map((module, index) => (
-              <ListItem key={index}>{module}</ListItem>
-            ))}
-          </List>
-        </Stack>
+            <NumberFormatter
+              value={
+                data.price?.discount ? data.price.discount : data.price?.full
+              }
+              thousandSeparator
+            />
+            /-
+          </Text>
+          {data.price?.discount && (
+            <Text
+              component="sup"
+              inherit
+              fw={'bold'}
+              td={'line-through'}
+              pos={'relative'}
+              bottom={12}
+              left={8}
+              c={data.featured ? undefined : 'dimmed'}
+            >
+              <NumberFormatter value={data.price?.full} thousandSeparator />
+              /-
+            </Text>
+          )}
+        </Text>
+
+        <Title
+          order={3}
+          fw={'bold'}
+          fz={{ base: 'lg', lg: 'xl' }}
+          c={
+            data.featured
+              ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
+              : 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+          }
+        >
+          {data.title.full == 'Multi-Rotor'
+            ? 'Remote Pilot License (RPL)'
+            : data.title.full}
+        </Title>
+
+        {data.featured && (
+          <Text mt={'md'} component="span" fz={'xs'} c={'sec.4'}>
+            Exclusive of Medical
+          </Text>
+        )}
+
+        {data.title.full == 'Radio Telephony' && (
+          <Text mt={'md'} component="span" inherit fz={'xs'} c={'dimmed'}>
+            Exclusive of Exam, English Proficiency and License Fees
+          </Text>
+        )}
+
+        {data.advanced && (
+          <Text mt={'md'} w={{ md: '75%' }}>
+            For RPL hoders seeking to enhance their abilities and include{' '}
+            {data.title.full} to their skillset.
+          </Text>
+        )}
+
+        <List
+          className={classes.list}
+          mt={'xl'}
+          mb={'xl'}
+          spacing={'xs'}
+          c={
+            data.featured
+              ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
+              : 'light-dark(var(--mantine-color-text),var(--mantine-color-text))'
+          }
+          icon={
+            <ThemeIcon
+              size={ICON_WRAPPER_SIZE / 1.5}
+              radius={'xl'}
+              color="sec.4"
+              c={'pri.9'}
+            >
+              <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+            </ThemeIcon>
+          }
+        >
+          {data.modules?.map((module, index) => (
+            <ListItem key={index}>{module}</ListItem>
+          ))}
+        </List>
 
         <ModalContactTraining>
           <Button
@@ -172,7 +169,7 @@ export default function Basic({
               : data.title.full}
           </Button>
         </ModalContactTraining>
-      </Stack>
+      </Box>
     </Card>
   );
 }

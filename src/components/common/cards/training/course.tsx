@@ -28,12 +28,12 @@ export default function Course({ data }: { data: CourseProps }) {
 
         <Stack
           gap={'xl'}
-          pos={'relative'}
-          align="start"
-          h={'100%'}
           justify="space-between"
+          align="start"
+          pos={'relative'}
+          h={'100%'}
         >
-          <Stack gap={'xs'}>
+          <div>
             <Title
               order={3}
               fz={{ base: 'md', lg: 'lg' }}
@@ -42,10 +42,10 @@ export default function Course({ data }: { data: CourseProps }) {
               {data.title}
             </Title>
 
-            <Text fz="sm" lineClamp={5}>
+            <Text mt={'xs'} fz="sm" lineClamp={5}>
               {data.desc}
             </Text>
-          </Stack>
+          </div>
 
           <Anchor
             inherit

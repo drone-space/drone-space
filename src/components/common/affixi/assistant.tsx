@@ -5,13 +5,10 @@ import {
   Box,
   Center,
   Group,
-  Image,
-  Stack,
   Text,
   Tooltip,
   Transition,
 } from '@mantine/core';
-import NextImage from 'next/image';
 import { useHeadroom, useTimeout, useWindowScroll } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
 import ModalClaudeMain from '../modals/claude/main';
@@ -21,6 +18,7 @@ import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@/data/constants';
 import { getFromLocalStorage } from '@/utilities/helpers/storage';
 import { updateConversation } from '@/libraries/redux/slices/claude';
 import { useAppDispatch } from '@/hooks/redux';
+import ImageDefault from '../images/default';
 
 export default function Assistant() {
   const pathname = usePathname();
@@ -125,17 +123,15 @@ export default function Assistant() {
                     </Text>
 
                     <Box h={39} w={39}>
-                      <Stack>
-                        <Image
-                          src={images.icons.claude}
-                          alt={'Hekima AI'}
-                          loading="lazy"
-                          radius={'sm'}
-                          component={NextImage}
-                          width={31}
-                          height={31}
-                        />
-                      </Stack>
+                      <ImageDefault
+                        src={images.icons.claude}
+                        alt={'Hekima AI'}
+                        loading="lazy"
+                        radius={'sm'}
+                        fit={'contain'}
+                        width={39}
+                        height={39}
+                      />
                     </Box>
                   </Group>
                 </ModalClaudeMain>

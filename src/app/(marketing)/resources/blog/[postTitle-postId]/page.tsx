@@ -12,7 +12,6 @@ import {
   Flex,
   Group,
   NumberFormatter,
-  Stack,
   Text,
   Tooltip,
 } from '@mantine/core';
@@ -124,17 +123,16 @@ export default async function Post({ params }: { params: typeParams }) {
         mt={'xl'}
         containerized={'sm'}
       >
-        <Stack gap={'xl'}>
-          <ImageDefault
-            src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
-            alt={post.title}
-            height={{ base: 240, xs: 320, md: 360, lg: 400 }}
-            radius={'sm'}
-            priority
-          />
+        <ImageDefault
+          src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
+          alt={post.title}
+          height={{ base: 240, xs: 320, md: 360, lg: 400 }}
+          radius={'sm'}
+          priority
+          mb={'xl'}
+        />
 
-          <BlogContent content={post.content} />
-        </Stack>
+        <BlogContent content={post.content} />
       </LayoutSection>
 
       {/* <LayoutSection

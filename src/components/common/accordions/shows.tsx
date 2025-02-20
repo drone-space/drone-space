@@ -7,7 +7,6 @@ import {
   AccordionPanel,
   List,
   ListItem,
-  Stack,
   Text,
 } from '@mantine/core';
 
@@ -196,7 +195,7 @@ export default function Shows({
   };
 
   const items = selection()?.data.map((item, index) => (
-    <AccordionItem key={index} value={item.q}>
+    <AccordionItem key={index} value={item.q} mt={'md'}>
       <AccordionControl
         icon={
           variant == 'factors' ? (
@@ -223,7 +222,7 @@ export default function Shows({
       }}
       defaultValue={selection().data[0].q}
     >
-      <Stack gap={'xs'}>{items}</Stack>
+      {items}
     </Accordion>
   );
 }

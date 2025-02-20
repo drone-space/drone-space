@@ -24,6 +24,7 @@ export default function Navbar({
       <WrapperTransition
         transition={'slide-down'}
         mounted={scroll.y > 120 && pinned}
+        keepMounted={true}
       >
         <UnderlayGlass>
           <NavbarMain />

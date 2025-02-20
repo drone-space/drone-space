@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Anchor,
   Box,
@@ -26,6 +26,7 @@ import { MarkdownComponent } from '@/components/wrapper/markdown';
 import { useFormClaude } from '@/hooks/form/claude';
 
 export default function Main({ children }: { children: React.ReactNode }) {
+  const [updated, setUpdated] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
   const { form, submitted, handleSubmit, resetConversation } = useFormClaude();
   const conversation = useAppSelector((state) => state.claude.value);
@@ -35,24 +36,39 @@ export default function Main({ children }: { children: React.ReactNode }) {
   >();
 
   useEffect(() => {
-    if (submitted) {
-      if (targetRef?.current) {
-        targetRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-        });
-      }
+    setTimeout(
+      () => {
+        if (submitted || opened) {
+          if (targetRef?.current) {
+            targetRef.current.scrollIntoView({
+              behavior: 'smooth',
+              block: 'end',
+            });
+          }
+        }
+      },
+      opened ? 250 : 50
+    );
+  }, [submitted, opened]);
+
+  useEffect(() => {
+    if (submitted && !updated) {
+      setUpdated(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
+
+  const handleClose = () => {
+    setUpdated(false);
+    close();
+    form.reset();
+  };
 
   return (
     <>
       <Modal
         opened={opened}
-        onClose={close}
+        onClose={handleClose}
         withCloseButton={false}
-        keepMounted={true}
         padding={0}
         size={'lg'}
         centered
@@ -89,10 +105,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
                 color="gray"
                 variant="light"
                 fz={'xs'}
-                onClick={() => {
-                  close();
-                  form.reset();
-                }}
+                onClick={handleClose}
               >
                 Hide Chat
               </Button>
@@ -141,32 +154,30 @@ export default function Main({ children }: { children: React.ReactNode }) {
               )}
             </Stack>
 
-            {conversation.map((item, index) => (
-              <Box key={index}>
-                {item.role == 'assistant' ? (
-                  <Box
-                    my={'xs'}
-                    mih={
-                      conversation.indexOf(item) == conversation.length - 1 &&
-                      !submitted
-                        ? '30vh'
-                        : undefined
-                    }
-                  >
-                    <MarkdownComponent
-                      markdown={item.content}
-                      animate={
-                        conversation.indexOf(item) == conversation.length - 1
-                      }
-                    />
-                  </Box>
-                ) : (
-                  <UserTurn props={{ content: item.content }} />
-                )}
-              </Box>
-            ))}
+            {conversation.map((item, index) => {
+              const lastItem =
+                conversation.indexOf(item) == conversation.length - 1;
 
-            {submitted && (
+              return (
+                <Box key={index}>
+                  {item.role == 'assistant' ? (
+                    <Box
+                      my={'xs'}
+                      mih={lastItem && !submitted ? '30vh' : undefined}
+                    >
+                      <MarkdownComponent
+                        markdown={item.content}
+                        animate={lastItem && updated && !submitted}
+                      />
+                    </Box>
+                  ) : (
+                    <UserTurn props={{ content: item.content }} />
+                  )}
+                </Box>
+              );
+            })}
+
+            {submitted ? (
               <Box h={'37.5vh'} ref={targetRef}>
                 <UserTurn props={{ content: form.values.content }} />
 
@@ -179,6 +190,8 @@ export default function Main({ children }: { children: React.ReactNode }) {
                   <Skeleton h={'0.75rem'} my={'xs'} w={'50%'} />
                 </>
               </Box>
+            ) : (
+              <div ref={targetRef}></div>
             )}
           </ScrollArea>
         </LayoutSection>

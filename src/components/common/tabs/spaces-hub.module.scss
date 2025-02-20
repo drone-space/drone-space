@@ -16,11 +16,12 @@
 
 .tab {
   background-color: var(--mantine-color-gray-light);
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: nowrap;
 
   @include larger-than($mantine-breakpoint-md) {
     padding: var(--mantine-spacing-md);
+    justify-content: space-between;
   }
 
   &[data-active] {

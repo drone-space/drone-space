@@ -35,7 +35,7 @@ export default function SpacesHub() {
       defaultValue={linkify(data[0].title)}
       classNames={classes}
     >
-      <TabsList pr={{ md: 'xl' }} grow={!desktop}>
+      <TabsList pr={{ md: 'md', lg: 'xl' }} grow={!desktop}>
         {data.map((tab, index) => (
           <TabsTab
             key={index}
@@ -58,29 +58,29 @@ export default function SpacesHub() {
 
       {data.map((panel, index) => (
         <TabsPanel key={index} value={linkify(panel.title)}>
-          <Grid gutter={'xl'} pl={{ md: 'xl' }}>
-            <GridCol span={{ base: 12, sm: 5 }}>
+          <Grid gutter={'xl'} pl={{ md: 'md', lg: 'xl' }}>
+            <GridCol span={{ base: 12, md: 5 }}>
               <ImageDefault
                 src={panel.image}
                 alt={'Mission'}
-                height={{ base: 240, md: 280 }}
+                height={{ base: 240, xs: 320, sm: 480, md: 280 }}
                 mode="grid"
-                radius={'sm'}
+                radius={'md'}
               />
             </GridCol>
 
-            <GridCol span={{ base: 12, sm: 6 }}>
+            <GridCol span={{ base: 12, md: 6 }}>
               <Stack>
                 {panel.list.map((item, index) => (
                   <Group key={index} wrap="nowrap" align="start">
                     <ThemeIcon
-                      size={ICON_WRAPPER_SIZE}
+                      size={ICON_WRAPPER_SIZE / 1.25}
                       color="sec.4"
                       c={'pri.9'}
                       radius={'xl'}
                     >
                       <IconArrowRightDashed
-                        size={ICON_SIZE}
+                        size={ICON_SIZE / 1.25}
                         stroke={ICON_STROKE_WIDTH}
                       />
                     </ThemeIcon>

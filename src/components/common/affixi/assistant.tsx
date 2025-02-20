@@ -9,7 +9,7 @@ import {
   Tooltip,
   Transition,
 } from '@mantine/core';
-import { useHeadroom, useTimeout, useWindowScroll } from '@mantine/hooks';
+import { useTimeout, useWindowScroll } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
 import ModalClaudeMain from '../modals/claude/main';
 import { images } from '@/assets/images';
@@ -29,7 +29,6 @@ export default function Assistant() {
   const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
 
   const [scroll] = useWindowScroll();
-  const pinned = useHeadroom({ fixedAt: 120 });
 
   const routes = ['drone-solutions', '/drone-training', '/shop'];
   const routeIncluded = routes.find((r) => pathname.includes(r));
@@ -89,11 +88,7 @@ export default function Assistant() {
     <Affix
       position={{ bottom: 'calc(var(--mantine-spacing-xl) * 1.5)', right: 0 }}
     >
-      <Transition
-        transition="slide-left"
-        mounted={scroll.y > 0 && !pinned}
-        keepMounted={true}
-      >
+      <Transition transition="slide-left" mounted={scroll.y > 0}>
         {(transitionStyles) => (
           <div style={transitionStyles}>
             <Tooltip
@@ -101,7 +96,7 @@ export default function Assistant() {
               withArrow
               position="bottom-end"
               multiline
-              opened={menuOpened}
+              opened={scroll.y > 0 && menuOpened}
               events={{ hover: true, focus: true, touch: false }}
               w={220}
               label={

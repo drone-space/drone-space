@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { ActionIcon, Affix, AffixBaseProps } from '@mantine/core';
-import { useHeadroom, useWindowScroll } from '@mantine/hooks';
+import { useWindowScroll } from '@mantine/hooks';
 
 import WrapperTransition from '@/components/wrapper/transition';
 import {
@@ -24,15 +24,10 @@ export default function Top({
   'position' | 'children'
 >) {
   const [scroll, scrollTo] = useWindowScroll();
-  const pinned = useHeadroom({ fixedAt: 120 });
 
   return (
     <Affix position={position} {...restProps}>
-      <WrapperTransition
-        transition={'slide-left'}
-        mounted={scroll.y > 0 && !pinned}
-        keepMounted={true}
-      >
+      <WrapperTransition transition={'slide-left'} mounted={scroll.y > 0}>
         <ActionIcon
           size={ICON_WRAPPER_SIZE}
           color="sec.3"

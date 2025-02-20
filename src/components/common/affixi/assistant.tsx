@@ -122,15 +122,15 @@ export default function Assistant() {
                       Ask Hekima
                     </Text>
 
-                    <Box h={31} w={31}>
+                    <Box h={39} w={39}>
                       <ImageDefault
                         src={images.icons.claude}
                         alt={'Hekima AI'}
                         loading="lazy"
                         radius={'sm'}
                         fit={'contain'}
-                        width={31}
-                        height={31}
+                        width={39}
+                        height={39}
                       />
                     </Box>
                   </Group>

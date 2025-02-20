@@ -131,7 +131,7 @@ export default function Home() {
             <Text
               w={{ base: '100%', md: '75%' }}
               ta={'center'}
-              fz={{ base: 'md', xs: 'lg', sm: 'xl' }}
+              fz={{ base: 'xs', xs: 'lg', sm: 'xl' }}
               c={'yellow.4	'}
               fw={'bold'}
             >

@@ -61,7 +61,7 @@ export default function Shows() {
             </Text>
           </Stack>
 
-          <Grid justify="center">
+          <Grid justify="center" visibleFrom="sm">
             {data.features.map((feature, index) => (
               <GridCol key={index} span={{ xs: 6, sm: 4, lg: 3 }}>
                 <Card className={classes.card}>

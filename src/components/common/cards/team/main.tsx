@@ -1,16 +1,18 @@
 import React from 'react';
-import { Avatar, Card, Text, Title } from '@mantine/core';
+import { Avatar, Card, Group, Text, Title } from '@mantine/core';
 import { typeTeam } from '@/types/static/team';
 import { ICON_WRAPPER_SIZE } from '@/data/constants';
 
 export default function Main({ data }: { data: typeTeam }) {
   return (
     <Card bg={'var(--mantine-color-pri-9)'} padding={'xl'}>
-      <Avatar
-        src={data.image}
-        alt={'Drone Shop'}
-        size={ICON_WRAPPER_SIZE * 4}
-      />
+      <Group justify="center">
+        <Avatar
+          src={data.image}
+          alt={'Drone Shop'}
+          size={ICON_WRAPPER_SIZE * 4}
+        />
+      </Group>
 
       <Title
         mt={'xl'}

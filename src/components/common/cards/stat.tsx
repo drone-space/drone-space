@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@mantine/core';
+import { Box, Text, Title } from '@mantine/core';
 import classes from './stat.module.scss';
 
 export interface typeCardStats {
@@ -9,7 +9,7 @@ export interface typeCardStats {
 
 export default function Stat({ data }: { data: typeCardStats }) {
   return (
-    <div className={classes.card}>
+    <Box className={classes.card} p={{ base: 'md' }}>
       <Text
         component="p"
         fz={{ base: 28, sm: 32, lg: 32 }}
@@ -30,6 +30,6 @@ export default function Stat({ data }: { data: typeCardStats }) {
       >
         {data.title}
       </Title>
-    </div>
+    </Box>
   );
 }

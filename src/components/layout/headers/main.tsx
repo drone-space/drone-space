@@ -28,6 +28,7 @@ export default function Main() {
         shadowed
         bg={'var(--mantine-color-pri-9)'}
         c={'var(--mantine-color-white)'}
+        visibleFrom="sm"
       >
         <Flex
           direction={{ base: 'column', xs: 'row' }}

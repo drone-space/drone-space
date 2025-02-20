@@ -151,12 +151,7 @@ export default async function Contact() {
       >
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 5 }} order={{ base: 2, md: 1 }}>
-            <Card
-              withBorder
-              bg={'white'}
-              shadow="xs"
-              w={{ sm: '66%', md: '100%' }}
-            >
+            <Card withBorder bg={'white'} shadow="xs">
               <FormContact />
             </Card>
 

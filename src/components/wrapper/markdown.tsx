@@ -1,6 +1,5 @@
 import { useAppSelector } from '@/hooks/redux';
-import React, { useEffect, useRef } from 'react';
-import Typed from 'typed.js';
+import React, { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
 
 interface MarkdownComponentProps {
@@ -12,45 +11,34 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
   markdown,
   animate,
 }) => {
-  const markdownRef = useRef<HTMLDivElement | null>(null);
-  const hiddenMarkdownRef = useRef<HTMLDivElement | null>(null);
-  const typedRef = useRef<Typed | null>(null);
+  const [displayedText, setDisplayedText] = useState('');
   const conversation = useAppSelector((state) => state.claude.value);
 
   useEffect(() => {
-    if (hiddenMarkdownRef.current && markdownRef.current) {
-      const renderedHTML = hiddenMarkdownRef.current.innerHTML;
-
-      // Ensure the target element is cleared before initializing Typed.js
-      markdownRef.current.innerHTML = '';
-
-      typedRef.current = new Typed(markdownRef.current, {
-        strings: [renderedHTML],
-        typeSpeed: 0,
-        showCursor: false,
-        contentType: 'html', // Keeps HTML formatting intact
-      });
-
-      return () => {
-        if (typedRef.current) {
-          typedRef.current.destroy();
-        }
-      };
+    if (!animate) {
+      setDisplayedText(markdown);
+      return;
     }
-  }, [markdown, conversation]);
+
+    setDisplayedText(''); // Reset before animating
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index++;
+
+      if (index <= markdown.length) {
+        setDisplayedText(markdown.slice(0, index)); // Use `slice()` to avoid appending `undefined`
+      } else {
+        clearInterval(interval);
+      }
+    }, 5); // Adjust speed as needed
+
+    return () => clearInterval(interval);
+  }, [markdown, conversation, animate]);
 
   return (
     <div className="markdown-wrapper">
-      {animate ? (
-        <div ref={markdownRef} className="markdown-content" />
-      ) : (
-        <Markdown className="markdown-content">{markdown}</Markdown>
-      )}
-
-      {/* Hidden pre-rendered markdown */}
-      <div ref={hiddenMarkdownRef} style={{ display: 'none' }}>
-        <Markdown>{markdown}</Markdown>
-      </div>
+      <Markdown className="markdown-content">{displayedText}</Markdown>
     </div>
   );
 };

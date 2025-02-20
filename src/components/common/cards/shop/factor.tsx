@@ -1,4 +1,4 @@
-import { Card, Group, Stack, Text, ThemeIcon, Title } from '@mantine/core';
+import { Card, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import React from 'react';
 import classes from './factor.module.scss';
 import { Icon } from '@tabler/icons-react';
@@ -15,17 +15,19 @@ export default function Factor({
 }) {
   return (
     <Card className={classes.card}>
-      <Stack>
-        <Group align="end" justify="space-between">
-          <Title order={3} className={classes.title}>
-            {data.title}
-          </Title>
-          <ThemeIcon className={classes.icon} size={ICON_WRAPPER_SIZE * 1.5}>
-            <data.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
-          </ThemeIcon>
-        </Group>
-        <Text className={classes.desc}>{data.desc}</Text>
-      </Stack>
+      <Group align="end" justify="space-between">
+        <Title order={3} className={classes.title}>
+          {data.title}
+        </Title>
+
+        <ThemeIcon className={classes.icon} size={ICON_WRAPPER_SIZE * 1.5}>
+          <data.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
+        </ThemeIcon>
+      </Group>
+
+      <Text className={classes.desc} mt={'md'}>
+        {data.desc}
+      </Text>
     </Card>
   );
 }

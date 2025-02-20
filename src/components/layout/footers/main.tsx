@@ -36,110 +36,113 @@ export default function Main() {
       padded={SECTION_SPACING / 2}
       className={classes.footer}
     >
-      <Stack gap={SECTION_SPACING / 2}>
-        <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
-          <Anchor component={Link} href={'/'}>
-            <ImageDefault
-              src={images.brand.droneSpace.logo.landscape.default}
-              alt={appData.name.app}
-              height={{ base: 40 }}
-              width={{ base: 200 }}
-              fit="contain"
-              mode="grid"
-            />
-          </Anchor>
-        </Flex>
+      <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
+        <Anchor component={Link} href={'/'}>
+          <ImageDefault
+            src={images.brand.droneSpace.logo.landscape.default}
+            alt={appData.name.app}
+            height={{ base: 40 }}
+            width={{ base: 200 }}
+            fit="contain"
+            mode="grid"
+          />
+        </Anchor>
+      </Flex>
 
-        <Grid gutter={{ base: 'xl', md: 'md' }} visibleFrom="sm">
-          {linkSets.map((linkSet, index) => (
-            <GridCol
-              key={index}
-              span={{ base: 6, sm: 4, md: 3 }}
-              visibleFrom={
-                linkSets.indexOf(linkSet) == linkSets.length - 1
-                  ? 'md'
-                  : undefined
-              }
-            >
-              <Flex
-                direction={'column'}
-                align={{ base: 'center', md: 'start' }}
-                gap={'xl'}
-              >
-                <Title order={4} fw={'bold'}>
-                  {linkSet.title}
-                </Title>
-
-                <List listStyleType="none" spacing={'md'}>
-                  {linkSet.links.map((link, index) => (
-                    <ListItem key={index} className={classes.listItem}>
-                      <Anchor
-                        component={Link}
-                        href={link.link}
-                        title={link.label}
-                        className={classes.link}
-                      >
-                        {link.label}
-                      </Anchor>
-                    </ListItem>
-                  ))}
-                </List>
-              </Flex>
-            </GridCol>
-          ))}
-        </Grid>
-
-        <Flex
-          direction={{ base: 'column', sm: 'row' }}
-          align={{ base: 'center', sm: 'end' }}
-          justify={{ sm: 'space-between' }}
-          gap={'lg'}
-          visibleFrom="sm"
-        >
-          <Flex
-            direction={'column'}
-            align={{ base: 'center', sm: 'start' }}
-            gap={'lg'}
+      <Grid
+        mt={SECTION_SPACING / 2}
+        gutter={{ base: 'xl', md: 'md' }}
+        visibleFrom="sm"
+      >
+        {linkSets.map((linkSet, index) => (
+          <GridCol
+            key={index}
+            span={{ base: 6, sm: 4, md: 3 }}
+            visibleFrom={
+              linkSets.indexOf(linkSet) == linkSets.length - 1
+                ? 'md'
+                : undefined
+            }
           >
-            <Stack gap={'xs'}>
-              <Title order={3} fz={'lg'} ta={{ base: 'center', sm: 'start' }}>
-                Subscribe to our newsletter
+            <Flex
+              direction={'column'}
+              align={{ base: 'center', md: 'start' }}
+              gap={'xl'}
+            >
+              <Title order={4} fw={'bold'}>
+                {linkSet.title}
               </Title>
-              <Text c={'dimmed'} ta={{ base: 'center', sm: 'start' }}>
-                The latest drone industry news, helpful tips, and exclusive
-                offers monthly.
-              </Text>
-            </Stack>
 
-            <FormNewsletter />
-          </Flex>
+              <List listStyleType="none" spacing={'md'}>
+                {linkSet.links.map((link, index) => (
+                  <ListItem key={index} className={classes.listItem}>
+                    <Anchor
+                      component={Link}
+                      href={link.link}
+                      title={link.label}
+                      className={classes.link}
+                    >
+                      {link.label}
+                    </Anchor>
+                  </ListItem>
+                ))}
+              </List>
+            </Flex>
+          </GridCol>
+        ))}
+      </Grid>
 
-          <Group gap={0} wrap="nowrap">
-            {socials.map((social, index) => (
-              <Anchor key={index} href={social.link} target="_blank">
-                <Stack>
-                  <Image
-                    src={social.image}
-                    alt={social.title}
-                    title={social.title}
-                    component={NextImage}
-                    height={24}
-                    width={24}
-                    priority
-                  />
-                </Stack>
-              </Anchor>
-            ))}
-          </Group>
+      <Flex
+        mt={SECTION_SPACING / 2}
+        direction={{ base: 'column', sm: 'row' }}
+        align={{ base: 'center', sm: 'end' }}
+        justify={{ sm: 'space-between' }}
+        gap={'lg'}
+        visibleFrom="sm"
+      >
+        <Flex
+          direction={'column'}
+          align={{ base: 'center', sm: 'start' }}
+          gap={'lg'}
+        >
+          <Stack gap={'xs'}>
+            <Title order={3} fz={'lg'} ta={{ base: 'center', sm: 'start' }}>
+              Subscribe to our newsletter
+            </Title>
+            <Text c={'dimmed'} ta={{ base: 'center', sm: 'start' }}>
+              The latest drone industry news, helpful tips, and exclusive offers
+              monthly.
+            </Text>
+          </Stack>
+
+          <FormNewsletter />
         </Flex>
-      </Stack>
+
+        <Group gap={0} wrap="nowrap">
+          {socials.map((social, index) => (
+            <Anchor key={index} href={social.link} target="_blank">
+              <Stack>
+                <Image
+                  src={social.image}
+                  alt={social.title}
+                  title={social.title}
+                  component={NextImage}
+                  height={24}
+                  width={24}
+                  priority
+                />
+              </Stack>
+            </Anchor>
+          ))}
+        </Group>
+      </Flex>
 
       <Divider
         my={SECTION_SPACING / 2}
         color="var(--mantine-color-default-border)"
       />
 
-      <Stack gap={'lg'} fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
+      <Stack fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
         <Flex
           align={'center'}
           justify={{ sm: 'space-between' }}
@@ -173,10 +176,6 @@ export default function Main() {
             </Anchor>
           </Group>
         </Flex>
-
-        {/* <Flex justify={{ base: 'center', sm: 'start' }}>
-          <SegmentedControlTheme />
-        </Flex> */}
       </Stack>
     </LayoutSection>
   );

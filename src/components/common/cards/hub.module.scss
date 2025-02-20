@@ -6,6 +6,8 @@
   color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
   padding: var(--mantine-spacing-xl);
   border-radius: var(--mantine-radius-sm);
+  height: 100%;
+  width: 100%;
 }
 
 .title {

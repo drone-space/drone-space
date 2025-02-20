@@ -5,13 +5,13 @@ import Link from 'next/link';
 import {
   Anchor,
   Badge,
+  Box,
   Card,
   Divider,
   Grid,
   GridCol,
   Group,
   NumberFormatter,
-  Stack,
   Text,
   Title,
 } from '@mantine/core';
@@ -56,63 +56,68 @@ export default function New({ post }: { post: PostRelations }) {
         </GridCol>
 
         <GridCol span={{ base: 12, sm: 6 }}>
-          <Stack
-            gap={'lg'}
+          <Box
             px={{ base: 'lg', sm: 'xl' }}
             py={{ base: 'lg', md: 32 }}
-            justify="space-between"
-            h={'100%'}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              height: '100%',
+            }}
           >
-            <Stack>
-              <Badge
-                size="sm"
-                color="blue"
-                radius={'sm'}
-                leftSection={<IconCircleFilled size={4} />}
+            <Badge
+              size="sm"
+              color="blue"
+              radius={'sm'}
+              leftSection={<IconCircleFilled size={4} />}
+            >
+              latest
+            </Badge>
+
+            <Title
+              mt={'md'}
+              order={3}
+              fz={28}
+              lh={{ md: 1 }}
+              className={classes.title}
+            >
+              <Anchor
+                component={Link}
+                underline="hover"
+                inherit
+                href={path}
+                c={'inherit'}
+                title={post.title}
               >
-                latest
-              </Badge>
+                {post.title}
+              </Anchor>
+            </Title>
 
-              <Title order={3} fz={28} lh={{ md: 1 }} className={classes.title}>
-                <Anchor
-                  component={Link}
-                  underline="hover"
-                  inherit
-                  href={path}
-                  c={'inherit'}
-                  title={post.title}
-                >
-                  {post.title}
-                </Anchor>
-              </Title>
+            <Text mt={'md'} className={classes.desc} lineClamp={6}>
+              {post.excerpt}
+            </Text>
 
-              <Text className={classes.desc} lineClamp={6}>
-                {post.excerpt}
-              </Text>
-            </Stack>
+            <Divider mt={'lg'} />
 
-            <Stack>
-              <Divider />
+            <Group mt={'md'} justify="space-between" fz={'sm'}>
+              <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
 
-              <Group justify="space-between" fz={'sm'}>
-                <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
+              {post._count.comments && (
+                <Group gap={4}>
+                  <IconMessageCircle
+                    size={ICON_SIZE - 4}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
 
-                {post._count.comments && (
-                  <Group gap={4}>
-                    <IconMessageCircle
-                      size={ICON_SIZE - 4}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-
-                    <NumberFormatter
-                      thousandSeparator
-                      value={post._count.comments}
-                    />
-                  </Group>
-                )}
-              </Group>
-            </Stack>
-          </Stack>
+                  <NumberFormatter
+                    thousandSeparator
+                    value={post._count.comments}
+                  />
+                </Group>
+              )}
+            </Group>
+          </Box>
         </GridCol>
       </Grid>
     </Card>

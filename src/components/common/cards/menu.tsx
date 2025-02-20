@@ -9,7 +9,6 @@ import {
   Center,
   Grid,
   GridCol,
-  Stack,
   Text,
   ThemeIcon,
   Title,
@@ -35,13 +34,13 @@ export default function Menu({ props }: { props: typeMenuNavbar }) {
         </GridCol>
 
         <GridCol span={10}>
-          <Stack gap={4}>
-            <Title order={2} fz={'sm'} lh={1}>
-              {props.label}
-            </Title>
+          <Title order={2} fz={'sm'} lh={1}>
+            {props.label}
+          </Title>
 
-            <Text fz={'xs'}>{props.desc}</Text>
-          </Stack>
+          <Text mt={4} fz={'xs'}>
+            {props.desc}
+          </Text>
         </GridCol>
       </Grid>
     </Card>

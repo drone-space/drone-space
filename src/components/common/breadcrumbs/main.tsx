@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { Anchor, Box, Breadcrumbs } from '@mantine/core';
+import { Anchor, Breadcrumbs } from '@mantine/core';
 
 import { IconChevronRight } from '@tabler/icons-react';
 
@@ -18,13 +18,12 @@ export default function Main({ props }: { props: typeLink[] }) {
   return (
     <Breadcrumbs
       separator={
-        <Box mt={'xs'}>
-          <IconChevronRight
-            size={ICON_SIZE - 4}
-            stroke={ICON_STROKE_WIDTH}
-            color="light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))"
-          />
-        </Box>
+        <IconChevronRight
+          size={ICON_SIZE - 4}
+          stroke={ICON_STROKE_WIDTH}
+          color="light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))"
+          style={{ marginTop: 'var(--mantine-spacing-md)' }}
+        />
       }
     >
       {props.map((item, index) => (

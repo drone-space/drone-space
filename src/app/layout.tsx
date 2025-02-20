@@ -40,6 +40,7 @@ import { COOKIE_NAME } from '@/data/constants';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
 import GoogleAnalytics from '@/components/seo/analytics';
+import { isProduction } from '@/utilities/helpers/environment';
 // import AffixOffline from '@/components/common/affixi/offline';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
@@ -96,7 +97,9 @@ export default async function RootLayout({
 
         {/* <SpeedInsights /> */}
 
-        <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
+        {isProduction() && (
+          <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   );

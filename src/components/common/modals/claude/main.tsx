@@ -49,12 +49,14 @@ export default function Main({ children }: { children: React.ReactNode }) {
       },
       opened ? 250 : 50
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted, opened]);
 
   useEffect(() => {
     if (submitted && !updated) {
       setUpdated(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
 
   const handleClose = () => {

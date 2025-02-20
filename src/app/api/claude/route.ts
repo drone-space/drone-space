@@ -35,6 +35,11 @@ export async function POST(req: NextRequest) {
           text: documentContent,
           cache_control: { type: 'ephemeral' },
         },
+        {
+          type: 'text',
+          text: 'Be concise but retain some comprehensiveness.',
+          cache_control: { type: 'ephemeral' },
+        },
       ],
       messages: messages,
     });

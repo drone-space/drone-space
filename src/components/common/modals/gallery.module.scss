@@ -1,20 +1,14 @@
-.container {
+.imageContainer {
   overflow: hidden;
   border-radius: var(--mantine-radius-sm);
-
-  @include hover {
-    .image {
-      transform: scale(1.1);
-    }
-  }
 }
 
-.image {
-  transition: 0.5s all ease;
+.imageOuter {
+  transform: scale(1.1);
+  transition: 0.25s all ease;
 
-  transform: scale(1.05);
-
-  @include hover {
+  &:hover {
+    transform: scale(1.05);
     cursor: pointer;
   }
 }

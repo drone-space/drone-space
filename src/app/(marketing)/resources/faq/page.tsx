@@ -12,11 +12,30 @@ import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import { Anchor, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+
+const metaTitle = `${appData.name.app} FAQ - Answers to Your Drone Training Questions`;
+const metaDesc =
+  'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';
 
 export const metadata: Metadata = {
-  title: `${appData.name.app} FAQ - Answers to Your Drone Training Questions`,
-  description:
-    'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.',
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/faq`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Faq() {

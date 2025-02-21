@@ -34,17 +34,36 @@ import {
 import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import appData from '@/data/app';
 import {
+  HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@/data/constants';
 import IframeContact from '@/components/common/iframes/contact';
+import { images } from '@/assets/images';
+
+const metaTitle = `Contact ${appData.name.app} - Reach Out for Training & Services`;
+const metaDesc =
+  'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.';
 
 export const metadata: Metadata = {
-  title: `Contact ${appData.name.app} - Reach Out for Training & Services`,
-  description:
-    'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.',
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/about/contact`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Contact() {

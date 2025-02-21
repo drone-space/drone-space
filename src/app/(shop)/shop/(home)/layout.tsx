@@ -12,9 +12,29 @@ import AffixAssistant from '@/components/common/affixi/assistant';
 import AffixWhatsapp from '@/components/common/affixi/whatsapp';
 import CtaNewsletter from '@/components/partial/cta/newsletter';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+
+const metaTitle = `Drone Shop - Top Drones & Accessories at ${appData.name.app} Kenya`;
+const metaDesc = `Discover the best drones for every need at ${appData.name.app}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
 
 export const metadata: Metadata = {
-  title: `Drone Shop - Top Drones & Accessories at ${appData.name.app} Kenya`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default function ShopLayout({

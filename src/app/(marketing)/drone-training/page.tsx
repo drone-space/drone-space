@@ -16,6 +16,7 @@ import {
 
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import {
+  HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
@@ -29,9 +30,26 @@ import CardCourse from '@/components/common/cards/training/course';
 import { linkify } from '@/utilities/formatters/string';
 import { courseList } from '@/data/courses';
 
+const metaTitle = `Drone Training - Professional Courses at ${appData.name.app} Kenya`;
+const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
+
 export const metadata: Metadata = {
-  title: `Drone Training - Professional Courses at ${appData.name.app} Kenya`,
-  description: `Join ${appData.name.app} for certified drone training programs in Kenya. Learn to fly, operate, and excel in drone technology with expert instructors.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-training`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function DroneTraining() {

@@ -7,10 +7,30 @@ import LayoutSection from '@/components/layout/section';
 import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+import appData from '@/data/app';
+
+const metaTitle = 'Enterprise Drones - High-Performance Drones for Business';
+const metaDesc = `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`;
 
 export const metadata: Metadata = {
-  title: 'Enterprise Drones - High-Performance Drones for Business',
-  description: `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/enterprise`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Enterprise() {

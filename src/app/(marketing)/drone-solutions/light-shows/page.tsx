@@ -36,13 +36,34 @@ import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import appData from '@/data/app';
 import shows from '@/data/shows';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import {
+  HOSTED_BASE_URL,
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+} from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
 
+const metaTitle = 'Drone Light Shows - Stunning Aerial Displays by Drone Space';
+const metaDesc =
+  'Experience breathtaking drone light shows for events and celebrations. Discover how Drone Space creates unforgettable aerial art.';
+
 export const metadata: Metadata = {
-  title: 'Drone Light Shows - Stunning Aerial Displays by Drone Space',
-  description:
-    'Experience breathtaking drone light shows for events and celebrations. Discover how Drone Space creates unforgettable aerial art.',
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-solutions/light-shows`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function LighShow() {

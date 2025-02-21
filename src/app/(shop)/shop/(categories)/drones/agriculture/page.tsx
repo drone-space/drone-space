@@ -7,10 +7,30 @@ import LayoutSection from '@/components/layout/section';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+import appData from '@/data/app';
+
+const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
+const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
 
 export const metadata: Metadata = {
-  title: 'Agriculture Drones - Optimize Farming with Drone Space',
-  description: `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/agriculture`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Agriculture() {

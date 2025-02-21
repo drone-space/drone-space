@@ -7,10 +7,29 @@ import LayoutSection from '@/components/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+
+const metaTitle = `Terms and Conditions - ${appData.name.app} Kenya`;
+const metaDesc = `Review the terms and conditions governing the use of ${appData.name.app} services, training, and products. Stay informed about our policies and commitments.`;
 
 export const metadata: Metadata = {
-  title: `Terms and Conditions - ${appData.name.app} Kenya`,
-  description: `Review the terms and conditions governing the use of ${appData.name.app} services, training, and products. Stay informed about our policies and commitments.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/legal/terms`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function TermsConditions() {

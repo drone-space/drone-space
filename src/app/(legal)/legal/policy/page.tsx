@@ -7,10 +7,29 @@ import LayoutSection from '@/components/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+
+const metaTitle = `Privacy Policy - How ${appData.name.app} Protects Your Data`;
+const metaDesc = `Learn how ${appData.name.app} collects, uses, and protects your personal information. Your privacy is our priority.`;
 
 export const metadata: Metadata = {
-  title: `Privacy Policy - How ${appData.name.app} Protects Your Data`,
-  description: `Learn how ${appData.name.app} collects, uses, and protects your personal information. Your privacy is our priority.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/legal/policy`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function PrivacyPolicy() {

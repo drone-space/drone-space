@@ -37,6 +37,7 @@ export const images = {
           black: `${baseUrl.droneSpace}/brand/logo/potrait/black.png`,
           default: `${baseUrl.droneSpace}/brand/logo/potrait/default.png`,
           white: `${baseUrl.droneSpace}/brand/logo/potrait/white.png`,
+          meta: `${baseUrl.droneSpace}/brand/logo/potrait/meta.png`,
         },
       },
     },

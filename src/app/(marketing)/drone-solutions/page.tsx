@@ -6,6 +6,7 @@ import { Grid, GridCol, Text, ThemeIcon, Group } from '@mantine/core';
 
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import {
+  HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
@@ -13,10 +14,28 @@ import {
 import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
+import appData from '@/data/app';
+
+const metaTitle = 'Drone Space Services - Expert Drone Solutions in Kenya';
+const metaDesc = `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`;
 
 export const metadata: Metadata = {
-  title: 'Drone Space Services - Expert Drone Solutions in Kenya',
-  description: `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-solutions`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Services() {

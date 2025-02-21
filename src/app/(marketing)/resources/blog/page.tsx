@@ -12,14 +12,32 @@ import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
 import appData from '@/data/app';
 import { Metadata } from 'next';
-import { REVALIDATE } from '@/data/constants';
+import { HOSTED_BASE_URL, REVALIDATE } from '@/data/constants';
+import { images } from '@/assets/images';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = REVALIDATE.WEEK;
 
+const metaTitle = `${appData.name.app} Blog - Insights on Drone Training & Technology`;
+const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appData.name.app} blog.`;
+
 export const metadata: Metadata = {
-  title: `${appData.name.app} Blog - Insights on Drone Training & Technology`,
-  description: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appData.name.app} blog.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/blog`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Blog() {

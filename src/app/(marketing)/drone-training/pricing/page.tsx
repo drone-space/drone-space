@@ -12,10 +12,29 @@ import ModalContactTraining from '@/components/common/modals/contact/training';
 
 import courses from '@/data/courses';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+
+const metaTitle = `Drone Training Pricing - Affordable Courses at ${appData.name.app} Kenya`;
+const metaDesc = `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`;
 
 export const metadata: Metadata = {
-  title: `Drone Training Pricing - Affordable Courses at ${appData.name.app} Kenya`,
-  description: `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-training/pricing`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Pricing() {

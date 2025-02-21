@@ -14,7 +14,7 @@ import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
-import { REVALIDATE, SECTION_SPACING } from '@/data/constants';
+import { HOSTED_BASE_URL, REVALIDATE, SECTION_SPACING } from '@/data/constants';
 import appData from '@/data/app';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { studentsGet } from '@/handlers/requests/database/student';
@@ -28,10 +28,27 @@ import { team } from '@/data/team';
 export const dynamic = 'force-dynamic';
 export const revalidate = REVALIDATE.WEEK;
 
+const metaTitle = `About ${appData.name.app} - Kenya's Leading Drone Training Academy`;
+const metaDesc =
+  'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.';
+
 export const metadata: Metadata = {
-  title: `About ${appData.name.app} - Kenya's Leading Drone Training Academy`,
-  description:
-    'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.',
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/about`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function About() {

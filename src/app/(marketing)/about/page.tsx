@@ -41,7 +41,7 @@ export default async function About() {
     <LayoutPage>
       <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={{ base: 'xl', md: 48 }}>
-          <GridCol span={{ base: 12, md: 6 }} visibleFrom="sm">
+          <GridCol span={{ base: 12, md: 6 }}>
             <AspectRatio ratio={1920 / 1080} h={'100%'}>
               <video
                 width="100%"
@@ -127,7 +127,7 @@ export default async function About() {
 
       <LayoutSection id="mission-vision" padded>
         <Grid align="center" gutter={'xl'}>
-          <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2, xs: 1 }}>
+          <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2, sm: 1 }}>
             <IntroSection
               props={{
                 subTitle: 'Our',
@@ -140,23 +140,23 @@ export default async function About() {
               w={{ md: '20%' }}
               size={2}
               color="sec.4"
-              mt={{ md: 'xl' }}
+              mt={{ base: 'xs', md: 'xl' }}
             />
 
-            <Text mt={{ md: 'xl' }}>
+            <Text mt={{ base: 'xs', md: 'xl' }}>
               Our mission is to be the preferred drone training and commercial
               operations organization for Government, corporates, and industry
               sector by providing quality, high standards, and reliable
               services.
             </Text>
           </GridCol>
-          <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1, xs: 2 }}>
+          <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1, sm: 2 }}>
             <ImageDefault
               src={
                 'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'
               }
               alt={'Mission'}
-              height={{ base: 240, md: 280 }}
+              height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
               radius={'sm'}
             />
@@ -164,7 +164,7 @@ export default async function About() {
         </Grid>
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING}>
-          <GridCol span={{ base: 12, xs: 7 }} order={{ base: 2 }}>
+          <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2 }}>
             <IntroSection
               props={{
                 subTitle: 'Our',
@@ -177,10 +177,10 @@ export default async function About() {
               w={{ md: '20%' }}
               size={2}
               color="sec.4"
-              mt={{ md: 'xl' }}
+              mt={{ base: 'xs', md: 'xl' }}
             />
 
-            <Text mt={{ md: 'xl' }}>
+            <Text mt={{ base: 'xs', md: 'xl' }}>
               Our long-term vision is to contribute and empower to the
               ever-growing youth in Kenya by equipping them with the drone
               technology skill and realization of economic prosperity for young
@@ -188,13 +188,13 @@ export default async function About() {
               entrepreneurship.
             </Text>
           </GridCol>
-          <GridCol span={{ base: 12, xs: 5 }} order={{ base: 1 }}>
+          <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1 }}>
             <ImageDefault
               src={
                 'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'
               }
               alt={'Mission'}
-              height={{ base: 240, md: 280 }}
+              height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
               radius={'sm'}
             />

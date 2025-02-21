@@ -66,14 +66,14 @@ export default async function DroneTraining() {
                 mt={'md'}
               >
                 <ThemeIcon
-                  size={ICON_WRAPPER_SIZE / 1.25}
+                  size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.4"
                   c={'pri.9'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
-                    size={ICON_SIZE / 1.25}
+                    size={ICON_SIZE / 1.5}
                     stroke={ICON_STROKE_WIDTH}
                   />
                 </ThemeIcon>
@@ -96,14 +96,14 @@ export default async function DroneTraining() {
                 mt={'md'}
               >
                 <ThemeIcon
-                  size={ICON_WRAPPER_SIZE / 1.25}
+                  size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.4"
                   c={'pri.9'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
-                    size={ICON_SIZE / 1.25}
+                    size={ICON_SIZE / 1.5}
                     stroke={ICON_STROKE_WIDTH}
                   />
                 </ThemeIcon>
@@ -520,7 +520,7 @@ export default async function DroneTraining() {
                 c={'white'}
                 withBorder
                 shadow="xs"
-                padding={'xl'}
+                p={{ base: 'md', lg: 'xl' }}
                 h={'100%'}
               >
                 <Paper bg={'sec.3'} c={'pri.9'} p={'xs'} w={'fit-content'}>

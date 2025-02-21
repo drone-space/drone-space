@@ -62,15 +62,15 @@ export default async function LighShow() {
         }
       >
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, sm: 6 }}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <ImageDefault
               src={images.shows.talk}
               alt={"Let's Talk Drone Light Shows"}
               loading="lazy"
-              height={{ base: 160, xs: 560, md: 480, lg: 420 }}
+              height={{ base: 240, xs: 360, md: 490, lg: 420 }}
             />
           </GridCol>
-          <GridCol span={{ base: 12, sm: 6 }}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
                 order={2}
@@ -110,15 +110,15 @@ export default async function LighShow() {
         containerized={false}
       >
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
+          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
             <ImageDefault
               src={images.shows.understanding}
               alt={'Understanding Drone Light Shows'}
               loading="lazy"
-              height={{ base: 160, xs: 560, md: 640, lg: 420 }}
+              height={{ base: 240, xs: 360, md: 580, lg: 500 }}
             />
           </GridCol>
-          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
+          <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
                 order={2}
@@ -150,7 +150,7 @@ export default async function LighShow() {
         }
       >
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, sm: 6 }}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <AspectRatio ratio={1920 / 1080} h={'100%'}>
               <video
                 width="100%"
@@ -167,7 +167,7 @@ export default async function LighShow() {
               </video>
             </AspectRatio>
           </GridCol>
-          <GridCol span={{ base: 12, sm: 6 }}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
                 order={2}
@@ -198,15 +198,15 @@ export default async function LighShow() {
 
       <LayoutSection id="page-lightshow-why" containerized={false} shadowed>
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 1, sm: 2 }}>
+          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
             <ImageDefault
               src={images.shows.hny}
               alt={'Why Choose Drone Light Shows?'}
               loading="lazy"
-              height={{ base: 160, xs: 560, md: 640, lg: 420 }}
+              height={{ base: 240, xs: 360, md: 680, lg: 620 }}
             />
           </GridCol>
-          <GridCol span={{ base: 12, sm: 6 }} order={{ base: 2, sm: 1 }}>
+          <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
                 order={2}
@@ -494,7 +494,7 @@ export default async function LighShow() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
+      {/* <LayoutSection
         id="page-lightshow-cta2"
         padded={96}
         containerized={'responsive'}
@@ -582,7 +582,7 @@ export default async function LighShow() {
             </GridCol>
           </Grid>
         </Stack>
-      </LayoutSection>
+      </LayoutSection> */}
     </LayoutPage>
   );
 }

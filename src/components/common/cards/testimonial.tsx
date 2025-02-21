@@ -29,14 +29,12 @@ export default function Testimonial({ props }: { props: Student }) {
 
       <Flex
         direction={'column'}
-        gap={'xl'}
+        gap={'xs'}
         justify={'space-between'}
         h={'100%'}
         mt={'md'}
       >
         <Text fz={'sm'}>{props.quote}</Text>
-
-        <Rating defaultValue={5} />
 
         <Group mt={'md'} wrap="nowrap" align="start">
           <Group
@@ -64,6 +62,8 @@ export default function Testimonial({ props }: { props: Student }) {
             <Text fz={'xs'} c={'dimmed'}>
               {props.position}
             </Text>
+
+            <Rating defaultValue={5} readOnly mt={5} />
           </div>
         </Group>
       </Flex>

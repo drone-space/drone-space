@@ -2,26 +2,20 @@
 
 import React from 'react';
 import { ActionIcon, Affix, Transition } from '@mantine/core';
-import { useHeadroom, useWindowScroll } from '@mantine/hooks';
+import { useWindowScroll } from '@mantine/hooks';
 import ImageDefault from '../images/default';
 import appData from '@/data/app';
 import { images } from '@/assets/images';
 
 export default function Whatsapp() {
   const [scroll] = useWindowScroll();
-  const pinned = useHeadroom({ fixedAt: 120 });
-
   const whatsapp = appData.socials.whatsapp;
 
   return (
     <Affix
       position={{ bottom: 'calc(var(--mantine-spacing-xl) * 2.75)', right: 0 }}
     >
-      <Transition
-        transition="slide-left"
-        mounted={scroll.y > 0 && !pinned}
-        keepMounted={true}
-      >
+      <Transition transition="slide-left" mounted={scroll.y > 0}>
         {(transitionStyles) => (
           <div style={transitionStyles}>
             <ActionIcon

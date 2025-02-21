@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 
 interface PageRange {
   from: number;
@@ -12,49 +12,56 @@ const chunk = <T>(array: T[], size: number): T[][] => {
 };
 
 export const usePaginate = <T>(list: T[], pageSize: number) => {
-  const [items, setItems] = useState<T[]>([]);
   const [activePage, setActivePage] = useState(1);
 
-  const chunkedList = useMemo(
-    () => (list ? chunk(list, pageSize) : []),
-    [list, pageSize]
+  const handlePageChange = useCallback((page: number) => {
+    setActivePage(page);
+  }, []);
+
+  // These only need to change when list or pageSize changes
+  const totalPages = useMemo(
+    () => Math.ceil(list.length / pageSize),
+    [list.length, pageSize]
   );
 
+  const chunkedList = useMemo(() => chunk(list, pageSize), [list, pageSize]);
+
+  // This needs to change when page changes
+  const items = useMemo(() => {
+    if (chunkedList.length === 0) return [];
+    const safePageIndex = Math.min(activePage - 1, chunkedList.length - 1);
+    return chunkedList[safePageIndex] || [];
+  }, [chunkedList, activePage]);
+
+  useEffect(() => {
+    setActivePage(1);
+  }, [list.length, pageSize]);
+
+  // This needs to change when page changes
   const pageRange = useMemo((): PageRange | null => {
-    if (!chunkedList.length) return null;
+    if (chunkedList.length === 0) return null;
 
     const lastChunkLength = chunkedList[chunkedList.length - 1].length;
     const isLastChunk =
-      lastChunkLength === items.length && lastChunkLength !== pageSize;
+      activePage === chunkedList.length && lastChunkLength !== pageSize;
 
     return {
       from: isLastChunk
-        ? list.length - items.length + 1
+        ? list.length - lastChunkLength + 1
         : (activePage - 1) * pageSize + 1,
-      to: isLastChunk ? list.length : activePage * pageSize,
+      to: isLastChunk
+        ? list.length
+        : Math.min(activePage * pageSize, list.length),
     };
-  }, [chunkedList, activePage, list, pageSize, items]);
-
-  useEffect(() => {
-    if (!list) return;
-
-    const currentPageItems = chunkedList[activePage - 1];
-
-    if (currentPageItems) {
-      setItems(currentPageItems);
-    } else if (activePage > 1) {
-      setActivePage(activePage - 1);
-    } else {
-      setItems([]);
-    }
-  }, [list, activePage, pageSize, chunkedList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chunkedList.length, activePage, list.length, pageSize]);
 
   return {
     items,
-    setItems,
     activePage,
-    setActivePage,
+    setActivePage: handlePageChange,
     chunkedList,
+    totalPages,
     pageRange,
   };
 };

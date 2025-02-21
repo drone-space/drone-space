@@ -1,10 +1,16 @@
 'use client';
 
 import React from 'react';
-import NextImage from 'next/image';
-import { Modal, Image, Stack, Text } from '@mantine/core';
+import { Modal, Group, ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './gallery.module.scss';
+import ImageDefault from '../images/default';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
+import { IconX } from '@tabler/icons-react';
 
 export interface typeModalGallery {
   img: string;
@@ -18,39 +24,51 @@ export default function Gallery({ img }: typeModalGallery) {
       <Modal
         opened={opened}
         onClose={close}
+        size={'110vh'}
         centered
-        classNames={{ close: classes.close }}
-        size={'xl'}
-        title={
-          <Text component="span" inherit fw={'bold'} c={'pri'}>
-            Image Viewer
-          </Text>
-        }
-        closeButtonProps={{ 'aria-label': 'Close modal' }}
+        withCloseButton={false}
+        padding={0}
+        styles={{
+          content: {
+            borderRadius: 'var(--mantine-radius-md)',
+            overflow: 'hidden',
+          },
+        }}
       >
-        <Stack>
-          <Image
+        <div style={{ position: 'relative' }}>
+          <ImageDefault
             src={img}
-            alt={'Gallery Image'}
-            loading="lazy"
-            radius={'sm'}
-            component={NextImage}
-            width={1920}
-            height={1080}
+            alt={'gallery image'}
+            height={{ base: 180, xs: 320, md: 380 }}
+            width={{ base: '100%' }}
           />
-        </Stack>
+
+          <Group
+            justify="end"
+            pos={'absolute'}
+            right={'var(--mantine-spacing-xs)'}
+            top={'var(--mantine-spacing-xs)'}
+          >
+            <ActionIcon
+              size={ICON_WRAPPER_SIZE}
+              color="var(--mantine-color-white)"
+              variant="subtle"
+              onClick={close}
+            >
+              <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            </ActionIcon>
+          </Group>
+        </div>
       </Modal>
-      <Stack className={classes.container} onClick={open}>
-        <Image
+
+      <div onClick={open} className={classes.imageContainer}>
+        <ImageDefault
           src={img}
-          alt={'Gallery Image'}
-          loading="lazy"
-          className={classes.image}
-          component={NextImage}
-          width={1920}
-          height={1080}
+          alt={'gallery image'}
+          height={{ base: 200 }}
+          className={classes.imageOuter}
         />
-      </Stack>
+      </div>
     </>
   );
 }

@@ -6,27 +6,22 @@ import LayoutSection from '@/components/layout/section';
 import { typeParams } from '../layout';
 import { postGet } from '@/handlers/requests/database/post';
 import {
-  Anchor,
-  Center,
   // Divider,
   Flex,
   Group,
-  NumberFormatter,
+  Stack,
   Text,
-  Tooltip,
+  // Anchor,
+  // Center,
+  // NumberFormatter,
+  // Tooltip,
 } from '@mantine/core';
-import {
-  // IconCircleFilled,
-  // IconEye,
-  IconMessageCircle,
-  IconSlash,
-} from '@tabler/icons-react';
 // import MenuShare from '@/components/common/menus/share';
 import IntroPage from '@/components/layout/intro/page';
 import {
   HOSTED_BASE_URL,
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
+  // ICON_SIZE,
+  // ICON_STROKE_WIDTH,
   REVALIDATE,
   SECTION_SPACING,
 } from '@/data/constants';
@@ -76,12 +71,12 @@ export default async function Post({ params }: { params: typeParams }) {
             <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
           </Group>
 
-          <Center visibleFrom="xs">
+          {/* <Center visibleFrom="xs">
             <IconSlash size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          </Center>
+          </Center> */}
 
-          <Group justify="center">
-            {/* <Tooltip label={'Views'} withArrow>
+          {/* <Group justify="center">
+            <Tooltip label={'Views'} withArrow>
               <Group gap={6}>
                 <IconEye size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
 
@@ -94,7 +89,7 @@ export default async function Post({ params }: { params: typeParams }) {
               </Group>
             </Tooltip>
 
-            <IconCircleFilled size={4} /> */}
+            <IconCircleFilled size={4} />
 
             <Anchor inherit href="#page-post-comment">
               <Tooltip label={'Comments'} withArrow>
@@ -113,7 +108,7 @@ export default async function Post({ params }: { params: typeParams }) {
                 </Group>
               </Tooltip>
             </Anchor>
-          </Group>
+          </Group> */}
         </Flex>
       </LayoutSection>
 
@@ -123,16 +118,17 @@ export default async function Post({ params }: { params: typeParams }) {
         mt={'xl'}
         containerized={'sm'}
       >
-        <ImageDefault
-          src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
-          alt={post.title}
-          height={{ base: 240, xs: 320, md: 360, lg: 400 }}
-          radius={'sm'}
-          priority
-          mb={'xl'}
-        />
+        <Stack gap={'xl'}>
+          <ImageDefault
+            src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
+            alt={post.title}
+            height={{ base: 240, xs: 320, md: 360, lg: 400 }}
+            radius={'sm'}
+            priority
+          />
 
-        <BlogContent content={post.content} />
+          <BlogContent content={post.content} />
+        </Stack>
       </LayoutSection>
 
       {/* <LayoutSection

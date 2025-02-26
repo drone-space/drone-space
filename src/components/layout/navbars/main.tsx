@@ -26,7 +26,7 @@ export default function Main({
     return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
-  const navLinks = links.map((link, index) => {
+  const navLinks = links.marketing.map((link, index) => {
     return (
       <MenuNavbar key={index} subLinks={link.subLinks}>
         {!link.subLinks ? (
@@ -100,7 +100,7 @@ export default function Main({
 
           <Group hiddenFrom="sm" gap={'xs'} justify="end">
             <DrawerNavbarMain
-              props={links}
+              props={links.marketing}
               options={{ absolute: options?.absolute }}
             />
           </Group>

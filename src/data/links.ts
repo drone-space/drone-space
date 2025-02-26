@@ -44,126 +44,146 @@ export const shopLinks = [
   },
 ];
 
-const links = [
-  {
-    link: '/about',
-    label: 'About',
-    subLinks: [
-      {
-        link: '/about/#our-story',
-        label: 'Our Story',
-        leftSection: IconCopyright,
-        desc: 'Discover our story, mission, and the values that drive us forward.',
-      },
-      {
-        link: '/about/#spaces-and-hub',
-        label: 'Spaces & Hub',
-        leftSection: IconSpaces,
-        desc: 'Striving to accelerate development in technology and innovation.',
-      },
-      // {
-      //   link: '/about/#team',
-      //   label: 'Team',
-      //   leftSection: IconUsersGroup,
-      //   desc: 'Meet the passionate individuals behind our vision and success.',
-      // },
-      {
-        link: '/about/gallery',
-        label: 'Gallery',
-        leftSection: IconLibraryPhoto,
-        desc: 'See a visual showcase of our journey and achievements.',
-      },
-      {
-        link: '/about/contact',
-        label: 'Contact Us',
-        leftSection: IconInfoCircle,
-        desc: 'Reach out for any inquiries about drone training, drone reselling and drone services.',
-      },
-      {
-        link: '/about/#team',
-        label: 'Team',
-        leftSection: IconUsersGroup,
-        desc: 'Discover the talented individuals driving our mission forward.',
-      },
-      // {
-      //   link: '/about/#success-stories',
-      //   label: 'Success Stories',
-      //   leftSection: IconBubble,
-      //   desc: 'Discover the talented individuals driving our mission forward.',
-      // },
-    ],
-  },
-  {
-    link: '/drone-training',
-    label: 'Drone Training',
-    subLinks: [
-      ...courseList
-        .map((course) => {
-          if (courseList.indexOf(course) < 5) {
-            return {
-              link: `/drone-training#${linkify(course.title)}`,
-              label: course.title,
-              leftSection: course.leftSection,
-              desc: course.linkDesc,
-            };
-          }
+const links = {
+  marketing: [
+    {
+      link: '/about',
+      label: 'About',
+      subLinks: [
+        {
+          link: '/about/#our-story',
+          label: 'Our Story',
+          leftSection: IconCopyright,
+          desc: 'Discover our story, mission, and the values that drive us forward.',
+        },
+        {
+          link: '/about/#spaces-and-hub',
+          label: 'Spaces & Hub',
+          leftSection: IconSpaces,
+          desc: 'Striving to accelerate development in technology and innovation.',
+        },
+        // {
+        //   link: '/about/#team',
+        //   label: 'Team',
+        //   leftSection: IconUsersGroup,
+        //   desc: 'Meet the passionate individuals behind our vision and success.',
+        // },
+        {
+          link: '/about/gallery',
+          label: 'Gallery',
+          leftSection: IconLibraryPhoto,
+          desc: 'See a visual showcase of our journey and achievements.',
+        },
+        {
+          link: '/about/contact',
+          label: 'Contact Us',
+          leftSection: IconInfoCircle,
+          desc: 'Reach out for any inquiries about drone training, drone reselling and drone services.',
+        },
+        {
+          link: '/about/#team',
+          label: 'Team',
+          leftSection: IconUsersGroup,
+          desc: 'Discover the talented individuals driving our mission forward.',
+        },
+        // {
+        //   link: '/about/#success-stories',
+        //   label: 'Success Stories',
+        //   leftSection: IconBubble,
+        //   desc: 'Discover the talented individuals driving our mission forward.',
+        // },
+      ],
+    },
+    {
+      link: '/drone-training',
+      label: 'Drone Training',
+      subLinks: [
+        ...courseList
+          .map((course) => {
+            if (courseList.indexOf(course) < 5) {
+              return {
+                link: `/drone-training#${linkify(course.title)}`,
+                label: course.title,
+                leftSection: course.leftSection,
+                desc: course.linkDesc,
+              };
+            }
 
-          return null;
-        })
-        .filter((i) => i != null),
+            return null;
+          })
+          .filter((i) => i != null),
 
-      {
-        link: '/drone-training/pricing',
-        label: 'Training Pricing',
-        leftSection: IconCash,
-        desc: 'Find detailed information on costs and packages for all our training programs.',
-      },
-    ],
-  },
-  {
-    link: '/drone-solutions',
-    label: 'Drone Solutions',
-    subLinks: [
-      {
-        label: 'Drone Light Shows',
-        link: '/drone-solutions/light-shows',
-        leftSection: IconSun,
-        desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
-      },
+        {
+          link: '/drone-training/pricing',
+          label: 'Training Pricing',
+          leftSection: IconCash,
+          desc: 'Find detailed information on costs and packages for all our training programs.',
+        },
+      ],
+    },
+    {
+      link: '/drone-solutions',
+      label: 'Drone Solutions',
+      subLinks: [
+        {
+          label: 'Drone Light Shows',
+          link: '/drone-solutions/light-shows',
+          leftSection: IconSun,
+          desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
+        },
 
-      ...services.map((service) => {
-        return {
-          link: `/drone-solutions#${linkify(service.title)}`,
-          label: service.title,
-          leftSection: service.leftSection,
-          desc: service.linkDesc,
-        };
-      }),
-    ],
-  },
-  {
-    link: '/shop',
-    label: 'Shop',
-    subLinks: shopLinks,
-  },
-  {
-    link: '/resources',
-    label: 'Resources',
-    subLinks: [
-      {
-        link: '/resources/blog',
-        label: 'Blog',
-        leftSection: IconArticle,
-        desc: 'Stay updated with insights, stories, and news from our community.',
-      },
-      {
-        link: '/resources/faq',
-        label: 'FAQ',
-        leftSection: IconHelp,
-        desc: 'Find quick answers to common questions about our services, products, and policies.',
-      },
-    ],
-  },
-];
+        ...services.map((service) => {
+          return {
+            link: `/drone-solutions#${linkify(service.title)}`,
+            label: service.title,
+            leftSection: service.leftSection,
+            desc: service.linkDesc,
+          };
+        }),
+      ],
+    },
+    {
+      link: '/shop',
+      label: 'Shop',
+      subLinks: shopLinks,
+    },
+    {
+      link: '/resources',
+      label: 'Resources',
+      subLinks: [
+        {
+          link: '/resources/blog',
+          label: 'Blog',
+          leftSection: IconArticle,
+          desc: 'Stay updated with insights, stories, and news from our community.',
+        },
+        {
+          link: '/resources/faq',
+          label: 'FAQ',
+          leftSection: IconHelp,
+          desc: 'Find quick answers to common questions about our services, products, and policies.',
+        },
+      ],
+    },
+  ],
+  academy: [
+    {
+      link: '/academy/courses',
+      label: 'My Courses',
+    },
+    {
+      link: '/academy/classes',
+      label: 'My Classes',
+    },
+    {
+      link: '/academy/assignments',
+      label: 'My Assignments',
+    },
+    {
+      link: '/academy/questions',
+      label: 'My Questions',
+    },
+  ],
+};
 
 export default links;

@@ -340,7 +340,7 @@ export default function Home() {
         </LayoutPage>
       </main>
 
-      <AffixNavbar />
+      <AffixNavbar navbar={<NavbarMain />} />
       <AffixTop />
       <AffixWhatsapp />
       <AffixAssistant />

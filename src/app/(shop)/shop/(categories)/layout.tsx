@@ -28,7 +28,7 @@ export default function ShopLayout({
         <CtaNewsletter />
       </main>
 
-      <AffixNavbar />
+      <AffixNavbar navbar={<NavbarMain />} />
       <AffixTop />
       <AffixWhatsapp />
       <AffixAssistant />

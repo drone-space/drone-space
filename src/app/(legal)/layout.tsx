@@ -24,7 +24,7 @@ export default function Legal({
       <main>
         {children}
 
-        <AffixNavbar />
+        <AffixNavbar navbar={<NavbarMain />} />
         <AffixTop />
         <AffixWhatsapp />
         <AffixAssistant />

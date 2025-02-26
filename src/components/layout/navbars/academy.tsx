@@ -67,7 +67,7 @@ export default function Academy() {
                 component={Link}
                 href={'/academy/catalog'}
                 className={`${classes.link} ${
-                  matchesPath('/academy') ? classes.linkActive : ''
+                  matchesPath('/academy/catalog') ? classes.linkActive : ''
                 }`}
               >
                 Catalog

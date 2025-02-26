@@ -27,6 +27,11 @@ export const images = {
         default: `${baseUrl.droneSpace}/brand/icon/default.png`,
         white: `${baseUrl.droneSpace}/brand/icon/white.png`,
       },
+      wording: {
+        black: `${baseUrl.droneSpace}/brand/wording/black.png`,
+        default: `${baseUrl.droneSpace}/brand/wording/default.png`,
+        white: `${baseUrl.droneSpace}/brand/wording/white.png`,
+      },
       logo: {
         landscape: {
           black: `${baseUrl.droneSpace}/brand/logo/landscape/black.png`,

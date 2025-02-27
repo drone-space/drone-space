@@ -1,6 +1,6 @@
 import React from 'react';
 import LayoutBody from '@/components/layout/body';
-import NavbarAcademy from '@/components/layout/navbars/academy';
+import NavbarAcademyStudent from '@/components/layout/navbars/academy/student';
 // import LayoutHeroMain from '@/components/layout/hero/main';
 // import HeaderMain from '@/components/layout/headers/main';
 // import FooterMain from '@/components/layout/footers/main';
@@ -17,7 +17,7 @@ export default function Academy({
   return (
     <LayoutBody
       // header={<HeaderMain />}
-      nav={<NavbarAcademy />}
+      nav={<NavbarAcademyStudent />}
       // hero={<LayoutHeroMain />}
       // footer={<FooterMain />}
     >

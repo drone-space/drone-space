@@ -50,7 +50,13 @@ export default function Academy() {
   );
 
   return (
-    <LayoutSection id={'partial-navbar-academy'} shadowed style={{ zIndex: 1 }}>
+    <LayoutSection
+      id={'partial-navbar-academy'}
+      containerized={false}
+      px={'lg'}
+      shadowed
+      style={{ zIndex: 1 }}
+    >
       <Grid align="center" gutter={0}>
         <GridCol span={{ sm: 2 }}>
           <Group>

@@ -21,7 +21,7 @@ export default function Courses() {
   const [value, setValue] = useState<string | null>(null);
 
   useEffect(() => {
-    setValue(getUrlParam('tab') || 'enrolled');
+    setValue(getUrlParam('tab').length > 1 ? getUrlParam('tab') : 'enrolled');
   }, []);
 
   useEffect(() => {

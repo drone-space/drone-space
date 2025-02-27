@@ -6,7 +6,7 @@ import LayoutSection from '@/components/layout/section';
 // import { HOSTED_BASE_URL } from '@/data/constants';
 // import { images } from '@/assets/images';
 import HeroAcademy from '@/components/layout/hero/academy';
-import TabsAcademyCourses from '@/components/common/tabs/academy/courses';
+import TabsAcademyCatalog from '@/components/common/tabs/academy/catalog';
 
 // const metaTitle = `${appData.name.app} FAQ - Answers to Your Drone Training Questions`;
 // const metaDesc =
@@ -31,13 +31,13 @@ import TabsAcademyCourses from '@/components/common/tabs/academy/courses';
 //   },
 // };
 
-export default async function Courses() {
+export default async function Catalog() {
   return (
     <LayoutPage>
-      <HeroAcademy props={{ title: 'My Courses' }} />
+      <HeroAcademy props={{ title: 'Catalog' }} />
 
       <LayoutSection id="academy-courses-tab" containerized={false}>
-        <TabsAcademyCourses />
+        <TabsAcademyCatalog />
       </LayoutSection>
     </LayoutPage>
   );

@@ -20,6 +20,8 @@ export const images = {
     claude: `${iconUrl}/?size=100&id=H5H0mqCCr5AV&format=png&color=000000`,
   },
 
+  empty: '/images/empty.svg',
+
   brand: {
     droneSpace: {
       icon: {

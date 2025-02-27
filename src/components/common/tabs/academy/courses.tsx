@@ -2,10 +2,13 @@
 
 import {
   Group,
+  NumberFormatter,
+  Stack,
   Tabs,
   TabsList,
   TabsPanel,
   TabsTab,
+  Text,
   TextInput,
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +18,9 @@ import { useRouter } from 'next/navigation';
 import classes from './courses.module.scss';
 import { IconSearch } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import CardAcademyCourseMain from '../../cards/academy/course/main';
+import { courses } from '@/data/academy/courses';
+import PlaceholderEmpty from '@/components/placeholders/empty';
 
 export default function Courses() {
   const router = useRouter();
@@ -38,13 +44,41 @@ export default function Courses() {
       <LayoutSection id="academy-courses-tab-list" bg={'gray.1'} padded={'md'}>
         <TabsList>
           <Group gap={'xs'}>
-            <TabsTab value="enrolled">Enrolled</TabsTab>
-            <TabsTab value="completed">Completed</TabsTab>
+            <TabsTab
+              rightSection={
+                <Text component="span" inherit>
+                  (
+                  <NumberFormatter
+                    value={courses.completed.length}
+                    thousandSeparator
+                  />
+                  )
+                </Text>
+              }
+              value="enrolled"
+            >
+              Enrolled
+            </TabsTab>
+            <TabsTab
+              rightSection={
+                <Text component="span" inherit>
+                  (
+                  <NumberFormatter
+                    value={courses.completed.length}
+                    thousandSeparator
+                  />
+                  )
+                </Text>
+              }
+              value="completed"
+            >
+              Completed
+            </TabsTab>
           </Group>
 
           <div style={{ justifySelf: 'end' }}>
             <TextInput
-              placeholder="Search course"
+              placeholder="Search..."
               variant="filled"
               leftSection={
                 <IconSearch size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
@@ -60,14 +94,34 @@ export default function Courses() {
       </LayoutSection>
 
       <TabsPanel value="enrolled">
-        <LayoutSection id="academy-courses-tab-enrolled" padded={'md'}>
-          Enrolled tab content
+        <LayoutSection id="academy-courses-tab-enrolled" padded={'lg'}>
+          {courses.enrolled.length ? (
+            <Stack gap={'lg'}>
+              {courses.enrolled.map((c, i) => (
+                <CardAcademyCourseMain key={i} props={c} />
+              ))}
+            </Stack>
+          ) : (
+            <PlaceholderEmpty
+              props={{ text: `You haven't enrolled for any courses` }}
+            />
+          )}
         </LayoutSection>
       </TabsPanel>
 
       <TabsPanel value="completed">
-        <LayoutSection id="academy-courses-tab-completed" padded={'md'}>
-          Completed tab content
+        <LayoutSection id="academy-courses-tab-completed" padded={'lg'}>
+          {courses.completed.length ? (
+            <Stack gap={'lg'}>
+              {courses.completed.map((c, i) => (
+                <CardAcademyCourseMain key={i} props={c} />
+              ))}
+            </Stack>
+          ) : (
+            <PlaceholderEmpty
+              props={{ text: `You don't have any completed courses` }}
+            />
+          )}
         </LayoutSection>
       </TabsPanel>
     </Tabs>

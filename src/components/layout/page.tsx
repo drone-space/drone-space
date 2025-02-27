@@ -13,6 +13,7 @@ export default function Page({
     <Box
       component={stacked ? Stack : 'article'}
       w={'100%'}
+      h={'100%'}
       gap={
         stacked
           ? typeof stacked == 'boolean'

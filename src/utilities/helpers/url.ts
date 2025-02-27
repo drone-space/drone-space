@@ -15,3 +15,19 @@ export const getUrlParam = (urlParamName: string) => {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(urlParamName) || '/';
 };
+
+export function setUrlParam(name: string, value: string | null): string {
+  if (typeof window === 'undefined') {
+    return '/';
+  }
+
+  const url = new URL(window.location.href);
+
+  if (value === null) {
+    url.searchParams.delete(name);
+  } else {
+    url.searchParams.set(name, value);
+  }
+
+  return url.toString();
+}

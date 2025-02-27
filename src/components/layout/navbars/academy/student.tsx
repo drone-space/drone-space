@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Group, Anchor, Grid, GridCol } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
-import classes from './academy.module.scss';
+import classes from './student.module.scss';
 import { usePathname } from 'next/navigation';
 import links from '@/data/links';
 import ImageDefault from '@/components/common/images/default';

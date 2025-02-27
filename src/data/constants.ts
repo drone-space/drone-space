@@ -104,3 +104,11 @@ export const EXPIRY = {
 };
 
 export const URL_PARAM = { REDIRECT: 'redirect' };
+
+export const APPSHELL = {
+  HEADER_HEIGHT: 64,
+  NAVBAR_WIDTH: 64,
+  BODY_HEIGHT: 'calc(100vh - 64px)',
+};
+
+export const SCROLLBAR_SIZE = 10;

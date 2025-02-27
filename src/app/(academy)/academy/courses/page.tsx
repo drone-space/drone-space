@@ -8,6 +8,8 @@ import LayoutSection from '@/components/layout/section';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
+import HeroAcademyCourses from '@/components/layout/hero/academy/courses';
+import TabsAcademyCourses from '@/components/common/tabs/academy/courses';
 
 const metaTitle = `${appData.name.app} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
@@ -35,16 +37,10 @@ export const metadata: Metadata = {
 export default async function Faq() {
   return (
     <LayoutPage>
-      {/* <IntroPage
-        props={{
-          path: `Q & A`,
-          title: 'Frequently Asked Questions',
-          desc: `Need a help with something? Here are our most frequently asked questions.`,
-        }}
-      /> */}
+      <HeroAcademyCourses props={{ title: 'My Courses' }} />
 
-      <LayoutSection id="academy" padded>
-        academy
+      <LayoutSection id="academy-courses-tab" containerized={false}>
+        <TabsAcademyCourses />
       </LayoutSection>
     </LayoutPage>
   );

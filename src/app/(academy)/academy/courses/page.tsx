@@ -8,7 +8,7 @@ import LayoutSection from '@/components/layout/section';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import HeroAcademyCourses from '@/components/layout/hero/academy/courses';
+import HeroAcademy from '@/components/layout/hero/academy';
 import TabsAcademyCourses from '@/components/common/tabs/academy/courses';
 
 const metaTitle = `${appData.name.app} FAQ - Answers to Your Drone Training Questions`;
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default async function Faq() {
   return (
     <LayoutPage>
-      <HeroAcademyCourses props={{ title: 'My Courses' }} />
+      <HeroAcademy props={{ title: 'My Courses' }} />
 
       <LayoutSection id="academy-courses-tab" containerized={false}>
         <TabsAcademyCourses />

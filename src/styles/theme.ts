@@ -71,13 +71,6 @@ const appTheme = createTheme({
       classNames: classesAnchor,
     }),
 
-    Card: Card.extend({
-      defaultProps: {
-        bg: 'var(--mantine-color-pri-light)',
-        c: 'var(--mantine-color-text)',
-      },
-    }),
-
     Container: Container.extend({
       defaultProps: {
         mx: 'auto',

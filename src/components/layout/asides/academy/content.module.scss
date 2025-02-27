@@ -1,0 +1,9 @@
+.link {
+  padding: calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm);
+
+  @include hover {
+    background-color: var(--mantine-color-gray-2);
+  }
+
+  transition: 0.25s all ease;
+}

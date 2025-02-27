@@ -1,11 +1,16 @@
 'use client';
 
 import {
+  Grid,
+  GridCol,
   Group,
+  NumberFormatter,
+  Stack,
   Tabs,
   TabsList,
   TabsPanel,
   TabsTab,
+  Text,
   TextInput,
 } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +20,11 @@ import { useRouter } from 'next/navigation';
 import classes from './catalog.module.scss';
 import { IconSearch } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import { catalogue } from '@/data/academy/catalog';
+import CardAcademyCourseMain from '../../cards/academy/course/main';
+import PlaceholderEmpty from '@/components/placeholders/empty';
+import CardAcademyQuestions from '../../cards/academy/questions';
+import { questions } from '@/data/academy/question';
 
 export default function Catalog() {
   const router = useRouter();
@@ -38,7 +48,19 @@ export default function Catalog() {
       <LayoutSection id="academy-catalog-tab-list" bg={'gray.1'} padded={'md'}>
         <TabsList>
           <Group gap={'xs'}>
-            <TabsTab value="courses">Courses</TabsTab>
+            <TabsTab
+              value="courses"
+              rightSection={
+                <Text component="span" inherit>
+                  (
+                  <NumberFormatter value={catalogue.length} thousandSeparator />
+                  )
+                </Text>
+              }
+            >
+              Courses
+            </TabsTab>
+
             <TabsTab value="questions">Questions</TabsTab>
           </Group>
 
@@ -61,13 +83,35 @@ export default function Catalog() {
 
       <TabsPanel value="courses">
         <LayoutSection id="academy-catalog-tab-courses" padded={'md'}>
-          Courses tab content
+          {catalogue.length ? (
+            <Stack gap={'lg'}>
+              {catalogue.map((c, i) => (
+                <CardAcademyCourseMain key={i} props={c} />
+              ))}
+            </Stack>
+          ) : (
+            <PlaceholderEmpty
+              props={{ text: `There are no courses available at this time` }}
+            />
+          )}
         </LayoutSection>
       </TabsPanel>
 
       <TabsPanel value="questions">
         <LayoutSection id="academy-catalog-tab-questions" padded={'md'}>
-          Questions tab content
+          {questions.length ? (
+            <Grid gutter={'xl'}>
+              {questions.map((q, i) => (
+                <GridCol key={i} span={{ md: 6 }}>
+                  <CardAcademyQuestions props={q} />
+                </GridCol>
+              ))}
+            </Grid>
+          ) : (
+            <PlaceholderEmpty
+              props={{ text: `There are no questions available at this time` }}
+            />
+          )}
         </LayoutSection>
       </TabsPanel>
     </Tabs>

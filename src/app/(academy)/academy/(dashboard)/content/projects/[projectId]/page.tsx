@@ -23,6 +23,7 @@ import {
 import { initialize } from '@/utilities/formatters/string';
 import ModalAcademyCollaborator from '@/components/common/modals/academy/collaborator';
 import ModalAcademyProject from '@/components/common/modals/academy/project';
+import MenuAcademyContentCreate from '@/components/common/menus/academy/content/create';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -78,13 +79,15 @@ export default async function Project() {
                   Upload
                 </Button>
 
-                <Button
-                  leftSection={
-                    <IconPlus size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                  }
-                >
-                  Create
-                </Button>
+                <MenuAcademyContentCreate>
+                  <Button
+                    leftSection={
+                      <IconPlus size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                    }
+                  >
+                    Create
+                  </Button>
+                </MenuAcademyContentCreate>
               </Group>
             </Group>
 

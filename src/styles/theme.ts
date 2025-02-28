@@ -4,6 +4,7 @@ import {
   Anchor,
   Container,
   createTheme,
+  Menu,
   Modal,
   Notification,
   PasswordInput,
@@ -83,6 +84,16 @@ const appTheme = createTheme({
     }),
 
     Tooltip: Tooltip.extend({
+      defaultProps: {
+        transitionProps: {
+          transition: 'fade',
+          duration: 100,
+          exitDuration: 100,
+        },
+      },
+    }),
+
+    Menu: Menu.extend({
       defaultProps: {
         transitionProps: {
           transition: 'fade',

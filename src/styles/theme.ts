@@ -2,14 +2,15 @@
 
 import {
   Anchor,
-  Card,
   Container,
   createTheme,
+  Modal,
   Notification,
   PasswordInput,
   Textarea,
   TextInput,
   Title,
+  Tooltip,
 } from '@mantine/core';
 
 import cx from 'clsx';
@@ -79,6 +80,31 @@ const appTheme = createTheme({
       classNames: (_: any, { size }: { size?: any }) => ({
         root: cx({ [classesContainer.root]: size === 'responsive' }),
       }),
+    }),
+
+    Tooltip: Tooltip.extend({
+      defaultProps: {
+        transitionProps: {
+          transition: 'fade',
+          duration: 100,
+          exitDuration: 100,
+        },
+      },
+    }),
+
+    Modal: Modal.extend({
+      defaultProps: {
+        centered: true,
+        transitionProps: {
+          transition: 'pop',
+          duration: 100,
+          exitDuration: 100,
+        },
+        overlayProps: {
+          backgroundOpacity: 0.5,
+          blur: 5,
+        },
+      },
     }),
 
     TextInput: TextInput.extend({

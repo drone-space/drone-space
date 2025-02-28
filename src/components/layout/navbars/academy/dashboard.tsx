@@ -30,7 +30,7 @@ export default function Dashboard() {
           withArrow
           transitionProps={{
             transition: 'fade-left',
-            duration: 250,
+            duration: 100,
             exitDuration: 100,
           }}
         >
@@ -38,8 +38,7 @@ export default function Dashboard() {
             key={index}
             size={ICON_WRAPPER_SIZE * 1.5}
             variant={pathname === link.link ? 'light' : 'subtle'}
-            color="gray"
-            c={'var(--mantine-color-text)'}
+            c={pathname === link.link ? 'pri' : 'var(--mantine-color-text)'}
             component={Link}
             href={link.link}
           >

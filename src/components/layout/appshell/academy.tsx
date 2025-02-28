@@ -5,8 +5,8 @@ import {
   AppShellHeader,
   AppShellMain,
   AppShellNavbar,
-  Box,
-  Burger,
+  // Box,
+  // Burger,
   Group,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -16,7 +16,10 @@ import HeaderAcademyDashboard from '../headers/academy/dashboard';
 import { APPSHELL } from '@/data/constants';
 
 export default function Academy({ children }: { children: React.ReactNode }) {
-  const [opened, { toggle }] = useDisclosure();
+  const [
+    opened,
+    // { toggle }
+  ] = useDisclosure();
 
   return (
     <AppShell

@@ -1,6 +1,13 @@
 'use client';
 
-import { ActionIcon, Group, NavLink, Stack, Title } from '@mantine/core';
+import {
+  ActionIcon,
+  Group,
+  NavLink,
+  Stack,
+  Title,
+  Tooltip,
+} from '@mantine/core';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -12,6 +19,7 @@ import {
 } from '@/data/constants';
 import { IconCirclePlus } from '@tabler/icons-react';
 import { generateUUID } from '@/utilities/generators/id';
+import ModalAcademyProject from '@/components/common/modals/academy/project';
 
 export default function Content() {
   const pathname = usePathname();
@@ -40,14 +48,20 @@ export default function Content() {
             Projects
           </Title>
 
-          <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
-            <IconCirclePlus size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          </ActionIcon>
+          <ModalAcademyProject>
+            <Tooltip label="Create Project" withArrow>
+              <Group>
+                <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
+                  <IconCirclePlus size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                </ActionIcon>
+              </Group>
+            </Tooltip>
+          </ModalAcademyProject>
         </Group>
 
         <div>
           {projects.map((project, index) => {
-            const projectLink = `/academy/content/project/${project.id}`;
+            const projectLink = `/academy/content/projects/${project.id}`;
 
             return (
               <NavLink

@@ -33,8 +33,13 @@ export default function Academy({
           scrollbars={'y'}
         >
           <Box p={'xs'}>
-            <Paper bg={'var(--mantine-color-body)'} shadow="xs" p={'lg'}>
-              <Box h={'120vh'}>{children}</Box>
+            <Paper
+              bg={'var(--mantine-color-body)'}
+              shadow="xs"
+              p={'lg'}
+              mih={`calc(${APPSHELL.BODY_HEIGHT} - 20px)`}
+            >
+              {children}
             </Paper>
           </Box>
         </ScrollArea>

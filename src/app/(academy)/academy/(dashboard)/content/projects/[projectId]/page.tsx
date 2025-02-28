@@ -5,14 +5,11 @@ import LayoutMainAcademy from '@/components/layout/main/academy';
 import AsideAcademyContent from '@/components/layout/asides/academy/content';
 import {
   ActionIcon,
-  Avatar,
-  AvatarGroup,
   Button,
   Group,
   Stack,
   TextInput,
   Tooltip,
-  TooltipGroup,
 } from '@mantine/core';
 import { IconDots, IconPlus, IconUpload } from '@tabler/icons-react';
 import {
@@ -20,10 +17,10 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
-import { initialize } from '@/utilities/formatters/string';
 import ModalAcademyCollaborator from '@/components/common/modals/academy/collaborator';
 import ModalAcademyProject from '@/components/common/modals/academy/project';
 import MenuAcademyContentCreate from '@/components/common/menus/academy/content/create';
+import AvatarGroup from '@/components/common/avatars/group';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -58,7 +55,7 @@ export default async function Project() {
       <LayoutSection id="project" containerized={false}>
         <LayoutMainAcademy props={{ navigation: <AsideAcademyContent /> }}>
           <Stack>
-            <Group justify="space-between">
+            <Group justify="space-between" mih={36}>
               <TextInput
                 defaultValue={'New Project (xevac jarars)'}
                 placeholder="Project Title"
@@ -92,22 +89,7 @@ export default async function Project() {
             </Group>
 
             <Group gap={'xs'}>
-              <TooltipGroup openDelay={100} closeDelay={100}>
-                <AvatarGroup>
-                  {collaborators.map((collaborator, index) => (
-                    <Tooltip key={index} label={collaborator.name} withArrow>
-                      <Avatar
-                        src={collaborator.avatar}
-                        alt={collaborator.name}
-                        color="initials"
-                        size={ICON_WRAPPER_SIZE * 1.25}
-                      >
-                        {initialize(collaborator.name)}
-                      </Avatar>
-                    </Tooltip>
-                  ))}
-                </AvatarGroup>
-              </TooltipGroup>
+              <AvatarGroup props={collaborators} />
 
               <ModalAcademyCollaborator>
                 <Tooltip label="Add Collaborator" withArrow>

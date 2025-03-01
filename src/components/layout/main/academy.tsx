@@ -25,13 +25,7 @@ export default function Academy({
       </GridCol>
 
       <GridCol span={{ md: 9.5, xl: 10 }}>
-        <ScrollArea
-          h={APPSHELL.BODY_HEIGHT}
-          type="always"
-          offsetScrollbars
-          scrollbarSize={SCROLLBAR_SIZE}
-          scrollbars={'y'}
-        >
+        <Box h={APPSHELL.BODY_HEIGHT} style={{ overflowY: 'scroll' }}>
           <Box p={'xs'}>
             <Paper
               bg={'var(--mantine-color-body)'}
@@ -42,7 +36,7 @@ export default function Academy({
               {children}
             </Paper>
           </Box>
-        </ScrollArea>
+        </Box>
       </GridCol>
     </Grid>
   );

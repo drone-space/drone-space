@@ -3,8 +3,7 @@ import { sortArray } from '@/utilities/helpers/array';
 import { useState } from 'react';
 
 export const useSortArray = <T>(
-  setList: React.Dispatch<React.SetStateAction<T[]>>,
-  getField: (item: T) => any | undefined // (item) => item
+  setList: React.Dispatch<React.SetStateAction<T[]>>
 ) => {
   const [orderMap, setOrderMap] = useState<Record<string, Order>>({});
 
@@ -16,9 +15,9 @@ export const useSortArray = <T>(
           ? Order.ASCENDING
           : Order.DESCENDING;
 
-      setList((list) => sortArray([...list], getField, nextOrder)); // Create a copy
+      setList((list) => sortArray([...list], (list) => list[field], nextOrder)); // Create a copy
 
-      return { ...orderMap, [field]: nextOrder };
+      return { [field]: nextOrder };
     });
   };
 

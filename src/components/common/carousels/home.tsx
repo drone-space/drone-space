@@ -24,11 +24,7 @@ import LayoutSection from '@/components/layout/section';
 // import ModalCamp from '../modals/camp';
 // import ModalShows from '../modals/shows';
 import ModalDownloadBrochure from '../modals/download/brochure';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@/data/constants';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import classes from './home.module.scss';
 
 export default function Home() {

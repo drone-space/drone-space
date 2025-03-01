@@ -24,7 +24,11 @@ import LayoutSection from '@/components/layout/section';
 // import ModalCamp from '../modals/camp';
 // import ModalShows from '../modals/shows';
 import ModalDownloadBrochure from '../modals/download/brochure';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  SECTION_SPACING,
+} from '@/data/constants';
 import classes from './home.module.scss';
 
 export default function Home() {
@@ -58,7 +62,7 @@ export default function Home() {
       }}
     >
       <LayoutSection id={`carousel-home-slide-${index}`}>
-        <Stack align={'center'} justify="center" mih={520}>
+        <Stack align={'center'} justify="center" mih={600}>
           <Title order={1} ta={'center'} className={classes.title}>
             {slide.title}
           </Title>
@@ -103,8 +107,8 @@ export default function Home() {
           backgroundPosition: 'center center',
         }}
       >
-        <LayoutSection id="carousel-slide" containerized={'md'}>
-          <Stack align={'center'} justify="center" mih={520}>
+        <LayoutSection id="carousel-slide" containerized={'lg'}>
+          <Stack align={'center'} justify="center" mih={600}>
             <Stack className={classes.imageContainer} h={80}>
               <Image
                 src={images.brand.conference.logo.landscape.light}
@@ -155,8 +159,7 @@ export default function Home() {
             >
               Drone Space hosted Kenya&apos;s first public AI Conference on
               March 26th - 27th, 2024, and will hold the 2nd AI Conference
-              Nairobi on September 16th - 17th, 2025, at the JW Marriott Hotel
-              in Westlands
+              Nairobi on September 16th - 17th, 2025
             </Text>
 
             <Group gap={'xs'}>
@@ -215,7 +218,7 @@ export default function Home() {
           }}
         ></Box>
         <LayoutSection id="carousel-slide-2">
-          <Stack align={'center'} justify="center" mih={520}>
+          <Stack align={'center'} justify="center" mih={600}>
             <Title order={1} className={classes.title} ta={'center'}>
               Empowering Drone Professionals in Kenya
             </Title>

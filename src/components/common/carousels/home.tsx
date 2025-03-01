@@ -122,10 +122,10 @@ export default function Home() {
               fz={{ base: 'xs', xs: 'sm', sm: 'md', md: 'lg' }}
               ta={'center'}
             >
-              Following the success of the 2024 AI Conference Nairobi, which
-              attracted over 900 attendees, Drone Space is excited to announce
-              that it will host the 2nd AI Conference Nairobi
-              {/* on May 6th and 7th, 2025. */}
+              Following the success of the first 2024 AI Conference Nairobi,
+              which attracted over 900 attendees, Drone Space is excited to
+              announce that it will host the second AI Conference Nairobi on
+              September 16th and 17th, 2025.
             </Text>
 
             <Text
@@ -145,7 +145,7 @@ export default function Home() {
               fz={{ base: 'lg', xs: 'xl', sm: 24, md: 32 }}
             >
               JW Marriott Hotel, Westlands <br />
-              {/* Tue 6th - Wed 7th May, 2025 */}
+              Tue 16th - Wed 17th September, 2025
             </Title>
 
             <Text
@@ -155,9 +155,8 @@ export default function Home() {
             >
               Drone Space hosted Kenya&apos;s first public AI Conference on
               March 26th - 27th, 2024, and will hold the 2nd AI Conference
-              Nairobi
-              {/* on May 6th - 7th, 2025,  */}
-              at the JW Marriott Hotel in Westlands
+              Nairobi on September 16th - 17th, 2025, at the JW Marriott Hotel
+              in Westlands
             </Text>
 
             <Group gap={'xs'}>

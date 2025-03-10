@@ -88,11 +88,14 @@ export default function Project({ children }: { children: React.ReactNode }) {
               <Stack gap={'sm'}>
                 {collaborators ? (
                   collaborators.map((collaborator, index) => (
-                    <>
-                      {index > 0 && <Divider />}
+                    <React.Fragment key={index}>
+                      {index > 0 && <Divider key={`divider-${index}`} />}
 
-                      <CardAcademyCollaborator props={collaborator} />
-                    </>
+                      <CardAcademyCollaborator
+                        key={index}
+                        props={collaborator}
+                      />
+                    </React.Fragment>
                   ))
                 ) : (
                   <Stack h={200} justify="center">

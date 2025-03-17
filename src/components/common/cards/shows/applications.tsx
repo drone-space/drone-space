@@ -14,7 +14,7 @@ export default function Applications({
   data: { label: string; item: string; icon: Icon };
 }) {
   return (
-    <Card className={classes.card} bg={'white'}>
+    <Card className={classes.card} withBorder>
       <ThemeIcon
         size={ICON_WRAPPER_SIZE * 2}
         color="sec.3"
@@ -24,7 +24,7 @@ export default function Applications({
         <data.icon size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
       </ThemeIcon>
 
-      <Title mt={'xs'} order={2} fz={'md'} className={classes.title}>
+      <Title mt={'md'} order={2} fz={'md'} className={classes.title}>
         {data.label}
       </Title>
 

@@ -12,7 +12,7 @@ export default function Page({
   options,
 }: {
   props: { path?: string | React.ReactNode; title: string; desc?: string };
-  options?: { spacing?: 'margin' | 'padding' };
+  options?: { spacing?: 'margin' | 'padding'; autoSizeText?: boolean };
 }) {
   const pathname = usePathname();
   const segments = crumbify(pathname);
@@ -42,13 +42,30 @@ export default function Page({
           <Group justify="center">{props.path}</Group>
         )}
 
-        <Container size={'sm'}>
+        <Container size={'md'}>
           <Stack>
-            <Title order={1} ta={'center'}>
+            <Title
+              order={1}
+              ta={'center'}
+              fz={
+                !options?.autoSizeText ? undefined : { base: 'xl', md: '2rem' }
+              }
+            >
               {props.title}
             </Title>
 
-            {props.desc && <Text ta={'center'}>{props.desc}</Text>}
+            {props.desc && (
+              <Text
+                ta={'center'}
+                fz={
+                  !options?.autoSizeText
+                    ? undefined
+                    : { base: 'xs', xs: 'sm', md: 'md' }
+                }
+              >
+                {props.desc}
+              </Text>
+            )}
           </Stack>
         </Container>
       </Stack>

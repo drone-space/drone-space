@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import ModalGallery from '../common/modals/gallery';
 import { usePaginate } from '@/hooks/paginate';
 import { useRouter } from 'next/navigation';
+import { SECTION_SPACING } from '@/data/constants';
 
 export default function Gallery({ props }: { props: { list: any[] } }) {
   const router = useRouter();
@@ -17,14 +18,14 @@ export default function Gallery({ props }: { props: { list: any[] } }) {
 
   useEffect(() => {
     if (activePage > 1) {
-      router.push('#gallery');
+      router.push('#page-gallery');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePage]);
 
   return (
     <>
-      <Grid justify="center" gutter={'xs'}>
+      <Grid justify="center" gutter={'xs'} my={SECTION_SPACING / 2}>
         {items.map((item) => (
           <GridCol
             key={item.image}

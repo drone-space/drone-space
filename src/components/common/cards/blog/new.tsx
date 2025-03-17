@@ -7,11 +7,9 @@ import {
   Badge,
   Box,
   Card,
-  Divider,
   Grid,
   GridCol,
   Group,
-  NumberFormatter,
   Text,
   Title,
 } from '@mantine/core';
@@ -21,13 +19,8 @@ import classes from './new.module.scss';
 import { linkify, processUrl } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import { PostRelations } from '@/types/models/post';
-import { IconCircleFilled, IconMessageCircle } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
-import {
-  HOSTED_BASE_URL,
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-} from '@/data/constants';
+import { HOSTED_BASE_URL } from '@/data/constants';
 
 export default function New({ post }: { post: PostRelations }) {
   const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
@@ -47,11 +40,21 @@ export default function New({ post }: { post: PostRelations }) {
             <ImageDefault
               src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
               alt={post.title}
-              height={420}
+              height={360}
               mode="grid"
             />
 
-            <div className={classes.overlay}></div>
+            <div className={classes.overlay}>
+              <Group>
+                <Badge
+                  color="white"
+                  c={'var(--mantine-color-pri-9)'}
+                  radius={'xs'}
+                >
+                  {getRegionalDate(post.createdAt).date}
+                </Badge>
+              </Group>
+            </div>
           </Anchor>
         </GridCol>
 
@@ -66,15 +69,6 @@ export default function New({ post }: { post: PostRelations }) {
               height: '100%',
             }}
           >
-            <Badge
-              size="sm"
-              color="blue"
-              radius={'sm'}
-              leftSection={<IconCircleFilled size={4} />}
-            >
-              latest
-            </Badge>
-
             <Title
               mt={'md'}
               order={3}
@@ -97,26 +91,6 @@ export default function New({ post }: { post: PostRelations }) {
             <Text mt={'md'} className={classes.desc} lineClamp={6}>
               {post.excerpt}
             </Text>
-
-            <Divider mt={'lg'} />
-
-            <Group mt={'md'} justify="space-between" fz={'sm'}>
-              <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
-
-              {post._count.comments && (
-                <Group gap={4}>
-                  <IconMessageCircle
-                    size={ICON_SIZE - 4}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-
-                  <NumberFormatter
-                    thousandSeparator
-                    value={post._count.comments}
-                  />
-                </Group>
-              )}
-            </Group>
           </Box>
         </GridCol>
       </Grid>

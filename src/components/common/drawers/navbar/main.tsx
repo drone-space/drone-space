@@ -110,6 +110,7 @@ export default function Main({
           body: classes.body,
           header: classes.header,
         }}
+        keepMounted={true}
       >
         <Stack>
           <Stack gap={0}>{navMobile}</Stack>

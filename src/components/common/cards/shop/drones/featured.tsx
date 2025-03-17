@@ -22,12 +22,16 @@ import ImageDefault from '@/components/common/images/default';
 
 export default function Featured({ data }: { data: typeDrone }) {
   return (
-    <Card className={classes.card} bg={'white'}>
+    <Card
+      className={classes.card}
+      withBorder
+      bg={'var(--mantine-color-gray-0)'}
+    >
       <Grid align="center">
         <GridCol span={{ sm: 6 }}>
           <Flex
             direction={'column'}
-            gap={'xl'}
+            gap={'md'}
             align={{ base: 'center', sm: 'start' }}
           >
             <Badge ml={{ sm: 'md' }}>Featured Drone</Badge>
@@ -111,6 +115,7 @@ export default function Featured({ data }: { data: typeDrone }) {
               alt={data.title.long}
               loading="lazy"
               height={{ base: 240, sm: 280 }}
+              radius={'sm'}
             />
           </Anchor>
         </GridCol>

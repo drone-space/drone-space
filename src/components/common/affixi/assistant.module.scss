@@ -26,7 +26,6 @@
   animation: colorChange 10s infinite;
   border-top-left-radius: var(--mantine-radius-sm);
   border-bottom-left-radius: var(--mantine-radius-sm);
-  padding-left: calc(var(--mantine-spacing-xs));
 
   @include hover {
     cursor: pointer;

@@ -36,7 +36,7 @@ export default function ShowPrice({ children }: { children: React.ReactNode }) {
         <Grid>
           {shows.guide.map((item, index) => (
             <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
-              <Card shadow="xs" withBorder h={'100%'}>
+              <Card withBorder h={'100%'}>
                 <Stack gap={'xs'}>
                   <Title order={2} fz={'sm'} fw={'bold'}>
                     {item.title}

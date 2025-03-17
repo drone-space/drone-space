@@ -5,23 +5,19 @@ import { ICON_WRAPPER_SIZE } from '@/data/constants';
 
 export default function Main({ data }: { data: typeTeam }) {
   return (
-    <Card bg={'var(--mantine-color-pri-9)'} padding={'xl'}>
+    <Card withBorder padding={'xl'}>
       <Group justify="center">
         <Avatar
           src={data.image}
           alt={'Drone Shop'}
-          size={ICON_WRAPPER_SIZE * 4}
+          size={ICON_WRAPPER_SIZE * 7}
+          style={{
+            border: '2.5px solid var(--mantine-color-sec-3)',
+          }}
         />
       </Group>
 
-      <Title
-        mt={'xl'}
-        order={2}
-        fz={'md'}
-        fw={'bold'}
-        ta={'center'}
-        c={'var(--mantine-color-white)'}
-      >
+      <Title mt={'xl'} order={2} fz={'md'} fw={'bold'} ta={'center'}>
         {data.name}
       </Title>
 

@@ -86,7 +86,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
             <Group gap={'xs'}>
               <Box style={{ overflow: 'hidden' }}>
                 <ImageDefault
-                  src={images.icons.claude}
+                  src={images.icons.claude.default}
                   alt={'Hekima AI'}
                   loading="lazy"
                   radius={'sm'}

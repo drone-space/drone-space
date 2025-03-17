@@ -61,12 +61,6 @@ const links = [
         leftSection: IconSpaces,
         desc: 'Striving to accelerate development in technology and innovation.',
       },
-      // {
-      //   link: '/about/#team',
-      //   label: 'Team',
-      //   leftSection: IconUsersGroup,
-      //   desc: 'Meet the passionate individuals behind our vision and success.',
-      // },
       {
         link: '/about/gallery',
         label: 'Gallery',
@@ -85,12 +79,6 @@ const links = [
         leftSection: IconUsersGroup,
         desc: 'Discover the talented individuals driving our mission forward.',
       },
-      // {
-      //   link: '/about/#success-stories',
-      //   label: 'Success Stories',
-      //   leftSection: IconBubble,
-      //   desc: 'Discover the talented individuals driving our mission forward.',
-      // },
     ],
   },
   {

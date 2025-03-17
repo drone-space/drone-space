@@ -15,6 +15,7 @@ import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = 'Drone Space Services - Expert Drone Solutions in Kenya';
 const metaDesc = `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`;
@@ -41,7 +42,19 @@ export const metadata: Metadata = {
 export default async function Services() {
   return (
     <LayoutPage>
-      <LayoutSection id="cinematography" padded>
+      <IntroPage
+        props={{
+          path: 'Services',
+          title: 'Drone Solutions',
+          desc: `Discover professional drone services, including training, aerial photography, surveying, and light shows.`,
+        }}
+      />
+
+      <LayoutSection
+        id="cinematography"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -102,7 +115,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="agriculture" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="agriculture" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -157,7 +170,11 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="drone-mapping-and-survey" padded>
+      <LayoutSection
+        id="drone-mapping-and-survey"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -218,11 +235,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="thermal-inspection"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="thermal-inspection" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -261,7 +274,11 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="search-and-rescue" padded>
+      <LayoutSection
+        id="search-and-rescue"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -322,11 +339,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="medical-delivery"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="medical-delivery" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -381,7 +394,11 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="consultancy-and-resale" padded>
+      <LayoutSection
+        id="consultancy-and-resale"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -446,7 +463,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="roc-support" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="roc-support" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection

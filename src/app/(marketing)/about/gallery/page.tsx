@@ -10,15 +10,14 @@ import {
   TabsPanel,
   TabsTab,
 } from '@mantine/core';
-
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import PartialGallery from '@/components/partial/gallery';
 import tabs from '@/data/tabs';
-import classes from './gallery.module.scss';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = `${appData.name.app} Gallery - Showcasing Our Training & Aerial Services`;
 const metaDesc =
@@ -46,12 +45,20 @@ export const metadata: Metadata = {
 export default async function Gallery() {
   return (
     <LayoutPage>
-      <LayoutSection id="page-gallery" padded>
-        <Tabs
-          defaultValue={'conference'}
-          classNames={{ list: classes.panel }}
-          keepMounted={false}
-        >
+      <IntroPage
+        props={{
+          path: 'Photos',
+          title: 'Drone Space Gallery',
+          desc: `Explore stunning visuals from our drone training graduations, aerial light shows, and other services.`,
+        }}
+      />
+
+      <LayoutSection
+        id="page-gallery"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <Tabs defaultValue={'conference'}>
           <Grid component={TabsList} grow mb={'xl'} justify="center" gutter={0}>
             <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
               <TabsTab w={'100%'} value="conference">

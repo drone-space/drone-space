@@ -42,6 +42,7 @@ import {
   ICON_STROKE_WIDTH,
 } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
+import IntroSection from '@/components/layout/intro/section';
 
 const metaTitle = 'Drone Light Shows - Stunning Aerial Displays by Drone Space';
 const metaDesc =
@@ -73,24 +74,18 @@ export default async function LighShow() {
     <LayoutPage>
       <HeroShows />
 
-      <LayoutSection
-        id="page-lightshow-intro"
-        containerized={false}
-        shadowed
-        style={{ borderTop: '3px solid var(--mantine-color-sec-3)' }}
-        bg={
-          'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
-        }
-      >
+      <LayoutSection id="page-lightshow-intro" containerized={false}>
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, md: 6 }}>
+          <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
             <ImageDefault
               src={images.shows.talk}
               alt={"Let's Talk Drone Light Shows"}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 490, lg: 420 }}
+              radius={'sm'}
             />
           </GridCol>
+
           <GridCol span={{ base: 12, md: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
@@ -126,19 +121,24 @@ export default async function LighShow() {
 
       <LayoutSection
         id="page-lightshow-understand"
-        // padded
-        shadowed
+        bg={'var(--mantine-color-gray-1)'}
         containerized={false}
       >
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
+          <GridCol
+            span={{ base: 12, md: 6 }}
+            order={{ base: 1, md: 2 }}
+            p={'xs'}
+          >
             <ImageDefault
               src={images.shows.understanding}
               alt={'Understanding Drone Light Shows'}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 580, lg: 500 }}
+              radius={'sm'}
             />
           </GridCol>
+
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
@@ -162,17 +162,17 @@ export default async function LighShow() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="page-lightshow-video"
-        containerized={false}
-        shadowed
-        bg={
-          'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
-        }
-      >
+      <LayoutSection id="page-lightshow-video" containerized={false}>
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, md: 6 }}>
-            <AspectRatio ratio={1920 / 1080} h={'100%'}>
+          <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
+            <AspectRatio
+              ratio={1920 / 1080}
+              h={'100%'}
+              style={{
+                overflow: 'hidden',
+                borderRadius: 'var(--mantine-radius-md)',
+              }}
+            >
               <video
                 width="100%"
                 controls
@@ -188,6 +188,7 @@ export default async function LighShow() {
               </video>
             </AspectRatio>
           </GridCol>
+
           <GridCol span={{ base: 12, md: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
@@ -217,16 +218,26 @@ export default async function LighShow() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="page-lightshow-why" containerized={false} shadowed>
+      <LayoutSection
+        id="page-lightshow-why"
+        containerized={false}
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={0}>
-          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
+          <GridCol
+            span={{ base: 12, md: 6 }}
+            order={{ base: 1, md: 2 }}
+            p={'xs'}
+          >
             <ImageDefault
               src={images.shows.hny}
               alt={'Why Choose Drone Light Shows?'}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 680, lg: 620 }}
+              radius={'sm'}
             />
           </GridCol>
+
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
               <Title
@@ -270,18 +281,15 @@ export default async function LighShow() {
         padded
         shadowed
         containerized={'responsive'}
-        bg={
-          'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
-        }
       >
-        <Title order={2} fw={'bold'} ta={'center'} fz={{ md: 24 }}>
-          Versatile Applications
-        </Title>
-
-        <Text ta={'center'} mt={'xs'}>
-          Drone Space light shows are perfect for a wide range of events and
-          celebrations, adding a unique and memorable touch to any occasion
-        </Text>
+        <IntroSection
+          props={{
+            subTitle: 'Use Cases',
+            title: 'Versatile Applications',
+            desc: `Drone Space light shows are perfect for a wide range of events and
+          celebrations, adding a unique and memorable touch to any occasion`,
+          }}
+        />
 
         <Grid mt={48}>
           {data.applications.map((application, index) => (
@@ -385,23 +393,18 @@ export default async function LighShow() {
       <LayoutSection
         id="page-lightshow-faq"
         padded
-        shadowed
         containerized={'responsive'}
       >
         <Grid gutter={{ base: 'xl', md: 'md' }}>
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 'md', lg: 'lg' }}
-            >
-              FAQ&apos;s
-            </Title>
-
-            <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'} mt={'xs'} mb={48}>
-              Below are some general questions to familiarize yourself
-            </Text>
+            <IntroSection
+              props={{
+                subTitle: `FAQ's`,
+                title: `Most Asked`,
+                desc: `Below are some general questions to familiarize yourself`,
+              }}
+              options={{ spacing: true }}
+            />
 
             <AccordionShows variant="default" />
           </GridCol>
@@ -413,19 +416,14 @@ export default async function LighShow() {
           </GridCol>
 
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <Title
-              order={2}
-              fw={'bold'}
-              ta={'center'}
-              fz={{ md: 'md', lg: 'lg' }}
-              w={{ md: '80%' }}
-            >
-              Factors Affecting the Cost
-            </Title>
-
-            <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'} mt={'xs'} mb={48}>
-              The following are some factors that determine the pricing
-            </Text>
+            <IntroSection
+              props={{
+                subTitle: `Cost`,
+                title: `Factors Affecting the Cost`,
+                desc: `The following are some factors that determine the pricing`,
+              }}
+              options={{ spacing: true }}
+            />
 
             <AccordionShows variant="factors" />
           </GridCol>
@@ -435,19 +433,16 @@ export default async function LighShow() {
       <LayoutSection
         id="page-lightshow-pricing"
         padded
-        shadowed
         containerized={'responsive'}
-        bg={
-          'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
-        }
+        bg={'var(--mantine-color-gray-1)'}
       >
-        <Title order={2} fw={'bold'} ta={'center'} fz={{ md: 24 }}>
-          Typical Pricing Ranges
-        </Title>
-
-        <Text fz={{ base: 'sm', lg: 'md' }} ta={'center'} mt={'xs'}>
-          Here are some general considerations and typical pricing ranges
-        </Text>
+        <IntroSection
+          props={{
+            subTitle: `Pricing`,
+            title: `Typical Pricing Ranges`,
+            desc: `Here are some general considerations and typical pricing ranges`,
+          }}
+        />
 
         <Grid justify="center" mt={48}>
           {data.pricing.map(
@@ -482,19 +477,18 @@ export default async function LighShow() {
         padded
         containerized={'responsive'}
       >
-        <Title order={2} fw={'bold'} ta={'center'} fz={{ md: 24 }}>
-          Project Timeline
-        </Title>
+        <IntroSection
+          props={{
+            subTitle: `Logistics`,
+            title: `Project Timeline`,
+            desc: `See the stages of the project from planning to execution`,
+          }}
+        />
 
         <Grid mt={48}>
           {data.timeline.map((item, index) => (
             <GridCol key={index} span={{ base: 12, md: 6 }}>
-              <Card
-                withBorder
-                bg={'gray.1'}
-                style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
-                h={'100%'}
-              >
+              <Card withBorder h={'100%'} pt={'xl'} pb={0}>
                 <Title
                   order={3}
                   fw={'bold'}

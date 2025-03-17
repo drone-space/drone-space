@@ -3,10 +3,10 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import HeroShop from '@/components/layout/hero/shop';
 import CardShopFactor from '@/components/common/cards/shop/factor';
-import CtaShopCategories from '@/components/partial/cta/shop/categories';
 import CardShopDroneFeatured from '@/components/common/cards/shop/drones/featured';
-import { Grid, GridCol, Text, Title } from '@mantine/core';
+import { Anchor, Grid, GridCol, Group, Stack } from '@mantine/core';
 import {
+  IconChevronRight,
   IconDiscount2,
   IconDropletBolt,
   IconGavel,
@@ -15,6 +15,11 @@ import {
   IconPhotoSensor3,
 } from '@tabler/icons-react';
 import products from '@/data/products';
+import IntroSection from '@/components/layout/intro/section';
+import { droneCategories } from '@/data/drone-categories';
+import Link from 'next/link';
+import ImageDefault from '@/components/common/images/default';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default async function Shop() {
   const productFeatured = products.find((p) => p.featured);
@@ -23,15 +28,16 @@ export default async function Shop() {
     <LayoutPage>
       <HeroShop />
 
-      <LayoutSection id="page-shop-intro" padded shadowed>
-        <Title ta={'center'} order={2}>
-          Which Drone Should I Buy?
-        </Title>
-
-        <Text ta={'center'} mt={'xs'}>
-          The drone you get mainly depends on the purpose for which you need it.
-          There are plenty of factors to consider before selecting a drone.
-        </Text>
+      <LayoutSection id="page-shop-intro" padded>
+        <IntroSection
+          props={{
+            subTitle: 'Factors',
+            title: 'Which Drone Should I Buy?',
+            desc: `The drone you get mainly depends on the purpose for which you need it.
+          There are plenty of factors to consider before selecting a drone.`,
+          }}
+          options={{ spacing: true }}
+        />
 
         <Grid mt={'xl'}>
           {factors.map((factor, index) => (
@@ -43,17 +49,57 @@ export default async function Shop() {
       </LayoutSection>
 
       <LayoutSection
+        id="page-shop-camera"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <DroneCategorySection
+          props={{
+            category: 'camera',
+            title: droneCategories[0].title,
+            desc: droneCategories[0].desc,
+            link: droneCategories[0].anchor.link,
+            image: droneCategories[0].image,
+          }}
+        />
+      </LayoutSection>
+
+      <LayoutSection id="page-shop-enterprise" padded>
+        <DroneCategorySection
+          props={{
+            category: 'enterprise',
+            title: droneCategories[1].title,
+            desc: droneCategories[1].desc,
+            link: droneCategories[1].anchor.link,
+            image: droneCategories[1].image,
+            alternate: true,
+          }}
+        />
+      </LayoutSection>
+
+      <LayoutSection
+        id="page-shop-agriculture"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <DroneCategorySection
+          props={{
+            category: 'agriculture',
+            title: droneCategories[2].title,
+            desc: droneCategories[2].desc,
+            link: droneCategories[2].anchor.link,
+            image: droneCategories[2].image,
+          }}
+        />
+      </LayoutSection>
+
+      <LayoutSection
         id="page-shop-featured"
         padded
         containerized={'responsive'}
-        bg={
-          'light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light))'
-        }
       >
         {productFeatured && <CardShopDroneFeatured data={productFeatured} />}
       </LayoutSection>
-
-      <CtaShopCategories />
     </LayoutPage>
   );
 }
@@ -90,3 +136,56 @@ const factors = [
     desc: 'Most camera drones do not control the points at which images are taken; photographs are taken at ad hoc moments. This results in sub-optimal photographs creating more unnecessary data and time-consuming post-processing. This lack of detail could also result in a failed mapping mission for example.',
   },
 ];
+
+function DroneCategorySection({
+  props,
+}: {
+  props: {
+    category: string;
+    title: string;
+    desc: string;
+    link: string;
+    image: string;
+    alternate?: boolean;
+  };
+}) {
+  return (
+    <Grid mt={'xl'} gutter={'xl'}>
+      <GridCol span={{ md: 6 }} order={{ md: props.alternate ? 2 : undefined }}>
+        <Stack align="start">
+          <IntroSection
+            props={{
+              subTitle: 'Drones',
+              title: props.title,
+              desc: props.desc,
+            }}
+            options={{ alignment: 'start' }}
+          />
+
+          <Anchor
+            inherit
+            ta={{ base: 'center', md: 'start' }}
+            component={Link}
+            href={props.link}
+            mt={'md'}
+          >
+            <Group gap={'xs'}>
+              See {props.category} drones
+              <IconChevronRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            </Group>
+          </Anchor>
+        </Stack>
+      </GridCol>
+
+      <GridCol span={{ md: 6 }} order={{ md: props.alternate ? 1 : undefined }}>
+        <ImageDefault
+          src={props.image}
+          alt={'Agriculture'}
+          height={{ base: 240, xs: 320, sm: 400, md: 300 }}
+          mode="grid"
+          radius={'sm'}
+        />
+      </GridCol>
+    </Grid>
+  );
+}

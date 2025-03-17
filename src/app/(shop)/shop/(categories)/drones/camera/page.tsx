@@ -10,6 +10,7 @@ import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appData.name.app}`;
 const metaDesc = `Shop advanced camera drones designed for professional photography and videography. Discover models that elevate your creative vision.`;
@@ -38,7 +39,20 @@ export default async function Camera() {
 
   return (
     <LayoutPage>
-      <LayoutSection id="page-drones-agri" padded containerized={'responsive'}>
+      <IntroPage
+        props={{
+          path: 'Shop',
+          title: 'Camera Drones',
+          desc: metaDesc,
+        }}
+      />
+
+      <LayoutSection
+        id="page-drones-agri"
+        padded
+        containerized={'responsive'}
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid>
           {drones.map((drone, index) => (
             <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>

@@ -11,6 +11,7 @@ import {
   GridCol,
   Group,
   NumberFormatter,
+  Stack,
   Tabs,
   TabsList,
   TabsPanel,
@@ -30,11 +31,11 @@ import { typeParams } from '../layout';
 import {
   IconArrowRightDashed,
   IconBattery3,
-  IconChevronRight,
   IconCirclePlus,
   IconCube,
   IconCubePlus,
   IconListDetails,
+  IconTruckDelivery,
 } from '@tabler/icons-react';
 import classes from './drone.module.scss';
 import { linkify } from '@/utilities/formatters/string';
@@ -42,143 +43,159 @@ import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
+  SECTION_SPACING,
 } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
+import IntroPage from '@/components/layout/intro/page';
 
 export default function AccessoryDetail({ params }: typeParams) {
   const product = products.find((p) => linkify(p.title.long) == params.droneId);
 
   return (
     <LayoutPage>
-      <LayoutSection id="drone-category-intro" padded shadowed>
+      <IntroPage
+        props={{
+          path: `${product?.category} Drones`,
+          title: product?.title.long || product?.title.short || 'Drone Shop',
+        }}
+      />
+
+      <LayoutSection
+        id="drone-category-intro"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={{ base: 32, lg: 64 }}>
-          <GridCol span={{ base: 12, sm: 5 }} className={classes.card}>
+          <GridCol span={{ base: 12, sm: 5.5 }} className={classes.card}>
             <Box pos={'sticky'} top={64}>
               {product?.images && <CarouselImage data={product.images} />}
             </Box>
           </GridCol>
-          <GridCol span={{ sm: 7 }}>
-            <Title order={2} fz={{ md: 32 }}>
-              {product?.title.long}
-            </Title>
 
-            <Flex
-              direction={{ base: 'column', xs: 'row' }}
-              align={{ xs: 'center' }}
-              gap={{ base: 'xs', xs: 'xl' }}
-              mt={'md'}
-            >
-              <Text>
-                Kshs.{' '}
-                <Text
-                  component="span"
-                  inherit
-                  fw={500}
-                  c={
-                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                  }
-                  fz={{ md: 'xl' }}
-                >
-                  {product?.price ? (
-                    <NumberFormatter
-                      value={product?.price.former}
-                      thousandSeparator
-                    />
-                  ) : (
-                    'TBD'
-                  )}
-                </Text>{' '}
-                {product?.kit?.flyMore && (
-                  <Text component="sup" inherit fz={'xs'}>
-                    (basic kit)
-                  </Text>
-                )}
-              </Text>
-              {product?.price && product?.kit?.flyMore && (
-                <>
-                  <Divider
-                    orientation="vertical"
-                    color="pri"
-                    visibleFrom="xs"
-                  />
-
-                  <Text>
-                    Kshs.{' '}
-                    <Text
-                      component="span"
-                      inherit
-                      fw={500}
-                      c={
-                        'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                      }
-                      fz={{ md: 'xl' }}
-                    >
+          <GridCol span={{ sm: 6.5 }}>
+            <Stack gap={'xl'}>
+              <Flex
+                direction={{ base: 'column', md: 'row' }}
+                align={{ md: 'center' }}
+                gap={{ base: 'xs', md: 'xl' }}
+                mt={'md'}
+              >
+                <Text>
+                  Kshs.{' '}
+                  <Text
+                    component="span"
+                    inherit
+                    fw={500}
+                    c={
+                      'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                    }
+                    fz={{ md: 'xl' }}
+                  >
+                    {product?.price ? (
                       <NumberFormatter
-                        value={
-                          product.price.former +
-                          product.kit.flyMore.price.former
-                        }
+                        value={product?.price.former}
                         thousandSeparator
                       />
+                    ) : (
+                      'TBD'
+                    )}
+                  </Text>{' '}
+                  {product?.kit?.flyMore && (
+                    <Text component="sup" inherit fz={'xs'}>
+                      (basic kit)
+                    </Text>
+                  )}
+                </Text>
+                {product?.price && product?.kit?.flyMore && (
+                  <>
+                    <Divider
+                      orientation="vertical"
+                      visibleFrom="xs"
+                      color="sec.3"
+                    />
+
+                    <Text>
+                      Kshs.{' '}
+                      <Text
+                        component="span"
+                        inherit
+                        fw={500}
+                        c={
+                          'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                        }
+                        fz={{ md: 'xl' }}
+                      >
+                        <NumberFormatter
+                          value={
+                            product.price.former +
+                            product.kit.flyMore.price.former
+                          }
+                          thousandSeparator
+                        />
+                      </Text>{' '}
+                      <Text component="sup" inherit fz={'xs'}>
+                        (fly more kit)
+                      </Text>
+                    </Text>
+                  </>
+                )}
+              </Flex>
+
+              <div>
+                <Text fz={'sm'}>
+                  Import Permits:{' '}
+                  <Text component="span" inherit fw={500}>
+                    Kshs.{' '}
+                    <Text component="span" inherit tt={'uppercase'}>
+                      3,000
                     </Text>{' '}
                     <Text component="sup" inherit fz={'xs'}>
-                      (fly more kit)
+                      (included in drone price)
                     </Text>
                   </Text>
-                </>
-              )}
-            </Flex>
-
-            <Text fz={'sm'}>
-              Import Permits:{' '}
-              <Text component="span" inherit fw={500}>
-                Kshs.{' '}
-                <Text component="span" inherit tt={'uppercase'}>
-                  3,000
-                </Text>{' '}
-                <Text component="sup" inherit fz={'xs'}>
-                  (included in drone price)
                 </Text>
-              </Text>
-            </Text>
 
-            <Text fz={'sm'} mt={'md'}>
-              Facilitiation Fee:{' '}
-              <Text component="span" inherit fw={500}>
-                Kshs.{' '}
-                <Text component="span" inherit tt={'uppercase'}>
-                  18,000
-                </Text>{' '}
-                <Text component="sup" inherit fz={'xs'}>
-                  (included in drone price)
+                <Text fz={'sm'} mt={'xs'}>
+                  Facilitiation Fee:{' '}
+                  <Text component="span" inherit fw={500}>
+                    Kshs.{' '}
+                    <Text component="span" inherit tt={'uppercase'}>
+                      18,000
+                    </Text>{' '}
+                    <Text component="sup" inherit fz={'xs'}>
+                      (included in drone price)
+                    </Text>
+                  </Text>
                 </Text>
-              </Text>
-            </Text>
+              </div>
 
-            {!product?.model && (
-              <Text mt={'xs'}>
-                Vendor:{' '}
-                <Text component="span" inherit fw={500} tt={'uppercase'}>
-                  {product?.brand}
+              <div>
+                {!product?.model && (
+                  <Text mt={'xs'}>
+                    Vendor:{' '}
+                    <Text component="span" inherit fw={500} tt={'uppercase'}>
+                      {product?.brand}
+                    </Text>
+                  </Text>
+                )}
+
+                <Text mt={'xs'}>
+                  Make:{' '}
+                  <Text component="span" inherit fw={500} tt={'capitalize'}>
+                    {product?.make}
+                  </Text>
                 </Text>
-              </Text>
-            )}
 
-            <Text mt={'xs'}>
-              Make:{' '}
-              <Text component="span" inherit fw={500} tt={'capitalize'}>
-                {product?.make}
-              </Text>
-            </Text>
-
-            {product?.model && (
-              <Text mt={'xs'}>
-                Model:{' '}
-                <Text component="span" inherit fw={500} tt={'capitalize'}>
-                  {product?.model}
-                </Text>
-              </Text>
-            )}
+                {product?.model && (
+                  <Text mt={'xs'}>
+                    Model:{' '}
+                    <Text component="span" inherit fw={500} tt={'capitalize'}>
+                      {product?.model}
+                    </Text>
+                  </Text>
+                )}
+              </div>
+            </Stack>
 
             <Divider
               label={
@@ -189,9 +206,10 @@ export default function AccessoryDetail({ params }: typeParams) {
                     'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
                   }
                 >
-                  product overview
+                  Specification Overview
                 </Text>
               }
+              labelPosition="left"
               mt={'xl'}
             />
 
@@ -200,7 +218,7 @@ export default function AccessoryDetail({ params }: typeParams) {
             ) : (
               <Grid my={'xl'}>
                 {product?.specs.intro.map((spec, index) => (
-                  <GridCol key={index} span={{ base: 12, md: 6 }}>
+                  <GridCol key={index} span={{ base: 12 }}>
                     <Group gap={'xs'}>
                       <ThemeIcon
                         size={ICON_WRAPPER_SIZE / 1.5}
@@ -220,29 +238,31 @@ export default function AccessoryDetail({ params }: typeParams) {
                 ))}
               </Grid>
             )}
-
-            <ModalContactShop>
-              <Button
-                fullWidth
-                rightSection={
-                  <IconChevronRight
-                    size={ICON_SIZE}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
-              >
-                Order the{' '}
-                {product?.title.short
-                  ? product.title.short
-                  : product?.title.long}
-              </Button>
-            </ModalContactShop>
           </GridCol>
         </Grid>
+
+        <Group justify="center" mt={SECTION_SPACING / 2}>
+          <ModalContactShop>
+            <Button
+              miw={{ base: 240, sm: 480, md: 720, lg: 960 }}
+              variant="light"
+              color="gray"
+              leftSection={
+                <IconTruckDelivery
+                  size={ICON_SIZE}
+                  stroke={ICON_STROKE_WIDTH}
+                />
+              }
+            >
+              Order the{' '}
+              {product?.title.short ? product.title.short : product?.title.long}
+            </Button>
+          </ModalContactShop>
+        </Group>
       </LayoutSection>
 
       <LayoutSection id="drone-category-specs" padded shadowed>
-        <Tabs defaultValue="specs" keepMounted={false}>
+        <Tabs defaultValue="specs">
           <TabsList fw={500}>
             <Grid gutter={0} w={'100%'}>
               <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
@@ -332,10 +352,14 @@ export default function AccessoryDetail({ params }: typeParams) {
           </TabsList>
 
           <TabsPanel value="specs">
-            <LayoutSection id="drone-category-specs-list" padded>
+            <LayoutSection
+              id="drone-category-specs-list"
+              mt={SECTION_SPACING / 2}
+              containerized={false}
+            >
               <Grid gutter={{ base: 12, md: 'md' }}>
                 <GridCol span={{ md: 5 }}>
-                  <Card withBorder shadow="xs" bg={'white'}>
+                  <Card withBorder bg={'var(--mantine-color-body)'}>
                     <ImageDefault
                       src={
                         product?.kit?.basic.image
@@ -394,7 +418,11 @@ export default function AccessoryDetail({ params }: typeParams) {
 
           {product?.kit?.basic && (
             <TabsPanel value="basic">
-              <LayoutSection id="drone-category-specs-contents" padded>
+              <LayoutSection
+                id="drone-category-specs-contents"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
                 <Grid>
                   <GridCol
                     span={{ base: 12, md: 6 }}
@@ -403,7 +431,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                     <Grid>
                       {product?.kit.basic.contents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
-                          <Card withBorder shadow="xs" bg={'white'}>
+                          <Card withBorder bg={'var(--mantine-color-body)'}>
                             <ImageDefault
                               src={item.image}
                               alt={item.item}
@@ -496,7 +524,11 @@ export default function AccessoryDetail({ params }: typeParams) {
 
           {product?.kit?.flyMore && (
             <TabsPanel value="flyMore">
-              <LayoutSection id="drone-category-specs-flymore" padded>
+              <LayoutSection
+                id="drone-category-specs-flymore"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
                 <Grid>
                   <GridCol
                     span={{ base: 12, md: 6 }}
@@ -513,7 +545,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                     <Grid mt={'xl'}>
                       {product?.kit.flyMore.contents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
-                          <Card withBorder shadow="xs" bg={'white'}>
+                          <Card withBorder bg={'var(--mantine-color-body)'}>
                             <ImageDefault
                               src={item.image}
                               alt={item.item}
@@ -618,7 +650,11 @@ export default function AccessoryDetail({ params }: typeParams) {
 
           {product?.accessories?.battery && (
             <TabsPanel value="battery">
-              <LayoutSection id="drone-category-specs-battery" padded>
+              <LayoutSection
+                id="drone-category-specs-battery"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
                 <Grid>
                   <GridCol span={{ md: 5 }}>
                     <CarouselImage data={product.accessories.battery.images} />
@@ -692,7 +728,11 @@ export default function AccessoryDetail({ params }: typeParams) {
 
           {product?.accessories?.other && (
             <TabsPanel value="other">
-              <LayoutSection id="drone-category-specs-other" padded>
+              <LayoutSection
+                id="drone-category-specs-other"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
                 <Grid>
                   {product.accessories.other.map((accessory, index) => (
                     <GridCol

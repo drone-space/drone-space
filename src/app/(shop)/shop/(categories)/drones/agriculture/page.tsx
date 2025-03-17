@@ -10,6 +10,7 @@ import { Grid, GridCol } from '@mantine/core';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
 const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
@@ -38,7 +39,20 @@ export default async function Agriculture() {
 
   return (
     <LayoutPage>
-      <LayoutSection id="page-drones-agri" padded containerized={'responsive'}>
+      <IntroPage
+        props={{
+          path: 'Shop',
+          title: 'Agriculture Drones',
+          desc: metaDesc,
+        }}
+      />
+
+      <LayoutSection
+        id="page-drones-agri"
+        padded
+        containerized={'responsive'}
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid>
           {drones.map((drone, index) => (
             <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>

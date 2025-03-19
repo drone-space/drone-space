@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader, Overlay, Text, Transition } from '@mantine/core';
+import { Box, Overlay, Text, Transition } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import ImageDefault from '../images/default';
 import classes from './main.module.scss';
@@ -25,7 +25,7 @@ export default function Main() {
         mode="grid"
       />
 
-      <Loader color="pri" size={'sm'} />
+      <Box w={24} h={24} className={classes.spinner}></Box>
 
       <Transition
         mounted={mounted}

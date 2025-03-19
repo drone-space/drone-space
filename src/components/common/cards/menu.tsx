@@ -1,18 +1,5 @@
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@/data/constants';
 import { typeMenuNavbar } from '@/types/components/menu';
-import {
-  Card,
-  Center,
-  Grid,
-  GridCol,
-  Text,
-  ThemeIcon,
-  Title,
-} from '@mantine/core';
+import { Card, Text, Title } from '@mantine/core';
 import React from 'react';
 
 export default function Menu({ props }: { props: typeMenuNavbar }) {

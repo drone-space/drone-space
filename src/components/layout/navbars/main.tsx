@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Group, Anchor, Divider } from '@mantine/core';
+import { Group, Anchor, Divider, Button } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import MenuNavbar from '@/components/common/menus/navbar';
@@ -12,6 +12,7 @@ import links from '@/data/links';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import ModalContactCallback from '@/components/common/modals/contact/callback';
 
 export default function Main({
   options,
@@ -77,8 +78,20 @@ export default function Main({
           {imageBrand}
         </Anchor>
 
-        <Group gap={'md'} visibleFrom="md">
-          {navLinks}
+        <Group gap={'lg'} visibleFrom="md">
+          <Group>{navLinks}</Group>
+
+          <Group h={20}>
+            <Divider orientation="vertical" />
+          </Group>
+
+          <Group>
+            <ModalContactCallback>
+              <Button size="xs" variant="gradient">
+                Inquire
+              </Button>
+            </ModalContactCallback>
+          </Group>
         </Group>
 
         <Group hiddenFrom="md" justify="end">

@@ -26,7 +26,7 @@ export default function New({ post }: { post: PostRelations }) {
   const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
 
   return (
-    <Card className={classes.card} withBorder bg={'transparent'}>
+    <Card className={classes.card} withBorder>
       <Grid gutter={0}>
         <GridCol span={{ base: 12, sm: 6 }}>
           <Anchor

@@ -53,7 +53,11 @@ export default async function Blog() {
         }}
       />
 
-      <LayoutSection id={'page-blog-grid'} margined>
+      <LayoutSection
+        id={'page-blog-grid'}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol span={12} mx={{ lg: 'auto' }} visibleFrom="md">
             <CardBlogNew post={posts[0]} />

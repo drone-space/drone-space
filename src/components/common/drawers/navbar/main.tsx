@@ -4,9 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import {
   Burger,
+  Button,
   // Button,
   Drawer,
+  Group,
   NavLink,
+  ScrollAreaAutosize,
   Stack,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -16,6 +19,7 @@ import { typeMenuNavbar } from '@/types/components/menu';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 // import { useAppSelector } from '@/hooks/redux';
 import { usePathname } from 'next/navigation';
+import ModalContactCallback from '../../modals/contact/callback';
 
 export default function Main({
   props,
@@ -79,7 +83,7 @@ export default function Main({
         label={link.label}
         active={matchesPath(link.link)}
         fw={pathname == link.link ? 500 : undefined}
-        opened={true}
+        defaultOpened={matchesPath(link.link)}
         leftSection={
           link.leftSection ? (
             <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -112,19 +116,19 @@ export default function Main({
         }}
         keepMounted={true}
       >
-        <Stack>
-          <Stack gap={0}>{navMobile}</Stack>
+        <ScrollAreaAutosize mah={'100vh'} type="auto" scrollbarSize={8}>
+          <Stack pb={'sm'}>
+            <Stack gap={0}>{navMobile}</Stack>
 
-          {/*<Stack gap={'xs'} px={'xs'}>
-            {!session && (
-              <WrapperSignIn>
-                <Button size="xs" variant="light">
-                  Log In
+            <Group px={'sm'} grow>
+              <ModalContactCallback>
+                <Button size="xs" variant="gradient" fullWidth>
+                  Request Callback
                 </Button>
-              </WrapperSignIn>
-            )}
-          </Stack>*/}
-        </Stack>
+              </ModalContactCallback>
+            </Group>
+          </Stack>
+        </ScrollAreaAutosize>
       </Drawer>
 
       <Burger

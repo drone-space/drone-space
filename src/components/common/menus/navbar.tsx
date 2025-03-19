@@ -69,7 +69,7 @@ export default function Navbar({
   return (
     <Menu
       width={'auto'}
-      trigger="click-hover"
+      trigger="hover"
       openDelay={50}
       closeDelay={50}
       offset={{

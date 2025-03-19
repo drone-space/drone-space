@@ -135,7 +135,7 @@ const links = [
     subLinks: shopLinks,
   },
   {
-    link: '/resources',
+    link: '/resources/blog',
     label: 'Resources',
     subLinks: [
       {

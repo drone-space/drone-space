@@ -1,6 +1,6 @@
 import { downloadBrochure } from '@/handlers/downloaders/brochure';
-import { addSubscriber } from '@/services/api/mailchimp';
-import { Subscribe } from '@/types/mailchimp';
+import { addSubscriber } from '@/services/api/mail-handler';
+import { Subscribe } from '@/types/mail-handler';
 import { showNotification } from '@/utilities/notifications';
 import { hasLength, useForm } from '@mantine/form';
 import { Variant } from '@/enums/notification';

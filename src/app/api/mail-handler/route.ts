@@ -1,4 +1,4 @@
-import addSubscriber from '@/handlers/mailchimp';
+import { addSubscriber } from '@/handlers/mail-handler';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
@@ -13,12 +13,20 @@ export async function POST(request: NextRequest) {
 
     const formValues = await request.json();
 
-    const result = await addSubscriber(formValues);
+    const response = await addSubscriber(formValues);
+    const result = await response.json();
+
+    if (response.status >= 400) {
+      return NextResponse.json(
+        { error: 'Mailerlite API Error' },
+        { status: response.status }
+      );
+    }
 
     // Return the response with CORS headers
     return new NextResponse(JSON.stringify({ ...result }), {
       headers,
-      status: 200,
+      status: response.status,
       statusText: 'Subscriber Added',
     });
   } catch (error) {

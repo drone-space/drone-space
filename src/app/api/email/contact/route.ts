@@ -1,13 +1,10 @@
-// import { contactCreate } from '@/libraries/wrappers/email/contact';
 import { NextRequest, NextResponse } from 'next/server';
 import { EmailContactCreate } from '@/types/email';
-import { addSubscriber } from '@/services/api/mailchimp';
+import { addSubscriber } from '@/services/api/mail-handler';
 
 export async function POST(request: NextRequest) {
   try {
     const contactOptions: EmailContactCreate = await request.json();
-
-    // const createContact = await contactCreate(contactOptions);
 
     const response = await addSubscriber({
       email: contactOptions.params.email,
@@ -15,33 +12,24 @@ export async function POST(request: NextRequest) {
     });
 
     if (response) {
-      const result = await response.json();
-
-      if (result.status >= 400) {
-        console.error(
-          '---> route handler error (add subscriber):',
-          result.title
-        );
+      if (response.status >= 400) {
         return NextResponse.json(
           { error: 'Internal server error' },
           { status: 500 }
         );
       }
+
+      if (response.status == 200) {
+        return NextResponse.json(
+          { message: 'You are already a subscriber' },
+          { status: 200, statusText: 'Subscribed' }
+        );
+      }
     }
 
-    // if (createContact.exists) {
-    //   return NextResponse.json(
-    //     { error: "You're already a subscriber", exists: true },
-    //     { status: 409, statusText: 'Already Subscribed' }
-    //   );
-    // }
-
     return NextResponse.json(
-      {
-        // contact: createContact,
-        message: 'You have subscribed to the mailing list',
-      },
-      { status: 200, statusText: 'Subscribed' }
+      { message: 'You have subscribed to the mailing list' },
+      { status: response.status, statusText: 'Subscribed' }
     );
   } catch (error) {
     console.error('---> route handler error (create contact):', error);

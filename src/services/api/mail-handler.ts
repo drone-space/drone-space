@@ -1,9 +1,9 @@
 import { API_URL } from '@/data/constants';
-import { Subscribe } from '@/types/mailchimp';
+import { Subscribe } from '@/types/mail-handler';
 
 export const addSubscriber = async (params: Subscribe) => {
   try {
-    const response = await fetch(`${API_URL}/mailchimp`, {
+    const response = await fetch(`${API_URL}/mail-handler`, {
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

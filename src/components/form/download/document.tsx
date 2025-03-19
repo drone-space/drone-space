@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Button, Center, Grid, GridCol, TextInput } from '@mantine/core';
-import { useFormAddSubscriber } from '@/hooks/form/mailchimp';
+import { useFormAddSubscriber } from '@/hooks/form/mail-handler';
 
 export default function Document({
   params,

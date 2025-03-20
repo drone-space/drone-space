@@ -20,6 +20,7 @@ export const addSubscriber = async (formData: Subscribe) => {
             company: formData.company,
             phone: formData.phone,
           },
+          groups: [process.env.NEXT_MAILERLITE_GROUP_GENERAL],
           status: 'active',
           subscribed_at: now.toISOString().replace('T', ' ').slice(0, 19),
           opted_in_at: now.toISOString().replace('T', ' ').slice(0, 19),

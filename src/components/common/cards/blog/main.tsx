@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 import {
   Anchor,
+  Badge,
   Card,
   CardSection,
   Group,
-  NumberFormatter,
   Text,
   Title,
 } from '@mantine/core';
@@ -16,13 +16,8 @@ import classes from './main.module.scss';
 import { PostRelations } from '@/types/models/post';
 import { linkify, processUrl } from '@/utilities/formatters/string';
 import { getRegionalDate } from '@/utilities/formatters/date';
-import { IconMessageCircle } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
-import {
-  HOSTED_BASE_URL,
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-} from '@/data/constants';
+import { HOSTED_BASE_URL } from '@/data/constants';
 
 export default function Main({ post }: { post: PostRelations }) {
   const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
@@ -50,7 +45,17 @@ export default function Main({ post }: { post: PostRelations }) {
             mode="grid"
           />
 
-          <div className={classes.overlay}></div>
+          <div className={classes.overlay}>
+            <Group>
+              <Badge
+                color="white"
+                c={'var(--mantine-color-pri-9)'}
+                radius={'xs'}
+              >
+                {getRegionalDate(post.createdAt).date}
+              </Badge>
+            </Group>
+          </div>
         </Anchor>
       </CardSection>
 
@@ -76,21 +81,6 @@ export default function Main({ post }: { post: PostRelations }) {
         <Text className={classes.desc} lineClamp={3} mt={'md'}>
           {post.excerpt}
         </Text>
-
-        <Group justify="space-between" fz={'sm'} mt={'lg'}>
-          <Text inherit>{getRegionalDate(post.createdAt).date}</Text>
-
-          {post._count.comments && (
-            <Group gap={4}>
-              <IconMessageCircle
-                size={ICON_SIZE - 4}
-                stroke={ICON_STROKE_WIDTH}
-              />
-
-              <NumberFormatter thousandSeparator value={post._count.comments} />
-            </Group>
-          )}
-        </Group>
       </CardSection>
     </Card>
   );

@@ -9,6 +9,7 @@ import legal from '@/data/legal';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = `Terms and Conditions - ${appData.name.app} Kenya`;
 const metaDesc = `Review the terms and conditions governing the use of ${appData.name.app} services, training, and products. Stay informed about our policies and commitments.`;
@@ -35,51 +36,62 @@ export const metadata: Metadata = {
 export default async function TermsConditions() {
   return (
     <LayoutPage>
-      <LayoutSection
-        id="page-legal-privacy-header"
-        margined={64}
-        containerized={'sm'}
-      >
-        <Title order={1} fz={24}>
-          Terms and Conditions
-        </Title>
+      <IntroPage
+        props={{
+          path: `T & C`,
+          title: 'Terms and Conditions',
+          desc: `Review the terms and conditions governing the use of ${appData.name.app} services, training, and products.`,
+        }}
+      />
 
-        <Text inherit c={'dimmed'} fz={'xs'} fw={500} mt={'xs'}>
-          Last Updated:{' '}
-          <Text component="span" inherit>
-            Sep 26, 2024
-          </Text>
-        </Text>
-
-        <Divider mt={'md'} />
-      </LayoutSection>
-
-      {legal.terms.map((t, index) => (
-        <LayoutSection
-          key={index}
-          id="page-legal-privacy-list"
-          margined={40}
-          containerized={'sm'}
-        >
-          <Title order={2} fz={'lg'}>
-            {legal.terms.indexOf(t) + 1}. {t.title}
-          </Title>
-
-          {t.prose.map((p, index) => (
-            <Text key={index} mt={'xs'}>
-              {p.content}
+      <LayoutSection id="children" padded bg={'var(--mantine-color-gray-1)'}>
+        <>
+          <LayoutSection id="page-legal-privacy-header" containerized={'sm'}>
+            <Text
+              inherit
+              c={'dimmed'}
+              fz={'xs'}
+              fw={500}
+              mt={'xs'}
+              ta={'center'}
+            >
+              Last Updated:{' '}
+              <Text component="span" inherit>
+                Sep 26, 2024
+              </Text>
             </Text>
-          ))}
 
-          {t.list && (
-            <List size="sm" withPadding spacing={4} mt={'xs'}>
-              {t.list.map((i, index) => (
-                <ListItem key={index}>{i.content}</ListItem>
+            <Divider mt={'md'} />
+          </LayoutSection>
+
+          {legal.terms.map((t, index) => (
+            <LayoutSection
+              key={index}
+              id="page-legal-privacy-list"
+              margined={40}
+              containerized={'sm'}
+            >
+              <Title order={2} fz={'lg'}>
+                {legal.terms.indexOf(t) + 1}. {t.title}
+              </Title>
+
+              {t.prose.map((p, index) => (
+                <Text key={index} mt={'xs'}>
+                  {p.content}
+                </Text>
               ))}
-            </List>
-          )}
-        </LayoutSection>
-      ))}
+
+              {t.list && (
+                <List size="sm" withPadding spacing={4} mt={'xs'}>
+                  {t.list.map((i, index) => (
+                    <ListItem key={index}>{i.content}</ListItem>
+                  ))}
+                </List>
+              )}
+            </LayoutSection>
+          ))}
+        </>
+      </LayoutSection>
     </LayoutPage>
   );
 }

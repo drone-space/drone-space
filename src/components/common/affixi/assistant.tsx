@@ -113,19 +113,15 @@ export default function Assistant() {
               >
                 <ModalClaudeMain>
                   <Group className={classes.child}>
-                    <Text inherit fz={{ base: 'xs', lg: 'sm' }} fw={500}>
-                      Ask Hekima
-                    </Text>
-
-                    <Box h={39} w={39}>
+                    <Box h={47} w={47}>
                       <ImageDefault
-                        src={images.icons.claude}
+                        src={images.icons.claude.default}
                         alt={'Hekima AI'}
                         loading="lazy"
                         radius={'sm'}
                         fit={'contain'}
-                        width={39}
-                        height={39}
+                        width={47}
+                        height={47}
                       />
                     </Box>
                   </Group>

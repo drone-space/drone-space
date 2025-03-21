@@ -1,21 +1,9 @@
 .card {
   height: 100%;
-  background-color: light-dark(
-    var(--mantine-color-pri-9),
-    var(--mantine-color-pri-9)
-  ) !important;
-  color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-white)
-  ) !important;
 
   @include hover {
     .image {
       transform: scale(1.05);
-    }
-
-    .overlay {
-      background-color: rgba($color: #000000, $alpha: 0.05);
     }
 
     .overlayContent {
@@ -37,7 +25,6 @@
   bottom: 0;
 
   padding: var(--mantine-spacing-md);
-  background-color: rgba($color: #000000, $alpha: 0.1);
   transition: 0.25s all ease;
 }
 

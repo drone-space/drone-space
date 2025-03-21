@@ -2,7 +2,6 @@
 
 import {
   Anchor,
-  Card,
   Container,
   createTheme,
   Notification,
@@ -69,13 +68,6 @@ const appTheme = createTheme({
     Anchor: Anchor.extend({
       defaultProps: { underline: 'never' },
       classNames: classesAnchor,
-    }),
-
-    Card: Card.extend({
-      defaultProps: {
-        bg: 'var(--mantine-color-pri-light)',
-        c: 'var(--mantine-color-text)',
-      },
     }),
 
     Container: Container.extend({

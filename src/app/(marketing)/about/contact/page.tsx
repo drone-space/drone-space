@@ -17,11 +17,12 @@ import ModalContactTraining from '@/components/common/modals/contact/training';
 import ModalContactShop from '@/components/common/modals/contact/shop';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import FormInquiryGeneral from '@/components/form/inquiry/general';
+import FormContact from '@/components/form/contact';
 // import IntroPage from '@/components/layout/intro/page';
 import Link from 'next/link';
 import {
   Icon,
+  IconHeadset,
   IconHelpCircle,
   IconMail,
   IconMapPin,
@@ -31,15 +32,10 @@ import {
 } from '@tabler/icons-react';
 import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
 import appData from '@/data/app';
-import {
-  HOSTED_BASE_URL,
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@/data/constants';
+import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import IframeContact from '@/components/common/iframes/contact';
 import { images } from '@/assets/images';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = `Contact ${appData.name.app} - Reach Out for Training & Services`;
 const metaDesc =
@@ -67,35 +63,31 @@ export const metadata: Metadata = {
 export default async function Contact() {
   return (
     <LayoutPage>
-      {/* <IntroPage
+      <IntroPage
         props={{
           path: 'Reach Out',
           title: 'Contact Us',
-          desc: 'Please reach out to us if you have questions about our enterprise offerings, or anything else.',
+          desc: 'Please reach out to us if you have questions about Drone Space, our offerings, or anything else.',
         }}
-      /> */}
+      />
 
       <IframeContact props={{ src: appData.locations.main.iframe }} />
 
       <LayoutSection
         id="page-contact-cards"
-        margined={SECTION_SPACING / 2}
+        padded={SECTION_SPACING / 2}
         containerized={'responsive'}
       >
         <Grid>
           <GridCol span={{ base: 12, xs: 6, md: 4 }} order={{ xs: 1, md: 1 }}>
-            <CardContact
-              props={{
-                icon: IconMail,
-                title: 'Email Us',
-                bg: 'var(--mantine-color-sec-3)',
-              }}
-            >
+            <CardContact props={{ title: 'Email Us' }}>
               <Anchor
                 inherit
                 ta={'center'}
                 fz={'sm'}
                 href={`mailto:${appData.emails.info}`}
+                underline="hover"
+                c={'var(--mantine-color-text)'}
               >
                 {appData.emails.info}
               </Anchor>
@@ -105,6 +97,8 @@ export default async function Contact() {
                 ta={'center'}
                 fz={'sm'}
                 href={`mailto:${appData.emails.training}`}
+                underline="hover"
+                c={'var(--mantine-color-text)'}
               >
                 {appData.emails.training}
               </Anchor>
@@ -112,38 +106,22 @@ export default async function Contact() {
           </GridCol>
 
           <GridCol span={{ base: 12, md: 4 }} order={{ xs: 3, md: 2 }}>
-            <CardContact
-              props={{
-                icon: IconMapPin,
-                title: 'Office Address',
-                bg: 'var(--mantine-color-pri-9)',
-                c: 'var(--mantine-color-sec-3)',
-              }}
-            >
-              <Text
-                ta={'center'}
-                fz={'sm'}
-                c={'sec.3'}
-                w={{ md: '75%', lg: '66%' }}
-              >
+            <CardContact props={{ title: 'Office Address' }}>
+              <Text ta={'center'} fz={'sm'} w={{ md: '75%', lg: '66%' }}>
                 {appData.locations.main.location}
               </Text>
             </CardContact>
           </GridCol>
 
           <GridCol span={{ base: 12, xs: 6, md: 4 }} order={{ xs: 2, md: 3 }}>
-            <CardContact
-              props={{
-                icon: IconPhone,
-                title: 'Call Us',
-                bg: 'var(--mantine-color-sec-3)',
-              }}
-            >
+            <CardContact props={{ title: 'Call Us' }}>
               <Anchor
                 inherit
                 ta={'center'}
                 fz={'sm'}
                 href={`tel:${appData.phones.main}`}
+                underline="hover"
+                c={'var(--mantine-color-text)'}
               >
                 {appData.phones.main}
               </Anchor>
@@ -153,6 +131,8 @@ export default async function Contact() {
                 ta={'center'}
                 fz={'sm'}
                 href={`tel:${appData.phones.other}`}
+                underline="hover"
+                c={'var(--mantine-color-text)'}
               >
                 {appData.phones.other}
               </Anchor>
@@ -163,70 +143,23 @@ export default async function Contact() {
 
       <LayoutSection
         id="page-contact"
-        margined={SECTION_SPACING / 2}
-        containerized={'responsive'}
+        padded={SECTION_SPACING / 2}
+        containerized={'sm'}
+        bg={'var(--mantine-color-gray-1)'}
       >
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 5 }} order={{ base: 2, md: 1 }}>
             <Card withBorder bg={'white'} shadow="xs">
-              <FormInquiryGeneral />
+              <FormContact />
             </Card>
 
-            <Text ta={'center'} fz={'sm'} mt={'md'}>
-              Please consult the{' '}
-              <Anchor component={Link} inherit fw={500} href="/resources/faq">
-                FAQ
-              </Anchor>
-              &apos;s first.
-            </Text>
-          </GridCol>
-          <GridCol span={{ base: 12, md: 6, lg: 7 }} order={{ base: 1, md: 2 }}>
-            <Title
-              order={2}
-              fz={'xl'}
-              fw={'bold'}
-              ta={{ base: 'center', md: 'start' }}
-            >
-              Thanks for your interest. How can we help?
-            </Title>
-
-            <Text ta={{ base: 'center', md: 'start' }} mt={'md'}>
-              Please let us know if you have a question about our enterprise,
-              have an offering or proposal, want to leave a comment or would
-              like further information.
-            </Text>
-
-            <Grid gutter={'xl'} mt={'xl'}>
-              {options.map((option, index) => (
-                <GridCol key={index} span={{ base: 12, xs: 6, sm: 6, md: 6 }}>
-                  <Flex
-                    direction={'column'}
-                    align={{ base: 'center', md: 'start' }}
-                    ta={{ base: 'center', md: 'start' }}
-                    gap={'md'}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE}
-                      variant="light"
-                      // display={{ base: undefined, sm: "none", md: "inherit" }}
-                    >
-                      <option.icon
-                        size={ICON_SIZE}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
-
-                    <Title order={3} fz={'md'} fw={'bold'}>
-                      {option.title}
-                    </Title>
-
-                    {option.description}
-                  </Flex>
-                </GridCol>
-              ))}
-            </Grid>
-          </GridCol>
-        </Grid>
+        <Text ta={'center'} fz={'xs'} mt={'md'}>
+          Please consult the{' '}
+          <Anchor component={Link} inherit fw={500} href="/resources/faq">
+            FAQ
+          </Anchor>
+          &apos;s first.
+        </Text>
       </LayoutSection>
     </LayoutPage>
   );
@@ -279,6 +212,22 @@ const options = [
     icon: IconShoppingBag,
   },
   {
+    title: 'Technical Inquiries',
+    description: (
+      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
+        Found a persistent bug to report? Have a new feature to suggest or any
+        other technical issue to address? Please{' '}
+        <ModalContactTechnical>
+          <Anchor inherit fw={500}>
+            contact our developer
+          </Anchor>
+          .
+        </ModalContactTechnical>
+      </Text>
+    ),
+    icon: IconHeadset,
+  },
+  {
     title: 'General Inquiries',
     description: (
       <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
@@ -305,28 +254,20 @@ const CardContact = ({
   props,
   children,
 }: {
-  props: { icon: Icon; title: string; bg?: string; c?: string };
+  props: { title: string };
   children: React.ReactNode;
-}) => (
-  <Card
-    padding={'xl'}
-    bg={props.bg}
-    h={'100%'}
-    style={{ display: 'flex', alignItems: 'center' }}
-  >
-    <ThemeIcon
-      size={ICON_WRAPPER_SIZE * 1.5}
-      radius={'xl'}
-      color="white"
-      c={'pri.9'}
+}) {
+  return (
+    <Card
+      padding={'xl'}
+      h={'100%'}
+      style={{ display: 'flex', alignItems: 'center' }}
     >
-      <props.icon size={ICON_SIZE * 1.25} stroke={ICON_STROKE_WIDTH} />
-    </ThemeIcon>
+      <Title ta={'center'} order={3} my={'md'} fz={'xl'}>
+        {props.title}
+      </Title>
 
-    <Title ta={'center'} order={3} c={props.c} my={'md'}>
-      {props.title}
-    </Title>
-
-    {children}
-  </Card>
-);
+      {children}
+    </Card>
+  );
+}

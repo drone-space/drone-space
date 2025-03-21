@@ -8,6 +8,7 @@ import accessories from '@/data/accessories';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = 'Drone Accessories - Enhance Your Drone Experience';
 const metaDesc = `Shop high-quality drone accessories, including batteries, propellers, and carrying cases. Everything you need for a seamless drone experience.`;
@@ -34,7 +35,20 @@ export const metadata: Metadata = {
 export default async function Accessories() {
   return (
     <LayoutPage>
-      <LayoutSection id="accessories-grid" padded containerized={'responsive'}>
+      <IntroPage
+        props={{
+          path: 'Shop',
+          title: 'Drone Accessories',
+          desc: metaDesc,
+        }}
+      />
+
+      <LayoutSection
+        id="accessories-grid"
+        padded
+        containerized={'responsive'}
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid>
           {accessories.map((accessory, index) => (
             <GridCol key={index} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>

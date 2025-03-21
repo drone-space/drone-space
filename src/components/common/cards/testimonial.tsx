@@ -20,7 +20,7 @@ import { processUrl } from '@/utilities/formatters/string';
 
 export default function Testimonial({ props }: { props: Student }) {
   return (
-    <Card shadow="xs" bg={'white'} h={'100%'} padding={'xl'}>
+    <Card withBorder h={'100%'} padding={'xl'}>
       <Group>
         <ActionIcon size={ICON_WRAPPER_SIZE * 2} c="sec.3">
           <IconQuote size={ICON_SIZE * 2} />
@@ -39,8 +39,8 @@ export default function Testimonial({ props }: { props: Student }) {
         <Group mt={'md'} wrap="nowrap" align="start">
           <Group
             style={{
+              border: '2px solid var(--mantine-color-sec-3)',
               borderRadius: 'var(--mantine-radius-xl)',
-              boxShadow: 'var(--mantine-shadow-xs)',
               overflow: 'hidden',
             }}
             miw={64}

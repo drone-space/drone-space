@@ -12,7 +12,7 @@ export const useFormNewsletter = () => {
 
   const form = useForm({
     initialValues: { email: '' },
-    validate: { email: (value) => email(value.trim()) },
+    validate: { email: (value) => (email(value.trim()) ? true : false) },
   });
 
   const handleSubmit = async () => {

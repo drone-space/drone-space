@@ -29,6 +29,7 @@ import appData from '@/data/app';
 import CardCourse from '@/components/common/cards/training/course';
 import { linkify } from '@/utilities/formatters/string';
 import { courseList } from '@/data/courses';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = `Drone Training - Professional Courses at ${appData.name.app} Kenya`;
 const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
@@ -55,7 +56,15 @@ export const metadata: Metadata = {
 export default async function DroneTraining() {
   return (
     <LayoutPage>
-      <LayoutSection id="our-story" padded>
+      <IntroPage
+        props={{
+          path: 'Drone School',
+          title: 'Drone Training',
+          desc: `Train with expert instructors and master drone technology.`,
+        }}
+      />
+
+      <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -148,7 +157,7 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="course-list" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="course-list" padded>
         <Grid grow>
           {courseList.map((item, index) => (
             <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
@@ -158,7 +167,11 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id={linkify(courseList[0].title)} padded>
+      <LayoutSection
+        id={linkify(courseList[0].title)}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -316,11 +329,7 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id={linkify(courseList[1].title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(courseList[1].title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -465,7 +474,11 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id={linkify(courseList[2].title)} padded>
+      <LayoutSection
+        id={linkify(courseList[2].title)}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -562,11 +575,7 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id={linkify(courseList[3].title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(courseList[3].title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -637,7 +646,11 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id={linkify(courseList[4].title)} padded>
+      <LayoutSection
+        id={linkify(courseList[4].title)}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -723,11 +736,7 @@ export default async function DroneTraining() {
         </Text>
       </LayoutSection>
 
-      <LayoutSection
-        id={linkify(courseList[5].title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(courseList[5].title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}

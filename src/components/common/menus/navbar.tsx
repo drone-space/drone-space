@@ -67,16 +67,14 @@ export default function Navbar({
 
   return (
     <Menu
-      shadow="xs"
       width={'auto'}
       trigger="click-hover"
       openDelay={50}
       closeDelay={50}
-      keepMounted={true}
       offset={{
-        mainAxis: 4,
+        mainAxis: 5,
       }}
-      transitionProps={{ transition: 'fade-up', duration: 250 }}
+      transitionProps={{ transition: 'fade-up', duration: 100 }}
       classNames={{
         dropdown: classes.dropdown,
         arrow: classes.arrow,
@@ -90,7 +88,7 @@ export default function Navbar({
       <MenuTarget>{children}</MenuTarget>
 
       {menuItems && (
-        <MenuDropdown maw={720}>
+        <MenuDropdown w={720}>
           {!megaMenu ? (
             menuItems
           ) : (

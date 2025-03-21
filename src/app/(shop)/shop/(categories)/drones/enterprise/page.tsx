@@ -10,6 +10,7 @@ import products from '@/data/products';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = 'Enterprise Drones - High-Performance Drones for Business';
 const metaDesc = `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`;
@@ -38,7 +39,20 @@ export default async function Enterprise() {
 
   return (
     <LayoutPage>
-      <LayoutSection id="page-drones-agri" padded containerized={'responsive'}>
+      <IntroPage
+        props={{
+          path: 'Shop',
+          title: 'Enterprise Drones',
+          desc: metaDesc,
+        }}
+      />
+
+      <LayoutSection
+        id="page-drones-agri"
+        padded
+        containerized={'responsive'}
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid>
           {drones.map((drone, index) => (
             <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>

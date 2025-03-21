@@ -8,9 +8,7 @@ import LayoutSection from '@/components/layout/section';
 import LayoutBody from '@/components/layout/body';
 import FooterMain from '@/components/layout/footers/main';
 import AffixNavbar from '@/components/common/affixi/navbar';
-import AffixTop from '@/components/common/affixi/top';
 import AffixAssistant from '@/components/common/affixi/assistant';
-import AffixWhatsapp from '@/components/common/affixi/whatsapp';
 import {
   Anchor,
   Button,
@@ -249,7 +247,6 @@ export default function Home() {
                     fullWidth
                     color="sec.3"
                     c={'pri.9'}
-                    style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
                   >
                     <Stack align="center" p={'md'}>
                       <IconShoppingCart
@@ -271,7 +268,6 @@ export default function Home() {
                       fullWidth
                       color="sec.3"
                       c={'pri.9'}
-                      style={{ boxShadow: 'var(--mantine-shadow-xs)' }}
                     >
                       <Stack align="center" p={'md'}>
                         <category.icon
@@ -341,8 +337,6 @@ export default function Home() {
       </main>
 
       <AffixNavbar />
-      <AffixTop />
-      <AffixWhatsapp />
       <AffixAssistant />
     </LayoutBody>
   );

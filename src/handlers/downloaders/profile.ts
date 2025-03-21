@@ -2,7 +2,7 @@ import documents from '@/assets/documents';
 
 export const downloadProfile = async () => {
   try {
-    const response = await fetch(documents.droneSpace.profile); // Replace with your file URL
+    const response = await fetch(documents.droneSpace.profile);
     const blob = await response.blob();
 
     // Create a link element

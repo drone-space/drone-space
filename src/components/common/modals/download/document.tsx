@@ -3,9 +3,15 @@
 import React from 'react';
 import { Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import FormDownloadDocument from '@/components/form/download/document';
+import FormDownloadDocument from '@/components/form/download/download';
 
-export default function Profile({ children }: { children: React.ReactNode }) {
+export default function Document({
+  props,
+  children,
+}: {
+  props: { type: 'profile' | 'brochure' };
+  children: React.ReactNode;
+}) {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -16,11 +22,11 @@ export default function Profile({ children }: { children: React.ReactNode }) {
         centered
         title={
           <Text component="span" inherit fw={'bold'} c={'pri'}>
-            Profile Download
+            Brochure Download
           </Text>
         }
       >
-        <FormDownloadDocument params={{ document: 'profile' }} />
+        <FormDownloadDocument props={{ type: props.type, close }} />
       </Modal>
 
       <span style={{ display: 'inline' }} onClick={open}>

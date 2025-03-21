@@ -2,35 +2,12 @@ import React from 'react';
 
 import { Metadata } from 'next';
 
-import {
-  Anchor,
-  Card,
-  Flex,
-  Grid,
-  GridCol,
-  Text,
-  ThemeIcon,
-  Title,
-} from '@mantine/core';
-
-import ModalContactTraining from '@/components/common/modals/contact/training';
-import ModalContactShop from '@/components/common/modals/contact/shop';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import FormContact from '@/components/form/contact';
-// import IntroPage from '@/components/layout/intro/page';
 import Link from 'next/link';
-import {
-  Icon,
-  IconHeadset,
-  IconHelpCircle,
-  IconMail,
-  IconMapPin,
-  IconPhone,
-  IconSchool,
-  IconShoppingBag,
-} from '@tabler/icons-react';
-import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
+import IntroSection from '@/components/layout/intro/section';
+import { Anchor, Card, Grid, GridCol, Text, Title } from '@mantine/core';
+import FormInquiryGeneral from '@/components/form/inquiry/general';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import IframeContact from '@/components/common/iframes/contact';
@@ -147,11 +124,18 @@ export default async function Contact() {
         containerized={'sm'}
         bg={'var(--mantine-color-gray-1)'}
       >
-        <Grid gutter={'xl'}>
-          <GridCol span={{ base: 12, md: 6, lg: 5 }} order={{ base: 2, md: 1 }}>
-            <Card withBorder bg={'white'} shadow="xs">
-              <FormContact />
-            </Card>
+        <IntroSection
+          props={{
+            subTitle: 'Inquiries',
+            title: 'Thanks for your interest. How can we help?',
+            desc: `Please let us know if you have a question about our enterprise, have an offering or proposal, want to leave a comment or would like further information.`,
+          }}
+          options={{ spacing: true }}
+        />
+
+        <Card bg={'white'}>
+          <FormInquiryGeneral />
+        </Card>
 
         <Text ta={'center'} fz={'xs'} mt={'md'}>
           Please consult the{' '}
@@ -165,98 +149,13 @@ export default async function Contact() {
   );
 }
 
-const options = [
-  {
-    title: 'Training Inquiries',
-    description: (
-      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
-        For course details please visit our training section, for course prices
-        go to{' '}
-        <Anchor
-          component={Link}
-          href="/drone-training/pricing"
-          inherit
-          fw={500}
-        >
-          pricing
-        </Anchor>{' '}
-        and for any other training inquiries, please send us a{' '}
-        <ModalContactTraining>
-          <Anchor inherit fw={500}>
-            training inquiry
-          </Anchor>
-        </ModalContactTraining>
-        .
-      </Text>
-    ),
-    icon: IconSchool,
-  },
-  {
-    title: 'Product Inquiries',
-    description: (
-      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
-        To see available drones and drone prices please visit our{' '}
-        <Anchor component={Link} href="/shop" inherit fw={500}>
-          shop section
-        </Anchor>
-        , for drone importation or other drone purchase inquiries, please send
-        us a{' '}
-        <ModalContactShop>
-          <Anchor inherit fw={500}>
-            product/purchase inquiry
-          </Anchor>
-        </ModalContactShop>
-        .
-      </Text>
-    ),
-    icon: IconShoppingBag,
-  },
-  {
-    title: 'Technical Inquiries',
-    description: (
-      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
-        Found a persistent bug to report? Have a new feature to suggest or any
-        other technical issue to address? Please{' '}
-        <ModalContactTechnical>
-          <Anchor inherit fw={500}>
-            contact our developer
-          </Anchor>
-          .
-        </ModalContactTechnical>
-      </Text>
-    ),
-    icon: IconHeadset,
-  },
-  {
-    title: 'General Inquiries',
-    description: (
-      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
-        For any inquiry that doesn&apos;t fit in the other three brackets, fill
-        in the form on this page or{' '}
-        <TooltipWhatsApp>
-          <Anchor
-            inherit
-            fw={500}
-            href={`${appData.socials.whatsapp.link}`}
-            target="_blank"
-          >
-            start a chat with us
-          </Anchor>
-        </TooltipWhatsApp>
-        .
-      </Text>
-    ),
-    icon: IconHelpCircle,
-  },
-];
-
 const CardContact = ({
   props,
   children,
 }: {
   props: { title: string };
   children: React.ReactNode;
-}) {
+}) => {
   return (
     <Card
       padding={'xl'}
@@ -270,4 +169,4 @@ const CardContact = ({
       {children}
     </Card>
   );
-}
+};

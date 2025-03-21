@@ -4,7 +4,7 @@ import { email } from '@/utilities/validators/email';
 import { useForm } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';
 import { useState } from 'react';
-import { addSubscriber } from '@/services/api/mail-handler';
+import { contactAdd } from '@/handlers/requests/contact';
 
 export const useFormNewsletter = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -29,19 +29,16 @@ export const useFormNewsletter = () => {
 
         setSubmitted(true);
 
-        const response = await addSubscriber({
+        const response = await contactAdd({
           email: form.values.email.trim().toLowerCase(),
         });
-
-        if (!response) {
-          throw new Error('No response from server');
-        }
 
         if (response.status >= 400) {
           showNotification({
             variant: Variant.FAILED,
             title: response.statusText,
           });
+          return;
         }
 
         form.reset();

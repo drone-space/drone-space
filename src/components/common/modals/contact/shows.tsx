@@ -3,7 +3,7 @@
 import React from 'react';
 import { Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import FormContact from '@/components/form/contact';
+import FormInquiryService from '@/components/form/inquiry/service';
 
 export default function Shows({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -13,7 +13,6 @@ export default function Shows({ children }: { children: React.ReactNode }) {
       <Modal
         opened={opened}
         onClose={close}
-        size={'xl'}
         centered
         title={
           <Text component="span" inherit fw={'bold'} c={'pri'}>
@@ -21,9 +20,11 @@ export default function Shows({ children }: { children: React.ReactNode }) {
           </Text>
         }
       >
-        <FormContact
-          props={{ subject: 'Drone Light Show Inquiry' }}
-          options={{ modal: true, inquiry: 'shows' }}
+        <FormInquiryService
+          props={{
+            close,
+            initialValues: { subject: 'Drone Light Show Inquiry' },
+          }}
         />
       </Modal>
 

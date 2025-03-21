@@ -7,12 +7,7 @@ export const Newsletter = () => {
   const message = `You have successfully subscribed to the ${appData.name.app} newsletter. You will be recieving occational marketing and news emails.`;
 
   return (
-    <LayoutEmail
-      props={{
-        preview: message,
-        title: `${appData.name.app} Newsletter`,
-      }}
-    >
+    <LayoutEmail props={{ preview: message }}>
       <Section>
         <Text style={text}>
           Thank you for subscribing to the {appData.name.company} newsletter!

@@ -17,7 +17,7 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
-import ModalDownloadBrochure from '@/components/common/modals/download/brochure';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Training({
   data,
@@ -94,7 +94,7 @@ export default function Training({
         </Stack>
 
         <Group justify="center">
-          <ModalDownloadBrochure>
+          <ModalDownloadDocument props={{ type: 'brochure' }}>
             <Button
               leftSection={
                 <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -102,7 +102,7 @@ export default function Training({
             >
               Get the Brochure
             </Button>
-          </ModalDownloadBrochure>
+          </ModalDownloadDocument>
 
           <ModalContactTraining>
             <Button

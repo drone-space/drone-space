@@ -15,7 +15,7 @@ import { images } from '@/assets/images';
 import { usePathname } from 'next/navigation';
 import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
-import ModalDowloadProfile from '@/components/common/modals/download/profile';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Newsletter() {
   const pathname = usePathname();
@@ -57,7 +57,7 @@ export default function Newsletter() {
         <FormNewsletter />
 
         <Group justify="center">
-          <ModalDowloadProfile>
+          <ModalDownloadDocument props={{ type: 'profile' }}>
             <Button
               leftSection={
                 <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -66,7 +66,7 @@ export default function Newsletter() {
             >
               Company Profile
             </Button>
-          </ModalDowloadProfile>
+          </ModalDownloadDocument>
 
           <ModalContactCallback>
             <Button

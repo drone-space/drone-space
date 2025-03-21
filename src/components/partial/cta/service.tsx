@@ -4,7 +4,7 @@ import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
-import ModalDownloadProfile from '@/components/common/modals/download/profile';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Service() {
   return (
@@ -30,7 +30,7 @@ export default function Service() {
         </Stack>
 
         <Group justify="center">
-          <ModalDownloadProfile>
+          <ModalDownloadDocument props={{ type: 'profile' }}>
             <Button
               leftSection={
                 <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -38,7 +38,7 @@ export default function Service() {
             >
               Company Profile
             </Button>
-          </ModalDownloadProfile>
+          </ModalDownloadDocument>
 
           <ModalContactCallback>
             <Button

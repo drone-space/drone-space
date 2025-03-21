@@ -21,8 +21,7 @@ import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
 import { IconFileDownload } from '@tabler/icons-react';
-import ModalDownloadBrochure from '../modals/download/brochure';
-import ModalDownloadProfile from '../modals/download/profile';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Navbar({
   children,
@@ -126,7 +125,7 @@ export default function Navbar({
 
                   <GridCol span={3}>
                     <Stack gap={0} h={'100%'} justify="space-between">
-                      <ModalDownloadBrochure>
+                      <ModalDownloadDocument props={{ type: 'brochure' }}>
                         <Button
                           justify="space-between"
                           rightSection={
@@ -143,9 +142,9 @@ export default function Navbar({
                         >
                           Brochure
                         </Button>
-                      </ModalDownloadBrochure>
+                      </ModalDownloadDocument>
 
-                      <ModalDownloadProfile>
+                      <ModalDownloadDocument props={{ type: 'profile' }}>
                         <Button
                           justify="space-between"
                           rightSection={
@@ -162,7 +161,7 @@ export default function Navbar({
                         >
                           Profile
                         </Button>
-                      </ModalDownloadProfile>
+                      </ModalDownloadDocument>
                     </Stack>
                   </GridCol>
                 </Grid>

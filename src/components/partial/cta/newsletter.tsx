@@ -65,7 +65,7 @@ export default function Newsletter() {
             gap={'md'}
             align={{ base: 'center', sm: 'end' }}
           >
-            <ModalDowloadProfile>
+            <ModalDownloadDocument props={{ type: 'profile' }}>
               <Button
                 leftSection={
                   <IconFileDownload
@@ -77,7 +77,7 @@ export default function Newsletter() {
               >
                 Company Profile
               </Button>
-            </ModalDowloadProfile>
+            </ModalDownloadDocument>
 
             <ModalContactCallback>
               <Button

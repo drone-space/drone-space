@@ -13,7 +13,6 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import ModalCommunicationSupport from '@/components/common/modals/communication/support';
 import IntroPage from '@/components/layout/intro/page';
 
 export default function NotFound() {
@@ -46,10 +45,6 @@ export default function NotFound() {
             >
               Go To Home Page
             </Button>
-
-            <ModalCommunicationSupport>
-              <Button>Contact Support</Button>
-            </ModalCommunicationSupport>
           </Flex>
         </Group>
       </Stack>

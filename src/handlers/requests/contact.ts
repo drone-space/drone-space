@@ -1,9 +1,9 @@
 import { API_URL } from '@/data/constants';
-import { Subscribe } from '@/types/mail-handler';
+import { FormInquiryValues } from '@/hooks/form/inquiry';
 
-export const addSubscriber = async (params: Subscribe) => {
+export const contactAdd = async (params: Partial<FormInquiryValues>) => {
   try {
-    const response = await fetch(`${API_URL}/mail-handler`, {
+    const response = await fetch(`${API_URL}/email-contacts`, {
       method: 'POST',
       body: JSON.stringify(params),
       headers: {
@@ -15,7 +15,7 @@ export const addSubscriber = async (params: Subscribe) => {
 
     return response;
   } catch (error) {
-    console.error('---> service error (add subscriber):', error);
+    console.error('---> handler error (add email contact):', error);
     throw error;
   }
 };

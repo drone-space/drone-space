@@ -18,7 +18,7 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import ModalDownloadBrochure from '@/components/common/modals/download/brochure';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 import {
   IconCertificate,
   IconCertificate2,
@@ -94,7 +94,7 @@ export default function Home() {
           >
             <Grid gutter={{ base: 'md', md: 'xl' }} justify="center">
               <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
-                <ModalDownloadBrochure>
+                <ModalDownloadDocument props={{ type: 'brochure' }}>
                   <Button h={'100%'} fullWidth>
                     <Stack align="center" py={'md'}>
                       <IconFileDownload
@@ -106,7 +106,7 @@ export default function Home() {
                       </Text>
                     </Stack>
                   </Button>
-                </ModalDownloadBrochure>
+                </ModalDownloadDocument>
               </GridCol>
               <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
                 <ModalContactCallback>

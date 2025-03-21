@@ -14,7 +14,7 @@ import { images } from '@/assets/images';
 import { usePathname } from 'next/navigation';
 import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
-import ModalDowloadProfile from '@/components/common/modals/download/profile';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Newsletter() {
   const pathname = usePathname();

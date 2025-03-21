@@ -14,16 +14,14 @@ import {
 } from '@mantine/core';
 
 import ModalContactTraining from '@/components/common/modals/contact/training';
-import ModalContactTechnical from '@/components/common/modals/contact/technical';
 import ModalContactShop from '@/components/common/modals/contact/shop';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import FormContact from '@/components/form/contact';
+import FormInquiryGeneral from '@/components/form/inquiry/general';
 // import IntroPage from '@/components/layout/intro/page';
 import Link from 'next/link';
 import {
   Icon,
-  IconHeadset,
   IconHelpCircle,
   IconMail,
   IconMapPin,
@@ -171,7 +169,7 @@ export default async function Contact() {
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 5 }} order={{ base: 2, md: 1 }}>
             <Card withBorder bg={'white'} shadow="xs">
-              <FormContact />
+              <FormInquiryGeneral />
             </Card>
 
             <Text ta={'center'} fz={'sm'} mt={'md'}>
@@ -279,22 +277,6 @@ const options = [
       </Text>
     ),
     icon: IconShoppingBag,
-  },
-  {
-    title: 'Technical Inquiries',
-    description: (
-      <Text inherit fz={{ base: 'xs', lg: 'sm' }}>
-        Found a persistent bug to report? Have a new feature to suggest or any
-        other technical issue to address? Please{' '}
-        <ModalContactTechnical>
-          <Anchor inherit fw={500}>
-            contact our developer
-          </Anchor>
-          .
-        </ModalContactTechnical>
-      </Text>
-    ),
-    icon: IconHeadset,
   },
   {
     title: 'General Inquiries',

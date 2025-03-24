@@ -21,6 +21,8 @@ import ModalAcademyCollaborator from '@/components/common/modals/academy/collabo
 import ModalAcademyProject from '@/components/common/modals/academy/project';
 import MenuAcademyContentCreate from '@/components/common/menus/academy/content/create';
 import AvatarGroup from '@/components/common/avatars/group';
+import { collaborators, records } from '@/data/sample';
+import TableAcademyContent from '@/components/common/table/academy/content';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -111,35 +113,11 @@ export default async function Project() {
                 </Tooltip>
               </ModalAcademyProject>
             </Group>
+
+            <TableAcademyContent props={{ list: records }} />
           </Stack>
         </LayoutMainAcademy>
       </LayoutSection>
     </LayoutPage>
   );
 }
-
-const collaborators = [
-  {
-    avatar:
-      'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-7.png',
-    name: 'Harriette Spoonlicker',
-    email: 'jane@example.com',
-  },
-  {
-    avatar:
-      'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png',
-    name: 'Michael Bay',
-    email: 'mike@example.com',
-  },
-  {
-    avatar: null,
-    name: 'John Doe',
-    email: 'mike@example.com',
-  },
-  {
-    avatar:
-      'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-10.png',
-    name: 'Emma Darcy',
-    email: 'emma@example.com',
-  },
-];

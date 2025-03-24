@@ -17,9 +17,9 @@ import LayoutModalAcademy from '@/components/layout/modal/academy';
 import { IconUserPlus } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH, SCROLLBAR_SIZE } from '@/data/constants';
 import CardAcademyCollaborator from '../../cards/academy/collaborator';
-import { generateUUID } from '@/utilities/generators/id';
 import ModalAcademyCollaborator from './collaborator';
 import ModalDeleteProject from '../delete/project';
+import { collaborators } from '@/data/sample';
 
 export default function Project({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -114,29 +114,3 @@ export default function Project({ children }: { children: React.ReactNode }) {
     </>
   );
 }
-
-const collaborators = [
-  {
-    id: generateUUID(),
-    avatar:
-      'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-3.png',
-    name: 'John Doe',
-    email: 'john@example.com',
-    role: 'learner',
-  },
-  {
-    id: generateUUID(),
-    avatar: null,
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    role: 'instructor',
-  },
-  {
-    id: generateUUID(),
-    avatar:
-      'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-4.png',
-    name: 'Mike Bay',
-    email: 'mike@example.com',
-    role: 'supervisor',
-  },
-];

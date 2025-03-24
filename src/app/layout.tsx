@@ -41,6 +41,14 @@ import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
 import GoogleAnalytics from '@/components/seo/analytics';
 import { isProduction } from '@/utilities/helpers/environment';
+import { projectsGet } from '@/handlers/requests/database/project';
+import { coursesGet } from '@/handlers/requests/database/course';
+import { sectionsGet } from '@/handlers/requests/database/section';
+import { modulesGet } from '@/handlers/requests/database/module';
+import { pagesGet } from '@/handlers/requests/database/page';
+import { assignmentsGet } from '@/handlers/requests/database/assignment';
+import { quizzesGet } from '@/handlers/requests/database/quiz';
+import { questionsGet } from '@/handlers/requests/database/question';
 // import AffixOffline from '@/components/common/affixi/offline';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
@@ -56,6 +64,16 @@ export default async function RootLayout({
 
   const supabase = await createClient();
   const { data: session } = await supabase.auth.getUser();
+
+  // academy
+  const { projects } = await projectsGet();
+  const { courses } = await coursesGet();
+  const { sections } = await sectionsGet();
+  const { modules } = await modulesGet();
+  const { pages } = await pagesGet();
+  const { assignments } = await assignmentsGet();
+  const { quizzes } = await quizzesGet();
+  const { questions } = await questionsGet();
 
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
@@ -77,8 +95,18 @@ export default async function RootLayout({
 
       <body className={openSans.className}>
         <ProviderStore
-          colorScheme={colorSchemeState || 'light'}
           session={session.user}
+          colorScheme={colorSchemeState || 'light'}
+          academy={{
+            projects,
+            courses,
+            sections,
+            modules,
+            pages,
+            assignments,
+            quizzes,
+            questions,
+          }}
         >
           <MantineProvider
             theme={appTheme}

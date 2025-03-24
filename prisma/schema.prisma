@@ -16,14 +16,6 @@ datasource db {
   directUrl = env("DIRECT_URL") // uses a direct connection
 }
 
-// enums
-
-enum Role {
-  USER
-  ADMIN
-  DEV
-}
-
 enum Status {
   ACTIVE
   INACTIVE
@@ -31,7 +23,12 @@ enum Status {
   PUBLISHED
 }
 
-// models
+enum Role {
+  LEARNER
+  INSTRUCTOR
+  ADMINISTRATOR
+  DEVELOPER
+}
 
 model Profile {
   id        String  @id
@@ -41,36 +38,18 @@ model Profile {
   bio       String?
   avatar    String?
   phone     String?
-  role      Role    @default(USER)
+  role      Role    @default(LEARNER)
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  addresses Address[]
-  posts     Post[]
-  comments  Comment[]
-  replies   Reply[]
+  posts    Post[]
+  comments Comment[]
+  replies  Reply[]
+  projects Project[]
+  courses  Course[]
 
   @@map("profiles")
-}
-
-model Address {
-  id       String  @id @default(uuid())
-  title    String?
-  phone    String?
-  province String?
-  state    String?
-  city     String
-  country  String
-
-  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId String  @map("profile_id")
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(ACTIVE)
-
-  @@map("addresses")
 }
 
 model Post {
@@ -82,13 +61,14 @@ model Post {
   allowComments Boolean @default(true) @map(name: "allow_comments")
   viewCount     Int     @default(0) @map(name: "view_count")
 
-  profile   Profile?  @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId String?   @map("profile_id")
-  comments  Comment[]
+  status Status @default(DRAFT)
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(DRAFT)
+
+  profile   Profile?  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId String?   @map("profile_id")
+  comments  Comment[]
 
   @@unique([profileId, title])
   @@map(name: "posts")
@@ -99,15 +79,16 @@ model Comment {
   name    String?
   content String
 
+  status Status @default(ACTIVE)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String   @map("post_id")
   profile   Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId String?  @map("profile_id")
   replies   Reply[]
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(ACTIVE)
 
   @@unique([name, content, postId, profileId])
   @@map(name: "comments")
@@ -118,15 +99,16 @@ model Reply {
   name    String?
   content String
 
+  status Status @default(ACTIVE)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
   replyId   String?  @map("reply_id")
   comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId String?  @map("comment_id")
   profile   Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId String?  @map("profile_id")
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(ACTIVE)
 
   @@unique([name, content, replyId, commentId, profileId])
   @@map(name: "replies")
@@ -139,10 +121,182 @@ model Student {
   image    String
   quote    String
 
+  status Status @default(ACTIVE)
+
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(ACTIVE)
 
   @@unique([quote])
   @@map(name: "students")
+}
+
+model Project {
+  id    String @id @default(uuid())
+  title String
+  owner String
+
+  status Status @default(ACTIVE)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  profiles Profile[]
+  courses  Course[]
+
+  @@map("projects")
+}
+
+model Course {
+  id            String  @id @default(uuid())
+  title         String
+  certificate   Boolean @default(false)
+  description   String?
+  durationHours Int?    @map("duration_hours")
+  durationMin   Int?    @map("duration_min")
+  shareLink     String? @map("share_link")
+  coverImage    String? @map("cover_image")
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String  @map("project_id")
+
+  profiles    Profile[]
+  sections    Section[]
+  modules     Module[]
+  quizzes     Quiz[]
+  assignments Assignment[]
+
+  @@unique([projectId, title])
+  @@map(name: "courses")
+}
+
+model Section {
+  id    String @id @default(uuid())
+  title String
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String @map("course_id")
+
+  modules     Module[]
+  quizzes     Quiz[]
+  assignments Assignment[]
+
+  @@unique([courseId, title])
+  @@map(name: "sections")
+}
+
+model Module {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+  sequential  Boolean @default(true)
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId  String   @map("course_id")
+  section   Section? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId String?  @map("section_id")
+
+  pages Page[]
+
+  @@unique([courseId, title])
+  @@map(name: "modules")
+}
+
+model Page {
+  id         String  @id @default(uuid())
+  title      String
+  content    String
+  subTitle   String? @map(name: "sub_title")
+  coverImage String? @map(name: "cover_image")
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  module   Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  moduleId String @map("module_id")
+
+  @@unique([moduleId, title])
+  @@map(name: "pages")
+}
+
+model Assignment {
+  id            String @id @default(uuid())
+  title         String
+  instructions  String
+  passingScore  Int?   @map(name: "passing_score")
+  durationHours Int?   @map("duration_hours")
+  durationMin   Int?   @map("duration_min")
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId  String   @map("course_id")
+  section   Section? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId String?  @map("section_id")
+
+  @@unique([courseId, title])
+  @@map(name: "assignments")
+}
+
+model Quiz {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId  String   @map("course_id")
+  section   Section? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId String?  @map("section_id")
+
+  questions Question[]
+
+  @@unique([courseId, title])
+  @@map(name: "quizzes")
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  MULTIPLE_RESPONSE
+  SHORT_ANSWER
+}
+
+model Question {
+  id    String       @id @default(uuid())
+  query String
+  type  QuestionType
+
+  status Status @default(DRAFT)
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quizId String @map("quiz_id")
+
+  @@unique([quizId, query])
+  @@map(name: "questions")
 }

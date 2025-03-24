@@ -7,16 +7,17 @@ export const revalidate = REVALIDATE.WEEK;
 
 export async function GET() {
   try {
-    const studentRecords = await prisma.student.findMany({
-      where: { status: 'ACTIVE' },
+    const projectRecords = await prisma.project.findMany({
+      include: { profiles: true },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
-      { students: studentRecords },
-      { status: 200, statusText: 'Students Retrieved' }
+      { projects: projectRecords },
+      { status: 200, statusText: 'Projects Retrieved' }
     );
   } catch (error) {
-    console.error('---> route handler error (get students):', error);
+    console.error('---> route handler error (get projects):', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

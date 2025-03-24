@@ -5,6 +5,7 @@ import LayoutMainAcademy from '@/components/layout/main/academy';
 import AsideAcademyContent from '@/components/layout/asides/academy/content';
 import { Group, Stack, Title } from '@mantine/core';
 import TableAcademyContent from '@/components/common/table/academy/content';
+import { records } from '@/data/sample';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -45,7 +46,7 @@ export default async function Project() {
               </Title>
             </Group>
 
-            <TableAcademyContent />
+            <TableAcademyContent props={{ list: records }} />
           </Stack>
         </LayoutMainAcademy>
       </LayoutSection>

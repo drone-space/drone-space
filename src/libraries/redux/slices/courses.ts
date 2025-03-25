@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const sliceCourses = createSlice({
   name: DATABASE_MODELS.COURSES,
   initialState: {
-    value: null satisfies CourseGet | null as CourseGet | null,
+    value: null satisfies CourseGet[] | null as CourseGet[] | null,
   },
   reducers: {
     update: (state, action) => {

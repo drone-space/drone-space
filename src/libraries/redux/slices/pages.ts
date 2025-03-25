@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const slicePages = createSlice({
   name: DATABASE_MODELS.PAGES,
   initialState: {
-    value: null satisfies PageGet | null as PageGet | null,
+    value: null satisfies PageGet[] | null as PageGet[] | null,
   },
   reducers: {
     update: (state, action) => {

@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const sliceSections = createSlice({
   name: DATABASE_MODELS.SECTIONS,
   initialState: {
-    value: null satisfies SectionGet | null as SectionGet | null,
+    value: null satisfies SectionGet[] | null as SectionGet[] | null,
   },
   reducers: {
     update: (state, action) => {

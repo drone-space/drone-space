@@ -1,6 +1,6 @@
 'use client';
 
-import { Grid, GridCol, Textarea, TextInput } from '@mantine/core';
+import { Grid, GridCol, Textarea } from '@mantine/core';
 import React from 'react';
 import CommonForm from '../common/form';
 import FinePrint from '../common/fine-print';
@@ -25,25 +25,15 @@ export default function Service({
         <CommonForm props={{ form }} />
 
         <GridCol span={12}>
-          <TextInput
-            required
-            aria-label={'Service'}
-            placeholder={'Service'}
-            {...form.getInputProps('subject')}
-          />
-        </GridCol>
-
-        <GridCol span={12}>
           <Textarea
             required
             aria-label={'Message'}
             placeholder={'Write your message here...'}
             {...form.getInputProps('message')}
             autosize
-            minRows={2}
+            minRows={5}
             styles={{ input: { height: '100%' } }}
             maxRows={15}
-            resize="vertical"
           />
         </GridCol>
 

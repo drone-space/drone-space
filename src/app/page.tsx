@@ -124,7 +124,14 @@ export default function Home() {
                 </ModalContactCallback>
               </GridCol>
               <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
-                <ModalContactTraining>
+                <ModalContactTraining
+                  props={{
+                    initialValues: {
+                      subject: `RPL Training Inquiry`,
+                      message: `I'm interested in enrolling in your RPL training program.`,
+                    },
+                  }}
+                >
                   <Button h={'100%'} fullWidth>
                     <Stack align="center" py={'md'}>
                       <IconSchool

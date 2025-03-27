@@ -29,6 +29,9 @@ export default function Basic({
   data: typeUnit;
   offset?: boolean;
 }) {
+  const courseTitle =
+    data.title.full == 'Multi-Rotor' ? 'RPL' : data.title.full;
+
   return (
     <Card
       className={classes.card}
@@ -143,17 +146,21 @@ export default function Basic({
           </List>
         </Stack>
 
-        <ModalContactTraining>
+        <ModalContactTraining
+          props={{
+            initialValues: {
+              subject: `${courseTitle} Training Inquiry`,
+              message: `I'm interested in enrolling in your ${courseTitle} drone training program.`,
+            },
+          }}
+        >
           <Button
             color={data.featured ? 'sec.4' : 'pri'}
             c={data.featured ? 'pri.9' : 'white'}
             fullWidth
             size="xs"
           >
-            Enroll For{' '}
-            {data.title.full == 'Multi-Rotor'
-              ? 'Remote Pilot License (RPL)'
-              : data.title.full}
+            Enroll For {courseTitle}
           </Button>
         </ModalContactTraining>
       </Stack>

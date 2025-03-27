@@ -242,7 +242,13 @@ export default function AccessoryDetail({ params }: typeParams) {
         </Grid>
 
         <Group justify="center" mt={SECTION_SPACING / 2}>
-          <ModalContactShop>
+          <ModalContactShop
+            props={{
+              initialValues: {
+                subject: `${product?.title.short} Drone Purchase Inquiry`,
+              },
+            }}
+          >
             <Button
               miw={{ base: 240, sm: 480, md: 720, lg: 960 }}
               variant="light"

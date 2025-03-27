@@ -25,6 +25,8 @@ export default async function Post({ params }: { params: typeParams }) {
 
   const { post }: { post: PostRelations } = await postGet({ postId: postId });
 
+  const processedImage = processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE);
+
   return (
     <LayoutPage>
       <IntroPage
@@ -32,8 +34,9 @@ export default async function Post({ params }: { params: typeParams }) {
           path: 'Blog',
           title: post.title,
           desc: post.excerpt,
+          bg: processedImage,
         }}
-        options={{ autoSizeText: true }}
+        options={{ spacing: 'padding', autoSizeText: true }}
       />
 
       <LayoutSection
@@ -44,7 +47,7 @@ export default async function Post({ params }: { params: typeParams }) {
       >
         <Stack gap={'xl'}>
           <ImageDefault
-            src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
+            src={processedImage}
             alt={post.title}
             height={{ base: 240, xs: 320, md: 360, lg: 400 }}
             radius={'sm'}

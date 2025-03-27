@@ -44,6 +44,7 @@ export default async function Camera() {
           path: 'Shop',
           title: 'Camera Drones',
           desc: metaDesc,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

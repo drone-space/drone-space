@@ -63,6 +63,7 @@ export default async function About() {
           path: `Who We Are`,
           title: 'About Drone Space',
           desc: `Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

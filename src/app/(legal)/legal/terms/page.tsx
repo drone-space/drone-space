@@ -41,6 +41,7 @@ export default async function TermsConditions() {
           path: `T & C`,
           title: 'Terms and Conditions',
           desc: `Review the terms and conditions governing the use of ${appData.name.app} services, training, and products.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

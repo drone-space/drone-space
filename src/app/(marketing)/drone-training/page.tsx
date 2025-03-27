@@ -62,6 +62,7 @@ export default async function DroneTraining() {
           path: 'Drone School',
           title: 'Drone Training',
           desc: `Train with expert instructors and master drone technology.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

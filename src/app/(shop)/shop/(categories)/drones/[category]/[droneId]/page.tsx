@@ -47,6 +47,7 @@ import {
 } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
 import IntroPage from '@/components/layout/intro/page';
+import { images } from '@/assets/images';
 
 export default function AccessoryDetail({ params }: typeParams) {
   const product = products.find((p) => linkify(p.title.long) == params.droneId);
@@ -57,6 +58,7 @@ export default function AccessoryDetail({ params }: typeParams) {
         props={{
           path: `${product?.category} Drones`,
           title: product?.title.long || product?.title.short || 'Drone Shop',
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Provider } from 'react-redux';
 import { makeStore, AppStore } from '@/libraries/redux/store';
 import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
@@ -22,6 +22,8 @@ import { updatePages } from '@/libraries/redux/slices/pages';
 import { updateAssignments } from '@/libraries/redux/slices/assignments';
 import { updateQuizzes } from '@/libraries/redux/slices/quizzes';
 import { updateQuestions } from '@/libraries/redux/slices/questions';
+import { ProfileGet } from '@/types/models/profile';
+import { updateProfiles } from '@/libraries/redux/slices/profiles';
 
 export default function Store({
   children,
@@ -33,6 +35,7 @@ export default function Store({
   session: AuthUser | null;
   colorScheme: string;
   academy: {
+    profiles: ProfileGet[];
     projects: ProjectGet[];
     courses: CourseGet[];
     sections: SectionGet[];
@@ -45,30 +48,27 @@ export default function Store({
 }) {
   const storeRef = useRef<AppStore>();
 
-  if (!storeRef.current) {
+  const store = useMemo(() => {
+    if (storeRef.current) return storeRef.current;
+
     // Create the store instance the first time this renders
-    storeRef.current = makeStore();
+    const newStore = makeStore();
 
-    // initialize store
+    if (session) newStore.dispatch(updateSession(session));
+    if (colorScheme) newStore.dispatch(updateColorScheme(colorScheme));
 
-    if (session) {
-      // session
-      storeRef.current.dispatch(updateSession(session));
-    }
+    newStore.dispatch(updateProjects(academy.projects));
+    newStore.dispatch(updateCourses(academy.courses));
+    newStore.dispatch(updateSections(academy.sections));
+    newStore.dispatch(updateModules(academy.modules));
+    newStore.dispatch(updatePages(academy.pages));
+    newStore.dispatch(updateAssignments(academy.assignments));
+    newStore.dispatch(updateQuizzes(academy.quizzes));
+    newStore.dispatch(updateQuestions(academy.questions));
+    newStore.dispatch(updateProfiles(academy.profiles));
 
-    // color scheme
-    storeRef.current.dispatch(updateColorScheme(colorScheme));
+    return newStore;
+  }, []);
 
-    // academy
-    storeRef.current.dispatch(updateProjects(academy.projects));
-    storeRef.current.dispatch(updateCourses(academy.courses));
-    storeRef.current.dispatch(updateSections(academy.sections));
-    storeRef.current.dispatch(updateModules(academy.modules));
-    storeRef.current.dispatch(updatePages(academy.pages));
-    storeRef.current.dispatch(updateAssignments(academy.assignments));
-    storeRef.current.dispatch(updateQuizzes(academy.quizzes));
-    storeRef.current.dispatch(updateQuestions(academy.questions));
-  }
-
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 }

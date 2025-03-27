@@ -84,6 +84,7 @@ export default function Navbar({
         itemLabel: classes.itemLabel,
         itemSection: classes.itemSection,
       }}
+      keepMounted
     >
       <MenuTarget>{children}</MenuTarget>
 

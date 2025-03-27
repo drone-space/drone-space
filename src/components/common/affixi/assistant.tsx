@@ -9,7 +9,10 @@ import {
   Tooltip,
   Transition,
 } from '@mantine/core';
-import { useTimeout, useWindowScroll } from '@mantine/hooks';
+import {
+  useTimeout,
+  // useWindowScroll
+} from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
 import ModalClaudeMain from '../modals/claude/main';
 import { images } from '@/assets/images';
@@ -28,7 +31,7 @@ export default function Assistant() {
   const [menuOpened, setMenuOpened] = useState(false);
   const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
 
-  const [scroll] = useWindowScroll();
+  // const [scroll] = useWindowScroll();
 
   const routes = ['drone-solutions', '/drone-training', '/shop'];
   const routeIncluded = routes.find((r) => pathname.includes(r));
@@ -88,7 +91,7 @@ export default function Assistant() {
     <Affix
       position={{ bottom: 'calc(var(--mantine-spacing-xl) * 1.5)', right: 0 }}
     >
-      <Transition transition="slide-left" mounted={scroll.y > 0}>
+      <Transition transition="slide-left" mounted={true}>
         {(transitionStyles) => (
           <div style={transitionStyles}>
             <Tooltip
@@ -96,7 +99,7 @@ export default function Assistant() {
               withArrow
               position="bottom-end"
               multiline
-              opened={scroll.y > 0 && menuOpened}
+              opened={true && menuOpened}
               events={{ hover: true, focus: true, touch: false }}
               w={220}
               label={
@@ -112,7 +115,9 @@ export default function Assistant() {
                 }}
               >
                 <ModalClaudeMain>
-                  <Group className={classes.child}>
+                  <Group className={classes.child} gap={5}>
+                    <Text pl={'xs'}>Ask Hekima</Text>
+
                     <Box h={47} w={47}>
                       <ImageDefault
                         src={images.icons.claude.default}

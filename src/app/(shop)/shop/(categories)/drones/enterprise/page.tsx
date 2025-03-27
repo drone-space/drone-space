@@ -44,6 +44,7 @@ export default async function Enterprise() {
           path: 'Shop',
           title: 'Enterprise Drones',
           desc: metaDesc,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

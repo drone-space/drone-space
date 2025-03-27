@@ -25,6 +25,7 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
+import { images } from '@/assets/images';
 
 export default function AccessoryDetails({ params }: typeParams) {
   const product = accessories.find(
@@ -38,6 +39,7 @@ export default function AccessoryDetails({ params }: typeParams) {
           path: `Accessories`,
           title:
             product?.title.long || product?.title.short || 'Drone Accessories',
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

@@ -44,6 +44,7 @@ export default async function Agriculture() {
           path: 'Shop',
           title: 'Agriculture Drones',
           desc: metaDesc,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

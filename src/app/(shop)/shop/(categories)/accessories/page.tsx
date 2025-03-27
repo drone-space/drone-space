@@ -40,6 +40,7 @@ export default async function Accessories() {
           path: 'Shop',
           title: 'Drone Accessories',
           desc: metaDesc,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

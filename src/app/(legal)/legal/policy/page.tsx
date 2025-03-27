@@ -41,6 +41,7 @@ export default async function PrivacyPolicy() {
           path: `Discretion`,
           title: 'Privacy Policy',
           desc: `Learn how ${appData.name.app} collects, uses, and protects your personal information.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 

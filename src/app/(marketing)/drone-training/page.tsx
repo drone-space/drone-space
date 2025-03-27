@@ -12,9 +12,10 @@ import {
   Divider,
   Title,
   Paper,
+  Button,
 } from '@mantine/core';
-
-import { IconArrowRightDashed } from '@tabler/icons-react';
+import ModalContactTraining from '@/components/common/modals/contact/training';
+import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import {
   HOSTED_BASE_URL,
   ICON_SIZE,
@@ -234,7 +235,7 @@ export default async function DroneTraining() {
           >
             <ImageDefault
               src={images.training.rpl}
-              alt={'Drone Mapping and Survey'}
+              alt={'RPL Training'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
               radius={'sm'}
@@ -327,6 +328,26 @@ export default async function DroneTraining() {
             </Text>
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `RPL Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For RPL Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
       <LayoutSection id={linkify(courseList[1].title)} padded>
@@ -379,7 +400,7 @@ export default async function DroneTraining() {
           >
             <ImageDefault
               src={images.training.radTel}
-              alt={'Drone Mapping and Survey'}
+              alt={'Radio Telephony'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
               radius={'sm'}
@@ -472,6 +493,26 @@ export default async function DroneTraining() {
             ))}
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Radio Telephony Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Radio Telephony Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
       <LayoutSection
@@ -573,6 +614,26 @@ export default async function DroneTraining() {
             </GridCol>
           ))}
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Instructor Rating Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Instructor Rating Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
       <LayoutSection id={linkify(courseList[3].title)} padded>
@@ -644,6 +705,26 @@ export default async function DroneTraining() {
             />
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Drone Mapping and Survey Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Drone Mapping and Survey Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
       <LayoutSection
@@ -665,7 +746,7 @@ export default async function DroneTraining() {
             />
 
             <Text mt={'lg'}>
-              The Levell Thermography Certification course is designed for
+              The Level I Thermography Certification course is designed for
               professionals who want to develop practical skills in using
               thermography for inspections and diagnostics. This course is
               suitable for individuals working in industries such as electrical,
@@ -734,6 +815,26 @@ export default async function DroneTraining() {
           Levell Thermography Certification, which can enhance their career
           prospects and credibility in the industry.
         </Text>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Thermography Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Thermography Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
       <LayoutSection id={linkify(courseList[5].title)} padded>
@@ -785,6 +886,26 @@ export default async function DroneTraining() {
             />
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Holiday Camp Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Holiday Camp Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
     </LayoutPage>
   );

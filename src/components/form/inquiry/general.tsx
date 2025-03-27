@@ -32,10 +32,9 @@ export default function General() {
             placeholder={'Write your message here...'}
             {...form.getInputProps('message')}
             autosize
-            minRows={2}
+            minRows={5}
             styles={{ input: { height: '100%' } }}
             maxRows={15}
-            resize="vertical"
           />
         </GridCol>
 

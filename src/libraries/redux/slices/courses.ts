@@ -1,11 +1,11 @@
 import { DATABASE_MODELS } from '@/data/constants';
-import { CourseGet } from '@/types/models/course';
+import { CourseRelations } from '@/types/models/course';
 import { createSlice } from '@reduxjs/toolkit';
 
 export const sliceCourses = createSlice({
   name: DATABASE_MODELS.COURSES,
   initialState: {
-    value: null satisfies CourseGet[] | null as CourseGet[] | null,
+    value: null satisfies CourseRelations[] | null as CourseRelations[] | null,
   },
   reducers: {
     update: (state, action) => {

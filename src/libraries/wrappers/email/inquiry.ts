@@ -14,7 +14,7 @@ export const sendEmailMarketingInquiry = async (
   const { data, error } = await resend.emails.send({
     from: `${params.fname} ${params.lname} <${deliveryEmail}>`,
     to: [!isProduction() ? devEmail : recipient],
-    subject: `${params.subject} From ${params.fname} ${params.lname}`,
+    subject: `${params.subject} (From ${params.fname} ${params.lname})`,
     replyTo: params.email,
     html: await render(
       EmailInquiry({

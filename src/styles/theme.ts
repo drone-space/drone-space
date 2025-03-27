@@ -5,9 +5,6 @@ import {
   Container,
   createTheme,
   Notification,
-  PasswordInput,
-  Textarea,
-  TextInput,
   Title,
 } from '@mantine/core';
 
@@ -80,17 +77,6 @@ const appTheme = createTheme({
       }),
     }),
 
-    TextInput: TextInput.extend({
-      defaultProps: { variant: 'filled' },
-    }),
-
-    Textarea: Textarea.extend({
-      defaultProps: { variant: 'filled' },
-    }),
-
-    PasswordInput: PasswordInput.extend({
-      defaultProps: { variant: 'filled' },
-    }),
     Title: Title.extend({
       defaultProps: { c: 'pri', fw: 'bold' },
     }),

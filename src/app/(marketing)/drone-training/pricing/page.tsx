@@ -63,7 +63,7 @@ export default async function Pricing() {
       <LayoutSection id="pricing-training-advanced" padded>
         <Grid>
           {courses.advanced.units.map((course, index) => (
-            <GridCol key={index} span={{ sm: 6 }}>
+            <GridCol key={index} span={{ sm: 6, md: 4 }}>
               <CardPricingBasic
                 data={course}
                 offset={course.title.short == 'RadTel'}

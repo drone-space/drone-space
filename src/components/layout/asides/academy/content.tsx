@@ -18,11 +18,12 @@ import {
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
 import { IconCirclePlus } from '@tabler/icons-react';
-import { generateUUID } from '@/utilities/generators/id';
 import ModalAcademyProject from '@/components/common/modals/academy/project';
+import { useAppSelector } from '@/hooks/redux';
 
 export default function Content() {
   const pathname = usePathname();
+  const projects = useAppSelector((state) => state.projects.value);
 
   return (
     <Stack gap={'xl'}>
@@ -60,23 +61,25 @@ export default function Content() {
         </Group>
 
         <div>
-          {projects.map((project, index) => {
-            const projectLink = `/academy/content/projects/${project.id}`;
+          {!projects?.length
+            ? projectPlaceholder
+            : projects.map((project, index) => {
+                const projectLink = `/academy/content/projects/${project.id}`;
 
-            return (
-              <NavLink
-                key={index}
-                label={project.title}
-                component={Link}
-                href={projectLink}
-                color="pri"
-                variant="light"
-                active={pathname == projectLink}
-                style={{ borderRadius: 'var(--mantine-radius-sm)' }}
-                className={classes.link}
-              />
-            );
-          })}
+                return (
+                  <NavLink
+                    key={index}
+                    label={project.title}
+                    component={Link}
+                    href={projectLink}
+                    color="pri"
+                    variant="light"
+                    active={pathname == projectLink}
+                    style={{ borderRadius: 'var(--mantine-radius-sm)' }}
+                    className={classes.link}
+                  />
+                );
+              })}
         </div>
       </Stack>
     </Stack>
@@ -98,13 +101,4 @@ const navLinks = [
   },
 ];
 
-const projects = [
-  {
-    id: generateUUID(),
-    title: 'Sample project',
-  },
-  {
-    id: generateUUID(),
-    title: 'Project II',
-  },
-];
+const projectPlaceholder = <>loading</>;

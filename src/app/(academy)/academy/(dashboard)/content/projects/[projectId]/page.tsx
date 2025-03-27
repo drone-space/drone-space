@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
@@ -21,8 +23,9 @@ import ModalAcademyCollaborator from '@/components/common/modals/academy/collabo
 import ModalAcademyProject from '@/components/common/modals/academy/project';
 import MenuAcademyContentCreate from '@/components/common/menus/academy/content/create';
 import AvatarGroup from '@/components/common/avatars/group';
-import { collaborators, records } from '@/data/sample';
 import TableAcademyContent from '@/components/common/table/academy/content';
+import { useAppSelector } from '@/hooks/redux';
+import { Role } from '@prisma/client';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -51,7 +54,12 @@ import TableAcademyContent from '@/components/common/table/academy/content';
 //   },
 // };
 
-export default async function Project() {
+export default function Project() {
+  const profiles = useAppSelector((state) => state.profiles.value);
+  const collaborators = profiles?.filter(
+    (p) => p.role == (Role.INSTRUCTOR || Role.ADMINISTRATOR)
+  );
+
   return (
     <LayoutPage>
       <LayoutSection id="project" containerized={false}>
@@ -91,7 +99,11 @@ export default async function Project() {
             </Group>
 
             <Group gap={'xs'}>
-              <AvatarGroup props={collaborators} />
+              {!collaborators?.length ? (
+                placeholderCollab
+              ) : (
+                <AvatarGroup props={collaborators} />
+              )}
 
               <ModalAcademyCollaborator>
                 <Tooltip label="Add Collaborator" withArrow>
@@ -114,10 +126,12 @@ export default async function Project() {
               </ModalAcademyProject>
             </Group>
 
-            <TableAcademyContent props={{ list: records }} />
+            <TableAcademyContent />
           </Stack>
         </LayoutMainAcademy>
       </LayoutSection>
     </LayoutPage>
   );
 }
+
+const placeholderCollab = <>loading</>;

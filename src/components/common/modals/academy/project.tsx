@@ -19,10 +19,15 @@ import { ICON_SIZE, ICON_STROKE_WIDTH, SCROLLBAR_SIZE } from '@/data/constants';
 import CardAcademyCollaborator from '../../cards/academy/collaborator';
 import ModalAcademyCollaborator from './collaborator';
 import ModalDeleteProject from '../delete/project';
-import { collaborators } from '@/data/sample';
+import { useAppSelector } from '@/hooks/redux';
+import { Role } from '@prisma/client';
 
 export default function Project({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
+  const profiles = useAppSelector((state) => state.profiles.value);
+  const collaborators = profiles?.filter(
+    (p) => p.role == (Role.INSTRUCTOR || Role.ADMINISTRATOR)
+  );
 
   return (
     <>
@@ -86,24 +91,18 @@ export default function Project({ children }: { children: React.ReactNode }) {
 
             <ScrollArea h={240} scrollbarSize={SCROLLBAR_SIZE}>
               <Stack gap={'sm'}>
-                {collaborators ? (
-                  collaborators.map((collaborator, index) => (
-                    <React.Fragment key={index}>
-                      {index > 0 && <Divider key={`divider-${index}`} />}
+                {!collaborators?.length
+                  ? collaboratorPlaceholder
+                  : collaborators.map((collaborator, index) => (
+                      <React.Fragment key={index}>
+                        {index > 0 && <Divider key={`divider-${index}`} />}
 
-                      <CardAcademyCollaborator
-                        key={index}
-                        props={collaborator}
-                      />
-                    </React.Fragment>
-                  ))
-                ) : (
-                  <Stack h={200} justify="center">
-                    <Text ta={'center'} c={'dimmed'}>
-                      No results found
-                    </Text>
-                  </Stack>
-                )}
+                        <CardAcademyCollaborator
+                          key={index}
+                          props={collaborator}
+                        />
+                      </React.Fragment>
+                    ))}
               </Stack>
             </ScrollArea>
           </Stack>
@@ -114,3 +113,13 @@ export default function Project({ children }: { children: React.ReactNode }) {
     </>
   );
 }
+
+const NotFound = (
+  <Stack h={200} justify="center">
+    <Text ta={'center'} c={'dimmed'}>
+      No results found
+    </Text>
+  </Stack>
+);
+
+const collaboratorPlaceholder = <>loading</>;

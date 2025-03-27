@@ -49,6 +49,7 @@ import { pagesGet } from '@/handlers/requests/database/page';
 import { assignmentsGet } from '@/handlers/requests/database/assignment';
 import { quizzesGet } from '@/handlers/requests/database/quiz';
 import { questionsGet } from '@/handlers/requests/database/question';
+import { profilesGet } from '@/handlers/requests/database/profiles';
 // import AffixOffline from '@/components/common/affixi/offline';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
@@ -66,6 +67,7 @@ export default async function RootLayout({
   const { data: session } = await supabase.auth.getUser();
 
   // academy
+  const { profiles } = await profilesGet();
   const { projects } = await projectsGet();
   const { courses } = await coursesGet();
   const { sections } = await sectionsGet();
@@ -98,6 +100,7 @@ export default async function RootLayout({
           session={session.user}
           colorScheme={colorSchemeState || 'light'}
           academy={{
+            profiles,
             projects,
             courses,
             sections,

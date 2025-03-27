@@ -14,6 +14,7 @@ import reducerPages from './slices/pages';
 import reducerAssignments from './slices/assignments';
 import reducerQuizzes from './slices/quizzes';
 import reducerQuestions from './slices/questions';
+import reducerProfiles from './slices/profiles';
 
 export const makeStore = () => {
   return configureStore({
@@ -32,6 +33,7 @@ export const makeStore = () => {
       assignments: reducerAssignments,
       quizzes: reducerQuizzes,
       questions: reducerQuestions,
+      profiles: reducerProfiles,
     },
 
     devTools: process.env.NODE_ENV !== 'production',

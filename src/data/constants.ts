@@ -114,6 +114,7 @@ export const APPSHELL = {
 export const SCROLLBAR_SIZE = 10;
 
 export const DATABASE_MODELS = {
+  PROFILES: 'profiles',
   PROJECTS: 'projects',
   COURSES: 'courses',
   SECTIONS: 'sections',

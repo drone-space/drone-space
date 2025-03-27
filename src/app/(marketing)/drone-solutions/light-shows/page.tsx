@@ -25,7 +25,7 @@ import CardShowsApplications from '@/components/common/cards/shows/applications'
 import AccordionShows from '@/components/common/accordions/shows';
 import CardShowsPrice from '@/components/common/cards/shows/price';
 import TableShows from '@/components/common/tables/shows';
-import ModalContactShows from '@/components/common/modals/contact/shows';
+import ModalContactService from '@/components/common/modals/contact/service';
 import CardShowsUnderstand from '@/components/common/cards/shows/understand';
 import {
   IconCalendarPlus,
@@ -357,7 +357,11 @@ export default async function LighShow() {
                 align={{ base: 'center', md: 'end' }}
                 gap={'md'}
               >
-                <ModalContactShows>
+                <ModalContactService
+                  props={{
+                    initialValues: { subject: 'Drone Light Show Inquiry' },
+                  }}
+                >
                   <Button
                     miw={200}
                     color="sec.3"
@@ -371,7 +375,7 @@ export default async function LighShow() {
                   >
                     Book Show
                   </Button>
-                </ModalContactShows>
+                </ModalContactService>
                 <Button
                   component="a"
                   href={`tel:${appData.phones.main}`}
@@ -566,7 +570,7 @@ export default async function LighShow() {
                 align={{ base: 'center', md: 'end' }}
                 gap={'md'}
               >
-                <ModalContactShows>
+                <ModalContactService>
                   <Button
                     miw={200}
                     color="sec.3"
@@ -580,7 +584,7 @@ export default async function LighShow() {
                   >
                     Book Show
                   </Button>
-                </ModalContactShows>
+                </ModalContactService>
                 <Button
                   component="a"
                   href={`tel:${appData.phones.main}`}

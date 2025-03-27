@@ -4,8 +4,15 @@ import React from 'react';
 import { Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FormInquiryService from '@/components/form/inquiry/service';
+import { FormInquiryValues } from '@/hooks/form/inquiry';
 
-export default function Shows({ children }: { children: React.ReactNode }) {
+export default function Service({
+  props,
+  children,
+}: {
+  props?: { initialValues?: Partial<FormInquiryValues> };
+  children: React.ReactNode;
+}) {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -16,14 +23,18 @@ export default function Shows({ children }: { children: React.ReactNode }) {
         centered
         title={
           <Text component="span" inherit fw={'bold'} c={'pri'}>
-            Drone Light Show Inquiry
+            Drone Solutions Inquiry
           </Text>
         }
       >
         <FormInquiryService
           props={{
             close,
-            initialValues: { subject: 'Drone Light Show Inquiry' },
+            initialValues: {
+              ...props?.initialValues,
+              subject:
+                props?.initialValues?.subject || 'Drone Solution Inquiry',
+            },
           }}
         />
       </Modal>

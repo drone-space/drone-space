@@ -32,7 +32,7 @@ import { createClient } from '@/libraries/supabase/server';
 import { COOKIE_NAME } from '@/data/constants';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
-import GoogleAnalytics from '@/components/seo/analytics';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { isProduction } from '@/utilities/helpers/environment';
 import { projectsGet } from '@/handlers/requests/database/project';
 import { coursesGet } from '@/handlers/requests/database/course';

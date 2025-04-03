@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+// import { updateSession } from './libraries/supabase/middleware';
 import {
   createRedirectHandler,
   setCorsHeaders,
 } from './utilities/helpers/middeware';
 
 export async function middleware(request: NextRequest) {
-  console.log('options', request.method === 'OPTIONS');
-
   // Handle preflight (OPTIONS) requests early
   if (request.method === 'OPTIONS') {
     return setCorsHeaders({
@@ -22,7 +21,11 @@ export async function middleware(request: NextRequest) {
 
   // Proceed with normal request handling
   let response = NextResponse.next({ request });
+
   response = setCorsHeaders({ crossOrigins, request, response });
+
+  // // check session
+  // response = await updateSession(request, response);
 
   return response;
 }

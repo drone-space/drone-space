@@ -20,10 +20,15 @@ import {
 import { IconCirclePlus } from '@tabler/icons-react';
 import ModalAcademyProject from '@/components/common/modals/academy/project';
 import { useAppSelector } from '@/hooks/redux';
+import { useHydrate } from '@/hooks/hydration';
 
 export default function Content() {
   const pathname = usePathname();
   const projects = useAppSelector((state) => state.projects.value);
+
+  const { hydrated } = useHydrate();
+
+  if (!hydrated) return projectPlaceholder;
 
   return (
     <Stack gap={'xl'}>

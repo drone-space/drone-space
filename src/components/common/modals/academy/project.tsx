@@ -2,6 +2,7 @@
 
 import {
   Button,
+  Center,
   Divider,
   Group,
   Modal,
@@ -19,15 +20,24 @@ import { ICON_SIZE, ICON_STROKE_WIDTH, SCROLLBAR_SIZE } from '@/data/constants';
 import CardAcademyCollaborator from '../../cards/academy/collaborator';
 import ModalAcademyCollaborator from './collaborator';
 import ModalDeleteProject from '../delete/project';
-import { useAppSelector } from '@/hooks/redux';
 import { Role } from '@prisma/client';
+import { useHydrate } from '@/hooks/hydration';
+import { ProjectRelations } from '@/types/models/project';
 
-export default function Project({ children }: { children: React.ReactNode }) {
+export default function Project({
+  props,
+  children,
+}: {
+  props?: { project?: ProjectRelations };
+  children: React.ReactNode;
+}) {
   const [opened, { open, close }] = useDisclosure(false);
-  const profiles = useAppSelector((state) => state.profiles.value);
-  const collaborators = profiles?.filter(
-    (p) => p.role == (Role.INSTRUCTOR || Role.ADMINISTRATOR)
-  );
+  const profiles = props?.project?.profiles;
+  const instructors = profiles?.filter((p) => p.role == Role.INSTRUCTOR);
+  const admins = profiles?.filter((p) => p.role == Role.ADMINISTRATOR);
+  const collaborators = instructors?.concat(admins || []);
+
+  const { hydrated } = useHydrate();
 
   return (
     <>
@@ -40,17 +50,19 @@ export default function Project({ children }: { children: React.ReactNode }) {
       >
         <LayoutModalAcademy
           props={{
-            title: 'Manage Project',
+            title: `${props?.project ? 'Manage' : 'Add'} Project`,
             closeFunction: close,
             footer: (
-              <Group justify="space-between">
-                <ModalDeleteProject>
-                  <Button size="sm" variant="light" color="gray">
-                    Delete Project
-                  </Button>
-                </ModalDeleteProject>
+              <Group justify={props?.project ? 'space-between' : 'end'}>
+                {props?.project && (
+                  <ModalDeleteProject>
+                    <Button size="sm" variant="light" color="gray">
+                      Delete Project
+                    </Button>
+                  </ModalDeleteProject>
+                )}
 
-                <Button size="sm">Done</Button>
+                <Button size="sm">{props?.project ? 'Done' : 'Add'}</Button>
               </Group>
             ),
           }}
@@ -58,11 +70,9 @@ export default function Project({ children }: { children: React.ReactNode }) {
           <Stack gap={'xl'}>
             <TextInput
               label={'Project Name'}
-              placeholder="Search by name or email"
-              value={'New Project (xevac jarars)'}
-              styles={{
-                label: { marginBottom: 'var(--mantine-spacing-md)' },
-              }}
+              placeholder="Enter project name"
+              defaultValue={props?.project?.title || 'New Project'}
+              styles={{ label: { marginBottom: 'var(--mantine-spacing-md)' } }}
             />
 
             <Group justify="space-between">
@@ -86,26 +96,31 @@ export default function Project({ children }: { children: React.ReactNode }) {
                 </Button>
               </ModalAcademyCollaborator>
             </Group>
-
-            <Divider />
-
-            <ScrollArea h={240} scrollbarSize={SCROLLBAR_SIZE}>
-              <Stack gap={'sm'}>
-                {!collaborators?.length
-                  ? collaboratorPlaceholder
-                  : collaborators.map((collaborator, index) => (
-                      <React.Fragment key={index}>
-                        {index > 0 && <Divider key={`divider-${index}`} />}
-
-                        <CardAcademyCollaborator
-                          key={index}
-                          props={collaborator}
-                        />
-                      </React.Fragment>
-                    ))}
-              </Stack>
-            </ScrollArea>
           </Stack>
+
+          <Divider mt={'xl'} />
+
+          <ScrollArea h={240} scrollbarSize={SCROLLBAR_SIZE}>
+            <Stack gap={0}>
+              {!hydrated ? (
+                collaboratorPlaceholder
+              ) : !collaborators?.length ? (
+                <Center h={80}>
+                  <Text ta={'center'} c={'dimmed'}>
+                    No collaborators selected
+                  </Text>
+                </Center>
+              ) : (
+                collaborators?.map((collaborator, index) => (
+                  <React.Fragment key={index}>
+                    {index > 0 && <Divider key={`divider-${index}`} />}
+
+                    <CardAcademyCollaborator key={index} props={collaborator} />
+                  </React.Fragment>
+                ))
+              )}
+            </Stack>
+          </ScrollArea>
         </LayoutModalAcademy>
       </Modal>
 

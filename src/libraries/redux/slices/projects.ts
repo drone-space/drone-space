@@ -1,11 +1,13 @@
 import { DATABASE_MODELS } from '@/data/constants';
-import { ProjectGet } from '@/types/models/project';
+import { ProjectRelations } from '@/types/models/project';
 import { createSlice } from '@reduxjs/toolkit';
 
 export const sliceProjects = createSlice({
   name: DATABASE_MODELS.PROJECTS,
   initialState: {
-    value: null satisfies ProjectGet[] | null as ProjectGet[] | null,
+    value: null satisfies ProjectRelations[] | null as
+      | ProjectRelations[]
+      | null,
   },
   reducers: {
     update: (state, action) => {

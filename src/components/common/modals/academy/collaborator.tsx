@@ -21,6 +21,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH, SCROLLBAR_SIZE } from '@/data/constants';
 import CardAcademyCollaborator from '../../cards/academy/collaborator';
 import { useAppSelector } from '@/hooks/redux';
 import { Role } from '@prisma/client';
+import { useHydrate } from '@/hooks/hydration';
 
 export default function Collaborator({
   children,
@@ -32,6 +33,8 @@ export default function Collaborator({
   const collaborators = profiles?.filter(
     (p) => p.role == (Role.INSTRUCTOR || Role.ADMINISTRATOR)
   );
+
+  const { hydrated } = useHydrate();
 
   return (
     <>
@@ -110,9 +113,9 @@ export default function Collaborator({
 
             <ScrollArea h={240} scrollbarSize={SCROLLBAR_SIZE} mt={'md'}>
               <Stack gap={'sm'}>
-                {!collaborators?.length
+                {!hydrated
                   ? collaboratorPlaceholder
-                  : collaborators.map((collaborator, index) => (
+                  : collaborators?.map((collaborator, index) => (
                       <>
                         {index > 0 && <Divider />}
 

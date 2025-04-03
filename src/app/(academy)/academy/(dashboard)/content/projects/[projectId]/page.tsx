@@ -26,6 +26,7 @@ import AvatarGroup from '@/components/common/avatars/group';
 import TableAcademyContent from '@/components/common/table/academy/content';
 import { useAppSelector } from '@/hooks/redux';
 import { Role } from '@prisma/client';
+import { useHydrate } from '@/hooks/hydration';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -54,20 +55,29 @@ import { Role } from '@prisma/client';
 //   },
 // };
 
-export default function Project() {
-  const profiles = useAppSelector((state) => state.profiles.value);
-  const collaborators = profiles?.filter(
-    (p) => p.role == (Role.INSTRUCTOR || Role.ADMINISTRATOR)
+export default function Project({ params }: { params: { projectId: string } }) {
+  const project = useAppSelector((state) =>
+    state.projects.value?.find((p) => p.id == params.projectId)
   );
+  const profiles = project?.profiles;
+  const instructors = profiles?.filter((p) => p.role == Role.INSTRUCTOR);
+  const admins = profiles?.filter((p) => p.role == Role.ADMINISTRATOR);
+  const collaborators = instructors?.concat(admins || []);
+
+  const { hydrated } = useHydrate();
 
   return (
     <LayoutPage>
       <LayoutSection id="project" containerized={false}>
-        <LayoutMainAcademy props={{ navigation: <AsideAcademyContent /> }}>
+        <LayoutMainAcademy
+          props={{
+            navigation: <AsideAcademyContent />,
+          }}
+        >
           <Stack>
             <Group justify="space-between" mih={36}>
               <TextInput
-                defaultValue={'New Project (xevac jarars)'}
+                defaultValue={project?.title}
                 placeholder="Project Title"
                 variant="unstyled"
                 styles={{
@@ -99,9 +109,9 @@ export default function Project() {
             </Group>
 
             <Group gap={'xs'}>
-              {!collaborators?.length ? (
+              {!hydrated ? (
                 placeholderCollab
-              ) : (
+              ) : !collaborators?.length ? null : (
                 <AvatarGroup props={collaborators} />
               )}
 
@@ -115,15 +125,17 @@ export default function Project() {
                 </Tooltip>
               </ModalAcademyCollaborator>
 
-              <ModalAcademyProject>
-                <Tooltip label="Manage Project" withArrow>
-                  <Group>
-                    <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
-                      <IconDots size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                    </ActionIcon>
-                  </Group>
-                </Tooltip>
-              </ModalAcademyProject>
+              {!project ? null : (
+                <ModalAcademyProject props={{ project }}>
+                  <Tooltip label="Manage Project" withArrow>
+                    <Group>
+                      <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
+                        <IconDots size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                      </ActionIcon>
+                    </Group>
+                  </Tooltip>
+                </ModalAcademyProject>
+              )}
             </Group>
 
             <TableAcademyContent />

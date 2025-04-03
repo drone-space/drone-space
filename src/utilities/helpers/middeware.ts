@@ -9,13 +9,6 @@ type StaticRedirectMap = {
   [key: string]: string;
 };
 
-/**
- * Creates a redirect handler function that supports both static and dynamic routes
- * @param staticRedirects Object mapping old static routes to new routes
- * @param dynamicRedirects Array of pattern/replacement pairs for dynamic routes
- * @param options Configuration options for the redirect
- */
-
 export const createRedirectHandler = (
   staticRedirects: StaticRedirectMap = {},
   dynamicRedirects: DynamicRedirectMap = [],
@@ -84,32 +77,40 @@ export const setCorsHeaders = (params: {
   crossOrigins: string[];
   request: NextRequest;
   response: NextResponse;
-}) => {
-  // Get the origin from the request headers
-  const origin =
-    params.request.headers.get('origin') || params.request.headers.get('host');
+}): NextResponse => {
+  const origin = params.request.headers.get('origin');
+
+  console.log('origin', origin);
 
   if (!origin) return params.response;
 
-  const isAllowedOrigin = params.crossOrigins.some((allowedOrigin) =>
-    origin.includes(allowedOrigin)
+  const isAllowedOrigin = params.crossOrigins.some((o) => origin.includes(o));
+
+  if (!isAllowedOrigin) return params.response;
+
+  // Clone response to modify Headers
+  const newResponse = new NextResponse(params.response.body, params.response);
+
+  newResponse.headers.set('Access-Control-Allow-Credentials', 'true');
+  newResponse.headers.set('Access-Control-Allow-Origin', origin);
+  newResponse.headers.set(
+    'Access-Control-Allow-Methods',
+    'GET,DELETE,PATCH,POST,PUT,OPTIONS'
+  );
+  newResponse.headers.set(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
   );
 
-  if (isAllowedOrigin) {
-    params.response.headers.set('Access-Control-Allow-Credentials', 'true');
-    params.response.headers.set('Access-Control-Allow-Origin', origin);
-    params.response.headers.set(
-      'Access-Control-Allow-Methods',
-      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
-    );
-    params.response.headers.set(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Authorization, Date, X-Api-Version, Access-Control-Allow-Origin'
-    );
-
-    if (params.request.method === 'OPTIONS') {
-      params.response.headers.set('Content-Length', '0');
-      return params.response;
-    }
+  // If it's a preflight request, return an empty 204 response with CORS headers
+  if (params.request.method === 'OPTIONS') {
+    newResponse.headers.set('Content-Length', '0');
+    newResponse.headers.set('Content-Type', 'text/plain');
+    return new NextResponse(null, {
+      status: 204,
+      headers: newResponse.headers,
+    });
   }
+
+  return newResponse;
 };

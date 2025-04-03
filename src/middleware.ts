@@ -1,36 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-// import { updateSession } from './libraries/supabase/middleware';
 import {
   createRedirectHandler,
   setCorsHeaders,
 } from './utilities/helpers/middeware';
 
 export async function middleware(request: NextRequest) {
-  // First check for redirects
-  const redirectResponse = handleRedirect(request);
-
-  if (redirectResponse) {
-    return redirectResponse;
+  // Handle preflight (OPTIONS) requests early
+  if (request.method === 'OPTIONS') {
+    return setCorsHeaders({
+      crossOrigins,
+      request,
+      response: new NextResponse(null, { status: 204 }),
+    });
   }
 
-  // If no redirect, proceed with normal middleware
-  const response = NextResponse.next({ request });
+  // check for redirects
+  const redirectResponse = handleRedirect(request);
+  if (redirectResponse) return redirectResponse;
 
-  setCorsHeaders({ crossOrigins, request, response });
+  // Proceed with normal request handling
+  let response = NextResponse.next({ request });
+  response = setCorsHeaders({ crossOrigins, request, response });
 
-  // return await updateSession(request, response);
+  return response;
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };

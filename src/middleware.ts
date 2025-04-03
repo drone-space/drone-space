@@ -5,6 +5,8 @@ import {
 } from './utilities/helpers/middeware';
 
 export async function middleware(request: NextRequest) {
+  console.log('options', request.method === 'OPTIONS');
+
   // Handle preflight (OPTIONS) requests early
   if (request.method === 'OPTIONS') {
     return setCorsHeaders({

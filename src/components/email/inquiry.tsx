@@ -39,6 +39,10 @@ export const Inquiry = (props: {
         <Text style={{ ...dimmedText, textAlign: 'center', fontSize: 11 }}>
           Sent from the {appData.name.company} website.
         </Text>
+
+        <Text style={{ ...dimmedText, textAlign: 'center', fontSize: 11 }}>
+          You can reply to this email directly to respond to the inquiry.
+        </Text>
       </Section>
     </LayoutEmail>
   );

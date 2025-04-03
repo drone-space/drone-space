@@ -78,13 +78,20 @@ export const setCorsHeaders = (params: {
   request: NextRequest;
   response: NextResponse;
 }): NextResponse => {
-  const origin = params.request.headers.get('origin');
+  let origin = params.request.headers.get('origin');
 
   console.log('origin', origin);
 
-  if (!origin) return params.response;
+  if (!origin) {
+    const host = params.request.headers.get('host');
+    const isAllowedHost = params.crossOrigins.some((ao) => host?.includes(ao));
 
-  const isAllowedOrigin = params.crossOrigins.some((o) => origin.includes(o));
+    if (!isAllowedHost) return params.response;
+
+    origin = `http://${host}`;
+  }
+
+  const isAllowedOrigin = params.crossOrigins.some((ao) => origin.includes(ao));
 
   if (!isAllowedOrigin) return params.response;
 

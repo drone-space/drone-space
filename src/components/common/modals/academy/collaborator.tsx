@@ -18,8 +18,10 @@ import React from 'react';
 import LayoutModalAcademy from '@/components/layout/modal/academy';
 import { IconSearch } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH, SCROLLBAR_SIZE } from '@/data/constants';
-import { generateUUID } from '@/utilities/generators/id';
 import CardAcademyCollaborator from '../../cards/academy/collaborator';
+import { useAppSelector } from '@/hooks/redux';
+import { Role } from '@prisma/client';
+import { useHydrate } from '@/hooks/hydration';
 
 export default function Collaborator({
   children,
@@ -27,6 +29,12 @@ export default function Collaborator({
   children: React.ReactNode;
 }) {
   const [opened, { open, close }] = useDisclosure(false);
+  const profiles = useAppSelector((state) => state.profiles.value);
+  const collaborators = profiles?.filter(
+    (p) => p.role == (Role.INSTRUCTOR || Role.ADMINISTRATOR)
+  );
+
+  const { hydrated } = useHydrate();
 
   return (
     <>
@@ -105,21 +113,15 @@ export default function Collaborator({
 
             <ScrollArea h={240} scrollbarSize={SCROLLBAR_SIZE} mt={'md'}>
               <Stack gap={'sm'}>
-                {collaborators ? (
-                  collaborators.map((collaborator, index) => (
-                    <>
-                      {index > 0 && <Divider />}
+                {!hydrated
+                  ? collaboratorPlaceholder
+                  : collaborators?.map((collaborator, index) => (
+                      <>
+                        {index > 0 && <Divider />}
 
-                      <CardAcademyCollaborator props={collaborator} />
-                    </>
-                  ))
-                ) : (
-                  <Stack h={200} justify="center">
-                    <Text ta={'center'} c={'dimmed'}>
-                      No results found
-                    </Text>
-                  </Stack>
-                )}
+                        <CardAcademyCollaborator props={collaborator} />
+                      </>
+                    ))}
               </Stack>
             </ScrollArea>
           </Stack>
@@ -131,20 +133,12 @@ export default function Collaborator({
   );
 }
 
-const collaborators = [
-  {
-    id: generateUUID(),
-    avatar:
-      'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-3.png',
-    name: 'John Doe',
-    email: 'john@example.com',
-    role: 'learner',
-  },
-  {
-    id: generateUUID(),
-    avatar: null,
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    role: 'instructor',
-  },
-];
+const notFound = (
+  <Stack h={200} justify="center">
+    <Text ta={'center'} c={'dimmed'}>
+      No results found
+    </Text>
+  </Stack>
+);
+
+const collaboratorPlaceholder = <>loading</>;

@@ -17,7 +17,14 @@ import {
 } from '@mantine/core';
 import { getRegionalDate } from '@/utilities/formatters/date';
 import AvatarGroup from '../../avatars/group';
-import { IconArrowDown, IconArrowUp, IconFile } from '@tabler/icons-react';
+import {
+  IconArrowDown,
+  IconArrowUp,
+  IconCheckbox,
+  IconNotebook,
+  IconPencil,
+  IconSchool,
+} from '@tabler/icons-react';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -26,16 +33,45 @@ import {
 } from '@/data/constants';
 import { useSortArray } from '@/hooks/sort/array';
 import { Order } from '@/enums/sort';
-import { capitalizeWord, capitalizeWords } from '@/utilities/formatters/string';
+import { capitalizeWord } from '@/utilities/formatters/string';
+import { useAppSelector } from '@/hooks/redux';
 
-export default function Content({ props }: { props: { list: any[] } }) {
-  const [list, setList] = useState(props.list);
+export default function Content() {
+  const projects = useAppSelector((state) => state.projects.value);
+  const courses = useAppSelector((state) => state.courses.value);
+  const modules = useAppSelector((state) => state.modules.value);
+  const quizzes = useAppSelector((state) => state.quizzes.value);
+  const assignments = useAppSelector((state) => state.assignments.value);
+
+  const listItems = [
+    ...(!courses
+      ? []
+      : courses.map((c) => {
+          return { ...c, type: 'course' };
+        })),
+    ...(!modules
+      ? []
+      : modules.map((m) => {
+          return { ...m, type: 'module' };
+        })),
+    ...(!quizzes
+      ? []
+      : quizzes.map((q) => {
+          return { ...q, type: 'quiz' };
+        })),
+    ...(!assignments
+      ? []
+      : assignments.map((a) => {
+          return { ...a, type: 'assignment' };
+        })),
+  ];
+
+  const [list, setList] = useState(listItems);
+
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const { sortBy, orderMap } = useSortArray(setList);
 
   const rows = list.map((item, index) => {
-    const date = getRegionalDate(item.createdAt);
-
     return (
       <TableTr
         key={index}
@@ -64,9 +100,7 @@ export default function Content({ props }: { props: { list: any[] } }) {
 
         <TableTd w={widths.title}>
           <Group gap={'xs'}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
-              {getTypeIcon({ props: { type: item.type } })}
-            </ThemeIcon>
+            {getTypeIcon({ props: { type: item.type } })}
 
             {item.title}
           </Group>
@@ -74,17 +108,26 @@ export default function Content({ props }: { props: { list: any[] } }) {
 
         <TableTd w={widths.type}>{capitalizeWord(item.type)}</TableTd>
 
+        <TableTd w={widths.project}>
+          {(item as any).projectId
+            ? projects?.find((p) => p.id == (item as any).projectId)?.title
+            : 'No Project'}
+        </TableTd>
+
         <TableTd w={widths.enrollments}>
-          <AvatarGroup props={item.enrollments} />
+          {(item as any).profiles?.length ? (
+            <AvatarGroup props={(item as any).profiles} />
+          ) : (
+            'No Enrollments'
+          )}
         </TableTd>
 
-        <TableTd w={widths.createdBy}>
-          {capitalizeWords(item.createdBy)}
+        <TableTd w={widths.createdAt}>
+          {
+            getRegionalDate(item.createdAt, { locale: 'en-GB', format: 'full' })
+              .date
+          }
         </TableTd>
-
-        <TableTd
-          w={widths.createdAt}
-        >{`${date.date}, ${date.time.toUpperCase()}`}</TableTd>
       </TableTr>
     );
   });
@@ -145,18 +188,9 @@ export default function Content({ props }: { props: { list: any[] } }) {
               </ColumnTitle>
             </TableTh>
 
-            <TableTh w={widths.enrollments}>Enrollments</TableTh>
+            <TableTh w={widths.project}>Project</TableTh>
 
-            <TableTh w={widths.createdBy}>
-              <ColumnTitle
-                props={{
-                  sortFunction: () => sortBy('createdBy'),
-                  order: orderMap.createdBy,
-                }}
-              >
-                Created By
-              </ColumnTitle>
-            </TableTh>
+            <TableTh w={widths.enrollments}>Enrollments</TableTh>
 
             <TableTh w={widths.createdAt}>
               <ColumnTitle
@@ -180,17 +214,58 @@ export default function Content({ props }: { props: { list: any[] } }) {
 const widths = {
   checkbox: '3%',
   title: '27%',
-  type: '15%',
+  type: '10%',
+  project: '20%',
   enrollments: '20%',
-  createdBy: '15%',
-  createdAt: '15%',
+  createdAt: '20%',
 };
 
 const getTypeIcon = ({ props }: { props: { type: string } }) => {
   switch (props.type) {
-    case 'page':
-      return <IconFile size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />;
-
+    case 'course':
+      return (
+        <ThemeIcon
+          size={ICON_WRAPPER_SIZE * 1.25}
+          variant="light"
+          color="blue"
+          c="blue"
+        >
+          <IconSchool size={ICON_SIZE * 1.1} stroke={ICON_STROKE_WIDTH} />
+        </ThemeIcon>
+      );
+    case 'module':
+      return (
+        <ThemeIcon
+          size={ICON_WRAPPER_SIZE * 1.25}
+          variant="light"
+          color="red"
+          c="red"
+        >
+          <IconNotebook size={ICON_SIZE * 1.1} stroke={ICON_STROKE_WIDTH} />
+        </ThemeIcon>
+      );
+    case 'quiz':
+      return (
+        <ThemeIcon
+          size={ICON_WRAPPER_SIZE * 1.25}
+          variant="light"
+          color="green"
+          c="green"
+        >
+          <IconCheckbox size={ICON_SIZE * 1.1} stroke={ICON_STROKE_WIDTH} />
+        </ThemeIcon>
+      );
+    case 'assignment':
+      return (
+        <ThemeIcon
+          size={ICON_WRAPPER_SIZE * 1.25}
+          variant="light"
+          color="yellow"
+          c={'yellow'}
+        >
+          <IconPencil size={ICON_SIZE * 1.1} stroke={ICON_STROKE_WIDTH} />
+        </ThemeIcon>
+      );
     default:
       return;
   }

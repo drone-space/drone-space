@@ -140,8 +140,11 @@ model Project {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  profiles Profile[]
-  courses  Course[]
+  profiles   Profile[] // collaborators (ie. non 'LEARNER' roles, excluding 'DEVELOPER')
+  courses    Course[]
+  module     Module[]
+  assignment Assignment[]
+  quiz       Quiz[]
 
   @@map("projects")
 }
@@ -164,11 +167,8 @@ model Course {
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId String  @map("project_id")
 
-  profiles    Profile[]
-  sections    Section[]
-  modules     Module[]
-  quizzes     Quiz[]
-  assignments Assignment[]
+  profiles Profile[] // enrollments (ie. 'LEARNER' role)
+  sections Section[]
 
   @@unique([projectId, title])
   @@map(name: "courses")
@@ -187,8 +187,8 @@ model Section {
   courseId String @map("course_id")
 
   modules     Module[]
-  quizzes     Quiz[]
   assignments Assignment[]
+  quizzes     Quiz[]
 
   @@unique([courseId, title])
   @@map(name: "sections")
@@ -205,14 +205,14 @@ model Module {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId  String   @map("course_id")
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String   @map("project_id")
   section   Section? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   sectionId String?  @map("section_id")
 
   pages Page[]
 
-  @@unique([courseId, title])
+  @@unique([projectId, title])
   @@map(name: "modules")
 }
 
@@ -248,12 +248,12 @@ model Assignment {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId  String   @map("course_id")
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String   @map("project_id")
   section   Section? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   sectionId String?  @map("section_id")
 
-  @@unique([courseId, title])
+  @@unique([projectId, title])
   @@map(name: "assignments")
 }
 
@@ -267,14 +267,14 @@ model Quiz {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId  String   @map("course_id")
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String   @map("project_id")
   section   Section? @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   sectionId String?  @map("section_id")
 
   questions Question[]
 
-  @@unique([courseId, title])
+  @@unique([projectId, title])
   @@map(name: "quizzes")
 }
 

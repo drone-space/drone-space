@@ -86,14 +86,14 @@ export const setCorsHeaders = (params: {
   response: NextResponse;
 }) => {
   // Get the origin from the request headers
-  const origin = params.request.headers.get('origin') || '';
+  const origin =
+    params.request.headers.get('origin') || params.request.headers.get('host');
+
+  if (!origin) return params.response;
 
   const isAllowedOrigin = params.crossOrigins.some((allowedOrigin) =>
     origin.includes(allowedOrigin)
   );
-
-  console.log('origin', origin);
-  console.log('isAllowedOrigin', isAllowedOrigin);
 
   if (isAllowedOrigin) {
     params.response.headers.set('Access-Control-Allow-Credentials', 'true');

@@ -24,20 +24,20 @@ export default function Main({ title }: { title?: string }) {
   const selectTitle = () => {
     if (segments.length > 2) {
       return dynamic
-        ? links.marketing
+        ? links
             .find(
               (l) =>
                 l.link == segments[segments.length - (segments.length - 1)].link
             )
             ?.subLinks?.find((sl) => pathname.includes(sl.link))?.label
-        : links.marketing
+        : links
             .find(
               (l) =>
                 l.link == segments[segments.length - (segments.length - 1)].link
             )
             ?.subLinks?.find((sl) => sl.link == pathname)?.label;
     } else {
-      return links.marketing.find((l) => l.link == pathname)?.label;
+      return links.find((l) => l.link == pathname)?.label;
     }
   };
 

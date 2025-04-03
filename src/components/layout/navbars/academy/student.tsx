@@ -7,7 +7,7 @@ import LayoutSection from '@/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import classes from './student.module.scss';
 import { usePathname } from 'next/navigation';
-import links from '@/data/links';
+import links, { academyLinks } from '@/data/links';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
@@ -23,7 +23,7 @@ export default function Academy() {
     return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
-  const navLinks = links.academy.map((link, index) => {
+  const navLinks = academyLinks.map((link, index) => {
     return (
       <Anchor
         key={index}
@@ -84,7 +84,7 @@ export default function Academy() {
           </Group>
 
           <Group hiddenFrom="sm" gap={'xs'} justify="end">
-            <DrawerNavbarMain props={links.marketing} />
+            <DrawerNavbarMain props={links} />
           </Group>
         </GridCol>
 

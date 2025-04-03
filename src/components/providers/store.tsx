@@ -31,9 +31,9 @@ export default function Store({
   colorScheme,
   academy,
 }: {
+  colorScheme?: string;
+  session?: AuthUser | null;
   children: React.ReactNode;
-  session: AuthUser | null;
-  colorScheme: string;
   academy: {
     profiles: ProfileGet[];
     projects: ProjectGet[];

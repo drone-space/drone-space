@@ -2,9 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import { Grid, GridCol, Text, ThemeIcon, Group } from '@mantine/core';
-
-import { IconArrowRightDashed } from '@tabler/icons-react';
+import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
+import ModalContactService from '@/components/common/modals/contact/service';
+import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import {
   HOSTED_BASE_URL,
   ICON_SIZE,
@@ -15,6 +15,7 @@ import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = 'Drone Space Services - Expert Drone Solutions in Kenya';
 const metaDesc = `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`;
@@ -41,7 +42,20 @@ export const metadata: Metadata = {
 export default async function Services() {
   return (
     <LayoutPage>
-      <LayoutSection id="cinematography" padded>
+      <IntroPage
+        props={{
+          path: 'Services',
+          title: 'Drone Solutions',
+          desc: `Discover professional drone services, including training, aerial photography, surveying, and light shows.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+        }}
+      />
+
+      <LayoutSection
+        id="aerial-cinematography"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -85,6 +99,24 @@ export default async function Services() {
                 </Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Aerial Cinematography Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Aerial Cinematography Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -102,7 +134,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="agriculture" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="agriculture" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -143,6 +175,24 @@ export default async function Services() {
                 </Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Agriculture Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Agriculture Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>
@@ -157,7 +207,11 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="drone-mapping-and-survey" padded>
+      <LayoutSection
+        id="drone-mapping-and-survey"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -201,6 +255,24 @@ export default async function Services() {
                 </Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Drone Mapping & Survey Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Drone Mapping & Survey Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -218,11 +290,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="thermal-inspection"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="thermal-inspection" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -247,6 +315,24 @@ export default async function Services() {
               facilitates real-time responses as opposed to long email chains
               that take up valuable time and data.
             </Text>
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Thermal Inspection Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Thermal Inspection Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>
@@ -261,7 +347,11 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="search-and-rescue" padded>
+      <LayoutSection
+        id="search-and-rescue"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -305,6 +395,24 @@ export default async function Services() {
                 </Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Search and Rescue Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Search and Rescue Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -322,11 +430,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="medical-delivery"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="medical-delivery" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -367,6 +471,24 @@ export default async function Services() {
                 </Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Medical Delivery Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Medical Delivery Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>
@@ -381,7 +503,11 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="consultancy-and-resale" padded>
+      <LayoutSection
+        id="consultancy-and-resale"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -429,6 +555,24 @@ export default async function Services() {
                 </Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Drone Consultancy and Resale Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Consultancy and Resale Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -446,7 +590,7 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="roc-support" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="roc-support" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
             <IntroSection
@@ -490,6 +634,24 @@ export default async function Services() {
                 <Text fz={'sm'}>{item}</Text>
               </Group>
             ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Drone ROC Support Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request ROC Support Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>

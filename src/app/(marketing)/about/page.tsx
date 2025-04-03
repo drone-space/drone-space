@@ -6,6 +6,7 @@ import {
   Anchor,
   AspectRatio,
   Divider,
+  Flex,
   Grid,
   GridCol,
   Text,
@@ -24,6 +25,7 @@ import ImageDefault from '@/components/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 import CardTeamMain from '@/components/common/cards/team/main';
 import { team } from '@/data/team';
+import IntroPage from '@/components/layout/intro/page';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = REVALIDATE.WEEK;
@@ -56,6 +58,15 @@ export default async function About() {
 
   return (
     <LayoutPage>
+      <IntroPage
+        props={{
+          path: `Who We Are`,
+          title: 'About Drone Space',
+          desc: `Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+        }}
+      />
+
       <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ base: 12, md: 6 }}>
@@ -82,7 +93,7 @@ export default async function About() {
           <GridCol span={{ base: 12, md: 6 }}>
             <IntroSection
               props={{
-                subTitle: 'Who Are We',
+                subTitle: 'Legitimacy',
                 title:
                   'Approved Unmanned Aircraft Systems Training Organization',
               }}
@@ -158,9 +169,13 @@ export default async function About() {
               size={2}
               color="sec.4"
               mt={{ base: 'xs', md: 'xl' }}
+              visibleFrom="sm"
             />
 
-            <Text mt={{ base: 'xs', md: 'xl' }}>
+            <Text
+              mt={{ base: 'xs', md: 'xl' }}
+              ta={{ base: 'center', sm: 'start' }}
+            >
               Our mission is to be the preferred drone training and commercial
               operations organization for Government, corporates, and industry
               sector by providing quality, high standards, and reliable
@@ -182,28 +197,34 @@ export default async function About() {
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING}>
           <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2 }}>
-            <IntroSection
-              props={{
-                subTitle: 'Our',
-                title: 'Vision',
-              }}
-              options={{ alignment: 'start' }}
-            />
+            <Flex direction={'column'} align={{ md: 'end' }}>
+              <IntroSection
+                props={{
+                  subTitle: 'Our',
+                  title: 'Vision',
+                }}
+                options={{ alignment: 'end' }}
+              />
 
-            <Divider
-              w={{ md: '20%' }}
-              size={2}
-              color="sec.4"
-              mt={{ base: 'xs', md: 'xl' }}
-            />
+              <Divider
+                w={{ md: '20%' }}
+                size={2}
+                color="sec.4"
+                mt={{ base: 'xs', md: 'xl' }}
+                visibleFrom="sm"
+              />
 
-            <Text mt={{ base: 'xs', md: 'xl' }}>
-              Our long-term vision is to contribute and empower to the
-              ever-growing youth in Kenya by equipping them with the drone
-              technology skill and realization of economic prosperity for young
-              entrepreneurs who in turn would be able to make a living through
-              entrepreneurship.
-            </Text>
+              <Text
+                mt={{ base: 'xs', md: 'xl' }}
+                ta={{ base: 'center', md: 'end' }}
+              >
+                Our long-term vision is to contribute and empower to the
+                ever-growing youth in Kenya by equipping them with the drone
+                technology skill and realization of economic prosperity for
+                young entrepreneurs who in turn would be able to make a living
+                through entrepreneurship.
+              </Text>
+            </Flex>
           </GridCol>
           <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1 }}>
             <ImageDefault
@@ -219,7 +240,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="team" padded>
+      <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
         <IntroSection
           props={{
             subTitle: 'Our Team',
@@ -241,11 +262,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="spaces-and-hub"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="spaces-and-hub" padded>
         <IntroSection
           props={{
             subTitle: 'Spaces & Hub',
@@ -261,10 +278,7 @@ export default async function About() {
       <LayoutSection
         id="about-testimonials"
         padded
-        bg={
-          'light-dark(var(--mantine-color-pri-light),var(--mantine-color-pri-light))'
-        }
-        // c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
+        bg={'var(--mantine-color-gray-1)'}
       >
         <IntroSection
           props={{

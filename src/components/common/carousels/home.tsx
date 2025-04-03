@@ -23,7 +23,7 @@ import LayoutSection from '@/components/layout/section';
 // import ModalPoster from '../modals/poster';
 // import ModalCamp from '../modals/camp';
 // import ModalShows from '../modals/shows';
-import ModalDownloadBrochure from '../modals/download/brochure';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import classes from './home.module.scss';
 
@@ -32,7 +32,7 @@ export default function Home() {
 
   const anchors = (
     <Group gap={'xs'}>
-      <ModalDownloadBrochure>
+      <ModalDownloadDocument props={{ type: 'brochure' }}>
         <Button
           size="xs"
           leftSection={
@@ -41,7 +41,7 @@ export default function Home() {
         >
           Brochure
         </Button>
-      </ModalDownloadBrochure>
+      </ModalDownloadDocument>
 
       {/* <ModalPoster /> */}
     </Group>
@@ -58,7 +58,7 @@ export default function Home() {
       }}
     >
       <LayoutSection id={`carousel-home-slide-${index}`}>
-        <Stack align={'center'} justify="center" mih={520}>
+        <Stack align={'center'} justify="center" mih={600}>
           <Title order={1} ta={'center'} className={classes.title}>
             {slide.title}
           </Title>
@@ -103,8 +103,8 @@ export default function Home() {
           backgroundPosition: 'center center',
         }}
       >
-        <LayoutSection id="carousel-slide" containerized={'md'}>
-          <Stack align={'center'} justify="center" mih={520}>
+        <LayoutSection id="carousel-slide" containerized={'lg'}>
+          <Stack align={'center'} justify="center" mih={600}>
             <Stack className={classes.imageContainer} h={80}>
               <Image
                 src={images.brand.conference.logo.landscape.light}
@@ -122,10 +122,10 @@ export default function Home() {
               fz={{ base: 'xs', xs: 'sm', sm: 'md', md: 'lg' }}
               ta={'center'}
             >
-              Following the success of the 2024 AI Conference Nairobi, which
-              attracted over 900 attendees, Drone Space is excited to announce
-              that it will host the 2nd AI Conference Nairobi
-              {/* on May 6th and 7th, 2025. */}
+              Following the success of the first 2024 AI Conference Nairobi,
+              which attracted over 900 attendees, Drone Space is excited to
+              announce that it will host the second AI Conference Nairobi on
+              September 17th and 18th, 2025.
             </Text>
 
             <Text
@@ -145,7 +145,7 @@ export default function Home() {
               fz={{ base: 'lg', xs: 'xl', sm: 24, md: 32 }}
             >
               JW Marriott Hotel, Westlands <br />
-              {/* Tue 6th - Wed 7th May, 2025 */}
+              Tue 17th - Wed 18th September, 2025
             </Title>
 
             <Text
@@ -155,9 +155,7 @@ export default function Home() {
             >
               Drone Space hosted Kenya&apos;s first public AI Conference on
               March 26th - 27th, 2024, and will hold the 2nd AI Conference
-              Nairobi
-              {/* on May 6th - 7th, 2025,  */}
-              at the JW Marriott Hotel in Westlands
+              Nairobi on September 17th - 18th, 2025
             </Text>
 
             <Group gap={'xs'}>
@@ -216,7 +214,7 @@ export default function Home() {
           }}
         ></Box>
         <LayoutSection id="carousel-slide-2">
-          <Stack align={'center'} justify="center" mih={520}>
+          <Stack align={'center'} justify="center" mih={600}>
             <Title order={1} className={classes.title} ta={'center'}>
               Empowering Drone Professionals in Kenya
             </Title>
@@ -229,7 +227,7 @@ export default function Home() {
             </Text>
 
             <Group gap={'xs'}>
-              <ModalDownloadBrochure>
+              <ModalDownloadDocument props={{ type: 'brochure' }}>
                 <Button
                   size="xs"
                   leftSection={
@@ -241,10 +239,10 @@ export default function Home() {
                 >
                   Brochure
                 </Button>
-              </ModalDownloadBrochure>
+              </ModalDownloadDocument>
 
               {/* <ModalPoster active={true} /> */}
-              <ModalAdvertisment active={true} />
+              <ModalAdvertisment />
             </Group>
 
             <Group gap={'xs'}>

@@ -99,8 +99,8 @@ const slideData = [
     title: 'Monthly Intake',
     image: images.posters.intakes.monthly,
   },
-  {
-    title: 'Masterclass',
-    image: images.posters.intakes.mapping,
-  },
+  // {
+  //   title: 'Masterclass',
+  //   image: images.posters.intakes.mapping,
+  // },
 ];

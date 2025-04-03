@@ -17,7 +17,10 @@ export const images = {
     },
     google: `${iconUrl}/?size=100&id=17949&format=png&color=000000`,
     credentials: `${iconUrl}/?size=100&id=jicLxt1sA2qa&format=png&color=000000`,
-    claude: `${iconUrl}/?size=100&id=H5H0mqCCr5AV&format=png&color=000000`,
+    claude: {
+      default: `${iconUrl}/?size=100&id=H5H0mqCCr5AV&format=png&color=000000`,
+      outline: `${iconUrl}/?size=100&id=XDigO1YmCwbW&format=png&color=000000`,
+    },
   },
 
   empty: '/images/empty.svg',

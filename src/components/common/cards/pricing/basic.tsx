@@ -29,6 +29,9 @@ export default function Basic({
   data: typeUnit;
   offset?: boolean;
 }) {
+  const courseTitle =
+    data.title.full == 'Multi-Rotor' ? 'RPL' : data.title.full;
+
   return (
     <Card
       className={classes.card}
@@ -48,11 +51,7 @@ export default function Basic({
         <Stack>
           {data.advanced && (
             <Group justify="end" opacity={offset ? 0 : 1}>
-              <Badge
-                className={
-                  data.featured ? classes.badgeFeatured : classes.badge
-                }
-              >
+              <Badge radius={'sm'} color="sec.3" c="pri.9">
                 Advanced Course
               </Badge>
             </Group>
@@ -60,13 +59,7 @@ export default function Basic({
 
           <Text fz={'md'} fw={500}>
             Kshs.{' '}
-            <Text
-              component="span"
-              inherit
-              fz={28}
-              fw={'bold'}
-              className={data.featured ? classes.titleFeatured : classes.title}
-            >
+            <Text component="span" inherit fz={28} fw={'bold'}>
               <NumberFormatter
                 value={
                   data.price?.discount ? data.price.discount : data.price?.full
@@ -153,17 +146,21 @@ export default function Basic({
           </List>
         </Stack>
 
-        <ModalContactTraining>
+        <ModalContactTraining
+          props={{
+            initialValues: {
+              subject: `${courseTitle} Training Inquiry`,
+              message: `I'm interested in enrolling in your ${courseTitle} drone training program.`,
+            },
+          }}
+        >
           <Button
             color={data.featured ? 'sec.4' : 'pri'}
             c={data.featured ? 'pri.9' : 'white'}
             fullWidth
             size="xs"
           >
-            Enroll For{' '}
-            {data.title.full == 'Multi-Rotor'
-              ? 'Remote Pilot License (RPL)'
-              : data.title.full}
+            Enroll For {courseTitle}
           </Button>
         </ModalContactTraining>
       </Stack>

@@ -12,9 +12,10 @@ import {
   Divider,
   Title,
   Paper,
+  Button,
 } from '@mantine/core';
-
-import { IconArrowRightDashed } from '@tabler/icons-react';
+import ModalContactTraining from '@/components/common/modals/contact/training';
+import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import {
   HOSTED_BASE_URL,
   ICON_SIZE,
@@ -29,6 +30,7 @@ import appData from '@/data/app';
 import CardCourse from '@/components/common/cards/training/course';
 import { linkify } from '@/utilities/formatters/string';
 import { courseList } from '@/data/courses';
+import IntroPage from '@/components/layout/intro/page';
 
 const metaTitle = `Drone Training - Professional Courses at ${appData.name.app} Kenya`;
 const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
@@ -55,7 +57,16 @@ export const metadata: Metadata = {
 export default async function DroneTraining() {
   return (
     <LayoutPage>
-      <LayoutSection id="our-story" padded>
+      <IntroPage
+        props={{
+          path: 'Drone School',
+          title: 'Drone Training',
+          desc: `Train with expert instructors and master drone technology.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+        }}
+      />
+
+      <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -148,7 +159,7 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="course-list" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="course-list" padded>
         <Grid grow>
           {courseList.map((item, index) => (
             <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
@@ -158,7 +169,11 @@ export default async function DroneTraining() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id={linkify(courseList[0].title)} padded>
+      <LayoutSection
+        id={linkify(courseList[0].title)}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -221,7 +236,7 @@ export default async function DroneTraining() {
           >
             <ImageDefault
               src={images.training.rpl}
-              alt={'Drone Mapping and Survey'}
+              alt={'RPL Training'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
               radius={'sm'}
@@ -314,13 +329,29 @@ export default async function DroneTraining() {
             </Text>
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `RPL Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For RPL Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id={linkify(courseList[1].title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(courseList[1].title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -370,7 +401,7 @@ export default async function DroneTraining() {
           >
             <ImageDefault
               src={images.training.radTel}
-              alt={'Drone Mapping and Survey'}
+              alt={'Radio Telephony'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
               radius={'sm'}
@@ -463,9 +494,33 @@ export default async function DroneTraining() {
             ))}
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Radio Telephony Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Radio Telephony Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
-      <LayoutSection id={linkify(courseList[2].title)} padded>
+      <LayoutSection
+        id={linkify(courseList[2].title)}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -560,13 +615,29 @@ export default async function DroneTraining() {
             </GridCol>
           ))}
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Instructor Rating Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Instructor Rating Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id={linkify(courseList[3].title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(courseList[3].title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -635,9 +706,33 @@ export default async function DroneTraining() {
             />
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Drone Mapping and Survey Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Drone Mapping and Survey Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
-      <LayoutSection id={linkify(courseList[4].title)} padded>
+      <LayoutSection
+        id={linkify(courseList[4].title)}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -652,7 +747,7 @@ export default async function DroneTraining() {
             />
 
             <Text mt={'lg'}>
-              The Levell Thermography Certification course is designed for
+              The Level I Thermography Certification course is designed for
               professionals who want to develop practical skills in using
               thermography for inspections and diagnostics. This course is
               suitable for individuals working in industries such as electrical,
@@ -721,13 +816,29 @@ export default async function DroneTraining() {
           Levell Thermography Certification, which can enhance their career
           prospects and credibility in the industry.
         </Text>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Thermography Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Thermography Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id={linkify(courseList[5].title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(courseList[5].title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -776,6 +887,26 @@ export default async function DroneTraining() {
             />
           </GridCol>
         </Grid>
+
+        <Group justify="center">
+          <ModalContactTraining
+            props={{
+              initialValues: {
+                subject: `Holiday Camp Training Inquiry`,
+              },
+            }}
+          >
+            <Button
+              mt={'xl'}
+              variant="outline"
+              leftSection={
+                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Enroll For Holiday Camp Training
+            </Button>
+          </ModalContactTraining>
+        </Group>
       </LayoutSection>
     </LayoutPage>
   );

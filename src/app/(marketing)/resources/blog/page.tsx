@@ -6,7 +6,7 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import CardBlogNew from '@/components/common/cards/blog/new';
 import CardBlogMain from '@/components/common/cards/blog/main';
-// import IntroPage from '@/components/layout/intro/page';
+import IntroPage from '@/components/layout/intro/page';
 
 import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
@@ -45,15 +45,20 @@ export default async function Blog() {
 
   return (
     <LayoutPage>
-      {/* <IntroPage
+      <IntroPage
         props={{
           path: 'News',
-          title: 'Expert Web Design Advice',
-          desc: 'Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam. Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.',
+          title: 'Insights on Drone Training & Technology',
+          desc: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
-      /> */}
+      />
 
-      <LayoutSection id={'page-blog-grid'} margined>
+      <LayoutSection
+        id={'page-blog-grid'}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol span={12} mx={{ lg: 'auto' }} visibleFrom="md">
             <CardBlogNew post={posts[0]} />

@@ -207,17 +207,17 @@ const shows = {
     {
       title: 'Small Shows',
       desc: 'Up to 100 Drones',
-      price: 71000,
+      price: 45000,
     },
     {
       title: 'Medium Shows',
       desc: 'Up to 200 Drones',
-      price: 93000,
+      price: 60000,
     },
     {
       title: 'Mid-Large Shows',
       desc: 'Up to 300 Drones',
-      price: 120000,
+      price: 80000,
     },
     {
       title: 'Large Shows',

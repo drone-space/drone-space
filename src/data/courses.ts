@@ -96,52 +96,6 @@ const courses = {
       },
 
       {
-        image: images.training.radTel,
-        title: {
-          short: 'RadTel',
-          full: 'Radio Telephony',
-        },
-        price: {
-          discount: null,
-          full: 35000,
-        },
-        priceFeatures: [
-          {
-            item: 'Radio Telephony Exam',
-            duration: null,
-            price: 2000,
-          },
-          {
-            item: 'English Proficiency Exam',
-            duration: null,
-            price: 3000,
-          },
-          {
-            item: 'Radio Telephony License',
-            duration: null,
-            price: 1200,
-          },
-        ],
-        desc: 'The Radio Telephony License course, offered in partnership with the Nairobi Flight Academy, is designed for RPL holders seeking to operate drones in controlled airspace and conduct BVLOS operations. This comprehensive training equips participants with the necessary skills in radio telephony procedures and communication protocols. Upon passing the exam administered by the KCAA, successful participants are granted a Radio Telephony Operator License valid for two years, renewable upon expiration. The Radio Telephony License course is an essential requirement for drone pilots operating in areas that require communication with air traffic control or for those planning BVLOS operations. With this license, participants gain the readiness to conduct missions in controlled airspace, ensuring safe and compliant drone operations. By partnering with the Nairobi Flight Academy, we deliver top-quality training that prepares RPL holders for the KCAA exam.',
-        modules: [
-          'General Phraseology',
-          'Aerodrome Control',
-          'Approach Control',
-          'Flight Information Service',
-          'Weather',
-          'Communication Failure',
-          'Distress and Urgency',
-          'VHF Propagation',
-          'Flight Scenario',
-        ],
-        qualifications: [
-          'Develop proficiency in radio telephony procedures for drone operations in controlled airspace and BVLOS missions.',
-          'Acquire comprehensive knowledge of radio phraseology, air traffic control communication, emergency procedures, and airspace regulations',
-          'Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.',
-        ],
-      },
-
-      {
         image: images.training.insRat,
         title: {
           short: 'IR',
@@ -214,33 +168,52 @@ const courses = {
           'Provide more insight into the Drone Technology',
         ],
       },
-      // {
-      // 	image: images.training.bvlos,
-      // 	title: {
-      // 		short: "BVLOS",
-      // 		full: "Beyond Visual Line of Sight",
-      // 	},
-      // 	price: null,
-      // 	priceFeatures: null,
-      // 	desc: "This course aims at advanced training that allows experienced remote pilots acquire the skills to operate in category c operations which is high risk or rather manned aviation approach. BVLOS training allows the delegate to gain the skill to adequately plan and execute BVLOS operations. The seven-day course which include theory classroom, briefings, mission planning on simulator, Hands on training on Drone Space Unmanned aircraft and examination will introduce the professionally licensed pilot operators to the new opportunities and regulatory requirements to be considered with this service delivery. You will be examined in a range of current systems designed for BVLOS flight. Lesson topics will range between Ground Station control to loading of mission into the drone, and from auto pilot technology to safety management.",
-      // 	modules: [
-      // 		"Air Law and UAS Regulations that Govern BVLOS Operations",
-      // 		"Crew Resource Management (CRM) & Situational awareness in unmanned aviation",
-      // 		"Unmanned Aircraft Systems (UAS) and other technologies",
-      // 		"BVLOS Safety Management Systems",
-      // 		"BVLOS Operational Manuals (CONOPS)",
-      // 		"Meteorology",
-      // 		"Mission Planning ",
-      // 		"Instrument Flying",
-      // 		"Case Studies - UAS accident investigation",
-      // 	],
-      // 	qualifications: [
-      // 		"Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices",
-      // 		"Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations",
-      // 		"Provide more insight into the Drone Technology and Drone components of VTOLs.",
-      // 	],
-      // 	available: false,
-      // },
+
+      {
+        image: images.training.radTel,
+        title: {
+          short: 'RadTel',
+          full: 'Radio Telephony',
+        },
+        price: {
+          discount: null,
+          full: 35000,
+        },
+        priceFeatures: [
+          {
+            item: 'Radio Telephony Exam',
+            duration: null,
+            price: 2000,
+          },
+          {
+            item: 'English Proficiency Exam',
+            duration: null,
+            price: 3000,
+          },
+          {
+            item: 'Radio Telephony License',
+            duration: null,
+            price: 1200,
+          },
+        ],
+        desc: 'The Radio Telephony License course, offered in partnership with the Nairobi Flight Academy, is designed for RPL holders seeking to operate drones in controlled airspace and conduct BVLOS operations. This comprehensive training equips participants with the necessary skills in radio telephony procedures and communication protocols. Upon passing the exam administered by the KCAA, successful participants are granted a Radio Telephony Operator License valid for two years, renewable upon expiration. The Radio Telephony License course is an essential requirement for drone pilots operating in areas that require communication with air traffic control or for those planning BVLOS operations. With this license, participants gain the readiness to conduct missions in controlled airspace, ensuring safe and compliant drone operations. By partnering with the Nairobi Flight Academy, we deliver top-quality training that prepares RPL holders for the KCAA exam.',
+        modules: [
+          'General Phraseology',
+          'Aerodrome Control',
+          'Approach Control',
+          'Flight Information Service',
+          'Weather',
+          'Communication Failure',
+          'Distress and Urgency',
+          'VHF Propagation',
+          'Flight Scenario',
+        ],
+        qualifications: [
+          'Develop proficiency in radio telephony procedures for drone operations in controlled airspace and BVLOS missions.',
+          'Acquire comprehensive knowledge of radio phraseology, air traffic control communication, emergency procedures, and airspace regulations',
+          'Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.',
+        ],
+      },
     ],
     process: [
       {
@@ -278,6 +251,37 @@ const courses = {
       'An overview of future UAS technology and their role in enhancing UAS operational safety.',
     ],
     units: [
+      // {
+      //   advanced: true,
+      //   image: images.training.bvlos,
+      //   title: {
+      //     short: 'BVLOS',
+      //     full: 'Beyond Visual Line of Sight',
+      //   },
+      //   price: {
+      //     discount: null,
+      //     full: 0,
+      //   },
+      //   priceFeatures: null,
+      //   desc: 'This course aims at advanced training that allows experienced remote pilots acquire the skills to operate in category c operations which is high risk or rather manned aviation approach. BVLOS training allows the delegate to gain the skill to adequately plan and execute BVLOS operations. The seven-day course which include theory classroom, briefings, mission planning on simulator, Hands on training on Drone Space Unmanned aircraft and examination will introduce the professionally licensed pilot operators to the new opportunities and regulatory requirements to be considered with this service delivery. You will be examined in a range of current systems designed for BVLOS flight. Lesson topics will range between Ground Station control to loading of mission into the drone, and from auto pilot technology to safety management.',
+      //   modules: [
+      //     'Air Law and UAS Regulations that Govern BVLOS Operations',
+      //     'Crew Resource Management (CRM) & Situational awareness in unmanned aviation',
+      //     'Unmanned Aircraft Systems (UAS) and other technologies',
+      //     'BVLOS Safety Management Systems',
+      //     'BVLOS Operational Manuals (CONOPS)',
+      //     'Meteorology',
+      //     'Mission Planning ',
+      //     'Instrument Flying',
+      //     'Case Studies - UAS accident investigation',
+      //   ],
+      //   qualifications: [
+      //     'Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices',
+      //     'Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations',
+      //     'Provide more insight into the Drone Technology and Drone components of VTOLs.',
+      //   ],
+      // },
+
       {
         advanced: true,
         image: images.training.mapSur,
@@ -324,6 +328,7 @@ const courses = {
           'Drone Space course completion certificate',
         ],
       },
+
       {
         advanced: true,
         image: images.training.thermography,

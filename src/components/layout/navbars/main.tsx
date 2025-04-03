@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Group, Anchor, Grid, GridCol } from '@mantine/core';
+import { Group, Anchor, Divider, Button } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import MenuNavbar from '@/components/common/menus/navbar';
@@ -12,6 +12,7 @@ import links from '@/data/links';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
+import ModalContactCallback from '@/components/common/modals/contact/callback';
 
 export default function Main({
   options,
@@ -19,8 +20,6 @@ export default function Main({
   options?: { absolute?: boolean };
 }) {
   const pathname = usePathname();
-  // const session = useAppSelector((state) => state.session.value);
-  // const desktop = useMediaQuery('(min-width: 62em)');
 
   const matchesPath = (link: string) => {
     return pathname == link || (pathname != '/' && pathname.includes(link));
@@ -46,9 +45,8 @@ export default function Main({
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
-            onClick={(e) => e.preventDefault()}
           >
-            <Group gap={4}>{link.label}</Group>
+            {link.label}
           </Anchor>
         )}
       </MenuNavbar>
@@ -59,8 +57,8 @@ export default function Main({
     <ImageDefault
       src={images.brand.droneSpace.logo.landscape.default}
       alt={appData.name.app}
-      height={{ base: 24 }}
-      width={{ base: 144 }}
+      height={{ base: 40 }}
+      width={{ base: 200 }}
       fit="contain"
       mode="grid"
     />
@@ -69,44 +67,48 @@ export default function Main({
   return (
     <LayoutSection
       id={'partial-navbar-main'}
-      shadowed={!options?.absolute}
       pos={options?.absolute ? 'absolute' : undefined}
       left={options?.absolute ? 0 : undefined}
       top={options?.absolute ? 0 : undefined}
       right={options?.absolute ? 0 : undefined}
       style={{ zIndex: 1 }}
     >
-      <Grid align="center" gutter={0}>
-        <GridCol span={{ base: 6 }} hiddenFrom="sm">
+      <Group justify="space-between">
+        <Anchor component={Link} href={'/'} py={{ base: 5, md: 0 }}>
+          {imageBrand}
+        </Anchor>
+
+        <Group gap={'lg'} visibleFrom="md">
+          <Group>{navLinks}</Group>
+
+          <Group h={20}>
+            <Divider orientation="vertical" />
+          </Group>
+
           <Group>
-            <Anchor component={Link} href={'/'} py={'sm'}>
-              {imageBrand}
-            </Anchor>
+            <ModalContactCallback>
+              <Button size="xs" variant="gradient">
+                Inquire
+              </Button>
+            </ModalContactCallback>
           </Group>
-        </GridCol>
+        </Group>
 
-        <GridCol
-          span={{
-            base: 6,
-            // sm: 10,
-            sm: 12,
-          }}
-        >
-          <Group gap={'lg'} visibleFrom="sm" justify="center">
-            <Group component={'nav'} gap={'xl'}>
-              {navLinks}
-            </Group>
-          </Group>
+        <Group hiddenFrom="md" justify="end">
+          <DrawerNavbarMain
+            props={links}
+            options={{ absolute: options?.absolute }}
+          />
+        </Group>
+      </Group>
 
-          <Group hiddenFrom="sm" gap={'xs'} justify="end">
-            <DrawerNavbarMain
-              props={links.marketing}
-              options={{ absolute: options?.absolute }}
-            />
-          </Group>
-        </GridCol>
+      {!options?.absolute && <Divider />}
+    </LayoutSection>
+  );
+}
 
-        {/* <GridCol span={{ base: 4, sm: 2 }} visibleFrom="sm">
+{
+  /* <GridCol span={{ base: 4, sm: 2 }} visibleFrom="sm">
           <Group justify="end">
             {!session ? (
               <Group gap={'xs'}>
@@ -132,8 +134,5 @@ export default function Main({
               <DrawerUser />
             )}
           </Group>
-        </GridCol> */}
-      </Grid>
-    </LayoutSection>
-  );
+        </GridCol> */
 }

@@ -1,130 +1,68 @@
 import React from 'react';
 
-import {
-  Anchor,
-  Button,
-  Flex,
-  Grid,
-  GridCol,
-  Group,
-  Image,
-  Stack,
-  Text,
-} from '@mantine/core';
-import NextImage from 'next/image';
+import { Anchor, Flex, Group, Text } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
-import classes from './main.module.scss';
 import appData from '@/data/app';
-import { IconCircleFilled, IconPhone } from '@tabler/icons-react';
-import Link from 'next/link';
+import { IconCircleFilled } from '@tabler/icons-react';
 import { images } from '@/assets/images';
 
 export default function Main() {
   return (
-    <>
-      <LayoutSection
-        id="layout-header-main"
-        padded="xs"
-        shadowed
-        bg={'var(--mantine-color-pri-9)'}
-        c={'var(--mantine-color-white)'}
-        visibleFrom="sm"
+    <LayoutSection
+      id="layout-header-main"
+      padded={'xs'}
+      shadowed
+      bg={'var(--mantine-color-pri-9)'}
+      c={'var(--mantine-color-white)'}
+      visibleFrom="sm"
+    >
+      <Flex
+        direction={{ base: 'column', xs: 'row' }}
+        align={'center'}
+        gap={'xs'}
+        justify="space-between"
+        fz={{ base: 'xs' }}
+        c={'white'}
       >
-        <Flex
-          direction={{ base: 'column', xs: 'row' }}
-          align={'center'}
-          gap={'xs'}
-          justify="space-between"
-        >
-          <Group>
-            <Text inherit fz={{ base: 'xs', lg: 'sm' }} fw={500} c={'white'}>
-              {location}
-            </Text>
-          </Group>
+        <Group gap={'xs'}>
+          <Anchor
+            inherit
+            href={`mailto:${email}`}
+            fz={{ base: 'xs' }}
+            c={'white'}
+            underline="hover"
+          >
+            {email}
+          </Anchor>
 
-          <Group gap={'xs'}>
-            {data.left.map((item, index) => (
-              <>
-                <Button
-                  key={index}
-                  size="xs"
-                  variant="transparent"
-                  color="white"
-                  px={0}
-                  component={'a'}
-                  href={item.link}
-                  leftSection={<item.icon size={16} stroke={1.5} />}
-                >
-                  {item.label}
-                </Button>
+          <IconCircleFilled size={4} />
 
-                {data.left.indexOf(item) != data.left.length - 1 && (
-                  <IconCircleFilled size={4} />
-                )}
-              </>
-            ))}
-          </Group>
-        </Flex>
-      </LayoutSection>
+          <Text inherit>{location}</Text>
+        </Group>
 
-      <LayoutSection
-        id="layout-header-main-tablet"
-        visibleFrom="xs"
-        padded="xs"
-        bg={'var(--mantine-color-sec-light)'}
-        shadowed
-        className={classes.header}
-      >
-        <Grid align="center" gutter={0}>
-          <GridCol span={{ base: 12, xs: 6, sm: 4 }}>
-            <Anchor
-              href={`mailto:${email}`}
-              fz={{ base: 'xs', lg: 'sm' }}
-              fw={500}
-            >
-              {email}
-            </Anchor>
-          </GridCol>
-          <GridCol span={{ base: 12, sm: 4 }} visibleFrom="sm">
-            <Group justify="center">
-              <Anchor component={Link} href={'/'}>
-                <Stack w={240}>
-                  <Image
-                    src={images.brand.droneSpace.logo.landscape.default}
-                    alt="Drone Space"
-                    component={NextImage}
-                    width={6161}
-                    height={1034}
-                    priority
-                  />
-                </Stack>
+        <Group gap={'xs'}>
+          {data.left.map((item, index) => (
+            <>
+              <Anchor
+                key={index}
+                inherit
+                component={'a'}
+                href={item.link}
+                fz={{ base: 'xs' }}
+                c={'white'}
+                underline="hover"
+              >
+                {item.label}
               </Anchor>
-            </Group>
-          </GridCol>
-          <GridCol span={{ base: 12, xs: 6, sm: 4 }}>
-            <Group justify="end" gap={'xs'}>
-              <Group gap={0}>
-                {socials.map((social, index) => (
-                  <Anchor key={index} href={social.link} target="_blank">
-                    <Stack>
-                      <Image
-                        src={social.image}
-                        alt={social.title}
-                        title={social.title}
-                        component={NextImage}
-                        height={24}
-                        width={24}
-                        priority
-                      />
-                    </Stack>
-                  </Anchor>
-                ))}
-              </Group>
-            </Group>
-          </GridCol>
-        </Grid>
-      </LayoutSection>
-    </>
+
+              {data.left.indexOf(item) != data.left.length - 1 && (
+                <IconCircleFilled size={4} />
+              )}
+            </>
+          ))}
+        </Group>
+      </Flex>
+    </LayoutSection>
   );
 }
 
@@ -135,8 +73,8 @@ const location = appData.locations.main.location;
 
 const data = {
   left: [
-    { icon: IconPhone, label: phone1, link: `tel:${phone1}` },
-    { icon: IconPhone, label: phone2, link: `tel:${phone2}` },
+    { label: phone1, link: `tel:${phone1}` },
+    { label: phone2, link: `tel:${phone2}` },
   ],
 };
 

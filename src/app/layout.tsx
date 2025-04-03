@@ -22,21 +22,14 @@ import {
   MantineColorScheme,
   MantineProvider,
 } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
-import { ModalsProvider } from '@mantine/modals';
-
-// import { SpeedInsights } from "@vercel/speed-insights/next";
-
 import appTheme from '@/styles/theme';
 import appResolver from '@/styles/resolver';
-
 import appData from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
-
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
 import { createClient } from '@/libraries/supabase/server';
-
 import { COOKIE_NAME } from '@/data/constants';
-
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
 import GoogleAnalytics from '@/components/seo/analytics';
@@ -50,12 +43,13 @@ import { assignmentsGet } from '@/handlers/requests/database/assignment';
 import { quizzesGet } from '@/handlers/requests/database/quiz';
 import { questionsGet } from '@/handlers/requests/database/question';
 import { profilesGet } from '@/handlers/requests/database/profiles';
+// import { SpeedInsights } from "@vercel/speed-insights/next";
 // import AffixOffline from '@/components/common/affixi/offline';
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
-export default async function RootLayout({
+export default async function LayoutRoot({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -89,10 +83,10 @@ export default async function RootLayout({
           defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
         />
 
-        {/* <meta
+        <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
-        /> */}
+        />
       </head>
 
       <body className={openSans.className}>
@@ -120,17 +114,10 @@ export default async function RootLayout({
             <ModalsProvider>{children}</ModalsProvider>
 
             <Notifications limit={3} />
-
-            {/* <AffixOffline /> */}
-            {/* <AffixiCookies /> */}
           </MantineProvider>
         </ProviderStore>
 
-        {/* <SpeedInsights /> */}
-
-        {isProduction() && (
-          <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
-        )}
+        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

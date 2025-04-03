@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
 import { makeStore, AppStore } from '@/libraries/redux/store';
 import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
@@ -27,14 +27,14 @@ import { updateProfiles } from '@/libraries/redux/slices/profiles';
 
 export default function Store({
   children,
-  session,
   colorScheme,
+  session,
   academy,
 }: {
-  colorScheme?: string;
+  colorScheme: string;
   session?: AuthUser | null;
   children: React.ReactNode;
-  academy: {
+  academy?: {
     profiles: ProfileGet[];
     projects: ProjectGet[];
     courses: CourseGet[];
@@ -46,29 +46,30 @@ export default function Store({
     questions: QuestionGet[];
   };
 }) {
-  const storeRef = useRef<AppStore>();
+  const storeRef = useRef<AppStore | null>(null);
 
-  const store = useMemo(() => {
-    if (storeRef.current) return storeRef.current;
+  if (!storeRef.current) {
+    storeRef.current = makeStore();
+  }
 
-    // Create the store instance the first time this renders
-    const newStore = makeStore();
+  // Always update store with the latest props
+  const store = storeRef.current;
 
-    if (session) newStore.dispatch(updateSession(session));
-    if (colorScheme) newStore.dispatch(updateColorScheme(colorScheme));
+  store.dispatch(updateColorScheme(colorScheme));
 
-    newStore.dispatch(updateProjects(academy.projects));
-    newStore.dispatch(updateCourses(academy.courses));
-    newStore.dispatch(updateSections(academy.sections));
-    newStore.dispatch(updateModules(academy.modules));
-    newStore.dispatch(updatePages(academy.pages));
-    newStore.dispatch(updateAssignments(academy.assignments));
-    newStore.dispatch(updateQuizzes(academy.quizzes));
-    newStore.dispatch(updateQuestions(academy.questions));
-    newStore.dispatch(updateProfiles(academy.profiles));
+  if (session) store.dispatch(updateSession(session));
 
-    return newStore;
-  }, []);
+  if (academy) {
+    store.dispatch(updateProjects(academy.projects));
+    store.dispatch(updateCourses(academy.courses));
+    store.dispatch(updateSections(academy.sections));
+    store.dispatch(updateModules(academy.modules));
+    store.dispatch(updatePages(academy.pages));
+    store.dispatch(updateAssignments(academy.assignments));
+    store.dispatch(updateQuizzes(academy.quizzes));
+    store.dispatch(updateQuestions(academy.questions));
+    store.dispatch(updateProfiles(academy.profiles));
+  }
 
   return <Provider store={store}>{children}</Provider>;
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateSession } from './libraries/supabase/middleware';
+// import { updateSession } from './libraries/supabase/middleware';
 import {
   createRedirectHandler,
   setCorsHeaders,
@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
 
   setCorsHeaders({ crossOrigins, request, response });
 
-  return await updateSession(request, response);
+  // return await updateSession(request, response);
 }
 
 export const config = {

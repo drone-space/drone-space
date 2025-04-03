@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
@@ -21,8 +23,10 @@ import ModalAcademyCollaborator from '@/components/common/modals/academy/collabo
 import ModalAcademyProject from '@/components/common/modals/academy/project';
 import MenuAcademyContentCreate from '@/components/common/menus/academy/content/create';
 import AvatarGroup from '@/components/common/avatars/group';
-import { collaborators, records } from '@/data/sample';
 import TableAcademyContent from '@/components/common/table/academy/content';
+import { useAppSelector } from '@/hooks/redux';
+import { Role } from '@prisma/client';
+import { useHydrate } from '@/hooks/hydration';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -51,15 +55,29 @@ import TableAcademyContent from '@/components/common/table/academy/content';
 //   },
 // };
 
-export default async function Project() {
+export default function Project({ params }: { params: { projectId: string } }) {
+  const project = useAppSelector((state) =>
+    state.projects.value?.find((p) => p.id == params.projectId)
+  );
+  const profiles = project?.profiles;
+  const instructors = profiles?.filter((p) => p.role == Role.INSTRUCTOR);
+  const admins = profiles?.filter((p) => p.role == Role.ADMINISTRATOR);
+  const collaborators = instructors?.concat(admins || []);
+
+  const { hydrated } = useHydrate();
+
   return (
     <LayoutPage>
       <LayoutSection id="project" containerized={false}>
-        <LayoutMainAcademy props={{ navigation: <AsideAcademyContent /> }}>
+        <LayoutMainAcademy
+          props={{
+            navigation: <AsideAcademyContent />,
+          }}
+        >
           <Stack>
             <Group justify="space-between" mih={36}>
               <TextInput
-                defaultValue={'New Project (xevac jarars)'}
+                defaultValue={project?.title}
                 placeholder="Project Title"
                 variant="unstyled"
                 styles={{
@@ -91,7 +109,11 @@ export default async function Project() {
             </Group>
 
             <Group gap={'xs'}>
-              <AvatarGroup props={collaborators} />
+              {!hydrated ? (
+                placeholderCollab
+              ) : !collaborators?.length ? null : (
+                <AvatarGroup props={collaborators} />
+              )}
 
               <ModalAcademyCollaborator>
                 <Tooltip label="Add Collaborator" withArrow>
@@ -103,21 +125,25 @@ export default async function Project() {
                 </Tooltip>
               </ModalAcademyCollaborator>
 
-              <ModalAcademyProject>
-                <Tooltip label="Manage Project" withArrow>
-                  <Group>
-                    <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
-                      <IconDots size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                    </ActionIcon>
-                  </Group>
-                </Tooltip>
-              </ModalAcademyProject>
+              {!project ? null : (
+                <ModalAcademyProject props={{ project }}>
+                  <Tooltip label="Manage Project" withArrow>
+                    <Group>
+                      <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
+                        <IconDots size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                      </ActionIcon>
+                    </Group>
+                  </Tooltip>
+                </ModalAcademyProject>
+              )}
             </Group>
 
-            <TableAcademyContent props={{ list: records }} />
+            <TableAcademyContent />
           </Stack>
         </LayoutMainAcademy>
       </LayoutSection>
     </LayoutPage>
   );
 }
+
+const placeholderCollab = <>loading</>;

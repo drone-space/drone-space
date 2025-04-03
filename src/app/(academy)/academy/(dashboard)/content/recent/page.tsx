@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
@@ -5,7 +7,6 @@ import LayoutMainAcademy from '@/components/layout/main/academy';
 import AsideAcademyContent from '@/components/layout/asides/academy/content';
 import { Group, Stack, Title } from '@mantine/core';
 import TableAcademyContent from '@/components/common/table/academy/content';
-import { records } from '@/data/sample';
 
 // import { Metadata } from 'next';
 // import appData from '@/data/app';
@@ -34,7 +35,7 @@ import { records } from '@/data/sample';
 //   },
 // };
 
-export default async function Project() {
+export default function Project() {
   return (
     <LayoutPage>
       <LayoutSection id="project" containerized={false}>
@@ -42,11 +43,11 @@ export default async function Project() {
           <Stack>
             <Group justify="space-between" align="end" mih={36}>
               <Title fw={500} fz={'1.5rem'} c={'var(--mantine-color-text)'}>
-                Recent Files
+                Recent
               </Title>
             </Group>
 
-            <TableAcademyContent props={{ list: records }} />
+            <TableAcademyContent />
           </Stack>
         </LayoutMainAcademy>
       </LayoutSection>

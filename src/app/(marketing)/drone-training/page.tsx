@@ -32,7 +32,7 @@ import { linkify } from '@/utilities/formatters/string';
 import { courseList } from '@/data/courses';
 import IntroPage from '@/components/layout/intro/page';
 
-const metaTitle = `Drone Training - Professional Courses at ${appData.name.app} Kenya`;
+const metaTitle = `Drone Training In Kenya - Professional Courses at ${appData.name.app} Kenya`;
 const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
 
 export const metadata: Metadata = {

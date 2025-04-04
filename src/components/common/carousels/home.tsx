@@ -242,7 +242,7 @@ export default function Home() {
               </ModalDownloadDocument>
 
               {/* <ModalPoster active={true} /> */}
-              <ModalAdvertisment />
+              <ModalAdvertisment active={true} />
             </Group>
 
             <Group gap={'xs'}>

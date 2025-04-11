@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {
+  ActionIcon,
   Box,
   Button,
   Group,
@@ -13,6 +14,13 @@ import { useScrollIntoView } from '@mantine/hooks';
 import LayoutSection from '@/components/layout/section';
 import { FormClaudeType } from '@/hooks/form/claude';
 import { MarkdownComponent } from '@/components/wrapper/markdown';
+import { IconVolume } from '@tabler/icons-react';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@/data/constants';
+import { useTTS } from '@/hooks/tts';
 
 // Sample questions data
 const sampleQuestions = [
@@ -65,6 +73,42 @@ export default function AI({
   useEffect(() => {
     if (submitted && !updated) setUpdated(true);
   }, [submitted, updated, setUpdated]);
+
+  function AssistantMessage({
+    content,
+    isLast,
+    animate,
+    submitted,
+  }: {
+    content: string;
+    isLast: boolean;
+    animate: boolean;
+    submitted: boolean;
+  }) {
+    return (
+      <Stack
+        gap={'xs'}
+        align="start"
+        my={'xs'}
+        mih={isLast && !submitted ? '30vh' : undefined}
+      >
+        <MarkdownComponent markdown={content} animate={animate} />
+        <ActionIcon
+          size={ICON_WRAPPER_SIZE / 1.5}
+          radius={'xs'}
+          color="gray"
+          variant="subtle"
+          loading={fetching}
+          onClick={() => streamSpeech({ text: content })}
+        >
+          <IconVolume size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+        </ActionIcon>
+      </Stack>
+    );
+  }
+
+  // tts hook
+  const { fetching, streamSpeech } = useTTS();
 
   return (
     <LayoutSection id="content" containerized={false} bordered>
@@ -194,23 +238,5 @@ function UserMessage({ content }: { content: string }) {
         </Text>
       </Paper>
     </Group>
-  );
-}
-
-function AssistantMessage({
-  content,
-  isLast,
-  animate,
-  submitted,
-}: {
-  content: string;
-  isLast: boolean;
-  animate: boolean;
-  submitted: boolean;
-}) {
-  return (
-    <Box my={'xs'} mih={isLast && !submitted ? '30vh' : undefined}>
-      <MarkdownComponent markdown={content} animate={animate} />
-    </Box>
   );
 }

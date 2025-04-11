@@ -39,7 +39,7 @@ export default async function Shop() {
           options={{ spacing: true }}
         />
 
-        <Grid mt={'xl'}>
+        <Grid mt={'xl'} gutter={'xl'}>
           {factors.map((factor, index) => (
             <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
               <CardShopFactor data={factor} />

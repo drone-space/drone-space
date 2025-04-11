@@ -53,9 +53,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
   }, [submitted, opened]);
 
   useEffect(() => {
-    if (submitted && !updated) {
-      setUpdated(true);
-    }
+    if (submitted && !updated) setUpdated(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
 
@@ -82,22 +80,29 @@ export default function Main({ children }: { children: React.ReactNode }) {
           padded={'xs'}
           shadowed
         >
-          <Group justify="space-between" align="start">
+          <Group justify="space-between">
             <Group gap={'xs'}>
-              <Box style={{ overflow: 'hidden' }}>
+              <Box
+                style={{
+                  overflow: 'hidden',
+                  borderRadius: 'var(--mantine-radius-xs)',
+                }}
+                w={24}
+                h={24}
+              >
                 <ImageDefault
                   src={images.icons.claude.default}
                   alt={'Hekima AI'}
                   loading="lazy"
                   radius={'sm'}
-                  width={28}
-                  height={28}
+                  width={24}
+                  height={24}
                   style={{ transform: 'scale(1.4)' }}
                 />
               </Box>
 
-              <Title order={2} fz={'md'} mt={5}>
-                AI Assistant
+              <Title order={2} fz={'md'} mt={5} fw={'normal'} lh={1}>
+                Ask Hekima
               </Title>
             </Group>
 
@@ -219,7 +224,7 @@ export default function Main({ children }: { children: React.ReactNode }) {
             <Group justify="space-between" fz={'xs'}>
               <Text inherit>
                 Model from{' '}
-                <Anchor href={anthropic} target="_blank" inherit fw={500}>
+                <Anchor href={anthropic} target="_blank" inherit fw={'bold'}>
                   ANTHROP\C
                 </Anchor>
               </Text>

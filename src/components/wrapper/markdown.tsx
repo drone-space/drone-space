@@ -31,7 +31,7 @@ export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
       } else {
         clearInterval(interval);
       }
-    }, 5); // Adjust speed as needed
+    }, 1); // Adjust speed as needed
 
     return () => clearInterval(interval);
   }, [markdown, conversation, animate]);

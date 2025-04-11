@@ -33,6 +33,8 @@ export const useFormClaude = () => {
     try {
       setSubmitted(true);
 
+      if (!form.values.content) form.setFieldValue('content', submitedValue);
+
       const result = await sendPrompt({
         content: submitedValue.content || submitedValue || parseValues(),
         conversation,

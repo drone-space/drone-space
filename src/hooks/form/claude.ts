@@ -13,13 +13,15 @@ export type FormClaudeType = UseFormReturnType<
   (values: { content: string }) => { content: string }
 >;
 
-export const useFormClaude = () => {
+export const useFormClaude = (params?: {
+  defaultValues?: Partial<FormClaudeType['values']>;
+}) => {
   const [submitted, setSubmitted] = useState(false);
   const conversation = useAppSelector((state) => state.claude.value);
   const dispatch = useAppDispatch();
 
   const form = useForm({
-    initialValues: { content: '' },
+    initialValues: { content: params?.defaultValues?.content || '' },
     validate: { content: (value) => value.trim().length < 1 },
   });
 

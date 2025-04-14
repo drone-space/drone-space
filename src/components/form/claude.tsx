@@ -2,9 +2,13 @@
 
 import React from 'react';
 
-import { ActionIcon, Group, Textarea } from '@mantine/core';
+import { ActionIcon, Group, Stack, Textarea, Tooltip } from '@mantine/core';
 
-import { IconArrowUp } from '@tabler/icons-react';
+import {
+  IconBrandTelegram,
+  IconPlayerRecordFilled,
+  IconSquareFilled,
+} from '@tabler/icons-react';
 import appData from '@/data/app';
 import classes from './claude.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
@@ -14,15 +18,20 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
+import { useSTT } from '@/hooks/stt';
 
 export default function Claude({
   props,
 }: {
   props: { form: FormClaudeType; submitted: boolean; handleSubmit: () => void };
 }) {
+  const { listening, startListening, stopListening } = useSTT({
+    form: props.form,
+  });
+
   return (
     <form onSubmit={props.form.onSubmit(props.handleSubmit)} noValidate>
-      <Group wrap="nowrap" align="end" gap={'xs'}>
+      <Stack gap={'xs'}>
         <Textarea
           required
           placeholder={`Ask Hekima about ${appData.name.company}`}
@@ -47,14 +56,54 @@ export default function Claude({
           disabled={props.submitted}
         />
 
-        <ActionIcon
-          size={ICON_WRAPPER_SIZE / 1.25}
-          type="submit"
-          loading={props.submitted}
-        >
-          <IconArrowUp size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
-        </ActionIcon>
-      </Group>
+        <Group justify="end">
+          <Group gap={'xs'}>
+            {props.form.values.content.length > 0 && !listening ? (
+              <ActionIcon
+                size={ICON_WRAPPER_SIZE / 1.2}
+                variant="subtle"
+                type="submit"
+                loading={props.submitted}
+              >
+                <IconBrandTelegram
+                  size={ICON_WRAPPER_SIZE / 1.2}
+                  stroke={ICON_STROKE_WIDTH}
+                />
+              </ActionIcon>
+            ) : !listening ? (
+              <Tooltip label="Use voice mode" color="pri" withArrow fz={'xs'}>
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE / 1.2}
+                  variant="outline"
+                  onClick={() => startListening()}
+                  radius={'xl'}
+                  style={{ borderWidth: ICON_STROKE_WIDTH }}
+                >
+                  <IconPlayerRecordFilled
+                    size={ICON_SIZE / 1.2}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ActionIcon>
+              </Tooltip>
+            ) : (
+              <Tooltip label="Stop voice mode" color="pri" withArrow fz={'xs'}>
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE / 1.2}
+                  variant="outline"
+                  onClick={() => stopListening()}
+                  radius={'xl'}
+                  style={{ borderWidth: ICON_STROKE_WIDTH }}
+                >
+                  <IconSquareFilled
+                    size={ICON_SIZE / 1.7}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </Group>
+        </Group>
+      </Stack>
     </form>
   );
 }

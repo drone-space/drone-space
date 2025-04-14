@@ -113,7 +113,7 @@ export default function AI({
         <MarkdownComponent markdown={content} animate={animate} />
 
         <Group gap={5} className={classes.assistantActions}>
-          <Tooltip label="Copy" withArrow fz={'xs'}>
+          <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -129,7 +129,7 @@ export default function AI({
             </ActionIcon>
           </Tooltip>
 
-          <Tooltip label="Read Aloud" withArrow fz={'xs'}>
+          <Tooltip label="Read Aloud" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -141,7 +141,7 @@ export default function AI({
             </ActionIcon>
           </Tooltip>
 
-          <Tooltip label="Regenerate" withArrow fz={'xs'}>
+          <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -291,7 +291,7 @@ function UserMessage({ content }: { content: string }) {
       </Paper>
 
       <Group justify="end" gap={5} className={classes.userActions}>
-        <Tooltip label="Copy" withArrow fz={'xs'}>
+        <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
           <ActionIcon
             size={ICON_WRAPPER_SIZE / 1.25}
             color="gray"
@@ -307,7 +307,7 @@ function UserMessage({ content }: { content: string }) {
           </ActionIcon>
         </Tooltip>
 
-        <Tooltip label="Edit" withArrow fz={'xs'}>
+        <Tooltip label="Edit" withArrow fz={'xs'} color="pri">
           <ActionIcon
             size={ICON_WRAPPER_SIZE / 1.25}
             color="gray"

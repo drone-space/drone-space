@@ -6,8 +6,8 @@ import { ActionIcon, Group, Stack, Textarea, Tooltip } from '@mantine/core';
 
 import {
   IconBrandTelegram,
-  IconPlayerRecordFilled,
-  IconSquareFilled,
+  IconMicrophone,
+  IconMicrophoneOff,
 } from '@tabler/icons-react';
 import appData from '@/data/app';
 import classes from './claude.module.scss';
@@ -19,13 +19,14 @@ import {
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
 import { useSTT } from '@/hooks/stt';
+import IndicatorAudio from '../common/indicators/audio';
 
 export default function Claude({
   props,
 }: {
   props: { form: FormClaudeType; submitted: boolean; handleSubmit: () => void };
 }) {
-  const { listening, startListening, stopListening } = useSTT({
+  const { listening, volumeRef, startListening, stopListening } = useSTT({
     form: props.form,
   });
 
@@ -71,25 +72,48 @@ export default function Claude({
                 />
               </ActionIcon>
             ) : !listening ? (
-              <Tooltip label="Use voice mode" color="pri" withArrow fz={'xs'}>
+              <Tooltip label="Dictate" color="pri" withArrow fz={'xs'}>
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE / 1.2}
-                  variant="outline"
+                  variant="subtle"
                   onClick={() => startListening()}
-                  radius={'xl'}
-                  style={{ borderWidth: ICON_STROKE_WIDTH }}
                 >
-                  <IconPlayerRecordFilled
+                  <IconMicrophone
                     size={ICON_SIZE / 1.2}
                     stroke={ICON_STROKE_WIDTH}
                   />
                 </ActionIcon>
               </Tooltip>
             ) : (
-              <Tooltip label="Stop voice mode" color="pri" withArrow fz={'xs'}>
+              <Group>
+                <IndicatorAudio props={{ volumeRef }} />
+
+                <Tooltip label="Stop Dictation" color="pri" withArrow fz={'xs'}>
+                  <ActionIcon
+                    size={ICON_WRAPPER_SIZE / 1.2}
+                    variant="subtle"
+                    onClick={() => stopListening()}
+                  >
+                    <IconMicrophoneOff
+                      size={ICON_SIZE / 1.2}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
+                  </ActionIcon>
+                </Tooltip>
+              </Group>
+            )}
+          </Group>
+        </Group>
+      </Stack>
+    </form>
+  );
+}
+
+{
+  /* <Tooltip label="Stop voice mode" color="pri" withArrow fz={'xs'}>
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE / 1.2}
-                  variant="outline"
+                  variant="subtle"
                   onClick={() => stopListening()}
                   radius={'xl'}
                   style={{ borderWidth: ICON_STROKE_WIDTH }}
@@ -99,11 +123,5 @@ export default function Claude({
                     stroke={ICON_STROKE_WIDTH}
                   />
                 </ActionIcon>
-              </Tooltip>
-            )}
-          </Group>
-        </Group>
-      </Stack>
-    </form>
-  );
+              </Tooltip> */
 }

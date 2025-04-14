@@ -134,7 +134,7 @@ export const useSTT = (params?: {
     captureBaseline();
   };
 
-  const stopListening = async () => {
+  const stopListening = async (stopParams?: { submit?: boolean }) => {
     recognitionRef.current?.stop();
     setListening(false);
 
@@ -158,7 +158,7 @@ export const useSTT = (params?: {
     }
 
     // auto submit from the ref
-    if (transcriptRef.current.trim().length > 0) {
+    if (stopParams?.submit && transcriptRef.current.trim().length > 0) {
       if (params?.handleSubmit) {
         const response = await params.handleSubmit(transcriptRef.current);
 

@@ -3,11 +3,9 @@
   align-items: center;
   justify-content: center;
   gap: 4px; /* tighter spacing */
-  height: 16px;
 }
 
 .line {
-  width: 2px; /* thinner bars */
   background-color: var(--mantine-color-pri-9);
   border-radius: 2px;
 }

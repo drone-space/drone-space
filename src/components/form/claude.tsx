@@ -18,7 +18,6 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
-import IndicatorAudio from '../common/indicators/audio';
 
 export default function Claude({
   props,
@@ -31,7 +30,7 @@ export default function Claude({
     streamSpeech: (input: { text: string }) => void;
     listening: boolean;
     startListening: () => void;
-    stopListening: () => void;
+    stopListening: (input: { submit?: boolean }) => Promise<void>;
     volumeRef: MutableRefObject<number>;
   };
 }) {
@@ -90,22 +89,20 @@ export default function Claude({
                 </ActionIcon>
               </Tooltip>
             ) : (
-              <Group>
-                <IndicatorAudio props={{ volumeRef: props.volumeRef }} />
-
-                <Tooltip label="Stop Dictation" color="pri" withArrow fz={'xs'}>
-                  <ActionIcon
-                    size={ICON_WRAPPER_SIZE / 1.2}
-                    variant="subtle"
-                    onClick={props.stopListening}
-                  >
-                    <IconMicrophoneOff
-                      size={ICON_SIZE / 1.2}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  </ActionIcon>
-                </Tooltip>
-              </Group>
+              <Tooltip label="Stop Dictation" color="pri" withArrow fz={'xs'}>
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE / 1.2}
+                  variant="subtle"
+                  onClick={async () =>
+                    await props.stopListening({ submit: false })
+                  }
+                >
+                  <IconMicrophoneOff
+                    size={ICON_SIZE / 1.2}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ActionIcon>
+              </Tooltip>
             )}
           </Group>
         </Group>

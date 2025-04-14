@@ -5,16 +5,27 @@ import { useVisualizer } from '@/hooks/visualizer';
 export default function Audio({
   props,
 }: {
-  props: { volumeRef: React.MutableRefObject<number> };
+  props: {
+    volumeRef: React.MutableRefObject<number>;
+    size?: { height?: number; width?: number };
+  };
 }) {
   const { barcount, barsRef } = useVisualizer({ volumeRef: props.volumeRef });
 
   return (
-    <div className={styles.waveform}>
+    <div
+      className={styles.waveform}
+      style={{
+        height: props.size?.height || 16,
+      }}
+    >
       {Array.from({ length: barcount }).map((_, i) => (
         <div
           key={i}
           className={styles.line}
+          style={{
+            width: props.size?.width || 3,
+          }}
           ref={(el) => {
             if (el) barsRef.current[i] = el;
           }}

@@ -12,6 +12,7 @@ import LayoutSection from '@/components/layout/section';
 import FormClaude from '@/components/form/claude';
 import { useTTS } from '@/hooks/tts';
 import { useSTT } from '@/hooks/stt';
+import OverlayAIVoice from '@/components/overlays/ai-voice';
 
 export default function AI({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -41,6 +42,12 @@ export default function AI({ children }: { children: React.ReactNode }) {
         padding={0}
         size={'lg'}
         centered
+        styles={{
+          root: {
+            position: 'relative',
+            overflow: 'hidden',
+          },
+        }}
       >
         <HeaderModalAI onClose={handleClose} />
 
@@ -83,6 +90,8 @@ export default function AI({ children }: { children: React.ReactNode }) {
           resetConversation={resetConversation}
           hasConversation={conversation.length > 0}
         />
+
+        <OverlayAIVoice props={{ listening, volumeRef, stopListening }} />
       </Modal>
 
       <div onClick={open} style={{ cursor: 'pointer' }}>

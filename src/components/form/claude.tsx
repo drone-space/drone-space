@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 
 import { ActionIcon, Group, Stack, Textarea, Tooltip } from '@mantine/core';
 
@@ -18,18 +18,23 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
-import { useSTT } from '@/hooks/stt';
 import IndicatorAudio from '../common/indicators/audio';
 
 export default function Claude({
   props,
 }: {
-  props: { form: FormClaudeType; submitted: boolean; handleSubmit: () => void };
+  props: {
+    form: FormClaudeType;
+    submitted: boolean;
+    handleSubmit: () => void;
+    fetchingSpeech: boolean;
+    streamSpeech: (input: { text: string }) => void;
+    listening: boolean;
+    startListening: () => void;
+    stopListening: () => void;
+    volumeRef: MutableRefObject<number>;
+  };
 }) {
-  const { listening, volumeRef, startListening, stopListening } = useSTT({
-    form: props.form,
-  });
-
   return (
     <form onSubmit={props.form.onSubmit(props.handleSubmit)} noValidate>
       <Stack gap={'xs'}>
@@ -59,7 +64,7 @@ export default function Claude({
 
         <Group justify="end">
           <Group gap={'xs'}>
-            {props.form.values.content.length > 0 && !listening ? (
+            {props.form.values.content.length > 0 && !props.listening ? (
               <ActionIcon
                 size={ICON_WRAPPER_SIZE / 1.2}
                 variant="subtle"
@@ -71,12 +76,12 @@ export default function Claude({
                   stroke={ICON_STROKE_WIDTH}
                 />
               </ActionIcon>
-            ) : !listening ? (
+            ) : !props.listening ? (
               <Tooltip label="Dictate" color="pri" withArrow fz={'xs'}>
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE / 1.2}
                   variant="subtle"
-                  onClick={() => startListening()}
+                  onClick={props.startListening}
                 >
                   <IconMicrophone
                     size={ICON_SIZE / 1.2}
@@ -86,13 +91,13 @@ export default function Claude({
               </Tooltip>
             ) : (
               <Group>
-                <IndicatorAudio props={{ volumeRef }} />
+                <IndicatorAudio props={{ volumeRef: props.volumeRef }} />
 
                 <Tooltip label="Stop Dictation" color="pri" withArrow fz={'xs'}>
                   <ActionIcon
                     size={ICON_WRAPPER_SIZE / 1.2}
                     variant="subtle"
-                    onClick={() => stopListening()}
+                    onClick={props.stopListening}
                   >
                     <IconMicrophoneOff
                       size={ICON_SIZE / 1.2}

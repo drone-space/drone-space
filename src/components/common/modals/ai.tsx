@@ -10,12 +10,21 @@ import LayoutBodyAI from '@/components/layout/bodies/ai';
 import FooterModalAI from '@/components/layout/footers/modal/ai';
 import LayoutSection from '@/components/layout/section';
 import FormClaude from '@/components/form/claude';
+import { useTTS } from '@/hooks/tts';
+import { useSTT } from '@/hooks/stt';
 
 export default function AI({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [updated, setUpdated] = useState(false);
   const { form, submitted, handleSubmit, resetConversation } = useFormClaude();
   const conversation = useAppSelector((state) => state.claude.value);
+
+  const { fetching, streamSpeech } = useTTS();
+  const { listening, volumeRef, startListening, stopListening } = useSTT({
+    form: form,
+    handleSubmit: handleSubmit,
+    streamSpeech,
+  });
 
   const handleClose = () => {
     setUpdated(false);
@@ -43,6 +52,8 @@ export default function AI({ children }: { children: React.ReactNode }) {
           handleSubmit={handleSubmit}
           updated={updated}
           setUpdated={setUpdated}
+          fetchingSpeech={fetching}
+          streamSpeech={streamSpeech}
         />
 
         <LayoutSection
@@ -53,7 +64,19 @@ export default function AI({ children }: { children: React.ReactNode }) {
           px={'xs'}
           padded={'xs'}
         >
-          <FormClaude props={{ form, submitted, handleSubmit }} />
+          <FormClaude
+            props={{
+              form,
+              submitted,
+              handleSubmit,
+              fetchingSpeech: fetching,
+              streamSpeech,
+              startListening,
+              stopListening,
+              listening,
+              volumeRef,
+            }}
+          />
         </LayoutSection>
 
         <FooterModalAI

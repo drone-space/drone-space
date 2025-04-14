@@ -27,7 +27,6 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@/data/constants';
-import { useTTS } from '@/hooks/tts';
 
 // Sample questions data
 const sampleQuestions = [
@@ -46,6 +45,8 @@ export default function AI({
   handleSubmit,
   updated,
   setUpdated,
+  fetchingSpeech,
+  streamSpeech,
 }: {
   opened: boolean;
   conversation: any[];
@@ -54,14 +55,13 @@ export default function AI({
   handleSubmit: (sv?: any, nv?: boolean) => void;
   updated: boolean;
   setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchingSpeech: boolean;
+  streamSpeech: (input: { text: string }) => void;
 }) {
   const { targetRef, scrollableRef } = useScrollIntoView<
     HTMLDivElement,
     HTMLDivElement
   >();
-
-  // tts hook
-  const { fetching, streamSpeech } = useTTS();
 
   // Scroll into view when new messages appear
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function AI({
 
     return (
       <Stack
-        gap={'xs'}
+        gap={5}
         align="start"
         my={'xs'}
         mih={isLast && !submitted ? '30vh' : undefined}
@@ -134,7 +134,7 @@ export default function AI({
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
               variant="subtle"
-              loading={fetching}
+              loading={fetchingSpeech}
               onClick={() => streamSpeech({ text: content })}
             >
               <IconVolume size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
@@ -146,7 +146,6 @@ export default function AI({
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
               variant="subtle"
-              loading={fetching}
               onClick={() => {}}
             >
               <IconRefresh size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
@@ -277,7 +276,7 @@ function UserMessage({ content }: { content: string }) {
   };
 
   return (
-    <Stack align="end" my={'sm'} gap={'xs'} className={classes.user}>
+    <Stack align="end" my={'sm'} gap={5} className={classes.user}>
       <Paper
         bg={'var(--mantine-color-pri-light)'}
         c={'var(--mantine-color-pri-9)'}

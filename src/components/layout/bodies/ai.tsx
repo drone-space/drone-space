@@ -9,12 +9,19 @@ import {
   Skeleton,
   Stack,
   Text,
+  Tooltip,
 } from '@mantine/core';
-import { useScrollIntoView } from '@mantine/hooks';
+import { useClipboard, useScrollIntoView } from '@mantine/hooks';
 import LayoutSection from '@/components/layout/section';
 import { FormClaudeType } from '@/hooks/form/claude';
 import { MarkdownComponent } from '@/components/wrapper/markdown';
-import { IconVolume } from '@tabler/icons-react';
+import {
+  IconCheck,
+  IconCopy,
+  IconPencil,
+  IconRefresh,
+  IconVolume,
+} from '@tabler/icons-react';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -28,6 +35,8 @@ const sampleQuestions = [
   'What kind of drones does Drone Space sell?',
   'How long is the RPL training course?',
 ];
+
+import classes from './ai.module.scss';
 
 export default function AI({
   opened,
@@ -50,6 +59,9 @@ export default function AI({
     HTMLDivElement,
     HTMLDivElement
   >();
+
+  // tts hook
+  const { fetching, streamSpeech } = useTTS();
 
   // Scroll into view when new messages appear
   useEffect(() => {
@@ -85,37 +97,72 @@ export default function AI({
     animate: boolean;
     submitted: boolean;
   }) {
+    const clipboard = useClipboard({ timeout: 1000 });
+    const clipIndicators = {
+      icon: clipboard.copied ? IconCheck : IconCopy,
+    };
+
     return (
       <Stack
         gap={'xs'}
         align="start"
         my={'xs'}
         mih={isLast && !submitted ? '30vh' : undefined}
+        className={classes.assistant}
       >
         <MarkdownComponent markdown={content} animate={animate} />
-        <ActionIcon
-          size={ICON_WRAPPER_SIZE / 1.5}
-          radius={'xs'}
-          color="gray"
-          variant="subtle"
-          loading={fetching}
-          onClick={() => streamSpeech({ text: content })}
-        >
-          <IconVolume size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
-        </ActionIcon>
+
+        <Group gap={5} className={classes.assistantActions}>
+          <Tooltip label="Copy" withArrow fz={'xs'}>
+            <ActionIcon
+              size={ICON_WRAPPER_SIZE / 1.25}
+              color="gray"
+              variant={clipboard.copied ? 'light' : 'subtle'}
+              onClick={() => {
+                if (!clipboard.copied) clipboard.copy(content);
+              }}
+            >
+              <clipIndicators.icon
+                size={ICON_SIZE / 1.25}
+                stroke={ICON_STROKE_WIDTH}
+              />
+            </ActionIcon>
+          </Tooltip>
+
+          <Tooltip label="Read Aloud" withArrow fz={'xs'}>
+            <ActionIcon
+              size={ICON_WRAPPER_SIZE / 1.25}
+              color="gray"
+              variant="subtle"
+              loading={fetching}
+              onClick={() => streamSpeech({ text: content })}
+            >
+              <IconVolume size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
+            </ActionIcon>
+          </Tooltip>
+
+          <Tooltip label="Regenerate" withArrow fz={'xs'}>
+            <ActionIcon
+              size={ICON_WRAPPER_SIZE / 1.25}
+              color="gray"
+              variant="subtle"
+              loading={fetching}
+              onClick={() => {}}
+            >
+              <IconRefresh size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
       </Stack>
     );
   }
-
-  // tts hook
-  const { fetching, streamSpeech } = useTTS();
 
   return (
     <LayoutSection id="content" containerized={false} bordered>
       <ScrollArea
         h={'40vh'}
         scrollbarSize={8}
-        fz={'xs'}
+        fz={'sm'}
         px={'xs'}
         type="auto"
         ref={scrollableRef}
@@ -224,8 +271,13 @@ function SampleQuestions({
 }
 
 function UserMessage({ content }: { content: string }) {
+  const clipboard = useClipboard({ timeout: 1000 });
+  const clipIndicators = {
+    icon: clipboard.copied ? IconCheck : IconCopy,
+  };
+
   return (
-    <Group justify="end" my={'sm'}>
+    <Stack align="end" my={'sm'} gap={'xs'} className={classes.user}>
       <Paper
         bg={'var(--mantine-color-pri-light)'}
         c={'var(--mantine-color-pri-9)'}
@@ -237,6 +289,35 @@ function UserMessage({ content }: { content: string }) {
           {content}
         </Text>
       </Paper>
-    </Group>
+
+      <Group justify="end" gap={5} className={classes.userActions}>
+        <Tooltip label="Copy" withArrow fz={'xs'}>
+          <ActionIcon
+            size={ICON_WRAPPER_SIZE / 1.25}
+            color="gray"
+            variant={clipboard.copied ? 'light' : 'subtle'}
+            onClick={() => {
+              if (!clipboard.copied) clipboard.copy(content);
+            }}
+          >
+            <clipIndicators.icon
+              size={ICON_SIZE / 1.25}
+              stroke={ICON_STROKE_WIDTH}
+            />
+          </ActionIcon>
+        </Tooltip>
+
+        <Tooltip label="Edit" withArrow fz={'xs'}>
+          <ActionIcon
+            size={ICON_WRAPPER_SIZE / 1.25}
+            color="gray"
+            variant="subtle"
+            onClick={() => {}}
+          >
+            <IconPencil size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
+          </ActionIcon>
+        </Tooltip>
+      </Group>
+    </Stack>
   );
 }

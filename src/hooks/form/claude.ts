@@ -65,6 +65,8 @@ export const useFormClaude = (params?: {
 
         form.reset();
       }
+
+      return result.content[0].text;
     } catch (error) {
       showNotification({
         variant: Variant.FAILED,

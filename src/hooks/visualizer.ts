@@ -3,12 +3,16 @@ import { useEffect, useMemo, useRef } from 'react';
 const BAR_COUNT = 31;
 
 export const useVisualizer = (params: {
+  bars?: number;
   volumeRef: React.MutableRefObject<number>;
 }) => {
   const barsRef = useRef<HTMLDivElement[]>([]);
 
   const noise = useMemo(() => {
-    return Array.from({ length: BAR_COUNT }, () => Math.random() * 2 * Math.PI);
+    return Array.from(
+      { length: params.bars || BAR_COUNT },
+      () => Math.random() * 2 * Math.PI
+    );
   }, []);
 
   useEffect(() => {
@@ -33,5 +37,5 @@ export const useVisualizer = (params: {
     return () => cancelAnimationFrame(animationId);
   }, [params.volumeRef]);
 
-  return {barcount: BAR_COUNT, barsRef}
+  return { barcount: params.bars || BAR_COUNT, barsRef };
 };

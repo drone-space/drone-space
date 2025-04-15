@@ -20,7 +20,8 @@ export default function AI({
     const animate = () => {
       const volume = props?.volumeRef.current || 0;
 
-      setAngle((prev) => (prev + 0.3 + volume * 1.5) % 360);
+      setAngle((prev) => (prev + 0.1 + volume * 1.5) % 360);
+
       setColors((prev) =>
         prev.map((color) => ({
           ...color,

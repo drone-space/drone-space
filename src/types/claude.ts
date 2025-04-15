@@ -1,4 +1,4 @@
 export interface Turn {
-  role: 'user' | 'assistant' | string;
+  role: 'user' | 'assistant';
   content: string;
 }

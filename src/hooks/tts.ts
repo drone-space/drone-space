@@ -1,4 +1,5 @@
 import { Variant } from '@/enums/notification';
+import { textToSpeech } from '@/handlers/requests/tts';
 import { playAudioStream } from '@/libraries/wrappers/tts';
 import { showNotification } from '@/utilities/notifications';
 import { useRef, useState } from 'react';
@@ -11,8 +12,10 @@ export const useTTS = () => {
     try {
       setFetching(true);
 
+      const speechStream = await textToSpeech({ text: params.text });
+
       await playAudioStream({
-        text: params.text,
+        streamResponse: speechStream,
         onVolume: (v) => {
           volumeRef.current = v;
         },

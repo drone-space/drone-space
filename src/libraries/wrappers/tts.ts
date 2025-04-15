@@ -1,13 +1,10 @@
 'use client';
 
-import { textToSpeech } from '@/handlers/requests/tts';
-
-export const playAudio = async (params: { text: any }) => {
+export const playAudio = async (params: { streamResponse: Response }) => {
   if (typeof window === 'undefined') return;
 
   try {
-    const textSpeech = await textToSpeech({ text: params.text });
-    const blob = await textSpeech.blob();
+    const blob = await params.streamResponse.blob();
     const url = URL.createObjectURL(blob);
     const audio = new Audio(url);
     audio.play();
@@ -18,14 +15,12 @@ export const playAudio = async (params: { text: any }) => {
 };
 
 export const playAudioStream = async (params: {
-  text: any;
+  streamResponse: Response;
   onVolume?: (volume: number) => void;
 }) => {
   if (typeof window === 'undefined') return;
 
   try {
-    const textSpeech = await textToSpeech({ text: params.text });
-
     const mediaSource = new MediaSource();
     const audio = new Audio();
     audio.src = URL.createObjectURL(mediaSource);
@@ -57,7 +52,11 @@ export const playAudioStream = async (params: {
 
     mediaSource.addEventListener('sourceopen', async () => {
       const sourceBuffer = mediaSource.addSourceBuffer('audio/mpeg');
-      const reader = textSpeech.body!.getReader();
+
+      if (!params.streamResponse.body)
+        throw new Error('No body found in response');
+
+      const reader = params.streamResponse.body.getReader();
 
       const streamData = async () => {
         const { done, value } = await reader.read();

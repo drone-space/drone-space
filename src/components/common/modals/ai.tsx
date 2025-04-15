@@ -17,7 +17,8 @@ import OverlayAIVoice from '@/components/overlays/ai-voice';
 export default function AI({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [updated, setUpdated] = useState(false);
-  const { form, submitted, handleSubmit, resetConversation } = useFormClaude();
+  const { form, submitted, handleSubmit, resetConversation, liveReply } =
+    useFormClaude();
   const conversation = useAppSelector((state) => state.claude.value);
   const { fetching, streamSpeech, volumeRef: volumeTTS } = useTTS();
   const {
@@ -69,6 +70,7 @@ export default function AI({ children }: { children: React.ReactNode }) {
           setUpdated={setUpdated}
           fetchingSpeech={fetching}
           streamSpeech={streamSpeech}
+          liveReply={liveReply}
         />
 
         <LayoutSection

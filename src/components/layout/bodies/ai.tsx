@@ -47,6 +47,7 @@ export default function AI({
   setUpdated,
   fetchingSpeech,
   streamSpeech,
+  liveReply,
 }: {
   opened: boolean;
   conversation: any[];
@@ -57,6 +58,7 @@ export default function AI({
   setUpdated: React.Dispatch<React.SetStateAction<boolean>>;
   fetchingSpeech: boolean;
   streamSpeech: (input: { text: string }) => void;
+  liveReply: string;
 }) {
   const { targetRef, scrollableRef } = useScrollIntoView<
     HTMLDivElement,
@@ -89,10 +91,10 @@ export default function AI({
   function AssistantMessage({
     content,
     isLast,
-    animate,
     submitted,
   }: {
     content: string;
+    isLive?: boolean;
     isLast: boolean;
     animate: boolean;
     submitted: boolean;
@@ -110,7 +112,7 @@ export default function AI({
         mih={isLast && !submitted ? '30vh' : undefined}
         className={classes.assistant}
       >
-        <MarkdownComponent markdown={content} animate={animate} />
+        <MarkdownComponent markdown={content} animate={false} />
 
         <Group gap={5} className={classes.assistantActions}>
           <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
@@ -203,7 +205,17 @@ export default function AI({
         {submitted && (
           <Box h={'37.5vh'} ref={targetRef}>
             <UserMessage content={form.values.content} />
-            <TypingIndicator />
+            {liveReply ? (
+              <AssistantMessage
+                content={liveReply}
+                isLast
+                animate={false}
+                submitted={submitted}
+                isLive
+              />
+            ) : (
+              <TypingIndicator />
+            )}
           </Box>
         )}
 

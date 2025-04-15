@@ -36,7 +36,7 @@ export default function AIVoice({
     icon: props.listening ? IconMicrophoneOff : IconMicrophone,
     action: props.listening
       ? async () => {
-          await props.stopListening({ submit: true });
+          await props.stopListening({ submit: false });
         }
       : async () => {
           await props.startListening();
@@ -92,6 +92,7 @@ export default function AIVoice({
                       size={ICON_WRAPPER_SIZE * 2}
                       radius={'50%'}
                       variant="light"
+                      disabled={props.listening}
                       onClick={listeningProps.action}
                     >
                       <listeningProps.icon

@@ -165,6 +165,7 @@ export default function AI({
         px={'xs'}
         type="auto"
         ref={scrollableRef}
+        styles={{ scrollbar: { zIndex: 1 } }}
       >
         <Stack gap={'xs'} mt={'xs'}>
           <WelcomeMessage />

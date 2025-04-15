@@ -53,7 +53,9 @@ export default function AI({ children }: { children: React.ReactNode }) {
         padding={0}
         size={'lg'}
         centered
-        styles={{ root: { position: 'relative', overflow: 'hidden' } }}
+        styles={{
+          root: { position: 'relative', overflow: 'hidden' },
+        }}
       >
         <HeaderModalAI onClose={handleClose} />
 

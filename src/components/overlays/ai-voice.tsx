@@ -60,6 +60,7 @@ export default function AIVoice({
             bottom={0}
             left={0}
             bg={'var(--mantine-color-body)'}
+            style={{ zIndex: 100 }}
           >
             <Center h={'100%'}>
               <Stack align="center" gap={SECTION_SPACING / 3}>
@@ -76,7 +77,7 @@ export default function AIVoice({
                     volumeRef: props.listening
                       ? props.volumeSTT
                       : props.volumeTTS,
-                    size: { height: 56, width: 2 },
+                    size: { height: 56, width: 3 },
                   }}
                 />
 

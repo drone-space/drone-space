@@ -17,7 +17,10 @@ export const playAudio = async (params: { text: any }) => {
   }
 };
 
-export const playAudioStream = async (params: { text: any }) => {
+export const playAudioStream = async (params: {
+  text: any;
+  onVolume?: (volume: number) => void;
+}) => {
   if (typeof window === 'undefined') return;
 
   try {
@@ -27,12 +30,38 @@ export const playAudioStream = async (params: { text: any }) => {
     const audio = new Audio();
     audio.src = URL.createObjectURL(mediaSource);
 
+    // 🔊 Web Audio Setup
+    const audioContext = new AudioContext();
+    const source = audioContext.createMediaElementSource(audio);
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 256;
+
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    // Connect nodes
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    // 🔁 Volume detection loop
+    const detectVolume = () => {
+      analyser.getByteFrequencyData(dataArray);
+      const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+
+      const normalized = avg / 255;
+      params.onVolume?.(normalized);
+
+      requestAnimationFrame(detectVolume);
+    };
+
+    detectVolume();
+
     mediaSource.addEventListener('sourceopen', async () => {
       const sourceBuffer = mediaSource.addSourceBuffer('audio/mpeg');
       const reader = textSpeech.body!.getReader();
 
       const streamData = async () => {
         const { done, value } = await reader.read();
+
         if (done) {
           mediaSource.endOfStream();
           return;
@@ -48,7 +77,7 @@ export const playAudioStream = async (params: { text: any }) => {
       streamData();
     });
 
-    audio.play();
+    await audio.play();
   } catch (error) {
     console.error('---> wrapper error (play audio stream):', error);
     throw error;

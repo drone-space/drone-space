@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
 import { useFormClaude } from '@/hooks/form/claude';
 import { useAppSelector } from '@/hooks/redux';
@@ -19,13 +19,24 @@ export default function AI({ children }: { children: React.ReactNode }) {
   const [updated, setUpdated] = useState(false);
   const { form, submitted, handleSubmit, resetConversation } = useFormClaude();
   const conversation = useAppSelector((state) => state.claude.value);
-
-  const { fetching, streamSpeech } = useTTS();
-  const { listening, volumeRef, startListening, stopListening } = useSTT({
+  const { fetching, streamSpeech, volumeRef: volumeTTS } = useTTS();
+  const {
+    listening,
+    volumeRef: volumeSTT,
+    startListening,
+    stopListening,
+  } = useSTT({
     form: form,
     handleSubmit: handleSubmit,
     streamSpeech,
   });
+
+  const [voiceMode, setVoiceMode] = useState(false);
+
+  useEffect(() => {
+    if (!listening) return;
+    setVoiceMode(true);
+  }, [listening]);
 
   const handleClose = () => {
     setUpdated(false);
@@ -42,12 +53,7 @@ export default function AI({ children }: { children: React.ReactNode }) {
         padding={0}
         size={'lg'}
         centered
-        styles={{
-          root: {
-            position: 'relative',
-            overflow: 'hidden',
-          },
-        }}
+        styles={{ root: { position: 'relative', overflow: 'hidden' } }}
       >
         <HeaderModalAI onClose={handleClose} />
 
@@ -81,7 +87,6 @@ export default function AI({ children }: { children: React.ReactNode }) {
               startListening,
               stopListening,
               listening,
-              volumeRef,
             }}
           />
         </LayoutSection>
@@ -91,7 +96,17 @@ export default function AI({ children }: { children: React.ReactNode }) {
           hasConversation={conversation.length > 0}
         />
 
-        <OverlayAIVoice props={{ listening, volumeRef, stopListening }} />
+        <OverlayAIVoice
+          props={{
+            listening,
+            voiceMode,
+            volumeSTT,
+            startListening,
+            stopListening,
+            volumeTTS,
+            setVoiceMode,
+          }}
+        />
       </Modal>
 
       <div onClick={open} style={{ cursor: 'pointer' }}>

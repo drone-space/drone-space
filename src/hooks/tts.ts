@@ -1,15 +1,22 @@
 import { Variant } from '@/enums/notification';
 import { playAudioStream } from '@/libraries/wrappers/tts';
 import { showNotification } from '@/utilities/notifications';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export const useTTS = () => {
   const [fetching, setFetching] = useState(false);
+  const volumeRef = useRef(0);
 
   const handleFetch = async (params: { text: string }) => {
     try {
       setFetching(true);
-      await playAudioStream({ text: params.text });
+
+      await playAudioStream({
+        text: params.text,
+        onVolume: (v) => {
+          volumeRef.current = v;
+        },
+      });
     } catch (error) {
       showNotification({
         variant: Variant.FAILED,
@@ -23,5 +30,9 @@ export const useTTS = () => {
     }
   };
 
-  return { fetching, streamSpeech: handleFetch };
+  return {
+    fetching,
+    streamSpeech: handleFetch,
+    volumeRef,
+  };
 };

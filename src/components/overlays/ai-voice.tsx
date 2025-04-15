@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import React from 'react';
 import IndicatorAudio from '../common/indicators/audio';
-import { IconX } from '@tabler/icons-react';
+import { IconMicrophone, IconMicrophoneOff, IconX } from '@tabler/icons-react';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -23,13 +23,29 @@ export default function AIVoice({
 }: {
   props: {
     listening: boolean;
-    volumeRef: React.MutableRefObject<number>;
-    stopListening: (input: { submit?: boolean }) => Promise<void>;
+    voiceMode: boolean;
+    volumeSTT: React.MutableRefObject<number>;
+    volumeTTS: React.MutableRefObject<number>;
+    startListening: () => Promise<void>;
+    stopListening: (input?: { submit?: boolean }) => Promise<void>;
+    setVoiceMode: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }) {
+  const listeningProps = {
+    label: props.listening ? 'Stop' : 'Start',
+    icon: props.listening ? IconMicrophoneOff : IconMicrophone,
+    action: props.listening
+      ? async () => {
+          await props.stopListening({ submit: true });
+        }
+      : async () => {
+          await props.startListening();
+        },
+  };
+
   return (
     <Transition
-      mounted={props.listening}
+      mounted={props.voiceMode}
       // mounted={true}
       transition="fade"
       duration={400}
@@ -47,24 +63,52 @@ export default function AIVoice({
           >
             <Center h={'100%'}>
               <Stack align="center" gap={SECTION_SPACING / 3}>
-                <AvatarAI props={{ size: 160 }} />
+                <AvatarAI
+                  props={{
+                    size: 160,
+                    volumeRef: props.volumeTTS,
+                  }}
+                />
 
                 <IndicatorAudio
                   props={{
-                    volumeRef: props.volumeRef,
-                    size: { height: 56, width: 4 },
+                    listening: props.listening,
+                    volumeRef: props.listening
+                      ? props.volumeSTT
+                      : props.volumeTTS,
+                    size: { height: 56, width: 2 },
                   }}
                 />
 
                 <Group justify="center">
+                  <Tooltip
+                    label={listeningProps.label}
+                    fz={'xs'}
+                    color="pri"
+                    withArrow
+                  >
+                    <ActionIcon
+                      size={ICON_WRAPPER_SIZE * 2}
+                      radius={'50%'}
+                      variant="light"
+                      onClick={listeningProps.action}
+                    >
+                      <listeningProps.icon
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH * 1.5}
+                      />
+                    </ActionIcon>
+                  </Tooltip>
+
                   <Tooltip label={'End'} fz={'xs'} color="pri" withArrow>
                     <ActionIcon
                       size={ICON_WRAPPER_SIZE * 2}
                       radius={'50%'}
                       variant="light"
-                      onClick={async () =>
-                        await props.stopListening({ submit: true })
-                      }
+                      onClick={async () => {
+                        await props.stopListening({ submit: false });
+                        props.setVoiceMode(false);
+                      }}
                     >
                       <IconX
                         size={ICON_SIZE * 1}

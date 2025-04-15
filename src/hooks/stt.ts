@@ -79,7 +79,7 @@ export const useSTT = (params?: {
     if (normalizedVolume < silenceThresholdRef.current) {
       if (!silenceTimerRef.current) {
         silenceTimerRef.current = setTimeout(() => {
-          stopListening();
+          stopListening({ submit: true });
           params?.onAutoStop?.();
         }, 4000);
       }

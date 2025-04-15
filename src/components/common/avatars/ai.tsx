@@ -1,38 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-export default function AI({ props }: { props?: { size?: number } }) {
+export default function AI({
+  props,
+}: {
+  props?: { size?: number; volumeRef: React.MutableRefObject<number> };
+}) {
   const [angle, setAngle] = useState(0);
   const [colors, setColors] = useState<{ h: number; s: number; l: number }[]>(
     []
   );
+  const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const safeColors = generateSafeColors({ count: 3 });
-    setColors([...safeColors, safeColors[0]]); // loop for gradient
+    setColors([...safeColors, safeColors[0]]);
   }, []);
 
   useEffect(() => {
-    let frameId: number;
     const animate = () => {
-      setAngle((prev) => (prev + 0.1) % 360);
+      const volume = props?.volumeRef.current || 0;
 
-      // animate hue for slow morphing
+      setAngle((prev) => (prev + 0.3 + volume * 1.5) % 360);
       setColors((prev) =>
         prev.map((color) => ({
           ...color,
-          h: (color.h + 0.15) % 360,
+          h: (color.h + 0.15 + volume * 0.8) % 360,
         }))
       );
 
-      frameId = requestAnimationFrame(animate);
+      frameRef.current = requestAnimationFrame(animate);
     };
 
-    frameId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frameId);
-  }, []);
+    frameRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+    };
+  }, [props?.volumeRef]);
+
+  const volume = props?.volumeRef.current || 0;
 
   const gradient = `conic-gradient(from ${angle}deg, ${colors
-    .map((c) => hsl(c.h, c.s, c.l))
+    .map((c) => hsl(c.h, c.s + volume * 50, c.l))
     .join(', ')})`;
 
   return (
@@ -42,7 +50,11 @@ export default function AI({ props }: { props?: { size?: number } }) {
         height: props?.size || 200,
         borderRadius: '50%',
         background: gradient,
-        transition: 'background 0.3s linear',
+        transform: `scale(${1 + (props?.volumeRef.current || 0) * 0.25})`,
+        transition: 'transform 0.1s ease-out, background 0.2s linear',
+        boxShadow: `0 0 ${10 + (props?.volumeRef.current || 0) * 30}px rgba(0, 0, 0, ${
+          (props?.volumeRef.current || 0) * 0.6
+        })`,
       }}
     />
   );
@@ -102,7 +114,7 @@ function generateSafeColors({
       colors.push({ h: hue, s: saturation, l: lightness });
     }
 
-    hue = (hue + 37) % 360; // golden angle for better distribution
+    hue = (hue + 37) % 360;
     tries++;
   }
 

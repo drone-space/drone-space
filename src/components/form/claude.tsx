@@ -1,6 +1,6 @@
 'use client';
 
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 
 import { ActionIcon, Group, Stack, Textarea, Tooltip } from '@mantine/core';
 
@@ -30,8 +30,7 @@ export default function Claude({
     streamSpeech: (input: { text: string }) => void;
     listening: boolean;
     startListening: () => void;
-    stopListening: (input: { submit?: boolean }) => Promise<void>;
-    volumeRef: MutableRefObject<number>;
+    stopListening: (input?: { submit?: boolean }) => Promise<void>;
   };
 }) {
   return (

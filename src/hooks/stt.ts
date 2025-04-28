@@ -27,7 +27,10 @@ export const useSTT = (params?: {
   form?: FormClaudeType;
   handleSubmit?: (suVa?: any, noVa?: boolean) => Promise<any>;
   onAutoStop?: () => void;
-  streamSpeech?: (input: { text: string }) => Promise<void>;
+  streamSpeech?: (input: {
+    text: string;
+    onPlaybackEnd?: () => void;
+  }) => Promise<void>;
 }) => {
   const [listening, setListening] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -76,17 +79,22 @@ export const useSTT = (params?: {
     const normalizedVolume = avg / 255;
     volumeRef.current = normalizedVolume;
 
-    if (normalizedVolume < silenceThresholdRef.current) {
-      if (!silenceTimerRef.current) {
-        silenceTimerRef.current = setTimeout(() => {
-          stopListening({ submit: true });
-          params?.onAutoStop?.();
-        }, 4000);
-      }
-    } else {
+    const threshold = silenceThresholdRef.current;
+    const hasTranscript = transcriptRef.current.trim().length > 0;
+
+    if (normalizedVolume > threshold) {
+      // Reset silence timer — we’re still talking
       if (silenceTimerRef.current) {
         clearTimeout(silenceTimerRef.current);
         silenceTimerRef.current = null;
+      }
+    } else {
+      // 🧠 Only stop if we've captured *some* speech
+      if (hasTranscript && !silenceTimerRef.current) {
+        silenceTimerRef.current = setTimeout(() => {
+          stopListening({ submit: true });
+          params?.onAutoStop?.();
+        }, 1000); // short silence period is fine now
       }
     }
 
@@ -140,10 +148,12 @@ export const useSTT = (params?: {
 
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
     }
 
     if (silenceTimerRef.current) {
       clearTimeout(silenceTimerRef.current);
+      silenceTimerRef.current = null;
     }
 
     audioContextRef.current?.close();
@@ -157,14 +167,22 @@ export const useSTT = (params?: {
       mediaStreamRef.current = null;
     }
 
-    // auto submit from the ref
-    if (stopParams?.submit && transcriptRef.current.trim().length > 0) {
-      if (params?.handleSubmit) {
-        const response = await params.handleSubmit(transcriptRef.current);
+    // Store transcript locally before resetting
+    const spokenText = transcriptRef.current.trim();
 
-        if (params.streamSpeech) {
-          await params.streamSpeech({ text: response });
-        }
+    if (stopParams?.submit && spokenText.length > 0) {
+      const response = await params?.handleSubmit?.(spokenText);
+
+      // 🔁 Reset transcript so next round starts fresh
+      transcriptRef.current = '';
+      // Optional: clear UI too
+      params?.form?.setValues({ content: '' });
+
+      if (params?.streamSpeech) {
+        await params?.streamSpeech({
+          text: response,
+          onPlaybackEnd: async () => await startListening(),
+        });
       }
     }
   };

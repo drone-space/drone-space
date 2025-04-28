@@ -30,14 +30,23 @@ export const useFormClaude = (params?: {
 
   const parseValues = () => form.values.content.trim();
 
-  const handleSubmit = async (submitedValue?: any, noValidate?: boolean) => {
-    if (!noValidate && !form.isValid()) return;
+  const handleSubmit = async (submitedValue?: any) => {
+    let content = parseValues();
+
+    if (submitedValue) {
+      content =
+        typeof submitedValue === 'string'
+          ? submitedValue
+          : submitedValue?.content;
+    }
+
+    // Always sync the form for consistency
+    form.setValues({ content });
+
+    if (!form.isValid()) return;
 
     try {
       setSubmitted(true);
-
-      const content = submitedValue?.content || submitedValue || parseValues();
-      if (!form.values.content) form.setFieldValue('content', content);
 
       const response = await sendPrompt({
         content,

@@ -17,6 +17,8 @@ export const playAudio = async (params: { streamResponse: Response }) => {
 export const playAudioStream = async (params: {
   streamResponse: Response;
   onVolume?: (volume: number) => void;
+  onStreamEnd?: () => void; // 🔁 Called when stream is fully read
+  onPlaybackEnd?: () => void; // 🔊 Called when audio finishes playing
 }) => {
   if (typeof window === 'undefined') return;
 
@@ -41,14 +43,17 @@ export const playAudioStream = async (params: {
     const detectVolume = () => {
       analyser.getByteFrequencyData(dataArray);
       const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
-
       const normalized = avg / 255;
       params.onVolume?.(normalized);
-
       requestAnimationFrame(detectVolume);
     };
 
     detectVolume();
+
+    // 📢 Playback complete
+    audio.addEventListener('ended', () => {
+      params.onPlaybackEnd?.();
+    });
 
     mediaSource.addEventListener('sourceopen', async () => {
       const sourceBuffer = mediaSource.addSourceBuffer('audio/mpeg');
@@ -63,6 +68,7 @@ export const playAudioStream = async (params: {
 
         if (done) {
           mediaSource.endOfStream();
+          params.onStreamEnd?.(); // 👈 Trigger when streaming ends
           return;
         }
 

@@ -3,6 +3,7 @@ import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import { IconMessageCirclePlus } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import { useAppSelector } from '@/hooks/redux';
 
 const anthropic = 'https://www.anthropic.com';
 
@@ -14,11 +15,13 @@ const links = {
 
 export default function ModalFooter({
   resetConversation,
-  hasConversation,
 }: {
   resetConversation: () => void;
-  hasConversation: boolean;
 }) {
+  const hasConversation = useAppSelector(
+    (state) => state.claude.value.length > 0
+  );
+
   return (
     <LayoutSection id="footer" containerized={false} px={'xs'} padded={'xs'}>
       <Stack gap={'xs'}>

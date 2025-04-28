@@ -141,7 +141,7 @@ export default async function About() {
       <LayoutSection
         id="stats"
         padded={24}
-        bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+        bg={'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
         <Grid justify="center">
@@ -167,7 +167,7 @@ export default async function About() {
             <Divider
               w={{ md: '20%' }}
               size={2}
-              color="sec.4"
+              color="sec.3"
               mt={{ base: 'xs', md: 'xl' }}
               visibleFrom="sm"
             />
@@ -209,7 +209,7 @@ export default async function About() {
               <Divider
                 w={{ md: '20%' }}
                 size={2}
-                color="sec.4"
+                color="sec.3"
                 mt={{ base: 'xs', md: 'xl' }}
                 visibleFrom="sm"
               />

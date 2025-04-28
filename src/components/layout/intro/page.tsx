@@ -47,7 +47,7 @@ export default function Page({
             <Text
               fw={'bold'}
               ta={'center'}
-              c={'sec.4'}
+              c={'sec.3'}
               tt={'uppercase'}
               fz={'sm'}
             >

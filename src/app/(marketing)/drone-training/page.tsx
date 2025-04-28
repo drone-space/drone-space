@@ -97,8 +97,8 @@ export default async function DroneTraining() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -127,8 +127,8 @@ export default async function DroneTraining() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -215,8 +215,8 @@ export default async function DroneTraining() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -249,14 +249,14 @@ export default async function DroneTraining() {
             <Divider color="sec.3" size={'md'} />
           </GridCol>
           <GridCol span={8}>
-            <Divider color="pri.9" size={'md'} />
+            <Divider color="pri.7" size={'md'} />
           </GridCol>
         </Grid>
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING / 2}>
           <GridCol span={{ base: 12, md: 5.5 }}>
             <Card
-              bg={'pri.9'}
+              bg={'pri.7'}
               c={'white'}
               withBorder
               shadow="xs"
@@ -277,8 +277,8 @@ export default async function DroneTraining() {
                   <ThemeIcon
                     size={ICON_WRAPPER_SIZE / 1.5}
                     mt={2}
-                    color="sec.4"
-                    c={'pri.9'}
+                    color="sec.3"
+                    c={'pri.7'}
                     radius={'xl'}
                   >
                     <IconArrowRightDashed
@@ -414,14 +414,14 @@ export default async function DroneTraining() {
             <Divider color="sec.3" size={'md'} />
           </GridCol>
           <GridCol span={8} order={1}>
-            <Divider color="pri.9" size={'md'} />
+            <Divider color="pri.7" size={'md'} />
           </GridCol>
         </Grid>
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING / 2}>
           <GridCol span={{ base: 12, md: 5.5 }}>
             <Card
-              bg={'pri.9'}
+              bg={'pri.7'}
               c={'white'}
               withBorder
               shadow="xs"
@@ -442,8 +442,8 @@ export default async function DroneTraining() {
                   <ThemeIcon
                     size={ICON_WRAPPER_SIZE / 1.5}
                     mt={2}
-                    color="sec.4"
-                    c={'pri.9'}
+                    color="sec.3"
+                    c={'pri.7'}
                     radius={'xl'}
                   >
                     <IconArrowRightDashed
@@ -479,8 +479,8 @@ export default async function DroneTraining() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -581,7 +581,7 @@ export default async function DroneTraining() {
             <Divider color="sec.3" size={'md'} />
           </GridCol>
           <GridCol span={8}>
-            <Divider color="pri.9" size={'md'} />
+            <Divider color="pri.7" size={'md'} />
           </GridCol>
         </Grid>
 
@@ -589,14 +589,14 @@ export default async function DroneTraining() {
           {instructorModules.map((module, index) => (
             <GridCol key={index} span={{ base: 12, md: 4 }}>
               <Card
-                bg={'pri.9'}
+                bg={'pri.7'}
                 c={'white'}
                 withBorder
                 shadow="xs"
                 p={{ base: 'md', lg: 'xl' }}
                 h={'100%'}
               >
-                <Paper bg={'sec.3'} c={'pri.9'} p={'xs'} w={'fit-content'}>
+                <Paper bg={'sec.3'} c={'pri.7'} p={'xs'} w={'fit-content'}>
                   <Text inherit fz={'xs'} fw={'bold'}>
                     {module.duration}
                   </Text>
@@ -671,8 +671,8 @@ export default async function DroneTraining() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -768,8 +768,8 @@ export default async function DroneTraining() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed

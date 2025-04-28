@@ -247,7 +247,7 @@ export default function Home() {
                   h={'100%'}
                   fullWidth
                   color="sec.3"
-                  c={'pri.9'}
+                  c={'pri.7'}
                 >
                   <Stack align="center" p={'md'}>
                     <IconShoppingCart
@@ -268,7 +268,7 @@ export default function Home() {
                     h={'100%'}
                     fullWidth
                     color="sec.3"
-                    c={'pri.9'}
+                    c={'pri.7'}
                   >
                     <Stack align="center" p={'md'}>
                       <category.icon

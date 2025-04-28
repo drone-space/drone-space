@@ -308,7 +308,7 @@ const UserTurn = ({ props }: { props: { content: string } }) => {
     <Group justify="end" my={'sm'}>
       <Paper
         bg={'var(--mantine-color-pri-light)'}
-        c={'var(--mantine-color-pri-9)'}
+        c={'var(--mantine-color-pri-7)'}
         px={'xs'}
         maw={'70%'}
         py={5}

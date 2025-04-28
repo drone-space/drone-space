@@ -18,7 +18,7 @@ export default function Applications({
       <ThemeIcon
         size={ICON_WRAPPER_SIZE * 2}
         color="sec.3"
-        c={'pri.9'}
+        c={'pri.7'}
         className={classes.icon}
       >
         <data.icon size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />

@@ -19,7 +19,7 @@ export default function Section({
           <Text
             fw={'bold'}
             ta={{ base: 'center', md: options?.alignment || 'center' }}
-            c={'sec.4'}
+            c={'sec.3'}
             tt={'uppercase'}
             fz={'sm'}
           >

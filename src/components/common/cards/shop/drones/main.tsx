@@ -94,7 +94,7 @@ export default function Main({ data }: { data: typeDrone }) {
                       size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
                       color="var(--mantine-color-sec-3)"
-                      c={'var(--mantine-color-pri-9'}
+                      c={'var(--mantine-color-pri-7'}
                     >
                       <IconArrowRightDashed
                         size={ICON_SIZE / 1.5}
@@ -128,7 +128,7 @@ export default function Main({ data }: { data: typeDrone }) {
           </Stack>
         </div>
 
-        <Stack p={'md'} bg={'pri.9'} c={'var(--mantine-color-body)'}>
+        <Stack p={'md'} bg={'pri.7'} c={'var(--mantine-color-body)'}>
           <Group>
             <Text>
               Kshs.{' '}

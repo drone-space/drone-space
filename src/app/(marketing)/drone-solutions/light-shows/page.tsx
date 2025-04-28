@@ -106,7 +106,7 @@ export default async function LighShow() {
                   <IconChevronsRight
                     size={ICON_SIZE * 1.5}
                     stroke={ICON_STROKE_WIDTH}
-                    color="var(--mantine-color-pri-9)"
+                    color="var(--mantine-color-pri-7)"
                   />
                 }
               >
@@ -263,7 +263,7 @@ export default async function LighShow() {
                     )}
 
                     <ListItem mt={'md'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                      <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                         {item.label}
                       </Text>
                       : {item.item}

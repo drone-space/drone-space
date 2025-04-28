@@ -37,7 +37,7 @@ export default function Share({
       classNames={classes}
     >
       <MenuTarget>
-        <Group gap={6} c={'pri.9'} className={classes.target}>
+        <Group gap={6} c={'pri.7'} className={classes.target}>
           <IconShare size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
           <Text component="span" inherit>
             Share

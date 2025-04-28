@@ -21,7 +21,7 @@
     );
 
     .itemLabel {
-      color: var(--mantine-color-pri-9);
+      color: var(--mantine-color-pri-7);
     }
   }
 }
@@ -32,7 +32,7 @@
     var(--mantine-color-sec-light),
     var(--mantine-color-sec-light)
   );
-  color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+  color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
 }
 
 // .itemLabel {

@@ -89,7 +89,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                     inherit
                     fw={500}
                     c={
-                      'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                      'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                     }
                     fz={{ md: 'xl' }}
                   >
@@ -123,7 +123,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                         inherit
                         fw={500}
                         c={
-                          'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                          'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                         }
                         fz={{ md: 'xl' }}
                       >
@@ -205,7 +205,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                   component="span"
                   inherit
                   c={
-                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                    'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                   }
                 >
                   Specification Overview
@@ -225,8 +225,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                       <ThemeIcon
                         size={ICON_WRAPPER_SIZE / 1.5}
                         radius={'xl'}
-                        color="sec.4"
-                        c={'pri.9'}
+                        color="sec.3"
+                        c={'pri.7'}
                       >
                         <IconArrowRightDashed
                           size={ICON_SIZE / 1.5}
@@ -281,7 +281,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                     <IconListDetails
                       size={ICON_SIZE}
                       stroke={ICON_STROKE_WIDTH}
-                      color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                      color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                     />
                   }
                 >
@@ -297,7 +297,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                       <IconCube
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
                     }
                   >
@@ -314,7 +314,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                       <IconCubePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
                     }
                   >
@@ -331,7 +331,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                       <IconBattery3
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
                     }
                   >
@@ -348,7 +348,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                       <IconCirclePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
                     }
                   >
@@ -399,8 +399,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                           <ThemeIcon
                             size={ICON_WRAPPER_SIZE / 1.5}
                             radius={'xl'}
-                            color="sec.4"
-                            c={'pri.9'}
+                            color="sec.3"
+                            c={'pri.7'}
                             visibleFrom="xs"
                           >
                             <IconArrowRightDashed
@@ -509,7 +509,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                           }
                           fz={{ md: 'xl' }}
                         >
@@ -545,7 +545,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                     <Text
                       fw={'bold'}
                       variant="gradient"
-                      gradient={{ from: 'pri.9', to: 'sec.3', deg: 135 }}
+                      gradient={{ from: 'pri.7', to: 'sec.3', deg: 135 }}
                     >
                       Everything in the basic kit plus:
                     </Text>
@@ -607,7 +607,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                           <Text
                             fw={'bold'}
                             variant="gradient"
-                            gradient={{ from: 'pri.9', to: 'sec.3', deg: 135 }}
+                            gradient={{ from: 'pri.7', to: 'sec.3', deg: 135 }}
                           >
                             Everything in the basic kit plus:
                           </Text>
@@ -632,7 +632,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                           }
                           fz={{ md: 'xl' }}
                         >
@@ -687,8 +687,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                               <ThemeIcon
                                 size={ICON_WRAPPER_SIZE / 1.5}
                                 radius={'xl'}
-                                color="sec.4"
-                                c={'pri.9'}
+                                color="sec.3"
+                                c={'pri.7'}
                                 visibleFrom="xs"
                               >
                                 <IconArrowRightDashed
@@ -717,7 +717,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                           }
                           fz={{ md: 'xl' }}
                         >

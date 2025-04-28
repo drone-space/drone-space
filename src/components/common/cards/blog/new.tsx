@@ -48,7 +48,7 @@ export default function New({ post }: { post: PostRelations }) {
               <Group>
                 <Badge
                   color="white"
-                  c={'var(--mantine-color-pri-9)'}
+                  c={'var(--mantine-color-pri-7)'}
                   radius={'xs'}
                 >
                   {getRegionalDate(post.createdAt).date}

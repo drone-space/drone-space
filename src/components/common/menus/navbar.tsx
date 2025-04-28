@@ -103,7 +103,7 @@ export default function Navbar({
               </Grid>
 
               <Card
-                bg={'var(--mantine-color-pri-9)'}
+                bg={'var(--mantine-color-pri-7)'}
                 c={'var(--mantine-color-body)'}
                 radius={0}
               >
@@ -131,12 +131,12 @@ export default function Navbar({
                             <IconFileDownload
                               size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
-                              color="var(--mantine-color-pri-9)"
+                              color="var(--mantine-color-pri-7)"
                             />
                           }
                           fullWidth
                           color="sec.3"
-                          c="pri.9"
+                          c="pri.7"
                           size="compact-sm"
                         >
                           Brochure

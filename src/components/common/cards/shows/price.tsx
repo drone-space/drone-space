@@ -25,7 +25,7 @@ export default function Price({
     <Card
       className={classes.card}
       pos={'relative'}
-      bg={'pri.9'}
+      bg={'pri.7'}
       c={'var(--mantine-color-body)'}
     >
       <Text ta={'center'} component="sub" inherit fz={'xs'}>
@@ -48,7 +48,7 @@ export default function Price({
       </Text>
 
       <ModalShowPrice>
-        <Tooltip label="Learn More" withArrow color="sec.3" c="pri.9">
+        <Tooltip label="Learn More" withArrow color="sec.3" c="pri.7">
           <ActionIcon
             size={ICON_WRAPPER_SIZE / 1.5}
             pos={'absolute'}

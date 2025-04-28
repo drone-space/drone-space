@@ -16,7 +16,7 @@ export default function Factor({
   return (
     <Card className={classes.card} padding={'lg'}>
       <Stack gap={'sm'} align="start">
-        <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} color="sec.3" c="pri.9">
+        <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} color="sec.3" c="pri.7">
           <data.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
         </ThemeIcon>
 

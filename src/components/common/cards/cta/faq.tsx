@@ -27,7 +27,7 @@ export default function Faq() {
         <Group justify="center" mt={'xl'}>
           <Button
             color="var(--mantine-color-body)"
-            c={'var(--mantine-color-pri-9)'}
+            c={'var(--mantine-color-pri-7)'}
             component={Link}
             href={'/about/contact'}
           >

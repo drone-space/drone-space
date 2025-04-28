@@ -2,7 +2,6 @@ import Markdown from 'react-markdown';
 
 interface MarkdownComponentProps {
   markdown: string;
-  animate: boolean;
 }
 
 export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({

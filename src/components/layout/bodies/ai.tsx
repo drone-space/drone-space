@@ -18,8 +18,8 @@ import { MarkdownComponent } from '@/components/wrapper/markdown';
 import {
   IconCheck,
   IconCopy,
-  IconPencil,
-  IconRefresh,
+  // IconPencil,
+  // IconRefresh,
   IconVolume,
 } from '@tabler/icons-react';
 import {
@@ -36,10 +36,10 @@ const sampleQuestions = [
 ];
 
 import classes from './ai.module.scss';
+import { useAppSelector } from '@/hooks/redux';
 
 export default function AI({
   opened,
-  conversation,
   form,
   submitted,
   handleSubmit,
@@ -50,7 +50,6 @@ export default function AI({
   liveReply,
 }: {
   opened: boolean;
-  conversation: any[];
   form: FormClaudeType;
   submitted: boolean;
   handleSubmit: (sv?: any, nv?: boolean) => void;
@@ -60,6 +59,8 @@ export default function AI({
   streamSpeech: (input: { text: string }) => void;
   liveReply: string;
 }) {
+  const conversation = useAppSelector((state) => state.claude.value);
+
   const { targetRef, scrollableRef } = useScrollIntoView<
     HTMLDivElement,
     HTMLDivElement
@@ -112,7 +113,7 @@ export default function AI({
         mih={isLast && !submitted ? '30vh' : undefined}
         className={classes.assistant}
       >
-        <MarkdownComponent markdown={content} animate={false} />
+        <MarkdownComponent markdown={content} />
 
         <Group gap={5} className={classes.assistantActions}>
           <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
@@ -143,7 +144,7 @@ export default function AI({
             </ActionIcon>
           </Tooltip>
 
-          <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
+          {/* <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -152,7 +153,7 @@ export default function AI({
             >
               <IconRefresh size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
-          </Tooltip>
+          </Tooltip> */}
         </Group>
       </Stack>
     );
@@ -232,7 +233,6 @@ function WelcomeMessage() {
       markdown={
         "Hi! I'm Hekima, an AI model trained provide Drone Space related content. Ask me anything you wish to know about the company."
       }
-      animate={false}
     />
   );
 }
@@ -258,7 +258,7 @@ function SampleQuestions({
 }: {
   questions: string[];
   submitted: boolean;
-  handleSubmit: (sv?: any, nv?: boolean) => void;
+  handleSubmit: (sv?: any) => void;
 }) {
   return (
     <Stack gap={'xs'} pl={'xs'}>
@@ -272,7 +272,7 @@ function SampleQuestions({
             fw={'normal'}
             size="compact-xs"
             disabled={submitted}
-            onClick={async () => await handleSubmit(question.trim(), true)}
+            onClick={async () => await handleSubmit(question.trim())}
           >
             {question}
           </Button>
@@ -283,10 +283,10 @@ function SampleQuestions({
 }
 
 function UserMessage({ content }: { content: string }) {
-  const clipboard = useClipboard({ timeout: 1000 });
-  const clipIndicators = {
-    icon: clipboard.copied ? IconCheck : IconCopy,
-  };
+  // const clipboard = useClipboard({ timeout: 1000 });
+  // const clipIndicators = {
+  //   icon: clipboard.copied ? IconCheck : IconCopy,
+  // };
 
   return (
     <Stack align="end" my={'sm'} gap={5} className={classes.user}>
@@ -302,7 +302,7 @@ function UserMessage({ content }: { content: string }) {
         </Text>
       </Paper>
 
-      <Group justify="end" gap={5} className={classes.userActions}>
+      {/* <Group justify="end" gap={5} className={classes.userActions}>
         <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
           <ActionIcon
             size={ICON_WRAPPER_SIZE / 1.25}
@@ -329,7 +329,7 @@ function UserMessage({ content }: { content: string }) {
             <IconPencil size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
           </ActionIcon>
         </Tooltip>
-      </Group>
+      </Group> */}
     </Stack>
   );
 }

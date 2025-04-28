@@ -73,7 +73,6 @@ export default function AIVoice({
 
                 <IndicatorAudio
                   props={{
-                    listening: props.listening,
                     volumeRef: props.listening
                       ? props.volumeSTT
                       : props.volumeTTS,

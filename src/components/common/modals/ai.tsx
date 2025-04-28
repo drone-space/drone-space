@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
 import { useFormClaude } from '@/hooks/form/claude';
-import { useAppSelector } from '@/hooks/redux';
 import { useDisclosure } from '@mantine/hooks';
 import HeaderModalAI from '@/components/layout/headers/modal/ai';
 import LayoutBodyAI from '@/components/layout/bodies/ai';
@@ -19,7 +18,6 @@ export default function AI({ children }: { children: React.ReactNode }) {
   const [updated, setUpdated] = useState(false);
   const { form, submitted, handleSubmit, resetConversation, liveReply } =
     useFormClaude();
-  const conversation = useAppSelector((state) => state.claude.value);
   const { fetching, streamSpeech, volumeRef: volumeTTS } = useTTS();
   const {
     listening,
@@ -62,7 +60,6 @@ export default function AI({ children }: { children: React.ReactNode }) {
 
         <LayoutBodyAI
           opened={opened}
-          conversation={conversation}
           form={form}
           submitted={submitted}
           handleSubmit={handleSubmit}
@@ -86,19 +83,13 @@ export default function AI({ children }: { children: React.ReactNode }) {
               form,
               submitted,
               handleSubmit,
-              fetchingSpeech: fetching,
-              streamSpeech,
-              startListening,
-              stopListening,
               listening,
+              startListening,
             }}
           />
         </LayoutSection>
 
-        <FooterModalAI
-          resetConversation={resetConversation}
-          hasConversation={conversation.length > 0}
-        />
+        <FooterModalAI resetConversation={resetConversation} />
 
         <OverlayAIVoice
           props={{

@@ -4,11 +4,7 @@ import React from 'react';
 
 import { ActionIcon, Group, Stack, Textarea, Tooltip } from '@mantine/core';
 
-import {
-  IconBrandTelegram,
-  IconMicrophone,
-  IconMicrophoneOff,
-} from '@tabler/icons-react';
+import { IconBrandTelegram, IconMicrophone } from '@tabler/icons-react';
 import appData from '@/data/app';
 import classes from './claude.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
@@ -26,11 +22,8 @@ export default function Claude({
     form: FormClaudeType;
     submitted: boolean;
     handleSubmit: () => void;
-    fetchingSpeech: boolean;
-    streamSpeech: (input: { text: string }) => void;
     listening: boolean;
     startListening: () => void;
-    stopListening: (input?: { submit?: boolean }) => Promise<void>;
   };
 }) {
   return (
@@ -74,7 +67,7 @@ export default function Claude({
                   stroke={ICON_STROKE_WIDTH}
                 />
               </ActionIcon>
-            ) : !props.listening ? (
+            ) : (
               <Tooltip label="Dictate" color="pri" withArrow fz={'xs'}>
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE / 1.2}
@@ -82,21 +75,6 @@ export default function Claude({
                   onClick={props.startListening}
                 >
                   <IconMicrophone
-                    size={ICON_SIZE / 1.2}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                </ActionIcon>
-              </Tooltip>
-            ) : (
-              <Tooltip label="Stop Dictation" color="pri" withArrow fz={'xs'}>
-                <ActionIcon
-                  size={ICON_WRAPPER_SIZE / 1.2}
-                  variant="subtle"
-                  onClick={async () =>
-                    await props.stopListening({ submit: false })
-                  }
-                >
-                  <IconMicrophoneOff
                     size={ICON_SIZE / 1.2}
                     stroke={ICON_STROKE_WIDTH}
                   />

@@ -6,7 +6,6 @@ export default function Audio({
   props,
 }: {
   props: {
-    listening?: boolean;
     volumeRef: React.MutableRefObject<number>;
     size?: { height?: number; width?: number };
   };
@@ -21,7 +20,6 @@ export default function Audio({
       className={styles.waveform}
       style={{
         height: props.size?.height || 16,
-        opacity: props.listening ? 1 : 0,
       }}
     >
       {Array.from({ length: barcount }).map((_, i) => (

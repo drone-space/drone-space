@@ -8,7 +8,10 @@ export const useTTS = () => {
   const [fetching, setFetching] = useState(false);
   const volumeRef = useRef(0);
 
-  const handleFetch = async (params: { text: string }) => {
+  const handleFetch = async (params: {
+    text: string;
+    onPlaybackEnd?: () => void;
+  }) => {
     try {
       setFetching(true);
 
@@ -18,6 +21,9 @@ export const useTTS = () => {
         streamResponse: speechStream,
         onVolume: (v) => {
           volumeRef.current = v;
+        },
+        onPlaybackEnd: () => {
+          if (params.onPlaybackEnd) params?.onPlaybackEnd();
         },
       });
     } catch (error) {

@@ -57,11 +57,18 @@ const appTheme = createTheme({
     deg: 45,
   },
 
-  headings: { fontFamily: 'Bahnschrift, sans-serif' },
+  headings: {
+    fontFamily: 'var(--font-montserrat)',
+    fontWeight: '700',
+  },
 
   cursorType: 'pointer',
 
   components: {
+    Title: Title.extend({
+      defaultProps: { ff: 'var(--font-montserrat)', c: 'pri', fw: 'bold' },
+    }),
+
     Anchor: Anchor.extend({
       defaultProps: { underline: 'never' },
       classNames: classesAnchor,
@@ -75,10 +82,6 @@ const appTheme = createTheme({
       classNames: (_: any, { size }: { size?: any }) => ({
         root: cx({ [classesContainer.root]: size === 'responsive' }),
       }),
-    }),
-
-    Title: Title.extend({
-      defaultProps: { c: 'pri', fw: 'bold' },
     }),
 
     Notification: Notification.extend({ classNames: classesNotification }),

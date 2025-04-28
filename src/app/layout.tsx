@@ -1,4 +1,4 @@
-import { Open_Sans } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
@@ -35,7 +35,10 @@ import { Notifications } from '@mantine/notifications';
 // import { SpeedInsights } from "@vercel/speed-insights/next";
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
-const openSans = Open_Sans({ subsets: ['latin'] });
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
+  subsets: ['latin'],
+});
 
 export default async function LayoutRoot({
   children,
@@ -61,7 +64,7 @@ export default async function LayoutRoot({
         />
       </head>
 
-      <body className={openSans.className}>
+      <body className={montserrat.className}>
         <MantineProvider
           theme={appTheme}
           cssVariablesResolver={appResolver}

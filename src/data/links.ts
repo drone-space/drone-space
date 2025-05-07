@@ -25,16 +25,34 @@ export const shopLinks = [
     desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
   },
   {
+    link: '/shop/drones/cinematography',
+    label: 'Cinematography & Filmmaking',
+    leftSection: IconCell,
+    desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
+  },
+  {
     link: '/shop/drones/enterprise',
-    label: 'Enterprise Drones',
+    label: 'Industrial & Enterprise Applications',
     leftSection: IconCell,
     desc: 'Powerful drones designed for industrial and commercial applications.',
   },
   {
+    link: '/shop/drones/mapping',
+    label: 'Surveying & Mapping',
+    leftSection: IconCell,
+    desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
+  },
+  {
     link: '/shop/drones/agriculture',
-    label: 'Agriculture Drones',
+    label: 'Agriculture & Precision Farming',
     leftSection: IconPlant2,
     desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
+  },
+  {
+    link: '/shop/drones/upcoming',
+    label: 'Upcoming Releases',
+    leftSection: IconPlant2,
+    desc: 'Be the first to explore the latest drone innovations and upcoming models hitting the skies soon.',
   },
   {
     link: '/shop/accessories',

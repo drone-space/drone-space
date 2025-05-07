@@ -42,9 +42,9 @@ export default async function Enterprise() {
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Enterprise Drones',
-          desc: metaDesc,
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          title: 'Industrial & Enterprise Applications',
+          desc: 'Powerful drones designed for industrial and commercial applications.',
+          bg: images.carousel.shop.image2,
         }}
       />
 

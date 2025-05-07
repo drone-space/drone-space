@@ -88,6 +88,9 @@ export const images = {
       image1: `${baseUrl.droneSpace}/carousel/shop/image-1.webp`,
       image2: `${baseUrl.droneSpace}/carousel/shop/image-2.webp`,
       image3: `${baseUrl.droneSpace}/carousel/shop/image-3.webp`,
+      image4: `${baseUrl.droneSpace}/carousel/shop/image-4.webp`,
+      image5: `${baseUrl.droneSpace}/carousel/shop/image-5.webp`,
+      image6: `${baseUrl.droneSpace}/carousel/shop/image-6.webp`,
     },
   },
 

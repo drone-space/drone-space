@@ -43,8 +43,8 @@ export default async function Camera() {
         props={{
           path: 'Shop',
           title: 'Camera Drones',
-          desc: metaDesc,
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
+          bg: images.carousel.shop.image1,
         }}
       />
 

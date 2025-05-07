@@ -4,16 +4,16 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
+import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import appData from '@/data/app';
 import IntroPage from '@/components/layout/intro/page';
 
-const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
-const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
+const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appData.name.app}`;
+const metaDesc = `Explore drones engineered for cinematic excellence. Capture ultra-smooth, high-resolution footage for film, TV, and content creation.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/agriculture`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/camera`,
     type: 'website',
     images: [
       {
@@ -34,17 +34,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Agriculture() {
-  const drones = products.filter((p) => p.category == 'agriculture');
+export default async function Camera() {
+  const drones = products.filter((p) => p.category == 'camera');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Agriculture & Precision Farming',
-          desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
-          bg: images.carousel.shop.image3,
+          title: 'Cinematography & Filmmaking',
+          desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
+          bg: images.carousel.shop.image5,
         }}
       />
 

@@ -4,16 +4,16 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
+import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import appData from '@/data/app';
 import IntroPage from '@/components/layout/intro/page';
 
-const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
-const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
+const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appData.name.app}`;
+const metaDesc = `Discover drones built for geospatial mapping and land surveying. Capture accurate aerial data for construction, mining, and GIS projects.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/agriculture`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/camera`,
     type: 'website',
     images: [
       {
@@ -34,17 +34,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Agriculture() {
-  const drones = products.filter((p) => p.category == 'agriculture');
+export default async function Camera() {
+  const drones = products.filter((p) => p.category == 'camera');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Agriculture & Precision Farming',
-          desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
-          bg: images.carousel.shop.image3,
+          title: 'Surveying & Mapping',
+          desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
+          bg: images.carousel.shop.image4,
         }}
       />
 

@@ -123,7 +123,7 @@ export default function Navbar({
                   </GridCol>
 
                   <GridCol span={3}>
-                    <Stack gap={0} h={'100%'} justify="space-between">
+                    <Stack justify={'end'} h={'100%'} gap={'xs'}>
                       <ModalDownloadDocument props={{ type: 'brochure' }}>
                         <Button
                           justify="space-between"

@@ -43,22 +43,8 @@ export default function Navbar({
             key={index}
             component={Link}
             href={item.link}
-            leftSection={
-              item.leftSection &&
-              !megaMenu && (
-                <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              )
-            }
-            rightSection={
-              item.rightSection &&
-              !megaMenu && (
-                <item.rightSection
-                  size={ICON_SIZE}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              )
-            }
             className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
+            h={'100%'}
           >
             {!item.desc ? item.label : <CardMenu props={item} />}
           </MenuItem>

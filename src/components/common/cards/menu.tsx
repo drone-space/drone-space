@@ -4,12 +4,12 @@ import React from 'react';
 
 export default function Menu({ props }: { props: typeMenuNavbar }) {
   return (
-    <Card padding={'xs'} bg={'transparent'}>
+    <Card py={5} px={2.5} bg={'transparent'} h={'100%'}>
       <Title order={2} fz={'sm'} lh={1}>
         {props.label}
       </Title>
 
-      <Text mt={4} fz={'xs'} maw={{ md: '80%', lg: '90%' }}>
+      <Text mt={6} fz={'xs'} maw={{ md: '80%', lg: '90%' }}>
         {props.desc}
       </Text>
     </Card>

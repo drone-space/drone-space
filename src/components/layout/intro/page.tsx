@@ -38,7 +38,7 @@ export default function Page({
       >
         {props.bg && <div className={classes.underlay}></div>}
 
-        <Stack className={classes.content}>
+        <Stack className={classes.content} mih={160}>
           {/* <Group justify={'center'}>
           <BreadcrumbMain props={segments} />
         </Group> */}

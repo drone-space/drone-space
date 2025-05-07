@@ -2,13 +2,13 @@
 
 import React from 'react';
 
-import { ActionIcon, Group, Stack, Textarea } from '@mantine/core';
+import { ActionIcon, Group, Textarea } from '@mantine/core';
 
-import { IconSend } from '@tabler/icons-react';
+import { IconArrowUp } from '@tabler/icons-react';
 import appData from '@/data/app';
 import classes from './claude.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
-import { useFormClaude } from '@/hooks/form/claude';
+import { FormClaudeType } from '@/hooks/form/claude';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -16,59 +16,44 @@ import {
 } from '@/data/constants';
 
 export default function Claude({
-  query,
-  children,
-  regenerating,
-  automatic,
+  props,
 }: {
-  query?: string;
-  chaff?: string;
-  children?: React.ReactNode;
-  regenerating?: boolean;
-  automatic?: boolean;
+  props: { form: FormClaudeType; submitted: boolean; handleSubmit: () => void };
 }) {
-  const { form, submitted, handleSubmit } = useFormClaude({
-    query,
-    regenerating,
-    automatic,
-  });
-
-  return automatic || regenerating ? (
-    <form onClick={form.onSubmit(handleSubmit)}>{children}</form>
-  ) : (
-    <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
-      <Group
-        // display={regenerating ? "none" : undefined}
-        wrap="nowrap"
-        gap={'xs'}
-        align="end"
-        className={classes.group}
-      >
+  return (
+    <form onSubmit={props.form.onSubmit(props.handleSubmit)} noValidate>
+      <Group wrap="nowrap" align="end" gap={'xs'}>
         <Textarea
           required
           placeholder={`Ask Hekima about ${appData.name.company}`}
           autosize
-          minRows={1}
+          minRows={2}
           maxRows={4}
-          {...form.getInputProps('content')}
+          {...props.form.getInputProps('content')}
           onKeyDown={getHotkeyHandler([
-            ['mod+Enter', form.onSubmit(handleSubmit)],
+            [
+              'shift + Enter',
+              () =>
+                props.form.setFieldValue(
+                  'content',
+                  props.form.values.content + '\n'
+                ),
+            ],
+            ['Enter', props.form.onSubmit(props.handleSubmit)],
           ])}
-          classNames={{ input: classes.input }}
+          data-autofocus={true}
+          classNames={classes}
           w={'100%'}
-          disabled={submitted}
+          disabled={props.submitted}
         />
 
-        <Stack align="end" justify="end">
-          <ActionIcon
-            size={ICON_WRAPPER_SIZE}
-            variant="light"
-            type="submit"
-            loading={submitted}
-          >
-            <IconSend size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          </ActionIcon>
-        </Stack>
+        <ActionIcon
+          size={ICON_WRAPPER_SIZE / 1.25}
+          type="submit"
+          loading={props.submitted}
+        >
+          <IconArrowUp size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
+        </ActionIcon>
       </Group>
     </form>
   );

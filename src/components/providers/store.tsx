@@ -12,8 +12,8 @@ export default function Store({
   session,
   children,
 }: {
-  colorScheme: string;
-  session: AuthUser | null;
+  colorScheme?: string;
+  session?: AuthUser | null;
   children: React.ReactNode;
 }) {
   const storeRef = useRef<AppStore>();
@@ -23,6 +23,8 @@ export default function Store({
     storeRef.current = makeStore();
 
     // initialize store
+
+    // update color scheme
     storeRef.current.dispatch(updateColorScheme(colorScheme));
 
     if (session) {

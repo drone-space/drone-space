@@ -2,10 +2,11 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import { Grid, GridCol, Stack, Text, ThemeIcon, Group } from '@mantine/core';
-
-import { IconArrowRightDashed } from '@tabler/icons-react';
+import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
+import ModalContactService from '@/components/common/modals/contact/service';
+import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import {
+  HOSTED_BASE_URL,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
@@ -13,62 +14,109 @@ import {
 import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
+import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
+
+const metaTitle = 'Drone Space Services - Expert Drone Solutions in Kenya';
+const metaDesc = `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`;
 
 export const metadata: Metadata = {
-  title: 'Drone Space Services - Expert Drone Solutions in Kenya',
-  description: `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-solutions`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Services() {
   return (
     <LayoutPage>
-      <LayoutSection id="cinematography" padded>
+      <IntroPage
+        props={{
+          path: 'Services',
+          title: 'Drone Solutions',
+          desc: `Discover professional drone services, including training, aerial photography, surveying, and light shows.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+        }}
+      />
+
+      <LayoutSection
+        id="aerial-cinematography"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
             order={{ base: 2, md: 1 }}
           >
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'Aerial Cinematography',
-                  desc: `We offer professional aerial cinematography services to capture stunning aerial footage of any location. Our experienced drone pilots use state­of-the-art drone technology to produce high-quality aerial footage that will make your project stand out.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'Aerial Cinematography',
+                desc: `We offer professional aerial cinematography services to capture stunning aerial footage of any location. Our experienced drone pilots use state­of-the-art drone technology to produce high-quality aerial footage that will make your project stand out.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack>
-                {features.cinematography.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.cinematography.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                        {item.title}
-                      </Text>
-                      : {item.desc}
-                    </Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
+                    {item.title}
+                  </Text>
+                  : {item.desc}
+                </Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Aerial Cinematography Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Aerial Cinematography Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -86,50 +134,65 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="agriculture" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="agriculture" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'Agriculture',
-                  desc: `From precise crop monitoring and targeted spraying to efficient data collection for informed decision­making, our drone technology optimizes resource allocation, reduces costs, and maximizes yields.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'Agriculture',
+                desc: `From precise crop monitoring and targeted spraying to efficient data collection for informed decision­making, our drone technology optimizes resource allocation, reduces costs, and maximizes yields.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack>
-                {features.agriculture.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.agriculture.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                        {item.title}
-                      </Text>
-                      : {item.desc}
-                    </Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
+                    {item.title}
+                  </Text>
+                  : {item.desc}
+                </Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Agriculture Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Agriculture Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>
@@ -144,53 +207,72 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="drone-mapping-and-survey" padded>
+      <LayoutSection
+        id="drone-mapping-and-survey"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
             order={{ base: 2, md: 1 }}
           >
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'Drone Mapping & Survey',
-                  desc: `We specialize in creating detailed maps, 3D models, and orthomosaics that empower informed decision­making in land surveying, construction, agriculture, environmental monitoring, and more.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'Drone Mapping & Survey',
+                desc: `We specialize in creating detailed maps, 3D models, and orthomosaics that empower informed decision­making in land surveying, construction, agriculture, environmental monitoring, and more.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack>
-                {features.mapping.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.mapping.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                        {item.title}
-                      </Text>
-                      : {item.desc}
-                    </Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
+                    {item.title}
+                  </Text>
+                  : {item.desc}
+                </Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Drone Mapping & Survey Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Drone Mapping & Survey Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -208,37 +290,49 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="thermal-inspection"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="thermal-inspection" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
-            <Stack gap={'md'}>
-              <IntroSection
-                props={{
-                  title: 'Thermal Inspection',
-                  desc: `Our thermal inspection services leverage advanced drone technology to provide detailed thermal imaging and analysis for a variety of applications. We specialize in identifying anomalies and potential issues in solar panels, landfills, dumpsites, geothermal sites, and power lines. Our high-resolution thermal data enables early detection of problems, facilitating timely maintenance and preventing costly failures.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'Thermal Inspection',
+                desc: `Our thermal inspection services leverage advanced drone technology to provide detailed thermal imaging and analysis for a variety of applications. We specialize in identifying anomalies and potential issues in solar panels, landfills, dumpsites, geothermal sites, and power lines. Our high-resolution thermal data enables early detection of problems, facilitating timely maintenance and preventing costly failures.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Text>
-                By combining innovative technologies with extensive inspection
-                experience, our inspectors perform thorough examinations of
-                solar panels as well as associated wiring and hardware in a
-                professional, safe, and efficient manner.
-              </Text>
+            <Text mt={'md'}>
+              By combining innovative technologies with extensive inspection
+              experience, our inspectors perform thorough examinations of solar
+              panels as well as associated wiring and hardware in a
+              professional, safe, and efficient manner.
+            </Text>
 
-              <Text>
-                Our field employees have access to FLIR (Infra-Red Cameras) as
-                well as Unmanned Aircraft Systems with Infra-red capabilities
-                solution that enables customers to watch inspections. This
-                facilitates real-time responses as opposed to long email chains
-                that take up valuable time and data.
-              </Text>
-            </Stack>
+            <Text mt={'md'}>
+              Our field employees have access to FLIR (Infra-Red Cameras) as
+              well as Unmanned Aircraft Systems with Infra-red capabilities
+              solution that enables customers to watch inspections. This
+              facilitates real-time responses as opposed to long email chains
+              that take up valuable time and data.
+            </Text>
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Thermal Inspection Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Thermal Inspection Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>
@@ -253,53 +347,72 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="search-and-rescue" padded>
+      <LayoutSection
+        id="search-and-rescue"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
             order={{ base: 2, md: 1 }}
           >
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'Search and Rescue',
-                  desc: `We are equipped to support search and rescue operations with our advanced drone technology. Our drones, equipped with thermal imaging cameras and long-range capabilities, can quickly scan vast areas, providing crucial aerial support to locate missing persons or assess disaster zones efficiently and safely.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'Search and Rescue',
+                desc: `We are equipped to support search and rescue operations with our advanced drone technology. Our drones, equipped with thermal imaging cameras and long-range capabilities, can quickly scan vast areas, providing crucial aerial support to locate missing persons or assess disaster zones efficiently and safely.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack>
-                {features.sar.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.sar.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                        {item.title}
-                      </Text>
-                      : {item.desc}
-                    </Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
+                    {item.title}
+                  </Text>
+                  : {item.desc}
+                </Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Search and Rescue Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Search and Rescue Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -317,54 +430,65 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="medical-delivery"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="medical-delivery" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'Medical Delivery',
-                  desc: `Our drones can swiftly transport essential medical supplies to remote or hard-to-reach areas, ensuring access to critical healthcare when every second counts.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'Medical Delivery',
+                desc: `Our drones can swiftly transport essential medical supplies to remote or hard-to-reach areas, ensuring access to critical healthcare when every second counts.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack>
-                {features.medical.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.medical.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                        {item.title}
-                      </Text>
-                      : {item.desc}
-                    </Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
+                    {item.title}
+                  </Text>
+                  : {item.desc}
+                </Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Medical Delivery Drone Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Medical Delivery Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>
@@ -379,57 +503,76 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="consultancy-and-resale" padded>
+      <LayoutSection
+        id="consultancy-and-resale"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
             order={{ base: 2, md: 1 }}
           >
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'Consultancy and Resale',
-                  desc: `We are authorized drone importers and resellers, offering a wide range of high-quality drone solutions to meet your needs. We
+            <IntroSection
+              props={{
+                title: 'Consultancy and Resale',
+                desc: `We are authorized drone importers and resellers, offering a wide range of high-quality drone solutions to meet your needs. We
                 also offer drone consultancy services to help you get the most
                 out of your drone solutions. Our team of experts can help you
                 with everything from drone selection and setup, to training and
                 maintenance.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Stack gap={'xs'}>
-                {features.consRes.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.consRes.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.9'}>
-                        {item.title}
-                      </Text>
-                      : {item.desc}
-                    </Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
+                    {item.title}
+                  </Text>
+                  : {item.desc}
+                </Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Drone Consultancy and Resale Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request Consultancy and Resale Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol
@@ -447,53 +590,68 @@ export default async function Services() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="roc-support" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="roc-support" padded>
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
-            <Stack gap={'xl'}>
-              <IntroSection
-                props={{
-                  title: 'ROC Support',
-                  desc: `A ROC is a certification approved and issued by the KCAA that demonstrates that an organization fulfils the legal requirements to commercially operate a drone; Both the drone and the pilot will need to operate under a RPAS Operating Certificate.`,
-                }}
-                options={{ alignment: 'start' }}
-              />
+            <IntroSection
+              props={{
+                title: 'ROC Support',
+                desc: `A ROC is a certification approved and issued by the KCAA that demonstrates that an organization fulfils the legal requirements to commercially operate a drone; Both the drone and the pilot will need to operate under a RPAS Operating Certificate.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
 
-              <Text>
-                We are the holders of ROC 002. We support our clients&apos;
-                commercial operations through our ROC at affordable rates to
-                ensure safety and legal compliance. Our ROC enables you carry
-                out missions in a legal and compliant manner with significant
-                cost savings on setup costs.
-              </Text>
+            <Text mt={'xl'}>
+              We are the holders of ROC 002. We support our clients&apos;
+              commercial operations through our ROC at affordable rates to
+              ensure safety and legal compliance. Our ROC enables you carry out
+              missions in a legal and compliant manner with significant cost
+              savings on setup costs.
+            </Text>
 
-              <Stack gap={'xs'}>
-                {features.roc.map((item, index) => (
-                  <Group
-                    key={index}
-                    gap={'xs'}
-                    wrap="nowrap"
-                    align="start"
-                    pl={{ md: 'md' }}
-                  >
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      mt={2}
-                      color="sec.4"
-                      c={'pri.9'}
-                      radius={'xl'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
+            {features.roc.map((item, index) => (
+              <Group
+                key={index}
+                gap={'xs'}
+                wrap="nowrap"
+                align="start"
+                pl={{ md: 'md' }}
+                mt={'xs'}
+              >
+                <ThemeIcon
+                  size={ICON_WRAPPER_SIZE / 1.5}
+                  mt={2}
+                  color="sec.3"
+                  c={'pri.7'}
+                  radius={'xl'}
+                >
+                  <IconArrowRightDashed
+                    size={ICON_SIZE / 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ThemeIcon>
 
-                    <Text fz={'sm'}>{item}</Text>
-                  </Group>
-                ))}
-              </Stack>
-            </Stack>
+                <Text fz={'sm'}>{item}</Text>
+              </Group>
+            ))}
+
+            <ModalContactService
+              props={{
+                initialValues: {
+                  subject: `Drone ROC Support Services Inquiry`,
+                },
+              }}
+            >
+              <Button
+                mt={'xl'}
+                variant="outline"
+                leftSection={
+                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Request ROC Support Services
+              </Button>
+            </ModalContactService>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={1}>

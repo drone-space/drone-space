@@ -18,8 +18,8 @@ export default function Section({
         {props.subTitle && (
           <Text
             fw={'bold'}
-            ta={options?.alignment || 'center'}
-            c={'sec.4'}
+            ta={{ base: 'center', md: options?.alignment || 'center' }}
+            c={'sec.3'}
             tt={'uppercase'}
             fz={'sm'}
           >
@@ -34,12 +34,17 @@ export default function Section({
           mb={options?.spacing ? SECTION_SPACING / 2 : undefined}
         >
           <Stack>
-            <Title order={2} ta={options?.alignment || 'center'}>
+            <Title
+              order={2}
+              ta={{ base: 'center', md: options?.alignment || 'center' }}
+            >
               {props.title}
             </Title>
 
             {props.desc && (
-              <Text ta={options?.alignment || 'center'}>{props.desc}</Text>
+              <Text ta={{ base: 'center', md: options?.alignment || 'center' }}>
+                {props.desc}
+              </Text>
             )}
           </Stack>
         </LayoutSection>

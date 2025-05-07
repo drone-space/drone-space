@@ -14,6 +14,15 @@ export const HOSTED_BASE_URL = {
 
 export const API_URL = `${BASE_URL}/api`;
 
+export const REVALIDATE = {
+  MINUTE: 60,
+  HOUR: 60 * 60,
+  DAY: 60 * 60 * 24,
+  WEEK: 60 * 60 * 24 * 7,
+  MONTH: 60 * 60 * 24 * 30,
+  YEAR: 60 * 60 * 24 * 365,
+};
+
 export const AUTH_URLS = {
   SIGN_IN: `${BASE_URL}/auth/sign-in`,
   SIGN_UP: `${BASE_URL}/auth/sign-up`,
@@ -60,6 +69,11 @@ export const BUCKET_NAME = {
 export const LOCAL_STORAGE_NAME = {
   COUNTRY: 'country',
   COUNTRIES: 'countries',
+  CLAUDE: 'claude',
+};
+
+export const SESSION_STORAGE_NAME = {
+  CLAUDE_COUNT: 'claude-count',
 };
 
 const WITHOUT_BODY: HeadersInit = {

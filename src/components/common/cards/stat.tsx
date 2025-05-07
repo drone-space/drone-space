@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Text, Title } from '@mantine/core';
+import { Box, Text, Title } from '@mantine/core';
 import classes from './stat.module.scss';
 
 export interface typeCardStats {
@@ -9,7 +9,7 @@ export interface typeCardStats {
 
 export default function Stat({ data }: { data: typeCardStats }) {
   return (
-    <Stack align="center" gap={'xs'} className={classes.card}>
+    <Box className={classes.card} p={{ base: 'md' }}>
       <Text
         component="p"
         fz={{ base: 28, sm: 32, lg: 32 }}
@@ -19,15 +19,17 @@ export default function Stat({ data }: { data: typeCardStats }) {
       >
         {data.stat}
       </Text>
+
       <Title
         order={3}
         fw={500}
         fz={{ base: 'sm', sm: 'lg', md: 'sm', lg: 'md' }}
         ta={'center'}
+        mt={'xs'}
         className={classes.title}
       >
         {data.title}
       </Title>
-    </Stack>
+    </Box>
   );
 }

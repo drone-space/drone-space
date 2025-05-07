@@ -4,118 +4,145 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-// import IntroPage from '@/components/layout/intro/page';
-import ModalContactTraining from '@/components/common/modals/contact/training';
-import AccordionFaq from '@/components/common/accordions/faq';
-import TooltipWhatsApp from '@/components/common/tooltips/whatsapp';
-import { Anchor, Stack, Text, Title } from '@mantine/core';
-import Link from 'next/link';
+import IntroPage from '@/components/layout/intro/page';
+import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
+import { images } from '@/assets/images';
+import IntroSection from '@/components/layout/intro/section';
+import { Grid, GridCol } from '@mantine/core';
+
+const metaTitle = `${appData.name.app} FAQ - Answers to Your Drone Training Questions`;
+const metaDesc =
+  'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';
 
 export const metadata: Metadata = {
-  title: `${appData.name.app} FAQ - Answers to Your Drone Training Questions`,
-  description:
-    'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.',
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/faq`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Faq() {
   return (
     <LayoutPage>
-      {/* <IntroPage
+      <IntroPage
         props={{
           path: `Q & A`,
           title: 'Frequently Asked Questions',
           desc: `Need a help with something? Here are our most frequently asked questions.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
-      /> */}
+      />
 
-      <LayoutSection
-        id="page-help-training"
-        padded
-        containerized={'sm'}
-        shadowed
-      >
-        <Stack gap={'xl'}>
-          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
-            Drone Training
-          </Title>
-
-          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
-            For further information, please visit our training section, for
-            course prices go to{' '}
-            <Anchor
-              component={Link}
-              href="/drone-training/pricing"
-              inherit
-              fw={500}
-            >
-              pricing
-            </Anchor>{' '}
-            and for any other training inquiries, please send us a{' '}
-            <ModalContactTraining>
-              <Anchor inherit fw={500}>
-                training inquiry
-              </Anchor>
-            </ModalContactTraining>
-            .
-          </Text>
-
+      <LayoutSection id="training" padded bg={'var(--mantine-color-gray-1)'}>
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: 'FAQ',
+                  title: faqs.training.title,
+                  desc: `For further information, please visit our training section, for course
+          prices go to pricing and for any other training inquiries, please send us a training inquiry.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
           <AccordionFaq section="training" />
-        </Stack>
+        </GetLayout>
       </LayoutSection>
 
-      {/* <LayoutSection id='help-faq-purchases' padded containerized={"sm"} shadowed>
-				<Stack gap={"xl"}>
-					<Title ta={"center"} order={2} fz={"xl"} fw={"bold"}>
-						Drone Purchases
-					</Title>
+      <LayoutSection id="reselling" padded>
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: 'FAQ',
+                  title: faqs.shop.title,
+                  desc: `To see available drones and drone prices please visit our shop section, for drone importation or other drone purchase inquiries, please send us a product/purchase inquiry.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
+          <AccordionFaq section="shop" />
+        </GetLayout>
+      </LayoutSection>
 
-					<Text w={{ md: "75%" }} mx={"auto"} ta={"center"} fz={"sm"}>
-						To see available drones and drone prices please visit our{" "}
-						<Anchor component={Link} href="/shop" inherit fw={500}>
-							shop section
-						</Anchor>
-						, for drone importation or other drone purchase inquiries, please send us a{" "}
-						<ModalContactShop>
-							<Anchor inherit fw={500}>
-								product/purchase inquiry
-							</Anchor>
-						</ModalContactShop>
-						.
-					</Text>
-
-					<AccordionFaq section="shop" />
-				</Stack>
-			</LayoutSection> */}
-
-      <LayoutSection id="help-faq-general" padded containerized={'sm'} shadowed>
-        <Stack gap={'xl'}>
-          <Title ta={'center'} order={2} fz={'xl'} fw={'bold'}>
-            General Questions
-          </Title>
-
-          <Text w={{ md: '75%' }} mx={'auto'} ta={'center'} fz={'sm'}>
-            For any other questions,{' '}
-            <Anchor component={Link} inherit fw={500} href={'/about/contact'}>
-              submit an inquiry
-            </Anchor>{' '}
-            or{' '}
-            <TooltipWhatsApp>
-              <Anchor
-                inherit
-                fw={500}
-                href={`${appData.socials.whatsapp.link}`}
-                target="_blank"
-              >
-                start a chat with us
-              </Anchor>
-            </TooltipWhatsApp>
-            .
-          </Text>
-
+      <LayoutSection id="general" padded bg={'var(--mantine-color-gray-1'}>
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: 'FAQ',
+                  title: faqs.general.title,
+                  desc: `For any other questions, submit an inquiry or start a chat with us.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
           <AccordionFaq />
-        </Stack>
+        </GetLayout>
+      </LayoutSection>
+
+      <LayoutSection id="considerations" padded shadowed>
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: 'FAQ',
+                  title: faqs.considerations.title,
+                  desc: `The factors to consider and potential risks involved.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
+          <AccordionFaq section="considerations" />
+        </GetLayout>
       </LayoutSection>
     </LayoutPage>
+  );
+}
+
+export function GetLayout({
+  props,
+  children,
+}: {
+  props: { header: React.ReactNode };
+  children: React.ReactNode;
+}) {
+  return (
+    <Grid gutter={'xl'}>
+      <GridCol span={{ md: 4.5 }}>
+        <div style={{ position: 'sticky', top: SECTION_SPACING }}>
+          {props.header}
+        </div>
+      </GridCol>
+
+      <GridCol span={{ md: 7.5 }}>{children}</GridCol>
+    </Grid>
   );
 }

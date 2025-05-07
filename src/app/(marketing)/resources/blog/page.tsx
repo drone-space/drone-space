@@ -6,19 +6,38 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import CardBlogNew from '@/components/common/cards/blog/new';
 import CardBlogMain from '@/components/common/cards/blog/main';
-// import IntroPage from '@/components/layout/intro/page';
+import IntroPage from '@/components/layout/intro/page';
 
 import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
 import appData from '@/data/app';
 import { Metadata } from 'next';
+import { HOSTED_BASE_URL, REVALIDATE } from '@/data/constants';
+import { images } from '@/assets/images';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = REVALIDATE.WEEK;
+
+const metaTitle = `${appData.name.app} Blog - Insights on Drone Training & Technology`;
+const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appData.name.app} blog.`;
 
 export const metadata: Metadata = {
-  title: `${appData.name.app} Blog - Insights on Drone Training & Technology`,
-  description: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appData.name.app} blog.`,
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/blog`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Blog() {
@@ -26,15 +45,20 @@ export default async function Blog() {
 
   return (
     <LayoutPage>
-      {/* <IntroPage
+      <IntroPage
         props={{
           path: 'News',
-          title: 'Expert Web Design Advice',
-          desc: 'Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam. Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam.',
+          title: 'Insights on Drone Training & Technology',
+          desc: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
-      /> */}
+      />
 
-      <LayoutSection id={'page-blog-grid'} margined>
+      <LayoutSection
+        id={'page-blog-grid'}
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid gutter={'xl'}>
           <GridCol span={12} mx={{ lg: 'auto' }} visibleFrom="md">
             <CardBlogNew post={posts[0]} />

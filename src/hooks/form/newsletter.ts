@@ -4,7 +4,7 @@ import { email } from '@/utilities/validators/email';
 import { useForm } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';
 import { useState } from 'react';
-import { addSubscriber } from '@/services/api/mailchimp';
+import { contactAdd } from '@/handlers/requests/contact';
 
 export const useFormNewsletter = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -12,7 +12,7 @@ export const useFormNewsletter = () => {
 
   const form = useForm({
     initialValues: { email: '' },
-    validate: { email: (value) => email(value.trim()) },
+    validate: { email: (value) => (email(value.trim()) ? true : false) },
   });
 
   const handleSubmit = async () => {
@@ -29,57 +29,39 @@ export const useFormNewsletter = () => {
 
         setSubmitted(true);
 
-        const response = await addSubscriber({
+        const response = await contactAdd({
           email: form.values.email.trim().toLowerCase(),
         });
 
-        if (!response) {
-          throw new Error('No response from server');
+        if (response.status >= 400) {
+          showNotification({
+            variant: Variant.FAILED,
+            title: response.statusText,
+          });
+          return;
         }
-
-        const result = await response.json();
 
         form.reset();
 
-        if (result.status == 200) {
+        if (response.status == 201) {
           showNotification({
             variant: Variant.SUCCESS,
-            title: result.title,
+            title: response.statusText,
             desc: 'You are now a subscriber',
           });
           return;
         }
 
-        if (result.title == 'Invalid Resource') {
+        if (response.status == 200) {
           showNotification({
-            variant: Variant.FAILED,
-            title: result.title,
-            desc: 'Please provide a real email address',
+            variant: Variant.SUCCESS,
+            title: response.statusText,
+            desc: 'You are already a subscriber',
           });
           return;
         }
 
-        if (result.title == 'Member Exists') {
-          showNotification({
-            variant: Variant.WARNING,
-            title: result.title,
-            desc: `The owner of that email is already a subscriber.`,
-          });
-          return;
-        }
-
-        if (result.title == 'Forgotten Email Not Subscribed') {
-          showNotification({
-            variant: Variant.WARNING,
-            title: result.title,
-            desc: `That email was unsubscribed. You will be redirected to the re-subscribe page`,
-          });
-
-          setTimeout(() => (window.location.href = result.url), 5000);
-          return;
-        }
-
-        showNotification({ variant: Variant.FAILED }, response, result);
+        showNotification({ variant: Variant.FAILED }, response);
         return;
       } catch (error) {
         showNotification({

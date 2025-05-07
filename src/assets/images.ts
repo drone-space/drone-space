@@ -17,7 +17,10 @@ export const images = {
     },
     google: `${iconUrl}/?size=100&id=17949&format=png&color=000000`,
     credentials: `${iconUrl}/?size=100&id=jicLxt1sA2qa&format=png&color=000000`,
-    claude: `${iconUrl}/?size=100&id=H5H0mqCCr5AV&format=png&color=000000`,
+    claude: {
+      default: `${iconUrl}/?size=100&id=H5H0mqCCr5AV&format=png&color=000000`,
+      outline: `${iconUrl}/?size=100&id=XDigO1YmCwbW&format=png&color=000000`,
+    },
   },
 
   brand: {
@@ -26,6 +29,11 @@ export const images = {
         black: `${baseUrl.droneSpace}/brand/icon/black.png`,
         default: `${baseUrl.droneSpace}/brand/icon/default.png`,
         white: `${baseUrl.droneSpace}/brand/icon/white.png`,
+      },
+      wording: {
+        black: `${baseUrl.droneSpace}/brand/wording/black.png`,
+        default: `${baseUrl.droneSpace}/brand/wording/default.png`,
+        white: `${baseUrl.droneSpace}/brand/wording/white.png`,
       },
       logo: {
         landscape: {
@@ -37,6 +45,7 @@ export const images = {
           black: `${baseUrl.droneSpace}/brand/logo/potrait/black.png`,
           default: `${baseUrl.droneSpace}/brand/logo/potrait/default.png`,
           white: `${baseUrl.droneSpace}/brand/logo/potrait/white.png`,
+          meta: `${baseUrl.droneSpace}/brand/logo/potrait/meta.png`,
         },
       },
     },
@@ -417,6 +426,7 @@ export const images = {
   posters: {
     ads: {
       image1: `${baseUrl.droneSpace}/posters/ads/image-1.webp`,
+      image2: `${baseUrl.droneSpace}/posters/ads/image-2.webp`,
     },
 
     conference: {

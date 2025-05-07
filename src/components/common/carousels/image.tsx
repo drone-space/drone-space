@@ -13,7 +13,7 @@ export default function Image({ data }: { data: string[] }) {
 
   const slides = data.map((slide, index) => (
     <CarouselSlide key={index}>
-      <Stack w={'100%'}>
+      <Stack w={'100%'} bg={'var(--mantine-color-body)'}>
         <MantineImage
           src={slide}
           alt={'Intelligent battery'}

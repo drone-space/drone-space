@@ -1,8 +1,9 @@
+import { REVALIDATE } from '@/data/constants';
 import prisma from '@/libraries/prisma';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = REVALIDATE.WEEK;
 
 export async function GET() {
   try {
@@ -10,9 +11,6 @@ export async function GET() {
       where: { status: 'PUBLISHED' },
       include: {
         _count: { select: { comments: true } },
-
-        category: true,
-        tags: true,
         profile: true,
       },
 

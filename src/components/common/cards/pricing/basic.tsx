@@ -29,13 +29,16 @@ export default function Basic({
   data: typeUnit;
   offset?: boolean;
 }) {
+  const courseTitle =
+    data.title.full == 'Multi-Rotor' ? 'RPL' : data.title.full;
+
   return (
     <Card
       className={classes.card}
       withBorder
       bg={
         data.featured
-          ? 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+          ? 'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
           : 'white'
       }
       c={
@@ -45,94 +48,81 @@ export default function Basic({
       }
     >
       <Stack justify="space-between" h={'100%'}>
-        <Stack gap={'xl'} mb={'xl'}>
-          <Stack>
-            {data.advanced && (
-              <Group justify="end" opacity={offset ? 0 : 1}>
-                <Badge
-                  className={
-                    data.featured ? classes.badgeFeatured : classes.badge
-                  }
-                >
-                  Advanced Course
-                </Badge>
-              </Group>
-            )}
+        <Stack>
+          {data.advanced && (
+            <Group justify="end" opacity={offset ? 0 : 1}>
+              <Badge radius={'sm'} color="sec.3" c="pri.7">
+                Advanced Course
+              </Badge>
+            </Group>
+          )}
 
-            <Text fz={'md'} fw={500}>
-              Kshs.{' '}
-              <Text
-                component="span"
-                inherit
-                fz={28}
-                fw={'bold'}
-                className={
-                  data.featured ? classes.titleFeatured : classes.title
+          <Text fz={'md'} fw={500}>
+            Kshs.{' '}
+            <Text component="span" inherit fz={28} fw={'bold'}>
+              <NumberFormatter
+                value={
+                  data.price?.discount ? data.price.discount : data.price?.full
                 }
+                thousandSeparator
+              />
+              /-
+            </Text>
+            {data.price?.discount && (
+              <Text
+                component="sup"
+                inherit
+                fw={'bold'}
+                td={'line-through'}
+                pos={'relative'}
+                bottom={12}
+                left={8}
+                c={data.featured ? undefined : 'dimmed'}
               >
-                <NumberFormatter
-                  value={
-                    data.price?.discount
-                      ? data.price.discount
-                      : data.price?.full
-                  }
-                  thousandSeparator
-                />
+                <NumberFormatter value={data.price?.full} thousandSeparator />
                 /-
               </Text>
-              {data.price?.discount && (
-                <Text
-                  component="sup"
-                  inherit
-                  fw={'bold'}
-                  td={'line-through'}
-                  pos={'relative'}
-                  bottom={12}
-                  left={8}
-                  c={data.featured ? undefined : 'dimmed'}
-                >
-                  <NumberFormatter value={data.price?.full} thousandSeparator />
-                  /-
-                </Text>
-              )}
-            </Text>
-
-            <Group>
-              <Title
-                order={3}
-                fw={'bold'}
-                fz={{ base: 'lg', lg: 'xl' }}
-                c={
-                  data.featured
-                    ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
-                    : 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                }
-              >
-                {data.title.full == 'Multi-Rotor'
-                  ? 'Remote Pilot License (RPL)'
-                  : data.title.full}
-              </Title>
-              {data.featured && (
-                <Badge
-                  radius={'sm'}
-                  color={data.featured ? 'sec.4' : 'pri.9'}
-                  c={data.featured ? 'pri.9' : undefined}
-                >
-                  Most Popular
-                </Badge>
-              )}
-            </Group>
-
-            {data.advanced && (
-              <Text>
-                For RPL hoders seeking to enhance their abilities and include{' '}
-                {data.title.full} to their skillset.
-              </Text>
             )}
-          </Stack>
+          </Text>
+
+          <Title
+            order={3}
+            fw={'bold'}
+            fz={{ base: 'lg', lg: 'xl' }}
+            c={
+              data.featured
+                ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
+                : 'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+            }
+          >
+            {data.title.full == 'Multi-Rotor'
+              ? 'Remote Pilot License (RPL)'
+              : data.title.full}
+          </Title>
+
+          {data.featured && (
+            <Text component="span" fz={'xs'} c={'sec.3'}>
+              Exclusive of Medical
+            </Text>
+          )}
+
+          {data.title.full == 'Radio Telephony' && (
+            <Text component="span" inherit fz={'xs'} c={'dimmed'}>
+              Exclusive of Exam, English Proficiency
+              <br /> and License Fees
+            </Text>
+          )}
+
+          {data.advanced && (
+            <Text w={{ md: '75%' }}>
+              For RPL hoders seeking to enhance their abilities and include{' '}
+              {data.title.full} to their skillset.
+            </Text>
+          )}
 
           <List
             className={classes.list}
+            mb={'xl'}
             spacing={'xs'}
             c={
               data.featured
@@ -143,8 +133,8 @@ export default function Basic({
               <ThemeIcon
                 size={ICON_WRAPPER_SIZE / 1.5}
                 radius={'xl'}
-                color="sec.4"
-                c={'pri.9'}
+                color="sec.3"
+                c={'pri.7'}
               >
                 <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>
@@ -156,17 +146,21 @@ export default function Basic({
           </List>
         </Stack>
 
-        <ModalContactTraining>
+        <ModalContactTraining
+          props={{
+            initialValues: {
+              subject: `${courseTitle} Training Inquiry`,
+              message: `I'm interested in enrolling in your ${courseTitle} drone training program.`,
+            },
+          }}
+        >
           <Button
-            color={data.featured ? 'sec.4' : 'pri'}
-            c={data.featured ? 'pri.9' : 'white'}
+            color={data.featured ? 'sec.3' : 'pri'}
+            c={data.featured ? 'pri.7' : 'white'}
             fullWidth
             size="xs"
           >
-            Enroll For{' '}
-            {data.title.full == 'Multi-Rotor'
-              ? 'Remote Pilot License (RPL)'
-              : data.title.full}
+            Enroll For {courseTitle}
           </Button>
         </ModalContactTraining>
       </Stack>

@@ -1,5 +1,4 @@
 .dropdown {
-  border: 0px transparent;
   padding: 0;
   overflow: hidden;
   background-color: light-dark(
@@ -11,18 +10,18 @@
 }
 
 .item {
-  transition: 0.25s all ease;
+  transition: 0.25s color ease;
   border-radius: 0;
   overflow: hidden;
 
   @include hover {
     background-color: light-dark(
-      var(--mantine-color-pri-light),
-      var(--mantine-color-pri-light)
+      var(--mantine-color-sec-light),
+      var(--mantine-color-sec-light)
     );
 
     .itemLabel {
-      color: var(--mantine-color-pri-9);
+      color: var(--mantine-color-pri-7);
     }
   }
 }
@@ -30,10 +29,10 @@
 .itemActive {
   font-weight: bold;
   background-color: light-dark(
-    var(--mantine-color-pri-light),
-    var(--mantine-color-pri-light)
+    var(--mantine-color-sec-light),
+    var(--mantine-color-sec-light)
   );
-  color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+  color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
 }
 
 // .itemLabel {

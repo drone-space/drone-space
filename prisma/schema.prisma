@@ -82,12 +82,9 @@ model Post {
   allowComments Boolean @default(true) @map(name: "allow_comments")
   viewCount     Int     @default(0) @map(name: "view_count")
 
-  profile    Profile?  @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId  String?   @map("profile_id")
-  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId String?   @map("category_id")
-  tags       Tag[]
-  comments   Comment[]
+  profile   Profile?  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId String?   @map("profile_id")
+  comments  Comment[]
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
@@ -95,34 +92,6 @@ model Post {
 
   @@unique([profileId, title])
   @@map(name: "posts")
-}
-
-model Category {
-  id    String @id @default(uuid())
-  title String
-
-  posts Post[]
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(ACTIVE)
-
-  @@unique([title])
-  @@map(name: "categories")
-}
-
-model Tag {
-  id    String @id @default(uuid())
-  title String
-
-  posts Post[]
-
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
-  status    Status   @default(ACTIVE)
-
-  @@unique([title])
-  @@map(name: "tags")
 }
 
 model Comment {

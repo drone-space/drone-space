@@ -1,4 +1,4 @@
-import { Open_Sans } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
@@ -22,40 +22,30 @@ import {
   MantineColorScheme,
   MantineProvider,
 } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
-import { ModalsProvider } from '@mantine/modals';
-
-// import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import { COOKIE_NAME } from '@/data/constants';
+import { cookies } from 'next/headers';
+import { isProduction } from '@/utilities/helpers/environment';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import appTheme from '@/styles/theme';
 import appResolver from '@/styles/resolver';
-
 import appData from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
-
-import { createClient } from '@/libraries/supabase/server';
-
-import { COOKIE_NAME } from '@/data/constants';
-
-import ProviderStore from '@/components/providers/store';
-import { cookies } from 'next/headers';
-import GoogleAnalytics from '@/components/seo/analytics';
-// import AffixOffline from '@/components/common/affixi/offline';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
+// import { SpeedInsights } from "@vercel/speed-insights/next";
 // import AffixiCookies from '@/components/common/affixi/cookies';
 
-const openSans = Open_Sans({ subsets: ['latin'] });
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
+  subsets: ['latin'],
+});
 
-export default async function RootLayout({
+export default async function LayoutRoot({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const colorScheme = cookies().get(COOKIE_NAME.COLOR_SCHEME)?.value;
-  const colorSchemeState = cookies().get(COOKIE_NAME.COLOR_SCHEME_STATE)?.value;
-
-  const supabase = await createClient();
-  const { data: session } = await supabase.auth.getUser();
-
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
   return (
@@ -68,35 +58,25 @@ export default async function RootLayout({
           defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
         />
 
-        {/* <meta
+        <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
-        /> */}
+        />
       </head>
 
-      <body className={openSans.className}>
-        <ProviderStore
-          colorScheme={colorSchemeState || 'light'}
-          session={session.user}
+      <body className={montserrat.className}>
+        <MantineProvider
+          theme={appTheme}
+          cssVariablesResolver={appResolver}
+          defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
+          classNamesPrefix={linkify(appData.name.app)}
         >
-          <MantineProvider
-            theme={appTheme}
-            cssVariablesResolver={appResolver}
-            defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
-            classNamesPrefix={linkify(appData.name.app)}
-          >
-            <ModalsProvider>{children}</ModalsProvider>
+          <ModalsProvider>{children}</ModalsProvider>
 
-            <Notifications limit={3} />
+          <Notifications limit={3} />
+        </MantineProvider>
 
-            {/* <AffixOffline /> */}
-            {/* <AffixiCookies /> */}
-          </MantineProvider>
-        </ProviderStore>
-
-        {/* <SpeedInsights /> */}
-
-        <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
+        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import {
   Anchor,
   Badge,
   Card,
-  CardSection,
+  Divider,
   Flex,
   Group,
   Image,
@@ -29,10 +29,10 @@ import {
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
-    <Card className={classes.card}>
-      <Stack justify="space-between" h={'100%'}>
-        <Stack>
-          <CardSection className={classes.imageSection}>
+    <Card className={classes.card} padding={0} withBorder>
+      <Stack justify="space-between" h={'100%'} gap={0}>
+        <div>
+          <div className={classes.imageSection}>
             <Anchor
               component={Link}
               inherit
@@ -66,15 +66,16 @@ export default function Main({ data }: { data: typeDrone }) {
                 </Stack>
               </div>
             </Anchor>
-          </CardSection>
+          </div>
 
-          <Stack>
+          <Divider />
+
+          <Stack p={'md'}>
             <Title order={3} className={classes.title} fz={{ md: 'md' }}>
               <Anchor
                 component={Link}
                 inherit
                 href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
-                c={'var(--mantine-color-white)'}
               >
                 {data.title.short ? data.title.short : data.title.long}
               </Anchor>
@@ -93,7 +94,7 @@ export default function Main({ data }: { data: typeDrone }) {
                       size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
                       color="var(--mantine-color-sec-3)"
-                      c={'var(--mantine-color-pri-9'}
+                      c={'var(--mantine-color-pri-7'}
                     >
                       <IconArrowRightDashed
                         size={ICON_SIZE / 1.5}
@@ -104,7 +105,7 @@ export default function Main({ data }: { data: typeDrone }) {
                 >
                   {data.specs.intro.map(
                     (spec, index) =>
-                      data.specs.intro.indexOf(spec) < 3 && (
+                      data.specs.intro.indexOf(spec) < 5 && (
                         <ListItem key={index}>
                           <Text
                             component="span"
@@ -125,25 +126,30 @@ export default function Main({ data }: { data: typeDrone }) {
               </Stack>
             )}
           </Stack>
-        </Stack>
+        </div>
 
-        <Group mt={'xs'}>
-          <Text>
-            Kshs.{' '}
-            <Text
-              component="span"
-              inherit
-              fw={500}
-              c={'var(--mantine-color-sec-3)'}
-            >
-              {data.price ? (
-                <NumberFormatter value={data.price.former} thousandSeparator />
-              ) : (
-                'TBD'
-              )}
+        <Stack p={'md'} bg={'pri.7'} c={'var(--mantine-color-body)'}>
+          <Group>
+            <Text>
+              Kshs.{' '}
+              <Text
+                component="span"
+                inherit
+                fw={500}
+                c={'var(--mantine-color-sec-3)'}
+              >
+                {data.price ? (
+                  <NumberFormatter
+                    value={data.price.former}
+                    thousandSeparator
+                  />
+                ) : (
+                  'TBD'
+                )}
+              </Text>
             </Text>
-          </Text>
-        </Group>
+          </Group>
+        </Stack>
       </Stack>
     </Card>
   );

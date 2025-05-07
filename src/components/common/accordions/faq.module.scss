@@ -2,8 +2,8 @@
   transition: 0.25s all ease;
   border-radius: 0;
   background-color: light-dark(
-    var(--mantine-color-pri-9),
-    var(--mantine-color-pri-9)
+    var(--mantine-color-pri-7),
+    var(--mantine-color-pri-7)
   );
   color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 
@@ -12,14 +12,14 @@
       var(--mantine-color-sec-3),
       var(--mantine-color-sec-3)
     );
-    color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+    color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
 
     .label {
-      color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+      color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
     }
 
     .icon {
-      color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+      color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
     }
   }
 }

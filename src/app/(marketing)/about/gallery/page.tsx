@@ -10,31 +10,56 @@ import {
   TabsPanel,
   TabsTab,
 } from '@mantine/core';
-
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import ModalGallery from '@/components/common/modals/gallery';
-
+import PartialGallery from '@/components/partial/gallery';
 import tabs from '@/data/tabs';
-
-import classes from './gallery.module.scss';
 import appData from '@/data/app';
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { images } from '@/assets/images';
+import IntroPage from '@/components/layout/intro/page';
+
+const metaTitle = `${appData.name.app} Gallery - Showcasing Our Training & Aerial Services`;
+const metaDesc =
+  'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';
 
 export const metadata: Metadata = {
-  title: `${appData.name.app} Gallery - Showcasing Our Training & Aerial Services`,
-  description:
-    'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!',
+  title: metaTitle,
+  description: metaDesc,
+  openGraph: {
+    title: metaTitle,
+    description: metaDesc,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/about/gallery`,
+    type: 'website',
+    images: [
+      {
+        url: images.brand.droneSpace.logo.potrait.meta,
+        width: 1200,
+        height: 1200,
+        alt: appData.name.company,
+      },
+    ],
+  },
 };
 
 export default async function Gallery() {
   return (
     <LayoutPage>
-      <LayoutSection id="page-gallery" padded>
-        <Tabs
-          defaultValue={'conference'}
-          classNames={{ list: classes.panel }}
-          keepMounted={true}
-        >
+      <IntroPage
+        props={{
+          path: 'Photos',
+          title: 'Drone Space Gallery',
+          desc: `Explore stunning visuals from our drone training graduations, aerial light shows, and other services.`,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+        }}
+      />
+
+      <LayoutSection
+        id="page-gallery"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <Tabs defaultValue={'conference'}>
           <Grid component={TabsList} grow mb={'xl'} justify="center" gutter={0}>
             <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
               <TabsTab w={'100%'} value="conference">
@@ -74,136 +99,73 @@ export default async function Gallery() {
           </Grid>
 
           <TabsPanel value="conference">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.conference.yr2024.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.conference.yr2024.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
 
           <TabsPanel value="expo">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.expo.yr2024.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.expo.yr2024.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
 
           <TabsPanel value="hackathon">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.hackathon.yr2024.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.hackathon.yr2024.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
 
           <TabsPanel value="graduation">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.graduation.yr2022.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.graduation.yr2022.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
 
           <TabsPanel value="innovation">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.innovation.jamuhuri.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.innovation.jamuhuri.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
 
           <TabsPanel value="projects">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.projects.project.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.projects.project.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
 
           <TabsPanel value="airfield">
-            <Grid gutter={2} justify="center">
-              {tabs.gallery.airfield.map((item, index) => (
-                <GridCol
-                  key={index}
-                  span={{
-                    base: 12,
-                    xs: 6,
-                    sm: 4,
-                    md: 3,
-                    lg: 2,
-                  }}
-                >
-                  <ModalGallery img={item} />
-                </GridCol>
-              ))}
-            </Grid>
+            <PartialGallery
+              props={{
+                list: tabs.gallery.airfield.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
           </TabsPanel>
         </Tabs>
       </LayoutSection>

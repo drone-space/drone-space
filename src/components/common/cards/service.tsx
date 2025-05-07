@@ -28,7 +28,7 @@ export default function Service({ data }: { data: typeService }) {
           h={'100%'}
           justify="space-between"
         >
-          <Stack gap={'xs'}>
+          <div>
             <Title
               order={3}
               fz={{ base: 'md', lg: 'lg' }}
@@ -37,10 +37,10 @@ export default function Service({ data }: { data: typeService }) {
               {data.title}
             </Title>
 
-            <Text fz="sm" lineClamp={4}>
+            <Text mt={'xs'} fz="sm" lineClamp={4}>
               {data.desc}
             </Text>
-          </Stack>
+          </div>
 
           <Anchor
             inherit

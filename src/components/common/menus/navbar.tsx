@@ -20,9 +20,8 @@ import { typeMenuNavbar } from '@/types/components/menu';
 import classes from './navbar.module.scss';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import CardMenu from '../cards/menu';
-import { IconExternalLink } from '@tabler/icons-react';
-import ModalDownloadBrochure from '../modals/download/brochure';
-import ModalDownloadProfile from '../modals/download/profile';
+import { IconFileDownload } from '@tabler/icons-react';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Navbar({
   children,
@@ -68,16 +67,14 @@ export default function Navbar({
 
   return (
     <Menu
-      shadow="xs"
       width={'auto'}
       trigger="click-hover"
       openDelay={50}
       closeDelay={50}
-      keepMounted={true}
       offset={{
-        mainAxis: 4,
+        mainAxis: 5,
       }}
-      transitionProps={{ transition: 'fade-up', duration: 250 }}
+      transitionProps={{ transition: 'fade-up', duration: 100 }}
       classNames={{
         dropdown: classes.dropdown,
         arrow: classes.arrow,
@@ -87,11 +84,12 @@ export default function Navbar({
         itemLabel: classes.itemLabel,
         itemSection: classes.itemSection,
       }}
+      keepMounted
     >
       <MenuTarget>{children}</MenuTarget>
 
       {menuItems && (
-        <MenuDropdown maw={720}>
+        <MenuDropdown w={720}>
           {!megaMenu ? (
             menuItems
           ) : (
@@ -105,7 +103,7 @@ export default function Navbar({
               </Grid>
 
               <Card
-                bg={'var(--mantine-color-pri-9)'}
+                bg={'var(--mantine-color-pri-7)'}
                 c={'var(--mantine-color-body)'}
                 radius={0}
               >
@@ -125,31 +123,31 @@ export default function Navbar({
                   </GridCol>
 
                   <GridCol span={3}>
-                    <Stack gap={0} h={'100%'} justify="space-between">
-                      <ModalDownloadBrochure>
+                    <Stack justify={'end'} h={'100%'} gap={'xs'}>
+                      <ModalDownloadDocument props={{ type: 'brochure' }}>
                         <Button
                           justify="space-between"
                           rightSection={
-                            <IconExternalLink
+                            <IconFileDownload
                               size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
-                              color="var(--mantine-color-pri-9)"
+                              color="var(--mantine-color-pri-7)"
                             />
                           }
                           fullWidth
                           color="sec.3"
-                          c="pri.9"
+                          c="pri.7"
                           size="compact-sm"
                         >
                           Brochure
                         </Button>
-                      </ModalDownloadBrochure>
+                      </ModalDownloadDocument>
 
-                      <ModalDownloadProfile>
+                      <ModalDownloadDocument props={{ type: 'profile' }}>
                         <Button
                           justify="space-between"
                           rightSection={
-                            <IconExternalLink
+                            <IconFileDownload
                               size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
                               color="var(--mantine-color-white)"
@@ -162,7 +160,7 @@ export default function Navbar({
                         >
                           Profile
                         </Button>
-                      </ModalDownloadProfile>
+                      </ModalDownloadDocument>
                     </Stack>
                   </GridCol>
                 </Grid>

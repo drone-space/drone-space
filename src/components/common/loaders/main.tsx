@@ -1,9 +1,11 @@
 'use client';
 
-import { Loader, Overlay, Text, Transition } from '@mantine/core';
+import { Box, Overlay, Text, Transition } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
-
+import ImageDefault from '../images/default';
 import classes from './main.module.scss';
+import { images } from '@/assets/images';
+import appData from '@/data/app';
 
 export default function Main() {
   const [mounted, setMounted] = useState(false);
@@ -14,7 +16,16 @@ export default function Main() {
 
   return (
     <Overlay fixed className={classes.overlay}>
-      <Loader color="pri" size={'sm'} />
+      <ImageDefault
+        src={images.brand.droneSpace.logo.potrait.default}
+        alt={appData.name.app}
+        height={{ base: 80 }}
+        width={{ base: 200 }}
+        fit="contain"
+        mode="grid"
+      />
+
+      <Box w={24} h={24} className={classes.spinner}></Box>
 
       <Transition
         mounted={mounted}

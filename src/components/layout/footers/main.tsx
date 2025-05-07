@@ -21,136 +21,113 @@ import appData from '@/data/app';
 import { socials } from '../headers/main';
 import NextImage from 'next/image';
 import { SECTION_SPACING } from '@/data/constants';
-// import SegmentedControlTheme from '@/components/common/segmented-control/theme';
 import { IconCircleFilled } from '@tabler/icons-react';
-import FormNewsletter from '@/components/form/newsletter';
 import ImageDefault from '@/components/common/images/default';
-import services from '@/data/services';
-import { linkify } from '@/utilities/formatters/string';
-import { shopLinks } from '@/data/links';
 
 export default function Main() {
   return (
     <LayoutSection
       id={'partial-footer-main'}
-      padded={SECTION_SPACING / 2}
+      padded={'lg'}
       className={classes.footer}
     >
-      <Stack gap={SECTION_SPACING / 2}>
-        <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
-          <Anchor component={Link} href={'/'}>
-            <ImageDefault
-              src={images.brand.droneSpace.logo.landscape.default}
-              alt={appData.name.app}
-              height={{ base: 40 }}
-              width={{ base: 200 }}
-              fit="contain"
-              mode="grid"
-            />
-          </Anchor>
-        </Flex>
-
-        <Grid gutter={{ base: 'xl', md: 'md' }} visibleFrom="sm">
-          {linkSets.map((linkSet, index) => (
-            <GridCol
-              key={index}
-              span={{ base: 6, sm: 4, md: 3 }}
-              visibleFrom={
-                linkSets.indexOf(linkSet) == linkSets.length - 1
-                  ? 'md'
-                  : undefined
-              }
-            >
-              <Flex
-                direction={'column'}
-                align={{ base: 'center', md: 'start' }}
-                gap={'xl'}
-              >
-                <Title order={4} fw={'bold'}>
-                  {linkSet.title}
-                </Title>
-
-                <List listStyleType="none" spacing={'md'}>
-                  {linkSet.links.map((link, index) => (
-                    <ListItem key={index} className={classes.listItem}>
-                      <Anchor
-                        component={Link}
-                        href={link.link}
-                        title={link.label}
-                        className={classes.link}
-                      >
-                        {link.label}
-                      </Anchor>
-                    </ListItem>
-                  ))}
-                </List>
-              </Flex>
-            </GridCol>
-          ))}
-        </Grid>
-
-        <Flex
-          direction={{ base: 'column', sm: 'row' }}
-          align={{ base: 'center', sm: 'end' }}
-          justify={{ sm: 'space-between' }}
-          gap={'lg'}
-          visibleFrom="sm"
-        >
-          <Flex
-            direction={'column'}
-            align={{ base: 'center', sm: 'start' }}
-            gap={'lg'}
-          >
-            <Stack gap={'xs'}>
-              <Title order={3} fz={'lg'} ta={{ base: 'center', sm: 'start' }}>
-                Subscribe to our newsletter
-              </Title>
-              <Text c={'dimmed'} ta={{ base: 'center', sm: 'start' }}>
-                The latest drone industry news, helpful tips, and exclusive
-                offers monthly.
-              </Text>
-            </Stack>
-
-            <FormNewsletter />
-          </Flex>
-
-          <Group gap={0} wrap="nowrap">
-            {socials.map((social, index) => (
-              <Anchor key={index} href={social.link} target="_blank">
-                <Stack>
-                  <Image
-                    src={social.image}
-                    alt={social.title}
-                    title={social.title}
-                    component={NextImage}
-                    height={24}
-                    width={24}
-                    priority
-                  />
-                </Stack>
+      <Grid mt={SECTION_SPACING / 2} gutter={{ base: 'xl', md: 'md' }}>
+        <GridCol span={{ base: 12, md: 6 }}>
+          <Stack gap={'xl'}>
+            <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
+              <Anchor component={Link} href={'/'}>
+                <ImageDefault
+                  src={images.brand.droneSpace.logo.landscape.default}
+                  alt={appData.name.app}
+                  height={{ base: 40 }}
+                  width={{ base: 200 }}
+                  fit="contain"
+                  mode="grid"
+                />
               </Anchor>
+            </Flex>
+
+            <Text
+              maw={{ md: '75%', lg: '66%' }}
+              ta={{ base: 'center', md: 'start' }}
+              fz={'sm'}
+            >
+              {appData.name.app} is approved and certified by KCAA to offer RPL
+              courses in multi-rotor and fixed wing, RPL instructor rating and
+              soon Beyond Visual Line of Sight (BVLOS) rating. The Academy
+              provides Kenya&apos;s highest quality drone training with a simple
+              yet comprehensive model for corporate clients, government
+              agencies, public safety departments, and individuals.
+            </Text>
+
+            <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
+              {socials.map((social, index) => (
+                <Anchor key={index} href={social.link} target="_blank">
+                  <Stack>
+                    <Image
+                      src={social.image}
+                      alt={social.title}
+                      title={social.title}
+                      component={NextImage}
+                      height={24}
+                      width={24}
+                      priority
+                    />
+                  </Stack>
+                </Anchor>
+              ))}
+            </Flex>
+          </Stack>
+        </GridCol>
+
+        <GridCol span={{ base: 12, md: 6 }} visibleFrom="sm">
+          <Grid>
+            {linkSets.map((linkSet, index) => (
+              <GridCol key={index} span={{ sm: 6 }}>
+                <Flex
+                  direction={'column'}
+                  align={{ base: 'center', md: 'start' }}
+                  gap={'xl'}
+                >
+                  <Title order={4} fw={'bold'}>
+                    {linkSet.title}
+                  </Title>
+
+                  <List listStyleType="none" spacing={'sm'}>
+                    {linkSet.links.map((link, index) => (
+                      <ListItem key={index} className={classes.listItem}>
+                        <Anchor
+                          component={Link}
+                          href={link.link}
+                          title={link.label}
+                          className={classes.link}
+                          fz={'sm'}
+                        >
+                          {link.label}
+                        </Anchor>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Flex>
+              </GridCol>
             ))}
-          </Group>
-        </Flex>
-      </Stack>
+          </Grid>
+        </GridCol>
+      </Grid>
 
       <Divider
-        my={SECTION_SPACING / 2}
+        mt={SECTION_SPACING / 2}
+        mb={'lg'}
         color="var(--mantine-color-default-border)"
       />
 
-      <Stack gap={'lg'} fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
+      <Stack fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
         <Flex
           align={'center'}
           justify={{ sm: 'space-between' }}
-          direction={{ base: 'column' }}
+          direction={{ base: 'column', sm: 'row' }}
           gap={'md'}
         >
-          <Text component="span" inherit>
-            © {new Date().getFullYear()} {appData.name.app}. All Rights
-            Reserved.
-          </Text>
-
           <Group gap={'xs'} fz={'xs'}>
             <Anchor
               component={Link}
@@ -172,11 +149,12 @@ export default function Main() {
               Privacy Policy
             </Anchor>
           </Group>
-        </Flex>
 
-        {/* <Flex justify={{ base: 'center', sm: 'start' }}>
-          <SegmentedControlTheme />
-        </Flex> */}
+          <Text component="span" inherit>
+            © {new Date().getFullYear()} {appData.name.app}. All Rights
+            Reserved.
+          </Text>
+        </Flex>
       </Stack>
     </LayoutSection>
   );
@@ -192,10 +170,6 @@ const phone = {
 };
 
 const linkSets = [
-  {
-    title: 'Drone Shop',
-    links: shopLinks,
-  },
   {
     title: 'Useful Links',
     links: [
@@ -218,21 +192,6 @@ const linkSets = [
       {
         label: 'Get in Touch',
         link: '/about/contact',
-      },
-    ],
-  },
-  {
-    title: 'Drone Solutions',
-    links: [
-      ...services.map((service) => {
-        return {
-          link: `/drone-solutions#${linkify(service.title)}`,
-          label: service.title,
-        };
-      }),
-      {
-        label: 'Drone Light Shows',
-        link: '/drone-solutions/light-shows',
       },
     ],
   },

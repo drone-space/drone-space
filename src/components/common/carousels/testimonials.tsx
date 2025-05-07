@@ -15,7 +15,7 @@ export default function Testimonials({ props }: { props: Student[] }) {
   const desktopLg = useMediaQuery('(min-width: 75em)');
 
   const slides = props.map((client, index) => (
-    <CarouselSlide key={index} px={'xs'}>
+    <CarouselSlide key={index} px={'xs'} pb={'xs'}>
       <CardTestimonial props={client} />
     </CarouselSlide>
   ));

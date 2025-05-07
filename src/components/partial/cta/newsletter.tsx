@@ -1,21 +1,20 @@
 'use client';
 
 import {
-  FONT,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { Button, Group, Stack, Text, Title } from '@mantine/core';
+import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import FormNewsletter from '@/components/form/newsletter';
 import LayoutSection from '@/components/layout/section';
 import classes from './newsletter.module.scss';
 import { images } from '@/assets/images';
 import { usePathname } from 'next/navigation';
-import documents from '@/assets/documents';
-import { IconExternalLink, IconPhoneCall } from '@tabler/icons-react';
+import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 
 export default function Newsletter() {
   const pathname = usePathname();
@@ -34,7 +33,6 @@ export default function Newsletter() {
     <LayoutSection
       id={'partial-cta-newsletter'}
       c={'var(--mantine-color-body)'}
-      containerized="sm"
       className={classes.section}
       style={{
         backgroundImage: `url('${selectedVariant == 'pri' ? images.backgrounds.cta.newsletter.primary : images.backgrounds.cta.newsletter.secondary}')`,
@@ -42,45 +40,59 @@ export default function Newsletter() {
     >
       <div className={classes.overlay}></div>
 
-      <Stack gap={'xl'} py={SECTION_SPACING} pos={'relative'}>
-        <Stack>
-          <Title order={2} fz={FONT.CTA_TITLE} ta={'center'} c={'white'}>
-            Join Our Community!
-          </Title>
+      <Grid py={SECTION_SPACING / 2} pos={'relative'} align="center">
+        <GridCol span={{ base: 12, sm: 8 }}>
+          <Stack gap={'xl'} w={{ sm: '90%', md: '66%' }}>
+            <Stack gap={0} ta={{ base: 'center', sm: 'start' }}>
+              <Title order={2} c={'white'}>
+                Join Our Community!
+              </Title>
 
-          <Text fz={'xl'} ta={'center'}>
-            Subscribe to our monthly newsletter to receive the latest drone
-            industry news, helpful tips, and exclusive offers from us
-          </Text>
-        </Stack>
+              <Text inherit>
+                Subscribe to our monthly newsletter to receive the latest drone
+                industry news, helpful tips, and exclusive offers from us
+              </Text>
+            </Stack>
 
-        <FormNewsletter />
+            <FormNewsletter />
+          </Stack>
+        </GridCol>
 
-        <Group justify="center">
-          <Button
-            component="a"
-            href={documents.droneSpace.profile}
-            target="_blank"
-            leftSection={
-              <IconExternalLink size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-            variant="white"
+        <GridCol span={{ base: 12, sm: 4 }}>
+          <Flex
+            direction={{ base: 'column', xs: 'row', sm: 'column' }}
+            justify={'center'}
+            gap={'md'}
+            align={{ base: 'center', sm: 'end' }}
           >
-            Company Profile
-          </Button>
-          <ModalContactCallback>
-            <Button
-              leftSection={
-                <IconPhoneCall size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
-              variant="outline"
-              color="white"
-            >
-              Request Callback
-            </Button>
-          </ModalContactCallback>
-        </Group>
-      </Stack>
+            <ModalDownloadDocument props={{ type: 'profile' }}>
+              <Button
+                leftSection={
+                  <IconFileDownload
+                    size={ICON_SIZE}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+                variant="white"
+              >
+                Company Profile
+              </Button>
+            </ModalDownloadDocument>
+
+            <ModalContactCallback>
+              <Button
+                leftSection={
+                  <IconPhoneCall size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+                variant="outline"
+                color="white"
+              >
+                Request Callback
+              </Button>
+            </ModalContactCallback>
+          </Flex>
+        </GridCol>
+      </Grid>
     </LayoutSection>
   );
 }

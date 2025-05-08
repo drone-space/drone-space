@@ -11,6 +11,7 @@ import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
 import IntroPage from '@/components/layout/intro/page';
+import CtaFeatured from '@/components/partial/cta/featured';
 
 const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
 const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
@@ -48,6 +49,8 @@ export default async function Agriculture() {
         }}
       />
 
+      <CtaFeatured />
+
       <LayoutSection
         id="page-drones-agri"
         padded
@@ -56,7 +59,7 @@ export default async function Agriculture() {
       >
         <Grid>
           {drones.map((drone, index) => (
-            <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
+            <GridCol key={index} span={{ base: 12, xs: 6 }}>
               <CardShopDronesMain data={drone} />
             </GridCol>
           ))}

@@ -35,8 +35,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Camera() {
-  const drones = products.filter((p) => p.category == 'camera');
-
   return (
     <LayoutPage>
       <IntroPage
@@ -47,6 +45,8 @@ export default async function Camera() {
           bg: images.carousel.shop.image6,
         }}
       />
+
+      <CtaFeatured />
 
       <LayoutSection
         id="page-drones-agri"

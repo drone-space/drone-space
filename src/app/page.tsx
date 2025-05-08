@@ -14,6 +14,7 @@ import {
   Button,
   Grid,
   GridCol,
+  Group,
   SimpleGrid,
   Stack,
   Text,
@@ -35,8 +36,6 @@ import CardService from '@/components/common/cards/service';
 import { shuffleArray } from '@/utilities/helpers/array';
 import products from '@/data/products';
 import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
-import categories from '@/data/categories';
-import { linkify } from '@/utilities/formatters/string';
 import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
@@ -215,7 +214,7 @@ export default function Home() {
             {drones.camera.map(
               (product, index) =>
                 drones.camera.indexOf(product) < 2 && (
-                  <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
+                  <GridCol key={index} span={{ base: 12, xs: 6 }}>
                     <CardShopDroneMain data={product} />
                   </GridCol>
                 )
@@ -224,64 +223,25 @@ export default function Home() {
             {drones.enterprise.map(
               (product, index) =>
                 drones.enterprise.indexOf(product) < 2 && (
-                  <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
+                  <GridCol key={index} span={{ base: 12, xs: 6 }}>
                     <CardShopDroneMain data={product} />
                   </GridCol>
                 )
             )}
 
-            {drones.agriculture.map(
-              (product, index) =>
-                drones.agriculture.indexOf(product) < 1 && (
-                  <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
-                    <CardShopDroneMain data={product} />
-                  </GridCol>
-                )
-            )}
-
-            <GridCol span={{ base: 12, xs: 6, md: 4 }}>
-              <Stack justify="space-between" h={'100%'}>
-                <Button
+            <GridCol span={12}>
+              <Group justify="center" mt={'md'}>
+                <Anchor
+                  inherit
+                  ta={'center'}
                   component={Link}
                   href={'/shop'}
-                  h={'100%'}
-                  fullWidth
-                  color="sec.3"
-                  c={'pri.7'}
+                  fz={'sm'}
+                  underline="hover"
                 >
-                  <Stack align="center" p={'md'}>
-                    <IconShoppingCart
-                      size={ICON_SIZE * 1.5}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                    <Text inherit component="span" ta={'center'}>
-                      Go to Shop
-                    </Text>
-                  </Stack>
-                </Button>
-
-                {categories.map((category, index) => (
-                  <Button
-                    key={index}
-                    component={Link}
-                    href={`/shop/drones/${linkify(category.label)}`}
-                    h={'100%'}
-                    fullWidth
-                    color="sec.3"
-                    c={'pri.7'}
-                  >
-                    <Stack align="center" p={'md'}>
-                      <category.icon
-                        size={ICON_SIZE * 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                      <Text inherit component="span" ta={'center'}>
-                        {category.label} Drones
-                      </Text>
-                    </Stack>
-                  </Button>
-                ))}
-              </Stack>
+                  See more drones & categories
+                </Anchor>
+              </Group>
             </GridCol>
           </Grid>
         </LayoutSection>

@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { useRef } from 'react';
-import NextImage from 'next/image';
-import { Stack, Image as MantineImage } from '@mantine/core';
+import { Stack } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import classes from './image.module.scss';
+import ImageDefault from '../images/default';
 
 export default function Image({ data }: { data: string[] }) {
   const autoplay = useRef(Autoplay({ delay: 4000 }));
@@ -14,13 +14,13 @@ export default function Image({ data }: { data: string[] }) {
   const slides = data.map((slide, index) => (
     <CarouselSlide key={index}>
       <Stack w={'100%'} bg={'var(--mantine-color-body)'}>
-        <MantineImage
+        <ImageDefault
           src={slide}
           alt={'Intelligent battery'}
           loading="lazy"
-          component={NextImage}
-          width={1920}
-          height={1080}
+          height={{ base: 480 }}
+          width={'100%'}
+          fit={'contain'}
         />
       </Stack>
     </CarouselSlide>

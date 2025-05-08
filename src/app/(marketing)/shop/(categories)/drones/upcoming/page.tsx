@@ -4,13 +4,14 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import products from '@/data/products';
+import { upcomingDrones } from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
-import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intro/page';
+import CtaFeatured from '@/components/partial/cta/featured';
+import CardShopDroneUpcoming from '@/components/common/cards/shop/drones/upcoming';
 
 const metaTitle = `Upcoming Drones - New Drone Releases & Innovations | ${appData.name.app}`;
 const metaDesc = `Stay ahead with the latest drone technology. Get a sneak peek at upcoming releases and cutting-edge models launching soon.`;
@@ -55,9 +56,9 @@ export default async function Camera() {
         bg={'var(--mantine-color-gray-1)'}
       >
         <Grid>
-          {drones.map((drone, index) => (
-            <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
-              <CardShopDronesMain data={drone} />
+          {upcomingDrones.map((drone, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 6 }}>
+              <CardShopDroneUpcoming data={drone} />
             </GridCol>
           ))}
         </Grid>

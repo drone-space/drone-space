@@ -22,11 +22,11 @@ import ImageDefault from '@/components/common/images/default';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default async function Shop() {
-  const productFeatured = products.find((p) => p.featured);
-
   return (
     <LayoutPage>
       <HeroShop />
+
+      <CtaFeatured />
 
       <LayoutSection id="page-shop-intro" padded>
         <IntroSection
@@ -41,7 +41,7 @@ export default async function Shop() {
 
         <Grid mt={'xl'}>
           {factors.map((factor, index) => (
-            <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
+            <GridCol key={index} span={{ base: 12, sm: 6 }}>
               <CardShopFactor data={factor} />
             </GridCol>
           ))}

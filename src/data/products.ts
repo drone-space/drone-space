@@ -148,171 +148,10 @@ const products = [
   // },
 
   {
-    images: images.products.drones.dji.air.air2s.drone,
-    title: { long: 'DJI Mavic Air 2S', short: 'Air 2S' },
-    specs: {
-      intro: [
-        '1-inch image sensor & large 2.4μm pixels',
-        '1080p image transmission (upto 12 KM)',
-        'UHD Video (5.4K)',
-        'One-tap MasterShots feature',
-        'APAS 4.0 Four-directional obstacle sensing',
-      ],
-      aircraft: [
-        {
-          label: 'Takeoff Weight',
-          desc: '595 g',
-        },
-        {
-          label: 'Max Service Ceiling Above Sea Level',
-          desc: '5000 m',
-        },
-        {
-          label: 'Max Flight Time (no wind)',
-          desc: '31 minutes',
-        },
-        {
-          label: 'Max Hovering Time (no wind)',
-          desc: '30 minutes',
-        },
-        {
-          label: 'Max Flight Distance (no wind)',
-          desc: '18.5 km',
-        },
-        {
-          label: 'Max Wind Speed Resistance',
-          desc: '10.7 m/s',
-        },
-        {
-          label: 'Internal Storage',
-          desc: '8 GB',
-        },
-      ],
-    },
-    price: {
-      former: 250000,
-      latter: null,
-    },
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/dji/air/2s/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/aircraft.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Remote Controller',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/controller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Battery Charger',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/charger.webp`,
-          },
-          {
-            qty: 1,
-            item: 'AC Power Cable',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/ac-power-cable.webp`,
-          },
-          {
-            qty: 3,
-            item: 'Low Noise Propellers (Pairs)',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/protector.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-C Data Cable',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/usb-c-data-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Cable (USB Type-C Connector)',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/rc-n1-rc-cable-(usb-type-c-connector).webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Cable (Lightning Connector)',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/rc-n1-rc-cable-(lightning-connector).webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Cable (Standard Micro-USB Connector)',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/rc-n1-rc-cable-(standard-micro-usb-connector).webp`,
-          },
-          {
-            qty: 1,
-            item: 'Spare Control Sticks (Pair)',
-            image: `${baseUrl}/products/drones/dji/air/2s/box/spare-rc-n1-control-sticks-(pair).webp`,
-          },
-        ],
-      },
-      flyMore: {
-        contents: [
-          {
-            qty: 2,
-            item: 'Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/air/2s/more/battery.webp`,
-          },
-          {
-            qty: 3,
-            item: 'Low Noise Propellers (Pairs)',
-            image: `${baseUrl}/products/drones/dji/air/2s/more/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'ND Filters Set (ND4/8/16/32)',
-            image: `${baseUrl}/products/drones/dji/air/2s/more/nd-filters-set.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Battery Charging Hub',
-            image: `${baseUrl}/products/drones/dji/air/2s/more/battery-charging-hub.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Battery to Power Bank Adaptor',
-            image: `${baseUrl}/products/drones/dji/air/2s/more/battery-to-power-bank-adaptor.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Shoulder Bag',
-            image: `${baseUrl}/products/drones/dji/air/2s/more/shoulder-bag.webp`,
-          },
-        ],
-
-        price: {
-          former: 59000,
-          latter: null,
-        },
-      },
-    },
-    accessories: {
-      battery: accessories.find((a) => a.title.short == 'Mavic Air 2 Battery'),
-      other: null,
-    },
-    category: 'camera',
-    available: true,
-    brand: 'dji',
-    make: 'mavic',
-    model: 'air',
-  },
-
-  {
     images: images.products.drones.dji.air.air3.drone,
     title: { long: 'DJI Mavic Air 3', short: 'Air 3' },
+    tag: 'All-in-one imaging and safety',
+    desc: 'Dual-camera system, omnidirectional obstacle sensing, 46-minute flight time, and 4K/60fps video capabilities.',
     specs: {
       intro: [
         '1/1.3-inch-CMOS wide-angle camera',
@@ -405,6 +244,7 @@ const products = [
         ],
       },
       flyMore: {
+        image: `${baseUrl}/products/drones/dji/air/air3/more/collective.webp`,
         contents: [
           {
             qty: 2,
@@ -444,116 +284,14 @@ const products = [
     model: 'air',
   },
 
-  // {
-  // 	images: images.products.drones.dji.agras.t40.drone,
-  // 	title: {
-  // 		long: "DJI Agras T40 (Drone Spraying System)",
-  // 		short: "Agras T40",
-  // 	},
-  // 	specs: {
-  // 		intro: [
-  // 			"40kg spraying payload",
-  // 			"50kg spreading payload",
-  // 			"Active Phased Array Radar + Binocular Vision",
-  // 			"Dual Atomized Spraying System",
-  // 			"Supports flight spraying/spreading",
-  // 			"Supports flight RC mapping",
-  // 			"Core Modules IPX6K",
-  // 			"EFI Generator 15% fuel saving",
-  // 		],
-  // 		aircraft: [
-  // 			{
-  // 				label: "Total Weight (without battery)",
-  // 				desc: "38 kg",
-  // 			},
-  // 			{
-  // 				label: "Total Weight (with battery)",
-  // 				desc: "50 kg",
-  // 			},
-  // 			{
-  // 				label: "Takeoff Weight (spraying)",
-  // 				desc: "90 kg (at sea level)",
-  // 			},
-  // 			{
-  // 				label: "Takeoff Weight (spreading)",
-  // 				desc: "101 kg (at sea level)",
-  // 			},
-  // 			{
-  // 				label: "Max Diagonal Wheelbase",
-  // 				desc: "2184 mm",
-  // 			},
-  // 			{
-  // 				label: "Max flight radius can be set",
-  // 				desc: "2000 m",
-  // 			},
-  // 			{
-  // 				label: "Max Wind Speed Resistance",
-  // 				desc: "6 m/s",
-  // 			},
-  // 		],
-  // 	},
-  // 	price: {
-  // 		former: 1950000,
-  // 		latter: null,
-  // 	},
-  // 	kit: {
-  // 		basic: {
-  // 			image: `${baseUrl}/products/drones/dji/agras/t40/box/collective.webp`,
-  // 			contents: [
-  // 				{
-  // 					qty: 1,
-  // 					item: "Aircraft",
-  // 					image: `${baseUrl}/products/drones/dji/agras/t40/box/aircraft.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Remote Controller",
-  // 					image: `${baseUrl}/products/drones/dji/agras/t40/box/controller.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Intelligent Flight Battery",
-  // 					image: `${baseUrl}/products/drones/dji/agras/t40/box/battery.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Charging Hub",
-  // 					image: `${baseUrl}/products/drones/dji/agras/t40/box/charging-hub.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Coaxial Twin Rotor",
-  // 					image: `${baseUrl}/products/drones/dji/agras/t40/box/coaxial.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Remote Controller Lanyard",
-  // 					image: `${baseUrl}/products/drones/dji/agras/t40/box/lanyard.webp`,
-  // 				},
-  // 			],
-  // 		},
-  // 		flyMore: null,
-  // 	},
-  // 	accessories: {
-  // 		battery: accessories.find(a => a.title.short == "Agras Series Battery"),
-  // 		other: [
-  // 			accessories.find(a => a.title.short == "Agras Series Generator (D12000iE)"),
-  // 			accessories.find(a => a.title.short == "Agras Series Spreading System"),
-  // 		].filter(i => i != undefined),
-  // 	},
-  // 	category: "agriculture",
-  // 	available: true,
-  // 	brand: "dji",
-  // 	make: "agras",
-  // 	model: null,
-  // },
-
   {
     images: images.products.drones.dji.agras.t50.drone,
     title: {
       long: 'DJI Agras T50 (Drone Spraying System)',
       short: 'Agras T50',
     },
+    tag: 'Empowering Agriculture with Intelligent Precision',
+    desc: 'The T50 is designed for large-scale farming, offering a 40kg spraying or 50kg spreading payload, dual atomization spraying system, and the ability to cover up to 50 acres per hour.',
     specs: {
       intro: [
         '40 kg spraying payload',
@@ -750,115 +488,10 @@ const products = [
   // },
 
   {
-    images: images.products.drones.dji.matrice.matrice30t.drone,
-    title: { long: 'DJI Matrice 30T', short: 'Matrice 30T' },
-    specs: {
-      intro:
-        'The DJI Matrice 30T is a high-performance drone designed for professional applications. With its advanced flight capabilities and impressive payload capacity, this drone offers precise aerial data collection, mapping, and inspection solutions. It boasts exceptional stability, intelligent flight modes, and a reliable control system, making it an ideal choice for industrial and commercial operations.',
-      aircraft: [
-        {
-          label: 'Diagonal Wheelbase',
-          desc: '668 mm',
-        },
-        {
-          label: 'Weight (incl. two batteries)',
-          desc: '3770 ± 10 g',
-        },
-        {
-          label: 'Max Takeoff Weight',
-          desc: '4069 g',
-        },
-        {
-          label: 'Max Wind Resistance',
-          desc: '12 m/s',
-        },
-        {
-          label: 'Max Hover Time',
-          desc: '36 min',
-        },
-        {
-          label: 'Max Flight Time',
-          desc: '41 min',
-        },
-        {
-          label: 'Ingress Protection Rating',
-          desc: 'IP55',
-        },
-      ],
-    },
-    price: {
-      former: 1650000,
-      latter: null,
-    },
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/aircraft.webp`,
-          },
-          {
-            qty: 2,
-            item: 'TB30 Flight Battery',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI RC Plus Remote Controller',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/controller.webp`,
-          },
-          {
-            qty: 1,
-            item: '1671 Propeller (CW)',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/cw-propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: '1671 Propeller (CCW)',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/ccw-propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-C Data Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/usb-c-data-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Carrying Case',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/carrying-case.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Screws and Tools',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/screws-tools.webp`,
-          },
-          {
-            qty: 1,
-            item: 'BS30 Battery station',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/battery-station.webp`,
-          },
-        ],
-      },
-      flyMore: null,
-    },
-    accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Matrice Series Battery'
-      ),
-      other: null,
-    },
-    category: 'enterprise',
-    available: true,
-    brand: 'dji',
-    make: 'matrice',
-    model: null,
-  },
-
-  {
     images: images.products.drones.dji.matrice.matrice350.drone,
-    title: { long: 'DJI Matrice 350', short: 'Matrice 350' },
+    title: { long: 'DJI Matrice 350 RTK', short: 'Matrice 350' },
+    tag: 'Precision Aerial Operations for Enterprise Excellence',
+    desc: 'An advanced drone equipped with RTK positioning, six-directional obstacle sensing, and a maximum flight time of 55 minutes, making it ideal for detailed surveying and mapping tasks.',
     specs: {
       intro: [
         '55-Min Flight Time',
@@ -988,7 +621,7 @@ const products = [
       battery: accessories.find((a) => a.title.short == 'Matrice 350 Battery'),
       other: null,
     },
-    category: 'enterprise',
+    category: 'mapping',
     available: true,
     brand: 'dji',
     make: 'matrice',
@@ -996,263 +629,10 @@ const products = [
   },
 
   {
-    images: images.products.drones.autel.evo2.drone,
-    title: {
-      long: 'Autel Evo II Dual 640T (Enterprise Bundle)',
-      short: 'Evo II Dual 640T',
-    },
-    specs: {
-      intro: [
-        '50MP Ultra-Sensitive Camera',
-        '640x512 30Hz New Thermal Imaging Sensor',
-        'Multiple Temperature Measurement Modes',
-        '360° Obstacle Avoidance',
-        '7.9-inch Smart Controller V3',
-        '15KM Image Transmission',
-      ],
-      aircraft: [
-        {
-          label: 'Max takeoff weight',
-          desc: '2000 g',
-        },
-        {
-          label: 'Wheelbase',
-          desc: '397 mm',
-        },
-        {
-          label: 'Max Takeoff Altitude',
-          desc: '7000 m',
-        },
-        {
-          label: 'Max flight distance (no wind)',
-          desc: '22 km',
-        },
-        {
-          label: 'Max Horizontal Speed',
-          desc: '23 m/s',
-        },
-        {
-          label: 'Max flight time (no wind)',
-          desc: '38 min',
-        },
-        {
-          label: 'Max hovering time (no wind)',
-          desc: '33 min',
-        },
-        {
-          label: 'Internal storage',
-          desc: '8GB',
-        },
-        {
-          label: 'SD storage',
-          desc: '256GB (UHS-3 or Class 10)',
-        },
-      ],
-    },
-    price: {
-      former: 900000,
-      latter: null,
-    },
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/autel/evo2/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/autel/evo2/box/aircraft.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Remote Controller',
-            image: `${baseUrl}/products/drones/autel/evo2/box/controller.webp`,
-          },
-          {
-            qty: 3,
-            item: 'Propeller',
-            image: `${baseUrl}/products/drones/autel/evo2/box/propeller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Charging cable',
-            image: `${baseUrl}/products/drones/autel/evo2/box/controller-charger.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Battery Charger',
-            image: `${baseUrl}/products/drones/autel/evo2/box/battery-charger.webp`,
-          },
-          {
-            qty: 2,
-            item: 'Battery',
-            image: `${baseUrl}/products/drones/autel/evo2/box/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Battery Charging Hub',
-            image: `${baseUrl}/products/drones/autel/evo2/box/charging-hub.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Carrying Case',
-            image: `${baseUrl}/products/drones/autel/evo2/box/carrying-case.webp`,
-          },
-        ],
-      },
-      flyMore: null,
-    },
-    accessories: null,
-    category: 'enterprise',
-    available: true,
-    brand: 'autel',
-    make: 'evo',
-    model: null,
-  },
-
-  {
-    images: images.products.drones.dji.mavic.m3c.drone,
-    title: { long: 'DJI Mavic 3 Classic', short: 'Mavic 3 Classic' },
-    specs: {
-      intro: [
-        '4/3 CMOS Hasselblad Camera',
-        '5.1K HD Video',
-        '46-Min Max Flight Time',
-        'Omnidirectional Obstacle Sensing',
-        'Hasselblad Natural Colour Solution',
-        '15km HD Video Transmission',
-        'Advanced RTH',
-        'Night Mode for Video Recording',
-      ],
-      aircraft: [
-        {
-          label: 'Takeoff weight',
-          desc: '895 g',
-        },
-        {
-          label: 'Max Takeoff Altitude',
-          desc: '6000 m',
-        },
-        {
-          label: 'Max Flight Time',
-          desc: '46 minutes',
-        },
-        {
-          label: 'Max Hovering Time',
-          desc: '40 minutes',
-        },
-        {
-          label: 'Max Flight Distance',
-          desc: '30 km',
-        },
-        {
-          label: 'Max Wind Speed Resistance',
-          desc: '12 m/s',
-        },
-      ],
-    },
-    price: {
-      former: 396000,
-      latter: null,
-    },
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/dji/mavic/3c/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/aircraft.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Remote Controller',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/controller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Mavic 3 Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/battery.webp`,
-          },
-          {
-            qty: 3,
-            item: 'DJI Mavic 3 Low-Noise Propellers (pair)',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/propeller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI 65W Portable Charger',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/charger.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-C Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/usb-c-data-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Mavic 3 Classic Storage Cover',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/storage-cover.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Spare DJI RC Control Sticks (pair)',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/box/spare-rc-n1-control-sticks-(pair).webp`,
-          },
-        ],
-      },
-
-      flyMore: {
-        image: `${baseUrl}/products/drones/dji/mavic/3c/more/collective.webp`,
-        contents: [
-          {
-            qty: 2,
-            item: 'Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/more/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Battery Charging Hub',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/more/charging-hub.webp`,
-          },
-          {
-            qty: 1,
-            item: '65W Car Charger',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/more/car-charger.webp`,
-          },
-          {
-            qty: 3,
-            item: 'Low-Noise Propellers (Pair)',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/more/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Convertible Carrying Bag',
-            image: `${baseUrl}/products/drones/dji/mavic/3c/more/carrying-bag.webp`,
-          },
-        ],
-
-        price: {
-          former: 135000,
-          latter: null,
-        },
-      },
-    },
-    accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Mavic 3 Series Battery'
-      ),
-      other: null,
-    },
-    category: 'camera',
-    available: true,
-    brand: 'dji',
-    make: 'mavic',
-    model: null,
-  },
-
-  {
     images: images.products.drones.dji.mavic.m3pro.drone,
     title: { long: 'DJI Mavic 3 Pro', short: 'Mavic 3 Pro' },
+    tag: 'Professional-grade imaging with triple-camera versatility',
+    desc: 'Hasselblad camera system, 5.1K video recording, 43-minute flight time, and advanced safety features.',
     specs: {
       intro: [
         '4/3 CMOS Hasselblad Camera ',
@@ -1413,8 +793,304 @@ const products = [
   },
 
   {
+    images: images.products.drones.dji.mavic.m3e.drone,
+    title: { long: 'DJI Mavic 3E Enterprise', short: 'Mavic 3E Enterprise' },
+    tag: 'Portable Precision for Professional Mapping',
+    desc: 'Tailored for geospatial professionals, providing high-resolution imaging and advanced sensing capabilities in a compact form factor, suitable for mapping and surveying applications.',
+    specs: {
+      intro: [
+        '4/3 CMOS wide camera',
+        '56X hybrid zoom',
+        '640 × 512 px Thermal Camera',
+        '45-min max flight time',
+        'DJI O3 Enterprise Transmission',
+        'Centimeter-level positioning with RTK',
+        'High-Volume loudspeaker',
+      ],
+      aircraft: [
+        {
+          label: 'Max Wind Speed Resistance',
+          desc: '12 m/s',
+        },
+        {
+          label: 'Max Take-off Altitude Above Sea Level',
+          desc: '6000 m (without payload)',
+        },
+        {
+          label: 'Max Flight Time (no wind)',
+          desc: '45 minutes',
+        },
+        {
+          label: 'Max Hovering Time (no wind)',
+          desc: '38 minutes',
+        },
+        {
+          label: 'Max Flight Distance',
+          desc: '32 km',
+        },
+        {
+          label: 'Max Wind Speed Resistance',
+          desc: '12 m/s',
+        },
+      ],
+    },
+    price: {
+      former: 690000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/mavic/3e/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 3 Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'microSD Card (64GB)',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/microsd-card.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/gimbal-protector.webp`,
+          },
+          {
+            qty: 3,
+            item: 'Mavic 3 Enterprise Series Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Pro Enterprise',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Screwdriver',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/screwdriver.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C Power Adapter (100W)',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/power-adapter.webp`,
+          },
+          {
+            qty: 1,
+            item: '100W Power Adaptor AC Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/usb-c-power-adapter-ac-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/usb-c-usb-c.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Protector Case',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/box/carrying-case.webp`,
+          },
+        ],
+      },
+
+      flyMore: {
+        image: `${baseUrl}/products/drones/dji/mavic/3e/more/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Mavic 3 Enterprise Series RTK Module',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/more/rtk.webp`,
+          },
+          {
+            qty: 2,
+            item: 'Mavic 3 Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/more/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 3 Battery Charging Hub (100W)',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/more/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3e/more/usb-c-usb-c.webp`,
+          },
+        ],
+
+        price: {
+          former: 135000,
+          latter: null,
+        },
+      },
+    },
+    accessories: {
+      battery: accessories.find(
+        (a) => a.title.short == 'Mavic 3 Series Battery'
+      ),
+      other: null,
+    },
+    category: 'mapping',
+    available: true,
+    brand: 'dji',
+    make: 'mavic',
+    model: null,
+  },
+
+  {
+    images: images.products.drones.dji.mavic.m3m.drone,
+    title: { long: 'DJI Mavic 3M Enterprise', short: 'Mavic 3M Enterprise' },
+    tag: 'Precision Mapping in the Palm of Your Hand',
+    desc: 'Tailored for surveying and mapping, the Mavic 3M offers high-resolution imaging and advanced sensing capabilities for accurate data collection.',
+    specs: {
+      intro: [
+        '4 × 5MP Multispectral Camera',
+        '20 MP, RGB, 4/3 CMOS, mechanical shutter',
+        'Omnidirectional Obstacle Avoidance',
+        '15km Transmission Distance',
+        'Centimeter-level RTK positioning',
+        'Up to 200 hectares per flight',
+      ],
+      aircraft: [
+        {
+          label: 'Net Weight (with propellers and RTK module)',
+          desc: '951 g',
+        },
+        {
+          label: 'Max Takeoff Weight',
+          desc: '1,050 g',
+        },
+        {
+          label: 'Max Wind Speed Resistance',
+          desc: '12 m/s',
+        },
+        {
+          label: 'Max Take-off Altitude (Above Sea Level)',
+          desc: '6000 m (without payload)',
+        },
+        {
+          label: 'Max Flight Time (without wind)',
+          desc: '43 minutes',
+        },
+        {
+          label: 'Max Hover Time (without wind)',
+          desc: '37 minutes',
+        },
+        {
+          label: 'Max Flight Distance',
+          desc: '32 km',
+        },
+      ],
+    },
+    price: {
+      former: 909000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/mavic/3m/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 3 Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 3 Enterprise Series RTK Module',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/rtk.webp`,
+          },
+          {
+            qty: 1,
+            item: 'microSD Card (64GB)',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/microsd-card.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/gimbal-protector.webp`,
+          },
+          {
+            qty: 3,
+            item: 'Mavic 3 Enterprise Series Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Pro Enterprise',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Screwdriver',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/screwdriver.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C Power Adapter (100W)',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/power-adapter.webp`,
+          },
+          {
+            qty: 1,
+            item: '100W Power Adaptor AC Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/usb-c-power-adapter-ac-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/usb-c-usb-c.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Protector Case',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/carrying-case.webp`,
+          },
+        ],
+      },
+      flyMore: null,
+    },
+    accessories: {
+      battery: accessories.find(
+        (a) => a.title.short == 'Mavic 3 Series Battery'
+      ),
+      other: [
+        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
+      ].filter((i) => i != undefined),
+    },
+    category: 'enterprise',
+    available: true,
+    brand: 'dji',
+    make: 'mavic',
+    model: null,
+  },
+
+  {
     images: images.products.drones.dji.mavic.m3t.drone,
     title: { long: 'DJI Mavic 3T Enterprise', short: 'Mavic 3T Enterprise' },
+    tag: 'Portable Power for Professional Missions',
+    desc: 'The Mavic 3T features a 56× hybrid zoom camera and RTK module for centimeter-level precision, offering mission efficiency for various commercial applications.',
     specs: {
       intro: [
         '4/3 CMOS wide camera',
@@ -1568,275 +1244,447 @@ const products = [
   },
 
   {
-    images: images.products.drones.dji.mavic.m3e.drone,
-    title: { long: 'DJI Mavic 3E Enterprise', short: 'Mavic 3E Enterprise' },
+    images: images.products.drones.dji.mini.m4pro.drone,
+    title: { long: 'DJI Mini 4 Pro', short: 'Mini 4 Pro' },
+    tag: 'Ultimate mini camera drone',
+    desc: '48MP camera, 4K/60fps HDR video, omnidirectional obstacle sensing, and 20km video transmission.',
     specs: {
       intro: [
-        '4/3 CMOS wide camera',
-        '56X hybrid zoom',
-        '640 × 512 px Thermal Camera',
-        '45-min max flight time',
-        'DJI O3 Enterprise Transmission',
-        'Centimeter-level positioning with RTK',
-        'High-Volume loudspeaker',
+        'Lightweight (Under 249 g)',
+        '4K/60fps HDR True Vertical Shooting',
+        'Omnidirectional Obstacle Sensing',
+        'Extended Battery Life',
+        '20km FHD Video Transmission',
+        'ActiveTrack (360 degrees)',
       ],
       aircraft: [
         {
-          label: 'Max Wind Speed Resistance',
-          desc: '12 m/s',
+          label: 'Takeoff Weight',
+          desc: '<249 g',
         },
         {
-          label: 'Max Take-off Altitude Above Sea Level',
-          desc: '6000 m (without payload)',
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
         },
         {
-          label: 'Max Flight Time (no wind)',
-          desc: '45 minutes',
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
         },
         {
-          label: 'Max Hovering Time (no wind)',
-          desc: '38 minutes',
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
         },
         {
-          label: 'Max Flight Distance',
-          desc: '32 km',
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
         },
         {
-          label: 'Max Wind Speed Resistance',
-          desc: '12 m/s',
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
+        },
+        {
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
         },
       ],
     },
-    price: {
-      former: 690000,
-      latter: null,
-    },
+    price: null,
     kit: {
       basic: {
-        image: `${baseUrl}/products/drones/dji/mavic/3e/box/collective.webp`,
+        image: `${baseUrl}/products/drones/dji/mini/4pro/box/collective.webp`,
         contents: [
           {
             qty: 1,
             item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/aircraft.webp`,
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/aircraft.webp`,
           },
           {
             qty: 1,
-            item: 'Mavic 3 Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/battery.webp`,
+            item: 'Remote Controller',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/controller.webp`,
           },
           {
             qty: 1,
-            item: 'microSD Card (64GB)',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/microsd-card.webp`,
+            item: 'Mini 4 Pro Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/battery.webp`,
           },
           {
             qty: 1,
-            item: 'Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/gimbal-protector.webp`,
+            item: 'Mini 4 Pro Spare Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/propellers.webp`,
           },
           {
-            qty: 3,
-            item: 'Mavic 3 Enterprise Series Propellers (Pair)',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Pro Enterprise',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/controller.webp`,
+            qty: 6,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/screws.webp`,
           },
           {
             qty: 1,
             item: 'Screwdriver',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/screwdriver.webp`,
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/screwdriver.webp`,
           },
           {
             qty: 1,
-            item: 'USB-C Power Adapter (100W)',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/power-adapter.webp`,
+            item: 'RC Cable (USB Type-C Connector)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-usb-c-connector.webp`,
           },
           {
             qty: 1,
-            item: '100W Power Adaptor AC Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/usb-c-power-adapter-ac-cable.webp`,
+            item: 'RC Cable (Lightning Connector)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-lightning-connector.webp`,
           },
           {
             qty: 1,
-            item: 'USB-C Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/usb-c-data-cable.webp`,
+            item: 'Type-C to Type-C PD Cable',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/type-c-to-type-c-pd-cable.webp`,
           },
           {
             qty: 1,
-            item: 'USB-C to USB-C Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/usb-c-usb-c.webp`,
+            item: 'Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/protector.webp`,
           },
           {
             qty: 1,
-            item: 'Protector Case',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/box/carrying-case.webp`,
+            item: 'Propeller Holder',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/propeller-holder.webp`,
           },
         ],
       },
 
       flyMore: {
-        image: `${baseUrl}/products/drones/dji/mavic/3e/more/collective.webp`,
+        image: `${baseUrl}/products/drones/dji/mini/4pro/more/collective.webp`,
         contents: [
           {
+            qty: 2,
+            item: 'Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/battery.webp`,
+          },
+          {
             qty: 1,
-            item: 'Mavic 3 Enterprise Series RTK Module',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/more/rtk.webp`,
+            item: 'Two-way Charging Hub',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/charging-hub.webp`,
           },
           {
             qty: 2,
-            item: 'Mavic 3 Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/more/battery.webp`,
+            item: 'Mini 4 Pro Propellers (pair)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/propellers.webp`,
           },
           {
             qty: 1,
-            item: 'Mavic 3 Battery Charging Hub (100W)',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/more/charging-hub.webp`,
+            item: 'Shoulder Bag',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/shoulder-bag.webp`,
           },
           {
-            qty: 1,
-            item: 'USB-C to USB-C Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3e/more/usb-c-usb-c.webp`,
+            qty: 12,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/screws.webp`,
           },
         ],
 
-        price: {
-          former: 135000,
-          latter: null,
-        },
+        price: null,
       },
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Mavic 3 Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Mini 4 Pro Battery'),
       other: null,
     },
-    category: 'enterprise',
+    category: 'camera',
     available: true,
+    featured: true,
     brand: 'dji',
-    make: 'mavic',
+    make: 'mini',
     model: null,
   },
 
   {
-    images: images.products.drones.dji.mavic.m3m.drone,
-    title: { long: 'DJI Mavic 3M Enterprise', short: 'Mavic 3M Enterprise' },
+    images: images.products.drones.dji.inspire.inspire3.drone,
+    title: { long: 'DJI Inspire 3', short: 'Inspire 3' },
+    tag: 'Cinematic Excellence in the Sky',
+    desc: "Flagship drone for high-end productions, featuring a full-frame sensor, dual native ISO for superior low-light performance, and compatibility with custom lenses. It's been utilized in major film and TV projects such as 'Spider-Man Noir' and 'Happy Gilmore 2'.",
     specs: {
       intro: [
-        '4 × 5MP Multispectral Camera',
-        '20 MP, RGB, 4/3 CMOS, mechanical shutter',
-        'Omnidirectional Obstacle Avoidance',
-        '15km Transmission Distance',
-        'Centimeter-level RTK positioning',
-        'Up to 200 hectares per flight',
+        'Full-frame 8K ProRes RAW/CinemaDNG',
+        '1/1.8-inch Low-Light FPV Camera',
+        '360° Pan and Tilt Boost',
+        'O3 Pro Video Transmission',
+        'RTK and Waypoint Pro',
+        'DJI PRO Ecosystem Support',
       ],
       aircraft: [
         {
-          label: 'Net Weight (with propellers and RTK module)',
-          desc: '951 g',
+          label: 'Takeoff Weight',
+          desc: '<249 g',
         },
         {
-          label: 'Max Takeoff Weight',
-          desc: '1,050 g',
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
         },
         {
-          label: 'Max Wind Speed Resistance',
-          desc: '12 m/s',
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
         },
         {
-          label: 'Max Take-off Altitude (Above Sea Level)',
-          desc: '6000 m (without payload)',
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
         },
         {
-          label: 'Max Flight Time (without wind)',
-          desc: '43 minutes',
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
         },
         {
-          label: 'Max Hover Time (without wind)',
-          desc: '37 minutes',
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
         },
         {
-          label: 'Max Flight Distance',
-          desc: '32 km',
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
         },
       ],
     },
-    price: {
-      former: 909000,
-      latter: null,
-    },
+    price: null,
     kit: {
       basic: {
-        image: `${baseUrl}/products/drones/dji/mavic/3m/box/collective.webp`,
+        image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/collective.webp`,
         contents: [
           {
             qty: 1,
             item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/aircraft.webp`,
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/aircraft.webp`,
           },
           {
             qty: 1,
-            item: 'Mavic 3 Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/battery.webp`,
+            item: 'RC Plus',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/controller.webp`,
           },
           {
             qty: 1,
-            item: 'Mavic 3 Enterprise Series RTK Module',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/rtk.webp`,
+            item: 'Zenmuse X9-8K Air Gimbal Camera',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/camera.webp`,
+          },
+          {
+            qty: 6,
+            item: 'TB51 Intelligent Battery',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/battery.webp`,
           },
           {
             qty: 1,
-            item: 'microSD Card (64GB)',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/microsd-card.webp`,
+            item: 'PROSSD 1TB',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/ssd.webp`,
           },
           {
             qty: 1,
-            item: 'Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/gimbal-protector.webp`,
+            item: 'TB51 Intelligent Battery Charging Hub',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/charging-hub.webp`,
           },
           {
             qty: 3,
-            item: 'Mavic 3 Enterprise Series Propellers (Pair)',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/propellers.webp`,
+            item: 'Inspire 3 Foldable Quick-Release Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/propellers.webp`,
           },
           {
             qty: 1,
-            item: 'RC Pro Enterprise',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/controller.webp`,
+            item: 'RC Plus Strap',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/strap.webp`,
           },
           {
             qty: 1,
-            item: 'Screwdriver',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/screwdriver.webp`,
+            item: 'RC Plus Waist Support',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/waist-support.webp`,
           },
           {
             qty: 1,
-            item: 'USB-C Power Adapter (100W)',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/power-adapter.webp`,
+            item: 'Inspire 3 Trolley Case',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/trolley-case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Zenmuse X9-8K Air Gimbal Camera Case',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/camera-case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Lens Carrying Box (18/24/35/50mm)',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/camera-case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C High-Speed Data Cable',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/usb-c-to-usb-c-high-speed-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-A Data Cable',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/usb-c-to-usb-a-data-cable.webp`,
+          },
+          {
+            qty: 2,
+            item: 'Inspire 3 Gimbal Rubber Dampers',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/dampers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'TB51 Intelligent Battery Charging Hub AC Cable',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/battery-charging-hub-ac-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'TB51 Intelligent Battery Paired Batteries Sticker',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/sticker.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Double-Headed Screwdriver',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/screwdriver.webp`,
+          },
+        ],
+      },
+      flyMore: null,
+    },
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'Inspire 3 Battery'),
+      other: null,
+    },
+    category: 'cinematography',
+    available: true,
+    brand: 'dji',
+    make: 'inspire',
+    model: null,
+  },
+
+  {
+    images: images.products.drones.dji.matrice.m4e.drone,
+    title: { long: 'DJI Matrice 4E', short: 'Matrice 4E' },
+    tag: 'Intelligent Aerial Operations for Geospatial Excellence',
+    desc: 'The Matrice 4E is designed for geospatial applications such as surveying and mapping, construction, and mining, offering advanced features to enhance aerial operations.',
+    specs: {
+      intro: [
+        'Intelligent Recognition With AI, Intelligent Operation',
+        'Excellent for Low-Light Environments (0.5 lux)',
+        'Crystal Clear Vision: Unveil the Details (112x)',
+        'Precision Mapping (Oblique, 3-Directional Ortho, & Smart 3D Capture)',
+        'Enhanced Flight Safety',
+        'Accessory Upgrades',
+      ],
+      aircraft: [
+        {
+          label: 'Takeoff Weight',
+          desc: '<249 g',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
+        },
+        {
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
+        },
+        {
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
+        },
+      ],
+    },
+    price: null,
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/matrice/m4e/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'DJI Matrice 4E',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI RC Plus 2 Enterprise',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Battery',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI 100W USB-C Power Adapter',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/adapter.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Charging Hub',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'microSD Card',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/microsd.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4E Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/gimbal-protector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Cellular Dongle 2 Pry Bar',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/dongle.webp`,
+          },
+          {
+            qty: 3,
+            item: 'DJI Matrice 4 Series Propellers',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/propellers.webp`,
           },
           {
             qty: 1,
             item: '100W Power Adaptor AC Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/usb-c-power-adapter-ac-cable.webp`,
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/adapter-cable.webp`,
           },
           {
             qty: 1,
-            item: 'USB-C Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/usb-c-data-cable.webp`,
+            item: 'USB-C to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/usb-c-to-usb-c-data-cable.webp`,
           },
           {
             qty: 1,
-            item: 'USB-C to USB-C Cable',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/usb-c-usb-c.webp`,
+            item: 'USB-A to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/usb-a-to-usb-c-data-cable.webp`,
           },
           {
             qty: 1,
-            item: 'Protector Case',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/carrying-case.webp`,
+            item: 'DJI Matrice 4 Series Storage Case',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Storage Case Shoulder Strap',
+            image: `${baseUrl}/products/drones/dji/matrice/m4e/box/strap.webp`,
           },
         ],
       },
@@ -1844,314 +1692,692 @@ const products = [
     },
     accessories: {
       battery: accessories.find(
-        (a) => a.title.short == 'Mavic 3 Series Battery'
+        (a) => a.title.short == 'Matrice 4 Series Battery'
       ),
-      other: [
-        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
-      ].filter((i) => i != undefined),
+      other: null,
     },
-    category: 'agriculture',
+    category: 'enterprise',
     available: true,
     brand: 'dji',
-    make: 'mavic',
+    make: 'matrice',
     model: null,
   },
 
-  // {
-  // 	images: images.products.drones.dji.mini.m3pro.drone,
-  // 	title: { long: "DJI Mini 3 Pro", short: "Mini 3 Pro" },
-  // 	specs: {
-  // 		intro: [
-  // 			"Lightweight (Under 249 g)",
-  // 			"Tri-Directional Obstacle Sensing",
-  // 			"4K HDR Video",
-  // 			"Extended Battery Life",
-  // 			"True Vertical Shooting",
-  // 			"FocusTrack Feature",
-  // 		],
-  // 		aircraft: [
-  // 			{
-  // 				label: "Takeoff Weight",
-  // 				desc: "<249 g",
-  // 			},
-  // 			{
-  // 				label: "Flight Time (Intelligent Battery, 21.6 kph, no wind)",
-  // 				desc: "34 mins",
-  // 			},
-  // 			{
-  // 				label: "Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)",
-  // 				desc: "47 mins",
-  // 			},
-  // 			{
-  // 				label: "Hovering Time (Intelligent Battery, no wind)",
-  // 				desc: "30 mins",
-  // 			},
-  // 			{
-  // 				label: "Hovering Time (Intelligent Battery Plus, no wind)",
-  // 				desc: "40 mins",
-  // 			},
-  // 			{
-  // 				label: "Flight Distance (Intelligent Battery, 43.2 kph, no wind)",
-  // 				desc: "18 km",
-  // 			},
-  // 			{
-  // 				label: "Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)",
-  // 				desc: "25 km",
-  // 			},
-  // 			{
-  // 				label: "Wind Speed Resistance",
-  // 				desc: "10.7 m/s (Level 5)",
-  // 			},
-  // 		],
-  // 	},
-  // 	price: {
-  // 		former: 215000,
-  // 		latter: null,
-  // 	},
-  // 	kit: {
-  // 		basic: {
-  // 			image: `${baseUrl}/products/drones/dji/mini/3pro/box/collective.webp`,
-  // 			contents: [
-  // 				{
-  // 					qty: 1,
-  // 					item: "Aircraft",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/aircraft.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Remote Controller",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/controller.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "RC Cable (USB Type-C Connector)",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(usb-type-c-connector).webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "RC Cable (Lightning Connector)",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(lightning-connector).webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "RC Cable (Standard Micro-USB Connector)",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/rc-n1-rc-cable-(standard-micro-usb-connector).webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Mini 3 Pro Intelligent Flight Battery",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/battery.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Mini 3 Pro Spare Propellers (Pair)",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/propellers.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Gimbal Protector",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/protector.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Type-C to Type-C PD Cable",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/usb-c-data-cable.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Screwdriver",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/screwdriver.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Screws",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/box/screws.webp`,
-  // 				},
-  // 			],
-  // 		},
-
-  // 		flyMore: {
-  // 			image: `${baseUrl}/products/drones/dji/mini/3pro/more/collective.webp`,
-  // 			contents: [
-  // 				{
-  // 					qty: 2,
-  // 					item: "Intelligent Flight Battery",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/more/battery.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Two-way Charging Hub",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/more/charging-hub.webp`,
-  // 				},
-  // 				{
-  // 					qty: 2,
-  // 					item: "Mini 3 Pro Propellers (pair)",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/more/propellers.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "Shoulder Bag",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/more/shoulder-bag.webp`,
-  // 				},
-  // 				{
-  // 					qty: 1,
-  // 					item: "USB 3.0 Type-C Data Cable ",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/more/usb-c-data-cable.webp`,
-  // 				},
-  // 				{
-  // 					qty: 12,
-  // 					item: "Screws",
-  // 					image: `${baseUrl}/products/drones/dji/mini/3pro/more/screws.webp`,
-  // 				},
-  // 			],
-
-  // 			price: {
-  // 				former: 55000,
-  // 				latter: null,
-  // 			},
-  // 		},
-  // 	},
-  // 	accessories: {
-  // 		battery: accessories.find(a => a.title.short == "Mini 3 Pro Battery"),
-  // 		other: null,
-  // 	},
-  // 	category: "camera",
-  // 	available: true,
-  // 	brand: "dji",
-  // 	make: "mini",
-  // 	model: null,
-  // },
-
   {
-    images: images.products.drones.dji.neo.drone,
-    title: { long: 'DJI Neo', short: 'DJI Neo' },
+    images: images.products.drones.dji.matrice.m4t.drone,
+    title: { long: 'DJI Matrice 4T', short: 'Matrice 4T' },
+    tag: 'Thermal Imaging for Tactical Precision',
+    desc: 'Equipped with a thermal imaging camera and NIR auxiliary light, the Matrice 4T is suitable for industries requiring thermal inspection and monitoring.',
     specs: {
       intro: [
-        'Palm Takeoff & Landing',
-        'Easy Editing With QuickShots',
-        'Multiple Control Options',
-        '4K Ultra-Stabilized Video',
-        '135 g, Light and Portable',
-        'Full-Coverage Propeller Guards',
+        'Intelligent Recognition With AI, Intelligent Operation',
+        'Excellent for Low-Light Environments (0.5 lux)',
+        'Crystal Clear Vision: Unveil the Details (112x)',
+        'Precision Mapping (Oblique, 3-Directional Ortho, & Smart 3D Capture)',
+        'Enhanced Flight Safety',
+        'Accessory Upgrades',
       ],
       aircraft: [
         {
           label: 'Takeoff Weight',
-          desc: '135 g',
+          desc: '<249 g',
         },
         {
-          label: 'Takeoff Altitude',
-          desc: '2000 m',
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
         },
         {
-          label: 'Flight Time',
-          desc: '18 mins',
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
         },
         {
-          label: 'Flight Time (with propeller guards)',
-          desc: '17 mins',
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
         },
         {
-          label: 'Hovering Time',
-          desc: '18 mins',
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
         },
         {
-          label: 'Hovering Time (with propeller guards)',
-          desc: '17 mins',
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
         },
         {
-          label: 'Flight Distance',
-          desc: '7 km',
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
         },
         {
           label: 'Wind Speed Resistance',
-          desc: '8 m/s (Level 4)',
+          desc: '10.7 m/s (Level 5)',
         },
       ],
     },
-    price: {
-      former: 45000,
-      latter: null,
-    },
+    price: null,
     kit: {
       basic: {
-        image: `${baseUrl}/products/drones/dji/neo/box/collective.webp`,
+        image: `${baseUrl}/products/drones/dji/matrice/m4t/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'DJI Matrice 4T',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI RC Plus 2 Enterprise',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Battery',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI 100W USB-C Power Adapter',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/adapter.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Charging Hub',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'microSD Card',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/microsd.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4T Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/gimbal-protector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Cellular Dongle 2 Pry Bar',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/dongle.webp`,
+          },
+          {
+            qty: 3,
+            item: 'DJI Matrice 4 Series Propellers',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: '100W Power Adaptor AC Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/adapter-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/usb-c-to-usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-A to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/usb-a-to-usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Storage Case',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4 Series Storage Case Shoulder Strap',
+            image: `${baseUrl}/products/drones/dji/matrice/m4t/box/strap.webp`,
+          },
+        ],
+      },
+      flyMore: null,
+    },
+    accessories: {
+      battery: accessories.find(
+        (a) => a.title.short == 'Matrice 4 Series Battery'
+      ),
+      other: null,
+    },
+    category: 'enterprise',
+    available: true,
+    brand: 'dji',
+    make: 'matrice',
+    model: null,
+  },
+
+  {
+    images: images.products.drones.dji.matrice.m4d.drone,
+    title: { long: 'DJI Matrice 4D (With Dock 3)', short: 'Matrice 4D' },
+    tag: 'Enhanced Detection for Complex Environments',
+    desc: 'An autonomous drone-in-a-box solution that can be deployed from moving vehicles. The Matrice 4D features a built-in weather station, surveillance cameras, and a 10 km communication range, supporting various industrial applications.',
+    specs: {
+      intro: [
+        'Extended Flight Times (54 minutes)',
+        'Advanced Camera System (24mm, 70mm, 168mm)',
+        'Night Scene Mode',
+        'Auto-Zoom Capability (FlightHub 2)',
+        'Enhanced Flight Safety',
+        'IP-rated (IP55)',
+      ],
+      aircraft: [
+        {
+          label: 'Takeoff Weight',
+          desc: '<249 g',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
+        },
+        {
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
+        },
+        {
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
+        },
+      ],
+    },
+    price: null,
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/matrice/m4d/box/collective.webp`,
         contents: [
           {
             qty: 1,
             item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/neo/box/aircraft.webp`,
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/aircraft.webp`,
           },
           {
             qty: 1,
-            item: 'Mini 3 Pro Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/neo/box/battery.webp`,
+            item: 'Controller',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/controller.webp`,
           },
           {
             qty: 1,
-            item: 'Propeller Guard (Pair)',
-            image: `${baseUrl}/products/drones/dji/neo/box/guard.webp`,
+            item: 'DJI Matrice 4D Series Battery',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/battery.webp`,
           },
           {
             qty: 1,
-            item: 'Spare Propellers (Pair)',
-            image: `${baseUrl}/products/drones/dji/neo/box/propellers.webp`,
+            item: 'DJI Matrice 4D Series Power Adapter',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/adapter.webp`,
           },
           {
             qty: 1,
-            item: 'Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/neo/box/protector.webp`,
+            item: 'DJI Matrice 4D Series Charging Hub',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/charging-hub.webp`,
           },
           {
             qty: 1,
-            item: 'Type-C to Type-C PD Cable',
-            image: `${baseUrl}/products/drones/dji/neo/box/data-cable.webp`,
+            item: 'microSD Card',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/microsd.webp`,
           },
           {
             qty: 1,
-            item: 'Screwdriver',
-            image: `${baseUrl}/products/drones/dji/neo/box/screwdriver.webp`,
+            item: 'DJI Matrice 4D Series Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/gimbal-protector.webp`,
           },
           {
-            qty: 4,
-            item: 'Spare Propeller Screw',
-            image: `${baseUrl}/products/drones/dji/neo/box/screw.webp`,
+            qty: 1,
+            item: 'DJI Dock 3 Station',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/dock.webp`,
+          },
+          {
+            qty: 3,
+            item: 'DJI Matrice 4D Series Propellers',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: '100W Power Adaptor AC Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/adapter-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/usb-c-to-usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-A to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/usb-a-to-usb-c-data-cable.webp`,
+          },
+          {
+            qty: 8,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/screws.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Storage Case',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Storage Case Shoulder Strap',
+            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/strap.webp`,
           },
         ],
       },
-
-      flyMore: {
-        image: `${baseUrl}/products/drones/dji/neo/more/collective.webp`,
-        contents: [
-          {
-            qty: 2,
-            item: 'Mini 3 Pro Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/neo/more/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Two-way Charging Hub',
-            image: `${baseUrl}/products/drones/dji/neo/more/charging-hub.webp`,
-          },
-        ],
-
-        price: {
-          former: 35000,
-          latter: null,
-        },
-      },
+      flyMore: null,
     },
     accessories: {
-      battery: accessories.find((a) => a.title.short == 'Neo Battery'),
+      battery: accessories.find(
+        (a) => a.title.short == 'Matrice 4D Series Battery'
+      ),
       other: null,
     },
-    category: 'camera',
+    category: 'enterprise',
     available: true,
     brand: 'dji',
-    make: 'neo',
+    make: 'matrice',
     model: null,
-    featured: true,
-    starter: true,
+  },
+
+  {
+    images: images.products.drones.dji.matrice.m4td.drone,
+    title: { long: 'DJI Matrice 4TD (With Dock 3)', short: 'Matrice 4TD' },
+    tag: 'Robust Protection for Critical Infrastructure',
+    desc: 'An autonomous drone-in-a-box solution that can be deployed from moving vehicles. Designed to endure harsh conditions with an impressive IP55 dust and water resistance rating, excels in low-light environments and offers obstacle sensing.',
+    specs: {
+      intro: [
+        'Extended Flight Times (54 minutes)',
+        'Advanced Camera System (24mm, 70mm, 168mm)',
+        'Night Scene Mode',
+        'Auto-Zoom Capability (FlightHub 2)',
+        'Enhanced Flight Safety',
+        'IP-rated (IP55)',
+      ],
+      aircraft: [
+        {
+          label: 'Takeoff Weight',
+          desc: '<249 g',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
+        },
+        {
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
+        },
+        {
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
+        },
+      ],
+    },
+    price: null,
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/matrice/m4td/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Controller',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Battery',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Power Adapter',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/adapter.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Charging Hub',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'microSD Card',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/microsd.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/gimbal-protector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Dock 3 Station',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/dock.webp`,
+          },
+          {
+            qty: 3,
+            item: 'DJI Matrice 4D Series Propellers',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: '100W Power Adaptor AC Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/adapter-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/usb-c-to-usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-A to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/usb-a-to-usb-c-data-cable.webp`,
+          },
+          {
+            qty: 8,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/screws.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Storage Case',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Matrice 4D Series Storage Case Shoulder Strap',
+            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/strap.webp`,
+          },
+        ],
+      },
+      flyMore: null,
+    },
+    accessories: {
+      battery: accessories.find(
+        (a) => a.title.short == 'Matrice 4D Series Battery'
+      ),
+      other: null,
+    },
+    category: 'enterprise',
+    available: true,
+    brand: 'dji',
+    make: 'matrice',
+    model: null,
+  },
+
+  {
+    images: images.products.drones.dji.matrice.matrice30t.drone,
+    title: { long: 'DJI Matrice 30T', short: 'Matrice 30T' },
+    tag: 'Versatile Aerial Intelligence for Enterprise',
+    desc: 'The Matrice 30T is equipped with a thermal camera, wide-angle camera, and laser rangefinder, making it suitable for a wide range of industries, including electricity, emergency response, public safety, and forestry conservation. ',
+    specs: {
+      intro:
+        'The DJI Matrice 30T is a high-performance drone designed for professional applications. With its advanced flight capabilities and impressive payload capacity, this drone offers precise aerial data collection, mapping, and inspection solutions. It boasts exceptional stability, intelligent flight modes, and a reliable control system, making it an ideal choice for industrial and commercial operations.',
+      aircraft: [
+        {
+          label: 'Diagonal Wheelbase',
+          desc: '668 mm',
+        },
+        {
+          label: 'Weight (incl. two batteries)',
+          desc: '3770 ± 10 g',
+        },
+        {
+          label: 'Max Takeoff Weight',
+          desc: '4069 g',
+        },
+        {
+          label: 'Max Wind Resistance',
+          desc: '12 m/s',
+        },
+        {
+          label: 'Max Hover Time',
+          desc: '36 min',
+        },
+        {
+          label: 'Max Flight Time',
+          desc: '41 min',
+        },
+        {
+          label: 'Ingress Protection Rating',
+          desc: 'IP55',
+        },
+      ],
+    },
+    price: {
+      former: 1650000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/aircraft.webp`,
+          },
+          {
+            qty: 2,
+            item: 'TB30 Flight Battery',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI RC Plus Remote Controller',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: '1671 Propeller (CW)',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/cw-propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: '1671 Propeller (CCW)',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/ccw-propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Carrying Case',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/carrying-case.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Screws and Tools',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/screws-tools.webp`,
+          },
+          {
+            qty: 1,
+            item: 'BS30 Battery station',
+            image: `${baseUrl}/products/drones/dji/matrice/matrice30t/box/battery-station.webp`,
+          },
+        ],
+      },
+      flyMore: null,
+    },
+    accessories: {
+      battery: accessories.find(
+        (a) => a.title.short == 'Matrice Series Battery'
+      ),
+      other: null,
+    },
+    category: 'enterprise',
+    available: true,
+    brand: 'dji',
+    make: 'matrice',
+    model: null,
+  },
+
+  {
+    images: images.products.drones.autel.evo2.drone,
+    title: {
+      long: 'Autel Evo II Dual 640T (Enterprise Bundle)',
+      short: 'Evo II Dual 640T',
+    },
+    specs: {
+      intro: [
+        '50MP Ultra-Sensitive Camera',
+        '640x512 30Hz New Thermal Imaging Sensor',
+        'Multiple Temperature Measurement Modes',
+        '360° Obstacle Avoidance',
+        '7.9-inch Smart Controller V3',
+        '15KM Image Transmission',
+      ],
+      aircraft: [
+        {
+          label: 'Max takeoff weight',
+          desc: '2000 g',
+        },
+        {
+          label: 'Wheelbase',
+          desc: '397 mm',
+        },
+        {
+          label: 'Max Takeoff Altitude',
+          desc: '7000 m',
+        },
+        {
+          label: 'Max flight distance (no wind)',
+          desc: '22 km',
+        },
+        {
+          label: 'Max Horizontal Speed',
+          desc: '23 m/s',
+        },
+        {
+          label: 'Max flight time (no wind)',
+          desc: '38 min',
+        },
+        {
+          label: 'Max hovering time (no wind)',
+          desc: '33 min',
+        },
+        {
+          label: 'Internal storage',
+          desc: '8GB',
+        },
+        {
+          label: 'SD storage',
+          desc: '256GB (UHS-3 or Class 10)',
+        },
+      ],
+    },
+    price: {
+      former: 900000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/autel/evo2/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/autel/evo2/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Remote Controller',
+            image: `${baseUrl}/products/drones/autel/evo2/box/controller.webp`,
+          },
+          {
+            qty: 3,
+            item: 'Propeller',
+            image: `${baseUrl}/products/drones/autel/evo2/box/propeller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Charging cable',
+            image: `${baseUrl}/products/drones/autel/evo2/box/controller-charger.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Battery Charger',
+            image: `${baseUrl}/products/drones/autel/evo2/box/battery-charger.webp`,
+          },
+          {
+            qty: 2,
+            item: 'Battery',
+            image: `${baseUrl}/products/drones/autel/evo2/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Battery Charging Hub',
+            image: `${baseUrl}/products/drones/autel/evo2/box/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Carrying Case',
+            image: `${baseUrl}/products/drones/autel/evo2/box/carrying-case.webp`,
+          },
+        ],
+      },
+      flyMore: null,
+    },
+    accessories: null,
+    category: 'enterprise',
+    available: true,
+    brand: 'autel',
+    make: 'evo',
+    model: null,
+  },
+];
+
+export const upcomingDrones = [
+  {
+    card: images.products.drones.dji.mavic.m4pro.card,
+    title: { long: 'DJI Mavic 4 Pro', short: 'Mavic 4 Pro' },
+    tag: 'Taking Aerial Photography to New Heights',
+    desc: 'Expected to feature a triple-camera system with focal lengths of 24mm, 70mm, and 166mm, 52-minute flight time, and OcuSync 4+ transmission.',
+    inverted: true,
+  },
+
+  {
+    card: images.products.drones.dji.mini.m5pro.card,
+    title: { long: 'DJI Mini 5 Pro', short: 'Mini 5 Pro' },
+    tag: 'Revolutionizing Aerial Photography',
+    desc: 'A sub-250g drone rumored to include a larger 1" sensor, LiDAR-based obstacle avoidance, and enhanced AI tracking features.',
+    inverted: false,
   },
 ];
 

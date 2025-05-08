@@ -40,44 +40,44 @@ const accessories = [
   //   price: null,
   // },
 
-  {
-    images: images.products.drones.dji.air.air2s.accessories.battery,
-    title: {
-      long: 'Mavic Air 2 Intelligent Flight Battery',
-      short: 'Mavic Air 2 Battery',
-    },
-    specs: [
-      {
-        label: 'Capacity',
-        desc: '3750 mAh / 3500 mAh',
-      },
-      {
-        label: 'Voltage',
-        desc: '11.04 V / 11.55 V',
-      },
-      {
-        label: 'Max Charging Voltage',
-        desc: '12.6 V / 13.2 V',
-      },
-      {
-        label: 'Battery Type',
-        desc: 'LiPo 3S',
-      },
-      {
-        label: 'Energy',
-        desc: '41.4 Wh / 40.42 Wh',
-      },
-      {
-        label: 'Weight',
-        desc: '198 g',
-      },
-      {
-        label: 'Max Charging Power',
-        desc: '38 W',
-      },
-    ],
-    price: null,
-  },
+  // {
+  //   images: images.products.drones.dji.air.air2s.accessories.battery,
+  //   title: {
+  //     long: 'Mavic Air 2 Intelligent Flight Battery',
+  //     short: 'Mavic Air 2 Battery',
+  //   },
+  //   specs: [
+  //     {
+  //       label: 'Capacity',
+  //       desc: '3750 mAh / 3500 mAh',
+  //     },
+  //     {
+  //       label: 'Voltage',
+  //       desc: '11.04 V / 11.55 V',
+  //     },
+  //     {
+  //       label: 'Max Charging Voltage',
+  //       desc: '12.6 V / 13.2 V',
+  //     },
+  //     {
+  //       label: 'Battery Type',
+  //       desc: 'LiPo 3S',
+  //     },
+  //     {
+  //       label: 'Energy',
+  //       desc: '41.4 Wh / 40.42 Wh',
+  //     },
+  //     {
+  //       label: 'Weight',
+  //       desc: '198 g',
+  //     },
+  //     {
+  //       label: 'Max Charging Power',
+  //       desc: '38 W',
+  //     },
+  //   ],
+  //   price: null,
+  // },
 
   {
     images: images.products.drones.dji.air.air3.accessories.battery,
@@ -590,71 +590,24 @@ const accessories = [
     },
   },
 
-  // {
-  //   images: images.products.drones.dji.mini.m3pro.accessories.battery,
-  //   title: {
-  //     long: 'Mini 3 Pro Intelligent Flight Battery',
-  //     short: 'Mini 3 Pro Battery',
-  //   },
-  //   specs: [
-  //     {
-  //       label: 'Capacity',
-  //       desc: '3850 mAh',
-  //     },
-  //     {
-  //       label: 'Weight',
-  //       desc: '121 g',
-  //     },
-  //     {
-  //       label: 'Voltage',
-  //       desc: '7.38 V',
-  //     },
-  //     {
-  //       label: 'Charging Voltage Limit',
-  //       desc: '8.5 V',
-  //     },
-  //     {
-  //       label: 'Type',
-  //       desc: 'Li-ion',
-  //     },
-  //     {
-  //       label: 'Energy',
-  //       desc: '28.4 Wh',
-  //     },
-  //     {
-  //       label: 'Charging Temperature Range',
-  //       desc: '5° to 40° C (41° to 104° F)',
-  //     },
-  //     {
-  //       label: 'Charging Time (30W Charger, battery mounted)',
-  //       desc: '101 mins',
-  //     },
-  //     {
-  //       label: 'Charging Time (30W Charger, battery in Charging Hub)',
-  //       desc: '78 mins',
-  //     },
-  //   ],
-  //   price: {
-  //     former: 25000,
-  //     latter: null,
-  //   },
-  // },
-
   {
-    images: images.products.drones.dji.neo.accessories.battery,
-    title: { long: 'Intelligent Flight Battery', short: 'Neo Battery' },
+    images: images.products.drones.dji.mini.m4pro.accessories.battery,
+    title: {
+      long: 'Mini 4 Pro Intelligent Flight Battery',
+      short: 'Mini 4 Pro Battery',
+    },
     specs: [
       {
-        label: 'Capacity',
-        desc: '1435 mAh',
+        label: 'Weight',
+        desc: 'Approx. 77.9 g',
       },
       {
-        label: 'Weight',
-        desc: 'Approx. 45 g',
+        label: 'Capacity',
+        desc: '2590 mAh',
       },
       {
         label: 'Nominal Voltage',
-        desc: '7.3 V',
+        desc: '7.32 V',
       },
       {
         label: 'Max Charging Voltage',
@@ -666,15 +619,167 @@ const accessories = [
       },
       {
         label: 'Energy',
-        desc: '10.5 Wh',
+        desc: '18.96 Wh',
       },
       {
         label: 'Charging Temperature',
-        desc: '5° to 40° C',
+        desc: '5° to 40° C (41° to 104° F)',
+      },
+      {
+        label: 'Charging Time (30W Charger, battery in Charging Hub)',
+        desc: '70 mins',
+      },
+    ],
+    price: {
+      former: 25000,
+      latter: null,
+    },
+  },
+
+  {
+    images: images.products.drones.dji.inspire.inspire3.accessories.battery,
+    title: {
+      long: 'Inspire 3 Intelligent Flight Battery',
+      short: 'Inspire 3 Battery',
+    },
+    specs: [
+      {
+        label: 'Model',
+        desc: 'TB51 Intelligent Battery',
+      },
+      {
+        label: 'Capacity',
+        desc: '4280 mAh',
+      },
+      {
+        label: 'Nominal Voltage',
+        desc: '23.1 V',
+      },
+      {
+        label: 'Energy',
+        desc: '98.8 Wh',
+      },
+      {
+        label: 'Weight',
+        desc: 'Approx. 470 g',
+      },
+      {
+        label: 'Operating Temperature',
+        desc: '-20° to 40° C (-4° to 104° F)',
       },
     ],
     price: null,
   },
+
+  {
+    images: images.products.drones.dji.matrice.m4e.accessories.battery,
+    title: {
+      long: 'Matrice 4 Series Intelligent Flight Battery',
+      short: 'Matrice 4 Series Battery',
+    },
+    specs: [
+      {
+        label: 'Model',
+        desc: 'BPX345-6741-14.76',
+      },
+      {
+        label: 'Capacity',
+        desc: '6741 mAh',
+      },
+      {
+        label: 'Battery Type',
+        desc: 'Li-ion 4S',
+      },
+      {
+        label: 'Chemical System',
+        desc: 'LiNiMnCoO2',
+      },
+      {
+        label: 'Charging Temperature',
+        desc: '5° to 40° C (41° to 104° F)',
+      },
+      {
+        label: 'Max Charging Power',
+        desc: '207 W',
+      },
+    ],
+    price: null,
+  },
+
+  {
+    images: images.products.drones.dji.matrice.m4d.accessories.battery,
+    title: {
+      long: 'Matrice 4D Series Intelligent Flight Battery',
+      short: 'Matrice 4D Series Battery',
+    },
+    specs: [
+      {
+        label: 'Capacity',
+        desc: '6768 mAh',
+      },
+      {
+        label: 'Voltage',
+        desc: '22.14 V',
+      },
+      {
+        label: 'Max Charging Voltage',
+        desc: '25.5 V',
+      },
+      {
+        label: 'Cell Type',
+        desc: 'Li-ion 6S',
+      },
+      {
+        label: 'Energy',
+        desc: '149.9 Wh',
+      },
+      {
+        label: 'Weight',
+        desc: '640 g',
+      },
+      {
+        label: 'Charging Temperature',
+        desc: '5° to 45° C (41° to 113° F)',
+      },
+    ],
+    price: null,
+  },
+
+  // {
+  //   images: images.products.drones.dji.neo.accessories.battery,
+  //   title: { long: 'Intelligent Flight Battery', short: 'Neo Battery' },
+  //   specs: [
+  //     {
+  //       label: 'Capacity',
+  //       desc: '1435 mAh',
+  //     },
+  //     {
+  //       label: 'Weight',
+  //       desc: 'Approx. 45 g',
+  //     },
+  //     {
+  //       label: 'Nominal Voltage',
+  //       desc: '7.3 V',
+  //     },
+  //     {
+  //       label: 'Max Charging Voltage',
+  //       desc: '8.6 V',
+  //     },
+  //     {
+  //       label: 'Battery Type',
+  //       desc: 'Li-ion',
+  //     },
+  //     {
+  //       label: 'Energy',
+  //       desc: '10.5 Wh',
+  //     },
+  //     {
+  //       label: 'Charging Temperature',
+  //       desc: '5° to 40° C',
+  //     },
+  //   ],
+  //   price: null,
+  // },
 ];
 
 export default accessories;

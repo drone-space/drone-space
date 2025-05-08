@@ -34,7 +34,6 @@ import {
   IconCirclePlus,
   IconCube,
   IconCubePlus,
-  IconListDetails,
   IconTruckDelivery,
 } from '@tabler/icons-react';
 import classes from './drone.module.scss';
@@ -252,7 +251,7 @@ export default function AccessoryDetail({ params }: typeParams) {
             }}
           >
             <Button
-              miw={{ base: 240, sm: 480, md: 720, lg: 960 }}
+              miw={{ base: 240, sm: 480 }}
               variant="light"
               color="gray"
               leftSection={
@@ -270,24 +269,9 @@ export default function AccessoryDetail({ params }: typeParams) {
       </LayoutSection>
 
       <LayoutSection id="drone-category-specs" padded shadowed>
-        <Tabs defaultValue="specs">
+        <Tabs defaultValue="basic">
           <TabsList fw={500}>
             <Grid gutter={0} w={'100%'}>
-              <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                <TabsTab
-                  w={'100%'}
-                  value="specs"
-                  leftSection={
-                    <IconListDetails
-                      size={ICON_SIZE}
-                      stroke={ICON_STROKE_WIDTH}
-                      color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
-                    />
-                  }
-                >
-                  Specifications
-                </TabsTab>
-              </GridCol>
               {product?.kit?.basic && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
                   <TabsTab
@@ -359,71 +343,6 @@ export default function AccessoryDetail({ params }: typeParams) {
             </Grid>
           </TabsList>
 
-          <TabsPanel value="specs">
-            <LayoutSection
-              id="drone-category-specs-list"
-              mt={SECTION_SPACING / 2}
-              containerized={false}
-            >
-              <Grid gutter={{ base: 12, md: 'md' }}>
-                <GridCol span={{ md: 5 }}>
-                  <Card withBorder bg={'var(--mantine-color-body)'}>
-                    <ImageDefault
-                      src={
-                        product?.kit?.basic.image
-                          ? product?.kit.basic.image
-                          : product?.images[0] || ''
-                      }
-                      alt={'Specs'}
-                      loading="lazy"
-                      height={{ base: 320, xs: 400, md: 320, lg: 360 }}
-                    />
-                  </Card>
-                </GridCol>
-
-                <GridCol span={{ md: 1 }}>
-                  <Center h={'100%'}>
-                    <Divider orientation="vertical" />
-                  </Center>
-                </GridCol>
-
-                <GridCol span={{ md: 6 }}>
-                  <Title order={3} fz={{ md: 'xl' }}>
-                    {product?.title.short} Aircraft Specifications
-                  </Title>
-
-                  <Grid gutter={'xs'} mt={'xl'}>
-                    {product?.specs.aircraft.map((item, index) => (
-                      <GridCol key={index} span={{ md: 12 }}>
-                        <Group gap={'xs'}>
-                          <ThemeIcon
-                            size={ICON_WRAPPER_SIZE / 1.5}
-                            radius={'xl'}
-                            color="sec.3"
-                            c={'pri.7'}
-                            visibleFrom="xs"
-                          >
-                            <IconArrowRightDashed
-                              size={ICON_SIZE / 1.5}
-                              stroke={ICON_STROKE_WIDTH}
-                            />
-                          </ThemeIcon>
-
-                          <Text fz={{ md: 'sm' }}>
-                            <Text component="span" inherit fw={500}>
-                              {item.label}
-                            </Text>
-                            : {item.desc}
-                          </Text>
-                        </Group>
-                      </GridCol>
-                    ))}
-                  </Grid>
-                </GridCol>
-              </Grid>
-            </LayoutSection>
-          </TabsPanel>
-
           {product?.kit?.basic && (
             <TabsPanel value="basic">
               <LayoutSection
@@ -483,6 +402,19 @@ export default function AccessoryDetail({ params }: typeParams) {
                     span={{ base: 12, md: 5 }}
                     order={{ base: 1, md: 3 }}
                   >
+                    <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
+                      <ImageDefault
+                        src={
+                          product?.kit?.basic.image
+                            ? product?.kit.basic.image
+                            : product?.images[0] || ''
+                        }
+                        alt={'Specs'}
+                        loading="lazy"
+                        height={{ base: 320, xs: 400, md: 320, lg: 360 }}
+                      />
+                    </Card>
+
                     <Box pos={'sticky'} top={64}>
                       <Title order={3} fz={{ md: 'xl' }}>
                         {product?.title.short}{' '}
@@ -597,6 +529,19 @@ export default function AccessoryDetail({ params }: typeParams) {
                     span={{ base: 12, md: 5 }}
                     order={{ base: 1, md: 3 }}
                   >
+                    <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
+                      <ImageDefault
+                        src={
+                          product?.kit?.flyMore.image
+                            ? product?.kit.flyMore.image
+                            : product?.images[0] || ''
+                        }
+                        alt={'Specs'}
+                        loading="lazy"
+                        height={{ base: 320, xs: 400, md: 320, lg: 360 }}
+                      />
+                    </Card>
+
                     <Box pos={'sticky'} top={64}>
                       <Title order={3} fz={{ md: 'xl' }}>
                         {product?.title.short} Fly More Kit
@@ -709,25 +654,27 @@ export default function AccessoryDetail({ params }: typeParams) {
                       )}
                     </Grid>
 
-                    {product?.accessories.battery.price && (
-                      <Text mt={'xl'}>
-                        Kshs.{' '}
-                        <Text
-                          component="span"
-                          inherit
-                          fw={500}
-                          c={
-                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
-                          }
-                          fz={{ md: 'xl' }}
-                        >
+                    <Text mt={'xl'}>
+                      Kshs.{' '}
+                      <Text
+                        component="span"
+                        inherit
+                        fw={500}
+                        c={
+                          'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                        }
+                        fz={{ md: 'xl' }}
+                      >
+                        {product?.accessories.battery.price?.former ? (
                           <NumberFormatter
-                            value={product?.accessories.battery.price.former}
+                            value={product.accessories.battery.price.former}
                             thousandSeparator
                           />
-                        </Text>
+                        ) : (
+                          'TBD'
+                        )}
                       </Text>
-                    )}
+                    </Text>
                   </GridCol>
                 </Grid>
               </LayoutSection>

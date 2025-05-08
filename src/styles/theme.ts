@@ -76,8 +76,8 @@ const appTheme = createTheme({
   primaryShade: { light: 7, dark: 7 },
 
   defaultGradient: {
-    from: 'pri',
-    to: 'sec',
+    from: 'pri.7',
+    to: 'sec.4',
     deg: 45,
   },
 

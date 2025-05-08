@@ -48,9 +48,11 @@ export default function Main({ data }: { data: typeDrone }) {
               {data.title.short ? data.title.short : data.title.long}
             </Title>
 
-            <Text fw={500} fz={'sm'}>
-              {data.tag}
-            </Text>
+            {data.tag && (
+              <Text fw={500} fz={'sm'}>
+                {data.tag}
+              </Text>
+            )}
           </div>
 
           <Stack>
@@ -76,9 +78,11 @@ export default function Main({ data }: { data: typeDrone }) {
               </Button>
             </Group>
 
-            <Text fz={'xs'} visibleFrom="md">
-              {data.desc}
-            </Text>
+            {data.desc && (
+              <Text fz={'xs'} visibleFrom="md">
+                {data.desc}
+              </Text>
+            )}
           </Stack>
         </Stack>
       </BackgroundImage>

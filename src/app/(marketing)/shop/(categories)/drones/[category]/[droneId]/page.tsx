@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Badge,
   Box,
   Button,
   Card,
@@ -30,7 +31,6 @@ import CarouselImage from '@/components/common/carousels/image';
 import { typeParams } from '../layout';
 import {
   IconArrowRightDashed,
-  IconBattery3,
   IconCirclePlus,
   IconCube,
   IconCubePlus,
@@ -47,9 +47,14 @@ import {
 import ImageDefault from '@/components/common/images/default';
 import IntroPage from '@/components/layout/intro/page';
 import { images } from '@/assets/images';
+import classesBadge from './page.module.scss';
 
 export default function AccessoryDetail({ params }: typeParams) {
   const product = products.find((p) => linkify(p.title.long) == params.droneId);
+  const kitContents = mergeKitContents(
+    product?.kit.basic.contents || [],
+    product?.kit.flyMore?.contents || []
+  );
 
   return (
     <LayoutPage>
@@ -74,7 +79,18 @@ export default function AccessoryDetail({ params }: typeParams) {
           </GridCol>
 
           <GridCol span={{ sm: 6.5 }}>
-            <Stack gap={'xl'}>
+            {product?.new && (
+              <Badge
+                className={classesBadge.badge}
+                mt={'md'}
+                size={'lg'}
+                fw={'normal'}
+              >
+                New Arrival
+              </Badge>
+            )}
+
+            <Stack gap={'xl'} mt={'md'}>
               <Flex
                 direction={{ base: 'column', md: 'row' }}
                 align={{ md: 'center' }}
@@ -218,29 +234,36 @@ export default function AccessoryDetail({ params }: typeParams) {
               <Text my={'xl'}>{product.specs.intro}</Text>
             ) : (
               <Grid my={'xl'}>
-                {product?.specs.intro.map((spec, index) => (
-                  <GridCol key={index} span={{ base: 12 }}>
-                    <Group gap={'xs'}>
-                      <ThemeIcon
-                        size={ICON_WRAPPER_SIZE / 1.5}
-                        radius={'xl'}
-                        color="sec.3"
-                        c={'pri.7'}
-                      >
-                        <IconArrowRightDashed
-                          size={ICON_SIZE / 1.5}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
-                      </ThemeIcon>
+                {product?.specs.intro &&
+                  product?.specs.intro.map((spec, index) => (
+                    <GridCol key={index} span={{ base: 12 }}>
+                      <Group gap={'xs'}>
+                        <ThemeIcon
+                          size={ICON_WRAPPER_SIZE / 1.5}
+                          radius={'xl'}
+                          color="sec.3"
+                          c={'pri.7'}
+                        >
+                          <IconArrowRightDashed
+                            size={ICON_SIZE / 1.5}
+                            stroke={ICON_STROKE_WIDTH}
+                          />
+                        </ThemeIcon>
 
-                      <Text fz={{ md: 'xs', lg: 'sm' }}>{spec}</Text>
-                    </Group>
-                  </GridCol>
-                ))}
+                        <Text fz={{ md: 'xs', lg: 'sm' }}>{spec}</Text>
+                      </Group>
+                    </GridCol>
+                  ))}
               </Grid>
             )}
           </GridCol>
         </Grid>
+
+        {product?.specs.desc && (
+          <Text mt={'xl'} ta={{ base: 'start', xs: 'center' }} fz={'sm'}>
+            {product?.specs.desc}
+          </Text>
+        )}
 
         <Group justify="center" mt={SECTION_SPACING / 2}>
           <ModalContactShop
@@ -289,6 +312,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                   </TabsTab>
                 </GridCol>
               )}
+
               {product?.kit?.flyMore && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
                   <TabsTab
@@ -306,7 +330,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                   </TabsTab>
                 </GridCol>
               )}
-              {product?.accessories?.battery && (
+
+              {/* {product?.accessories?.battery && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
                   <TabsTab
                     w={'100%'}
@@ -322,7 +347,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                     Intelligent Battery
                   </TabsTab>
                 </GridCol>
-              )}
+              )} */}
+
               {product?.accessories?.other && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
                   <TabsTab
@@ -474,16 +500,8 @@ export default function AccessoryDetail({ params }: typeParams) {
                     span={{ base: 12, md: 6 }}
                     order={{ base: 3, md: 1 }}
                   >
-                    <Text
-                      fw={'bold'}
-                      variant="gradient"
-                      gradient={{ from: 'pri.7', to: 'sec.3', deg: 135 }}
-                    >
-                      Everything in the basic kit plus:
-                    </Text>
-
                     <Grid mt={'xl'}>
-                      {product?.kit.flyMore.contents.map((item, index) => (
+                      {kitContents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
                           <Card withBorder bg={'var(--mantine-color-body)'}>
                             <ImageDefault
@@ -548,17 +566,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                       </Title>
 
                       <Grid mt={'xl'} gutter={'xs'}>
-                        <GridCol span={{ md: 12 }}>
-                          <Text
-                            fw={'bold'}
-                            variant="gradient"
-                            gradient={{ from: 'pri.7', to: 'sec.3', deg: 135 }}
-                          >
-                            Everything in the basic kit plus:
-                          </Text>
-                        </GridCol>
-
-                        {product?.kit.flyMore.contents.map((item, index) => (
+                        {kitContents.map((item, index) => (
                           <GridCol key={index} span={{ md: 12 }}>
                             <Text fz={{ md: 'sm' }}>
                               <Text component="span" inherit fw={500}>
@@ -601,7 +609,7 @@ export default function AccessoryDetail({ params }: typeParams) {
             </TabsPanel>
           )}
 
-          {product?.accessories?.battery && (
+          {/* {product?.accessories?.battery && (
             <TabsPanel value="battery">
               <LayoutSection
                 id="drone-category-specs-battery"
@@ -679,7 +687,7 @@ export default function AccessoryDetail({ params }: typeParams) {
                 </Grid>
               </LayoutSection>
             </TabsPanel>
-          )}
+          )} */}
 
           {product?.accessories?.other && (
             <TabsPanel value="other">
@@ -705,4 +713,24 @@ export default function AccessoryDetail({ params }: typeParams) {
       </LayoutSection>
     </LayoutPage>
   );
+}
+
+function mergeKitContents(basicContents: any[], flyMoreContents: any[]) {
+  const mergedMap = new Map();
+
+  const allContents = basicContents.concat(flyMoreContents);
+
+  allContents.forEach(({ qty, item, image }) => {
+    if (mergedMap.has(item)) {
+      const existing = mergedMap.get(item);
+      mergedMap.set(item, {
+        ...existing,
+        qty: existing.qty + qty,
+      });
+    } else {
+      mergedMap.set(item, { qty, item, image });
+    }
+  });
+
+  return Array.from(mergedMap.values());
 }

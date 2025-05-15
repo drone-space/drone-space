@@ -50,7 +50,7 @@ export default async function Camera() {
       <CtaFeatured />
 
       <LayoutSection
-        id="page-drones-agri"
+        id="page-drones-upcoming"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

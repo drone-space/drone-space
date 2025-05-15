@@ -1,6 +1,7 @@
 .card {
   height: 100%;
   overflow: hidden;
+  border-color: rgba($color: #000000, $alpha: 0.1);
 
   @include hover {
     .image {
@@ -10,6 +11,23 @@
     .overlayContent {
       opacity: 0;
     }
+  }
+}
+
+.pulse {
+  border-color: var(--mantine-color-pri-7);
+  animation: borderPulse 3s infinite ease-in-out;
+}
+
+@keyframes borderPulse {
+  0% {
+    border-color: var(--mantine-color-sec-4);
+  }
+  50% {
+    border-color: var(--mantine-color-pri-7);
+  }
+  100% {
+    border-color: var(--mantine-color-sec-4);
   }
 }
 

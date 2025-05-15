@@ -22,6 +22,7 @@ export interface typeDrone {
   desc?: string;
   specs: {
     intro: string | string[];
+    specs?: string;
     aircraft: { label: string; desc: string }[];
     camera?: { label: string; desc: string }[];
   };
@@ -48,4 +49,5 @@ export interface typeDrone {
   model: string | null;
   featured?: boolean | undefined;
   starter?: boolean | undefined;
+  new?: boolean;
 }

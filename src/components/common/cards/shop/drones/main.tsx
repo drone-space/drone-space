@@ -1,5 +1,6 @@
 import {
   BackgroundImage,
+  Badge,
   Button,
   Card,
   Group,
@@ -17,7 +18,14 @@ import ModalContactShop from '@/components/common/modals/contact/shop';
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
-    <Card className={classes.card} padding={0} pos={'relative'} h={'100%'}>
+    <Card
+      className={`${classes.card} ${!data.new ? '' : classes.pulse}`}
+      style={{ borderWidth: 4, borderStyle: 'solid' }}
+      shadow={'xs'}
+      padding={0}
+      pos={'relative'}
+      h={'100%'}
+    >
       <BackgroundImage
         src={
           data.images.find((i) => i.includes('skew')) ||
@@ -52,6 +60,12 @@ export default function Main({ data }: { data: typeDrone }) {
               <Text fw={500} fz={'sm'}>
                 {data.tag}
               </Text>
+            )}
+
+            {data.new && (
+              <Badge mt={'md'} size={'md'} color={'sec.3'} c={'pri.7'}>
+                New Arrival
+              </Badge>
             )}
           </div>
 

@@ -148,6 +148,154 @@ const products = [
   // },
 
   {
+    images: images.products.drones.dji.mavic.m4pro.drone,
+    title: { long: 'DJI Mavic 4 Pro (DJI RC 2)', short: 'Mavic 4 Pro (RC 2)' },
+    tag: 'Taking Aerial Photography to New Heights',
+    desc: 'Features a triple-camera system with focal lengths of 24mm, 70mm, and 166mm, 52-minute flight time, and OcuSync 4+ transmission.',
+    specs: {
+      intro: [
+        '100MP 4/3 CMOS Hasselblad Camera',
+        'CMOS Telephoto Lenses ',
+        '6K/60fps HDR Video',
+        '0.1-Lux Nightscape Omnidirectional Sensing',
+        '360° Camera Rotation',
+        '51 Minute Flight Time',
+        'DJI O4+ 10-bit HDR Video Transmission',
+        'Pro-grade All-I 4:2:2 Encoding',
+      ],
+      desc: 'Introducing the DJI Mavic 4 Pro, a revolutionary triple-lens flagship camera drone built for creators who demand power, precision, and performance. Featuring a groundbreaking 100MP 4/3 CMOS Hasselblad camera alongside dual large CMOS telephoto lenses, the Mavic 4 Pro delivers cinematic 6K/60fps HDR video, crisp telephoto stills, and stunning low-light shots using its advanced 0.1-Lux Nightscape omnidirectional sensing system. Its innovative Infinity Gimbal allows for 360° camera rotation, unlocking dynamic perspectives previously impossible in aerial imaging. With a class-leading 51-minute flight time and DJI O4+ 10-bit HDR video transmission reaching up to 30 km, creators enjoy longer, uninterrupted sessions with rock-solid connectivity. Whether capturing wide landscapes, dynamic portraits, or long-range subjects, the Mavic 4 Pro adapts with precision, enhanced by subject tracking, slow motion up to 120fps, and pro-grade All-I 4:2:2 encoding. Paired with a rotatable 7” DJI RC Pro 2 controller and fast-charging, power-efficient accessories, this drone is not just a tool—it’s a creative powerhouse ready to redefine aerial storytelling.',
+      aircraft: [
+        {
+          label: 'Max Horizontal Speed (sea level, no wind)',
+          desc: '21 m/s',
+        },
+        {
+          label: 'Max Takeoff Altitude',
+          desc: '6000 m',
+        },
+        {
+          label: 'Max Flight Time',
+          desc: '46 minutes',
+        },
+        {
+          label: 'Max Hovering Time',
+          desc: '37 minutes',
+        },
+        {
+          label: 'Max Flight Distance',
+          desc: '28 km',
+        },
+        {
+          label: 'Max Wind Speed Resistance',
+          desc: '12 m/s',
+        },
+        {
+          label: 'Internal Storage (Mavic 3 Pro)',
+          desc: '8 GB',
+        },
+        {
+          label: 'Internal Storage (Mavic 3 Pro Cine)',
+          desc: '1 TB',
+        },
+      ],
+    },
+    price: {
+      former: 370000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/mavic/4pro/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'DJI Mavic 4 Pro',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI RC 2',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Mavic 4 Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 4 Low-Noise Propellers (pair)',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 4 Pro Storage Cover',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/storage-cover.webp`,
+          },
+          {
+            qty: 2,
+            item: 'USB-C to USB-C Data Cable',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/usb-c-data-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI 100W USB-C Power Adapter',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/box/adapter.webp`,
+          },
+        ],
+      },
+
+      flyMore: {
+        image: `${baseUrl}/products/drones/dji/mavic/4pro/more/collective.webp`,
+        contents: [
+          {
+            qty: 2,
+            item: 'DJI Mavic 4 Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/more/battery.webp`,
+          },
+          {
+            qty: 3,
+            item: 'Mavic 4 Low-Noise Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/more/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mavic 4 Parallel Charging Hub',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/more/charging-hub.webp`,
+          },
+          // {
+          //   qty: 1,
+          //   item: 'Mavic 4 Pro ND Filters Set (ND8/16/32/64)',
+          //   image: `${baseUrl}/products/drones/dji/mavic/4pro/more/filters.webp`,
+          // },
+          {
+            qty: 1,
+            item: 'Shoulder Bag',
+            image: `${baseUrl}/products/drones/dji/mavic/4pro/more/shoulder-bag.webp`,
+          },
+        ],
+
+        price: {
+          former: 80000,
+          latter: null,
+        },
+      },
+    },
+    accessories: {
+      battery: accessories.find(
+        (a) => a.title.short == 'Mavic 4 Series Battery'
+      ),
+      other: null,
+    },
+    category: 'camera',
+    available: true,
+    brand: 'dji',
+    make: 'mavic',
+    model: null,
+    new: true,
+  },
+
+  {
     images: images.products.drones.dji.air.air3.drone,
     title: { long: 'DJI Mavic Air 3', short: 'Air 3' },
     tag: 'All-in-one imaging and safety',
@@ -717,7 +865,7 @@ const products = [
           },
           {
             qty: 1,
-            item: 'Mavic 3 Classic Storage Cover',
+            item: 'Mavic 3 Pro Storage Cover',
             image: `${baseUrl}/products/drones/dji/mavic/3pro/box/storage-cover.webp`,
           },
           {
@@ -733,7 +881,7 @@ const products = [
         contents: [
           {
             qty: 2,
-            item: 'Intelligent Flight Battery',
+            item: 'Mavic 3 Intelligent Flight Battery',
             image: `${baseUrl}/products/drones/dji/mavic/3pro/more/battery.webp`,
           },
           {
@@ -758,7 +906,7 @@ const products = [
           },
           {
             qty: 3,
-            item: 'Low-Noise Propellers (Pair)',
+            item: 'Mavic 3 Low-Noise Propellers (pair)',
             image: `${baseUrl}/products/drones/dji/mavic/3pro/more/propellers.webp`,
           },
           {
@@ -1361,7 +1509,7 @@ const products = [
         contents: [
           {
             qty: 2,
-            item: 'Intelligent Flight Battery',
+            item: 'Mini 4 Pro Intelligent Flight Battery',
             image: `${baseUrl}/products/drones/dji/mini/4pro/more/battery.webp`,
           },
           {
@@ -1371,7 +1519,7 @@ const products = [
           },
           {
             qty: 2,
-            item: 'Mini 4 Pro Propellers (pair)',
+            item: 'Mini 4 Pro Spare Propellers (Pair)',
             image: `${baseUrl}/products/drones/dji/mini/4pro/more/propellers.webp`,
           },
           {
@@ -2364,14 +2512,6 @@ const products = [
 ];
 
 export const upcomingDrones = [
-  {
-    card: images.products.drones.dji.mavic.m4pro.card,
-    title: { long: 'DJI Mavic 4 Pro', short: 'Mavic 4 Pro' },
-    tag: 'Taking Aerial Photography to New Heights',
-    desc: 'Expected to feature a triple-camera system with focal lengths of 24mm, 70mm, and 166mm, 52-minute flight time, and OcuSync 4+ transmission.',
-    inverted: true,
-  },
-
   {
     card: images.products.drones.dji.mini.m5pro.card,
     title: { long: 'DJI Mini 5 Pro', short: 'Mini 5 Pro' },

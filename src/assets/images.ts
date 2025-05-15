@@ -741,7 +741,17 @@ export const images = {
             },
           },
           m4pro: {
-            card: `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/card.webp`,
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-bottom.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-folded.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/battery/battery-side.webp`,
+              ],
+            },
           },
           m3t: {
             drone: [

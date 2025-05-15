@@ -536,6 +536,52 @@ const accessories = [
   },
 
   {
+    images: images.products.drones.dji.mavic.m4pro.accessories.battery,
+    title: {
+      long: 'Mavic 4 Series Intelligent Flight Battery',
+      short: 'Mavic 4 Series Battery',
+    },
+    specs: [
+      {
+        label: 'Capacity',
+        desc: '5000 mAh',
+      },
+      {
+        label: 'Weight',
+        desc: '335.5 g',
+      },
+      {
+        label: 'Nominal Voltage',
+        desc: '15.4 V',
+      },
+      {
+        label: 'Charging Voltage Limit',
+        desc: '17.6 V',
+      },
+      {
+        label: 'Type',
+        desc: 'Li-ion 4S',
+      },
+      {
+        label: 'Energy',
+        desc: '77 Wh',
+      },
+      {
+        label: 'Charging Temperature',
+        desc: '5° to 40° C (41° to 104° F)',
+      },
+      {
+        label: 'Charging Time',
+        desc: '96 minutes',
+      },
+    ],
+    price: {
+      former: 49000,
+      latter: null,
+    },
+  },
+
+  {
     images: images.products.drones.dji.mavic.m3m.accessories.other.tripod,
     title: {
       long: 'D-RTK 2 Mobile Station and Tripod',

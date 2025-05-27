@@ -23,8 +23,8 @@ import { shuffleArray } from '@/utilities/helpers/array';
 import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
-import CardTeamMain from '@/components/common/cards/team/main';
-import { team } from '@/data/team';
+// import CardTeamMain from '@/components/common/cards/team/main';
+// import { team } from '@/data/team';
 import IntroPage from '@/components/layout/intro/page';
 
 export const dynamic = 'force-dynamic';
@@ -153,7 +153,11 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="mission-vision" padded>
+      <LayoutSection
+        id="mission-vision"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid align="center" gutter={'xl'}>
           <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2, sm: 1 }}>
             <IntroSection
@@ -240,7 +244,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
+      {/* <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
         <IntroSection
           props={{
             subTitle: 'Our Team',
@@ -260,7 +264,7 @@ export default async function About() {
               )
           )}
         </Grid>
-      </LayoutSection>
+      </LayoutSection> */}
 
       <LayoutSection id="spaces-and-hub" padded>
         <IntroSection

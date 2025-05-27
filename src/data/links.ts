@@ -13,7 +13,7 @@ import {
   IconPlant2,
   IconSpaces,
   IconSun,
-  IconUsersGroup,
+  // IconUsersGroup,
 } from '@tabler/icons-react';
 import { courseList } from './courses';
 
@@ -73,12 +73,12 @@ const links = [
         leftSection: IconInfoCircle,
         desc: 'Reach out for any inquiries about drone training, drone reselling and drone services.',
       },
-      {
-        link: '/about/#team',
-        label: 'Team',
-        leftSection: IconUsersGroup,
-        desc: 'Discover the talented individuals driving our mission forward.',
-      },
+      // {
+      //   link: '/about/#team',
+      //   label: 'Team',
+      //   leftSection: IconUsersGroup,
+      //   desc: 'Discover the talented individuals driving our mission forward.',
+      // },
     ],
   },
   {

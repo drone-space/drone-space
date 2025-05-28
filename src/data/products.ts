@@ -276,7 +276,7 @@ const products = [
         ],
 
         price: {
-          former: 80000,
+          former: 105000,
           latter: null,
         },
       },
@@ -694,7 +694,7 @@ const products = [
       ],
     },
     price: {
-      former: 1270000,
+      former: 858000,
       latter: null,
     },
     kit: {
@@ -711,16 +711,16 @@ const products = [
             item: 'DJI RC Plus Remote Controller',
             image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/controller.webp`,
           },
-          {
-            qty: 1,
-            item: 'WB37 Intelligent Battery',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
-          },
-          {
-            qty: 2,
-            item: 'TB65 Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/tb65-battery.webp`,
-          },
+          // {
+          //   qty: 1,
+          //   item: 'WB37 Intelligent Battery',
+          //   image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
+          // },
+          // {
+          //   qty: 2,
+          //   item: 'TB65 Intelligent Flight Battery',
+          //   image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/tb65-battery.webp`,
+          // },
           {
             qty: 1,
             item: 'Carrying Case',
@@ -1391,163 +1391,163 @@ const products = [
     model: null,
   },
 
-  {
-    images: images.products.drones.dji.mini.m4pro.drone,
-    title: { long: 'DJI Mini 4 Pro', short: 'Mini 4 Pro' },
-    tag: 'Ultimate mini camera drone',
-    desc: '48MP camera, 4K/60fps HDR video, omnidirectional obstacle sensing, and 20km video transmission.',
-    specs: {
-      intro: [
-        'Lightweight (Under 249 g)',
-        '4K/60fps HDR True Vertical Shooting',
-        'Omnidirectional Obstacle Sensing',
-        'Extended Battery Life',
-        '20km FHD Video Transmission',
-        'ActiveTrack (360 degrees)',
-      ],
-      aircraft: [
-        {
-          label: 'Takeoff Weight',
-          desc: '<249 g',
-        },
-        {
-          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
-          desc: '34 mins',
-        },
-        {
-          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
-          desc: '47 mins',
-        },
-        {
-          label: 'Hovering Time (Intelligent Battery, no wind)',
-          desc: '30 mins',
-        },
-        {
-          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
-          desc: '40 mins',
-        },
-        {
-          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
-          desc: '18 km',
-        },
-        {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
-          desc: '25 km',
-        },
-        {
-          label: 'Wind Speed Resistance',
-          desc: '10.7 m/s (Level 5)',
-        },
-      ],
-    },
-    price: null,
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/dji/mini/4pro/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/aircraft.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Remote Controller',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/controller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Mini 4 Pro Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Mini 4 Pro Spare Propellers (Pair)',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/propellers.webp`,
-          },
-          {
-            qty: 6,
-            item: 'Screws',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/screws.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Screwdriver',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/screwdriver.webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Cable (USB Type-C Connector)',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-usb-c-connector.webp`,
-          },
-          {
-            qty: 1,
-            item: 'RC Cable (Lightning Connector)',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-lightning-connector.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Type-C to Type-C PD Cable',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/type-c-to-type-c-pd-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/protector.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Propeller Holder',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/box/propeller-holder.webp`,
-          },
-        ],
-      },
+  // {
+  //   images: images.products.drones.dji.mini.m4pro.drone,
+  //   title: { long: 'DJI Mini 4 Pro', short: 'Mini 4 Pro' },
+  //   tag: 'Ultimate mini camera drone',
+  //   desc: '48MP camera, 4K/60fps HDR video, omnidirectional obstacle sensing, and 20km video transmission.',
+  //   specs: {
+  //     intro: [
+  //       'Lightweight (Under 249 g)',
+  //       '4K/60fps HDR True Vertical Shooting',
+  //       'Omnidirectional Obstacle Sensing',
+  //       'Extended Battery Life',
+  //       '20km FHD Video Transmission',
+  //       'ActiveTrack (360 degrees)',
+  //     ],
+  //     aircraft: [
+  //       {
+  //         label: 'Takeoff Weight',
+  //         desc: '<249 g',
+  //       },
+  //       {
+  //         label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+  //         desc: '34 mins',
+  //       },
+  //       {
+  //         label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+  //         desc: '47 mins',
+  //       },
+  //       {
+  //         label: 'Hovering Time (Intelligent Battery, no wind)',
+  //         desc: '30 mins',
+  //       },
+  //       {
+  //         label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+  //         desc: '40 mins',
+  //       },
+  //       {
+  //         label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+  //         desc: '18 km',
+  //       },
+  //       {
+  //         label:
+  //           'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+  //         desc: '25 km',
+  //       },
+  //       {
+  //         label: 'Wind Speed Resistance',
+  //         desc: '10.7 m/s (Level 5)',
+  //       },
+  //     ],
+  //   },
+  //   price: null,
+  //   kit: {
+  //     basic: {
+  //       image: `${baseUrl}/products/drones/dji/mini/4pro/box/collective.webp`,
+  //       contents: [
+  //         {
+  //           qty: 1,
+  //           item: 'Aircraft',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/aircraft.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Remote Controller',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/controller.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Mini 4 Pro Intelligent Flight Battery',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/battery.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Mini 4 Pro Spare Propellers (Pair)',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/propellers.webp`,
+  //         },
+  //         {
+  //           qty: 6,
+  //           item: 'Screws',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/screws.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Screwdriver',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/screwdriver.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'RC Cable (USB Type-C Connector)',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-usb-c-connector.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'RC Cable (Lightning Connector)',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-lightning-connector.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Type-C to Type-C PD Cable',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/type-c-to-type-c-pd-cable.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Gimbal Protector',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/protector.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Propeller Holder',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/propeller-holder.webp`,
+  //         },
+  //       ],
+  //     },
 
-      flyMore: {
-        image: `${baseUrl}/products/drones/dji/mini/4pro/more/collective.webp`,
-        contents: [
-          {
-            qty: 2,
-            item: 'Mini 4 Pro Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/more/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Two-way Charging Hub',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/more/charging-hub.webp`,
-          },
-          {
-            qty: 2,
-            item: 'Mini 4 Pro Spare Propellers (Pair)',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/more/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Shoulder Bag',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/more/shoulder-bag.webp`,
-          },
-          {
-            qty: 12,
-            item: 'Screws',
-            image: `${baseUrl}/products/drones/dji/mini/4pro/more/screws.webp`,
-          },
-        ],
+  //     flyMore: {
+  //       image: `${baseUrl}/products/drones/dji/mini/4pro/more/collective.webp`,
+  //       contents: [
+  //         {
+  //           qty: 2,
+  //           item: 'Mini 4 Pro Intelligent Flight Battery',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/battery.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Two-way Charging Hub',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/charging-hub.webp`,
+  //         },
+  //         {
+  //           qty: 2,
+  //           item: 'Mini 4 Pro Spare Propellers (Pair)',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/propellers.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Shoulder Bag',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/shoulder-bag.webp`,
+  //         },
+  //         {
+  //           qty: 12,
+  //           item: 'Screws',
+  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/screws.webp`,
+  //         },
+  //       ],
 
-        price: null,
-      },
-    },
-    accessories: {
-      battery: accessories.find((a) => a.title.short == 'Mini 4 Pro Battery'),
-      other: null,
-    },
-    category: 'camera',
-    available: true,
-    featured: true,
-    brand: 'dji',
-    make: 'mini',
-    model: null,
-  },
+  //       price: null,
+  //     },
+  //   },
+  //   accessories: {
+  //     battery: accessories.find((a) => a.title.short == 'Mini 4 Pro Battery'),
+  //     other: null,
+  //   },
+  //   category: 'camera',
+  //   available: true,
+  //   featured: true,
+  //   brand: 'dji',
+  //   make: 'mini',
+  //   model: null,
+  // },
 
   {
     images: images.products.drones.dji.inspire.inspire3.drone,
@@ -1599,7 +1599,10 @@ const products = [
         },
       ],
     },
-    price: null,
+    price: {
+      former: 2032800,
+      latter: null,
+    },
     kit: {
       basic: {
         image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/collective.webp`,
@@ -1611,7 +1614,7 @@ const products = [
           },
           {
             qty: 1,
-            item: 'RC Plus',
+            item: 'RC Plus (Inspire 3)',
             image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/controller.webp`,
           },
           {
@@ -1633,6 +1636,16 @@ const products = [
             qty: 1,
             item: 'TB51 Intelligent Battery Charging Hub',
             image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'TB51 Intelligent Battery Charging Hub AC Cable',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/battery-charging-hub-ac-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'TB51 Intelligent Battery Paired Batteries Sticker',
+            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/sticker.webp`,
           },
           {
             qty: 3,
@@ -1678,16 +1691,6 @@ const products = [
             qty: 2,
             item: 'Inspire 3 Gimbal Rubber Dampers',
             image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/dampers.webp`,
-          },
-          {
-            qty: 1,
-            item: 'TB51 Intelligent Battery Charging Hub AC Cable',
-            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/battery-charging-hub-ac-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'TB51 Intelligent Battery Paired Batteries Sticker',
-            image: `${baseUrl}/products/drones/dji/inspire/inspire3/box/sticker.webp`,
           },
           {
             qty: 1,
@@ -1759,7 +1762,10 @@ const products = [
         },
       ],
     },
-    price: null,
+    price: {
+      former: 726000,
+      latter: null,
+    },
     kit: {
       basic: {
         image: `${baseUrl}/products/drones/dji/matrice/m4e/box/collective.webp`,
@@ -1901,7 +1907,10 @@ const products = [
         },
       ],
     },
-    price: null,
+    price: {
+      former: 990000,
+      latter: null,
+    },
     kit: {
       basic: {
         image: `${baseUrl}/products/drones/dji/matrice/m4t/box/collective.webp`,
@@ -1993,299 +2002,299 @@ const products = [
     model: null,
   },
 
-  {
-    images: images.products.drones.dji.matrice.m4d.drone,
-    title: { long: 'DJI Matrice 4D (With Dock 3)', short: 'Matrice 4D' },
-    tag: 'Enhanced Detection for Complex Environments',
-    desc: 'An autonomous drone-in-a-box solution that can be deployed from moving vehicles. The Matrice 4D features a built-in weather station, surveillance cameras, and a 10 km communication range, supporting various industrial applications.',
-    specs: {
-      intro: [
-        'Extended Flight Times (54 minutes)',
-        'Advanced Camera System (24mm, 70mm, 168mm)',
-        'Night Scene Mode',
-        'Auto-Zoom Capability (FlightHub 2)',
-        'Enhanced Flight Safety',
-        'IP-rated (IP55)',
-      ],
-      aircraft: [
-        {
-          label: 'Takeoff Weight',
-          desc: '<249 g',
-        },
-        {
-          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
-          desc: '34 mins',
-        },
-        {
-          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
-          desc: '47 mins',
-        },
-        {
-          label: 'Hovering Time (Intelligent Battery, no wind)',
-          desc: '30 mins',
-        },
-        {
-          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
-          desc: '40 mins',
-        },
-        {
-          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
-          desc: '18 km',
-        },
-        {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
-          desc: '25 km',
-        },
-        {
-          label: 'Wind Speed Resistance',
-          desc: '10.7 m/s (Level 5)',
-        },
-      ],
-    },
-    price: null,
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/dji/matrice/m4d/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/aircraft.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Controller',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/controller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Battery',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Power Adapter',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/adapter.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Charging Hub',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/charging-hub.webp`,
-          },
-          {
-            qty: 1,
-            item: 'microSD Card',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/microsd.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/gimbal-protector.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Dock 3 Station',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/dock.webp`,
-          },
-          {
-            qty: 3,
-            item: 'DJI Matrice 4D Series Propellers',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: '100W Power Adaptor AC Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/adapter-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-C to USB-C Data Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/usb-c-to-usb-c-data-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-A to USB-C Data Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/usb-a-to-usb-c-data-cable.webp`,
-          },
-          {
-            qty: 8,
-            item: 'Screws',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/screws.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Storage Case',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/case.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Storage Case Shoulder Strap',
-            image: `${baseUrl}/products/drones/dji/matrice/m4d/box/strap.webp`,
-          },
-        ],
-      },
-      flyMore: null,
-    },
-    accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Matrice 4D Series Battery'
-      ),
-      other: null,
-    },
-    category: 'enterprise',
-    available: true,
-    brand: 'dji',
-    make: 'matrice',
-    model: null,
-  },
+  // {
+  //   images: images.products.drones.dji.matrice.m4d.drone,
+  //   title: { long: 'DJI Matrice 4D (With Dock 3)', short: 'Matrice 4D' },
+  //   tag: 'Enhanced Detection for Complex Environments',
+  //   desc: 'An autonomous drone-in-a-box solution that can be deployed from moving vehicles. The Matrice 4D features a built-in weather station, surveillance cameras, and a 10 km communication range, supporting various industrial applications.',
+  //   specs: {
+  //     intro: [
+  //       'Extended Flight Times (54 minutes)',
+  //       'Advanced Camera System (24mm, 70mm, 168mm)',
+  //       'Night Scene Mode',
+  //       'Auto-Zoom Capability (FlightHub 2)',
+  //       'Enhanced Flight Safety',
+  //       'IP-rated (IP55)',
+  //     ],
+  //     aircraft: [
+  //       {
+  //         label: 'Takeoff Weight',
+  //         desc: '<249 g',
+  //       },
+  //       {
+  //         label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+  //         desc: '34 mins',
+  //       },
+  //       {
+  //         label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+  //         desc: '47 mins',
+  //       },
+  //       {
+  //         label: 'Hovering Time (Intelligent Battery, no wind)',
+  //         desc: '30 mins',
+  //       },
+  //       {
+  //         label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+  //         desc: '40 mins',
+  //       },
+  //       {
+  //         label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+  //         desc: '18 km',
+  //       },
+  //       {
+  //         label:
+  //           'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+  //         desc: '25 km',
+  //       },
+  //       {
+  //         label: 'Wind Speed Resistance',
+  //         desc: '10.7 m/s (Level 5)',
+  //       },
+  //     ],
+  //   },
+  //   price: null,
+  //   kit: {
+  //     basic: {
+  //       image: `${baseUrl}/products/drones/dji/matrice/m4d/box/collective.webp`,
+  //       contents: [
+  //         {
+  //           qty: 1,
+  //           item: 'Aircraft',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/aircraft.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Controller',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/controller.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Battery',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/battery.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Power Adapter',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/adapter.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Charging Hub',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/charging-hub.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'microSD Card',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/microsd.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Gimbal Protector',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/gimbal-protector.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Dock 3 Station',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/dock.webp`,
+  //         },
+  //         {
+  //           qty: 3,
+  //           item: 'DJI Matrice 4D Series Propellers',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/propellers.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: '100W Power Adaptor AC Cable',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/adapter-cable.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'USB-C to USB-C Data Cable',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/usb-c-to-usb-c-data-cable.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'USB-A to USB-C Data Cable',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/usb-a-to-usb-c-data-cable.webp`,
+  //         },
+  //         {
+  //           qty: 8,
+  //           item: 'Screws',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/screws.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Storage Case',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/case.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Storage Case Shoulder Strap',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4d/box/strap.webp`,
+  //         },
+  //       ],
+  //     },
+  //     flyMore: null,
+  //   },
+  //   accessories: {
+  //     battery: accessories.find(
+  //       (a) => a.title.short == 'Matrice 4D Series Battery'
+  //     ),
+  //     other: null,
+  //   },
+  //   category: 'enterprise',
+  //   available: true,
+  //   brand: 'dji',
+  //   make: 'matrice',
+  //   model: null,
+  // },
 
-  {
-    images: images.products.drones.dji.matrice.m4td.drone,
-    title: { long: 'DJI Matrice 4TD (With Dock 3)', short: 'Matrice 4TD' },
-    tag: 'Robust Protection for Critical Infrastructure',
-    desc: 'An autonomous drone-in-a-box solution that can be deployed from moving vehicles. Designed to endure harsh conditions with an impressive IP55 dust and water resistance rating, excels in low-light environments and offers obstacle sensing.',
-    specs: {
-      intro: [
-        'Extended Flight Times (54 minutes)',
-        'Advanced Camera System (24mm, 70mm, 168mm)',
-        'Night Scene Mode',
-        'Auto-Zoom Capability (FlightHub 2)',
-        'Enhanced Flight Safety',
-        'IP-rated (IP55)',
-      ],
-      aircraft: [
-        {
-          label: 'Takeoff Weight',
-          desc: '<249 g',
-        },
-        {
-          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
-          desc: '34 mins',
-        },
-        {
-          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
-          desc: '47 mins',
-        },
-        {
-          label: 'Hovering Time (Intelligent Battery, no wind)',
-          desc: '30 mins',
-        },
-        {
-          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
-          desc: '40 mins',
-        },
-        {
-          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
-          desc: '18 km',
-        },
-        {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
-          desc: '25 km',
-        },
-        {
-          label: 'Wind Speed Resistance',
-          desc: '10.7 m/s (Level 5)',
-        },
-      ],
-    },
-    price: null,
-    kit: {
-      basic: {
-        image: `${baseUrl}/products/drones/dji/matrice/m4td/box/collective.webp`,
-        contents: [
-          {
-            qty: 1,
-            item: 'Aircraft',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/aircraft.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Controller',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/controller.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Battery',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/battery.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Power Adapter',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/adapter.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Charging Hub',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/charging-hub.webp`,
-          },
-          {
-            qty: 1,
-            item: 'microSD Card',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/microsd.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Gimbal Protector',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/gimbal-protector.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Dock 3 Station',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/dock.webp`,
-          },
-          {
-            qty: 3,
-            item: 'DJI Matrice 4D Series Propellers',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/propellers.webp`,
-          },
-          {
-            qty: 1,
-            item: '100W Power Adaptor AC Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/adapter-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-C to USB-C Data Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/usb-c-to-usb-c-data-cable.webp`,
-          },
-          {
-            qty: 1,
-            item: 'USB-A to USB-C Data Cable',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/usb-a-to-usb-c-data-cable.webp`,
-          },
-          {
-            qty: 8,
-            item: 'Screws',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/screws.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Storage Case',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/case.webp`,
-          },
-          {
-            qty: 1,
-            item: 'DJI Matrice 4D Series Storage Case Shoulder Strap',
-            image: `${baseUrl}/products/drones/dji/matrice/m4td/box/strap.webp`,
-          },
-        ],
-      },
-      flyMore: null,
-    },
-    accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Matrice 4D Series Battery'
-      ),
-      other: null,
-    },
-    category: 'enterprise',
-    available: true,
-    brand: 'dji',
-    make: 'matrice',
-    model: null,
-  },
+  // {
+  //   images: images.products.drones.dji.matrice.m4td.drone,
+  //   title: { long: 'DJI Matrice 4TD (With Dock 3)', short: 'Matrice 4TD' },
+  //   tag: 'Robust Protection for Critical Infrastructure',
+  //   desc: 'An autonomous drone-in-a-box solution that can be deployed from moving vehicles. Designed to endure harsh conditions with an impressive IP55 dust and water resistance rating, excels in low-light environments and offers obstacle sensing.',
+  //   specs: {
+  //     intro: [
+  //       'Extended Flight Times (54 minutes)',
+  //       'Advanced Camera System (24mm, 70mm, 168mm)',
+  //       'Night Scene Mode',
+  //       'Auto-Zoom Capability (FlightHub 2)',
+  //       'Enhanced Flight Safety',
+  //       'IP-rated (IP55)',
+  //     ],
+  //     aircraft: [
+  //       {
+  //         label: 'Takeoff Weight',
+  //         desc: '<249 g',
+  //       },
+  //       {
+  //         label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+  //         desc: '34 mins',
+  //       },
+  //       {
+  //         label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+  //         desc: '47 mins',
+  //       },
+  //       {
+  //         label: 'Hovering Time (Intelligent Battery, no wind)',
+  //         desc: '30 mins',
+  //       },
+  //       {
+  //         label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+  //         desc: '40 mins',
+  //       },
+  //       {
+  //         label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+  //         desc: '18 km',
+  //       },
+  //       {
+  //         label:
+  //           'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+  //         desc: '25 km',
+  //       },
+  //       {
+  //         label: 'Wind Speed Resistance',
+  //         desc: '10.7 m/s (Level 5)',
+  //       },
+  //     ],
+  //   },
+  //   price: null,
+  //   kit: {
+  //     basic: {
+  //       image: `${baseUrl}/products/drones/dji/matrice/m4td/box/collective.webp`,
+  //       contents: [
+  //         {
+  //           qty: 1,
+  //           item: 'Aircraft',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/aircraft.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'Controller',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/controller.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Battery',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/battery.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Power Adapter',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/adapter.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Charging Hub',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/charging-hub.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'microSD Card',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/microsd.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Gimbal Protector',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/gimbal-protector.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Dock 3 Station',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/dock.webp`,
+  //         },
+  //         {
+  //           qty: 3,
+  //           item: 'DJI Matrice 4D Series Propellers',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/propellers.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: '100W Power Adaptor AC Cable',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/adapter-cable.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'USB-C to USB-C Data Cable',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/usb-c-to-usb-c-data-cable.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'USB-A to USB-C Data Cable',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/usb-a-to-usb-c-data-cable.webp`,
+  //         },
+  //         {
+  //           qty: 8,
+  //           item: 'Screws',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/screws.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Storage Case',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/case.webp`,
+  //         },
+  //         {
+  //           qty: 1,
+  //           item: 'DJI Matrice 4D Series Storage Case Shoulder Strap',
+  //           image: `${baseUrl}/products/drones/dji/matrice/m4td/box/strap.webp`,
+  //         },
+  //       ],
+  //     },
+  //     flyMore: null,
+  //   },
+  //   accessories: {
+  //     battery: accessories.find(
+  //       (a) => a.title.short == 'Matrice 4D Series Battery'
+  //     ),
+  //     other: null,
+  //   },
+  //   category: 'enterprise',
+  //   available: true,
+  //   brand: 'dji',
+  //   make: 'matrice',
+  //   model: null,
+  // },
 
   {
     images: images.products.drones.dji.matrice.matrice30t.drone,

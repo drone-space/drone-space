@@ -16,14 +16,10 @@
   }
 }
 
-.control {
-  transition: 0.25s all ease;
-  background-color: transparent;
-  border: 1px solid transparent;
-  color: var(--mantine-color-white);
+.indicators {
+  padding-bottom: var(--mantine-spacing-sm);
+}
 
-  @include hover {
-    background-color: var(--mantine-color-pri-7);
-    color: var(--mantine-color-sec-3);
-  }
+.indicator {
+  background-color: var(--mantine-color-white);
 }

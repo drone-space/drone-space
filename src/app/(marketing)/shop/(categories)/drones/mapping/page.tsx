@@ -13,8 +13,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intro/page';
 import CtaFeatured from '@/components/partial/cta/featured';
 
-const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appData.name.app}`;
-const metaDesc = `Shop advanced camera drones designed for professional photography and videography. Discover models that elevate your creative vision.`;
+const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appData.name.app}`;
+const metaDesc = `Discover drones built for geospatial mapping and land surveying. Capture accurate aerial data for construction, mining, and GIS projects.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -36,23 +36,23 @@ export const metadata: Metadata = {
 };
 
 export default async function Camera() {
-  const drones = products.filter((p) => p.category == 'camera');
+  const drones = products.filter((p) => p.category == 'mapping');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Camera Drones',
-          desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
-          bg: images.carousel.shop.image1,
+          title: 'Surveying & Mapping',
+          desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
+          bg: images.carousel.shop.image4,
         }}
       />
 
       <CtaFeatured />
 
       <LayoutSection
-        id="page-drones-camera"
+        id="page-drones-mapping"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

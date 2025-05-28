@@ -1,156 +1,105 @@
 import {
-  Anchor,
+  BackgroundImage,
   Badge,
+  Button,
   Card,
-  Divider,
-  Flex,
   Group,
-  Image,
-  List,
-  ListItem,
-  NumberFormatter,
+  Overlay,
   Stack,
   Text,
-  ThemeIcon,
   Title,
 } from '@mantine/core';
 import React from 'react';
-import NextImage from 'next/image';
 import classes from './main.module.scss';
 import { typeDrone } from '@/types/static/product';
-import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@/utilities/formatters/string';
 import Link from 'next/link';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@/data/constants';
+import ModalContactShop from '@/components/common/modals/contact/shop';
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
-    <Card className={classes.card} padding={0} withBorder>
-      <Stack justify="space-between" h={'100%'} gap={0}>
-        <div>
-          <div className={classes.imageSection}>
-            <Anchor
-              component={Link}
-              inherit
-              href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
+    <Card
+      className={`${classes.card} ${!data.new ? '' : classes.pulse}`}
+      style={{ borderWidth: 4, borderStyle: 'solid' }}
+      shadow={'xs'}
+      padding={0}
+      pos={'relative'}
+      h={'100%'}
+    >
+      <BackgroundImage
+        src={
+          data.images.find((i) => i.includes('skew')) ||
+          data.images.find((i) => i.includes('front')) ||
+          ''
+        }
+        radius="sm"
+        pos={'relative'}
+      >
+        <Overlay opacity={0.2} zIndex={0} />
+
+        <Stack
+          p={'xl'}
+          pos={'relative'}
+          style={{ zIndex: 1 }}
+          mih={{ base: 420, md: 540, lg: 600 }}
+          c={'var(--mantine-color-text)'}
+          ta={'center'}
+          justify="space-between"
+        >
+          <div>
+            <Title
+              order={3}
+              fz={{ lg: '2.5rem' }}
+              tt={'uppercase'}
+              c={'var(--mantine-color-black)'}
             >
-              <Flex
-                direction={'column'}
-                justify={'center'}
-                className={classes.imageContainer}
-                h={{ md: 280 }}
-              >
-                <Image
-                  src={data.images.find((i) => i.includes('front'))}
-                  alt={data.title.long}
-                  loading="lazy"
-                  component={NextImage}
-                  width={1920}
-                  height={1080}
-                  className={classes.image}
-                />
-              </Flex>
-
-              <div className={classes.overlay}>
-                <Stack gap={'xs'} className={classes.overlayContent}>
-                  {data.featured && <Badge size="xs">Featured</Badge>}
-                  {data.starter && (
-                    <Badge size="xs" color="sec.3" c={'pri'}>
-                      Starter Pack
-                    </Badge>
-                  )}
-                </Stack>
-              </div>
-            </Anchor>
-          </div>
-
-          <Divider />
-
-          <Stack p={'md'}>
-            <Title order={3} className={classes.title} fz={{ md: 'md' }}>
-              <Anchor
-                component={Link}
-                inherit
-                href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
-              >
-                {data.title.short ? data.title.short : data.title.long}
-              </Anchor>
+              {data.title.short ? data.title.short : data.title.long}
             </Title>
 
-            {typeof data.specs.intro == 'string' ? (
-              <Text lineClamp={3} fz={{ md: 'sm' }}>
-                {data.specs.intro}
+            {data.tag && (
+              <Text fw={500} fz={'sm'}>
+                {data.tag}
               </Text>
-            ) : (
-              <Stack gap={0}>
-                <List
-                  listStyleType="none"
-                  icon={
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      radius={'xl'}
-                      color="var(--mantine-color-sec-3)"
-                      c={'var(--mantine-color-pri-7'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
-                  }
-                >
-                  {data.specs.intro.map(
-                    (spec, index) =>
-                      data.specs.intro.indexOf(spec) < 5 && (
-                        <ListItem key={index}>
-                          <Text
-                            component="span"
-                            inherit
-                            fz={{ md: 'sm' }}
-                            lineClamp={1}
-                          >
-                            {spec}
-                          </Text>
-                        </ListItem>
-                      )
-                  )}
-                </List>
+            )}
 
-                <Text component="span" inherit fw={500} ml={32}>
-                  ...
-                </Text>
-              </Stack>
+            {data.new && (
+              <Badge mt={'md'} size={'md'} color={'sec.3'} c={'pri.7'}>
+                New Arrival
+              </Badge>
+            )}
+          </div>
+
+          <Stack>
+            <Group justify="center" gap={'xs'}>
+              <ModalContactShop
+                props={{
+                  initialValues: {
+                    subject: `${data.title.short} Drone Purchase Inquiry`,
+                  },
+                }}
+              >
+                <Button radius={'xl'}>Order Now</Button>
+              </ModalContactShop>
+
+              <Button
+                radius={'xl'}
+                variant="outline"
+                color="black"
+                component={Link}
+                href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
+              >
+                Learn More
+              </Button>
+            </Group>
+
+            {data.desc && (
+              <Text fz={'xs'} visibleFrom="md">
+                {data.desc}
+              </Text>
             )}
           </Stack>
-        </div>
-
-        <Stack p={'md'} bg={'pri.7'} c={'var(--mantine-color-body)'}>
-          <Group>
-            <Text>
-              Kshs.{' '}
-              <Text
-                component="span"
-                inherit
-                fw={500}
-                c={'var(--mantine-color-sec-3)'}
-              >
-                {data.price ? (
-                  <NumberFormatter
-                    value={data.price.former}
-                    thousandSeparator
-                  />
-                ) : (
-                  'TBD'
-                )}
-              </Text>
-            </Text>
-          </Group>
         </Stack>
-      </Stack>
+      </BackgroundImage>
     </Card>
   );
 }

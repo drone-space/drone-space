@@ -11,6 +11,7 @@ import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import appData from '@/data/app';
 import IntroPage from '@/components/layout/intro/page';
+import CtaFeatured from '@/components/partial/cta/featured';
 
 const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
 const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
@@ -42,11 +43,13 @@ export default async function Agriculture() {
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Agriculture Drones',
-          desc: metaDesc,
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          title: 'Agriculture & Precision Farming',
+          desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
+          bg: images.carousel.shop.image3,
         }}
       />
+
+      <CtaFeatured />
 
       <LayoutSection
         id="page-drones-agri"
@@ -56,7 +59,7 @@ export default async function Agriculture() {
       >
         <Grid>
           {drones.map((drone, index) => (
-            <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
+            <GridCol key={index} span={{ base: 12, xs: 6 }}>
               <CardShopDronesMain data={drone} />
             </GridCol>
           ))}

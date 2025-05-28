@@ -13,6 +13,7 @@
   transition: 0.25s color ease;
   border-radius: 0;
   overflow: hidden;
+  align-items: start;
 
   @include hover {
     background-color: light-dark(

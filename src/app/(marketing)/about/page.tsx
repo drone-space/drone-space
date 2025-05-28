@@ -263,6 +263,19 @@ export default async function About() {
                 </GridCol>
               )
           )}
+
+          <GridCol span={12}>
+            <Divider my={SECTION_SPACING / 2} label={'Advisory Board'} />
+          </GridCol>
+
+          {team.map(
+            (item, index) =>
+              item.type == 'BOARD' && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
+                  <CardTeamMain data={item} />
+                </GridCol>
+              )
+          )}
         </Grid>
       </LayoutSection> */}
 

@@ -78,7 +78,7 @@ export default function Main({ data }: { data: typeDrone }) {
                   },
                 }}
               >
-                <Button radius={'xl'}>Inquire</Button>
+                <Button radius={'xl'}>Order Now</Button>
               </ModalContactShop>
 
               <Button

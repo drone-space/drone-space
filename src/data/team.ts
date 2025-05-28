@@ -15,20 +15,6 @@ export const team = [
     type: 'INTERNAL',
     bio: '',
   },
-  // {
-  //   image: images.team.priscah,
-  //   name: 'Priscah Kinyanjui',
-  //   position: 'Business Executive Lead',
-  //   type: 'INTERNAL',
-  //   bio: '',
-  // },
-  {
-    image: images.team.kevin,
-    name: 'Kevin Kamau',
-    position: 'Marketing Lead',
-    type: 'INTERNAL',
-    bio: '',
-  },
   {
     image: null,
     name: 'Davies Brian',

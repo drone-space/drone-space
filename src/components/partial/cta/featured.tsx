@@ -17,7 +17,7 @@ import classes from './featured.module.scss';
 import products from '@/data/products';
 
 export default function Featured() {
-  const productFeatured = products.find((p) => p.featured);
+  const productFeatured = products.find((p: any) => p.featured);
 
   return (
     productFeatured && (

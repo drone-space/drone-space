@@ -17,18 +17,21 @@ export default function AI({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [updated, setUpdated] = useState(false);
   const [voiceMode, setVoiceMode] = useState(false);
+  const [listening, setListening] = useState(false);
   const { form, submitted, handleSubmit, resetConversation, liveReply } =
     useFormClaude();
   const { fetching, streamSpeech, volumeRef: volumeTTS } = useTTS();
   const {
-    listening,
     volumeRef: volumeSTT,
     startListening,
     stopListening,
   } = useSTT({
     form: form,
+    voiceMode,
     handleSubmit: handleSubmit,
     streamSpeech: voiceMode ? streamSpeech : undefined,
+    listening,
+    setListening,
   });
 
   const handleClose = () => {

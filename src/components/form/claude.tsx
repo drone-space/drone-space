@@ -6,6 +6,7 @@ import {
   IconBrandTelegram,
   IconMicrophone,
   IconMicrophoneOff,
+  IconRestore,
   IconSteam,
 } from '@tabler/icons-react';
 import appData from '@/data/app';
@@ -30,6 +31,16 @@ export default function Claude({
     resetTranscript: () => void;
   };
 }) {
+  const showSendButton =
+    props.form.values.content.length > 0 && !props.listening;
+  const showVoiceModeButton =
+    !props.listening &&
+    !props.voiceMode &&
+    props.form.values.content.length === 0;
+  const showResetButton = props.listening && props.transcript.trim();
+  const showStopButton = props.listening;
+  const showDictateButton = !props.listening;
+
   return (
     <form onSubmit={props.form.onSubmit(props.handleSubmit)} noValidate>
       <Stack gap={'xs'}>
@@ -59,7 +70,7 @@ export default function Claude({
 
         <Group justify="end">
           <Group gap={'xs'}>
-            {props.form.values.content.length > 0 && !props.listening ? (
+            {showSendButton && (
               <Button
                 size={'xs'}
                 type="submit"
@@ -73,56 +84,70 @@ export default function Claude({
               >
                 Send
               </Button>
-            ) : (
-              <>
-                {!(props.listening == true && props.voiceMode == false) && (
-                  <Button
-                    size={'xs'}
-                    onClick={() => {
-                      props.startListening();
-                      props.setVoiceMode(true);
-                    }}
-                    leftSection={
-                      <IconSteam
-                        size={ICON_SIZE / 1.2}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    }
-                  >
-                    Voice Mode
-                  </Button>
-                )}
+            )}
 
-                {props.listening == true ? (
-                  <Button
-                    size={'xs'}
-                    variant="light"
-                    onClick={props.stopListening}
-                    leftSection={
-                      <IconMicrophoneOff
-                        size={ICON_SIZE / 1.2}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    }
-                  >
-                    Stop
-                  </Button>
-                ) : (
-                  <Button
-                    size={'xs'}
-                    variant="light"
-                    onClick={props.startListening}
-                    leftSection={
-                      <IconMicrophone
-                        size={ICON_SIZE / 1.2}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    }
-                  >
-                    Dictate
-                  </Button>
-                )}
-              </>
+            {showVoiceModeButton && (
+              <Button
+                size={'xs'}
+                onClick={() => props.setVoiceMode(true)}
+                leftSection={
+                  <IconSteam
+                    size={ICON_SIZE / 1.2}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Voice Mode
+              </Button>
+            )}
+
+            {showResetButton && (
+              <Button
+                size={'xs'}
+                variant="light"
+                onClick={props.resetTranscript}
+                color="red"
+                leftSection={
+                  <IconRestore
+                    size={ICON_SIZE / 1.2}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Reset Transcript
+              </Button>
+            )}
+
+            {showStopButton && (
+              <Button
+                size={'xs'}
+                variant="light"
+                onClick={props.stopListening}
+                leftSection={
+                  <IconMicrophoneOff
+                    size={ICON_SIZE / 1.2}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Stop
+              </Button>
+            )}
+
+            {showDictateButton && (
+              <Button
+                size={'xs'}
+                variant="light"
+                onClick={props.startListening}
+                leftSection={
+                  <IconMicrophone
+                    size={ICON_SIZE / 1.2}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Dictate
+              </Button>
             )}
           </Group>
         </Group>

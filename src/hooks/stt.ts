@@ -195,11 +195,6 @@ export const useSTT = (params?: {
     if (stopParams?.submit && spokenText.length > 0) {
       const response = await params?.handleSubmit?.(spokenText);
 
-      // 🔁 Reset transcript so next round starts fresh
-      transcriptRef.current = '';
-      // Optional: clear UI too
-      params?.form?.setValues({ content: '' });
-
       if (params?.streamSpeech && params?.voiceMode) {
         await params?.streamSpeech({
           text: response,
@@ -207,6 +202,15 @@ export const useSTT = (params?: {
         });
       }
     }
+
+    if (params?.voiceMode) resetTranscript();
+  };
+
+  const resetTranscript = () => {
+    // 🔁 Reset transcript so next round starts fresh
+    transcriptRef.current = '';
+    // Optional: clear UI too
+    params?.form?.setValues({ content: '' });
   };
 
   return {

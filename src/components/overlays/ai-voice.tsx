@@ -106,10 +106,7 @@ export default function AIVoice({
                       size={ICON_WRAPPER_SIZE * 2}
                       radius={'50%'}
                       variant="light"
-                      onClick={async () => {
-                        await props.stopListening({ submit: false });
-                        props.setVoiceMode(false);
-                      }}
+                      onClick={() => props.setVoiceMode(false)}
                     >
                       <IconX
                         size={ICON_SIZE * 1}

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
 import { useFormClaude } from '@/hooks/form/claude';
 import { useDisclosure } from '@mantine/hooks';
@@ -35,6 +35,18 @@ export default function AI({ children }: { children: React.ReactNode }) {
     listening,
     setListening,
   });
+
+  useEffect(() => {
+    const toogleVoiceMode = async () => {
+      if (voiceMode == true) {
+        startListening();
+      } else {
+        await stopListening({ submit: false });
+      }
+    };
+
+    toogleVoiceMode();
+  }, [voiceMode]);
 
   const handleClose = () => {
     setUpdated(false);

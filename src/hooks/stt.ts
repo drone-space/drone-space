@@ -122,6 +122,24 @@ export const useSTT = (params?: {
 
   const startListening = async () => {
     params?.setListening(true);
+
+    // 🧠 Sync form and transcript before starting recognition
+    const currentFormContent = params?.form?.values?.content?.trim() || '';
+
+    if (params?.voiceMode) {
+      // In voice mode, trust the UI is already cleared
+      transcriptRef.current = '';
+    } else {
+      // In dictation mode, keep prior user edits or resume transcript
+      if (!currentFormContent && transcriptRef.current) {
+        // 🧾 Rehydrate form with stored transcript if form is empty
+        params?.form?.setFieldValue('content', transcriptRef.current);
+      } else {
+        // 🧠 Sync transcript to form value if it exists
+        transcriptRef.current = currentFormContent;
+      }
+    }
+
     recognitionRef.current?.start();
 
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

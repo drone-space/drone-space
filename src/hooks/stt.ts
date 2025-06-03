@@ -209,5 +209,11 @@ export const useSTT = (params?: {
     }
   };
 
-  return { volumeRef, startListening, stopListening };
+  return {
+    volumeRef,
+    startListening,
+    stopListening,
+    resetTranscript,
+    transcript: transcriptRef.current,
+  };
 };

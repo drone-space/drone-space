@@ -25,6 +25,8 @@ export default function AI({ children }: { children: React.ReactNode }) {
     volumeRef: volumeSTT,
     startListening,
     stopListening,
+    transcript,
+    resetTranscript,
   } = useSTT({
     form: form,
     voiceMode,
@@ -85,6 +87,8 @@ export default function AI({ children }: { children: React.ReactNode }) {
               stopListening,
               voiceMode,
               setVoiceMode,
+              transcript,
+              resetTranscript,
             }}
           />
         </LayoutSection>

@@ -14,7 +14,7 @@ export const textToSpeech = async (params: {
       },
       body: JSON.stringify({
         text: params.text,
-        model_id: 'eleven_monolingual_v1',
+        model_id: process.env.NEXT_TTS_MODEL_ID,
         voice_settings: {
           stability: 0.5,
           similarity_boost: 0.75,

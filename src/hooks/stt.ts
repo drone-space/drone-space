@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { FormClaudeType } from './form/claude';
 
 declare global {
@@ -32,8 +32,10 @@ export const useSTT = (params?: {
     text: string;
     onPlaybackEnd?: () => void;
   }) => Promise<void>;
+  listening: boolean;
+  setListening: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [listening, setListening] = useState(false);
+  // const [listening, setListening] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const transcriptRef = useRef('');
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -119,7 +121,7 @@ export const useSTT = (params?: {
   };
 
   const startListening = async () => {
-    setListening(true);
+    params?.setListening(true);
     recognitionRef.current?.start();
 
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -164,7 +166,7 @@ export const useSTT = (params?: {
 
   const stopListening = async (stopParams?: { submit?: boolean }) => {
     recognitionRef.current?.stop();
-    setListening(false);
+    params?.setListening(false);
 
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
@@ -207,5 +209,5 @@ export const useSTT = (params?: {
     }
   };
 
-  return { listening, volumeRef, startListening, stopListening };
+  return { volumeRef, startListening, stopListening };
 };

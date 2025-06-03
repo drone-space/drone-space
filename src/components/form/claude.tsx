@@ -26,6 +26,8 @@ export default function Claude({
     listening: boolean;
     startListening: () => void;
     stopListening: () => void;
+    transcript: string;
+    resetTranscript: () => void;
   };
 }) {
   return (

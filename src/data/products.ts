@@ -1391,163 +1391,169 @@ const products = [
     model: null,
   },
 
-  // {
-  //   images: images.products.drones.dji.mini.m4pro.drone,
-  //   title: { long: 'DJI Mini 4 Pro', short: 'Mini 4 Pro' },
-  //   tag: 'Ultimate mini camera drone',
-  //   desc: '48MP camera, 4K/60fps HDR video, omnidirectional obstacle sensing, and 20km video transmission.',
-  //   specs: {
-  //     intro: [
-  //       'Lightweight (Under 249 g)',
-  //       '4K/60fps HDR True Vertical Shooting',
-  //       'Omnidirectional Obstacle Sensing',
-  //       'Extended Battery Life',
-  //       '20km FHD Video Transmission',
-  //       'ActiveTrack (360 degrees)',
-  //     ],
-  //     aircraft: [
-  //       {
-  //         label: 'Takeoff Weight',
-  //         desc: '<249 g',
-  //       },
-  //       {
-  //         label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
-  //         desc: '34 mins',
-  //       },
-  //       {
-  //         label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
-  //         desc: '47 mins',
-  //       },
-  //       {
-  //         label: 'Hovering Time (Intelligent Battery, no wind)',
-  //         desc: '30 mins',
-  //       },
-  //       {
-  //         label: 'Hovering Time (Intelligent Battery Plus, no wind)',
-  //         desc: '40 mins',
-  //       },
-  //       {
-  //         label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
-  //         desc: '18 km',
-  //       },
-  //       {
-  //         label:
-  //           'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
-  //         desc: '25 km',
-  //       },
-  //       {
-  //         label: 'Wind Speed Resistance',
-  //         desc: '10.7 m/s (Level 5)',
-  //       },
-  //     ],
-  //   },
-  //   price: null,
-  //   kit: {
-  //     basic: {
-  //       image: `${baseUrl}/products/drones/dji/mini/4pro/box/collective.webp`,
-  //       contents: [
-  //         {
-  //           qty: 1,
-  //           item: 'Aircraft',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/aircraft.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Remote Controller',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/controller.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Mini 4 Pro Intelligent Flight Battery',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/battery.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Mini 4 Pro Spare Propellers (Pair)',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/propellers.webp`,
-  //         },
-  //         {
-  //           qty: 6,
-  //           item: 'Screws',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/screws.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Screwdriver',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/screwdriver.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'RC Cable (USB Type-C Connector)',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-usb-c-connector.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'RC Cable (Lightning Connector)',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-lightning-connector.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Type-C to Type-C PD Cable',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/type-c-to-type-c-pd-cable.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Gimbal Protector',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/protector.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Propeller Holder',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/box/propeller-holder.webp`,
-  //         },
-  //       ],
-  //     },
+  {
+    images: images.products.drones.dji.mini.m4pro.drone,
+    title: { long: 'DJI Mini 4 Pro', short: 'Mini 4 Pro' },
+    tag: 'Ultimate mini camera drone',
+    desc: '48MP camera, 4K/60fps HDR video, omnidirectional obstacle sensing, and 20km video transmission.',
+    specs: {
+      intro: [
+        'Lightweight (Under 249 g)',
+        '4K/60fps HDR True Vertical Shooting',
+        'Omnidirectional Obstacle Sensing',
+        'Extended Battery Life',
+        '20km FHD Video Transmission',
+        'ActiveTrack (360 degrees)',
+      ],
+      aircraft: [
+        {
+          label: 'Takeoff Weight',
+          desc: '<249 g',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '34 mins',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '47 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
+        },
+        {
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
+        },
+        {
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
+        },
+      ],
+    },
+    price: {
+      former: 180000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/mini/4pro/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Remote Controller',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mini 4 Pro Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mini 4 Pro Spare Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/propellers.webp`,
+          },
+          {
+            qty: 6,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/screws.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Screwdriver',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/screwdriver.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Cable (USB Type-C Connector)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-usb-c-connector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Cable (Lightning Connector)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/rc-n2-rc-cable-lightning-connector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Type-C to Type-C PD Cable',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/type-c-to-type-c-pd-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/protector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Propeller Holder',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/box/propeller-holder.webp`,
+          },
+        ],
+      },
 
-  //     flyMore: {
-  //       image: `${baseUrl}/products/drones/dji/mini/4pro/more/collective.webp`,
-  //       contents: [
-  //         {
-  //           qty: 2,
-  //           item: 'Mini 4 Pro Intelligent Flight Battery',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/battery.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Two-way Charging Hub',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/charging-hub.webp`,
-  //         },
-  //         {
-  //           qty: 2,
-  //           item: 'Mini 4 Pro Spare Propellers (Pair)',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/propellers.webp`,
-  //         },
-  //         {
-  //           qty: 1,
-  //           item: 'Shoulder Bag',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/shoulder-bag.webp`,
-  //         },
-  //         {
-  //           qty: 12,
-  //           item: 'Screws',
-  //           image: `${baseUrl}/products/drones/dji/mini/4pro/more/screws.webp`,
-  //         },
-  //       ],
+      flyMore: {
+        image: `${baseUrl}/products/drones/dji/mini/4pro/more/collective.webp`,
+        contents: [
+          {
+            qty: 2,
+            item: 'Mini 4 Pro Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Two-way Charging Hub',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/charging-hub.webp`,
+          },
+          {
+            qty: 2,
+            item: 'Mini 4 Pro Spare Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Shoulder Bag',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/shoulder-bag.webp`,
+          },
+          {
+            qty: 12,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/mini/4pro/more/screws.webp`,
+          },
+        ],
 
-  //       price: null,
-  //     },
-  //   },
-  //   accessories: {
-  //     battery: accessories.find((a) => a.title.short == 'Mini 4 Pro Battery'),
-  //     other: null,
-  //   },
-  //   category: 'camera',
-  //   available: true,
-  //   featured: true,
-  //   brand: 'dji',
-  //   make: 'mini',
-  //   model: null,
-  // },
+        price: {
+          former: 30000,
+          latter: null,
+        },
+      },
+    },
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'Mini 4 Pro Battery'),
+      other: null,
+    },
+    category: 'camera',
+    available: true,
+    featured: true,
+    brand: 'dji',
+    make: 'mini',
+    model: null,
+  },
 
   {
     images: images.products.drones.dji.inspire.inspire3.drone,

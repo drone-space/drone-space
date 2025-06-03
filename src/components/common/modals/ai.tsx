@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from '@mantine/core';
 import { useFormClaude } from '@/hooks/form/claude';
 import { useDisclosure } from '@mantine/hooks';
@@ -16,6 +16,7 @@ import OverlayAIVoice from '@/components/overlays/ai-voice';
 export default function AI({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [updated, setUpdated] = useState(false);
+  const [voiceMode, setVoiceMode] = useState(false);
   const { form, submitted, handleSubmit, resetConversation, liveReply } =
     useFormClaude();
   const { fetching, streamSpeech, volumeRef: volumeTTS } = useTTS();
@@ -27,15 +28,8 @@ export default function AI({ children }: { children: React.ReactNode }) {
   } = useSTT({
     form: form,
     handleSubmit: handleSubmit,
-    streamSpeech,
+    streamSpeech: voiceMode ? streamSpeech : undefined,
   });
-
-  const [voiceMode, setVoiceMode] = useState(false);
-
-  useEffect(() => {
-    if (!listening) return;
-    setVoiceMode(true);
-  }, [listening]);
 
   const handleClose = () => {
     setUpdated(false);
@@ -85,6 +79,9 @@ export default function AI({ children }: { children: React.ReactNode }) {
               handleSubmit,
               listening,
               startListening,
+              stopListening,
+              voiceMode,
+              setVoiceMode,
             }}
           />
         </LayoutSection>

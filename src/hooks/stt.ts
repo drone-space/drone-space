@@ -27,6 +27,7 @@ export const useSTT = (params?: {
   form?: FormClaudeType;
   handleSubmit?: (suVa?: any, noVa?: boolean) => Promise<any>;
   onAutoStop?: () => void;
+  voiceMode?: boolean;
   streamSpeech?: (input: {
     text: string;
     onPlaybackEnd?: () => void;
@@ -57,13 +58,25 @@ export const useSTT = (params?: {
     recognition.lang = 'en-US';
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
-      let text = '';
+      let liveText = transcriptRef.current;
+
       for (let i = event.resultIndex; i < event.results.length; ++i) {
-        text += event.results[i][0].transcript;
+        const result = event.results[i];
+        const transcript = result[0].transcript;
+
+        if (result.isFinal) {
+          // Persist final text to reference
+          transcriptRef.current += transcript + ' ';
+          // Update liveText with confirmed transcript
+          liveText = transcriptRef.current;
+        } else {
+          // Show interim combined with confirmed transcript
+          liveText = transcriptRef.current + transcript;
+        }
       }
-      // Store the transcript in the ref and form
-      transcriptRef.current = text;
-      params?.form?.setFieldValue('content', text);
+
+      // Show live combined text in the form field
+      params?.form?.setFieldValue('content', liveText.trim());
     };
 
     recognitionRef.current = recognition;
@@ -90,7 +103,11 @@ export const useSTT = (params?: {
       }
     } else {
       // 🧠 Only stop if we've captured *some* speech
-      if (hasTranscript && !silenceTimerRef.current) {
+      if (
+        hasTranscript &&
+        !silenceTimerRef.current &&
+        params?.voiceMode // 👈 only auto-stop if in voice mode
+      ) {
         silenceTimerRef.current = setTimeout(() => {
           stopListening({ submit: true });
           params?.onAutoStop?.();
@@ -139,7 +156,10 @@ export const useSTT = (params?: {
       }
     };
 
-    captureBaseline();
+    // capture in voice mode only
+    if (params?.voiceMode) {
+      captureBaseline();
+    }
   };
 
   const stopListening = async (stopParams?: { submit?: boolean }) => {
@@ -178,7 +198,7 @@ export const useSTT = (params?: {
       // Optional: clear UI too
       params?.form?.setValues({ content: '' });
 
-      if (params?.streamSpeech) {
+      if (params?.streamSpeech && params?.voiceMode) {
         await params?.streamSpeech({
           text: response,
           onPlaybackEnd: async () => await startListening(),

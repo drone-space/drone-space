@@ -14,8 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes = [
     '', // homepage
-    '/legal/policy',
-    '/legal/terms',
     '/about',
     '/about/contact',
     '/about/gallery',
@@ -23,13 +21,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/drone-solutions/light-shows',
     '/drone-training',
     '/drone-training/pricing',
+    '/legal/policy',
+    '/legal/terms',
     '/resources/blog',
     '/resources/faq',
     '/shop',
     '/shop/accessories',
     '/shop/drones/agriculture',
     '/shop/drones/camera',
+    '/shop/drones/cinematography',
     '/shop/drones/enterprise',
+    '/shop/drones/mapping',
+    '/shop/drones/upcoming',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -73,10 +76,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  const cinematographyDrones = products.filter(
+    (p) => p.category == 'cinematography'
+  );
+
+  const cinematographyDroneRoutes = cinematographyDrones.map((drone) => ({
+    url: `${baseUrl}/shop/drones/cinematography/${linkify(drone.title.long)}`,
+    lastModified: beginningOfYear,
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }));
+
   const enterpriseDrones = products.filter((p) => p.category == 'enterprise');
 
   const enterpriseDroneRoutes = enterpriseDrones.map((drone) => ({
     url: `${baseUrl}/shop/drones/enterprise/${linkify(drone.title.long)}`,
+    lastModified: beginningOfYear,
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }));
+
+  const mappingDrones = products.filter((p) => p.category == 'mapping');
+
+  const mappingDroneRoutes = mappingDrones.map((drone) => ({
+    url: `${baseUrl}/shop/drones/mapping/${linkify(drone.title.long)}`,
+    lastModified: beginningOfYear,
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }));
+
+  const upcomingDrones = products.filter((p) => p.category == 'upcoming');
+
+  const upcomingDroneRoutes = upcomingDrones.map((drone) => ({
+    url: `${baseUrl}/shop/drones/upcoming/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -87,7 +119,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...accessoryRoutes,
     ...agricultureDroneRoutes,
     ...cameraDroneRoutes,
+    ...cinematographyDroneRoutes,
     ...enterpriseDroneRoutes,
+    ...mappingDroneRoutes,
+    ...upcomingDroneRoutes,
   ];
 
   return [...staticRoutes, ...dynamicRoutes];

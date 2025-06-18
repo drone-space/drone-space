@@ -35,7 +35,7 @@ export default function ModalFooter({
 
           <Group gap={'xs'}>
             <Button
-              size="compact-xs"
+              size="xs"
               onClick={resetConversation}
               disabled={!hasConversation}
               leftSection={
@@ -50,7 +50,7 @@ export default function ModalFooter({
           </Group>
         </Group>
 
-        <Stack gap={5} c={'dimmed'} ta={'center'} fz={10}>
+        <Stack gap={5} c={'dimmed'} ta={'center'} fz={'xs'}>
           <Text inherit c={'dimmed'} ta={'center'}>
             Hekima may produce incorrect information. Double-check responses.
           </Text>

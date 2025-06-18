@@ -1,32 +1,17 @@
 import React, { useEffect } from 'react';
 import {
-  ActionIcon,
   Box,
   Button,
-  Group,
   Paper,
   ScrollArea,
   Skeleton,
   Stack,
   Text,
-  Tooltip,
 } from '@mantine/core';
-import { useClipboard, useScrollIntoView } from '@mantine/hooks';
+import { useScrollIntoView } from '@mantine/hooks';
 import LayoutSection from '@/components/layout/section';
 import { FormClaudeType } from '@/hooks/form/claude';
 import { MarkdownComponent } from '@/components/wrapper/markdown';
-import {
-  IconCheck,
-  IconCopy,
-  // IconPencil,
-  // IconRefresh,
-  IconVolume,
-} from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@/data/constants';
 
 // Sample questions data
 const sampleQuestions = [
@@ -45,8 +30,8 @@ export default function AI({
   handleSubmit,
   updated,
   setUpdated,
-  fetchingSpeech,
-  streamSpeech,
+  // fetchingSpeech,
+  // streamSpeech,
   liveReply,
 }: {
   opened: boolean;
@@ -100,10 +85,10 @@ export default function AI({
     animate: boolean;
     submitted: boolean;
   }) {
-    const clipboard = useClipboard({ timeout: 1000 });
-    const clipIndicators = {
-      icon: clipboard.copied ? IconCheck : IconCopy,
-    };
+    // const clipboard = useClipboard({ timeout: 1000 });
+    // const clipIndicators = {
+    //   icon: clipboard.copied ? IconCheck : IconCopy,
+    // };
 
     return (
       <Stack
@@ -115,7 +100,7 @@ export default function AI({
       >
         <MarkdownComponent markdown={content} />
 
-        <Group gap={5} className={classes.assistantActions}>
+        {/* <Group gap={5} className={classes.assistantActions}>
           <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
@@ -144,7 +129,7 @@ export default function AI({
             </ActionIcon>
           </Tooltip>
 
-          {/* <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
+          <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -153,8 +138,8 @@ export default function AI({
             >
               <IconRefresh size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
-          </Tooltip> */}
-        </Group>
+          </Tooltip>
+        </Group> */}
       </Stack>
     );
   }

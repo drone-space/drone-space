@@ -2,13 +2,7 @@
 
 import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Group, Stack, Textarea } from '@mantine/core';
-import {
-  IconBrandTelegram,
-  IconMicrophone,
-  IconMicrophoneOff,
-  IconRestore,
-  IconSteam,
-} from '@tabler/icons-react';
+import { IconBrandTelegram } from '@tabler/icons-react';
 import appData from '@/data/app';
 import classes from './claude.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
@@ -31,15 +25,15 @@ export default function Claude({
     resetTranscript: () => void;
   };
 }) {
-  const showSendButton =
-    props.form.values.content.length > 0 && !props.listening;
-  const showVoiceModeButton =
-    !props.listening &&
-    !props.voiceMode &&
-    props.form.values.content.length === 0;
-  const showResetButton = props.listening && props.transcript.trim();
-  const showStopButton = props.listening;
-  const showDictateButton = !props.listening;
+  // const showSendButton =
+  //   props.form.values.content.length > 0 && !props.listening;
+  // const showVoiceModeButton =
+  //   !props.listening &&
+  //   !props.voiceMode &&
+  //   props.form.values.content.length === 0;
+  // const showResetButton = props.listening && props.transcript.trim();
+  // const showStopButton = props.listening;
+  // const showDictateButton = !props.listening;
 
   return (
     <form onSubmit={props.form.onSubmit(props.handleSubmit)} noValidate>
@@ -70,23 +64,24 @@ export default function Claude({
 
         <Group justify="end">
           <Group gap={'xs'}>
-            {showSendButton && (
-              <Button
-                size={'xs'}
-                type="submit"
-                loading={props.submitted}
-                rightSection={
-                  <IconBrandTelegram
-                    size={ICON_SIZE / 1.2}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
-              >
-                Send
-              </Button>
-            )}
+            {/* {showSendButton && ( */}
+            <Button
+              size={'xs'}
+              type="submit"
+              loading={props.submitted}
+              disabled={props.form.values.content.length == 0}
+              rightSection={
+                <IconBrandTelegram
+                  size={ICON_SIZE / 1.2}
+                  stroke={ICON_STROKE_WIDTH}
+                />
+              }
+            >
+              Send
+            </Button>
+            {/* )} */}
 
-            {showVoiceModeButton && (
+            {/* {showVoiceModeButton && (
               <Button
                 size={'xs'}
                 onClick={() => props.setVoiceMode(true)}
@@ -99,9 +94,9 @@ export default function Claude({
               >
                 Voice Mode
               </Button>
-            )}
+            )} */}
 
-            {showResetButton && (
+            {/* {showResetButton && (
               <Button
                 size={'xs'}
                 variant="light"
@@ -116,9 +111,9 @@ export default function Claude({
               >
                 Reset Transcript
               </Button>
-            )}
+            )} */}
 
-            {showStopButton && (
+            {/* {showStopButton && (
               <Button
                 size={'xs'}
                 variant="light"
@@ -132,9 +127,9 @@ export default function Claude({
               >
                 Stop
               </Button>
-            )}
+            )} */}
 
-            {showDictateButton && (
+            {/* {showDictateButton && (
               <Button
                 size={'xs'}
                 variant="light"
@@ -148,7 +143,7 @@ export default function Claude({
               >
                 Dictate
               </Button>
-            )}
+            )} */}
           </Group>
         </Group>
       </Stack>

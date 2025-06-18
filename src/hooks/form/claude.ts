@@ -8,6 +8,7 @@ import { Variant } from '@/enums/notification';
 import { saveToLocalStorage } from '@/utilities/helpers/storage';
 import { LOCAL_STORAGE_NAME } from '@/data/constants';
 import { parseSSEStream } from '@/libraries/wrappers/text';
+import { useNetwork } from '@mantine/hooks';
 
 export type FormClaudeType = UseFormReturnType<
   { content: string },
@@ -20,6 +21,7 @@ export const useFormClaude = (params?: {
   const [submitted, setSubmitted] = useState(false);
   const conversation = useAppSelector((state) => state.claude.value);
   const dispatch = useAppDispatch();
+  const networkStatus = useNetwork();
 
   const [liveReply, setLiveReply] = useState('');
 
@@ -31,6 +33,16 @@ export const useFormClaude = (params?: {
   const parseValues = () => form.values.content.trim();
 
   const handleSubmit = async (submitedValue?: any) => {
+    if (!networkStatus.online) {
+      showNotification({
+        variant: Variant.WARNING,
+        title: 'Network Error',
+        desc: 'Please check your internet connection.',
+      });
+
+      return;
+    }
+
     let content = parseValues();
 
     if (submitedValue) {

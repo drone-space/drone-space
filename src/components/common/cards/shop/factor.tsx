@@ -22,11 +22,23 @@ export default function Factor({
   data: { title: string; desc: string; icon: Icon; image: string };
 }) {
   return (
-    <Card className={classes.card} padding={'lg'}>
-      <Stack gap={'sm'} align="start">
-        <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} color="sec.3" c="pri.9">
-          <data.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
-        </ThemeIcon>
+    <BackgroundImage
+      src={data.image}
+      radius="sm"
+      h={'100%'}
+      c={'var(--mantine-color-white)'}
+      pos={'relative'}
+      style={{ overflow: 'hidden' }}
+    >
+      <Overlay color="black" opacity={0.5} zIndex={0} />
+
+      <Box p={'xl'} pos={'relative'} style={{ zIndex: 1 }}>
+        <Stack justify="space-between">
+          <Group justify="end" align="start" mih={160}>
+            <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} color="sec.3" c="pri.7">
+              <data.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
+            </ThemeIcon>
+          </Group>
 
           <div>
             <Title order={3} fz={'xl'} c={'var(--mantine-color-white)'}>

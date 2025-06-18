@@ -10,7 +10,7 @@ export default function Understand({
   return (
     <Card className={classes.card} padding={'md'}>
       <Group>
-        {/* <ThemeIcon size={20} color="sec.3" c={"pri.9"}>
+        {/* <ThemeIcon size={20} color="sec.3" c={"pri.7"}>
 						<data.icon.icon size={12} stroke={3} />
 					</ThemeIcon> */}
 

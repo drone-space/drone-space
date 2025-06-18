@@ -13,8 +13,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intro/page';
 import CtaFeatured from '@/components/partial/cta/featured';
 
-const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appData.name.app}`;
-const metaDesc = `Shop advanced camera drones designed for professional photography and videography. Discover models that elevate your creative vision.`;
+const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appData.name.app}`;
+const metaDesc = `Explore drones engineered for cinematic excellence. Capture ultra-smooth, high-resolution footage for film, TV, and content creation.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -36,23 +36,23 @@ export const metadata: Metadata = {
 };
 
 export default async function Camera() {
-  const drones = products.filter((p) => p.category == 'camera');
+  const drones = products.filter((p) => p.category == 'cinematography');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Camera Drones',
-          desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
-          bg: images.carousel.shop.image1,
+          title: 'Cinematography & Filmmaking',
+          desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
+          bg: images.carousel.shop.image5,
         }}
       />
 
       <CtaFeatured />
 
       <LayoutSection
-        id="page-drones-camera"
+        id="page-drones-cinematography"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

@@ -60,7 +60,7 @@ export default function Comment({ props }: { props: PostComment }) {
 
       <Group fz={'sm'} mt={'md'} gap={'xs'}>
         <ModalReply props={{ name, commentId: props.id }}>
-          <Button size="compact-sm" px={0} variant="transparent" color="pri.9">
+          <Button size="compact-sm" px={0} variant="transparent" color="pri.7">
             Reply
           </Button>
         </ModalReply>

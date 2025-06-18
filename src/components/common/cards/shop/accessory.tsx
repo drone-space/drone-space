@@ -86,8 +86,8 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.5}
                       radius={'xl'}
-                      color="sec.4"
-                      c={'pri.9'}
+                      color="sec.3"
+                      c={'pri.7'}
                     >
                       <IconArrowRightDashed
                         size={ICON_SIZE / 1.5}
@@ -124,7 +124,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
         </div>
 
         {data.price && (
-          <Group p={'md'} bg={'pri.9'} c={'var(--mantine-color-body)'}>
+          <Group p={'md'} bg={'pri.7'} c={'var(--mantine-color-body)'}>
             <Text>
               Kshs.{' '}
               <Text

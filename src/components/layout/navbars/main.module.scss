@@ -6,7 +6,7 @@
   font-weight: 500;
 
   @include hover {
-    color: var(--mantine-color-pri-9) !important;
+    color: var(--mantine-color-pri-7) !important;
   }
 }
 
@@ -17,10 +17,10 @@
   transition: 0.25s color ease;
 
   @include hover {
-    color: var(--mantine-color-pri-9) !important;
+    color: var(--mantine-color-pri-7) !important;
   }
 }
 
 .linkActive {
-  color: var(--mantine-color-pri-9) !important;
+  color: var(--mantine-color-pri-7) !important;
 }

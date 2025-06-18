@@ -23,8 +23,8 @@ import { shuffleArray } from '@/utilities/helpers/array';
 import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
-import CardTeamMain from '@/components/common/cards/team/main';
-import { team } from '@/data/team';
+// import CardTeamMain from '@/components/common/cards/team/main';
+// import { team } from '@/data/team';
 import IntroPage from '@/components/layout/intro/page';
 
 export const dynamic = 'force-dynamic';
@@ -141,7 +141,7 @@ export default async function About() {
       <LayoutSection
         id="stats"
         padded={24}
-        bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+        bg={'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
         <Grid justify="center">
@@ -153,7 +153,11 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="mission-vision" padded>
+      <LayoutSection
+        id="mission-vision"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <Grid align="center" gutter={'xl'}>
           <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2, sm: 1 }}>
             <IntroSection
@@ -167,7 +171,7 @@ export default async function About() {
             <Divider
               w={{ md: '20%' }}
               size={2}
-              color="sec.4"
+              color="sec.3"
               mt={{ base: 'xs', md: 'xl' }}
               visibleFrom="sm"
             />
@@ -209,7 +213,7 @@ export default async function About() {
               <Divider
                 w={{ md: '20%' }}
                 size={2}
-                color="sec.4"
+                color="sec.3"
                 mt={{ base: 'xs', md: 'xl' }}
                 visibleFrom="sm"
               />
@@ -240,7 +244,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
+      {/* <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
         <IntroSection
           props={{
             subTitle: 'Our Team',
@@ -259,8 +263,21 @@ export default async function About() {
                 </GridCol>
               )
           )}
+
+          <GridCol span={12}>
+            <Divider my={SECTION_SPACING / 2} label={'Advisory Board'} />
+          </GridCol>
+
+          {team.map(
+            (item, index) =>
+              item.type == 'BOARD' && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
+                  <CardTeamMain data={item} />
+                </GridCol>
+              )
+          )}
         </Grid>
-      </LayoutSection>
+      </LayoutSection> */}
 
       <LayoutSection id="spaces-and-hub" padded>
         <IntroSection

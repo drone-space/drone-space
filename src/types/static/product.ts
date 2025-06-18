@@ -18,8 +18,11 @@ export interface typeAccessory {
 export interface typeDrone {
   images: string[];
   title: typeTitle;
+  tag?: string;
+  desc?: string;
   specs: {
     intro: string | string[];
+    specs?: string;
     aircraft: { label: string; desc: string }[];
     camera?: { label: string; desc: string }[];
   };
@@ -46,4 +49,5 @@ export interface typeDrone {
   model: string | null;
   featured?: boolean | undefined;
   starter?: boolean | undefined;
+  new?: boolean;
 }

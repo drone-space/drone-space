@@ -88,6 +88,9 @@ export const images = {
       image1: `${baseUrl.droneSpace}/carousel/shop/image-1.webp`,
       image2: `${baseUrl.droneSpace}/carousel/shop/image-2.webp`,
       image3: `${baseUrl.droneSpace}/carousel/shop/image-3.webp`,
+      image4: `${baseUrl.droneSpace}/carousel/shop/image-4.webp`,
+      image5: `${baseUrl.droneSpace}/carousel/shop/image-5.webp`,
+      image6: `${baseUrl.droneSpace}/carousel/shop/image-6.webp`,
     },
   },
 
@@ -578,6 +581,94 @@ export const images = {
               ],
             },
           },
+          m4e: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/drone/drone-top.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/drone/drone-side.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/drone/drone-back.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/battery/battery-back.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4e/battery/battery-skew.webp`,
+              ],
+            },
+          },
+          m4t: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/drone/drone-top.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/drone/drone-side.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/drone/drone-back.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/battery/battery-back.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4t/battery/battery-skew.webp`,
+              ],
+            },
+          },
+          m4dt: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/drone/drone-top.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/drone/drone-side.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/drone/drone-back.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/battery/battery-back.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4dt/battery/battery-skew.webp`,
+              ],
+            },
+          },
+          m4d: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4d/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4d/drone/drone-top.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4d/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4d/battery/battery-skew.webp`,
+              ],
+            },
+          },
+          m4td: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4td/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/matrice/m4td/drone/drone-top.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4td/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/matrice/m4td/battery/battery-skew.webp`,
+              ],
+            },
+          },
+        },
+        inspire: {
+          inspire3: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/inspire/inspire3/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/inspire/inspire3/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/inspire/inspire3/drone/drone-side.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/inspire/inspire3/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/inspire/inspire3/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/inspire/inspire3/battery/battery-skew.webp`,
+              ],
+            },
+          },
         },
         mavic: {
           m3c: {
@@ -649,6 +740,19 @@ export const images = {
               ],
             },
           },
+          m4pro: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-bottom.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/drone/drone-folded.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/mavic/4pro/battery/battery-side.webp`,
+              ],
+            },
+          },
           m3t: {
             drone: [
               `${baseUrl.droneSpace}/products/drones/dji/mavic/3t/drone/drone-front.webp`,
@@ -682,6 +786,26 @@ export const images = {
                 `${baseUrl.droneSpace}/products/drones/dji/mini/3pro/battery/battery-side.webp`,
               ],
             },
+          },
+          m4pro: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/drone/drone-top.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/drone/drone-bottom.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/drone/drone-folded.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/battery/battery-back.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/battery/battery-skew.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/mini/4pro/battery/battery-side.webp`,
+              ],
+            },
+          },
+          m5pro: {
+            card: `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/card.webp`,
           },
         },
         neo: {

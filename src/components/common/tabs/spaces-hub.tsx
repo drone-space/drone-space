@@ -75,8 +75,8 @@ export default function SpacesHub() {
                   <Group key={index} wrap="nowrap" align="start">
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.25}
-                      color="sec.4"
-                      c={'pri.9'}
+                      color="sec.3"
+                      c={'pri.7'}
                       radius={'xl'}
                     >
                       <IconArrowRightDashed

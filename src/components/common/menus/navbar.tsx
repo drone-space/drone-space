@@ -43,22 +43,8 @@ export default function Navbar({
             key={index}
             component={Link}
             href={item.link}
-            leftSection={
-              item.leftSection &&
-              !megaMenu && (
-                <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              )
-            }
-            rightSection={
-              item.rightSection &&
-              !megaMenu && (
-                <item.rightSection
-                  size={ICON_SIZE}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              )
-            }
             className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
+            h={'100%'}
           >
             {!item.desc ? item.label : <CardMenu props={item} />}
           </MenuItem>
@@ -103,7 +89,7 @@ export default function Navbar({
               </Grid>
 
               <Card
-                bg={'var(--mantine-color-pri-9)'}
+                bg={'var(--mantine-color-pri-7)'}
                 c={'var(--mantine-color-body)'}
                 radius={0}
               >
@@ -123,7 +109,7 @@ export default function Navbar({
                   </GridCol>
 
                   <GridCol span={3}>
-                    <Stack gap={0} h={'100%'} justify="space-between">
+                    <Stack justify={'end'} h={'100%'} gap={'xs'}>
                       <ModalDownloadDocument props={{ type: 'brochure' }}>
                         <Button
                           justify="space-between"
@@ -131,12 +117,12 @@ export default function Navbar({
                             <IconFileDownload
                               size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
-                              color="var(--mantine-color-pri-9)"
+                              color="var(--mantine-color-pri-7)"
                             />
                           }
                           fullWidth
                           color="sec.3"
-                          c="pri.9"
+                          c="pri.7"
                           size="compact-sm"
                         >
                           Brochure

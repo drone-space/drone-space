@@ -18,7 +18,7 @@ import { IconExternalLink, IconFileDownload } from '@tabler/icons-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { images } from '@/assets/images';
 import videos from '@/assets/videos';
-import ModalAdvertisment from '../modals/advertisment';
+// import ModalAdvertisment from '../modals/advertisment';
 import LayoutSection from '@/components/layout/section';
 // import ModalPoster from '../modals/poster';
 // import ModalCamp from '../modals/camp';
@@ -68,7 +68,8 @@ export default function Home() {
           </Text>
 
           <Group gap={'xs'}>
-            {anchors} <ModalAdvertisment />
+            {anchors}
+            {/* <ModalAdvertisment /> */}
           </Group>
 
           <Group gap={'xs'}>
@@ -242,7 +243,7 @@ export default function Home() {
               </ModalDownloadDocument>
 
               {/* <ModalPoster active={true} /> */}
-              <ModalAdvertisment active={true} />
+              {/* <ModalAdvertisment active={true} /> */}
             </Group>
 
             <Group gap={'xs'}>

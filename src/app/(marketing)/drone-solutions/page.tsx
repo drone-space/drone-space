@@ -81,8 +81,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -92,7 +92,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -157,8 +157,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -168,7 +168,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -237,8 +237,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -248,7 +248,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -377,8 +377,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -388,7 +388,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -453,8 +453,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -464,7 +464,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -537,8 +537,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed
@@ -548,7 +548,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.9'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -621,8 +621,8 @@ export default async function Services() {
                 <ThemeIcon
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
-                  color="sec.4"
-                  c={'pri.9'}
+                  color="sec.3"
+                  c={'pri.7'}
                   radius={'xl'}
                 >
                   <IconArrowRightDashed

@@ -71,7 +71,7 @@ export default function AccessoryDetails({ params }: typeParams) {
                   inherit
                   fw={500}
                   c={
-                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                    'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                   }
                   fz={{ md: 'xl' }}
                 >
@@ -93,8 +93,8 @@ export default function AccessoryDetails({ params }: typeParams) {
                       <ThemeIcon
                         size={ICON_WRAPPER_SIZE / 1.5}
                         radius={'xl'}
-                        color="sec.4"
-                        c={'pri.9'}
+                        color="sec.3"
+                        c={'pri.7'}
                         mt={4}
                       >
                         <IconArrowRightDashed

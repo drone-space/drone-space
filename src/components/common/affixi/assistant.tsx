@@ -14,7 +14,7 @@ import {
   // useWindowScroll
 } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
-import ModalClaudeMain from '../modals/claude/main';
+import ModalAI from '../modals/ai';
 import { images } from '@/assets/images';
 import classes from './assistant.module.scss';
 import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@/data/constants';
@@ -114,7 +114,7 @@ export default function Assistant() {
                   setMenuOpened(false);
                 }}
               >
-                <ModalClaudeMain>
+                <ModalAI>
                   <Group className={classes.child} gap={5}>
                     <Text pl={'xs'}>Ask Hekima</Text>
 
@@ -130,7 +130,7 @@ export default function Assistant() {
                       />
                     </Box>
                   </Group>
-                </ModalClaudeMain>
+                </ModalAI>
               </Center>
             </Tooltip>
           </div>

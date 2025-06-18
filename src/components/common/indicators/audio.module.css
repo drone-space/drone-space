@@ -1,0 +1,12 @@
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px; /* tighter spacing */
+  transition: 0.25s all ease;
+}
+
+.line {
+  background-color: var(--mantine-color-pri-9);
+  border-radius: 2px;
+}

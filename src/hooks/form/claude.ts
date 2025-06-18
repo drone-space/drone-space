@@ -1,66 +1,83 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux';
 import { useForm, UseFormReturnType } from '@mantine/form';
-import { sendPrompt } from '@/services/api/claude';
+import { sendPrompt } from '@/handlers/requests/claude';
 import { showNotification } from '@/utilities/notifications';
 import { updateConversation } from '@/libraries/redux/slices/claude';
 import { Variant } from '@/enums/notification';
 import { saveToLocalStorage } from '@/utilities/helpers/storage';
 import { LOCAL_STORAGE_NAME } from '@/data/constants';
+import { parseSSEStream } from '@/libraries/wrappers/text';
 
 export type FormClaudeType = UseFormReturnType<
   { content: string },
   (values: { content: string }) => { content: string }
 >;
 
-export const useFormClaude = () => {
+export const useFormClaude = (params?: {
+  defaultValues?: Partial<FormClaudeType['values']>;
+}) => {
   const [submitted, setSubmitted] = useState(false);
   const conversation = useAppSelector((state) => state.claude.value);
   const dispatch = useAppDispatch();
 
+  const [liveReply, setLiveReply] = useState('');
+
   const form = useForm({
-    initialValues: { content: '' },
+    initialValues: { content: params?.defaultValues?.content || '' },
     validate: { content: (value) => value.trim().length < 1 },
   });
 
-  const parseValues = () => {
-    return form.values.content.trim();
-  };
+  const parseValues = () => form.values.content.trim();
 
-  const handleSubmit = async (submitedValue?: any, noValidate?: boolean) => {
-    if (!noValidate && !form.isValid()) return;
+  const handleSubmit = async (submitedValue?: any) => {
+    let content = parseValues();
+
+    if (submitedValue) {
+      content =
+        typeof submitedValue === 'string'
+          ? submitedValue
+          : submitedValue?.content;
+    }
+
+    // Always sync the form for consistency
+    form.setValues({ content });
+
+    if (!form.isValid()) return;
 
     try {
       setSubmitted(true);
 
-      const result = await sendPrompt({
-        content: submitedValue.content || submitedValue || parseValues(),
+      const response = await sendPrompt({
+        content,
         conversation,
       });
 
-      if (!result) {
-        showNotification({
-          variant: Variant.FAILED,
-          title: 'Server Unavailable',
-          desc: `There was no response from the server.`,
-        });
-      } else {
-        const newConversation = [
-          ...conversation,
-          {
-            role: 'user',
-            content: submitedValue.content || submitedValue || parseValues(),
-          },
-          { role: result.role, content: result.content[0].text },
-        ];
+      let assistantReply = '';
+      setLiveReply(''); // clear previous content
 
-        // add latest exchange to context
-        dispatch(updateConversation(newConversation));
-        // add latest exchange to local storage
-        saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, newConversation);
+      await parseSSEStream(
+        response,
+        (data) => {
+          const delta = data.delta?.text || '';
+          assistantReply += delta;
+          setLiveReply((prev) => prev + delta);
+        },
+        () => {
+          const updatedConversation = [
+            ...conversation,
+            { role: 'user', content },
+            { role: 'assistant', content: assistantReply },
+          ];
 
-        form.reset();
-      }
+          dispatch(updateConversation(updatedConversation));
+          saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, updatedConversation);
+          setLiveReply(''); // clear temporary once persisted
+          form.reset();
+        }
+      );
+
+      return assistantReply;
     } catch (error) {
       showNotification({
         variant: Variant.FAILED,
@@ -77,10 +94,9 @@ export const useFormClaude = () => {
   const resetConversation = async () => {
     try {
       setSubmitted(true);
-
-      await form.reset();
-      await dispatch(updateConversation([]));
-      await saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, []);
+      form.reset();
+      dispatch(updateConversation([]));
+      saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, []);
     } catch (error) {
       showNotification({
         variant: Variant.FAILED,
@@ -94,5 +110,5 @@ export const useFormClaude = () => {
     }
   };
 
-  return { form, submitted, handleSubmit, resetConversation };
+  return { form, submitted, handleSubmit, resetConversation, liveReply };
 };

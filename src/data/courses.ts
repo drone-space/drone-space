@@ -252,36 +252,66 @@ const courses = {
       'An overview of future UAS technology and their role in enhancing UAS operational safety.',
     ],
     units: [
-      // {
-      //   advanced: true,
-      //   image: images.training.bvlos,
-      //   title: {
-      //     short: 'BVLOS',
-      //     full: 'Beyond Visual Line of Sight',
-      //   },
-      //   price: {
-      //     discount: null,
-      //     full: 0,
-      //   },
-      //   priceFeatures: null,
-      //   desc: 'This course aims at advanced training that allows experienced remote pilots acquire the skills to operate in category c operations which is high risk or rather manned aviation approach. BVLOS training allows the delegate to gain the skill to adequately plan and execute BVLOS operations. The seven-day course which include theory classroom, briefings, mission planning on simulator, Hands on training on Drone Space Unmanned aircraft and examination will introduce the professionally licensed pilot operators to the new opportunities and regulatory requirements to be considered with this service delivery. You will be examined in a range of current systems designed for BVLOS flight. Lesson topics will range between Ground Station control to loading of mission into the drone, and from auto pilot technology to safety management.',
-      //   modules: [
-      //     'Air Law and UAS Regulations that Govern BVLOS Operations',
-      //     'Crew Resource Management (CRM) & Situational awareness in unmanned aviation',
-      //     'Unmanned Aircraft Systems (UAS) and other technologies',
-      //     'BVLOS Safety Management Systems',
-      //     'BVLOS Operational Manuals (CONOPS)',
-      //     'Meteorology',
-      //     'Mission Planning ',
-      //     'Instrument Flying',
-      //     'Case Studies - UAS accident investigation',
-      //   ],
-      //   qualifications: [
-      //     'Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices',
-      //     'Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations',
-      //     'Provide more insight into the Drone Technology and Drone components of VTOLs.',
-      //   ],
-      // },
+      {
+        advanced: true,
+        image: images.training.agriSpray,
+        title: {
+          short: 'Agricultural Spraying',
+          full: 'Agricultural Spraying',
+        },
+        price: {
+          discount: null,
+          full: 160000,
+        },
+        priceFeatures: null,
+        desc: 'The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.',
+        modules: [
+          'Introduction to agricultural drones',
+          'Basics of agronomy and agrochemical application',
+          'Aerial spraying science (droplet size, drift control)',
+          'Drone systems, regulations (KCAA), and mission planning',
+          'Drone setup, calibration, and live spraying simulations',
+          'Battery, chemical handling, and drone maintenance',
+          'Field troubleshooting and data collection',
+        ],
+        qualifications: [
+          'Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices',
+          'Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations',
+          'Provide more insight into the Drone Technology and Drone components of VTOLs.',
+        ],
+      },
+
+      {
+        advanced: true,
+        image: images.training.bvlos,
+        title: {
+          short: 'BVLOS',
+          full: 'Beyond Visual Line of Sight',
+        },
+        price: {
+          discount: null,
+          full: 350000,
+        },
+        priceFeatures: null,
+        desc: 'This course aims at advanced training that allows experienced remote pilots acquire the skills to operate in category c operations which is high risk or rather manned aviation approach. BVLOS training allows the delegate to gain the skill to adequately plan and execute BVLOS operations. The seven-day course which include theory classroom, briefings, mission planning on simulator, Hands on training on Drone Space Unmanned aircraft and examination will introduce the professionally licensed pilot operators to the new opportunities and regulatory requirements to be considered with this service delivery. You will be examined in a range of current systems designed for BVLOS flight. Lesson topics will range between Ground Station control to loading of mission into the drone, and from auto pilot technology to safety management.',
+        modules: [
+          'Air Law & Regulations (International BVLOS standards)',
+          'Human Performance in long-range operations',
+          'UAV Systems & VTOL tech',
+          'Risk & Safety Management using SORA and SMS',
+          'Meteorology (weather theory, METAR/TAF interpretation)',
+          'Operational Risks & Emergency Procedures',
+          'Mission planning & airspace coordination',
+          'GPS navigation & waypoint programming',
+          'Emergency response drills',
+          'Hands-on flying with Baby Shark VTOL 260 & PW One drones',
+        ],
+        qualifications: [
+          'Enable RPAS pilots to perform the multi-functional tasks required in BVLOS with an awareness and understanding based in safe operating practices',
+          'Broaden your knowledge of Human Factors and their implications within the field of unmanned aircraft BVLOS operations',
+          'Provide more insight into the Drone Technology and Drone components of VTOLs.',
+        ],
+      },
 
       {
         advanced: true,

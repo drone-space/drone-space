@@ -3,6 +3,7 @@ import {
   Badge,
   Button,
   Card,
+  Divider,
   Group,
   List,
   ListItem,
@@ -101,28 +102,47 @@ export default function Basic({
           </Title>
 
           {data.featured && (
-            <Text component="span" fz={'xs'} c={'sec.3'}>
-              Exclusive of Medical
-            </Text>
+            <>
+              <Divider color="sec.3" />
+
+              <Text component="span" fz={'xs'} c={'sec.3'}>
+                Exclusive of Medical
+              </Text>
+
+              <Divider color="sec.3" />
+            </>
           )}
 
           {data.title.full == 'Radio Telephony' && (
-            <Text component="span" inherit fz={'xs'} c={'dimmed'}>
-              Exclusive of Exam, English Proficiency
-              <br /> and License Fees
-            </Text>
+            <>
+              <Divider />
+
+              <Text component="span" inherit fz={'xs'} c={'dimmed'}>
+                Exclusive of Exam, English Proficiency
+                <br /> and License Fees
+              </Text>
+
+              <Divider />
+            </>
           )}
 
           {data.advanced && (
-            <Text w={{ md: '75%' }}>
-              For RPL hoders seeking to enhance their abilities and include{' '}
-              {data.title.full} to their skillset.
-            </Text>
+            <>
+              <Divider />
+
+              <Text w={{ md: '75%' }} fz={'sm'} c={'dimmed'}>
+                For RPL hoders seeking to enhance their abilities and include{' '}
+                {data.title.full} to their skillset.
+              </Text>
+
+              <Divider />
+            </>
           )}
 
           <List
             className={classes.list}
             mb={'xl'}
+            mt={'sm'}
             spacing={'xs'}
             c={
               data.featured

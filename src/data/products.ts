@@ -542,98 +542,98 @@ const products = [
     model: null,
   },
 
-  // {
-  //   images: images.products.drones.huida.hd540s.drone,
-  //   title: {
-  //     long: 'HUIDA HD540S (Drone Spraying System)',
-  //     short: 'HUIDA HD540S',
-  //   },
-  //   specs: {
-  //     intro: [
-  //       'Higher spraying load (40L Spraying)',
-  //       'High Spreading Efficieancy (110 Kg/min)',
-  //       'Higher spreading load (60L Spreading)',
-  //       'Double Magnetic Impeller Pump (24 L/min )',
-  //       '8500W Intelligent charger',
-  //       'HD 5.0 Core computing system',
-  //       '2KM Image Transmission',
-  //     ],
-  //     aircraft: [
-  //       {
-  //         label: 'Structural layout',
-  //         desc: 'Six-axis layout 2100mm',
-  //       },
-  //       {
-  //         label: 'Maximum wheelbase',
-  //         desc: '2100mm (six axes)',
-  //       },
-  //       {
-  //         label: 'Pesticide container capacity',
-  //         desc: '40L',
-  //       },
-  //       {
-  //         label: 'Seed container capacity',
-  //         desc: '60L',
-  //       },
-  //       {
-  //         label: 'Container installation mode',
-  //         desc: 'Plug-in',
-  //       },
-  //       {
-  //         label: 'Max Configurable Flight Radius',
-  //         desc: '2000 m',
-  //       },
-  //       {
-  //         label: 'No-load mass (including battery)',
-  //         desc: '47.5KG',
-  //       },
-  //       {
-  //         label: 'Power battery',
-  //         desc: '30000mAh',
-  //       },
-  //       {
-  //         label: 'Battery charging time (Lithium)',
-  //         desc: '20%-95% about 13min',
-  //       },
-  //       {
-  //         label: 'Reference fuel consumption',
-  //         desc: '500ml/kWh',
-  //       },
-  //       {
-  //         label: 'FPV camera',
-  //         desc: 'Front camera, rear camera',
-  //       },
-  //       {
-  //         label: 'Motor rated power',
-  //         desc: '2000w*6pcs',
-  //       },
-  //       {
-  //         label: 'Remote control signal distance',
-  //         desc: '≤1500m',
-  //       },
-  //       {
-  //         label: 'Flight speed limit',
-  //         desc: '≤10m/s',
-  //       },
-  //     ],
-  //   },
-  //   price: null,
-  //   kit: null,
-  //   accessories: {
-  //     battery: accessories.find((a) => a.title.short == 'HUIDA HD540S Battery'),
-  //     other: [
-  //       accessories.find((a) => a.title.short == 'HUIDA HD540S Generator'),
-  //       accessories.find(
-  //         (a) => a.title.short == 'HUIDA HD540S Spreading System'
-  //       ),
-  //     ].filter((i) => i != undefined),
-  //   },
-  //   category: 'agriculture',
-  //   available: true,
-  //   brand: 'huida',
-  //   make: 'Huida HD Series',
-  //   model: null,
-  // },
+  {
+    images: images.products.drones.huida.hd540s.drone,
+    title: {
+      long: 'HUIDA HD540S (Drone Spraying System)',
+      short: 'HUIDA HD540S',
+    },
+    specs: {
+      intro: [
+        'Higher spraying load (40L Spraying)',
+        'High Spreading Efficieancy (110 Kg/min)',
+        'Higher spreading load (60L Spreading)',
+        'Double Magnetic Impeller Pump (24 L/min )',
+        '8500W Intelligent charger',
+        'HD 5.0 Core computing system',
+        '2KM Image Transmission',
+      ],
+      aircraft: [
+        {
+          label: 'Structural layout',
+          desc: 'Six-axis layout 2100mm',
+        },
+        {
+          label: 'Maximum wheelbase',
+          desc: '2100mm (six axes)',
+        },
+        {
+          label: 'Pesticide container capacity',
+          desc: '40L',
+        },
+        {
+          label: 'Seed container capacity',
+          desc: '60L',
+        },
+        {
+          label: 'Container installation mode',
+          desc: 'Plug-in',
+        },
+        {
+          label: 'Max Configurable Flight Radius',
+          desc: '2000 m',
+        },
+        {
+          label: 'No-load mass (including battery)',
+          desc: '47.5KG',
+        },
+        {
+          label: 'Power battery',
+          desc: '30000mAh',
+        },
+        {
+          label: 'Battery charging time (Lithium)',
+          desc: '20%-95% about 13min',
+        },
+        {
+          label: 'Reference fuel consumption',
+          desc: '500ml/kWh',
+        },
+        {
+          label: 'FPV camera',
+          desc: 'Front camera, rear camera',
+        },
+        {
+          label: 'Motor rated power',
+          desc: '2000w*6pcs',
+        },
+        {
+          label: 'Remote control signal distance',
+          desc: '≤1500m',
+        },
+        {
+          label: 'Flight speed limit',
+          desc: '≤10m/s',
+        },
+      ],
+    },
+    price: null,
+    kit: null,
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'HUIDA HD540S Battery'),
+      other: [
+        accessories.find((a) => a.title.short == 'HUIDA HD540S Generator'),
+        accessories.find(
+          (a) => a.title.short == 'HUIDA HD540S Spreading System'
+        ),
+      ].filter((i) => i != undefined),
+    },
+    category: 'agriculture',
+    available: true,
+    brand: 'huida',
+    make: 'Huida HD Series',
+    model: null,
+  },
 
   {
     images: images.products.drones.dji.matrice.matrice350.drone,

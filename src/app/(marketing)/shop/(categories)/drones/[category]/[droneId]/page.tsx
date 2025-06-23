@@ -52,8 +52,8 @@ import classesBadge from './page.module.scss';
 export default function AccessoryDetail({ params }: typeParams) {
   const product = products.find((p) => linkify(p.title.long) == params.droneId);
   const kitContents = mergeKitContents(
-    product?.kit.basic.contents || [],
-    product?.kit.flyMore?.contents || []
+    product?.kit?.basic.contents || [],
+    product?.kit?.flyMore?.contents || []
   );
 
   return (
@@ -292,7 +292,7 @@ export default function AccessoryDetail({ params }: typeParams) {
       </LayoutSection>
 
       <LayoutSection id="drone-category-specs" padded shadowed>
-        <Tabs defaultValue="basic">
+        <Tabs defaultValue={product?.kit?.basic ? 'basic' : 'other'}>
           <TabsList fw={500}>
             <Grid gutter={0} w={'100%'}>
               {product?.kit?.basic && (

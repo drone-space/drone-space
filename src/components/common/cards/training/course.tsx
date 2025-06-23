@@ -3,6 +3,7 @@ import Link from 'next/link';
 import {
   Anchor,
   BackgroundImage,
+  Box,
   Card,
   Group,
   Overlay,
@@ -33,7 +34,7 @@ export default function Course({ data }: { data: CourseProps }) {
           pos={'relative'}
           h={'100%'}
         >
-          <div>
+          <Box mih={{ base: 200, xs: 220, sm: 180, md: 220, lg: 200 }}>
             <Title
               order={3}
               fz={{ base: 'md', lg: 'lg' }}
@@ -42,10 +43,10 @@ export default function Course({ data }: { data: CourseProps }) {
               {data.title}
             </Title>
 
-            <Text mt={'xs'} fz="sm" lineClamp={5}>
+            <Text mt={'xs'} fz="sm" lineClamp={6}>
               {data.desc}
             </Text>
-          </div>
+          </Box>
 
           <Anchor
             inherit

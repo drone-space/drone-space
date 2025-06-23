@@ -1,9 +1,10 @@
 import { images } from '@/assets/images';
 import {
   IconAntenna,
-  IconCampfire,
   IconDrone,
+  IconLeaf2,
   IconMapQuestion,
+  IconPlaneTilt,
   IconStar,
   IconTemperatureCelsius,
 } from '@tabler/icons-react';
@@ -425,11 +426,18 @@ export const courseList = [
     desc: 'The Level I Thermography Certification course is designed for professionals who want to develop practical skills in using thermography for inspections and diagnostics. This course is suitable for individuals working in industries such as electrical, mechanical, and building inspections, as well as professionals involved in research and development.',
   },
   {
-    image: images.training.holCam,
-    leftSection: IconCampfire,
+    image: images.training.agriSpray,
+    leftSection: IconLeaf2,
+    linkDesc: 'A comprehensive 8-day Agricultural Spraying Course.',
+    title: 'Agricultural Spraying',
+    desc: `Drone Space Kenya offers a comprehensive 8-day Agricultural Spraying Course combining 3 days of theory and 5 days of practical training. The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.`,
+  },
+  {
+    image: images.training.bvlos,
+    leftSection: IconPlaneTilt,
     linkDesc:
-      'An exciting holiday camp for aspiring young drone pilots under 18 to explore, learn, and fly in a fun environment.',
-    title: "Under 18's Holiday Camp",
-    desc: 'The U-18s Holiday Camp is a drone STEM program designed for kids, teens, and high school students between the ages of 7 and 17. The program is organized during school holidays to introduce young people to the emerging technology of drones and inspire their interest in science, technology, engineering, and mathematics (STEM) subjects. This program is suitable for young people who are curious about drones and want to learn about their applications and operations in a fun and safe environment.',
+      'Designed for certified Remote Pilots seeking to operate drones beyond visual range',
+    title: 'Beyond Visual Line of Sight',
+    desc: 'Drone Space Kenya’s Beyond Visual Line of Sight (BVLOS) Training Program is designed for certified Remote Pilots seeking to safely and effectively operate drones beyond visual range.',
   },
 ];

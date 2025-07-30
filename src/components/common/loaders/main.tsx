@@ -1,7 +1,10 @@
 'use client';
 
-import { Loader, Stack, Text, Transition } from '@mantine/core';
+import { Stack, Text, Transition } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
+import ImageDefault from '../images/default';
+import { images } from '@/assets/images';
+import SpinnerApp from '../spinners/app';
 
 export default function Main() {
   const [mounted, setMounted] = useState(false);
@@ -12,7 +15,16 @@ export default function Main() {
 
   return (
     <Stack align="center">
-      <Loader color="pri" type="dots" />
+      <ImageDefault
+        src={images.brand.droneSpace.logo.potrait.default}
+        alt={appName}
+        height={{ base: 80 }}
+        width={{ base: 200 }}
+        fit="contain"
+        mode="grid"
+      />
+
+      <SpinnerApp />
 
       <Transition
         mounted={mounted}

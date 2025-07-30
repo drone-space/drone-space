@@ -1,0 +1,25 @@
+.assistant {
+  @include hover {
+    .assistantActions {
+      opacity: 1;
+    }
+  }
+}
+
+.assistantActions {
+  transition: 0.25s all ease;
+  opacity: 0;
+}
+
+.user {
+  @include hover {
+    .userActions {
+      opacity: 1;
+    }
+  }
+}
+
+.userActions {
+  transition: 0.25s all ease;
+  opacity: 0;
+}

@@ -1,0 +1,41 @@
+.dropdown {
+  padding: 0;
+  overflow: hidden;
+  background-color: light-dark(
+    var(--mantine-color-body),
+    var(--mantine-color-dark-8)
+  );
+  min-width: 80px;
+  z-index: 10 !important;
+}
+
+.item {
+  transition: 0.25s color ease;
+  border-radius: 0;
+  overflow: hidden;
+  align-items: start;
+
+  @include hover {
+    background-color: light-dark(
+      var(--mantine-color-sec-light),
+      var(--mantine-color-sec-light)
+    );
+
+    .itemLabel {
+      color: var(--mantine-color-pri-7);
+    }
+  }
+}
+
+.itemActive {
+  font-weight: bold;
+  background-color: light-dark(
+    var(--mantine-color-sec-light),
+    var(--mantine-color-sec-light)
+  );
+  color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
+}
+
+// .itemLabel {
+//   color: var(--mantine-color-text);
+// }

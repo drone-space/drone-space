@@ -12,13 +12,13 @@ export const sendEmailMarketingInquiry = async (
   const deliveryEmail = process.env.NEXT_PUBLIC_EMAIL_DELIVERY || '';
 
   const { data, error } = await resend.emails.send({
-    from: `${params.name} <${deliveryEmail}>`,
+    from: `${params.fname} ${params.lname} <${deliveryEmail}>`,
     to: [!isProduction() ? devEmail : recipient],
-    subject: `${params.subject} (From ${params.name})`,
+    subject: `${params.subject} (From ${params.fname} ${params.lname})`,
     replyTo: params.email,
     html: await render(
       EmailInquiry({
-        userName: params.name,
+        userName: `${params.fname} ${params.lname}`,
         userMessage: params.message,
         userPhone: params.phone,
       })

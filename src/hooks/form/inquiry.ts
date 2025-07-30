@@ -1,3 +1,4 @@
+import { handleInquiry } from '@/handlers/requests/email/inquiry';
 import { Variant } from '@/enums/notification';
 import { showNotification } from '@/utilities/notifications';
 import { capitalizeWords } from '@/utilities/formatters/string';
@@ -5,14 +6,17 @@ import { email } from '@/utilities/validators/email';
 import { hasLength, useForm, UseFormReturnType } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';
 import { useState } from 'react';
-import { handleInquiry } from '@/handlers/requests/email/inquiry';
 import { contactAdd } from '@/handlers/requests/contact';
+import { downloadProfile } from '@/handlers/downloaders/profile';
+import { downloadBrochure } from '@/handlers/downloaders/brochure';
 
 export type FormInquiryValues = {
-  name: string;
+  fname: string;
+  lname: string;
   email: string;
-  subject: string;
   phone: string;
+  company: string;
+  subject: string;
   message: string;
 };
 
@@ -21,31 +25,38 @@ export type FormInquiry = UseFormReturnType<
   (values: FormInquiryValues) => FormInquiryValues
 >;
 
-export const useFormEmailInquiry = (
-  initialValues?: Partial<FormInquiryValues>,
-  options?: { close?: () => void }
-) => {
+export const useFormInquiry = (params: {
+  recipient: string;
+  initialValues?: Partial<FormInquiryValues>;
+  document?: 'profile' | 'brochure';
+  close?: () => void;
+}) => {
   const [submitted, setSubmitted] = useState(false);
   const networkStatus = useNetwork();
 
   const form = useForm({
     initialValues: {
-      name: '',
-      email: '',
-      subject: initialValues?.subject || '',
-      phone: '',
-      message: initialValues?.message || '',
+      fname: params?.initialValues?.fname || '',
+      lname: params?.initialValues?.lname || '',
+      email: params?.initialValues?.email || '',
+      phone: params?.initialValues?.phone || '',
+      company: params?.initialValues?.company || '',
+      subject: params?.initialValues?.subject || '',
+      message: params?.initialValues?.message || '',
     },
 
     validate: {
-      name: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
+      fname: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
+      lname: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
       email: (value) => email(value.trim()),
-      subject: hasLength({ min: 2, max: 255 }, 'Between 2 and 255 characters'),
       phone: hasLength({ min: 7, max: 15 }, 'Between 7 and 15 characters'),
-      message: hasLength(
-        { min: 3, max: 2048 },
-        'Between 3 and 2048 characters'
-      ),
+      company: hasLength({ min: 0, max: 24 }, 'Between 0 and 24 characters'),
+      subject: params.document
+        ? undefined
+        : hasLength({ min: 2, max: 255 }, 'Between 2 and 255 characters'),
+      message: params.document
+        ? undefined
+        : hasLength({ min: 3, max: 2048 }, 'Between 3 and 2048 characters'),
     },
   });
 
@@ -58,38 +69,56 @@ export const useFormEmailInquiry = (
             title: 'Network Error',
             desc: 'Please check your internet connection.',
           });
-          return;
-        }
+        } else {
+          setSubmitted(true);
 
-        setSubmitted(true);
+          // handle download
+          if (params?.document) {
+            const response = await contactAdd(parseFormValues(form.values));
 
-        const response = await handleInquiry(parseFormValues(form.values));
+            if (!response.ok) {
+              throw new Error('Internal server error');
+            }
 
-        if (!response) {
-          throw new Error('No response from server');
-        }
+            form.reset();
 
-        const result = await response.json();
+            showNotification({
+              variant: Variant.SUCCESS,
+              desc: 'Your download will start shortly',
+            });
 
-        form.reset();
+            if (params.document === 'profile') {
+              downloadProfile();
+            }
 
-        if (response.ok) {
-          if (options?.close) {
-            options.close();
+            if (params.document === 'brochure') {
+              downloadBrochure();
+            }
+
+            // close modal if exists
+            if (params.close) params?.close();
+            return;
           }
 
-          const addContact = await contactAdd(parseFormValues(form.values));
+          const response = await handleInquiry(
+            parseFormValues(form.values),
+            params.recipient
+          );
 
-          if (!addContact.ok) {
-            console.error('Error adding contact');
+          if (!response.ok) {
+            throw new Error('Internal server error');
+          } else {
+            form.reset();
+
+            const result = await response.json();
+
+            showNotification({ variant: Variant.SUCCESS }, response, result);
+
+            // close modal if exists
+            if (params.close) params?.close();
+            return;
           }
-
-          showNotification({ variant: Variant.SUCCESS }, response, result);
-          return;
         }
-
-        showNotification({ variant: Variant.FAILED }, response, result);
-        return;
       } catch (error) {
         showNotification({
           variant: Variant.FAILED,
@@ -111,10 +140,12 @@ export const useFormEmailInquiry = (
 
 const parseFormValues = (formValues: FormInquiryValues): FormInquiryValues => {
   return {
-    name: capitalizeWords(formValues.name.trim()),
+    fname: capitalizeWords(formValues.fname.trim()),
+    lname: capitalizeWords(formValues.lname.trim()),
     email: formValues.email.trim().toLowerCase(),
-    subject: formValues.subject.trim(),
     phone: formValues.phone.trim(),
+    company: formValues.company.trim(),
+    subject: formValues.subject.trim(),
     message: formValues.message.trim(),
   };
 };

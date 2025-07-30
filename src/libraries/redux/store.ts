@@ -5,6 +5,7 @@ import reducerSession from './slices/session';
 import { isProduction } from '@/utilities/helpers/environment';
 import reducerColorScheme from './slices/color-scheme';
 import reducerComments from './slices/comments';
+import reducerConversation from './slices/claude';
 
 export const makeStore = () => {
   return configureStore({
@@ -12,6 +13,7 @@ export const makeStore = () => {
       colorScheme: reducerColorScheme,
       session: reducerSession,
       comments: reducerComments,
+      claude: reducerConversation,
     },
 
     devTools: isProduction(),

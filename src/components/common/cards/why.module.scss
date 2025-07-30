@@ -1,0 +1,30 @@
+.card {
+  transition: 0.25s all ease;
+  background-color: light-dark(
+    var(--mantine-color-pri-7),
+    var(--mantine-color-pri-7)
+  ) !important;
+  color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-white)
+  ) !important;
+  border-radius: var(--mantine-radius-sm);
+  padding: var(--mantine-spacing-xl) var(--mantine-spacing-md);
+  height: 100%;
+}
+
+.icon {
+  transition: 0.25s all ease;
+  background-color: light-dark(
+    var(--mantine-color-sec-3),
+    var(--mantine-color-sec-3)
+  );
+  color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
+}
+
+.title {
+  color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-white)
+  ) !important;
+}

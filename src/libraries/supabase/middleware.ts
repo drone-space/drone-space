@@ -1,5 +1,4 @@
-import { AUTH_URLS, BASE_URL, PARAM_NAME } from '@/data/constants';
-import { validateRoute } from '@/utilities/helpers/url';
+import { AUTH_URLS, BASE_URL } from '@/data/constants';
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -43,24 +42,22 @@ export const updateSession = async (
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { redirectToAuth, redirectFromAuth } = validateRoute({
-    user,
-    pathname: request.nextUrl.pathname,
-  });
-
-  if (redirectToAuth) {
-    const redirectUrl = new URL(AUTH_URLS.SIGN_IN, request.url);
-    redirectUrl.searchParams.set(
-      PARAM_NAME.REDIRECT_AUTH,
-      request.nextUrl.pathname
+  if (!user) {
+    const isProtectedRoute = routes.protected.some((route) =>
+      request.nextUrl.pathname.startsWith(route)
     );
 
-    return NextResponse.redirect(redirectUrl);
-  }
+    if (isProtectedRoute) {
+      return NextResponse.redirect(new URL(AUTH_URLS.SIGN_IN, request.url));
+    }
+  } else {
+    const isAuthRoute = routes.auth.some((route) =>
+      request.nextUrl.pathname.startsWith(route)
+    );
 
-  if (redirectFromAuth) {
-    const redirectUrl = new URL(BASE_URL, request.url);
-    return NextResponse.redirect(redirectUrl);
+    if (isAuthRoute) {
+      return NextResponse.redirect(new URL(BASE_URL, request.url));
+    }
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
@@ -77,4 +74,21 @@ export const updateSession = async (
   // of sync and terminate the user's session prematurely!
 
   return supabaseResponse;
+};
+
+const routes = {
+  protected: [
+    '/account',
+    '/dashboard',
+    '/auth/sign-out',
+    // Add other protected routes
+  ],
+
+  auth: [
+    '/auth/password',
+    '/auth/sign-in',
+    '/auth/sign-up',
+    '/auth/verify',
+    // Add other auth routes
+  ],
 };

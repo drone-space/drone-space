@@ -56,15 +56,11 @@ export const sortArray = <T>(
   return [...itemsValidSorted, ...items.null];
 };
 
-export const shuffleArray = <T>(array: T[]): T[] => {
-  const shuffledArray = [...array]; // Create a copy to avoid mutating the original array
-  for (let i = shuffledArray.length - 1; i > 0; i--) {
-    const randomIndex = Math.floor(Math.random() * (i + 1));
-    [shuffledArray[i], shuffledArray[randomIndex]] = [
-      shuffledArray[randomIndex],
-      shuffledArray[i],
-    ];
+export const shuffleArray = (array: Array<any>) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 
-  return shuffledArray;
+  return array;
 };

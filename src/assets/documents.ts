@@ -1,6 +1,6 @@
 import { HOSTED_BASE_URL } from '@/data/constants';
 
-const baseUrl = `${HOSTED_BASE_URL.DEFAULT}/documents`;
+const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/documents`;
 
 const documents = {
   droneSpace: {

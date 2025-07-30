@@ -9,10 +9,9 @@ import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-
-import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
-import { companyName } from '@/data/app';
+import appData from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
+import CtaFeatured from '@/components/partial/cta/featured';
 
 const metaTitle = 'Enterprise Drones - High-Performance Drones for Business';
 const metaDesc = `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`;
@@ -23,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/enterprise`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/enterprise`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

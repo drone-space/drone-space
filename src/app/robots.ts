@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next';
-import { HOSTED_BASE_URL } from '@/data/constants';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -13,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         // Add more private routes here
       ],
     },
-    sitemap: `${HOSTED_BASE_URL.DEFAULT}/sitemap.xml`,
+    sitemap: 'https://dronespace.co.ke/sitemap.xml',
   };
 }

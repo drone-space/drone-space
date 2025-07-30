@@ -1,14 +1,10 @@
 import { MantineColorScheme, useMantineColorScheme } from '@mantine/core';
-import { COOKIE_NAME, DEFAULT_COLOR_SCHEME, WEEK } from '@/data/constants';
-import {
-  setCookieClient,
-  getCookieClient,
-} from '@/utilities/helpers/cookie-client';
+import { COOKIE_NAME, EXPIRY } from '@/data/constants';
+import { setCookie, getCookie } from '@/utilities/helpers/cookie';
 import { getOSTheme } from '@/utilities/helpers/theme';
 import { useAppDispatch, useAppSelector } from './redux';
 import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
 import { useEffect } from 'react';
-import { ColorScheme } from '@/types/theme';
 
 export const useColorSchemeHandler = () => {
   const { setColorScheme } = useMantineColorScheme({ keepTransitions: true });
@@ -20,41 +16,42 @@ export const useColorSchemeHandler = () => {
     dispatch(updateColorScheme(value));
 
     // update scheme state cookie
-    setCookieClient(COOKIE_NAME.COLOR_SCHEME_STATE, value, {
-      expiryInSeconds: WEEK,
+    setCookie(COOKIE_NAME.COLOR_SCHEME_STATE, value, {
+      expiryInSeconds: EXPIRY.SESSION.EXTENDED.SEC,
     });
 
-    const scheme = getOSTheme(value as ColorScheme);
+    const scheme =
+      value == 'light' ? 'light' : value == 'dark' ? 'dark' : getOSTheme();
 
     // update mantine color scheme
     setColorScheme(scheme as MantineColorScheme);
 
     // update scheme cookie
-    setCookieClient(COOKIE_NAME.COLOR_SCHEME, scheme, {
-      expiryInSeconds: WEEK,
+    setCookie(COOKIE_NAME.COLOR_SCHEME, scheme, {
+      expiryInSeconds: EXPIRY.SESSION.EXTENDED.SEC,
     });
   };
 
   useEffect(() => {
-    const cookieValueState = getCookieClient(COOKIE_NAME.COLOR_SCHEME_STATE);
+    const cookieValueState = getCookie(COOKIE_NAME.COLOR_SCHEME_STATE);
 
     if (!cookieValueState) {
-      setCookieClient(COOKIE_NAME.COLOR_SCHEME_STATE, DEFAULT_COLOR_SCHEME, {
-        expiryInSeconds: WEEK,
+      setCookie(COOKIE_NAME.COLOR_SCHEME_STATE, 'light', {
+        expiryInSeconds: EXPIRY.SESSION.EXTENDED.SEC,
       });
     }
 
-    const cookieValue = getCookieClient(COOKIE_NAME.COLOR_SCHEME);
+    const cookieValue = getCookie(COOKIE_NAME.COLOR_SCHEME);
 
     if (!cookieValue) {
-      setCookieClient(COOKIE_NAME.COLOR_SCHEME, DEFAULT_COLOR_SCHEME, {
-        expiryInSeconds: WEEK,
+      setCookie(COOKIE_NAME.COLOR_SCHEME, 'light', {
+        expiryInSeconds: EXPIRY.SESSION.EXTENDED.SEC,
       });
     }
 
-    dispatch(updateColorScheme(cookieValueState || DEFAULT_COLOR_SCHEME));
-    setColorScheme((cookieValue as MantineColorScheme) || DEFAULT_COLOR_SCHEME);
-  }, []);
+    dispatch(updateColorScheme(cookieValueState || 'light'));
+    setColorScheme((cookieValue as MantineColorScheme) || 'light');
+  });
 
   return { colorScheme, handleChange };
 };

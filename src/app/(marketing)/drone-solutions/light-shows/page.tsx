@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import HeroShows from '@/components/layout/heros/shows';
+import HeroShows from '@/components/layout/hero/shows';
 import {
   AspectRatio,
   Box,
@@ -34,6 +34,7 @@ import {
 } from '@tabler/icons-react';
 import { images } from '@/assets/images';
 import videos from '@/assets/videos';
+import appData from '@/data/app';
 import shows from '@/data/shows';
 import {
   HOSTED_BASE_URL,
@@ -41,8 +42,7 @@ import {
   ICON_STROKE_WIDTH,
 } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
-import IntroSection from '@/components/layout/intross/section';
-import { companyName, phones } from '@/data/app';
+import IntroSection from '@/components/layout/intro/section';
 
 const metaTitle = 'Drone Light Shows - Stunning Aerial Displays by Drone Space';
 const metaDesc =
@@ -54,14 +54,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/drone-solutions/light-shows`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-solutions/light-shows`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },
@@ -378,7 +378,7 @@ export default async function LighShow() {
                 </ModalContactService>
                 <Button
                   component="a"
-                  href={`tel:${phones.main}`}
+                  href={`tel:${appData.phones.main}`}
                   miw={200}
                   color="sec.3"
                   c={'pri'}
@@ -386,7 +386,7 @@ export default async function LighShow() {
                     <IconPhone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                   }
                 >
-                  {phones.main}
+                  {appData.phones.main}
                 </Button>
               </Flex>
             </GridCol>

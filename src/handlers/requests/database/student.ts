@@ -1,3 +1,4 @@
+import { Request as EnumRequest } from '@/enums/request';
 import { API_URL, HEADERS } from '@/data/constants';
 
 const baseRequestUrl = `${API_URL}/students`;
@@ -5,7 +6,7 @@ const baseRequestUrl = `${API_URL}/students`;
 export const studentsGet = async () => {
   try {
     const request = new Request(baseRequestUrl, {
-      method: 'GET',
+      method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });

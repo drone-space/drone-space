@@ -1,4 +1,4 @@
-import { PostComment } from '@/types/models/custom';
+import { PostComment } from '@/types/static/blog';
 import { createSlice } from '@reduxjs/toolkit';
 
 export const sliceComments = createSlice({

@@ -45,7 +45,7 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
-import IntroPage from '@/components/layout/intros/page';
+import IntroPage from '@/components/layout/intro/page';
 import { images } from '@/assets/images';
 import classesBadge from './page.module.scss';
 

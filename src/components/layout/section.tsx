@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Container } from '@mantine/core';
 import { Section as typeSection } from '@/types/layout';
+import classes from './section.module.scss';
 import { SECTION_SPACING } from '@/data/constants';
 
 export default function Section({
@@ -27,13 +28,11 @@ export default function Section({
             : margined
           : ''
       }
-      style={{
-        borderBottom: bordered
-          ? '1px solid var(--mantine-color-default-border)'
-          : undefined,
-        boxShadow: shadowed ? 'var(--mantine-shadow-xs)' : undefined,
-      }}
-      className={className ? `${className}` : ''}
+      className={
+        (className ? `${className}` : '') +
+        (bordered ? ` ${classes.border}` : '') +
+        (shadowed ? ` ${classes.shadow}` : '')
+      }
       bg={bg}
       {...restProps}
     >

@@ -7,7 +7,7 @@ import { Button, Grid, GridCol } from '@mantine/core';
 import { images } from '@/assets/images';
 import { capitalizeWords } from '@/utilities/formatters/string';
 import ImageDefault from '@/components/common/images/default';
-import { API_URL, AUTH_URLS, PARAM_NAME } from '@/data/constants';
+import { API_URL, URL_PARAM } from '@/data/constants';
 import { createClient } from '@/libraries/supabase/client';
 import { getUrlParam } from '@/utilities/helpers/url';
 
@@ -22,10 +22,7 @@ export default function Providers() {
       await supabase.auth.signInWithOAuth({
         provider: providerDetails.provider.toLocaleLowerCase() as any,
         options: {
-          redirectTo: `${API_URL}/auth/callback/oauth?next=${encodeURIComponent(getUrlParam(PARAM_NAME.REDIRECT_AUTH) || AUTH_URLS.REDIRECT.DEFAULT)}`,
-
-          // The following options are commented out because they are not needed for most OAuth flows.
-          // These options can be uncommented if you need offline access or to prompt for consent.
+          redirectTo: `${API_URL}/auth/callback/oauth?next=${encodeURIComponent(getUrlParam(URL_PARAM.REDIRECT))}`,
           // queryParams: {
           //   access_type: 'offline',
           //   prompt: 'consent',
@@ -36,7 +33,6 @@ export default function Providers() {
 
     return (
       <Button
-        key={providerDetails.provider}
         fullWidth
         variant="default"
         onClick={handleClick}
@@ -58,8 +54,8 @@ export default function Providers() {
 
   return (
     <Grid>
-      {providers.map((provider) => (
-        <GridCol key={provider.provider} span={{ base: 12 }}>
+      {providers.map((provider, index) => (
+        <GridCol key={index} span={{ base: 12 }}>
           {getButton(provider)}
         </GridCol>
       ))}

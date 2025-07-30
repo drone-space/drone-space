@@ -1,28 +1,28 @@
 import React from 'react';
 import { Metadata } from 'next';
 import LayoutBody from '@/components/layout/body';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import { appName, companyName } from '@/data/app';
 
 const metaTitle = `Drone Accessories`;
 
 export const metadata: Metadata = {
   title: {
     default: `Drone Accessories`,
-    template: `%s - ${metaTitle} - ${appName} Kenya`,
+    template: `%s - ${metaTitle} - ${appData.name.company} Kenya`,
   },
   openGraph: {
     title: metaTitle,
     // description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/accessories`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/accessories`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

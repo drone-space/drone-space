@@ -4,6 +4,7 @@ import { useAppSelector } from '@/hooks/redux';
 import { initialize } from '@/utilities/formatters/string';
 import { Avatar, MantineStyleProps } from '@mantine/core';
 import React from 'react';
+
 import classes from './main.module.scss';
 
 export default function Main({

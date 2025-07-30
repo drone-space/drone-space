@@ -1,16 +1,16 @@
 'use client';
 
+import { email } from '@/utilities/validators/email';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { showNotification } from '@/utilities/notifications';
 import { Variant } from '@/enums/notification';
-import { email } from '@/utilities/validators/email';
 import { useNetwork } from '@mantine/hooks';
 import { signIn } from '@/handlers/events/auth';
 import { AuthAction } from '@/types/auth';
 import { getUrlParam } from '@/utilities/helpers/url';
+import { URL_PARAM } from '@/data/constants';
 import { useRouter } from 'next/navigation';
-import { AUTH_URLS, PARAM_NAME } from '@/data/constants';
 
 export const useFormAuthSignIn = (params: { action: AuthAction }) => {
   const networkStatus = useNetwork();
@@ -50,9 +50,7 @@ export const useFormAuthSignIn = (params: { action: AuthAction }) => {
           formData: parseValues(),
           options: {
             action: params.action,
-            redirectUrl:
-              getUrlParam(PARAM_NAME.REDIRECT_AUTH) ||
-              AUTH_URLS.REDIRECT.DEFAULT,
+            redirectUrl: getUrlParam(URL_PARAM.REDIRECT),
           },
         });
 

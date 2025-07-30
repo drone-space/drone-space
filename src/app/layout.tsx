@@ -1,61 +1,82 @@
-import type { Metadata } from 'next';
+import { Montserrat } from 'next/font/google';
+
+// Import styles of packages that you've installed.
+// All packages except `@mantine/hooks` require styles imports
+import '@mantine/core/styles/global.css';
+import '@mantine/core/styles.css';
+
+import '@mantine/carousel/styles.css';
+import '@mantine/charts/styles.css';
+import '@mantine/code-highlight/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/dropzone/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/nprogress/styles.css';
+import '@mantine/spotlight/styles.css';
+import '@mantine/tiptap/styles.css';
+
+import '@/styles/globals.scss';
+
 import {
   ColorSchemeScript,
+  MantineColorScheme,
   MantineProvider,
-  mantineHtmlProps,
 } from '@mantine/core';
-import { Geist, Geist_Mono } from 'next/font/google';
-
-// All packages except `@mantine/hooks` require styles imports
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
-import '@mantine/notifications/styles.css';
-
-// custom styles
-import '../styles/globals.scss';
-
+import { COOKIE_NAME } from '@/data/constants';
+import { cookies } from 'next/headers';
+import { isProduction } from '@/utilities/helpers/environment';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import appTheme from '@/styles/theme';
 import appResolver from '@/styles/resolver';
-import { appName } from '@/data/app';
+import appData from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
+// import { SpeedInsights } from "@vercel/speed-insights/next";
+// import AffixiCookies from '@/components/common/affixi/cookies';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
-
-export const metadata: Metadata = {
-  title: appName,
-  description: '',
-};
-
-export default function RootLayout({
+export default async function LayoutRoot({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" {...mantineHtmlProps}>
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  const colorScheme = cookies().get(COOKIE_NAME.COLOR_SCHEME)?.value;
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
-        <ColorSchemeScript />
+  return (
+    <html
+      lang="en"
+      data-mantine-color-scheme={(colorScheme || 'light') as MantineColorScheme}
+    >
+      <head>
+        <ColorSchemeScript
+          defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
+        />
+
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
       </head>
 
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={montserrat.className}>
         <MantineProvider
           theme={appTheme}
           cssVariablesResolver={appResolver}
-          classNamesPrefix={linkify(appName)}
+          defaultColorScheme={(colorScheme || 'light') as MantineColorScheme}
+          classNamesPrefix={linkify(appData.name.app)}
         >
-          {children}
+          <ModalsProvider>{children}</ModalsProvider>
+
+          <Notifications limit={3} />
         </MantineProvider>
+
+        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

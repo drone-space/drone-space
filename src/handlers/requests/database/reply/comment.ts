@@ -1,13 +1,14 @@
+import { Request as EnumRequest } from '@/enums/request';
 import { API_URL, HEADERS } from '@/data/constants';
+import { ReplyCommentCreate } from '@/types/bodies/request';
 import { ReplyUpdate } from '@/types/models/reply';
-import { ReplyCommentCreate } from '@/types/models/custom';
 
 const baseRequestUrl = `${API_URL}/replies/comment`;
 
-export const repliesCommentGet = async (slug: { commentId: string }) => {
+export const repliesCommentGet = async (params: { commentId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.commentId}`, {
-      method: 'GET',
+    const request = new Request(`${baseRequestUrl}/${params.commentId}`, {
+      method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -25,8 +26,8 @@ export const repliesCommentGet = async (slug: { commentId: string }) => {
 
 export const replyCommentCreate = async (requestBody: ReplyCommentCreate) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${requestBody.comment_id}`, {
-      method: 'POST',
+    const request = new Request(`${baseRequestUrl}/${requestBody.commentId}`, {
+      method: EnumRequest.POST,
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(requestBody),
@@ -46,7 +47,7 @@ export const replyCommentUpdate = async (
 ) => {
   try {
     const request = new Request(`${baseRequestUrl}/${requestBody.id}`, {
-      method: 'PUT',
+      method: EnumRequest.PUT,
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(requestBody),
@@ -61,10 +62,10 @@ export const replyCommentUpdate = async (
   }
 };
 
-export const replyCommentDelete = async (slug: { replyId: string }) => {
+export const replyCommentDelete = async (params: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
-      method: 'DELETE',
+    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
+      method: EnumRequest.DELETE,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });

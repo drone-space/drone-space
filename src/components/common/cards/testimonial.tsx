@@ -46,7 +46,7 @@ export default function Testimonial({ props }: { props: Student }) {
             miw={64}
           >
             <ImageDefault
-              src={processUrl(props.image, HOSTED_BASE_URL.DEFAULT)}
+              src={processUrl(props.image, HOSTED_BASE_URL.DRONE_SPACE)}
               alt={props.name}
               height={64}
               width={64}

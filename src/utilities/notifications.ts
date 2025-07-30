@@ -1,8 +1,9 @@
 import IconNotification from '@/components/common/icons/notification';
 import { notifications } from '@mantine/notifications';
-import { linkify } from './formatters/string';
 import { capitalizeWord } from './formatters/string';
+import { linkify } from './formatters/string';
 import { Variant } from '@/enums/notification';
+import { TIMEOUT } from '@/data/constants';
 
 export const showNotification = (
   notification: { variant: Variant; title?: string; desc?: string },
@@ -29,7 +30,7 @@ export const showNotification = (
       title,
       message,
       variant: notification.variant,
-      autoClose: 5000,
+      autoClose: TIMEOUT.REDIRECT,
       withBorder: false,
     });
   } catch (error) {

@@ -2,7 +2,7 @@ import { images } from '@/assets/images';
 import accessories from './accessories';
 import { HOSTED_BASE_URL } from './constants';
 
-const baseUrl = `${HOSTED_BASE_URL.DEFAULT}/images`;
+const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/images`;
 
 const products = [
   // {

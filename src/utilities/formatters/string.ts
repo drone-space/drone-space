@@ -42,6 +42,9 @@ export const linkify = (string: string) =>
     .replace(/-+/g, '-') // Replace multiple dashes with a single dash
     .replace(/^-|-$/g, ''); // Remove leading and trailing dashes
 
+export const unlinkify = (string: string) =>
+  capitalizeWords(string.replaceAll('-', ' '));
+
 export const segmentFullName = (
   fullName: string
 ): { first: string; last: string } => {

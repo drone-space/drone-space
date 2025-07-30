@@ -1,7 +1,7 @@
 import React from 'react';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import HeroShop from '@/components/layout/heros/shop';
+import HeroShop from '@/components/layout/hero/shop';
 import CardShopFactor from '@/components/common/cards/shop/factor';
 import { Anchor, Grid, GridCol, Group, Stack } from '@mantine/core';
 import {
@@ -12,11 +12,11 @@ import {
   IconLayersIntersect,
   IconPhotoSensor3,
 } from '@tabler/icons-react';
-import IntroSection from '@/components/layout/intros/section';
+import IntroSection from '@/components/layout/intro/section';
 import { shopLinks } from '@/data/links';
 import Link from 'next/link';
 import ImageDefault from '@/components/common/images/default';
-import CtaFeatured from '@/components/partials/cta/featured';
+import CtaFeatured from '@/components/partial/cta/featured';
 
 export default async function Shop() {
   return (

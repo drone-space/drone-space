@@ -1,19 +1,19 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Grid, GridCol } from '@mantine/core';
-import IntroSection from '@/components/layout/intross/section';
+import IntroSection from '@/components/layout/intro/section';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import CardPricingBasic from '@/components/common/cards/pricing/basic';
 import AccordionFaq from '@/components/common/accordions/faq';
-import IntroPage from '@/components/layout/intross/page';
+import IntroPage from '@/components/layout/intro/page';
 import courses from '@/data/courses';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import { GetLayout } from '../../resources/faq/page';
-import { appName, companyName } from '@/data/app';
 
-const metaTitle = `Drone Training Pricing - Affordable Courses at ${appName} Kenya`;
+const metaTitle = `Drone Training Pricing - Affordable Courses at ${appData.name.app} Kenya`;
 const metaDesc = `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`;
 
 export const metadata: Metadata = {
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/drone-training/pricing`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-training/pricing`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

@@ -7,9 +7,6 @@ import { getEmailLocalPart } from '@/utilities/helpers/string';
 import { emailSendOnboardSignUp } from '@/libraries/wrappers/email/on-board/sign-up';
 import { segmentFullName } from '@/utilities/formatters/string';
 import { contactAdd } from '@/services/api/email/contacts';
-import { getSafeRedirectUrl } from '@/utilities/helpers/url';
-
-export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
@@ -34,10 +31,10 @@ export async function GET(request: NextRequest) {
     // create profile if doesn't exist
     const { profile, existed } = await profileCreate({
       id: verifyData.user?.id || '',
-      first_name: getEmailLocalPart(verifyData.user?.email || ''),
+      firstName: getEmailLocalPart(verifyData.user?.email || ''),
     });
 
-    const name = `${profile?.first_name} ${profile?.last_name || ''}`.trim();
+    const name = `${profile?.firstName} ${profile?.lastName || ''}`.trim();
 
     // update user
     const {
@@ -49,7 +46,7 @@ export async function GET(request: NextRequest) {
         full_name: name,
         picture: profile?.avatar,
         avatar_url: profile?.avatar,
-        userName: profile?.user_name,
+        userName: profile?.userName,
       },
     });
 
@@ -62,15 +59,13 @@ export async function GET(request: NextRequest) {
           segmentFullName(userData?.user_metadata.name).first || userData.email,
       });
 
-      await contactAdd(
-        { email: userData.email, name: userData.user_metadata.name },
-        false
-      );
+      // add email contact to marketing mail handler
+      await contactAdd({ email: userData.email });
     }
 
     // if "next" is in param, use it as the redirect URL
-    const redirectUrl = getSafeRedirectUrl(request, 'next');
-    return NextResponse.redirect(redirectUrl);
+    const next = searchParams.get('next') ?? '/';
+    return NextResponse.redirect(next);
   } catch (error) {
     return NextResponse.redirect(
       `${AUTH_URLS.ERROR}?message=${encodeURIComponent((error as Error).message)}`

@@ -1,11 +1,5 @@
 import { HourSystem } from '@/enums/date';
-
-export interface FormatOptions {
-  locale?: string; // en-US | en-GB
-  timezone?: string;
-  format?: 'numeric' | 'short' | 'long' | 'full';
-  hourSystem?: HourSystem;
-}
+import { FormatOptions } from '@/types/date-time';
 
 export const getRegionalDate = (
   date: Date,

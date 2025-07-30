@@ -3,8 +3,7 @@ import { Avatar, Card, Group, Title } from '@mantine/core';
 import React from 'react';
 
 export default function Author({ props }: { props: PostRelations['profile'] }) {
-  const fullName =
-    `${props?.first_name || ''} ${props?.last_name || ''}`.trim();
+  const fullName = `${props?.firstName || ''} ${props?.lastName || ''}`.trim();
 
   return (
     <Card padding={0} bg={'transparent'}>

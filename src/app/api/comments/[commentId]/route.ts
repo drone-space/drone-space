@@ -1,10 +1,7 @@
 import prisma from '@/libraries/prisma';
-import { CommentCreate } from '@/types/models/custom';
+import { CommentCreate } from '@/types/bodies/request';
 import { CommentUpdate } from '@/types/models/comment';
 import { NextRequest, NextResponse } from 'next/server';
-
-export const dynamic = 'force-static';
-export const revalidate = 60;
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,11 +9,11 @@ export async function POST(request: NextRequest) {
 
     const commentRecord = await prisma.comment.findUnique({
       where: {
-        name_content_post_id_profile_id: {
+        name_content_postId_profileId: {
           name: comment.name || '',
           content: comment.content,
-          post_id: comment.postId,
-          profile_id: comment.profile_id || '',
+          postId: comment.postId,
+          profileId: comment.profileId || '',
         },
       },
     });
@@ -32,7 +29,7 @@ export async function POST(request: NextRequest) {
       data: {
         name: comment.name,
         content: comment.content,
-        post_id: comment.postId,
+        postId: comment.postId,
       },
     });
 
@@ -51,13 +48,11 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ commentId: string }> }
+  { params }: { params: { commentId: string } }
 ) {
   try {
-    const { commentId } = await params;
-
     const commentRecord = await prisma.comment.findUnique({
-      where: { id: commentId },
+      where: { id: params.commentId },
     });
 
     if (!commentRecord) {
@@ -70,7 +65,7 @@ export async function PUT(
     const comment: CommentUpdate = await request.json();
 
     await prisma.comment.update({
-      where: { id: commentId },
+      where: { id: params.commentId },
       data: comment,
     });
 

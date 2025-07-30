@@ -1,12 +1,14 @@
+import { Request as EnumRequest } from '@/enums/request';
 import { API_URL, HEADERS } from '@/data/constants';
-import { ReplyCreate, ReplyUpdate } from '@/types/models/reply';
+import { ReplyUpdate } from '@/types/models/reply';
+import { ReplyReplyCreate } from '@/types/bodies/request';
 
 const baseRequestUrl = `${API_URL}/replies/reply`;
 
-export const repliesReplyGet = async (slug: { replyId: string }) => {
+export const repliesReplyGet = async (params: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
-      method: 'GET',
+    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
+      method: EnumRequest.GET,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -22,10 +24,10 @@ export const repliesReplyGet = async (slug: { replyId: string }) => {
   }
 };
 
-export const replyReplyCreate = async (requestBody: ReplyCreate) => {
+export const replyReplyCreate = async (requestBody: ReplyReplyCreate) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${requestBody.reply_id}`, {
-      method: 'POST',
+    const request = new Request(`${baseRequestUrl}/${requestBody.replyId}`, {
+      method: EnumRequest.POST,
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(requestBody),
@@ -45,7 +47,7 @@ export const replyReplyUpdate = async (
 ) => {
   try {
     const request = new Request(`${baseRequestUrl}/${requestBody.id}`, {
-      method: 'PUT',
+      method: EnumRequest.PUT,
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(requestBody),
@@ -60,10 +62,10 @@ export const replyReplyUpdate = async (
   }
 };
 
-export const replyReplyDelete = async (slug: { replyId: string }) => {
+export const replyReplyDelete = async (params: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
-      method: 'DELETE',
+    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
+      method: EnumRequest.DELETE,
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });

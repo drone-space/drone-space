@@ -1,4 +1,5 @@
 import { GEO_DATA_URL, HEADERS } from '@/data/constants';
+import { Request } from '@/enums/request';
 import { CountryData, CountryDataOptions } from '@/types/bodies/response';
 
 export const fetchCountryData = async (
@@ -33,7 +34,7 @@ export const fetchCountryData = async (
     const urlCountry = `${GEO_DATA_URL.COUNTRIES}/${country}?${queryParams}`;
 
     const getCountryData = await fetch(urlCountry, {
-      method: 'GET',
+      method: Request.GET,
       headers: HEADERS.WITHOUT_BODY,
     });
 

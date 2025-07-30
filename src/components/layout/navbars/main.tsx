@@ -11,9 +11,8 @@ import { usePathname } from 'next/navigation';
 import links from '@/data/links';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
-
+import appData from '@/data/app';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
-import { appName } from '@/data/app';
 
 export default function Main({
   options,
@@ -57,7 +56,7 @@ export default function Main({
   const imageBrand = (
     <ImageDefault
       src={images.brand.droneSpace.logo.landscape.default}
-      alt={appName}
+      alt={appData.name.app}
       height={{ base: 40 }}
       width={{ base: 200 }}
       fit="contain"

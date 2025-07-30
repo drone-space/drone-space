@@ -6,19 +6,20 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import CardBlogNew from '@/components/common/cards/blog/new';
 import CardBlogMain from '@/components/common/cards/blog/main';
-import IntroPage from '@/components/layout/intross/page';
+import IntroPage from '@/components/layout/intro/page';
+
 import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
+import appData from '@/data/app';
 import { Metadata } from 'next';
-import { HOSTED_BASE_URL } from '@/data/constants';
+import { HOSTED_BASE_URL, REVALIDATE } from '@/data/constants';
 import { images } from '@/assets/images';
-import { appName, companyName } from '@/data/app';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
+export const revalidate = REVALIDATE.WEEK;
 
-const metaTitle = `${appName} Blog - Insights on Drone Training & Technology`;
-const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appName} blog.`;
+const metaTitle = `${appData.name.app} Blog - Insights on Drone Training & Technology`;
+const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appData.name.app} blog.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -26,14 +27,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/blog`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

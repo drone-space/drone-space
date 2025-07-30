@@ -1,30 +1,31 @@
 'use client';
 
-import { Stack, Text, Transition } from '@mantine/core';
+import { Box, Overlay, Text, Transition } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
 import ImageDefault from '../images/default';
+import classes from './main.module.scss';
 import { images } from '@/assets/images';
-import SpinnerApp from '../spinners/app';
+import appData from '@/data/app';
 
 export default function Main() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setMounted(true), 5000);
+    setTimeout(() => setMounted(true), 7000);
   }, []);
 
   return (
-    <Stack align="center">
+    <Overlay fixed className={classes.overlay}>
       <ImageDefault
         src={images.brand.droneSpace.logo.potrait.default}
-        alt={appName}
+        alt={appData.name.app}
         height={{ base: 80 }}
         width={{ base: 200 }}
         fit="contain"
         mode="grid"
       />
 
-      <SpinnerApp />
+      <Box w={24} h={24} className={classes.spinner}></Box>
 
       <Transition
         mounted={mounted}
@@ -42,6 +43,6 @@ export default function Main() {
           </div>
         )}
       </Transition>
-    </Stack>
+    </Overlay>
   );
 }

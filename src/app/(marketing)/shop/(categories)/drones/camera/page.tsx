@@ -7,14 +7,13 @@ import LayoutSection from '@/components/layout/section';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
-
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
-import { appName, companyName } from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
+import CtaFeatured from '@/components/partial/cta/featured';
 
-const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appName}`;
+const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appData.name.app}`;
 const metaDesc = `Shop advanced camera drones designed for professional photography and videography. Discover models that elevate your creative vision.`;
 
 export const metadata: Metadata = {
@@ -23,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/camera`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

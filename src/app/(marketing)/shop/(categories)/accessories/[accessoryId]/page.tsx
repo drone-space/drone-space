@@ -16,7 +16,7 @@ import LayoutSection from '@/components/layout/section';
 import accessories from '@/data/accessories';
 import { linkify } from '@/utilities/formatters/string';
 import CarouselImage from '@/components/common/carousels/image';
-import IntroPage from '@/components/layout/intross/page';
+import IntroPage from '@/components/layout/intro/page';
 import { typeParams } from './layout';
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import classes from './drone.module.scss';

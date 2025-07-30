@@ -1,11 +1,23 @@
 'use client';
 
+import {
+  Anchor,
+  Container,
+  createTheme,
+  Notification,
+  Title,
+} from '@mantine/core';
+
 import cx from 'clsx';
-import { Anchor, Container, createTheme, Notification } from '@mantine/core';
-import classesContainer from './mantine/container.module.scss';
+
 import classesNotification from './mantine/notification.module.scss';
+import classesContainer from './mantine/container.module.scss';
+import classesAnchor from './mantine/anchor.module.scss';
 
 const appTheme = createTheme({
+  focusClassName: 'focus',
+  activeClassName: 'active',
+
   colors: {
     // pri: [
     //   '#edeffd',
@@ -58,23 +70,32 @@ const appTheme = createTheme({
   },
 
   primaryColor: 'pri',
+
   defaultRadius: 'sm',
+
+  primaryShade: { light: 7, dark: 7 },
+
   defaultGradient: {
     from: 'pri.7',
     to: 'sec.4',
     deg: 45,
   },
-  primaryShade: { light: 7, dark: 7 },
-  cursorType: 'pointer',
 
   headings: {
     fontFamily: 'var(--font-montserrat)',
     fontWeight: '700',
   },
 
+  cursorType: 'pointer',
+
   components: {
+    Title: Title.extend({
+      defaultProps: { ff: 'var(--font-montserrat)', c: 'pri', fw: 'bold' },
+    }),
+
     Anchor: Anchor.extend({
       defaultProps: { underline: 'never' },
+      classNames: classesAnchor,
     }),
 
     Container: Container.extend({
@@ -82,7 +103,7 @@ const appTheme = createTheme({
         mx: 'auto',
       },
 
-      classNames: (_: unknown, { size }: { size?: unknown }) => ({
+      classNames: (_: any, { size }: { size?: any }) => ({
         root: cx({ [classesContainer.root]: size === 'responsive' }),
       }),
     }),

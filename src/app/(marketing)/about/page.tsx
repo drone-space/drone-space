@@ -15,22 +15,22 @@ import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
-import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
+import { HOSTED_BASE_URL, REVALIDATE, SECTION_SPACING } from '@/data/constants';
+import appData from '@/data/app';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { studentsGet } from '@/handlers/requests/database/student';
 import { shuffleArray } from '@/utilities/helpers/array';
-import IntroSection from '@/components/layout/intross/section';
+import IntroSection from '@/components/layout/intro/section';
 import ImageDefault from '@/components/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 // import CardTeamMain from '@/components/common/cards/team/main';
 // import { team } from '@/data/team';
-import IntroPage from '@/components/layout/intross/page';
-import { appName, companyName } from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
+export const revalidate = REVALIDATE.WEEK;
 
-const metaTitle = `About ${appName} - Kenya's Leading Drone Training Academy`;
+const metaTitle = `About ${appData.name.app} - Kenya's Leading Drone Training Academy`;
 const metaDesc =
   'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.';
 
@@ -40,14 +40,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/about`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/about`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },
@@ -101,9 +101,9 @@ export default async function About() {
             />
 
             <Text mt={'xl'}>
-              {appName} is one of the first certified UTO, ROC and Drone
-              distributors in Kenya. Established in 2018, {appName} is approved
-              and certified by{' '}
+              {appData.name.app} is one of the first certified UTO, ROC and
+              Drone distributors in Kenya. Established in 2018,{' '}
+              {appData.name.app} is approved and certified by{' '}
               <Anchor
                 inherit
                 underline="hover"
@@ -121,18 +121,18 @@ export default async function About() {
             </Text>
 
             <Text mt={'xs'}>
-              {appName} is a holder of Remote Operator&apos;s Certificate (ROC)
-              approved by KCAA to conduct drone operations in search and rescue,
-              power lines inspection, agricultural spraying, photography and
-              cinematography, solar inspection, runway calibration among other
-              operations.
+              {appData.name.app} is a holder of Remote Operator&apos;s
+              Certificate (ROC) approved by KCAA to conduct drone operations in
+              search and rescue, power lines inspection, agricultural spraying,
+              photography and cinematography, solar inspection, runway
+              calibration among other operations.
             </Text>
 
             <Text mt={'xs'}>
-              {appName} is also a certified distributor and a reseller of
-              Unmanned Aircraft Vehicles/drones. {appName} is one of the few
-              approved importers of UAS into Kenya having supplied the United
-              Nations-WFP, Museums of Kenya and Ericson&apos;s
+              {appData.name.app} is also a certified distributor and a reseller
+              of Unmanned Aircraft Vehicles/drones. {appData.name.app} is one of
+              the few approved importers of UAS into Kenya having supplied the
+              United Nations-WFP, Museums of Kenya and Ericson&apos;s
             </Text>
           </GridCol>
         </Grid>
@@ -301,7 +301,7 @@ export default async function About() {
           props={{
             subTitle: 'Testimonials',
             title: 'What Our Clients Say',
-            desc: `At ${appName}, we take pride in delivering exceptional
+            desc: `At ${appData.name.app}, we take pride in delivering exceptional
               results that exceed expectations. Take a moment to hear directly from the people who
               matter most: our valued clients.`,
           }}

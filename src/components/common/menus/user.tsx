@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
-
 import {
   Menu,
   MenuDivider,
@@ -17,11 +15,9 @@ import {
   MenuLabel,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-
 import AvatarMain from '../avatars/main';
-
 import classes from './user.module.scss';
-import { navLinkItems } from '@/data/links';
+import { navLinkItems } from '@/components/layout/asides/account';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import { useAppSelector } from '@/hooks/redux';
 import { usePathname } from 'next/navigation';
@@ -86,9 +82,9 @@ export default function User() {
 
         <MenuLabel>Account</MenuLabel>
 
-        {navLinkItems.account.map((item) => (
+        {navLinkItems.account.map((item, index) => (
           <MenuItem
-            key={item.label}
+            key={index}
             leftSection={
               <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             }
@@ -106,9 +102,9 @@ export default function User() {
 
         <MenuLabel>Support</MenuLabel>
 
-        {navLinkItems.support.map((item) => (
+        {navLinkItems.support.map((item, index) => (
           <MenuItem
-            key={item.label}
+            key={index}
             leftSection={
               <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             }
@@ -126,9 +122,9 @@ export default function User() {
 
         <MenuLabel>Danger</MenuLabel>
 
-        {navLinkItems.danger.map((item) => (
+        {navLinkItems.danger.map((item, index) => (
           <MenuItem
-            key={item.label}
+            key={index}
             leftSection={
               <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             }

@@ -1,11 +1,5 @@
-import React from 'react';
-import LoadingMain from '@/components/partials/loading/main';
-import ProviderMantine from '@/components/providers/mantine';
+import LoaderMain from '@/components/common/loaders/main';
 
 export default function Loading() {
-  return (
-    <ProviderMantine>
-      <LoadingMain />
-    </ProviderMantine>
-  );
+  return <LoaderMain />;
 }

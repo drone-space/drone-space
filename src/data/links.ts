@@ -2,32 +2,21 @@ import { linkify } from '@/utilities/formatters/string';
 import services from './services';
 import {
   IconArticle,
-  IconBellRinging,
   IconCash,
   IconCell,
   IconCirclePlus,
   IconCopyright,
   IconDeviceCameraPhone,
-  IconHeart,
   IconHelp,
-  IconHelpCircle,
   IconInfoCircle,
   IconLibraryPhoto,
-  IconLicense,
-  IconLock,
-  IconLogout,
-  IconPackage,
   IconPlant2,
   IconSpaces,
-  IconStar,
   IconSun,
-  IconUser,
   // IconUsersGroup,
 } from '@tabler/icons-react';
 import { courseList } from './courses';
 import { images } from '@/assets/images';
-import { AUTH_URLS } from './constants';
-import { socials } from './app';
 
 export const shopLinks = [
   {
@@ -90,105 +79,6 @@ export const shopLinks = [
     leftSection: IconCirclePlus,
     desc: 'Enhance your drone experience with high-quality accessories and add-ons.',
     image: images.carousel.shop.image1,
-  },
-];
-
-export const navLinkItems = {
-  activity: [
-    {
-      icon: IconHeart,
-      link: `/account/wishlist`,
-      label: 'My Wishlist',
-    },
-    {
-      icon: IconPackage,
-      link: `/account/orders`,
-      label: 'My Orders',
-    },
-    {
-      icon: IconStar,
-      link: `/account/reviews`,
-      label: 'My Reviews',
-    },
-  ],
-  account: [
-    {
-      icon: IconUser,
-      link: `/account/profile`,
-      label: 'Profile Settings',
-    },
-    {
-      icon: IconLock,
-      link: `/account/security`,
-      label: 'Account Security',
-    },
-    // {
-    // 	icon: IconCoins,
-    // 	link: `/account/payment`,
-    // 	label: "Payment Details",
-    // },
-    // {
-    // 	icon: IconMapPin,
-    // 	link: `/account/addresses`,
-    // 	label: "Addresses",
-    // },
-    {
-      icon: IconBellRinging,
-      link: `/account/notifications`,
-      label: 'Notifications',
-    },
-  ],
-  support: [
-    {
-      icon: IconHelpCircle,
-      link: `/help`,
-      label: 'Help Center',
-    },
-    {
-      icon: IconLicense,
-      link: `/legal/terms-and-conditions`,
-      label: 'Terms and Conditions',
-    },
-    {
-      icon: IconInfoCircle,
-      link: `/legal/privacy-policy`,
-      label: 'Privacy Policy',
-    },
-  ],
-  danger: [
-    {
-      icon: IconLogout,
-      link: AUTH_URLS.SIGN_OUT,
-      label: 'Sign Out',
-    },
-  ],
-};
-
-export const socialLinks = [
-  {
-    image: images.icons.social.twitterx,
-    title: socials.twitter.platform,
-    link: socials.twitter.link,
-  },
-  {
-    image: images.icons.social.facebook,
-    title: socials.facebook.platform,
-    link: socials.facebook.link,
-  },
-  {
-    image: images.icons.social.instagram,
-    title: socials.instagram.platform,
-    link: socials.instagram.link,
-  },
-  {
-    image: images.icons.social.linkedin,
-    title: socials.linkedin.platform,
-    link: socials.linkedin.link,
-  },
-  {
-    image: images.icons.social.whatsapp,
-    title: socials.whatsapp.platform,
-    link: socials.whatsapp.link,
   },
 ];
 

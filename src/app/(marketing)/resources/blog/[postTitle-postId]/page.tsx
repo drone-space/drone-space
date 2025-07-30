@@ -6,29 +6,17 @@ import LayoutSection from '@/components/layout/section';
 import { typeParams } from '../layout';
 import { postGet } from '@/handlers/requests/database/post';
 import { Stack } from '@mantine/core';
-import IntroPage from '@/components/layout/intross/page';
-import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
+import IntroPage from '@/components/layout/intro/page';
+import { HOSTED_BASE_URL, REVALIDATE, SECTION_SPACING } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
 import { PostRelations } from '@/types/static/blog';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
-import BlogContent from '@/components/partials/blog-content';
-import { linkify, processUrl } from '@/utilities/formatters/string';
+import BlogContent from '@/components/partial/blog-content';
+import { processUrl } from '@/utilities/formatters/string';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-  // const { data: posts, error } = await postsGet();
-  const { data: posts }: { data: any } = { data: null };
-
-  // if (error) throw error;
-  if (posts == null) return [];
-
-  return posts.map((p: any) => ({
-    'postTitle-postId': `${linkify(p.title)}-${p.id}`,
-  }));
-}
+export const dynamic = 'force-dynamic';
+export const revalidate = REVALIDATE.WEEK;
 
 export default async function Post({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
@@ -37,7 +25,7 @@ export default async function Post({ params }: { params: typeParams }) {
 
   const { post }: { post: PostRelations } = await postGet({ postId: postId });
 
-  const processedImage = processUrl(post.image, HOSTED_BASE_URL.DEFAULT);
+  const processedImage = processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE);
 
   return (
     <LayoutPage>

@@ -6,7 +6,7 @@
   border: 1px solid var(--mantine-color-default-border);
   width: 90%;
 
-  @include mantine.larger-than(mantine.$mantine-breakpoint-xs) {
+  @include larger-than($mantine-breakpoint-xs) {
     width: 100%;
   }
 }

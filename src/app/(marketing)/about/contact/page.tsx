@@ -5,16 +5,16 @@ import { Metadata } from 'next';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import Link from 'next/link';
-import IntroSection from '@/components/layout/intross/section';
+import IntroSection from '@/components/layout/intro/section';
 import { Anchor, Card, Grid, GridCol, Text, Title } from '@mantine/core';
 import FormInquiryGeneral from '@/components/form/inquiry/general';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import IframeContact from '@/components/common/iframes/contact';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intross/page';
-import { appName, companyName, emails, locations, phones } from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
-const metaTitle = `Contact ${appName} - Reach Out for Training & Services`;
+const metaTitle = `Contact ${appData.name.app} - Reach Out for Training & Services`;
 const metaDesc =
   'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.';
 
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/about/contact`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/about/contact`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },
@@ -48,7 +48,7 @@ export default async function Contact() {
         }}
       />
 
-      <IframeContact props={{ src: locations.main.iframe }} />
+      <IframeContact props={{ src: appData.locations.main.iframe }} />
 
       <LayoutSection
         id="page-contact-cards"
@@ -62,22 +62,22 @@ export default async function Contact() {
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`mailto:${emails.info}`}
+                href={`mailto:${appData.emails.info}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {emails.info}
+                {appData.emails.info}
               </Anchor>
 
               <Anchor
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`mailto:${emails.training}`}
+                href={`mailto:${appData.emails.training}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {emails.training}
+                {appData.emails.training}
               </Anchor>
             </CardContact>
           </GridCol>
@@ -85,7 +85,7 @@ export default async function Contact() {
           <GridCol span={{ base: 12, md: 4 }} order={{ xs: 3, md: 2 }}>
             <CardContact props={{ title: 'Office Address' }}>
               <Text ta={'center'} fz={'sm'} w={{ md: '75%', lg: '66%' }}>
-                {locations.main.location}
+                {appData.locations.main.location}
               </Text>
             </CardContact>
           </GridCol>
@@ -96,22 +96,22 @@ export default async function Contact() {
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`tel:${phones.main}`}
+                href={`tel:${appData.phones.main}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {phones.main}
+                {appData.phones.main}
               </Anchor>
 
               <Anchor
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`tel:${phones.other}`}
+                href={`tel:${appData.phones.other}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {phones.other}
+                {appData.phones.other}
               </Anchor>
             </CardContact>
           </GridCol>

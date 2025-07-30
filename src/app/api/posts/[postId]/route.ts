@@ -1,24 +1,16 @@
 import prisma from '@/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const dynamic = 'force-static';
-export const revalidate = 3600;
-
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ postId: string }> }
+  { params }: { params: { postId: string } }
 ) {
   try {
-    const { postId } = await params;
-
     const postRecord = await prisma.post.findUnique({
-      where: { id: postId },
+      where: { id: params.postId },
 
       include: {
         _count: { select: { comments: true } },
-
-        category: true,
-        tags: true,
         profile: true,
       },
     });

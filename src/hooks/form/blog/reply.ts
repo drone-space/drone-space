@@ -70,14 +70,14 @@ export const useFormBlogReply = (params: {
         if (params.commentId) {
           response = await replyCommentCreate({
             ...content,
-            comment_id: params.commentId,
+            commentId: params.commentId,
           });
         }
 
         if (params.replyId) {
           response = await replyReplyCreate({
             ...content,
-            reply_id: params.replyId,
+            replyId: params.replyId,
           });
         }
 

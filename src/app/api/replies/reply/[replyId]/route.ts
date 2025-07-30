@@ -1,24 +1,19 @@
 import prisma from '@/libraries/prisma';
-import { ReplyReplyCreate } from '@/types/models/custom';
+import { ReplyReplyCreate } from '@/types/bodies/request';
 import { ReplyUpdate } from '@/types/models/reply';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const dynamic = 'force-static';
-export const revalidate = 60;
-
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ replyId: string }> }
+  { params }: { params: { replyId: string } }
 ) {
   try {
-    const { replyId } = await params;
-
     let getResolvedReplyReplies;
 
     try {
       getResolvedReplyReplies = await prisma.$transaction(async () => {
         const replyRecord = await prisma.reply.findUnique({
-          where: { id: replyId },
+          where: { id: params.replyId },
           select: { id: true },
         });
 
@@ -27,13 +22,13 @@ export async function GET(
         }
 
         const replyRecords = await prisma.reply.findMany({
-          where: { reply_id: replyId },
+          where: { replyId: params.replyId, status: 'ACTIVE' },
 
           include: {
             profile: true,
           },
 
-          orderBy: { created_at: 'desc' },
+          orderBy: { createdAt: 'desc' },
         });
 
         return replyRecords;
@@ -64,23 +59,21 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ replyId: string }> }
+  { params }: { params: { replyId: string } }
 ) {
   try {
-    const { replyId } = await params;
-
     const reply: Omit<ReplyReplyCreate, 'replyId'> = await request.json();
 
-    const placeHolder = replyId;
+    const placeHolder = params.replyId;
 
     const replyRecord = await prisma.reply.findUnique({
       where: {
-        name_content_reply_id_comment_id_profile_id: {
+        name_content_replyId_commentId_profileId: {
           name: reply.name || '',
           content: reply.content,
-          reply_id: replyId,
-          comment_id: placeHolder,
-          profile_id: reply.profile_id || placeHolder,
+          replyId: params.replyId,
+          commentId: placeHolder,
+          profileId: reply.profileId || placeHolder,
         },
       },
     });
@@ -96,8 +89,8 @@ export async function POST(
       data: {
         name: reply.name,
         content: reply.content,
-        reply_id: replyId,
-        profile_id: reply.profile_id,
+        replyId: params.replyId,
+        profileId: reply.profileId,
       },
     });
 

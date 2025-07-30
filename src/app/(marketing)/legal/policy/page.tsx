@@ -6,13 +6,13 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intross/page';
-import { appName } from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
 
-const metaTitle = `Privacy Policy - How ${appName} Protects Your Data`;
-const metaDesc = `Learn how ${appName} collects, uses, and protects your personal information. Your privacy is our priority.`;
+const metaTitle = `Privacy Policy - How ${appData.name.app} Protects Your Data`;
+const metaDesc = `Learn how ${appData.name.app} collects, uses, and protects your personal information. Your privacy is our priority.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/legal/policy`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/legal/policy`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },
@@ -40,7 +40,7 @@ export default async function PrivacyPolicy() {
         props={{
           path: `Discretion`,
           title: 'Privacy Policy',
-          desc: `Learn how ${appName} collects, uses, and protects your personal information.`,
+          desc: `Learn how ${appData.name.app} collects, uses, and protects your personal information.`,
           bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />

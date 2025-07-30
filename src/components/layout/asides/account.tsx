@@ -17,7 +17,7 @@ import {
   IconUser,
 } from '@tabler/icons-react';
 import LayoutSection from '@/components/layout/section';
-import PartialUser from '@/components/partials/user';
+import PartialUser from '@/components/partial/user';
 import {
   AUTH_URLS,
   ICON_SIZE,

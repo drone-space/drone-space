@@ -7,14 +7,13 @@ import LayoutSection from '@/components/layout/section';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
-
+import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
-import { appName, companyName } from '@/data/app';
+import IntroPage from '@/components/layout/intro/page';
+import CtaFeatured from '@/components/partial/cta/featured';
 
-const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appName}`;
+const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appData.name.app}`;
 const metaDesc = `Discover drones built for geospatial mapping and land surveying. Capture accurate aerial data for construction, mining, and GIS projects.`;
 
 export const metadata: Metadata = {
@@ -23,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/camera`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

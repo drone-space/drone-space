@@ -4,15 +4,15 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import IntroPage from '@/components/layout/intross/page';
+import IntroPage from '@/components/layout/intro/page';
 import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
+import appData from '@/data/app';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroSection from '@/components/layout/intross/section';
+import IntroSection from '@/components/layout/intro/section';
 import { Grid, GridCol } from '@mantine/core';
-import { appName, companyName } from '@/data/app';
 
-const metaTitle = `${appName} FAQ - Answers to Your Drone Training Questions`;
+const metaTitle = `${appData.name.app} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
   'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';
 
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/resources/faq`,
+    url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/faq`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: appData.name.company,
       },
     ],
   },

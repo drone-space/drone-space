@@ -6,8 +6,6 @@ import { AUTH_URLS } from '@/data/constants';
 import { emailSendOnboardSignUp } from '@/libraries/wrappers/email/on-board/sign-up';
 import { contactAdd } from '@/services/api/email/contacts';
 
-export const dynamic = 'force-dynamic';
-
 export async function GET(request: Request) {
   try {
     const { searchParams, origin } = new URL(request.url);
@@ -29,14 +27,13 @@ export async function GET(request: Request) {
     // create profile if doesn't exist
     const { profile, existed } = await profileCreate({
       id: data.user?.id,
-      first_name: segmentFullName(data.user.user_metadata.name || '').first,
-      last_name: segmentFullName(data.user.user_metadata.name || '').last,
+      firstName: segmentFullName(data.user.user_metadata.name || '').first,
+      lastName: segmentFullName(data.user.user_metadata.name || '').last,
       phone: data.user.phone || '',
       avatar: data.user.user_metadata.avatar_url || '',
     });
 
-    const name =
-      `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim();
+    const name = `${profile?.firstName} ${profile?.lastName}`.trim();
 
     // update user
     const {
@@ -48,7 +45,7 @@ export async function GET(request: Request) {
         full_name: name,
         picture: profile?.avatar,
         avatar_url: profile?.avatar,
-        userName: profile?.user_name,
+        userName: profile?.userName,
       },
     });
 
@@ -61,14 +58,12 @@ export async function GET(request: Request) {
           segmentFullName(userData?.user_metadata.name).first || userData.email,
       });
 
-      await contactAdd(
-        { email: userData.email, name: userData.user_metadata.name },
-        false
-      );
+      // add email contact to marketing mail handler
+      await contactAdd({ email: userData.email });
     }
 
     // if "next" is in param, use it as the redirect URL
-    const next = searchParams.get('next') ?? AUTH_URLS.REDIRECT.DEFAULT;
+    const next = searchParams.get('next') ?? '/';
     const forwardedHost = request.headers.get('x-forwarded-host'); // original origin before load balancer
     const isLocalEnv = process.env.NODE_ENV === 'development';
 

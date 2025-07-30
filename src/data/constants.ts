@@ -14,10 +14,10 @@ export const ICON_STROKE_WIDTH = 1.5;
 export const SECTION_SPACING = 64;
 
 export const MINUTE = 60;
-export const HOUR = 60 * MINUTE;
-export const DAY = 24 * HOUR;
-export const WEEK = 7 * DAY;
-export const MONTH = 30 * DAY;
+export const HOUR = MINUTE * 60;
+export const DAY = HOUR * 24;
+export const WEEK = DAY * 7;
+export const MONTH = DAY * 30;
 
 export const DEFAULT_COLOR_SCHEME: 'light' | 'dark' = 'light';
 
@@ -72,7 +72,7 @@ export const AUTH_URLS = {
 };
 
 export const HOSTED_BASE_URL = {
-  PRIMARY: `https://example.com`,
+  DEFAULT: `https://example.com`,
 };
 
 export const INDEXED_DB = {

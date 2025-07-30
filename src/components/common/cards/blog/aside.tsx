@@ -39,7 +39,7 @@ export default function Aside({ post }: { post: PostRelations }) {
           title={post.title}
         >
           <ImageDefault
-            src={processUrl(post.image, HOSTED_BASE_URL.PRIMARY)}
+            src={processUrl(post.image, HOSTED_BASE_URL.DEFAULT)}
             alt={post.title}
             height={80}
             radius={'sm'}

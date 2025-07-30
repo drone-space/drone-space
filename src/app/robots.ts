@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { BASE_URL } from '@/data/constants';
+import { HOSTED_BASE_URL } from '@/data/constants';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         // Add more private routes here
       ],
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${HOSTED_BASE_URL.DEFAULT}/sitemap.xml`,
   };
 }

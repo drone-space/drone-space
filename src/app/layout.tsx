@@ -16,7 +16,6 @@ import '../styles/globals.scss';
 
 import appTheme from '@/styles/theme';
 import appResolver from '@/styles/resolver';
-
 import { appName } from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
 

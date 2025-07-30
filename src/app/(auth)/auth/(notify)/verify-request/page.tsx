@@ -6,6 +6,8 @@ import LayoutSection from '@/components/layout/section';
 
 export const metadata: Metadata = { title: 'Verify Request' };
 
+export const dynamic = 'force-dynamic';
+
 export default async function VerifyRequest({
   searchParams,
 }: {

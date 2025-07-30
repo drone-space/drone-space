@@ -6,6 +6,8 @@ import LayoutSection from '@/components/layout/section';
 
 export const metadata: Metadata = { title: 'Error' };
 
+export const dynamic = 'force-dynamic';
+
 export default async function Error({
   searchParams,
 }: {

@@ -2,7 +2,7 @@ import prisma from '@/libraries/prisma';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-static';
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export async function GET() {
   try {

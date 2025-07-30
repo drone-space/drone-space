@@ -3,6 +3,9 @@ import LayoutPage from '@/components/layout/page';
 import IntroPage from '@/components/layout/intros/page';
 import LayoutSection from '@/components/layout/section';
 
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
 export default async function Blog() {
   return (
     <LayoutPage>

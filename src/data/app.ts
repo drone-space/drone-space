@@ -1,5 +1,5 @@
-export const companyName = '';
-export const appName = '';
+export const companyName = 'template-compnay-next';
+export const appName = 'template-next';
 
 export const phones = {
   main: '(254) 123 456-789',

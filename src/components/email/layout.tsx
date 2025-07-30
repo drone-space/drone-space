@@ -37,7 +37,7 @@ export const Email = ({
                 <a href="https://example.com">
                   <img
                     src={
-                      'https://spewyluxhudgxpuhjjam.supabase.co/storage/v1/object/public/avatars/brand/icon/icon-light.png'
+                      'https://bvkuvosgdpxgsaudprtx.supabase.co/storage/v1/object/public/avatars/brand/icon/icon-light.png'
                     }
                     width={40}
                     height={'auto'}

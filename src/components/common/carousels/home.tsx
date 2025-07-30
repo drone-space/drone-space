@@ -125,8 +125,8 @@ export default function Home() {
             >
               Following the success of the first 2024 AI Conference Nairobi,
               which attracted over 900 attendees, Drone Space is excited to
-              announce that it will host the second AI Conference Nairobi on
-              September 17th and 18th, 2025.
+              announce that it will host the second AI Conference Nairobi later
+              this year.
             </Text>
 
             <Text
@@ -145,8 +145,9 @@ export default function Home() {
               ta={'center'}
               fz={{ base: 'lg', xs: 'xl', sm: 24, md: 32 }}
             >
-              JW Marriott Hotel, Westlands <br />
-              Tue 17th - Wed 18th September, 2025
+              {/* JW Marriott Hotel, Westlands <br /> */}
+              {/* Tue 17th - Wed 18th September, 2025 */}
+              Venue and Date TBA
             </Title>
 
             <Text
@@ -156,7 +157,7 @@ export default function Home() {
             >
               Drone Space hosted Kenya&apos;s first public AI Conference on
               March 26th - 27th, 2024, and will hold the 2nd AI Conference
-              Nairobi on September 17th - 18th, 2025
+              Nairobi later this year.
             </Text>
 
             <Group gap={'xs'}>

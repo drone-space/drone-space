@@ -4,7 +4,7 @@ import React from 'react';
 // import { Metadata } from 'next';
 import { Center, Group, Loader, ThemeIcon } from '@mantine/core';
 import LayoutPage from '@/components/layout/page';
-import IntroPage from '@/components/layout/intros/page';
+import IntroPage from '@/components/layout/intross/page';
 import { useFormUserAccountDeleteTrigger } from '@/hooks/form/account/delete/trigger';
 import {
   ICON_SIZE,

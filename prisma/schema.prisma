@@ -146,3 +146,18 @@ model Reply {
   @@unique([name, content, reply_id, comment_id, profile_id])
   @@map(name: "replies")
 }
+
+model Student {
+  id       String @id @default(uuid())
+  name     String
+  position String
+  image    String
+  quote    String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  status     Status   @default(ACTIVE)
+
+  @@unique([quote])
+  @@map(name: "students")
+}

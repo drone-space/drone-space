@@ -3,12 +3,15 @@ import { FormInquiryValues } from '@/hooks/form/inquiry';
 
 const baseRequestUrl = `${API_URL}/inquiry`;
 
-export const handleInquiry = async (formData: FormInquiryValues) => {
+export const handleInquiry = async (
+  formData: FormInquiryValues,
+  recipient: string
+) => {
   try {
     const request = new Request(baseRequestUrl, {
       method: 'POST',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ ...formData, recipient }),
     });
 
     const response = await fetch(request);

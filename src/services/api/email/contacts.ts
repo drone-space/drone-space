@@ -1,6 +1,5 @@
 import { FormInquiryValues } from '@/hooks/form/inquiry';
 import { emailSendOnboardNewsletter } from '@/libraries/wrappers/email/on-board/newsletter';
-import { segmentFullName } from '@/utilities/formatters/string';
 
 export const contactAdd = async (
   formData: Partial<FormInquiryValues>,
@@ -24,8 +23,9 @@ export const contactAdd = async (
         body: JSON.stringify({
           email: formData.email,
           fields: {
-            name: segmentFullName(formData.name || '').first,
-            last_name: segmentFullName(formData.name || '').last,
+            name: formData.fname || '',
+            last_name: formData.lname || '',
+            company: formData.company || '',
             phone: formData.phone || '',
           },
           groups: [process.env.NEXT_MAILERLITE_GROUP_GENERAL],

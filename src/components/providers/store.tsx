@@ -5,11 +5,14 @@ import { Provider } from 'react-redux';
 import { makeStore, AppStore } from '@/libraries/redux/store';
 import { updateSession } from '@/libraries/redux/slices/session';
 import { generateUUID } from '@/utilities/generators/id';
+import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
 
 export default function Store({
+  colorScheme,
   session = { id: generateUUID() },
   children,
 }: {
+  colorScheme?: string;
   session?: { id: string };
   children: React.ReactNode;
 }) {
@@ -21,6 +24,7 @@ export default function Store({
   const store = storeRef.current;
 
   // initialize store
+  if (colorScheme) store.dispatch(updateColorScheme(colorScheme));
   if (session) store.dispatch(updateSession(session));
 
   return <Provider store={store}>{children}</Provider>;

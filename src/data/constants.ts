@@ -31,6 +31,11 @@ export const COOKIE_NAME = {
 export const LOCAL_STORAGE_NAME = {
   COUNTRY: 'country',
   COUNTRIES: 'countries',
+  CLAUDE: 'claude',
+};
+
+export const SESSION_STORAGE_NAME = {
+  CLAUDE_COUNT: 'claude-count',
 };
 
 export const PARAM_NAME = {
@@ -72,7 +77,8 @@ export const AUTH_URLS = {
 };
 
 export const HOSTED_BASE_URL = {
-  DEFAULT: `https://example.com`,
+  DEFAULT: `https://dronespace.co.ke`,
+  CONFERENCE: `https://aiconference.co.ke`,
 };
 
 export const INDEXED_DB = {

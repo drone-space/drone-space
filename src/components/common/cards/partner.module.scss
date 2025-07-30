@@ -1,0 +1,22 @@
+.card {
+  border: 1px solid var(--mantine-color-pri-light);
+  border-radius: var(--mantine-radius-sm);
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-white)
+  ) !important;
+  height: 100%;
+
+  @include hover {
+    .image {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.image {
+  transition: 0.25s all ease;
+  margin: 0 auto;
+
+  transform: scale(1.05);
+}

@@ -4,7 +4,7 @@ import React from 'react';
 // import { Metadata } from 'next';
 import { Button, Center, Group, Loader, ThemeIcon } from '@mantine/core';
 import LayoutPage from '@/components/layout/page';
-import IntroPage from '@/components/layout/intros/page';
+import IntroPage from '@/components/layout/intross/page';
 
 import {
   ICON_SIZE,

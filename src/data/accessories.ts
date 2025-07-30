@@ -114,44 +114,44 @@ const accessories = [
     price: null,
   },
 
-  {
-    images: images.products.drones.huida.hd540s.accessories.other.generator,
-    title: {
-      long: 'HUIDA HD540S Generator',
-      short: 'HUIDA HD540S Generator',
-    },
-    specs: [
-      {
-        label: 'Power (fast charging)',
-        desc: '230V/8500W socket',
-      },
-      {
-        label: 'Power (slow charging)',
-        desc: '230V/2300W socket (also as mains power)',
-      },
-      {
-        label: 'Principle',
-        desc: 'Single-phase AC gasoline generator',
-      },
-      {
-        label: 'Maximum Power',
-        desc: ' 8.5KW',
-      },
-      {
-        label: 'Rated Power',
-        desc: '8KW',
-      },
-      {
-        label: 'Tank',
-        desc: '38L gasoline tank (No. 92)',
-      },
-      {
-        label: 'Ambient Temperature',
-        desc: 'Upper limit (40°C), lower limit (-5°C)',
-      },
-    ],
-    price: null,
-  },
+  // {
+  //   images: images.products.drones.huida.hd540s.accessories.other.generator,
+  //   title: {
+  //     long: 'HUIDA HD540S Generator',
+  //     short: 'HUIDA HD540S Generator',
+  //   },
+  //   specs: [
+  //     {
+  //       label: 'Power (fast charging)',
+  //       desc: '230V/8500W socket',
+  //     },
+  //     {
+  //       label: 'Power (slow charging)',
+  //       desc: '230V/2300W socket (also as mains power)',
+  //     },
+  //     {
+  //       label: 'Principle',
+  //       desc: 'Single-phase AC gasoline generator',
+  //     },
+  //     {
+  //       label: 'Maximum Power',
+  //       desc: ' 8.5KW',
+  //     },
+  //     {
+  //       label: 'Rated Power',
+  //       desc: '8KW',
+  //     },
+  //     {
+  //       label: 'Tank',
+  //       desc: '38L gasoline tank (No. 92)',
+  //     },
+  //     {
+  //       label: 'Ambient Temperature',
+  //       desc: 'Upper limit (40°C), lower limit (-5°C)',
+  //     },
+  //   ],
+  //   price: null,
+  // },
 
   {
     images: images.products.drones.dji.agras.t40.accessories.other.generator,
@@ -207,40 +207,40 @@ const accessories = [
     },
   },
 
-  {
-    images: images.products.drones.huida.hd540s.accessories.other.spreader,
-    title: {
-      long: 'HUIDA HD540S Spreading System',
-      short: 'HUIDA HD540S Spreading System',
-    },
-    specs: [
-      {
-        label: 'Maximum spreading capacity',
-        desc: '60L/50kg',
-      },
-      {
-        label: 'Broadcast width',
-        desc: '4-9m',
-      },
-      {
-        label: 'Sowing method',
-        desc: 'Dial type',
-      },
-      {
-        label: 'Turntable maximum speed',
-        desc: '1100r/min',
-      },
-      {
-        label: 'Support particle diameter',
-        desc: '0.5 - 6mm dry solid particles',
-      },
-      {
-        label: 'Spreading up to',
-        desc: '360kg/battery',
-      },
-    ],
-    price: null,
-  },
+  // {
+  //   images: images.products.drones.huida.hd540s.accessories.other.spreader,
+  //   title: {
+  //     long: 'HUIDA HD540S Spreading System',
+  //     short: 'HUIDA HD540S Spreading System',
+  //   },
+  //   specs: [
+  //     {
+  //       label: 'Maximum spreading capacity',
+  //       desc: '60L/50kg',
+  //     },
+  //     {
+  //       label: 'Broadcast width',
+  //       desc: '4-9m',
+  //     },
+  //     {
+  //       label: 'Sowing method',
+  //       desc: 'Dial type',
+  //     },
+  //     {
+  //       label: 'Turntable maximum speed',
+  //       desc: '1100r/min',
+  //     },
+  //     {
+  //       label: 'Support particle diameter',
+  //       desc: '0.5 - 6mm dry solid particles',
+  //     },
+  //     {
+  //       label: 'Spreading up to',
+  //       desc: '360kg/battery',
+  //     },
+  //   ],
+  //   price: null,
+  // },
 
   {
     images: images.products.drones.dji.agras.t40.accessories.other.spreader,
@@ -276,60 +276,60 @@ const accessories = [
     },
   },
 
-  {
-    images: images.products.drones.huida.hd540s.accessories.battery,
-    title: {
-      long: 'HUIDA HD540S Intelligent Flight Battery',
-      short: 'HUIDA HD540S Battery',
-    },
-    specs: [
-      {
-        label: 'Battery assembly specifications',
-        desc: '(3.8V30Ah) 18S 30000mAh',
-      },
-      {
-        label: 'Shell size',
-        desc: '175*275*309mm',
-      },
-      {
-        label: 'Battery weight',
-        desc: '~ 13.5KG',
-      },
-      {
-        label: 'Shell size',
-        desc: '175*275*309mm',
-      },
-      {
-        label: 'Nominal capacity',
-        desc: '30000mAh',
-      },
-      {
-        label: 'Minimum capacity',
-        desc: '29500mAH',
-      },
-      {
-        label: 'Charging voltage',
-        desc: 'DC 78.3V',
-      },
-      {
-        label: 'Nominal voltage',
-        desc: '68.4V',
-      },
-      {
-        label: 'Protection level',
-        desc: 'IP54',
-      },
-      {
-        label: 'Maximum charging current',
-        desc: '120A',
-      },
-      {
-        label: 'Maximum discharge current',
-        desc: 'IP54240A',
-      },
-    ],
-    price: null,
-  },
+  // {
+  //   images: images.products.drones.huida.hd540s.accessories.battery,
+  //   title: {
+  //     long: 'HUIDA HD540S Intelligent Flight Battery',
+  //     short: 'HUIDA HD540S Battery',
+  //   },
+  //   specs: [
+  //     {
+  //       label: 'Battery assembly specifications',
+  //       desc: '(3.8V30Ah) 18S 30000mAh',
+  //     },
+  //     {
+  //       label: 'Shell size',
+  //       desc: '175*275*309mm',
+  //     },
+  //     {
+  //       label: 'Battery weight',
+  //       desc: '~ 13.5KG',
+  //     },
+  //     {
+  //       label: 'Shell size',
+  //       desc: '175*275*309mm',
+  //     },
+  //     {
+  //       label: 'Nominal capacity',
+  //       desc: '30000mAh',
+  //     },
+  //     {
+  //       label: 'Minimum capacity',
+  //       desc: '29500mAH',
+  //     },
+  //     {
+  //       label: 'Charging voltage',
+  //       desc: 'DC 78.3V',
+  //     },
+  //     {
+  //       label: 'Nominal voltage',
+  //       desc: '68.4V',
+  //     },
+  //     {
+  //       label: 'Protection level',
+  //       desc: 'IP54',
+  //     },
+  //     {
+  //       label: 'Maximum charging current',
+  //       desc: '120A',
+  //     },
+  //     {
+  //       label: 'Maximum discharge current',
+  //       desc: 'IP54240A',
+  //     },
+  //   ],
+  //   price: null,
+  // },
 
   {
     images: images.products.drones.dji.agras.t40.accessories.battery,
@@ -752,44 +752,44 @@ const accessories = [
     price: null,
   },
 
-  {
-    images: images.products.drones.dji.matrice.m4d.accessories.battery,
-    title: {
-      long: 'Matrice 4D Series Intelligent Flight Battery',
-      short: 'Matrice 4D Series Battery',
-    },
-    specs: [
-      {
-        label: 'Capacity',
-        desc: '6768 mAh',
-      },
-      {
-        label: 'Voltage',
-        desc: '22.14 V',
-      },
-      {
-        label: 'Max Charging Voltage',
-        desc: '25.5 V',
-      },
-      {
-        label: 'Cell Type',
-        desc: 'Li-ion 6S',
-      },
-      {
-        label: 'Energy',
-        desc: '149.9 Wh',
-      },
-      {
-        label: 'Weight',
-        desc: '640 g',
-      },
-      {
-        label: 'Charging Temperature',
-        desc: '5° to 45° C (41° to 113° F)',
-      },
-    ],
-    price: null,
-  },
+  // {
+  //   images: images.products.drones.dji.matrice.m4d.accessories.battery,
+  //   title: {
+  //     long: 'Matrice 4D Series Intelligent Flight Battery',
+  //     short: 'Matrice 4D Series Battery',
+  //   },
+  //   specs: [
+  //     {
+  //       label: 'Capacity',
+  //       desc: '6768 mAh',
+  //     },
+  //     {
+  //       label: 'Voltage',
+  //       desc: '22.14 V',
+  //     },
+  //     {
+  //       label: 'Max Charging Voltage',
+  //       desc: '25.5 V',
+  //     },
+  //     {
+  //       label: 'Cell Type',
+  //       desc: 'Li-ion 6S',
+  //     },
+  //     {
+  //       label: 'Energy',
+  //       desc: '149.9 Wh',
+  //     },
+  //     {
+  //       label: 'Weight',
+  //       desc: '640 g',
+  //     },
+  //     {
+  //       label: 'Charging Temperature',
+  //       desc: '5° to 45° C (41° to 113° F)',
+  //     },
+  //   ],
+  //   price: null,
+  // },
 
   // {
   //   images: images.products.drones.dji.neo.accessories.battery,

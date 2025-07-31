@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Drawer, NavLink, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import MenuUser from '@/components/common/menus/user';
-import PartialUser from '@/components/partial/user';
+import PartialUser from '@/components/partials/user';
 import classes from './user.module.scss';
 import { navLinkItems } from '@/components/layout/asides/account';
 import { usePathname } from 'next/navigation';

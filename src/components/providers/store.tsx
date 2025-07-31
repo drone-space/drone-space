@@ -3,34 +3,29 @@
 import React, { useRef } from 'react';
 import { Provider } from 'react-redux';
 import { makeStore, AppStore } from '@/libraries/redux/store';
-import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
 import { updateSession } from '@/libraries/redux/slices/session';
-import { AuthUser } from '@/types/auth';
+import { generateUUID } from '@/utilities/generators/id';
+import { updateColorScheme } from '@/libraries/redux/slices/color-scheme';
 
 export default function Store({
   colorScheme,
-  session,
+  session = { id: generateUUID() },
   children,
 }: {
   colorScheme?: string;
-  session?: AuthUser | null;
+  session?: { id: string };
   children: React.ReactNode;
 }) {
-  const storeRef = useRef<AppStore>();
+  const storeRef = useRef<AppStore | null>(null);
 
-  if (!storeRef.current) {
-    // Create the store instance the first time this renders
-    storeRef.current = makeStore();
+  if (!storeRef.current) storeRef.current = makeStore();
 
-    // initialize store
+  // Always update store with the latest props
+  const store = storeRef.current;
 
-    // update color scheme
-    storeRef.current.dispatch(updateColorScheme(colorScheme));
+  // initialize store
+  if (colorScheme) store.dispatch(updateColorScheme(colorScheme));
+  if (session) store.dispatch(updateSession(session));
 
-    if (session) {
-      storeRef.current.dispatch(updateSession(session));
-    }
-  }
-
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 }

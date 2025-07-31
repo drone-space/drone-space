@@ -1,5 +1,5 @@
 .assistant {
-  @include hover {
+  @include mantine.hover {
     .assistantActions {
       opacity: 1;
     }
@@ -12,7 +12,7 @@
 }
 
 .user {
-  @include hover {
+  @include mantine.hover {
     .userActions {
       opacity: 1;
     }

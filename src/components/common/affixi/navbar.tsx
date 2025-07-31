@@ -1,35 +1,30 @@
 'use client';
 
 import React from 'react';
-
-import { Affix, AffixBaseProps } from '@mantine/core';
+import { Affix, Transition } from '@mantine/core';
 import { useHeadroom, useWindowScroll } from '@mantine/hooks';
-
-import WrapperTransition from '@/components/wrapper/transition';
 import NavbarMain from '@/components/layout/navbars/main';
 import UnderlayGlass from '../underlays/glass';
 
-export default function Navbar({
-  position = { left: 0, top: 0, right: 0 },
-  ...restProps
-}: { position?: AffixBaseProps['position'] } & Omit<
-  AffixBaseProps,
-  'position' | 'children'
->) {
+export default function Navbar(
+  { children }: { children?: React.ReactNode } = { children: <NavbarMain /> }
+) {
   const [scroll] = useWindowScroll();
   const pinned = useHeadroom({ fixedAt: 120 });
 
   return (
-    <Affix position={position} {...restProps}>
-      <WrapperTransition
+    <Affix position={{ left: 0, top: 0, right: 0 }}>
+      <Transition
         transition={'slide-down'}
         mounted={scroll.y > 120 && pinned}
         keepMounted={true}
       >
-        <UnderlayGlass>
-          <NavbarMain />
-        </UnderlayGlass>
-      </WrapperTransition>
+        {(styles) => (
+          <div style={styles}>
+            <UnderlayGlass>{children}</UnderlayGlass>
+          </div>
+        )}
+      </Transition>
     </Affix>
   );
 }

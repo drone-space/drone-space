@@ -30,7 +30,7 @@ export default function Image({ data }: { data: string[] }) {
     <Carousel
       withIndicators={data.length > 1 ? true : false}
       withControls={data.length > 1 ? true : false}
-      loop={true}
+      emblaOptions={{ loop: true }}
       classNames={{
         root: classes.root,
         slide: classes.slide,

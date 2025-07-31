@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Hr, Section, Text } from '@react-email/components';
-import appData from '@/data/app';
 import { dimmedText, Email as LayoutEmail, text } from './layout';
-import sample from '@/data/sample';
+import { companyName } from '@/data/app';
 
 export const Inquiry = (props: {
   userName: string;
   userMessage: string;
-  userPhone: string;
+  userPhone?: string;
 }) => {
   return (
     <LayoutEmail
@@ -15,10 +14,10 @@ export const Inquiry = (props: {
       options={{ withHeader: true, withFooter: false }}
     >
       <Section style={{ marginTop: '2rem' }}>
-        <Text>{appData.name.company},</Text>
+        <Text>{companyName},</Text>
 
         <Text style={text}>
-          {props.userMessage || sample.text.prose} <br />
+          {props.userMessage || 'Sample text'} <br />
           <br />
           Regards, <br />
           {props.userName || 'John Doe'}
@@ -37,7 +36,7 @@ export const Inquiry = (props: {
 
       <Section style={{ marginTop: '2rem' }}>
         <Text style={{ ...dimmedText, textAlign: 'center', fontSize: 11 }}>
-          Sent from the {appData.name.company} website.
+          Sent from the {companyName} website.
         </Text>
 
         <Text style={{ ...dimmedText, textAlign: 'center', fontSize: 11 }}>

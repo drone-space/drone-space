@@ -3,17 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 export const sliceColorScheme = createSlice({
   name: 'color-scheme',
   initialState: {
-    value: 'light',
+    value: null as any satisfies any,
   },
   reducers: {
-    update: (state, action) => {
+    updateColorScheme: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { update: updateColorScheme } = sliceColorScheme.actions;
+export const { updateColorScheme } = sliceColorScheme.actions;
 
 const reducerColorScheme = sliceColorScheme.reducer;
+
 export default reducerColorScheme;

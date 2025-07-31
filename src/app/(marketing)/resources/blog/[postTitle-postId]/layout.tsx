@@ -5,10 +5,10 @@ import { typeParams } from '../layout';
 import { PostRelations } from '@/types/models/post';
 import { postsGet } from '@/handlers/requests/database/post';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
-import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { linkify } from '@/utilities/formatters/string';
 import { images } from '@/assets/images';
+import { appName, companyName } from '@/data/app';
 
 export const generateMetadata = async ({
   params,
@@ -21,7 +21,7 @@ export const generateMetadata = async ({
 
   const post = posts.find((p) => p.id == postId);
 
-  const metaTitle = `${post?.title} - ${appData.name.app} Blog`;
+  const metaTitle = `${post?.title} - ${appName} Blog`;
 
   return {
     title: metaTitle,
@@ -29,14 +29,14 @@ export const generateMetadata = async ({
     openGraph: {
       title: metaTitle,
       description: post?.excerpt,
-      url: `${HOSTED_BASE_URL.DRONE_SPACE}/resources/blog/${linkify(post?.title || '')}-${post?.id}`,
+      url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post?.title || '')}-${post?.id}`,
       type: 'website',
       images: [
         {
           url: images.brand.droneSpace.logo.potrait.meta,
           width: 1200,
           height: 1200,
-          alt: appData.name.company,
+          alt: companyName,
         },
       ],
     },

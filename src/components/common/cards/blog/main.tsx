@@ -39,7 +39,7 @@ export default function Main({ post }: { post: PostRelations }) {
           pos={'relative'}
         >
           <ImageDefault
-            src={processUrl(post.image, HOSTED_BASE_URL.DRONE_SPACE)}
+            src={processUrl(post.image, HOSTED_BASE_URL.DEFAULT)}
             alt={post.title}
             height={200}
             mode="grid"
@@ -52,7 +52,7 @@ export default function Main({ post }: { post: PostRelations }) {
                 c={'var(--mantine-color-pri-7)'}
                 radius={'xs'}
               >
-                {getRegionalDate(post.createdAt).date}
+                {getRegionalDate(post.created_at).date}
               </Badge>
             </Group>
           </div>

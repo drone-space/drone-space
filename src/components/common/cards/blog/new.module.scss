@@ -2,7 +2,7 @@
   padding: 0;
   overflow: hidden;
 
-  @include hover {
+  @include mantine.hover {
     .overlay {
       opacity: 0;
     }

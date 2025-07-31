@@ -12,10 +12,7 @@ import {
   Link,
   Heading,
 } from '@react-email/components';
-import appData from '@/data/app';
-import { HOSTED_BASE_URL } from '@/data/constants';
-
-const baseUrl = `${HOSTED_BASE_URL.DRONE_SPACE}/images`;
+import { appName } from '@/data/app';
 
 export const Email = ({
   props,
@@ -37,19 +34,19 @@ export const Email = ({
           <Container style={content}>
             {options.withHeader && (
               <Section style={{ textAlign: 'center' }}>
-                <a href="https://dronespace.co.ke">
+                <a href="https://example.com">
                   <img
-                    src={`${baseUrl}/brand/logo/landscape/default.png`}
-                    width={180}
+                    src={
+                      'https://bvkuvosgdpxgsaudprtx.supabase.co/storage/v1/object/public/avatars/brand/icon/icon-light.png'
+                    }
+                    width={40}
                     height={'auto'}
-                    alt={appData.name.company}
+                    alt={appName}
                   />
                 </a>
 
                 {props.title && (
-                  <Heading style={{ marginTop: '2rem', color: colors.pri }}>
-                    {props.title}
-                  </Heading>
+                  <Heading style={{ marginTop: '2rem' }}>{props.title}</Heading>
                 )}
               </Section>
             )}
@@ -61,16 +58,16 @@ export const Email = ({
             {options.withFooter && (
               <Section>
                 <Container>
-                  <Text style={{ ...dimmedText, textAlign: 'center' }}>
+                  <Text style={dimmedText}>
                     Copyright © {new Date().getFullYear()},{' '}
                     <Link
-                      href="https://dronespace.co.ke"
+                      href="https://example.com"
                       style={{
-                        color: colors.pri,
+                        color: 'black',
                         textDecorationLine: 'underline',
                       }}
                     >
-                      {appData.name.company}
+                      {appName}
                     </Link>
                     . All rights reserved.
                   </Text>
@@ -103,9 +100,4 @@ export const link = {
   margin: 0,
   fontWeight: 'bold',
   color: 'black',
-};
-
-export const colors = {
-  pri: '#13259a',
-  priLight: '#edeffd',
 };

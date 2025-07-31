@@ -2,7 +2,7 @@
   border-radius: var(--mantine-radius-sm);
   overflow: hidden;
 
-  @include hover {
+  @include mantine.hover {
     .control {
       opacity: 0.75;
     }

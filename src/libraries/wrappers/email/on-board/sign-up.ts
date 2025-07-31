@@ -1,8 +1,8 @@
-import appData from '@/data/app';
 import resend from '@/libraries/resend';
 import EmailOnboardWelcome from '@/components/email/onboard/welcome';
 import { isProduction } from '@/utilities/helpers/environment';
 import { render } from '@react-email/render';
+import { appName } from '@/data/app';
 
 export const emailSendOnboardSignUp = async (params: {
   to: string;
@@ -12,9 +12,9 @@ export const emailSendOnboardSignUp = async (params: {
   const noReplyEmail = process.env.NEXT_PUBLIC_EMAIL_NOREPLY || '';
 
   const { data, error } = await resend.emails.send({
-    from: `${appData.name.app} <${noReplyEmail}>`,
+    from: `${appName} <${noReplyEmail}>`,
     to: [isProduction() ? params.to : devEmail],
-    subject: `Welcome To ${appData.name.app}`,
+    subject: `Welcome To ${appName}`,
     replyTo: noReplyEmail,
     html: await render(EmailOnboardWelcome({ userName: params.userName })),
   });

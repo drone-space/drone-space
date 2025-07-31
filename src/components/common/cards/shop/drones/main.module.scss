@@ -3,7 +3,7 @@
   overflow: hidden;
   border-color: rgba($color: #000000, $alpha: 0.1);
 
-  @include hover {
+  @include mantine.hover {
     .image {
       transform: scale(1.05);
     }

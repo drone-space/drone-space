@@ -7,6 +7,9 @@ import { getEmailLocalPart } from '@/utilities/helpers/string';
 import { emailSendOnboardSignUp } from '@/libraries/wrappers/email/on-board/sign-up';
 import { segmentFullName } from '@/utilities/formatters/string';
 import { contactAdd } from '@/services/api/email/contacts';
+import { getSafeRedirectUrl } from '@/utilities/helpers/url';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
@@ -31,10 +34,10 @@ export async function GET(request: NextRequest) {
     // create profile if doesn't exist
     const { profile, existed } = await profileCreate({
       id: verifyData.user?.id || '',
-      firstName: getEmailLocalPart(verifyData.user?.email || ''),
+      first_name: getEmailLocalPart(verifyData.user?.email || ''),
     });
 
-    const name = `${profile?.firstName} ${profile?.lastName || ''}`.trim();
+    const name = `${profile?.first_name} ${profile?.last_name || ''}`.trim();
 
     // update user
     const {
@@ -46,7 +49,7 @@ export async function GET(request: NextRequest) {
         full_name: name,
         picture: profile?.avatar,
         avatar_url: profile?.avatar,
-        userName: profile?.userName,
+        userName: profile?.user_name,
       },
     });
 
@@ -59,13 +62,21 @@ export async function GET(request: NextRequest) {
           segmentFullName(userData?.user_metadata.name).first || userData.email,
       });
 
-      // add email contact to marketing mail handler
-      await contactAdd({ email: userData.email });
+      const segmentedName = segmentFullName(userData.user_metadata.name);
+
+      await contactAdd(
+        {
+          email: userData.email,
+          fname: segmentedName.first,
+          lname: segmentedName.last,
+        },
+        false
+      );
     }
 
     // if "next" is in param, use it as the redirect URL
-    const next = searchParams.get('next') ?? '/';
-    return NextResponse.redirect(next);
+    const redirectUrl = getSafeRedirectUrl(request, 'next');
+    return NextResponse.redirect(redirectUrl);
   } catch (error) {
     return NextResponse.redirect(
       `${AUTH_URLS.ERROR}?message=${encodeURIComponent((error as Error).message)}`

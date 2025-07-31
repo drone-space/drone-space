@@ -7,7 +7,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import classes from './testimonials.module.scss';
 import CardTestimonial from '@/components/common/cards/testimonial';
 import { useMediaQuery } from '@mantine/hooks';
-import { Student } from '@prisma/client';
+import { Student } from '@generated/prisma';
 
 export default function Testimonials({ props }: { props: Student[] }) {
   const autoplay = useRef(Autoplay({ delay: 4000 }));
@@ -25,10 +25,12 @@ export default function Testimonials({ props }: { props: Student[] }) {
       withIndicators={true}
       withControls={true}
       draggable={true}
-      loop
-      align="start"
+      emblaOptions={{
+        loop: true,
+        align: 'start',
+        slidesToScroll: desktopLg ? 1 : desktop ? 2 : 1,
+      }}
       slideSize={{ base: '100%', md: '50%', lg: '33.333333%' }}
-      slidesToScroll={desktopLg ? 1 : desktop ? 2 : 1}
       classNames={classes}
       plugins={[autoplay.current]}
       // onMouseEnter={autoplay.current.stop}

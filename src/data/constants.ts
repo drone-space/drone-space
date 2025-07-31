@@ -1,69 +1,35 @@
-// Dynamically set the URL prefix based on the environment
-const URL_PREFIX =
-  process.env.NODE_ENV === 'production' &&
-  process.env.NEXT_PUBLIC_HOST != 'localhost:3000'
-    ? 'https://'
-    : 'http://';
+import { isProduction } from '@/utilities/helpers/environment';
 
 export const HOSTNAME = process.env.NEXT_PUBLIC_HOST;
-export const BASE_URL = `${URL_PREFIX}${HOSTNAME}`;
-export const HOSTED_BASE_URL = {
-  DRONE_SPACE: `https://dronespace.co.ke`,
-  CONFERENCE: `https://aiconference.co.ke`,
-};
 
+const URL_PREFIX =
+  isProduction() && HOSTNAME != 'localhost:3000' ? 'https://' : 'http://';
+
+export const BASE_URL = `${URL_PREFIX}${HOSTNAME}`;
 export const API_URL = `${BASE_URL}/api`;
 
-export const REVALIDATE = {
-  MINUTE: 60,
-  HOUR: 60 * 60,
-  DAY: 60 * 60 * 24,
-  WEEK: 60 * 60 * 24 * 7,
-  MONTH: 60 * 60 * 24 * 30,
-  YEAR: 60 * 60 * 24 * 365,
-};
-
-export const AUTH_URLS = {
-  SIGN_IN: `${BASE_URL}/auth/sign-in`,
-  SIGN_UP: `${BASE_URL}/auth/sign-up`,
-  VERIFY_REQUEST: `${BASE_URL}/auth/verify-request`,
-  ERROR: `${BASE_URL}/auth/error`,
-  SIGN_OUT: `${BASE_URL}/auth/sign-out`,
-};
-
-export const GEO_DATA_URL = {
-  COUNTRIES: `${process.env.NEXT_PUBLIC_REST_COUNTRIES_API_URL}`,
-};
-
 export const ICON_SIZE = 20;
-
 export const ICON_WRAPPER_SIZE = ICON_SIZE + 8;
-
 export const ICON_STROKE_WIDTH = 1.5;
+export const SECTION_SPACING = 64;
 
-export const TRANSITION_DURATION = 250;
-
-export const SECTION_SPACING = 120;
+export const MINUTE = 60;
+export const HOUR = MINUTE * 60;
+export const DAY = HOUR * 24;
+export const WEEK = DAY * 7;
+export const MONTH = DAY * 30;
 
 export const FONT_CTA_TITLE = 40;
 
 export const FONT = { CTA_TITLE: FONT_CTA_TITLE };
 
-export const TIMEOUT = { REDIRECT: 5000 };
-
-export const FILE_NAME = {
-  AVATAR: 'avatar',
-};
+export const DEFAULT_COLOR_SCHEME: 'light' | 'dark' = 'light';
 
 export const COOKIE_NAME = {
-  CONSENT: { COOKIES: 'consent.cookies' },
+  CONSENT_COOKIES: 'consent.cookies',
   LOCAL: { COUNTRY: 'local.country', COUNTRIES: 'local.countries' },
   COLOR_SCHEME: 'theme.color-scheme',
   COLOR_SCHEME_STATE: 'theme.color-scheme-state',
-};
-
-export const BUCKET_NAME = {
-  AVATARS: 'avatars',
 };
 
 export const LOCAL_STORAGE_NAME = {
@@ -76,6 +42,14 @@ export const SESSION_STORAGE_NAME = {
   CLAUDE_COUNT: 'claude-count',
 };
 
+export const PARAM_NAME = {
+  REDIRECT_AUTH: '/redirect',
+};
+
+export const GEO_DATA_URL = {
+  COUNTRIES: `${process.env.NEXT_PUBLIC_REST_COUNTRIES_API_URL}`,
+};
+
 const WITHOUT_BODY: HeadersInit = {
   Accept: 'application/json',
 };
@@ -85,22 +59,32 @@ const WITH_BODY: HeadersInit = {
   ...WITHOUT_BODY,
 };
 
-export const HEADERS = { WITH_BODY, WITHOUT_BODY };
+export const HEADERS = { WITHOUT_BODY, WITH_BODY };
 
-const EXPIRY_SESSION_SEC_STANDARD = 60 * 60 * 24;
-const EXPIRY_SESSION_SEC_EXTENDED = 7 * EXPIRY_SESSION_SEC_STANDARD;
+export const BUCKET_NAME = {
+  AVATARS: 'avatars',
+};
 
-export const EXPIRY = {
-  SESSION: {
-    STANDARD: {
-      SEC: EXPIRY_SESSION_SEC_STANDARD,
-      MILLISEC: EXPIRY_SESSION_SEC_STANDARD * 1000,
-    },
-    EXTENDED: {
-      SEC: EXPIRY_SESSION_SEC_EXTENDED,
-      MILLISEC: EXPIRY_SESSION_SEC_EXTENDED * 1000,
-    },
+export const FILE_NAME = {
+  AVATAR: 'avatar',
+};
+
+export const AUTH_URLS = {
+  SIGN_IN: `${BASE_URL}/auth/sign-in`,
+  SIGN_UP: `${BASE_URL}/auth/sign-up`,
+  VERIFY_REQUEST: `${BASE_URL}/auth/verify-request`,
+  ERROR: `${BASE_URL}/auth/error`,
+  SIGN_OUT: `${BASE_URL}/auth/sign-out`,
+  REDIRECT: {
+    DEFAULT: '/app/home',
   },
 };
 
-export const URL_PARAM = { REDIRECT: 'redirect' };
+export const HOSTED_BASE_URL = {
+  DEFAULT: `https://dronespace.co.ke`,
+  CONFERENCE: `https://aiconference.co.ke`,
+};
+
+export const INDEXED_DB = {
+  SAMPLE_STORE: 'sampleStore',
+};

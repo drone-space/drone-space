@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { alpha } from '@mantine/core';
+
 import classes from './glass.module.scss';
 
 export default function Glass({ children }: { children: React.ReactNode }) {

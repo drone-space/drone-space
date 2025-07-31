@@ -1,33 +1,21 @@
-import { Post, Prisma } from '@prisma/client';
+import { Prisma, Post } from '@generated/prisma';
 
-// Type for creating a post (without id and relations)
+// Type for creating a item (without id and relations)
 export type PostCreate = Prisma.PostCreateInput;
 
-// Type for updating a post (all fields optional except id)
+// Type for updating a item (all fields optional except id)
 export type PostUpdate = Prisma.PostUpdateInput;
 
-// Type for default post (with id and no relations)
+// Type for default item (with id and no relations)
 export type PostGet = Post;
 
-// Type for fetched post with relations
+// Type for fetched item with relations
 export type PostRelations = Prisma.PostGetPayload<{
   include: {
     _count: { select: { comments: true } };
-
     category: true;
     tags: true;
     profile: true;
-    comments: {
-      include: {
-        _count: { select: { replies: true } };
-
-        profile: true;
-        replies: {
-          include: {
-            profile: true;
-          };
-        };
-      };
-    };
+    comments: true;
   };
 }>;

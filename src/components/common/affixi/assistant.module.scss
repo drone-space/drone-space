@@ -27,7 +27,7 @@
   border-top-left-radius: var(--mantine-radius-sm);
   border-bottom-left-radius: var(--mantine-radius-sm);
 
-  @include hover {
+  @include mantine.hover {
     cursor: pointer;
   }
 }

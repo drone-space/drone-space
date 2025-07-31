@@ -8,7 +8,7 @@
 
   color: var(--mantine-color-dimmed);
 
-  @include hover {
+  @include mantine.hover {
     text-decoration: none;
 
     color: var(--mantine-color-anchor);

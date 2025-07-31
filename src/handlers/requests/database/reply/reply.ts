@@ -1,14 +1,12 @@
-import { Request as EnumRequest } from '@/enums/request';
 import { API_URL, HEADERS } from '@/data/constants';
-import { ReplyUpdate } from '@/types/models/reply';
-import { ReplyReplyCreate } from '@/types/bodies/request';
+import { ReplyCreate, ReplyUpdate } from '@/types/models/reply';
 
 const baseRequestUrl = `${API_URL}/replies/reply`;
 
-export const repliesReplyGet = async (params: { replyId: string }) => {
+export const repliesReplyGet = async (slug: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
-      method: EnumRequest.GET,
+    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
+      method: 'GET',
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -24,10 +22,10 @@ export const repliesReplyGet = async (params: { replyId: string }) => {
   }
 };
 
-export const replyReplyCreate = async (requestBody: ReplyReplyCreate) => {
+export const replyReplyCreate = async (requestBody: ReplyCreate) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${requestBody.replyId}`, {
-      method: EnumRequest.POST,
+    const request = new Request(`${baseRequestUrl}/${requestBody.reply_id}`, {
+      method: 'POST',
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(requestBody),
@@ -47,7 +45,7 @@ export const replyReplyUpdate = async (
 ) => {
   try {
     const request = new Request(`${baseRequestUrl}/${requestBody.id}`, {
-      method: EnumRequest.PUT,
+      method: 'PUT',
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(requestBody),
@@ -62,10 +60,10 @@ export const replyReplyUpdate = async (
   }
 };
 
-export const replyReplyDelete = async (params: { replyId: string }) => {
+export const replyReplyDelete = async (slug: { replyId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${params.replyId}`, {
-      method: EnumRequest.DELETE,
+    const request = new Request(`${baseRequestUrl}/${slug.replyId}`, {
+      method: 'DELETE',
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });

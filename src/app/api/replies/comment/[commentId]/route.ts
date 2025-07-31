@@ -1,26 +1,31 @@
 import prisma from '@/libraries/prisma';
-import { ReplyCommentCreate } from '@/types/bodies/request';
+import { ReplyCommentCreate } from '@/types/models/custom';
 import { ReplyUpdate } from '@/types/models/reply';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-static';
+export const revalidate = 60;
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Promise<{ commentId: string }> }
 ) {
   try {
+    const { commentId } = await params;
+
     let getResolvedCommentReplies;
 
     try {
       getResolvedCommentReplies = await prisma.$transaction(async () => {
         const commentRecord = await prisma.comment.findUnique({
-          where: { id: params.commentId },
+          where: { id: commentId },
           include: {
             replies: {
               include: {
                 profile: true,
               },
 
-              orderBy: { createdAt: 'desc' },
+              orderBy: { created_at: 'desc' },
             },
           },
         });
@@ -36,8 +41,8 @@ export async function GET(
 
         // Fetch all reply replies in a single query
         const replyReplies = await prisma.reply.findMany({
-          where: { replyId: { in: commentReplyIds }, status: 'ACTIVE' },
-          select: { replyId: true },
+          where: { reply_id: { in: commentReplyIds } },
+          select: { reply_id: true },
         });
 
         return {
@@ -49,7 +54,7 @@ export async function GET(
 
               _count: {
                 replies: replyReplies.filter(
-                  (replyReply) => replyReply.replyId == commentReply.id
+                  (replyReply) => replyReply.reply_id == commentReply.id
                 ).length,
               },
             };
@@ -82,21 +87,23 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { commentId: string } }
+  { params }: { params: Promise<{ commentId: string }> }
 ) {
   try {
+    const { commentId } = await params;
+
     const reply: Omit<ReplyCommentCreate, 'commentId'> = await request.json();
 
-    const placeHolder = params.commentId;
+    const placeHolder = commentId;
 
     const replyRecord = await prisma.reply.findUnique({
       where: {
-        name_content_replyId_commentId_profileId: {
+        name_content_reply_id_comment_id_profile_id: {
           name: reply.name || '',
           content: reply.content,
-          replyId: placeHolder,
-          commentId: params.commentId,
-          profileId: reply.profileId || placeHolder,
+          reply_id: placeHolder,
+          comment_id: commentId,
+          profile_id: reply.profile_id || placeHolder,
         },
       },
     });
@@ -112,8 +119,8 @@ export async function POST(
       data: {
         name: reply.name,
         content: reply.content,
-        commentId: params.commentId,
-        profileId: reply.profileId,
+        comment_id: commentId,
+        profile_id: reply.profile_id,
       },
     });
 

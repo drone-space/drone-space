@@ -1,6 +1,6 @@
 // import { DeleteAccountRequest } from '@/types/token';
-// import { decrypt } from '@/utilities/helpers/token';
 // import { getUrlParam } from '@/utilities/helpers/url';
+// import { decrypt } from '@/utilities/helpers/token';
 import { useEffect, useState } from 'react';
 // import { useAppSelector } from '@/hooks/redux';
 // import { KEY } from '@/data/constants';

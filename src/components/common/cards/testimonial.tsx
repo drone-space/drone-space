@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import React from 'react';
 import ImageDefault from '@/components/common/images/default';
-import { Student } from '@prisma/client';
+import { Student } from '@generated/prisma';
 import { IconQuote } from '@tabler/icons-react';
 import {
   HOSTED_BASE_URL,
@@ -46,7 +46,7 @@ export default function Testimonial({ props }: { props: Student }) {
             miw={64}
           >
             <ImageDefault
-              src={processUrl(props.image, HOSTED_BASE_URL.DRONE_SPACE)}
+              src={processUrl(props.image, HOSTED_BASE_URL.DEFAULT)}
               alt={props.name}
               height={64}
               width={64}

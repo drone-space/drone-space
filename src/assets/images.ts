@@ -2,24 +2,26 @@ import { HOSTED_BASE_URL } from '@/data/constants';
 
 const iconUrl = `https://img.icons8.com`;
 const baseUrl = {
-  droneSpace: `${HOSTED_BASE_URL.DRONE_SPACE}/images`,
+  droneSpace: `${HOSTED_BASE_URL.DEFAULT}/images`,
   conference: `${HOSTED_BASE_URL.CONFERENCE}/images`,
 };
 
 export const images = {
   icons: {
     social: {
-      facebook: `${iconUrl}/?size=100&id=13912&format=png&color=000000`,
-      instagram: `${iconUrl}/?size=100&id=32323&format=png&color=000000`,
-      twitterx: `${iconUrl}/?size=100&id=ClbD5JTFM7FA&format=png&color=000000`,
-      linkedin: `${iconUrl}/?size=100&id=13930&format=png&color=000000`,
-      whatsapp: `${iconUrl}/?size=100&id=16713&format=png&color=000000`,
+      facebook: `${iconUrl}/fluency/96/facebook.png`,
+      instagram: `${iconUrl}/fluency/96/instagram-new.png`,
+      twitterx: `${iconUrl}/color/96/twitterx--v1.png`,
+      linkedin: `${iconUrl}/fluency/96/linkedin.png`,
+      whatsapp: `${iconUrl}/color/96/whatsapp--v1.png`,
     },
-    google: `${iconUrl}/?size=100&id=17949&format=png&color=000000`,
-    credentials: `${iconUrl}/?size=100&id=jicLxt1sA2qa&format=png&color=000000`,
+
+    google: `${iconUrl}/fluency/96/google-logo.png`,
+    credentials: `${iconUrl}/material-rounded/96/mail.png`,
+
     claude: {
-      default: `${iconUrl}/?size=100&id=H5H0mqCCr5AV&format=png&color=000000`,
-      outline: `${iconUrl}/?size=100&id=XDigO1YmCwbW&format=png&color=000000`,
+      default: `${iconUrl}/fluency/100/claude.png`,
+      outline: `${iconUrl}/ios/100/claude.png`,
     },
   },
 

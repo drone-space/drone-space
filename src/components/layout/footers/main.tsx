@@ -17,12 +17,12 @@ import {
 import LayoutSection from '@/components/layout/section';
 import { images } from '@/assets/images';
 import classes from './main.module.scss';
-import appData from '@/data/app';
-import { socials } from '../headers/main';
+import { socialLinks } from '@/data/links';
 import NextImage from 'next/image';
 import { SECTION_SPACING } from '@/data/constants';
 import { IconCircleFilled } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
+import { appName, emails, phones } from '@/data/app';
 
 export default function Main() {
   return (
@@ -38,7 +38,7 @@ export default function Main() {
               <Anchor component={Link} href={'/'}>
                 <ImageDefault
                   src={images.brand.droneSpace.logo.landscape.default}
-                  alt={appData.name.app}
+                  alt={appName}
                   height={{ base: 40 }}
                   width={{ base: 200 }}
                   fit="contain"
@@ -52,16 +52,16 @@ export default function Main() {
               ta={{ base: 'center', md: 'start' }}
               fz={'sm'}
             >
-              {appData.name.app} is approved and certified by KCAA to offer RPL
-              courses in multi-rotor and fixed wing, RPL instructor rating and
-              soon Beyond Visual Line of Sight (BVLOS) rating. The Academy
-              provides Kenya&apos;s highest quality drone training with a simple
-              yet comprehensive model for corporate clients, government
-              agencies, public safety departments, and individuals.
+              {appName} is approved and certified by KCAA to offer RPL courses
+              in multi-rotor and fixed wing, RPL instructor rating and soon
+              Beyond Visual Line of Sight (BVLOS) rating. The Academy provides
+              Kenya&apos;s highest quality drone training with a simple yet
+              comprehensive model for corporate clients, government agencies,
+              public safety departments, and individuals.
             </Text>
 
             <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
-              {socials.map((social, index) => (
+              {socialLinks.map((social, index) => (
                 <Anchor key={index} href={social.link} target="_blank">
                   <Stack>
                     <Image
@@ -151,8 +151,7 @@ export default function Main() {
           </Group>
 
           <Text component="span" inherit>
-            © {new Date().getFullYear()} {appData.name.app}. All Rights
-            Reserved.
+            © {new Date().getFullYear()} {appName}. All Rights Reserved.
           </Text>
         </Flex>
       </Stack>
@@ -161,12 +160,12 @@ export default function Main() {
 }
 
 const email = {
-  info: appData.emails.info,
-  training: appData.emails.training,
+  info: emails.info,
+  training: emails.training,
 };
 const phone = {
-  pri: appData.phones.main,
-  sec: appData.phones.other,
+  pri: phones.main,
+  sec: phones.other,
 };
 
 const linkSets = [

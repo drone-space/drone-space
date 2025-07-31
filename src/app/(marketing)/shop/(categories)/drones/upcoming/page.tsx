@@ -6,14 +6,15 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 import { upcomingDrones } from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
-import appData from '@/data/app';
+
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intro/page';
-import CtaFeatured from '@/components/partial/cta/featured';
+import IntroPage from '@/components/layout/intros/page';
+import CtaFeatured from '@/components/partials/cta/featured';
 import CardShopDroneUpcoming from '@/components/common/cards/shop/drones/upcoming';
+import { appName, companyName } from '@/data/app';
 
-const metaTitle = `Upcoming Drones - New Drone Releases & Innovations | ${appData.name.app}`;
+const metaTitle = `Upcoming Drones - New Drone Releases & Innovations | ${appName}`;
 const metaDesc = `Stay ahead with the latest drone technology. Get a sneak peek at upcoming releases and cutting-edge models launching soon.`;
 
 export const metadata: Metadata = {
@@ -22,14 +23,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/camera`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: appData.name.company,
+        alt: companyName,
       },
     ],
   },

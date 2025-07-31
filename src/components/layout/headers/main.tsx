@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Anchor, Flex, Group, Text } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
-import appData from '@/data/app';
+
 import { IconCircleFilled } from '@tabler/icons-react';
-import { images } from '@/assets/images';
+import { emails, locations, phones } from '@/data/app';
 
 export default function Main() {
   return (
@@ -42,9 +42,8 @@ export default function Main() {
 
         <Group gap={'xs'}>
           {data.left.map((item, index) => (
-            <>
+            <React.Fragment key={index}>
               <Anchor
-                key={index}
                 inherit
                 component={'a'}
                 href={item.link}
@@ -58,7 +57,7 @@ export default function Main() {
               {data.left.indexOf(item) != data.left.length - 1 && (
                 <IconCircleFilled size={4} />
               )}
-            </>
+            </React.Fragment>
           ))}
         </Group>
       </Flex>
@@ -66,10 +65,10 @@ export default function Main() {
   );
 }
 
-const email = appData.emails.info;
-const phone1 = appData.phones.main;
-const phone2 = appData.phones.other;
-const location = appData.locations.main.location;
+const email = emails.info;
+const phone1 = phones.main;
+const phone2 = phones.other;
+const location = locations.main.location;
 
 const data = {
   left: [
@@ -77,31 +76,3 @@ const data = {
     { label: phone2, link: `tel:${phone2}` },
   ],
 };
-
-export const socials = [
-  {
-    image: images.icons.social.twitterx,
-    title: appData.socials.twitter.platform,
-    link: appData.socials.twitter.link,
-  },
-  {
-    image: images.icons.social.facebook,
-    title: appData.socials.facebook.platform,
-    link: appData.socials.facebook.link,
-  },
-  {
-    image: images.icons.social.instagram,
-    title: appData.socials.instagram.platform,
-    link: appData.socials.instagram.link,
-  },
-  {
-    image: images.icons.social.linkedin,
-    title: appData.socials.linkedin.platform,
-    link: appData.socials.linkedin.link,
-  },
-  {
-    image: images.icons.social.whatsapp,
-    title: appData.socials.whatsapp.platform,
-    link: appData.socials.whatsapp.link,
-  },
-];

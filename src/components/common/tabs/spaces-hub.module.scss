@@ -1,15 +1,15 @@
 .list {
   flex-direction: column;
 
-  @include larger-than($mantine-breakpoint-xs) {
+  @include mantine.larger-than(mantine.$mantine-breakpoint-xs) {
     flex-direction: row;
   }
 
-  @include larger-than($mantine-breakpoint-md) {
+  @include mantine.larger-than(mantine.$mantine-breakpoint-md) {
     gap: var(--mantine-spacing-md);
   }
 
-  @include larger-than($mantine-breakpoint-md) {
+  @include mantine.larger-than(mantine.$mantine-breakpoint-md) {
     flex-direction: column;
   }
 }
@@ -19,7 +19,7 @@
   justify-content: center;
   flex-wrap: nowrap;
 
-  @include larger-than($mantine-breakpoint-md) {
+  @include mantine.larger-than(mantine.$mantine-breakpoint-md) {
     padding: var(--mantine-spacing-md);
     justify-content: space-between;
   }
@@ -31,7 +31,7 @@
 }
 
 .tabLabel {
-  @include larger-than($mantine-breakpoint-md) {
+  @include mantine.larger-than(mantine.$mantine-breakpoint-md) {
     font-weight: bold;
     font-size: var(--mantine-font-size-md);
   }

@@ -74,10 +74,9 @@ export default function Poster({ active }: { active?: boolean }) {
         <Carousel
           withIndicators={data.length > 1}
           withControls={data.length > 1}
-          slidesToScroll={1}
+          emblaOptions={{ loop: true, slidesToScroll: 1 }}
           slideSize={'100%'}
           slideGap={0}
-          loop
           classNames={{ root: classes.root, control: classes.control }}
           plugins={[autoplay.current]}
         >

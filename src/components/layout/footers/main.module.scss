@@ -6,7 +6,7 @@
 .listItem {
   text-align: start;
 
-  @include smaller-than($mantine-breakpoint-md) {
+  @include mantine.smaller-than(mantine.$mantine-breakpoint-md) {
     text-align: center;
   }
 }
@@ -14,7 +14,7 @@
 .link {
   color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-gray-6));
 
-  @include hover {
+  @include mantine.hover {
     color: var(--mantine-color-pri-7);
   }
 }

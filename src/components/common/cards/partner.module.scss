@@ -7,7 +7,7 @@
   ) !important;
   height: 100%;
 
-  @include hover {
+  @include mantine.hover {
     .image {
       transform: scale(1.1);
     }

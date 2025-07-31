@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LayoutPage from '@/components/layout/page';
-import HeroHome from '@/components/layout/hero/home';
+import HeroHome from '@/components/layout/heros/home';
 import HeaderMain from '@/components/layout/headers/main';
 import NavbarMain from '@/components/layout/navbars/main';
 import LayoutSection from '@/components/layout/section';
@@ -39,7 +39,7 @@ import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
 import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
-import CtaNewsletter from '@/components/partial/cta/newsletter';
+import CtaNewsletter from '@/components/partials/cta/newsletter';
 import {
   COOKIE_NAME,
   ICON_SIZE,
@@ -47,14 +47,15 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import { Metadata } from 'next';
-import appData from '@/data/app';
-import IntroSection from '@/components/layout/intro/section';
+
+import IntroSection from '@/components/layout/intros/section';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
+import { appName } from '@/data/app';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dronespace.co.ke'),
-  title: `${appData.name.app} Training - Premier Drone School & Services`,
+  title: `${appName} Training - Premier Drone School & Services`,
   description:
     "Discover professional drone training, cutting-edge aerial services, and resources to elevate your skills. Join Drone Space, Kenya's trusted drone school.",
   robots: {
@@ -163,7 +164,7 @@ export default function Home() {
             props={{
               subTitle: 'Services',
               title: 'Our Drone Solutions',
-              desc: `At ${appData.name.app}, we pride ourselves on delivering solutions tailored to meet your unique needs. From innovative strategies to hands-on support, our services are designed to help you achieve your goals and excel in a competitive landscape.`,
+              desc: `At ${appName}, we pride ourselves on delivering solutions tailored to meet your unique needs. From innovative strategies to hands-on support, our services are designed to help you achieve your goals and excel in a competitive landscape.`,
             }}
             options={{ spacing: true }}
           />
@@ -251,7 +252,7 @@ export default function Home() {
             props={{
               subTitle: 'Relations',
               title: 'Our Clients',
-              desc: `At ${appData.name.app}, our clients are at the heart of everything we do. Over the years, we've had the privilege of collaborating with forward-thinking organizations across diverse industries, delivering tailored solutions that empower their success.`,
+              desc: `At ${appName}, our clients are at the heart of everything we do. Over the years, we've had the privilege of collaborating with forward-thinking organizations across diverse industries, delivering tailored solutions that empower their success.`,
             }}
             options={{ spacing: true }}
           />
@@ -325,8 +326,8 @@ const whyUs = [
   },
 ];
 
-function HomeLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = cookies();
+async function HomeLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
   const colorSchemeState = cookieStore.get(
     COOKIE_NAME.COLOR_SCHEME_STATE
   )?.value;

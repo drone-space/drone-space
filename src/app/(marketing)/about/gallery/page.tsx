@@ -12,14 +12,14 @@ import {
 } from '@mantine/core';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import PartialGallery from '@/components/partial/gallery';
+import PartialGallery from '@/components/partials/gallery';
 import tabs from '@/data/tabs';
-import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intro/page';
+import IntroPage from '@/components/layout/intros/page';
+import { appName, companyName } from '@/data/app';
 
-const metaTitle = `${appData.name.app} Gallery - Showcasing Our Training & Aerial Services`;
+const metaTitle = `${appName} Gallery - Showcasing Our Training & Aerial Services`;
 const metaDesc =
   'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';
 
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DRONE_SPACE}/about/gallery`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/about/gallery`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: appData.name.company,
+        alt: companyName,
       },
     ],
   },

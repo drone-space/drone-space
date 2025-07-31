@@ -1,20 +1,21 @@
-import { AuthUser } from '@/types/auth';
 import { createSlice } from '@reduxjs/toolkit';
+import { User } from '@supabase/supabase-js';
 
 export const sliceSession = createSlice({
   name: 'session',
   initialState: {
-    value: null satisfies AuthUser | null as AuthUser | null,
+    value: null as User | null satisfies User | null,
   },
   reducers: {
-    update: (state, action) => {
+    updateSession: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { update: updateSession } = sliceSession.actions;
+export const { updateSession } = sliceSession.actions;
 
 const reducerSession = sliceSession.reducer;
+
 export default reducerSession;

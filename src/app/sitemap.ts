@@ -1,16 +1,15 @@
+import { HOSTED_BASE_URL } from '@/data/constants';
+import { MetadataRoute } from 'next';
 import accessories from '@/data/accessories';
-import { REVALIDATE } from '@/data/constants';
 import products from '@/data/products';
 import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
 import { linkify } from '@/utilities/formatters/string';
-import { MetadataRoute } from 'next';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = REVALIDATE.WEEK;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://dronespace.co.ke';
+  const now = new Date();
 
   const staticRoutes = [
     '', // homepage
@@ -34,8 +33,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/shop/drones/mapping',
     '/shop/drones/upcoming',
   ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
+    url: `${HOSTED_BASE_URL.DEFAULT}${route}`,
+    lastModified: now.toISOString().split('T')[0], // formatted date
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1 : 0.8,
   }));
@@ -43,8 +42,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { posts }: { posts: PostRelations[] } = await postsGet();
 
   const postRoutes = posts.map((post) => ({
-    url: `${baseUrl}/resources/blog/${linkify(post.title)}-${post.id}`,
-    lastModified: post.updatedAt,
+    url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post.title)}-${post.id}`,
+    lastModified: post.updated_at,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
   }));
@@ -52,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const beginningOfYear = new Date(new Date().getFullYear(), 0, 1);
 
   const accessoryRoutes = accessories.map((accessory) => ({
-    url: `${baseUrl}/shop/accessories/${linkify(accessory.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/accessories/${linkify(accessory.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -61,7 +60,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const agricultureDrones = products.filter((p) => p.category == 'agriculture');
 
   const agricultureDroneRoutes = agricultureDrones.map((drone) => ({
-    url: `${baseUrl}/shop/drones/agriculture/${linkify(drone.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/agriculture/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -70,7 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cameraDrones = products.filter((p) => p.category == 'camera');
 
   const cameraDroneRoutes = cameraDrones.map((drone) => ({
-    url: `${baseUrl}/shop/drones/camera/${linkify(drone.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -81,7 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const cinematographyDroneRoutes = cinematographyDrones.map((drone) => ({
-    url: `${baseUrl}/shop/drones/cinematography/${linkify(drone.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/cinematography/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -90,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const enterpriseDrones = products.filter((p) => p.category == 'enterprise');
 
   const enterpriseDroneRoutes = enterpriseDrones.map((drone) => ({
-    url: `${baseUrl}/shop/drones/enterprise/${linkify(drone.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/enterprise/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -99,7 +98,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const mappingDrones = products.filter((p) => p.category == 'mapping');
 
   const mappingDroneRoutes = mappingDrones.map((drone) => ({
-    url: `${baseUrl}/shop/drones/mapping/${linkify(drone.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/mapping/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
@@ -108,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const upcomingDrones = products.filter((p) => p.category == 'upcoming');
 
   const upcomingDroneRoutes = upcomingDrones.map((drone) => ({
-    url: `${baseUrl}/shop/drones/upcoming/${linkify(drone.title.long)}`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/upcoming/${linkify(drone.title.long)}`,
     lastModified: beginningOfYear,
     changeFrequency: 'weekly' as const,
     priority: 0.5,

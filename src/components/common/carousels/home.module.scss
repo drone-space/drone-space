@@ -8,7 +8,7 @@
   border: 1px solid transparent;
   color: var(--mantine-color-white);
 
-  @include hover {
+  @include mantine.hover {
     background-color: var(--mantine-color-pri-7);
     color: var(--mantine-color-sec-3);
   }

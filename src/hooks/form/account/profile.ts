@@ -1,11 +1,13 @@
 import { hasLength, useForm } from '@mantine/form';
 import { useState } from 'react';
 import { Variant } from '@/enums/notification';
+import {
+  capitalizeWords,
+  segmentFullName,
+} from '@/utilities/formatters/string';
 import { showNotification } from '@/utilities/notifications';
 import { useNetwork } from '@mantine/hooks';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { capitalizeWords } from '@/utilities/formatters/string';
-import { segmentFullName } from '@/utilities/formatters/string';
 import { updateSession } from '@/libraries/redux/slices/session';
 import { profileUpdate } from '@/services/database/profile';
 import { createClient } from '@/libraries/supabase/client';
@@ -26,10 +28,10 @@ export const useFormUserProfile = () => {
         first: segmentFullName(session?.user_metadata.name || '').first,
         last: segmentFullName(session?.user_metadata.name || '').last,
       },
-      // phone: {
-      //   code: session?.phone?.split(' ')[0] || '',
-      //   number: session?.phone?.split(' ')[1] || '',
-      // },
+      phone: {
+        code: session?.phone?.split(' ')[0] || '',
+        number: session?.phone?.split(' ')[1] || '',
+      },
       avatar: session?.user_metadata.avatar_url || '',
     },
     validate: {
@@ -37,29 +39,29 @@ export const useFormUserProfile = () => {
         first: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
         last: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
       },
-      // phone: {
-      //   code: (value, values) =>
-      //     values.phone.number.trim().length > 0 && value?.trim().length < 1,
-      //   number: (value) =>
-      //     value.trim().length > 0 &&
-      //     (value.trim().length < 7 || value.trim().length > 15),
-      // },
+      phone: {
+        code: (value, values) =>
+          values.phone.number.trim().length > 0 && value?.trim().length < 1,
+        number: (value) =>
+          value.trim().length > 0 &&
+          (value.trim().length < 7 || value.trim().length > 15),
+      },
     },
   });
 
   const parseValues = () => {
     const firstName = form.values.name.first.trim();
     const lastName = form.values.name.last.trim();
-    // const code = form.values.phone.code.trim();
-    // const number = form.values.phone.number.trim();
+    const code = form.values.phone.code.trim();
+    const number = form.values.phone.number.trim();
     const avatar = form.values.avatar || session?.user_metadata.avatar_url;
 
     return {
       name: capitalizeWords(`${firstName} ${lastName}`),
-      // phone: {
-      //   withSpace: number && number.length > 0 ? `${code} ${number}` : '',
-      //   withoutSpace: number && number.length > 0 ? `${code}${number}` : '',
-      // },
+      phone: {
+        withSpace: number && number.length > 0 ? `${code} ${number}` : '',
+        withoutSpace: number && number.length > 0 ? `${code}${number}` : '',
+      },
       avatar,
     };
   };
@@ -90,8 +92,8 @@ export const useFormUserProfile = () => {
         setSubmitted(true);
 
         await profileUpdate({
-          firstName: segmentFullName(parseValues().name).first,
-          lastName: segmentFullName(parseValues().name).last,
+          first_name: segmentFullName(parseValues().name).first,
+          last_name: segmentFullName(parseValues().name).last,
           // phone: parseValues().phone.withSpace,
           avatar: parseValues().avatar,
           id: session?.id,

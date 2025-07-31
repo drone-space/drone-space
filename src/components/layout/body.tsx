@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Divider, Flex } from '@mantine/core';
-import LayoutSection from './section';
 import { Body as typeBody, Widths } from '@/types/layout';
+import LayoutSection from './section';
 
 export default function Body({
   children,

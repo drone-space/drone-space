@@ -5,9 +5,9 @@ import { Metadata } from 'next';
 import LayoutBody from '@/components/layout/body';
 import { capitalizeWords, linkify } from '@/utilities/formatters/string';
 import products from '@/data/products';
-import appData from '@/data/app';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
+import { companyName } from '@/data/app';
 
 export interface typeParams {
   params: { category: string; droneId: string };
@@ -21,19 +21,19 @@ export const generateMetadata = ({ params }: typeParams): Metadata => {
   return {
     title: {
       default: metaTitle,
-      template: `%s - ${metaTitle} - ${appData.name.company} Kenya`,
+      template: `%s - ${metaTitle} - ${companyName} Kenya`,
     },
     openGraph: {
       title: metaTitle,
       // description: metaDesc,
-      url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/${linkify(product?.category || '')}`,
+      url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/${linkify(product?.category || '')}`,
       type: 'website',
       images: [
         {
           url: images.brand.droneSpace.logo.potrait.meta,
           width: 1200,
           height: 1200,
-          alt: appData.name.company,
+          alt: companyName,
         },
       ],
     },

@@ -88,10 +88,9 @@ export default function Shop() {
     <Carousel
       withIndicators
       withControls={false}
-      loop
+      emblaOptions={{ loop: true, slidesToScroll: 'auto' }}
       classNames={classes}
       slideSize={{ base: '100%', md: '50%' }}
-      slidesToScroll={'auto'}
       plugins={[autoplay.current]}
       // onMouseEnter={autoplay.current.stop}
       // onMouseLeave={autoplay.current.reset}

@@ -84,7 +84,7 @@ export default function Home() {
   return (
     <Carousel
       withIndicators
-      loop
+      emblaOptions={{ loop: true }}
       withControls={false}
       classNames={{
         slide: classes.slide,

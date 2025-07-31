@@ -13,7 +13,7 @@
   border-radius: 0;
   overflow: hidden;
 
-  @include hover {
+  @include mantine.hover {
     background-color: light-dark(
       var(--mantine-color-gray-light),
       var(--mantine-color-dark-light)
@@ -38,7 +38,7 @@
 // }
 
 .target {
-  @include hover {
+  @include mantine.hover {
     cursor: pointer;
   }
 }

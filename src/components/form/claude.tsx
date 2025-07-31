@@ -3,11 +3,12 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Group, Stack, Textarea } from '@mantine/core';
 import { IconBrandTelegram } from '@tabler/icons-react';
-import appData from '@/data/app';
+
 import classes from './claude.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
 import { FormClaudeType } from '@/hooks/form/claude';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
+import { companyName } from '@/data/app';
 
 export default function Claude({
   props,
@@ -40,7 +41,7 @@ export default function Claude({
       <Stack gap={'xs'}>
         <Textarea
           required
-          placeholder={`Ask Hekima about ${appData.name.company}`}
+          placeholder={`Ask Hekima about ${companyName}`}
           autosize
           minRows={2}
           maxRows={4}

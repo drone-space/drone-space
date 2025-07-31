@@ -13,7 +13,7 @@
 
   transition: 0.25s all ease;
 
-  @include hover {
+  @include mantine.hover {
     box-shadow: var(--mantine-shadow-sm);
 
     .image {

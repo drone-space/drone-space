@@ -24,16 +24,16 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@/data/constants';
-import IntroSection from '@/components/layout/intro/section';
+import IntroSection from '@/components/layout/intros/section';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
-import appData from '@/data/app';
 import CardCourse from '@/components/common/cards/training/course';
 import { linkify } from '@/utilities/formatters/string';
 import { courseList } from '@/data/courses';
-import IntroPage from '@/components/layout/intro/page';
+import IntroPage from '@/components/layout/intros/page';
+import { appName, companyName } from '@/data/app';
 
-const metaTitle = `Drone Training In Kenya - Professional Courses at ${appData.name.app} Kenya`;
+const metaTitle = `Drone Training In Kenya - Professional Courses at ${appName} Kenya`;
 const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
 
 export const metadata: Metadata = {
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DRONE_SPACE}/drone-training`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/drone-training`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: appData.name.company,
+        alt: companyName,
       },
     ],
   },
@@ -81,9 +81,9 @@ export default async function DroneTraining() {
             />
 
             <Text pr={{ md: 'md' }} mt={'xl'}>
-              {appData.name.app} is an authorized provider of the following
-              ratings for your Remote Pilot License (RPL) and more than one
-              rating can be obtained:
+              {companyName} is an authorized provider of the following ratings
+              for your Remote Pilot License (RPL) and more than one rating can
+              be obtained:
             </Text>
 
             {ratings.map((item, index) => (

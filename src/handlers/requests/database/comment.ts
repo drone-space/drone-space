@@ -1,14 +1,13 @@
-import { Request as EnumRequest } from '@/enums/request';
 import { API_URL, HEADERS } from '@/data/constants';
 import { CommentUpdate } from '@/types/models/comment';
-import { CommentCreate } from '@/types/bodies/request';
+import { CommentCreate } from '@/types/models/custom';
 
 const baseRequestUrl = `${API_URL}/comments`;
 
 export const commentsGet = async (slug: { postId?: string }) => {
   try {
     const request = new Request(`${baseRequestUrl}/post/${slug.postId}`, {
-      method: EnumRequest.GET,
+      method: 'GET',
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -27,7 +26,7 @@ export const commentsGet = async (slug: { postId?: string }) => {
 export const commentCreate = async (comment: CommentCreate) => {
   try {
     const request = new Request(`${baseRequestUrl}/create`, {
-      method: EnumRequest.POST,
+      method: 'POST',
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(comment),
@@ -45,7 +44,7 @@ export const commentCreate = async (comment: CommentCreate) => {
 export const commentUpdate = async (comment: CommentUpdate) => {
   try {
     const request = new Request(`${baseRequestUrl}/${comment.id}`, {
-      method: EnumRequest.PUT,
+      method: 'PUT',
       credentials: 'include',
       headers: HEADERS.WITH_BODY,
       body: JSON.stringify(comment),
@@ -63,7 +62,7 @@ export const commentUpdate = async (comment: CommentUpdate) => {
 export const commentDelete = async (commentId: string) => {
   try {
     const request = new Request(`${baseRequestUrl}/${commentId}`, {
-      method: EnumRequest.DELETE,
+      method: 'DELETE',
       credentials: 'include',
       headers: HEADERS.WITHOUT_BODY,
     });

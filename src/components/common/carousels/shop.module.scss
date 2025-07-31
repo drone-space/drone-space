@@ -10,7 +10,7 @@
   font-weight: bold;
   border-bottom: 2px solid transparent;
 
-  @include hover {
+  @include mantine.hover {
     color: var(--mantine-color-white);
     border-bottom: 2px solid var(--mantine-color-sec-3);
   }

@@ -1,7 +1,7 @@
 .card {
   position: relative;
 
-  @include hover {
+  @include mantine.hover {
     .overlay {
       opacity: 0;
     }

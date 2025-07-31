@@ -7,7 +7,7 @@
   );
   color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 
-  @include hover {
+  @include mantine.hover {
     background-color: light-dark(
       var(--mantine-color-sec-3),
       var(--mantine-color-sec-3)

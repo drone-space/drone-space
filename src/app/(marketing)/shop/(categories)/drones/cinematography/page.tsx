@@ -7,13 +7,14 @@ import LayoutSection from '@/components/layout/section';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
-import appData from '@/data/app';
+
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intro/page';
-import CtaFeatured from '@/components/partial/cta/featured';
+import IntroPage from '@/components/layout/intros/page';
+import CtaFeatured from '@/components/partials/cta/featured';
+import { appName, companyName } from '@/data/app';
 
-const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appData.name.app}`;
+const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appName}`;
 const metaDesc = `Explore drones engineered for cinematic excellence. Capture ultra-smooth, high-resolution footage for film, TV, and content creation.`;
 
 export const metadata: Metadata = {
@@ -22,14 +23,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DRONE_SPACE}/shop/drones/camera`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
     type: 'website',
     images: [
       {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: appData.name.company,
+        alt: companyName,
       },
     ],
   },

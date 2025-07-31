@@ -12,7 +12,7 @@ export const useFormNewsletter = () => {
 
   const form = useForm({
     initialValues: { email: '' },
-    validate: { email: (value) => (email(value.trim()) ? true : false) },
+    validate: { email: (value) => email(value.trim()) },
   });
 
   const handleSubmit = async () => {
@@ -33,35 +33,25 @@ export const useFormNewsletter = () => {
           email: form.values.email.trim().toLowerCase(),
         });
 
-        if (response.status >= 400) {
-          showNotification({
-            variant: Variant.FAILED,
-            title: response.statusText,
-          });
-          return;
+        if (!response) {
+          throw new Error('No response from server');
         }
+
+        const result = await response.json();
 
         form.reset();
 
-        if (response.status == 201) {
-          showNotification({
-            variant: Variant.SUCCESS,
-            title: response.statusText,
-            desc: 'You are now a subscriber',
-          });
+        if (response.ok) {
+          showNotification({ variant: Variant.SUCCESS }, response, result);
           return;
         }
 
-        if (response.status == 200) {
-          showNotification({
-            variant: Variant.SUCCESS,
-            title: response.statusText,
-            desc: 'You are already a subscriber',
-          });
+        if (result.exists) {
+          showNotification({ variant: Variant.WARNING }, response, result);
           return;
         }
 
-        showNotification({ variant: Variant.FAILED }, response);
+        showNotification({ variant: Variant.FAILED }, response, result);
         return;
       } catch (error) {
         showNotification({

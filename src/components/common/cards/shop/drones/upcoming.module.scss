@@ -2,7 +2,7 @@
   height: 100%;
   overflow: hidden;
 
-  @include hover {
+  @include mantine.hover {
     .image {
       transform: scale(1.05);
     }

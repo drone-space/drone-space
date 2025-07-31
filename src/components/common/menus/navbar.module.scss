@@ -15,7 +15,7 @@
   overflow: hidden;
   align-items: start;
 
-  @include hover {
+  @include mantine.hover {
     background-color: light-dark(
       var(--mantine-color-sec-light),
       var(--mantine-color-sec-light)

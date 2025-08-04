@@ -3,23 +3,24 @@ import { Metadata } from 'next';
 import LayoutBody from '@/components/layout/body';
 import { typeParams } from '../layout';
 import { PostRelations } from '@/types/models/post';
-import { postsGet } from '@/handlers/requests/database/post';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { linkify } from '@/utilities/formatters/string';
 import { images } from '@/assets/images';
 import { companyName } from '@/data/app';
+import { postsGet } from '@/services/database/posts';
 
 export const generateMetadata = async ({
   params,
 }: {
   params: Promise<typeParams>;
 }): Promise<Metadata> => {
-  const { posts }: { posts: PostRelations[] } = await postsGet();
+  const payload: null | { data: PostRelations[] } = await postsGet();
+  if (payload == null) throw new Error('Posts not found');
 
   const postId = extractUuidFromParam((await params)['postTitle-postId']);
 
-  const post = posts.find((p) => p.id == postId);
+  const post = payload.data.find((p) => p.id == postId);
 
   const metaTitle = `${post?.title}`;
 

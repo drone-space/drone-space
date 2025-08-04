@@ -16,6 +16,6 @@ export type PostRelations = Prisma.PostGetPayload<{
     category: true;
     tags: true;
     profile: true;
-    comments: true;
+    // comments: true;
   };
 }>;

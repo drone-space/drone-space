@@ -1,4 +1,4 @@
-import prisma from '@/libraries/prisma';
+import { postsGet } from '@/services/database/posts';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-static';
@@ -6,17 +6,9 @@ export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const postRecords = await prisma.post.findMany({
-      include: {
-        _count: { select: { comments: true } },
+    const postRecords = await postsGet();
 
-        category: true,
-        tags: true,
-        profile: true,
-      },
-
-      orderBy: { created_at: 'desc' },
-    });
+    if (postRecords == null) throw new Error('No Records Found');
 
     return NextResponse.json(
       { posts: postRecords },

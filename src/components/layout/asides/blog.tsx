@@ -1,18 +1,19 @@
 import React from 'react';
 import LayoutSection from '@/components/layout/section';
 import CardBlogAside from '@/components/common/cards/blog/aside';
-import { postsGet } from '@/handlers/requests/database/post';
 import { Divider, Grid, GridCol, Stack, Title } from '@mantine/core';
 import { PostRelations } from '@/types/models/post';
 import { typeParams } from '@/app/(marketing)/resources/blog/layout';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
+import { postsGet } from '@/services/database/posts';
 
 export default async function Blog({ params }: { params: typeParams }) {
   const postId = extractUuidFromParam(params['postTitle-postId']);
 
-  const { posts }: { posts: PostRelations[] } = await postsGet();
+  const payload: null | { data: PostRelations[] } = await postsGet();
+  if (payload == null) throw new Error('Posts not found');
 
-  const postsFiltered = posts.filter((p) => p.id != postId);
+  const postsFiltered = payload.data.filter((p) => p.id != postId);
 
   return (
     <LayoutSection

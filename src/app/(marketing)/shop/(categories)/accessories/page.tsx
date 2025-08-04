@@ -10,6 +10,9 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
 import { companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = 'Drone Accessories - Enhance Your Drone Experience';
 const metaDesc = `Shop high-quality drone accessories, including batteries, propellers, and carrying cases. Everything you need for a seamless drone experience.`;
 

@@ -44,6 +44,8 @@ import ImageDefault from '@/components/common/images/default';
 import IntroSection from '@/components/layout/intros/section';
 import { companyName, phones } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = 'Drone Light Shows - Stunning Aerial Displays by Drone Space';
 const metaDesc =
   'Experience breathtaking drone light shows for events and celebrations. Discover how Drone Space creates unforgettable aerial art.';

@@ -49,8 +49,29 @@ import IntroPage from '@/components/layout/intros/page';
 import { images } from '@/assets/images';
 import classesBadge from './page.module.scss';
 
-export default function AccessoryDetail({ params }: typeParams) {
-  const product = products.find((p) => linkify(p.title.long) == params.droneId);
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  // const { data: drones, error } = await productsGet();
+  const { data: drones }: { data: any } = { data: products };
+
+  // if (error) throw error;
+  if (drones == null) return [];
+
+  return drones.map((p: any) => ({
+    // droneId: `${linkify(p.title)}-${p.id}`,
+    droneId: `${linkify(p.title.short)}`,
+  }));
+}
+
+export default async function DroneDetail({
+  params,
+}: {
+  params: Promise<typeParams>;
+}) {
+  const id = (await params).droneId;
+  const product = products.find((p) => linkify(p.title.long) == id);
   const kitContents = mergeKitContents(
     product?.kit?.basic.contents || [],
     product?.kit?.flyMore?.contents || []

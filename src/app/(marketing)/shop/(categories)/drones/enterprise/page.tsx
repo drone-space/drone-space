@@ -14,6 +14,9 @@ import IntroPage from '@/components/layout/intros/page';
 import CtaFeatured from '@/components/partials/cta/featured';
 import { companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = 'Enterprise Drones - High-Performance Drones for Business';
 const metaDesc = `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`;
 

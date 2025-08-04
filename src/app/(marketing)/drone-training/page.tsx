@@ -33,6 +33,8 @@ import { courseList } from '@/data/courses';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = `Drone Training In Kenya - Professional Courses at ${appName} Kenya`;
 const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
 

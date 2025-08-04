@@ -14,6 +14,9 @@ import CtaFeatured from '@/components/partials/cta/featured';
 import CardShopDroneUpcoming from '@/components/common/cards/shop/drones/upcoming';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = `Upcoming Drones - New Drone Releases & Innovations | ${appName}`;
 const metaDesc = `Stay ahead with the latest drone technology. Get a sneak peek at upcoming releases and cutting-edge models launching soon.`;
 

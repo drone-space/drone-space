@@ -14,6 +14,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName, emails, locations, phones } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = `Contact ${appName} - Reach Out for Training & Services`;
 const metaDesc =
   'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.';

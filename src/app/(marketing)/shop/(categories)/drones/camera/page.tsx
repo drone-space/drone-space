@@ -14,6 +14,9 @@ import IntroPage from '@/components/layout/intros/page';
 import CtaFeatured from '@/components/partials/cta/featured';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appName}`;
 const metaDesc = `Shop advanced camera drones designed for professional photography and videography. Discover models that elevate your creative vision.`;
 

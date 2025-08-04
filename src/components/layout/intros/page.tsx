@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Container, Group, Stack, Text, Title } from '@mantine/core';
 // import BreadcrumbMain from '@/components/common/breadcrumbs/main';
 import { crumbify } from '@/utilities/formatters/string';
-import classes from './page.module.scss';
+// import classes from './page.module.scss';
 
 export default function Page({
   props,
@@ -25,9 +25,12 @@ export default function Page({
 
   return (
     <div
-      className={classes.root}
+      // className={classes.root}
       style={{
         backgroundImage: `url(${props.bg})`,
+        position: 'relative',
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
       }}
     >
       <LayoutSection
@@ -36,9 +39,26 @@ export default function Page({
         margined={options?.spacing == 'margin' ? true : undefined}
         containerized={'sm'}
       >
-        {props.bg && <div className={classes.underlay}></div>}
+        {props.bg && (
+          <div
+            // className={classes.underlay}
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: `rgba(0,0,0, 0.6)`,
+              zIndex: 0,
+            }}
+          ></div>
+        )}
 
-        <Stack className={classes.content} mih={160}>
+        <Stack
+          // className={classes.content}
+          mih={160}
+          style={{ position: 'relative', zIndex: 1 }}
+        >
           {/* <Group justify={'center'}>
           <BreadcrumbMain props={segments} />
         </Group> */}

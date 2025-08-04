@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const { students } = await studentsGet();
+  const { data: students } = await studentsGet();
 
   return (
     <LayoutPage>

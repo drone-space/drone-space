@@ -65,20 +65,6 @@ export default function Newsletter() {
             gap={'md'}
             align={{ base: 'center', sm: 'end' }}
           >
-            <ModalDownloadDocument props={{ type: 'profile' }}>
-              <Button
-                leftSection={
-                  <IconFileDownload
-                    size={ICON_SIZE}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
-                variant="white"
-              >
-                Company Profile
-              </Button>
-            </ModalDownloadDocument>
-
             <ModalContactCallback>
               <Button
                 leftSection={
@@ -90,6 +76,20 @@ export default function Newsletter() {
                 Request Callback
               </Button>
             </ModalContactCallback>
+
+            <ModalDownloadDocument props={{ type: 'brochure' }}>
+              <Button
+                leftSection={
+                  <IconFileDownload
+                    size={ICON_SIZE}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+                variant="white"
+              >
+                Download Brochure
+              </Button>
+            </ModalDownloadDocument>
           </Flex>
         </GridCol>
       </Grid>

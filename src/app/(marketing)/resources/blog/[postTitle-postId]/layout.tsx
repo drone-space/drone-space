@@ -8,20 +8,20 @@ import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { linkify } from '@/utilities/formatters/string';
 import { images } from '@/assets/images';
-import { appName, companyName } from '@/data/app';
+import { companyName } from '@/data/app';
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: typeParams;
+  params: Promise<typeParams>;
 }): Promise<Metadata> => {
   const { posts }: { posts: PostRelations[] } = await postsGet();
 
-  const postId = extractUuidFromParam(params['postTitle-postId']);
+  const postId = extractUuidFromParam((await params)['postTitle-postId']);
 
   const post = posts.find((p) => p.id == postId);
 
-  const metaTitle = `${post?.title} - ${appName} Blog`;
+  const metaTitle = `${post?.title}`;
 
   return {
     title: metaTitle,
@@ -47,7 +47,6 @@ export default function LayoutPost({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
-  params: typeParams;
 }) {
   return <LayoutBody>{children}</LayoutBody>;
 }

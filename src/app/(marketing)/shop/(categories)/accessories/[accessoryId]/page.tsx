@@ -27,10 +27,30 @@ import {
 } from '@/data/constants';
 import { images } from '@/assets/images';
 
-export default function AccessoryDetails({ params }: typeParams) {
-  const product = accessories.find(
-    (a) => linkify(a.title.long) == params.accessoryId
-  );
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  // const { data: droneAccessories, error } = await productsGet();
+  const { data: droneAccessories }: { data: any } = { data: accessories };
+
+  // if (error) throw error;
+  if (droneAccessories == null) return [];
+
+  return droneAccessories.map((p: any) => ({
+    // droneId: `${linkify(p.title)}-${p.id}`,
+    droneId: `${linkify(p.title.short)}`,
+  }));
+}
+
+export default async function AccessoryDetails({
+  params,
+}: {
+  params: Promise<typeParams>;
+}) {
+  const id = (await params).accessoryId;
+
+  const product = accessories.find((a) => linkify(a.title.long) == id);
 
   return (
     <LayoutPage>

@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 import LayoutBody from '@/components/layout/body';
 import AffixNavbar from '@/components/common/affixi/navbar';
-import AffixAssistant from '@/components/common/affixi/assistant';
+// import AffixAssistant from '@/components/common/affixi/assistant';
 
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
@@ -42,7 +42,7 @@ export default function ShopLayout({
       {children}
 
       <AffixNavbar />
-      <AffixAssistant />
+      {/* <AffixAssistant /> */}
     </LayoutBody>
   );
 }

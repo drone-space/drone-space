@@ -8,13 +8,17 @@ import { images } from '@/assets/images';
 import { companyName } from '@/data/app';
 
 export interface typeParams {
-  params: { accessoryId: string };
+  accessoryId: string;
 }
 
-export const generateMetadata = ({ params }: typeParams): Metadata => {
-  const product = accessories.find(
-    (a) => linkify(a.title.long) == params.accessoryId
-  );
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<typeParams>;
+}): Promise<Metadata> => {
+  const id = (await params).accessoryId;
+
+  const product = accessories.find((a) => linkify(a.title.long) == id);
 
   const metaTitle = product?.title.long;
 

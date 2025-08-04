@@ -10,11 +10,17 @@ import { images } from '@/assets/images';
 import { companyName } from '@/data/app';
 
 export interface typeParams {
-  params: { category: string; droneId: string };
+  category: string;
+  droneId: string;
 }
 
-export const generateMetadata = ({ params }: typeParams): Metadata => {
-  const product = products.find((p) => linkify(p.category) == params.category);
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<typeParams>;
+}): Promise<Metadata> => {
+  const id = (await params).category;
+  const product = products.find((p) => linkify(p.category) == id);
 
   const metaTitle = `${capitalizeWords(product?.category || 'Category')} Drones`;
 

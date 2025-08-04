@@ -30,8 +30,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Post({ params }: { params: typeParams }) {
-  const postId = extractUuidFromParam(params['postTitle-postId']);
+export default async function Post({
+  params,
+}: {
+  params: Promise<typeParams>;
+}) {
+  const postId = extractUuidFromParam((await params)['postTitle-postId']);
 
   if (!postId) redirect('/not-found');
 

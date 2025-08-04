@@ -8,8 +8,13 @@ import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import { companyName } from '@/data/app';
 
-export const generateMetadata = ({ params }: typeParams): Metadata => {
-  const product = products.find((p) => linkify(p.title.long) == params.droneId);
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<typeParams>;
+}): Promise<Metadata> => {
+  const id = (await params).droneId;
+  const product = products.find((p) => linkify(p.title.long) == id);
 
   return {
     title: product?.title.long,

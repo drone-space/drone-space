@@ -6,9 +6,7 @@ import { useHeadroom, useWindowScroll } from '@mantine/hooks';
 import NavbarMain from '@/components/layout/navbars/main';
 import UnderlayGlass from '../underlays/glass';
 
-export default function Navbar(
-  { children }: { children?: React.ReactNode } = { children: <NavbarMain /> }
-) {
+export default function Navbar({ children }: { children?: React.ReactNode }) {
   const [scroll] = useWindowScroll();
   const pinned = useHeadroom({ fixedAt: 120 });
 
@@ -21,7 +19,7 @@ export default function Navbar(
       >
         {(styles) => (
           <div style={styles}>
-            <UnderlayGlass>{children}</UnderlayGlass>
+            <UnderlayGlass>{children || <NavbarMain />}</UnderlayGlass>
           </div>
         )}
       </Transition>

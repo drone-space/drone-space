@@ -11,7 +11,7 @@ export const API_URL = `${BASE_URL}/api`;
 export const ICON_SIZE = 20;
 export const ICON_WRAPPER_SIZE = ICON_SIZE + 8;
 export const ICON_STROKE_WIDTH = 1.5;
-export const SECTION_SPACING = 64;
+export const SECTION_SPACING = 120;
 
 export const MINUTE = 60;
 export const HOUR = MINUTE * 60;

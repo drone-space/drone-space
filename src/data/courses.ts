@@ -261,7 +261,7 @@ const courses = {
         },
         price: {
           discount: null,
-          full: 160000,
+          full: 70000,
         },
         priceFeatures: null,
         desc: 'The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.',

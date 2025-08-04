@@ -18,6 +18,7 @@ import appTheme from '@/styles/theme';
 import appResolver from '@/styles/resolver';
 import { appName } from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
+import { Notifications } from '@mantine/notifications';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -54,6 +55,7 @@ export default function RootLayout({
           cssVariablesResolver={appResolver}
           classNamesPrefix={linkify(appName)}
         >
+          <Notifications limit={3} position="bottom-right" />
           {children}
         </MantineProvider>
       </body>

@@ -1,4 +1,4 @@
-export const companyName = 'Drone Space Kenya';
+export const companyName = 'Drone Space';
 export const appName = 'Drone Space';
 export const companyDescription =
   'Drone Space is the leading provider of drone training and drone services in Kenya and East Africa. The company offers comprehensive drone license training courses designed to educate and equip professionals with the skills and knowledge to safely and effectively operate drones commercially. The courses are designed to meet international standards and provide students with hands-on experience and practical knowledge of drone operations.';

@@ -8,7 +8,7 @@ import LayoutSection from '@/components/layout/section';
 import LayoutBody from '@/components/layout/body';
 import FooterMain from '@/components/layout/footers/main';
 import AffixNavbar from '@/components/common/affixi/navbar';
-import AffixAssistant from '@/components/common/affixi/assistant';
+// import AffixAssistant from '@/components/common/affixi/assistant';
 import {
   Anchor,
   Button,
@@ -52,6 +52,9 @@ import IntroSection from '@/components/layout/intros/section';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
 import { appName } from '@/data/app';
+
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dronespace.co.ke'),
@@ -342,7 +345,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
         <main>{children}</main>
 
         <AffixNavbar />
-        <AffixAssistant />
+        {/* <AffixAssistant /> */}
       </LayoutBody>
     </ProviderStore>
   );

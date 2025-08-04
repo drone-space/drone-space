@@ -2,7 +2,7 @@ import React from 'react';
 
 import LayoutBody from '@/components/layout/body';
 import AffixNavbar from '@/components/common/affixi/navbar';
-import AffixAssistant from '@/components/common/affixi/assistant';
+// import AffixAssistant from '@/components/common/affixi/assistant';
 
 export default function ShopLayout({
   children, // will be a page or nested layout
@@ -14,7 +14,7 @@ export default function ShopLayout({
       {children}
 
       <AffixNavbar />
-      <AffixAssistant />
+      {/* <AffixAssistant /> */}
     </LayoutBody>
   );
 }

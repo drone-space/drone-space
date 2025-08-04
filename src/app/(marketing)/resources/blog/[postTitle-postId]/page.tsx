@@ -13,14 +13,13 @@ import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partials/blog-content';
 import { linkify, processUrl } from '@/utilities/formatters/string';
-import { postGet, postsGet } from '@/services/database/posts';
+import { postsGet } from '@/services/database/posts';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const payload: null | { data: PostRelations[] } = await postsGet();
-  if (payload == null) throw new Error('Posts not found');
 
   if (payload == null) return [];
 
@@ -38,24 +37,23 @@ export default async function Post({
 
   if (!postId) redirect('/not-found');
 
-  const payload: null | { data: PostRelations } = await postGet({
-    postId: postId,
-  });
-
+  const payload: null | { data: PostRelations[] } = await postsGet();
   if (payload == null) throw new Error('Posts not found');
 
-  const processedImage = processUrl(
-    payload.data.image,
-    HOSTED_BASE_URL.DEFAULT
+  const post: undefined | PostRelations = payload.data.find(
+    (p) => p.id == postId
   );
+  if (post == null) throw new Error('Post not found');
+
+  const processedImage = processUrl(post.image, HOSTED_BASE_URL.DEFAULT);
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Blog',
-          title: payload.data.title,
-          desc: payload.data.excerpt,
+          title: post.title,
+          desc: post.excerpt,
           bg: processedImage,
         }}
         options={{ spacing: 'padding', autoSizeText: true }}
@@ -70,13 +68,13 @@ export default async function Post({
         <Stack gap={'xl'}>
           <ImageDefault
             src={processedImage}
-            alt={payload.data.title}
+            alt={post.title}
             height={{ base: 240, xs: 320, md: 360, lg: 400 }}
             radius={'sm'}
             priority
           />
 
-          <BlogContent content={payload.data.content} />
+          <BlogContent content={post.content} />
         </Stack>
       </LayoutSection>
     </LayoutPage>

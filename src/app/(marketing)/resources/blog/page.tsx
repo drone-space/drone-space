@@ -7,7 +7,7 @@ import LayoutSection from '@/components/layout/section';
 import CardBlogNew from '@/components/common/cards/blog/new';
 import CardBlogMain from '@/components/common/cards/blog/main';
 import IntroPage from '@/components/layout/intros/page';
-import { postsGet } from '@/handlers/requests/database/post';
+import { postsGet } from '@/services/database/posts';
 import { PostRelations } from '@/types/models/post';
 import { Metadata } from 'next';
 import { HOSTED_BASE_URL } from '@/data/constants';
@@ -40,7 +40,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
-  const { posts }: { posts: PostRelations[] } = await postsGet();
+  const payload: null | { data: PostRelations[] } = await postsGet();
+  if (payload == null) throw new Error('Posts not found');
 
   return (
     <LayoutPage>
@@ -60,16 +61,16 @@ export default async function Blog() {
       >
         <Grid gutter={'xl'}>
           <GridCol span={12} mx={{ lg: 'auto' }} visibleFrom="md">
-            <CardBlogNew post={posts[0]} />
+            <CardBlogNew post={payload.data[0]} />
           </GridCol>
 
           <GridCol span={{ base: 12, xs: 6 }} hiddenFrom="md">
-            <CardBlogMain post={posts[0]} />
+            <CardBlogMain post={payload.data[0]} />
           </GridCol>
 
-          {posts.map(
+          {payload.data.map(
             (post, index) =>
-              posts.indexOf(post) != 0 && (
+              payload.data.indexOf(post) != 0 && (
                 <GridCol key={index} span={{ base: 12, xs: 6, md: 4, xl: 3 }}>
                   <CardBlogMain post={post} />
                 </GridCol>

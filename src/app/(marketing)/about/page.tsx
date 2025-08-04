@@ -17,7 +17,6 @@ import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
-import { studentsGet } from '@/handlers/requests/database/student';
 import { shuffleArray } from '@/utilities/helpers/array';
 import IntroSection from '@/components/layout/intros/section';
 import ImageDefault from '@/components/common/images/default';
@@ -26,6 +25,7 @@ import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 // import { team } from '@/data/team';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName } from '@/data/app';
+import { studentsGet } from '@/services/database/students';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const { data: students } = await studentsGet();
+  const payload = await studentsGet();
 
   return (
     <LayoutPage>
@@ -308,7 +308,9 @@ export default async function About() {
           options={{ spacing: true }}
         />
 
-        <CarouselTestimonials props={shuffleArray(students)} />
+        {payload != null && (
+          <CarouselTestimonials props={shuffleArray(payload.data)} />
+        )}
       </LayoutSection>
     </LayoutPage>
   );

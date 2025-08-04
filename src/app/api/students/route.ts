@@ -1,4 +1,4 @@
-import prisma from '@/libraries/prisma';
+import { studentsGet } from '@/services/database/students';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-static';
@@ -6,14 +6,14 @@ export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const studentRecords = await prisma.student.findMany({
-      where: { status: 'ACTIVE' },
-    });
+    const studentRecords = await studentsGet();
 
-    return NextResponse.json(
-      { data: studentRecords },
-      { status: 200, statusText: 'Students Retrieved' }
-    );
+    if (studentRecords == null) throw new Error('No Records Found');
+
+    return NextResponse.json(studentRecords, {
+      status: 200,
+      statusText: 'Students Retrieved',
+    });
   } catch (error) {
     console.error('---> route handler error (get students):', error);
     return NextResponse.json(

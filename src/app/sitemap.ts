@@ -2,11 +2,12 @@ import { HOSTED_BASE_URL } from '@/data/constants';
 import { MetadataRoute } from 'next';
 import accessories from '@/data/accessories';
 import products from '@/data/products';
-import { postsGet } from '@/handlers/requests/database/post';
 import { PostRelations } from '@/types/models/post';
 import { linkify } from '@/utilities/formatters/string';
+import { postsGet } from '@/services/database/posts';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -39,9 +40,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  const { posts }: { posts: PostRelations[] } = await postsGet();
+  const payload: null | { data: PostRelations[] } = await postsGet();
+  if (payload == null) throw new Error('Posts not found');
 
-  const postRoutes = posts.map((post) => ({
+  const postRoutes = payload.data.map((post) => ({
     url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post.title)}-${post.id}`,
     lastModified: post.updated_at,
     changeFrequency: 'weekly' as const,

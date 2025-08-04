@@ -4,16 +4,16 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 
 import { typeParams } from '../layout';
-import { postGet } from '@/handlers/requests/database/post';
 import { Stack } from '@mantine/core';
 import IntroPage from '@/components/layout/intros/page';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
-import { PostRelations } from '@/types/static/blog';
+import { PostRelations } from '@/types/models/post';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partials/blog-content';
 import { linkify, processUrl } from '@/utilities/formatters/string';
+import { postGet } from '@/services/database/posts';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -39,17 +39,24 @@ export default async function Post({
 
   if (!postId) redirect('/not-found');
 
-  const { post }: { post: PostRelations } = await postGet({ postId: postId });
+  const payload: null | { data: PostRelations } = await postGet({
+    postId: postId,
+  });
 
-  const processedImage = processUrl(post.image, HOSTED_BASE_URL.DEFAULT);
+  if (payload == null) throw new Error('Posts not found');
+
+  const processedImage = processUrl(
+    payload.data.image,
+    HOSTED_BASE_URL.DEFAULT
+  );
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Blog',
-          title: post.title,
-          desc: post.excerpt,
+          title: payload.data.title,
+          desc: payload.data.excerpt,
           bg: processedImage,
         }}
         options={{ spacing: 'padding', autoSizeText: true }}
@@ -64,13 +71,13 @@ export default async function Post({
         <Stack gap={'xl'}>
           <ImageDefault
             src={processedImage}
-            alt={post.title}
+            alt={payload.data.title}
             height={{ base: 240, xs: 320, md: 360, lg: 400 }}
             radius={'sm'}
             priority
           />
 
-          <BlogContent content={post.content} />
+          <BlogContent content={payload.data.content} />
         </Stack>
       </LayoutSection>
     </LayoutPage>

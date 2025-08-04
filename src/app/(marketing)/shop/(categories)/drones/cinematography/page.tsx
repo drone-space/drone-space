@@ -14,6 +14,9 @@ import IntroPage from '@/components/layout/intros/page';
 import CtaFeatured from '@/components/partials/cta/featured';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appName}`;
 const metaDesc = `Explore drones engineered for cinematic excellence. Capture ultra-smooth, high-resolution footage for film, TV, and content creation.`;
 

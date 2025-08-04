@@ -19,6 +19,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = `${appName} Gallery - Showcasing Our Training & Aerial Services`;
 const metaDesc =
   'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';

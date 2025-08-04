@@ -14,6 +14,9 @@ import IntroPage from '@/components/layout/intros/page';
 import CtaFeatured from '@/components/partials/cta/featured';
 import { companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
 const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
 

@@ -11,6 +11,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = `Privacy Policy - How ${appName} Protects Your Data`;
 const metaDesc = `Learn how ${appName} collects, uses, and protects your personal information. Your privacy is our priority.`;
 

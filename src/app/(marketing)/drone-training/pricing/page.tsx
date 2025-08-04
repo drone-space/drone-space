@@ -13,6 +13,9 @@ import { images } from '@/assets/images';
 import { GetLayout } from '../../resources/faq/page';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = `Drone Training Pricing - Affordable Courses at ${appName} Kenya`;
 const metaDesc = `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`;
 

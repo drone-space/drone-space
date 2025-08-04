@@ -17,6 +17,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
 import { companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = 'Drone Space Services - Expert Drone Solutions in Kenya';
 const metaDesc = `Discover professional drone services, including training, aerial photography, surveying, and light shows. Trusted solutions for all your drone needs.`;
 

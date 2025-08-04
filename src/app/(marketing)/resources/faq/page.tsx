@@ -12,6 +12,8 @@ import IntroSection from '@/components/layout/intros/section';
 import { Grid, GridCol } from '@mantine/core';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = `${appName} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
   'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';

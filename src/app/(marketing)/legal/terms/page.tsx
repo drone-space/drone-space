@@ -11,6 +11,8 @@ import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+
 const metaTitle = `Terms and Conditions - ${appName} Kenya`;
 const metaDesc = `Review the terms and conditions governing the use of ${appName} services, training, and products. Stay informed about our policies and commitments.`;
 

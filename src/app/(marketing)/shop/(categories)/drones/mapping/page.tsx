@@ -14,6 +14,9 @@ import IntroPage from '@/components/layout/intros/page';
 import CtaFeatured from '@/components/partials/cta/featured';
 import { appName, companyName } from '@/data/app';
 
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
 const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appName}`;
 const metaDesc = `Discover drones built for geospatial mapping and land surveying. Capture accurate aerial data for construction, mining, and GIS projects.`;
 

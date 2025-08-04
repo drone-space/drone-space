@@ -112,8 +112,8 @@ export default async function LighShow() {
                   />
                 }
               >
-                {data.talk.map((item, index) => (
-                  <ListItem key={index}>{item}</ListItem>
+                {data.talk.map((item, i) => (
+                  <ListItem key={i}>{item}</ListItem>
                 ))}
               </List>
             </Container>
@@ -153,8 +153,8 @@ export default async function LighShow() {
               </Title>
 
               <Grid mt={'xl'}>
-                {data.understand.map((item, index) => (
-                  <GridCol key={index} span={{ base: 12, md: 6 }}>
+                {data.understand.map((item, i) => (
+                  <GridCol key={i} span={{ base: 12, md: 6 }}>
                     <CardShowsUnderstand data={item} />
                   </GridCol>
                 ))}
@@ -204,8 +204,8 @@ export default async function LighShow() {
               </Title>
 
               <Grid mt={'xl'}>
-                {data.advantages.map((advantage, index) => (
-                  <GridCol key={index} span={{ base: 12 }}>
+                {data.advantages.map((advantage, i) => (
+                  <GridCol key={i} span={{ base: 12 }}>
                     <CardShowsAdvantages
                       data={{
                         ...advantage,
@@ -253,8 +253,8 @@ export default async function LighShow() {
               </Title>
 
               <List spacing={'xs'} listStyleType="none" mt={'xl'}>
-                {data.why.map((item) => (
-                  <>
+                {data.why.map((item, i) => (
+                  <React.Fragment key={i}>
                     {data.why.indexOf(item) > 0 && (
                       <Divider
                         size={3}
@@ -270,7 +270,7 @@ export default async function LighShow() {
                       </Text>
                       : {item.item}
                     </ListItem>
-                  </>
+                  </React.Fragment>
                 ))}
               </List>
             </Container>
@@ -294,8 +294,8 @@ export default async function LighShow() {
         />
 
         <Grid mt={48}>
-          {data.applications.map((application, index) => (
-            <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
+          {data.applications.map((application, i) => (
+            <GridCol key={i} span={{ base: 12, xs: 6, md: 3 }}>
               <CardShowsApplications data={application} />
             </GridCol>
           ))}
@@ -452,18 +452,18 @@ export default async function LighShow() {
 
         <Grid justify="center" mt={48}>
           {data.pricing.map(
-            (price, index) =>
+            (price, i) =>
               data.pricing.indexOf(price) < 3 && (
-                <GridCol key={index} span={{ base: 12, xs: 6, md: 4 }}>
+                <GridCol key={i} span={{ base: 12, xs: 6, md: 4 }}>
                   <CardShowsPrice data={price} />
                 </GridCol>
               )
           )}
 
           {data.pricing.map(
-            (price, index) =>
+            (price, i) =>
               data.pricing.indexOf(price) > 2 && (
-                <GridCol key={index} span={{ base: 12, xs: 6, md: 5 }}>
+                <GridCol key={i} span={{ base: 12, xs: 6, md: 5 }}>
                   <CardShowsPrice data={price} />
                 </GridCol>
               )
@@ -492,8 +492,8 @@ export default async function LighShow() {
         />
 
         <Grid mt={48}>
-          {data.timeline.map((item, index) => (
-            <GridCol key={index} span={{ base: 12, md: 6 }}>
+          {data.timeline.map((item, i) => (
+            <GridCol key={i} span={{ base: 12, md: 6 }}>
               <Card withBorder h={'100%'} pt={'xl'} pb={0}>
                 <Title
                   order={3}

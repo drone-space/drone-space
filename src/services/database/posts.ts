@@ -7,27 +7,23 @@ export const postGet = async (params: {
   postId: string;
 }): Promise<{ data: PostRelations } | null> => {
   try {
-    const transactions = await prisma.$transaction(async (prisma) => {
-      const postRecord = await prisma.post.findUnique({
-        where: { id: params.postId },
+    const postRecord = await prisma.post.findUnique({
+      where: { id: params.postId },
 
-        include: {
-          _count: { select: { comments: true } },
+      include: {
+        _count: { select: { comments: true } },
 
-          category: true,
-          tags: true,
-          profile: true,
-        },
-      });
-
-      if (!postRecord) {
-        throw new Error('Post not found');
-      }
-
-      return { post: postRecord };
+        category: true,
+        tags: true,
+        profile: true,
+      },
     });
 
-    return { data: transactions.post };
+    if (!postRecord) {
+      throw new Error('Post not found');
+    }
+
+    return { data: postRecord };
   } catch (error) {
     console.error('---> service error - (get post):', error);
     return null;
@@ -36,27 +32,23 @@ export const postGet = async (params: {
 
 export const postsGet = async (): Promise<{ data: PostRelations[] } | null> => {
   try {
-    const transactions = await prisma.$transaction(async (prisma) => {
-      const postRecords = await prisma.post.findMany({
-        include: {
-          _count: { select: { comments: true } },
+    const postRecords = await prisma.post.findMany({
+      include: {
+        _count: { select: { comments: true } },
 
-          category: true,
-          tags: true,
-          profile: true,
-        },
+        category: true,
+        tags: true,
+        profile: true,
+      },
 
-        orderBy: { created_at: 'desc' },
-      });
-
-      if (!postRecords) {
-        throw new Error('Posts not found');
-      }
-
-      return { posts: postRecords };
+      orderBy: { created_at: 'desc' },
     });
 
-    return { data: transactions.posts };
+    if (!postRecords) {
+      throw new Error('Posts not found');
+    }
+
+    return { data: postRecords };
   } catch (error) {
     console.error('---> service error - (get posts):', error);
     return null;

@@ -5,19 +5,15 @@ import { StudentGet } from '@/types/models/student';
 
 export const studentsGet = async (): Promise<{ data: StudentGet[] } | null> => {
   try {
-    const transactions = await prisma.$transaction(async (prisma) => {
-      const studentRecords = await prisma.student.findMany({
-        where: { status: 'ACTIVE' },
-      });
-
-      if (!studentRecords) {
-        throw new Error('No student records found');
-      }
-
-      return { students: studentRecords };
+    const studentRecords = await prisma.student.findMany({
+      where: { status: 'ACTIVE' },
     });
 
-    return { data: transactions.students };
+    if (!studentRecords) {
+      throw new Error('No student records found');
+    }
+
+    return { data: studentRecords };
   } catch (error) {
     console.error('---> service error - (get student):', error);
     return null;

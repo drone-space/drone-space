@@ -9,19 +9,15 @@ import {
 
 export const profileGet = async (id: string): Promise<ProfileGet | null> => {
   try {
-    const transactions = await prisma.$transaction(async (prisma) => {
-      const profile = await prisma.profile.findUnique({
-        where: { id },
-      });
-
-      if (!profile) {
-        throw new Error("Profile doesn't exist");
-      }
-
-      return { profile };
+    const profileRecord = await prisma.profile.findUnique({
+      where: { id },
     });
 
-    return transactions.profile;
+    if (!profileRecord) {
+      throw new Error("Profile doesn't exist");
+    }
+
+    return profileRecord;
   } catch (error) {
     console.error('---> service error - (get profile):', error);
     return null;
@@ -30,22 +26,18 @@ export const profileGet = async (id: string): Promise<ProfileGet | null> => {
 
 export const profileCreate = async (params: ProfileCreate) => {
   try {
-    const transaction = await prisma.$transaction(async (prisma) => {
-      const profile = await prisma.profile.findUnique({
-        where: { id: params.id },
-      });
-
-      if (profile) {
-        return { profile, existed: true };
-      }
-
-      return {
-        profile: await prisma.profile.create({ data: params }),
-        existed: false,
-      };
+    const profileRecord = await prisma.profile.findUnique({
+      where: { id: params.id },
     });
 
-    return transaction;
+    if (profileRecord) {
+      return { profile: profileRecord, existed: true };
+    }
+
+    return {
+      profile: await prisma.profile.create({ data: params }),
+      existed: false,
+    };
   } catch (error) {
     console.error('---> service error - (create profile):', error);
     throw error;

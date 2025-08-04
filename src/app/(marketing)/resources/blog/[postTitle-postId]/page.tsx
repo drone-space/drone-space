@@ -13,19 +13,18 @@ import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partials/blog-content';
 import { linkify, processUrl } from '@/utilities/formatters/string';
-import { postGet } from '@/services/database/posts';
+import { postGet, postsGet } from '@/services/database/posts';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  // const { data: posts, error } = await postsGet();
-  const { data: posts }: { data: any } = { data: null };
+  const payload: null | { data: PostRelations[] } = await postsGet();
+  if (payload == null) throw new Error('Posts not found');
 
-  // if (error) throw error;
-  if (posts == null) return [];
+  if (payload == null) return [];
 
-  return posts.map((p: any) => ({
+  return payload.data.map((p: any) => ({
     'postTitle-postId': `${linkify(p.title)}-${p.id}`,
   }));
 }

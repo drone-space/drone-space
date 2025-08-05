@@ -13,11 +13,7 @@ export default function Main({ title }: { title?: string }) {
   const pathname = usePathname();
   const segments = crumbify(pathname);
 
-  const dynamicRoutes = [
-    '/resources/blog',
-    '/shop/drones',
-    '/shop/accessories',
-  ];
+  const dynamicRoutes = ['/shop/drones', '/shop/accessories'];
 
   const dynamic = dynamicRoutes.find((r) => pathname.includes(r));
 

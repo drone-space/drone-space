@@ -10,7 +10,7 @@ import IntroPage from '@/components/layout/intros/page';
 import courses from '@/data/courses';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-import { GetLayout } from '../../resources/faq/page';
+import { GetLayout } from '../../faq/page';
 import { appName, companyName } from '@/data/app';
 
 export const dynamic = 'force-static';

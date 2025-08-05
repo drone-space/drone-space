@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/about/contact`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/contact`,
     type: 'website',
     images: [
       {
@@ -141,7 +141,7 @@ export default async function Contact() {
 
         <Text ta={'center'} fz={'xs'} mt={'md'}>
           Please consult the{' '}
-          <Anchor component={Link} inherit fw={500} href="/resources/faq">
+          <Anchor component={Link} inherit fw={500} href="/faq">
             FAQ
           </Anchor>
           &apos;s first.

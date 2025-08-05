@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/about/gallery`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/gallery`,
     type: 'website',
     images: [
       {

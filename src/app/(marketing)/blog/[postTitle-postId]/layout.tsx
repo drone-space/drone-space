@@ -30,7 +30,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: metaTitle,
       description: post?.excerpt,
-      url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post?.title || '')}-${post?.id}`,
+      url: `${HOSTED_BASE_URL.DEFAULT}/blog/${linkify(post?.title || '')}-${post?.id}`,
       type: 'website',
       images: [
         {

@@ -20,7 +20,7 @@ import ImageDefault from '@/components/common/images/default';
 import { HOSTED_BASE_URL } from '@/data/constants';
 
 export default function Main({ post }: { post: PostRelations }) {
-  const path = `/resources/blog/${linkify(post.title)}-${post.id}`;
+  const path = `/blog/${linkify(post.title)}-${post.id}`;
 
   return (
     <Card className={classes.card} bg={'transparent'}>

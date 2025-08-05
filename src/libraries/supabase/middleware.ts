@@ -1,3 +1,4 @@
+import { sessionRoutes } from '@/data/routes';
 import { AUTH_URLS, BASE_URL, PARAM_NAME } from '@/data/constants';
 import { validateRoute } from '@/utilities/helpers/url';
 import { createServerClient } from '@supabase/ssr';
@@ -7,6 +8,13 @@ export const updateSession = async (
   request: NextRequest,
   response: NextResponse
 ) => {
+  const isAuthRoute = !isNonAuthRoute(request.nextUrl.pathname);
+
+  const withPathname =
+    request.nextUrl.pathname && !request.nextUrl.pathname.includes('undefined');
+
+  if (!withPathname || !isAuthRoute) return response;
+
   let supabaseResponse = response;
 
   const supabase = createServerClient(
@@ -77,4 +85,9 @@ export const updateSession = async (
   // of sync and terminate the user's session prematurely!
 
   return supabaseResponse;
+};
+
+// Helper to check if current pathname is in non-auth list
+const isNonAuthRoute = (pathname: string) => {
+  return sessionRoutes.includes(pathname);
 };

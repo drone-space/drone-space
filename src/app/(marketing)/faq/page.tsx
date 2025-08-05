@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/resources/faq`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/faq`,
     type: 'website',
     images: [
       {

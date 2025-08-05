@@ -3,7 +3,7 @@ import LayoutSection from '@/components/layout/section';
 import CardBlogAside from '@/components/common/cards/blog/aside';
 import { Divider, Grid, GridCol, Stack, Title } from '@mantine/core';
 import { PostRelations } from '@/types/models/post';
-import { typeParams } from '@/app/(marketing)/resources/blog/layout';
+import { typeParams } from '@/app/(marketing)/blog/layout';
 import { extractUuidFromParam } from '@/utilities/helpers/string';
 import { postsGet } from '@/services/database/posts';
 

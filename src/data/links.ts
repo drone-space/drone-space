@@ -210,13 +210,13 @@ const links = [
         desc: 'Striving to accelerate development in technology and innovation.',
       },
       {
-        link: '/about/gallery',
+        link: '/gallery',
         label: 'Gallery',
         leftSection: IconLibraryPhoto,
         desc: 'See a visual showcase of our journey and achievements.',
       },
       {
-        link: '/about/contact',
+        link: '/contact',
         label: 'Contact Us',
         leftSection: IconInfoCircle,
         desc: 'Reach out for any inquiries about drone training, drone reselling and drone services.',
@@ -283,17 +283,17 @@ const links = [
     subLinks: shopLinks,
   },
   {
-    link: '/resources/blog',
+    link: '/blog',
     label: 'Resources',
     subLinks: [
       {
-        link: '/resources/blog',
+        link: '/blog',
         label: 'Blog',
         leftSection: IconArticle,
         desc: 'Stay updated with insights, stories, and news from our community.',
       },
       {
-        link: '/resources/faq',
+        link: '/faq',
         label: 'FAQ',
         leftSection: IconHelp,
         desc: 'Find quick answers to common questions about our services, products, and policies.',

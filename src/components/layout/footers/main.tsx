@@ -190,7 +190,7 @@ const linkSets = [
       },
       {
         label: 'Get in Touch',
-        link: '/about/contact',
+        link: '/contact',
       },
     ],
   },

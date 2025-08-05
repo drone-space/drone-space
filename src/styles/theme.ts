@@ -5,6 +5,7 @@ import {
   Anchor,
   Container,
   createTheme,
+  Modal,
   Notification,
   Title,
 } from '@mantine/core';
@@ -79,6 +80,19 @@ const appTheme = createTheme({
   },
 
   components: {
+    Modal: Modal.extend({
+      defaultProps: {
+        transitionProps: {
+          duration: 250,
+          transition: 'fade',
+        },
+        overlayProps: {
+          backgroundOpacity: 0.5,
+          blur: 3,
+        },
+      },
+    }),
+
     Anchor: Anchor.extend({
       defaultProps: { underline: 'never' },
     }),

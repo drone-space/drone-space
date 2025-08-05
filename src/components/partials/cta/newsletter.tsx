@@ -5,45 +5,46 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import {
+  ActionIcon,
+  Button,
+  Flex,
+  Grid,
+  GridCol,
+  Group,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
+import React from 'react';
 import FormNewsletter from '@/components/form/newsletter';
 import LayoutSection from '@/components/layout/section';
 import classes from './newsletter.module.scss';
 import { images } from '@/assets/images';
-import { usePathname } from 'next/navigation';
-import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
+import { IconFileDownload, IconPhoneCall, IconX } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
 
-export default function Newsletter() {
-  const pathname = usePathname();
-
-  const [selectedVariant, setSelectedVariant] = useState<
-    'pri' | 'sec' | undefined
-  >(undefined);
-
-  useEffect(() => {
-    // Randomly choose between two values
-    const randomChoice = Math.random() < 0.5 ? 'pri' : 'sec';
-    setSelectedVariant(randomChoice);
-  }, [pathname]); // This ensures the random value is set on mount
-
+export default function Newsletter({ close }: { close?: () => void }) {
   return (
     <LayoutSection
       id={'partial-cta-newsletter'}
       c={'var(--mantine-color-body)'}
       className={classes.section}
       style={{
-        backgroundImage: `url('${selectedVariant == 'pri' ? images.backgrounds.cta.newsletter.primary : images.backgrounds.cta.newsletter.secondary}')`,
+        backgroundImage: `url('${images.web.newsletter}')`,
       }}
     >
-      <div className={classes.overlay}></div>
+      <Group className={classes.overlay} align={'start'} justify="end" p={'sm'}>
+        <ActionIcon color={'white'} variant={'subtle'} onClick={close}>
+          <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+        </ActionIcon>
+      </Group>
 
       <Grid py={SECTION_SPACING / 2} pos={'relative'} align="center">
-        <GridCol span={{ base: 12, sm: 8 }}>
-          <Stack gap={'xl'} w={{ sm: '90%', md: '66%' }}>
-            <Stack gap={0} ta={{ base: 'center', sm: 'start' }}>
+        <GridCol span={{ base: 12 }}>
+          <Stack gap={'xl'}>
+            <Stack gap={0} ta={{ base: 'center' }}>
               <Title order={2} c={'white'}>
                 Join Our Community!
               </Title>
@@ -58,12 +59,13 @@ export default function Newsletter() {
           </Stack>
         </GridCol>
 
-        <GridCol span={{ base: 12, sm: 4 }}>
+        <GridCol span={{ base: 12 }}>
           <Flex
-            direction={{ base: 'column', xs: 'row', sm: 'column' }}
+            direction={{ base: 'column', xs: 'row' }}
             justify={'center'}
             gap={'md'}
-            align={{ base: 'center', sm: 'end' }}
+            align={{ base: 'center' }}
+            mt={'xl'}
           >
             <ModalContactCallback>
               <Button

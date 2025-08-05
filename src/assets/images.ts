@@ -27,6 +27,7 @@ export const images = {
 
   web: {
     hero: `${baseUrl.droneSpace}/web/hero-banner.webp`,
+    newsletter: `${baseUrl.droneSpace}/web/newsletter-banner.webp`,
   },
 
   brand: {

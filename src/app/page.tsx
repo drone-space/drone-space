@@ -39,7 +39,6 @@ import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
 import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
-import CtaNewsletter from '@/components/partials/cta/newsletter';
 import {
   COOKIE_NAME,
   ICON_SIZE,
@@ -47,7 +46,7 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import { Metadata } from 'next';
-
+import ModalNewsletter from '@/components/common/modals/newsletter';
 import IntroSection from '@/components/layout/intros/section';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
@@ -296,8 +295,6 @@ export default function Home() {
             ))}
           </Grid>
         </LayoutSection>
-
-        <CtaNewsletter />
       </LayoutPage>
     </HomeLayout>
   );
@@ -346,6 +343,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
 
         <AffixNavbar />
         {/* <AffixAssistant /> */}
+        <ModalNewsletter />
       </LayoutBody>
     </ProviderStore>
   );

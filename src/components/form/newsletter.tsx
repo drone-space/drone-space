@@ -16,6 +16,7 @@ export default function Newsletter() {
         <GridCol span={{ base: 12, xs: 8 }}>
           <TextInput
             required
+            data-autofocus
             aria-label={'Email'}
             placeholder={`Your Email *`}
             {...form.getInputProps('email')}

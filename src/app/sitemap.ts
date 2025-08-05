@@ -40,15 +40,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  const payload: null | { data: PostRelations[] } = await postsGet();
-  if (payload == null) throw new Error('Posts not found');
+  let postRoutes: any[] = [];
 
-  const postRoutes = payload.data.map((post) => ({
-    url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post.title)}-${post.id}`,
-    lastModified: post.updated_at,
-    changeFrequency: 'weekly' as const,
-    priority: 0.5,
-  }));
+  try {
+    const payload: null | { data: PostRelations[] } = await postsGet();
+
+    if (payload != null) {
+      postRoutes = payload.data.map((post) => ({
+        url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post.title)}-${post.id}`,
+        lastModified: post.updated_at,
+        changeFrequency: 'weekly' as const,
+        priority: 0.5,
+      }));
+    }
+  } catch (e) {
+    console.error('x-> Posts not found:', e);
+    postRoutes = [];
+  }
 
   const beginningOfYear = new Date(new Date().getFullYear(), 0, 1);
 

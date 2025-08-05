@@ -25,6 +25,10 @@ export const images = {
     },
   },
 
+  web: {
+    hero: `${baseUrl.droneSpace}/web/hero-banner.webp`,
+  },
+
   brand: {
     droneSpace: {
       icon: {

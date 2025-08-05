@@ -47,6 +47,7 @@ export default async function Contact() {
           path: 'Reach Out',
           title: 'Contact Us',
           desc: 'Please reach out to us if you have questions about Drone Space, our offerings, or anything else.',
+          // bg: images.web.hero,
         }}
       />
 

@@ -14,6 +14,7 @@ import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partials/blog-content';
 import { linkify, processUrl } from '@/utilities/formatters/string';
 import { postsGet } from '@/services/database/posts';
+import { images } from '@/assets/images';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -53,8 +54,8 @@ export default async function Post({
         props={{
           path: 'Blog',
           title: post.title,
-          desc: post.excerpt,
-          bg: processedImage,
+          // desc: post.excerpt,
+          bg: images.web.hero,
         }}
         options={{ spacing: 'padding', autoSizeText: true }}
       />

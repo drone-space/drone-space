@@ -5,6 +5,7 @@ import products from '@/data/products';
 import { PostRelations } from '@/types/models/post';
 import { linkify } from '@/utilities/formatters/string';
 import { postsGet } from '@/services/database/posts';
+import { sitemapRoutes } from '@/data/routes';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600;
@@ -14,25 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes = [
     '', // homepage
-    '/about',
-    '/about/contact',
-    '/about/gallery',
-    '/drone-solutions',
-    '/drone-solutions/light-shows',
-    '/drone-training',
-    '/drone-training/pricing',
-    '/legal/policy',
-    '/legal/terms',
-    '/resources/blog',
-    '/resources/faq',
-    '/shop',
-    '/shop/accessories',
-    '/shop/drones/agriculture',
-    '/shop/drones/camera',
-    '/shop/drones/cinematography',
-    '/shop/drones/enterprise',
-    '/shop/drones/mapping',
-    '/shop/drones/upcoming',
+    ...sitemapRoutes,
   ].map((route) => ({
     url: `${HOSTED_BASE_URL.DEFAULT}${route}`,
     lastModified: now.toISOString().split('T')[0], // formatted date
@@ -47,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     if (payload != null) {
       postRoutes = payload.data.map((post) => ({
-        url: `${HOSTED_BASE_URL.DEFAULT}/resources/blog/${linkify(post.title)}-${post.id}`,
+        url: `${HOSTED_BASE_URL.DEFAULT}/blog/${linkify(post.title)}-${post.id}`,
         lastModified: post.updated_at,
         changeFrequency: 'weekly' as const,
         priority: 0.5,

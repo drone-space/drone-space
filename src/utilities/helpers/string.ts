@@ -105,3 +105,9 @@ export const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
   }
   return btoa(binary);
 };
+
+export const cleanPaths = (paths: string[]): string[] => {
+  const filtered = paths.filter((path) => !path.includes('#'));
+  const unique = Array.from(new Set(filtered));
+  return unique;
+};

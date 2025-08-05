@@ -27,6 +27,7 @@ export const DEFAULT_COLOR_SCHEME: 'light' | 'dark' = 'light';
 
 export const COOKIE_NAME = {
   CONSENT_COOKIES: 'consent.cookies',
+  SUB_REJECTED: 'sub.rejected',
   LOCAL: { COUNTRY: 'local.country', COUNTRIES: 'local.countries' },
   COLOR_SCHEME: 'theme.color-scheme',
   COLOR_SCHEME_STATE: 'theme.color-scheme-state',
@@ -36,6 +37,7 @@ export const LOCAL_STORAGE_NAME = {
   COUNTRY: 'country',
   COUNTRIES: 'countries',
   CLAUDE: 'claude',
+  NEWSLETTER: 'newsletter',
 };
 
 export const SESSION_STORAGE_NAME = {

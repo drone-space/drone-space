@@ -13,16 +13,22 @@ import {
   ListItem,
   Stack,
   Image,
+  Button,
 } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import { images } from '@/assets/images';
 import classes from './main.module.scss';
 import { socialLinks } from '@/data/links';
 import NextImage from 'next/image';
-import { SECTION_SPACING } from '@/data/constants';
-import { IconCircleFilled } from '@tabler/icons-react';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  SECTION_SPACING,
+} from '@/data/constants';
+import { IconCircleFilled, IconMail } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
 import { appName, emails, phones } from '@/data/app';
+import ModalNewsletter from '@/components/common/modals/newsletter';
 
 export default function Main() {
   return (
@@ -59,6 +65,19 @@ export default function Main() {
               comprehensive model for corporate clients, government agencies,
               public safety departments, and individuals.
             </Text>
+
+            <Group>
+              <ModalNewsletter>
+                <Button
+                  variant={'light'}
+                  leftSection={
+                    <IconMail size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                  }
+                >
+                  Subscribe to Newsletter
+                </Button>
+              </ModalNewsletter>
+            </Group>
 
             <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
               {socialLinks.map((social, index) => (

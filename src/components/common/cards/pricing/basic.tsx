@@ -52,7 +52,7 @@ export default function Basic({
         <Stack>
           {data.advanced && (
             <Group justify="end" opacity={offset ? 0 : 1}>
-              <Badge radius={'sm'} color="sec.3" c="pri.7">
+              <Badge radius={'lg'} color="sec.3" c="pri.7">
                 Advanced Course
               </Badge>
             </Group>

@@ -130,7 +130,7 @@ export default async function Services() {
               alt={'Aerial Cinematography'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -203,7 +203,7 @@ export default async function Services() {
               alt={'Agriculture'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -286,7 +286,7 @@ export default async function Services() {
               alt={'Drone Mapping and Survey'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -343,7 +343,7 @@ export default async function Services() {
               alt={'Thermal Inspection'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -426,7 +426,7 @@ export default async function Services() {
               alt={'Search and Rescue'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -499,7 +499,7 @@ export default async function Services() {
               alt={'Medical Delivery'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -586,7 +586,7 @@ export default async function Services() {
               alt={'Consultancy and Resale'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -662,7 +662,7 @@ export default async function Services() {
               alt={'ROC Support'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>

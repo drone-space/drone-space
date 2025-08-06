@@ -71,7 +71,7 @@ export default async function Post({
             src={processedImage}
             alt={post.title}
             height={{ base: 240, xs: 320, md: 360, lg: 400 }}
-            radius={'sm'}
+            radius={'lg'}
             priority
           />
 

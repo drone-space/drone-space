@@ -153,7 +153,7 @@ function DroneCategorySection({
             alt={'Agriculture'}
             height={{ base: 240, xs: 320, sm: 400, md: 340, lg: 400 }}
             mode="grid"
-            radius={'sm'}
+            radius={'lg'}
           />
         </GridCol>
       </Grid>

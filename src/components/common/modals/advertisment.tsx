@@ -48,7 +48,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
             src={slide.image}
             alt={`Poster ${index + 1}`}
             loading="lazy"
-            radius={'sm'}
+            radius={'lg'}
           />
         </Group>
       )}

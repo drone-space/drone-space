@@ -65,7 +65,7 @@ const appTheme = createTheme({
   },
 
   primaryColor: 'pri',
-  defaultRadius: 'sm',
+  defaultRadius: 'lg',
   defaultGradient: {
     from: 'pri.7',
     to: 'sec.4',

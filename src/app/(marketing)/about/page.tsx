@@ -79,7 +79,7 @@ export default async function About() {
                 loop
                 muted
                 style={{
-                  borderRadius: 'var(--mantine-radius-sm)',
+                  borderRadius: 'var(--mantine-radius-lg)',
                   overflow: 'hidden',
                 }}
                 poster={images.gallery.airfield.image1}
@@ -194,7 +194,7 @@ export default async function About() {
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -238,7 +238,7 @@ export default async function About() {
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
-              radius={'sm'}
+              radius={'lg'}
             />
           </GridCol>
         </Grid>

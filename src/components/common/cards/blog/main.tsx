@@ -26,7 +26,7 @@ export default function Main({ post }: { post: PostRelations }) {
     <Card className={classes.card} bg={'transparent'}>
       <CardSection
         style={{
-          borderRadius: 'var(--mantine-radius-sm)',
+          borderRadius: 'var(--mantine-radius-lg)',
           overflow: 'hidden',
         }}
       >

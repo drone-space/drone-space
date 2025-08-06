@@ -18,7 +18,7 @@ import {
 import LayoutSection from '@/components/layout/section';
 import { images } from '@/assets/images';
 import classes from './main.module.scss';
-import { socialLinks } from '@/data/links';
+import { serviceLinks, socialLinks, trainingLinks } from '@/data/links';
 import NextImage from 'next/image';
 import {
   ICON_SIZE,
@@ -34,11 +34,11 @@ export default function Main() {
   return (
     <LayoutSection
       id={'partial-footer-main'}
-      padded={'lg'}
+      padded={'xl'}
       className={classes.footer}
     >
-      <Grid mt={SECTION_SPACING / 2} gutter={{ base: 'xl', md: 'md' }}>
-        <GridCol span={{ base: 12, md: 6 }}>
+      <Grid mt={SECTION_SPACING / 2} gutter={{ base: 'xl', md: 0 }}>
+        <GridCol span={{ base: 12, md: 4.5 }}>
           <Stack gap={'xl'}>
             <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
               <Anchor component={Link} href={'/'}>
@@ -54,7 +54,7 @@ export default function Main() {
             </Flex>
 
             <Text
-              maw={{ md: '75%', lg: '66%' }}
+              maw={{ md: '90%', lg: '80%' }}
               ta={{ base: 'center', md: 'start' }}
               fz={'sm'}
             >
@@ -66,7 +66,7 @@ export default function Main() {
               public safety departments, and individuals.
             </Text>
 
-            <Group>
+            <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
               <ModalNewsletter>
                 <Button
                   variant={'light'}
@@ -77,7 +77,7 @@ export default function Main() {
                   Subscribe to Newsletter
                 </Button>
               </ModalNewsletter>
-            </Group>
+            </Flex>
 
             <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
               {socialLinks.map((social, index) => (
@@ -99,16 +99,16 @@ export default function Main() {
           </Stack>
         </GridCol>
 
-        <GridCol span={{ base: 12, md: 6 }} visibleFrom="sm">
-          <Grid>
+        <GridCol span={{ base: 12, md: 7.5 }} visibleFrom="sm">
+          <Grid gutter={{ md: 'md', lg: 0 }}>
             {linkSets.map((linkSet, index) => (
-              <GridCol key={index} span={{ sm: 6 }}>
+              <GridCol key={index} span={{ sm: 4 }}>
                 <Flex
                   direction={'column'}
                   align={{ base: 'center', md: 'start' }}
                   gap={'xl'}
                 >
-                  <Title order={4} fw={'bold'}>
+                  <Title order={4} fz={'md'} fw={700}>
                     {linkSet.title}
                   </Title>
 
@@ -120,7 +120,7 @@ export default function Main() {
                           href={link.link}
                           title={link.label}
                           className={classes.link}
-                          fz={'sm'}
+                          fz={{ base: 'sm', md: 'xs', lg: 'sm' }}
                         >
                           {link.label}
                         </Anchor>
@@ -136,7 +136,7 @@ export default function Main() {
 
       <Divider
         mt={SECTION_SPACING / 2}
-        mb={'lg'}
+        mb={'xl'}
         color="var(--mantine-color-default-border)"
       />
 
@@ -170,7 +170,7 @@ export default function Main() {
           </Group>
 
           <Text component="span" inherit>
-            © {new Date().getFullYear()} {appName}. All Rights Reserved.
+            {appName} © {new Date().getFullYear()}, All Rights Reserved.
           </Text>
         </Flex>
       </Stack>
@@ -189,29 +189,12 @@ const phone = {
 
 const linkSets = [
   {
-    title: 'Useful Links',
-    links: [
-      {
-        label: 'About Drone Space',
-        link: '/about',
-      },
-      {
-        label: 'Our Drone Solutions',
-        link: '/drone-solutions',
-      },
-      {
-        label: 'Drone Training',
-        link: '/drone-training',
-      },
-      {
-        label: 'Drone Shop',
-        link: '/shop',
-      },
-      {
-        label: 'Get in Touch',
-        link: '/contact',
-      },
-    ],
+    title: 'Drone Courses',
+    links: trainingLinks,
+  },
+  {
+    title: 'Drone Solutions',
+    links: serviceLinks,
   },
   {
     title: 'Contact',

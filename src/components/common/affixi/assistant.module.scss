@@ -1,8 +1,8 @@
 @keyframes colorChange {
   0% {
     background-color: light-dark(
-      var(--mantine-color-pri-7),
-      var(--mantine-color-pri-7)
+      var(--mantine-color-pri-8),
+      var(--mantine-color-pri-8)
     );
     color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
   }
@@ -11,12 +11,12 @@
       var(--mantine-color-sec-3),
       var(--mantine-color-sec-3)
     );
-    // color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
+    // color: light-dark(var(--mantine-color-pri-8), var(--mantine-color-pri-8));
   }
   100% {
     background-color: light-dark(
-      var(--mantine-color-pri-7),
-      var(--mantine-color-pri-7)
+      var(--mantine-color-pri-8),
+      var(--mantine-color-pri-8)
     );
     color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
   }

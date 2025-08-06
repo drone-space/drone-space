@@ -24,7 +24,7 @@ export default function Featured() {
       <LayoutSection
         id="page-shop-featured"
         containerized={'responsive'}
-        bg="linear-gradient(45deg, var(--mantine-color-sec-4) 0%, var(--mantine-color-sec-4) 0%, var(--mantine-color-pri-7) 90%, var(--mantine-color-pri-7) 100%)"
+        bg="linear-gradient(45deg, var(--mantine-color-sec-3) 0%, var(--mantine-color-sec-3) 0%, var(--mantine-color-pri-8) 90%, var(--mantine-color-pri-8) 100%)"
         c={'var(--mantine-color-white)'}
         visibleFrom="md"
         padded={'xl'}
@@ -32,7 +32,7 @@ export default function Featured() {
         <Grid align="center" gutter={0}>
           {/* <GridCol span={12}>
           <Group justify="center">
-            <Badge color={'sec.4'} c={'pri'}>
+            <Badge color={'sec.3'} c={'pri'}>
               Featured Drone
             </Badge>
           </Group>
@@ -85,7 +85,7 @@ export default function Featured() {
                   tt={'uppercase'}
                   lts={5}
                   fw={700}
-                  // c={'sec.4'}
+                  // c={'sec.3'}
                   className={classes.glitchText}
                 >
                   Featured Drone

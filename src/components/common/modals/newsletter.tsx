@@ -46,7 +46,11 @@ export default function Newsletter({
         onClose={close}
         centered
         withCloseButton={false}
-        padding={0}
+        styles={{
+          content: {
+            padding: 0,
+          },
+        }}
         size={'lg'}
       >
         <CtaNewsletter close={close} />

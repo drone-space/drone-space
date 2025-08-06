@@ -66,44 +66,47 @@ export default function Main({
   );
 
   return (
-    <LayoutSection
-      id={'partial-navbar-main'}
-      pos={options?.absolute ? 'absolute' : undefined}
-      left={options?.absolute ? 0 : undefined}
-      top={options?.absolute ? 0 : undefined}
-      right={options?.absolute ? 0 : undefined}
-      style={{ zIndex: 1 }}
-    >
-      <Group justify="space-between">
-        <Anchor component={Link} href={'/'} py={{ base: 5, md: 0 }}>
-          {imageBrand}
-        </Anchor>
+    <>
+      <LayoutSection
+        id={'partial-navbar-main'}
+        pos={options?.absolute ? 'absolute' : undefined}
+        left={options?.absolute ? 0 : undefined}
+        top={options?.absolute ? 0 : undefined}
+        right={options?.absolute ? 0 : undefined}
+        bg={'var(--mantine-color-body)'}
+        style={{ zIndex: 1 }}
+      >
+        <Group justify="space-between">
+          <Anchor component={Link} href={'/'} py={{ base: 5, md: 0 }}>
+            {imageBrand}
+          </Anchor>
 
-        <Group gap={'lg'} visibleFrom="md">
-          <Group>{navLinks}</Group>
+          <Group gap={'lg'} visibleFrom="md">
+            <Group gap={'lg'}>{navLinks}</Group>
 
-          <Group h={20}>
-            <Divider orientation="vertical" />
+            <Group h={20}>
+              <Divider orientation="vertical" />
+            </Group>
+
+            <Group>
+              <ModalContactCallback>
+                <Button size="sm" variant="gradient">
+                  Inquire
+                </Button>
+              </ModalContactCallback>
+            </Group>
           </Group>
 
-          <Group>
-            <ModalContactCallback>
-              <Button size="xs" variant="gradient">
-                Inquire
-              </Button>
-            </ModalContactCallback>
+          <Group hiddenFrom="md" justify="end">
+            <DrawerNavbarMain
+              props={links}
+              options={{ absolute: options?.absolute }}
+            />
           </Group>
         </Group>
-
-        <Group hiddenFrom="md" justify="end">
-          <DrawerNavbarMain
-            props={links}
-            options={{ absolute: options?.absolute }}
-          />
-        </Group>
-      </Group>
+      </LayoutSection>
 
       {!options?.absolute && <Divider />}
-    </LayoutSection>
+    </>
   );
 }

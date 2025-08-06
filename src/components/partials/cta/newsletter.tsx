@@ -25,7 +25,11 @@ export default function Newsletter({ close }: { close?: () => void }) {
       }}
     >
       <Group className={classes.overlay} align={'start'} justify="end" p={'lg'}>
-        <ActionIcon color={'white'} variant={'subtle'} onClick={close}>
+        <ActionIcon
+          color="var(--mantine-color-white)"
+          variant={'subtle'}
+          onClick={close}
+        >
           <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
         </ActionIcon>
       </Group>

@@ -93,6 +93,48 @@ export const shopLinks = [
   },
 ];
 
+export const trainingLinks = [
+  ...courseList
+    .map((course) => {
+      if (courseList.indexOf(course) < 5) {
+        return {
+          link: `/drone-training#${linkify(course.title)}`,
+          label: course.title,
+          leftSection: course.leftSection,
+          desc: course.linkDesc,
+        };
+      }
+
+      return null;
+    })
+    .filter((i) => i != null),
+
+  {
+    link: '/drone-training/pricing',
+    label: 'Training Pricing',
+    leftSection: IconCash,
+    desc: 'Find detailed information on costs and packages for all our training programs.',
+  },
+];
+
+export const serviceLinks = [
+  {
+    label: 'Drone Light Shows',
+    link: '/drone-solutions/light-shows',
+    leftSection: IconSun,
+    desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
+  },
+
+  ...services.map((service) => {
+    return {
+      link: `/drone-solutions#${linkify(service.title)}`,
+      label: service.title,
+      leftSection: service.leftSection,
+      desc: service.linkDesc,
+    };
+  }),
+];
+
 export const navLinkItems = {
   activity: [
     {
@@ -232,50 +274,12 @@ const links = [
   {
     link: '/drone-training',
     label: 'Drone Training',
-    subLinks: [
-      ...courseList
-        .map((course) => {
-          if (courseList.indexOf(course) < 5) {
-            return {
-              link: `/drone-training#${linkify(course.title)}`,
-              label: course.title,
-              leftSection: course.leftSection,
-              desc: course.linkDesc,
-            };
-          }
-
-          return null;
-        })
-        .filter((i) => i != null),
-
-      {
-        link: '/drone-training/pricing',
-        label: 'Training Pricing',
-        leftSection: IconCash,
-        desc: 'Find detailed information on costs and packages for all our training programs.',
-      },
-    ],
+    subLinks: trainingLinks,
   },
   {
     link: '/drone-solutions',
     label: 'Drone Solutions',
-    subLinks: [
-      {
-        label: 'Drone Light Shows',
-        link: '/drone-solutions/light-shows',
-        leftSection: IconSun,
-        desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
-      },
-
-      ...services.map((service) => {
-        return {
-          link: `/drone-solutions#${linkify(service.title)}`,
-          label: service.title,
-          leftSection: service.leftSection,
-          desc: service.linkDesc,
-        };
-      }),
-    ],
+    subLinks: serviceLinks,
   },
   {
     link: '/shop',

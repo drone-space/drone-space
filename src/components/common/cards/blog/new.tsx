@@ -26,7 +26,7 @@ export default function New({ post }: { post: PostRelations }) {
   const path = `/blog/${linkify(post.title)}-${post.id}`;
 
   return (
-    <Card className={classes.card} withBorder>
+    <Card className={classes.card} h={'100%'}>
       <Grid gutter={0}>
         <GridCol span={{ base: 12, sm: 6 }}>
           <Anchor
@@ -42,15 +42,12 @@ export default function New({ post }: { post: PostRelations }) {
               alt={post.title}
               height={360}
               mode="grid"
+              radius="lg"
             />
 
             <div className={classes.overlay}>
               <Group>
-                <Badge
-                  color="white"
-                  c={'var(--mantine-color-pri-8)'}
-                  radius={'xs'}
-                >
+                <Badge color="white" c={'var(--mantine-color-pri-8)'}>
                   {getRegionalDate(post.created_at).date}
                 </Badge>
               </Group>

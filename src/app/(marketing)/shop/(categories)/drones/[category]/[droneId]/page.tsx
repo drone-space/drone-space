@@ -83,7 +83,7 @@ export default async function DroneDetail({
         props={{
           path: `${product?.category} Drones`,
           title: product?.title.long || product?.title.short || 'Drone Shop',
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          bg: images.web.hero,
         }}
       />
 
@@ -125,7 +125,7 @@ export default async function DroneDetail({
                     inherit
                     fw={500}
                     c={
-                      'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                      'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
                     }
                     fz={{ md: 'xl' }}
                   >
@@ -159,7 +159,7 @@ export default async function DroneDetail({
                         inherit
                         fw={500}
                         c={
-                          'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
                         }
                         fz={{ md: 'xl' }}
                       >
@@ -241,7 +241,7 @@ export default async function DroneDetail({
                   component="span"
                   inherit
                   c={
-                    'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                    'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
                   }
                 >
                   Specification Overview
@@ -263,7 +263,7 @@ export default async function DroneDetail({
                           size={ICON_WRAPPER_SIZE / 1.5}
                           radius={'xl'}
                           color="sec.3"
-                          c={'pri.7'}
+                          c={'pri.8'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -325,7 +325,7 @@ export default async function DroneDetail({
                       <IconCube
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
+                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
                     }
                   >
@@ -343,7 +343,7 @@ export default async function DroneDetail({
                       <IconCubePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
+                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
                     }
                   >
@@ -361,7 +361,7 @@ export default async function DroneDetail({
                       <IconBattery3
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
+                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
                     }
                   >
@@ -379,7 +379,7 @@ export default async function DroneDetail({
                       <IconCirclePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
+                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
                     }
                   >
@@ -488,7 +488,7 @@ export default async function DroneDetail({
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                            'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
                           }
                           fz={{ md: 'xl' }}
                         >
@@ -606,7 +606,7 @@ export default async function DroneDetail({
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                            'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
                           }
                           fz={{ md: 'xl' }}
                         >
@@ -662,7 +662,7 @@ export default async function DroneDetail({
                                 size={ICON_WRAPPER_SIZE / 1.5}
                                 radius={'xl'}
                                 color="sec.3"
-                                c={'pri.7'}
+                                c={'pri.8'}
                                 visibleFrom="xs"
                               >
                                 <IconArrowRightDashed
@@ -690,7 +690,7 @@ export default async function DroneDetail({
                         inherit
                         fw={500}
                         c={
-                          'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
+                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
                         }
                         fz={{ md: 'xl' }}
                       >

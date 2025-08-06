@@ -35,7 +35,7 @@ export default function Factor({
       <Box p={'xl'} pos={'relative'} style={{ zIndex: 1 }}>
         <Stack justify="space-between">
           <Group justify="end" align="start" mih={160}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} color="sec.3" c="pri.7">
+            <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} color="sec.3" c="pri.8">
               <data.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
           </Group>

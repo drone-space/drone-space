@@ -56,7 +56,7 @@ export default function Shop() {
 
                 <Group justify={'center'}>
                   <MoadlContactShop>
-                    <Button color="sec.4" radius={'xl'}>
+                    <Button color="sec.3" radius={'xl'}>
                       Inquire
                     </Button>
                   </MoadlContactShop>

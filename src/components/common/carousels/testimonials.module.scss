@@ -14,7 +14,7 @@
 
 .control {
   transition: 0.25s all ease;
-  background-color: var(--mantine-color-pri-7);
+  background-color: var(--mantine-color-pri-8);
   color: var(--mantine-color-sec-3);
   border: 1px solid transparent;
   border-radius: var(--mantine-radius-lg);
@@ -22,7 +22,7 @@
   height: 24px;
 
   @include mantine.hover {
-    background-color: var(--mantine-color-pri-7);
+    background-color: var(--mantine-color-pri-8);
     color: var(--mantine-color-sec-3);
   }
 }
@@ -38,8 +38,8 @@
 
 .indicator {
   background-color: light-dark(
-    var(--mantine-color-pri-7),
-    var(--mantine-color-pri-7)
+    var(--mantine-color-pri-8),
+    var(--mantine-color-pri-8)
   );
   transition: 0.5s all ease;
 

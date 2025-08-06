@@ -49,7 +49,7 @@ export default function Main({ post }: { post: PostRelations }) {
             <Group>
               <Badge
                 color="white"
-                c={'var(--mantine-color-pri-7)'}
+                c={'var(--mantine-color-pri-8)'}
                 radius={'xs'}
               >
                 {getRegionalDate(post.created_at).date}

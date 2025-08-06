@@ -84,7 +84,7 @@ export default function Poster({ active }: { active?: boolean }) {
         </Carousel>
       </Modal>
 
-      <Button onClick={open} size="xs" color="sec.3" c={'pri.7'}>
+      <Button onClick={open} size="xs" color="sec.3" c={'pri.8'}>
         Training Workshop
       </Button>
     </>

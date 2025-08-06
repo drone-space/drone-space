@@ -141,7 +141,7 @@ export default async function About() {
       <LayoutSection
         id="stats"
         padded={24}
-        bg={'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'}
+        bg={'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
         <Grid justify="center">

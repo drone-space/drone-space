@@ -67,11 +67,11 @@ const appTheme = createTheme({
   primaryColor: 'pri',
   defaultRadius: 'lg',
   defaultGradient: {
-    from: 'pri.7',
-    to: 'sec.4',
+    from: 'pri.8',
+    to: 'sec.3',
     deg: 45,
   },
-  primaryShade: { light: 7, dark: 7 },
+  primaryShade: { light: 8, dark: 8 },
   cursorType: 'pointer',
 
   headings: {

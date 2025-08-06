@@ -49,7 +49,7 @@ export default async function TermsConditions() {
 
       <LayoutSection id="children" padded bg={'var(--mantine-color-gray-1)'}>
         <>
-          <LayoutSection id="page-legal-privacy-header" containerized={'sm'}>
+          <LayoutSection id="page-legal-privacy-header" containerized={'md'}>
             <Text
               inherit
               c={'dimmed'}
@@ -72,7 +72,7 @@ export default async function TermsConditions() {
               key={index}
               id="page-legal-privacy-list"
               margined={40}
-              containerized={'sm'}
+              containerized={'md'}
             >
               <Title order={2} fz={'lg'}>
                 {legal.terms.indexOf(t) + 1}. {t.title}

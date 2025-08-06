@@ -64,7 +64,7 @@ export default async function Post({
         id={'page-post-content'}
         margined={SECTION_SPACING / 2}
         mt={'xl'}
-        containerized={'sm'}
+        containerized={'md'}
       >
         <Stack gap={'xl'}>
           <ImageDefault

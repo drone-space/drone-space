@@ -3,7 +3,6 @@ import React from 'react';
 import { Metadata } from 'next';
 
 import LayoutBody from '@/components/layout/body';
-import AffixNavbar from '@/components/common/affixi/navbar';
 // import AffixAssistant from '@/components/common/affixi/assistant';
 
 import { HOSTED_BASE_URL } from '@/data/constants';
@@ -41,7 +40,6 @@ export default function ShopLayout({
     <LayoutBody>
       {children}
 
-      <AffixNavbar />
       {/* <AffixAssistant /> */}
     </LayoutBody>
   );

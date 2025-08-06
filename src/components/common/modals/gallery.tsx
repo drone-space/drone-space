@@ -27,9 +27,9 @@ export default function Gallery({ img }: typeModalGallery) {
         size={'110vh'}
         centered
         withCloseButton={false}
-        padding={0}
         styles={{
           content: {
+            padding: 0,
             borderRadius: 'var(--mantine-radius-md)',
             overflow: 'hidden',
           },

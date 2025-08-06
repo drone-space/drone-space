@@ -3,7 +3,6 @@ import {
   Badge,
   Button,
   Card,
-  Divider,
   Group,
   List,
   ListItem,
@@ -21,6 +20,7 @@ import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
+  SECTION_SPACING,
 } from '@/data/constants';
 
 export default function Basic({
@@ -47,6 +47,12 @@ export default function Basic({
           ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
           : undefined
       }
+      p={{
+        base: 'md',
+        xs: SECTION_SPACING / 3,
+        sm: 'md',
+        lg: SECTION_SPACING / 3,
+      }}
     >
       <Stack justify="space-between" h={'100%'}>
         <Stack>
@@ -58,7 +64,7 @@ export default function Basic({
             </Group>
           )}
 
-          <Text fz={'md'} fw={500}>
+          <Text fz={'md'} fw={500} mb={'md'}>
             Kshs.{' '}
             <Text component="span" inherit fz={28} fw={'bold'}>
               <NumberFormatter
@@ -103,39 +109,27 @@ export default function Basic({
 
           {data.featured && (
             <>
-              <Divider color="sec.3" />
-
-              <Text component="span" fz={'xs'} c={'sec.3'}>
+              <Text component="span" fz={'xs'} c={'sec.3'} mb={'md'}>
                 Exclusive of Medical
               </Text>
-
-              <Divider color="sec.3" />
             </>
           )}
 
           {data.title.full == 'Radio Telephony' && (
             <>
-              <Divider />
-
-              <Text component="span" inherit fz={'xs'} c={'dimmed'}>
+              <Text component="span" inherit fz={'xs'} mb={'md'}>
                 Exclusive of Exam, English Proficiency
                 <br /> and License Fees
               </Text>
-
-              <Divider />
             </>
           )}
 
           {data.advanced && (
             <>
-              <Divider />
-
-              <Text w={{ md: '75%' }} fz={'sm'} c={'dimmed'}>
+              <Text w={{ md: '75%' }} fz={'sm'} mb={'md'}>
                 For RPL hoders seeking to enhance their abilities and include{' '}
                 {data.title.full} to their skillset.
               </Text>
-
-              <Divider />
             </>
           )}
 
@@ -178,7 +172,7 @@ export default function Basic({
             color={data.featured ? 'sec.3' : 'pri'}
             c={data.featured ? 'pri.8' : 'white'}
             fullWidth
-            size="xs"
+            size="sm"
           >
             Enroll For {courseTitle}
           </Button>

@@ -4,21 +4,20 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
+import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
+
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-
 import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
-import { companyName } from '@/data/app';
+import { appName, companyName } from '@/data/app';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
-const metaTitle = 'Agriculture Drones - Optimize Farming with Drone Space';
-const metaDesc = `Discover agricultural drones for precision farming, crop monitoring, and spraying. Advanced tools to boost productivity and sustainability.`;
+const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appName}`;
+const metaDesc = `Explore drones engineered for cinematic excellence. Capture ultra-smooth, high-resolution footage for film, TV, and content creation.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/agriculture`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
     type: 'website',
     images: [
       {
@@ -39,24 +38,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Agriculture() {
-  const drones = products.filter((p) => p.category == 'agriculture');
+export default async function Camera() {
+  const drones = products.filter((p) => p.category == 'cinematography');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Agriculture & Precision Farming',
-          desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
-          bg: images.carousel.shop.image3,
+          title: 'Cinematography & Filmmaking',
+          desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
+          bg: images.carousel.shop.image5,
         }}
       />
 
-      <CtaFeatured />
-
       <LayoutSection
-        id="page-drones-agri"
+        id="page-drones-cinematography"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

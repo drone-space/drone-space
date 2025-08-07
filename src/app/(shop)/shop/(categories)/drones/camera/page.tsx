@@ -4,21 +4,20 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
+import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
-import products from '@/data/products';
+
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
-
 import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
-import { companyName } from '@/data/app';
+import { appName, companyName } from '@/data/app';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
-const metaTitle = 'Enterprise Drones - High-Performance Drones for Business';
-const metaDesc = `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`;
+const metaTitle = `Camera Drones - Capture Stunning Aerial Shots with ${appName}`;
+const metaDesc = `Shop advanced camera drones designed for professional photography and videography. Discover models that elevate your creative vision.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/enterprise`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
     type: 'website',
     images: [
       {
@@ -39,24 +38,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Enterprise() {
-  const drones = products.filter((p) => p.category == 'enterprise');
+export default async function Camera() {
+  const drones = products.filter((p) => p.category == 'camera');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Industrial & Enterprise Applications',
-          desc: 'Powerful drones designed for industrial and commercial applications.',
-          bg: images.carousel.shop.image2,
+          title: 'Camera Drones',
+          desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
+          bg: images.carousel.shop.image1,
         }}
       />
 
-      <CtaFeatured />
-
       <LayoutSection
-        id="page-drones-enterprise"
+        id="page-drones-camera"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

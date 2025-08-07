@@ -4,21 +4,20 @@ import { Metadata } from 'next';
 
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
-import products from '@/data/products';
 import { Grid, GridCol } from '@mantine/core';
 import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
-
+import products from '@/data/products';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
+
 import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
-import { appName, companyName } from '@/data/app';
+import { companyName } from '@/data/app';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
-const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appName}`;
-const metaDesc = `Discover drones built for geospatial mapping and land surveying. Capture accurate aerial data for construction, mining, and GIS projects.`;
+const metaTitle = 'Enterprise Drones - High-Performance Drones for Business';
+const metaDesc = `Explore enterprise-grade drones built for commercial applications like surveying, inspections, and logistics. Reliable solutions for your business needs.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/camera`,
+    url: `${HOSTED_BASE_URL.DEFAULT}/shop/drones/enterprise`,
     type: 'website',
     images: [
       {
@@ -39,24 +38,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Camera() {
-  const drones = products.filter((p) => p.category == 'mapping');
+export default async function Enterprise() {
+  const drones = products.filter((p) => p.category == 'enterprise');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Surveying & Mapping',
-          desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
-          bg: images.carousel.shop.image4,
+          title: 'Industrial & Enterprise Applications',
+          desc: 'Powerful drones designed for industrial and commercial applications.',
+          bg: images.carousel.shop.image2,
         }}
       />
 
-      <CtaFeatured />
-
       <LayoutSection
-        id="page-drones-mapping"
+        id="page-drones-enterprise"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

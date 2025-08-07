@@ -11,14 +11,13 @@ import CardShopDronesMain from '@/components/common/cards/shop/drones/main';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import IntroPage from '@/components/layout/intros/page';
-import CtaFeatured from '@/components/partials/cta/featured';
 import { appName, companyName } from '@/data/app';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
-const metaTitle = `Cinematography Drones - Film in Stunning Detail with ${appName}`;
-const metaDesc = `Explore drones engineered for cinematic excellence. Capture ultra-smooth, high-resolution footage for film, TV, and content creation.`;
+const metaTitle = `Mapping & Survey Drones - Precision Aerial Data with ${appName}`;
+const metaDesc = `Discover drones built for geospatial mapping and land surveying. Capture accurate aerial data for construction, mining, and GIS projects.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -40,23 +39,21 @@ export const metadata: Metadata = {
 };
 
 export default async function Camera() {
-  const drones = products.filter((p) => p.category == 'cinematography');
+  const drones = products.filter((p) => p.category == 'mapping');
 
   return (
     <LayoutPage>
       <IntroPage
         props={{
           path: 'Shop',
-          title: 'Cinematography & Filmmaking',
-          desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
-          bg: images.carousel.shop.image5,
+          title: 'Surveying & Mapping',
+          desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
+          bg: images.carousel.shop.image4,
         }}
       />
 
-      <CtaFeatured />
-
       <LayoutSection
-        id="page-drones-cinematography"
+        id="page-drones-mapping"
         padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}

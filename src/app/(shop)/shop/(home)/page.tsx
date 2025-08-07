@@ -16,7 +16,6 @@ import IntroSection from '@/components/layout/intros/section';
 import { shopLinks } from '@/data/links';
 import Link from 'next/link';
 import ImageDefault from '@/components/common/images/default';
-import CtaFeatured from '@/components/partials/cta/featured';
 
 export const dynamic = 'force-static';
 
@@ -24,8 +23,6 @@ export default async function Shop() {
   return (
     <LayoutPage>
       <HeroShop />
-
-      <CtaFeatured />
 
       <LayoutSection id="page-shop-intro" padded>
         <IntroSection

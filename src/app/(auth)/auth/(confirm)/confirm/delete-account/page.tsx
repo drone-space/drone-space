@@ -4,7 +4,7 @@ import React from 'react';
 // import { Metadata } from 'next';
 import { Center, Group, Loader, ThemeIcon } from '@mantine/core';
 import LayoutPage from '@/components/layout/page';
-import IntroPage from '@/components/layout/intros/page';
+import IntroSection from '@/components/layout/intros/section';
 import { useFormUserAccountDeleteTrigger } from '@/hooks/form/account/delete/trigger';
 import {
   ICON_SIZE,
@@ -20,9 +20,9 @@ export default function DeleteAccount() {
 
   return (
     <LayoutPage>
-      <IntroPage
+      <IntroSection
         props={{
-          path: `Account Deletion`,
+          subTitle: `Account Deletion`,
           title:
             !status.state || status.state == 'loading'
               ? 'Processing Request'
@@ -31,7 +31,7 @@ export default function DeleteAccount() {
         }}
       />
 
-      <Group justify="center">
+      <Group justify="center" mt={'md'}>
         {!status.state || status.state == 'loading' ? (
           <Center h={ICON_WRAPPER_SIZE * 2}>
             <Loader type="dots" size={40} />

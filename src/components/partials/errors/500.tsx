@@ -6,22 +6,22 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import IntroPage from '@/components/layout/intros/page';
 import { IconRefresh } from '@tabler/icons-react';
+import IntroSection from '@/components/layout/intros/section';
 
 export default function Error500({ reset }: { reset: () => void }) {
   return (
     <LayoutSection id={'error-500'}>
       <Stack justify="center" mih={'100vh'} pb={SECTION_SPACING}>
-        <IntroPage
+        <IntroSection
           props={{
-            path: `500`,
+            subTitle: `500`,
             title: 'Server Error',
             desc: `The page you are trying to open has triggered an error.`,
           }}
         />
 
-        <Group justify="center">
+        <Group justify="center" mt={'md'}>
           <Flex
             direction={{ base: 'column', xs: 'row' }}
             align={'center'}

@@ -335,7 +335,12 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <ProviderStore colorScheme={colorSchemeState || 'light'}>
       <LayoutBody
-        header={<HeaderMain />}
+        header={
+          <>
+            <AlertConference />
+            <HeaderMain />
+          </>
+        }
         nav={<NavbarMain />}
         footer={<FooterMain />}
       >

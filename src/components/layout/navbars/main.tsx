@@ -90,7 +90,7 @@ export default function Main({
 
             <Group>
               <ModalContactCallback>
-                <Button size="sm" variant="gradient">
+                <Button size="sm" variant="gradient" className={classes.button}>
                   Inquire
                 </Button>
               </ModalContactCallback>

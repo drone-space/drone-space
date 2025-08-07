@@ -24,3 +24,18 @@
 .linkActive {
   color: var(--mantine-color-pri-8) !important;
 }
+
+.button {
+  background: linear-gradient(
+    45deg,
+    var(--mantine-color-pri-8),
+    var(--mantine-color-sec-3)
+  );
+  background-size: 133%;
+  background-position: left;
+  transition: background-position 0.25s ease;
+
+  @include mantine.hover {
+    background-position: top;
+  }
+}

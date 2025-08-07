@@ -21,10 +21,9 @@ export default async function LayoutMarketing({
   return (
     <ProviderStore colorScheme={colorSchemeState || 'light'}>
       <LayoutBody nav={<NavbarMain />} footer={<FooterMain />}>
-        <main>
-          {children}
-          <ModalNewsletter />
-        </main>
+        <main>{children}</main>
+
+        <ModalNewsletter />
 
         <AffixNavbar />
       </LayoutBody>

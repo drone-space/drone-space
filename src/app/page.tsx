@@ -51,6 +51,7 @@ import IntroSection from '@/components/layout/intros/section';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
 import { appName } from '@/data/app';
+import AlertConference from '@/components/common/alerts/conference';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -346,9 +347,10 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
       >
         <main>{children}</main>
 
+        <ModalNewsletter />
+
         <AffixNavbar />
         {/* <AffixAssistant /> */}
-        <ModalNewsletter />
       </LayoutBody>
     </ProviderStore>
   );

@@ -25,10 +25,11 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { IconCircleFilled, IconMail } from '@tabler/icons-react';
+import { IconCircleFilled, IconMail, IconTicket } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
 import { appName, emails, phones } from '@/data/app';
 import ModalNewsletter from '@/components/common/modals/newsletter';
+import ModalConference from '@/components/common/modals/conference';
 
 export default function Main() {
   return (
@@ -65,19 +66,6 @@ export default function Main() {
               comprehensive model for corporate clients, government agencies,
               public safety departments, and individuals.
             </Text>
-
-            <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
-              <ModalNewsletter>
-                <Button
-                  variant={'light'}
-                  leftSection={
-                    <IconMail size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                  }
-                >
-                  Subscribe to Newsletter
-                </Button>
-              </ModalNewsletter>
-            </Flex>
 
             <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
               {socialLinks.map((social, index) => (
@@ -134,11 +122,38 @@ export default function Main() {
         </GridCol>
       </Grid>
 
-      <Divider
+      <Flex
+        align={'center'}
+        gap={'xs'}
+        justify={{ base: 'center', md: 'start' }}
         mt={SECTION_SPACING / 2}
         mb={'xl'}
-        color="var(--mantine-color-default-border)"
-      />
+      >
+        <ModalNewsletter options={{ auto: false }}>
+          <Button
+            size={'xs'}
+            leftSection={
+              <IconMail size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
+            }
+          >
+            Newsletter
+          </Button>
+        </ModalNewsletter>
+
+        <ModalConference>
+          <Button
+            size={'xs'}
+            color="sec.3"
+            leftSection={
+              <IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
+            }
+          >
+            AI Conference
+          </Button>
+        </ModalConference>
+      </Flex>
+
+      <Divider mb={'xl'} color="var(--mantine-color-default-border)" />
 
       <Stack fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
         <Flex

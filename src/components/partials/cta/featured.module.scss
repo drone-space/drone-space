@@ -1,4 +1,24 @@
-// glitch.module.scss
+.section {
+  background-size: cover !important;
+  background-position: center center !important;
+  color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-white)
+  ) !important;
+  position: relative !important;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba($color: #000000, $alpha: 0.3);
+}
+
+// glitch
 
 .glitchContainer {
   position: relative;
@@ -28,14 +48,14 @@
     left: -2px;
     text-shadow: 2px 0 var(--mantine-color-pink-6);
     clip: rect(44px, 999px, 56px, 0);
-    animation: glitch-anim-1 8s infinite steps(1) alternate-reverse;
+    animation: glitch-anim-1 2s infinite steps(1) alternate-reverse;
   }
 
   &::after {
     left: 2px;
     text-shadow: -2px 0 var(--mantine-color-red-6);
     clip: rect(24px, 999px, 100px, 0);
-    animation: glitch-anim-2 12s infinite steps(1) alternate-reverse;
+    animation: glitch-anim-2 3s infinite steps(1) alternate-reverse;
   }
 }
 

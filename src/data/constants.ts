@@ -28,6 +28,9 @@ export const DEFAULT_COLOR_SCHEME: 'light' | 'dark' = 'light';
 export const COOKIE_NAME = {
   CONSENT_COOKIES: 'consent.cookies',
   SUB_REJECTED: 'sub.rejected',
+  CONFERENCE: 'conference',
+  SHIPMENT: 'shipment',
+  FEAT_DRONE_SEEN: 'feature.drone.seen',
   LOCAL: { COUNTRY: 'local.country', COUNTRIES: 'local.countries' },
   COLOR_SCHEME: 'theme.color-scheme',
   COLOR_SCHEME_STATE: 'theme.color-scheme-state',

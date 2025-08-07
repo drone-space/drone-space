@@ -2,17 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
-import CtaNewsletter from '@/components/partials/cta/newsletter';
-import { getFromLocalStorage } from '@/utilities/helpers/storage';
-import { COOKIE_NAME, LOCAL_STORAGE_NAME } from '@/data/constants';
+import CtaFeatured from '@/components/partials/cta/featured';
+import { COOKIE_NAME } from '@/data/constants';
 import {
   getCookieClient,
   setCookieClient,
 } from '@/utilities/helpers/cookie-client';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { updateModalNewsletter } from '@/libraries/redux/slices/modals';
+import { updateModalFeaturedDrone } from '@/libraries/redux/slices/modals';
 
-export default function Newsletter({
+export default function FeatureDrone({
   options,
   children,
 }: {
@@ -21,19 +20,18 @@ export default function Newsletter({
 }) {
   const [opened, setOpened] = useState(false);
 
-  const openedGlobal = useAppSelector((state) => state.modals.newsletter);
+  const openedGlobal = useAppSelector((state) => state.modals.featuredDrone);
+
   const dispatch = useAppDispatch();
 
   const close = () => {
-    const subStatus = getFromLocalStorage(LOCAL_STORAGE_NAME.NEWSLETTER);
-
-    setCookieClient(COOKIE_NAME.SUB_REJECTED, !subStatus, {
-      expiryInSeconds: 60 * 60 * 24,
+    setCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN, true, {
+      expiryInSeconds: 60 * 60 * 24 * 7,
       path: '/',
       sameSite: 'Lax',
     });
 
-    dispatch(updateModalNewsletter(false));
+    dispatch(updateModalFeaturedDrone(false));
     setOpened(false);
   };
 
@@ -42,13 +40,10 @@ export default function Newsletter({
     if (openedGlobal == true) return;
     if (options?.auto == false) return;
 
-    const subStatus = getFromLocalStorage(LOCAL_STORAGE_NAME.NEWSLETTER);
-    if (subStatus && subStatus == true) return;
+    const featDroneSeen = getCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN);
+    if (featDroneSeen && featDroneSeen == 'true') return;
 
-    const subRejected = getCookieClient(COOKIE_NAME.SUB_REJECTED);
-    if (subRejected && subRejected == 'true') return;
-
-    dispatch(updateModalNewsletter(true));
+    dispatch(updateModalFeaturedDrone(true));
     setOpened(true);
   }, []);
 
@@ -64,9 +59,9 @@ export default function Newsletter({
             padding: 0,
           },
         }}
-        size={'lg'}
+        size={'xl'}
       >
-        <CtaNewsletter close={close} />
+        <CtaFeatured close={close} />
       </Modal>
 
       {children && (
@@ -75,7 +70,7 @@ export default function Newsletter({
           onClick={() => {
             if (openedGlobal == true) return;
 
-            dispatch(updateModalNewsletter(true));
+            dispatch(updateModalFeaturedDrone(true));
             setOpened(true);
           }}
         >

@@ -32,8 +32,9 @@ export default function LayoutNotify({
                 <ImageDefault
                   src={images.brand.droneSpace.logo.landscape.default}
                   alt={appName}
-                  height={48}
-                  width={160}
+                  height={{ base: 40 }}
+                  width={{ base: 240 }}
+                  fit="contain"
                   mode="grid"
                 />
               </Anchor>

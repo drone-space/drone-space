@@ -46,7 +46,27 @@ export default function Home() {
     return sameMonth;
   });
 
-  const slides = filteredIntakes.map((slide, index) => {
+  const filteredIntakeDates = filteredIntakes.filter((intake) => {
+    const newer = intake.dates.filter(
+      (d) =>
+        getDayNumber(
+          getRegionalDate(d, {
+            locale: 'en-GB',
+            format: 'numeric',
+          }).date
+        ) >
+        getDayNumber(
+          getRegionalDate(now, {
+            locale: 'en-GB',
+            format: 'numeric',
+          }).date
+        )
+    );
+
+    return newer && newer.length > 0;
+  });
+
+  const slides = filteredIntakeDates.map((slide, index) => {
     const cycle = ['start', 'center', 'end', 'center'];
     const alignment: any = cycle[index % cycle.length];
 
@@ -154,7 +174,7 @@ export default function Home() {
 
       <div style={{ position: 'relative', zIndex: 1 }}></div>
       <Carousel
-        withIndicators={filteredIntakes.length > 1}
+        withIndicators={filteredIntakeDates.length > 1}
         emblaOptions={{ loop: true }}
         withControls={false}
         classNames={{
@@ -163,8 +183,8 @@ export default function Home() {
           indicator: classes.indicator,
         }}
         plugins={[autoplay.current]}
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
+        // onMouseEnter={autoplay.current.stop}
+        // onMouseLeave={autoplay.current.reset}
       >
         {slides}
       </Carousel>

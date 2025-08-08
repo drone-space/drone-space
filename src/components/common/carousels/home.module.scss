@@ -22,6 +22,9 @@
 }
 
 .indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+
   background-color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-white)

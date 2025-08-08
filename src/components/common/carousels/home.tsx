@@ -2,278 +2,244 @@
 
 import React from 'react';
 import { useRef } from 'react';
-import NextImage from 'next/image';
 import {
-  AspectRatio,
-  Box,
+  Badge,
   Button,
+  Divider,
   Group,
-  Image,
+  Overlay,
   Stack,
   Text,
   Title,
 } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
-import { IconExternalLink, IconFileDownload } from '@tabler/icons-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { images } from '@/assets/images';
-import videos from '@/assets/videos';
-// import ModalAdvertisment from '../modals/advertisment';
 import LayoutSection from '@/components/layout/section';
-// import ModalPoster from '../modals/poster';
-// import ModalCamp from '../modals/camp';
-// import ModalShows from '../modals/shows';
-import ModalDownloadDocument from '@/components/common/modals/download/document';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import classes from './home.module.scss';
+import { locations } from '@/data/app';
+import ModalContactTraining from '../modals/contact/training';
+import { getRegionalDate } from '@/utilities/formatters/date';
 
 export default function Home() {
-  const autoplay = useRef(Autoplay({ delay: 8000 }));
+  const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-  const anchors = (
-    <Group gap={'xs'}>
-      <ModalDownloadDocument props={{ type: 'brochure' }}>
-        <Button
-          size="xs"
-          leftSection={
-            <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          }
-        >
-          Brochure
-        </Button>
-      </ModalDownloadDocument>
+  const now = new Date();
 
-      {/* <ModalPoster /> */}
-    </Group>
+  const currentMonthName = getMonthName(
+    getRegionalDate(now, {
+      locale: 'en-GB',
+      format: 'numeric',
+    }).date
   );
 
-  const slides = data.map((slide, index) => (
-    <CarouselSlide
-      key={index}
+  const filteredIntakes = data.filter((intake) => {
+    const intakeMonth = getMonthName(
+      getRegionalDate(intake.dates[0], {
+        locale: 'en-GB',
+        format: 'numeric',
+      }).date
+    );
+
+    const sameMonth = intakeMonth == currentMonthName;
+
+    return sameMonth;
+  });
+
+  const slides = filteredIntakes.map((slide, index) => {
+    const cycle = ['start', 'center', 'end', 'center'];
+    const alignment: any = cycle[index % cycle.length];
+
+    return (
+      <CarouselSlide key={index}>
+        <LayoutSection id={`carousel-home-slide-${index}`} pt={'lg'} pb={'md'}>
+          <Stack gap={'xl'} align={alignment} justify="center" mih={520}>
+            <Badge color="sec.3" c={'pri.8'}>
+              Intake Ongoing
+            </Badge>
+
+            <div>
+              <Title order={1} ta={alignment} className={classes.title}>
+                {slide.title}
+              </Title>
+
+              <Text ta={alignment} mt={'xs'}>
+                {slide.intro}
+              </Text>
+            </div>
+
+            <Divider w={{ base: '100%', md: '50%' }} color="sec.3" />
+
+            <div>
+              <Text ta={alignment} fz={'sm'}>
+                Theory Classes:{' '}
+                <Text component={'span'} inherit fw={'500'}>
+                  {locations.main.location}
+                </Text>
+              </Text>
+
+              <Text ta={alignment} fz={'sm'}>
+                Practicals:{' '}
+                <Text component={'span'} inherit fw={'500'}>
+                  {locations.airfield.location}
+                </Text>
+              </Text>
+            </div>
+
+            <div>
+              <Text ta={alignment}>
+                Course Duration:{' '}
+                <Text component={'span'} inherit fw={'bold'}>
+                  {slide.duration}
+                </Text>
+              </Text>
+
+              <Text ta={alignment}>
+                Intake:{' '}
+                <Text component={'span'} inherit fw={'bold'}>
+                  {getMonthName(
+                    getRegionalDate(slide.dates[0], {
+                      locale: 'en-GB',
+                      format: 'numeric',
+                    }).date
+                  )}{' '}
+                  {slide.dates.map((d, i) => (
+                    <span key={i}>
+                      {getDayNumber(
+                        getRegionalDate(d, {
+                          locale: 'en-GB',
+                          format: 'numeric',
+                        }).date
+                      )}
+                      {i === slide.dates.length - 2
+                        ? ' and '
+                        : i === slide.dates.length - 1
+                          ? ''
+                          : ', '}
+                    </span>
+                  ))}
+                </Text>
+              </Text>
+            </div>
+
+            <Group>
+              <ModalContactTraining
+                props={{
+                  initialValues: {
+                    subject: `${slide.title} Training Inquiry`,
+                    message: `I'm interested in enrolling in your ${slide.title} training program.`,
+                  },
+                }}
+              >
+                <Button variant={'white'}>Enroll Now</Button>
+              </ModalContactTraining>
+            </Group>
+          </Stack>
+        </LayoutSection>
+      </CarouselSlide>
+    );
+  });
+
+  return (
+    <div
       style={{
-        background: `linear-gradient( rgba(0, 0, 0, 0.25) 20%, rgba(0, 0, 0, 0.75) 100%), url('${slide.image}')`,
+        backgroundImage: `url('${images.web.rpl}')`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
+        position: 'relative',
       }}
     >
-      <LayoutSection id={`carousel-home-slide-${index}`}>
-        <Stack align={'center'} justify="center" mih={600}>
-          <Title order={1} ta={'center'} className={classes.title}>
-            {slide.title}
-          </Title>
+      <Overlay backgroundOpacity={0.5} style={{ zIndex: 0 }} />
 
-          <Text w={{ base: '100%', md: '50%' }} ta={'center'} fz={'sm'}>
-            {slide.desc}
-          </Text>
-
-          <Group gap={'xs'}>
-            {anchors}
-            {/* <ModalAdvertisment /> */}
-          </Group>
-
-          <Group gap={'xs'}>
-            {/* <ModalAdvertisment /> */}
-            {/* <ModalShows /> */}
-          </Group>
-        </Stack>
-      </LayoutSection>
-    </CarouselSlide>
-  ));
-
-  return (
-    <Carousel
-      withIndicators
-      emblaOptions={{ loop: true }}
-      withControls={false}
-      classNames={{
-        slide: classes.slide,
-        control: classes.control,
-        indicator: classes.indicator,
-      }}
-      plugins={[autoplay.current]}
-      // onMouseEnter={autoplay.current.stop}
-      // onMouseLeave={autoplay.current.reset}
-    >
-      <CarouselSlide
-        key={'slide-conference'}
-        style={{
-          background: `linear-gradient( rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.2) 100%), url('${images.posters.conference.poster1.landscape}')`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
+      <div style={{ position: 'relative', zIndex: 1 }}></div>
+      <Carousel
+        withIndicators={filteredIntakes.length > 1}
+        emblaOptions={{ loop: true }}
+        withControls={false}
+        classNames={{
+          slide: classes.slide,
+          control: classes.control,
+          indicator: classes.indicator,
         }}
+        plugins={[autoplay.current]}
+        onMouseEnter={autoplay.current.stop}
+        onMouseLeave={autoplay.current.reset}
       >
-        <LayoutSection id="carousel-slide" containerized={'lg'}>
-          <Stack align={'center'} justify="center" mih={600}>
-            <Stack className={classes.imageContainer} h={80}>
-              <Image
-                src={images.brand.conference.logo.landscape.light}
-                alt={'AI Conference'}
-                loading="lazy"
-                h={80}
-                component={NextImage}
-                width={1920}
-                height={1080}
-              />
-            </Stack>
-
-            <Text
-              inherit
-              fz={{ base: 'xs', xs: 'sm', sm: 'md', md: 'lg' }}
-              ta={'center'}
-            >
-              Following the success of the first 2024 AI Conference Nairobi,
-              which attracted over 900 attendees, Drone Space is excited to
-              announce that it will host the second AI Conference Nairobi later
-              this year.
-            </Text>
-
-            <Text
-              w={{ base: '100%', md: '75%' }}
-              ta={'center'}
-              fz={{ base: 'xs', xs: 'lg', sm: 'xl' }}
-              c={'yellow.4	'}
-              fw={'bold'}
-            >
-              Explore the Fusion of AI, Drones, and Data Analytics
-            </Text>
-
-            <Title
-              order={1}
-              className={classes.title}
-              ta={'center'}
-              fz={{ base: 'lg', xs: 'xl', sm: 24, md: 32 }}
-            >
-              {/* JW Marriott Hotel, Westlands <br /> */}
-              {/* Tue 17th - Wed 18th September, 2025 */}
-              Venue and Date TBA
-            </Title>
-
-            <Text
-              w={{ base: '100%', md: '75%', lg: '60%' }}
-              ta={'center'}
-              fz={'sm'}
-            >
-              Drone Space hosted Kenya&apos;s first public AI Conference on
-              March 26th - 27th, 2024, and will hold the 2nd AI Conference
-              Nairobi later this year.
-            </Text>
-
-            <Group gap={'xs'}>
-              <Button
-                component={'a'}
-                href="https://aiconference.co.ke"
-                target="_blank"
-                color="white"
-                variant="outline"
-                radius={'xl'}
-                size="xs"
-                rightSection={
-                  <IconExternalLink
-                    size={ICON_SIZE / 1.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
-              >
-                <Text component="span" inherit>
-                  Visit Our AI Conference Website
-                </Text>
-              </Button>
-            </Group>
-          </Stack>
-        </LayoutSection>
-      </CarouselSlide>
-
-      <CarouselSlide key={'slide-video'} pos={'relative'}>
-        <div className={classes.underlay}>
-          <AspectRatio ratio={1920 / 1080} h={'100%'}>
-            <video
-              // controls={false}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              // poster={images.gallery.innovation.jamuhuri.yr2020.image9}
-              height={'100%'}
-            >
-              <source src={videos.hero.home.video1} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </AspectRatio>
-        </div>
-
-        <Box
-          pos={'absolute'}
-          top={0}
-          bottom={0}
-          left={0}
-          right={0}
-          style={{
-            background: `linear-gradient( rgba(0, 0, 0, 0.25) 20%, rgba(0, 0, 0, 0.75) 100%)`,
-            zIndex: -1,
-          }}
-        ></Box>
-        <LayoutSection id="carousel-slide-2">
-          <Stack align={'center'} justify="center" mih={600}>
-            <Title order={1} className={classes.title} ta={'center'}>
-              Empowering Drone Professionals in Kenya
-            </Title>
-
-            <Text w={{ base: '100%', md: '50%' }} ta={'center'} fz={'sm'}>
-              Whether you&apos;re looking to start a new career or expand your
-              skillset, our Remote Pilot License (RPL) training program is the
-              perfect place to begin your journey. Join us and become a licensed
-              drone operator today!
-            </Text>
-
-            <Group gap={'xs'}>
-              <ModalDownloadDocument props={{ type: 'brochure' }}>
-                <Button
-                  size="xs"
-                  leftSection={
-                    <IconFileDownload
-                      size={ICON_SIZE}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  }
-                >
-                  Brochure
-                </Button>
-              </ModalDownloadDocument>
-
-              {/* <ModalPoster active={true} /> */}
-              {/* <ModalAdvertisment active={true} /> */}
-            </Group>
-
-            <Group gap={'xs'}>
-              {/* <ModalAdvertisment /> */}
-              {/* <ModalShows active={true} /> */}
-            </Group>
-          </Stack>
-        </LayoutSection>
-      </CarouselSlide>
-
-      {slides}
-    </Carousel>
+        {slides}
+      </Carousel>
+    </div>
   );
+}
+
+// Parses a date in the format DD/MM/YYYY
+function getMonthName(dateStr: string): string {
+  const [day, month, year] = dateStr.split('/').map(Number);
+  const date = new Date(year, month - 1, day); // month - 1 because Date months are 0-indexed
+  return date.toLocaleString('en-US', { month: 'long' });
+}
+
+function getDayNumber(dateStr: string): number {
+  const [day] = dateStr.split('/').map(Number);
+  return day;
 }
 
 const data = [
   {
-    image: images.gallery.graduation.yr2022.image8,
-    title: 'Over 250 RPL Certifications',
-    desc: 'The Remote Pilot Licence (RPL) Training is the initial license required for a delegate/student to start their professional drone pilot career. Join us today and experience the power of flight.',
+    badge: 'RPL',
+    title: 'Remote Pilot License',
+    intro: 'Join our next RPL intake and start flying professionally',
+    duration: '2 weeks',
+    dates: [
+      new Date(2025, 7, 5), // intake date
+      new Date(2025, 7, 12),
+      new Date(2025, 7, 19),
+      new Date(2025, 7, 26),
+    ],
   },
   {
-    image: images.gallery.expo.yr2022.image7,
-    title: 'Host of First Ever Drone Tech and Data Expo in the Region',
-    desc: 'Drone Space through its spaces and hub will develop different innovative spaces as well as training courses to meet the needs of drone operators, developers and innovators and to build strategic partnerships between them so as to support their innovations and developments.',
+    badge: 'IR',
+    title: 'Instructor Rating',
+    intro: 'Join our next RPL intake and start flying professionally',
+    duration: '14 - 21 days',
+    dates: [
+      new Date(2025, 8, 1), // intake date
+    ],
   },
   {
-    image: images.gallery.projects.project1.image5,
-    title: '100+ Drone Operations Completed',
-    desc: 'Our skilled personnel are adept at spotting issues and verifying drone operations follow client specifications and regulatory standards. When problems arise, Drone Space provides instant reaction and communication to all parties.',
+    badge: 'RT',
+    title: 'Radio Telephony',
+    intro: 'Join our next RPL intake and start flying professionally',
+    duration: '5 days',
+    dates: [
+      new Date(2025, 7, 4), // intake date
+    ],
+  },
+  {
+    badge: 'Agri',
+    title: 'Agricultural Spraying',
+    intro: 'Join our next RPL intake and start flying professionally',
+    duration: '10 days',
+    dates: [
+      new Date(2025, 7, 18), // intake date
+    ],
+  },
+  {
+    badge: 'Masterclass',
+    title: 'Drone Mapping & Survey',
+    intro: 'Join our next RPL intake and start flying professionally',
+    duration: '5 days',
+    dates: [
+      new Date(2025, 7, 25), // intake date
+    ],
+  },
+  {
+    badge: 'Thermal',
+    title: 'Thermography (ITC Level I)',
+    intro: 'Join our next RPL intake and start flying professionally',
+    duration: '5 days',
+    dates: [
+      new Date(2025, 8, 22), // intake date
+    ],
   },
 ];

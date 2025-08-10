@@ -34,10 +34,10 @@ export const Email = ({
           <Container style={content}>
             {options.withHeader && (
               <Section style={{ textAlign: 'center' }}>
-                <a href="https://example.com">
+                <a href="https://dronespace.co.ke">
                   <img
                     src={
-                      'https://bvkuvosgdpxgsaudprtx.supabase.co/storage/v1/object/public/avatars/brand/icon/icon-light.png'
+                      'https://bvkuvosgdpxgsaudprtx.supabase.co/storage/v1/object/public/images/brand/logo/landscape/default.png'
                     }
                     width={40}
                     height={'auto'}
@@ -61,7 +61,7 @@ export const Email = ({
                   <Text style={dimmedText}>
                     Copyright © {new Date().getFullYear()},{' '}
                     <Link
-                      href="https://example.com"
+                      href="https://dronespace.co.ke"
                       style={{
                         color: 'black',
                         textDecorationLine: 'underline',

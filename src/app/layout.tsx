@@ -4,7 +4,7 @@ import {
   MantineProvider,
   mantineHtmlProps,
 } from '@mantine/core';
-import { Montserrat, Geist_Mono } from 'next/font/google';
+import { Montserrat, Nova_Mono } from 'next/font/google';
 
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
@@ -16,7 +16,7 @@ import '../styles/globals.scss';
 
 import appTheme from '@/styles/theme';
 import appResolver from '@/styles/resolver';
-import { appName } from '@/data/app';
+import { appName, companyDescription } from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
 import { Notifications } from '@mantine/notifications';
 
@@ -25,14 +25,15 @@ const montserrat = Montserrat({
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const novaMono = Nova_Mono({
+  variable: '--font-nova-mono',
   subsets: ['latin'],
+  weight: '400',
 });
 
 export const metadata: Metadata = {
   title: appName,
-  description: '',
+  description: companyDescription,
 };
 
 export default function RootLayout({
@@ -49,7 +50,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
 
-      <body className={`${montserrat.variable} ${geistMono.variable}`}>
+      <body className={`${montserrat.variable} ${novaMono.variable}`}>
         <MantineProvider
           theme={appTheme}
           cssVariablesResolver={appResolver}

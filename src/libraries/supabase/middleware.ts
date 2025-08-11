@@ -1,3 +1,7 @@
+export const config = {
+  runtime: 'nodejs',
+};
+
 import { sessionRoutes } from '@/data/routes';
 import { AUTH_URLS, BASE_URL, PARAM_NAME } from '@/data/constants';
 import { validateRoute } from '@/utilities/helpers/url';

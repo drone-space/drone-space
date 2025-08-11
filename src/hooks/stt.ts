@@ -35,17 +35,21 @@ export const useSTT = (params?: {
   listening: boolean;
   setListening: Dispatch<SetStateAction<boolean>>;
 }) => {
-  // const [listening, setListening] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const transcriptRef = useRef('');
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const dataArrayRef = useRef<Uint8Array | null>(null);
+
+  // ✅ Always a Uint8Array<ArrayBuffer> (empty until startListening)
+  const dataArrayRef = useRef<Uint8Array<ArrayBuffer>>(
+    new Uint8Array(new ArrayBuffer(0))
+  );
+
   const volumeRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const silenceThresholdRef = useRef(0.1); // starts low, will be calibrated
+  const silenceThresholdRef = useRef(0.1);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !('webkitSpeechRecognition' in window))
@@ -67,17 +71,13 @@ export const useSTT = (params?: {
         const transcript = result[0].transcript;
 
         if (result.isFinal) {
-          // Persist final text to reference
           transcriptRef.current += transcript + ' ';
-          // Update liveText with confirmed transcript
           liveText = transcriptRef.current;
         } else {
-          // Show interim combined with confirmed transcript
           liveText = transcriptRef.current + transcript;
         }
       }
 
-      // Show live combined text in the form field
       params?.form?.setFieldValue('content', liveText.trim());
     };
 
@@ -85,7 +85,7 @@ export const useSTT = (params?: {
   }, []);
 
   const updateVolume = () => {
-    if (!analyserRef.current || !dataArrayRef.current) return;
+    if (!analyserRef.current) return;
 
     analyserRef.current.getByteFrequencyData(dataArrayRef.current);
     const avg =
@@ -98,22 +98,16 @@ export const useSTT = (params?: {
     const hasTranscript = transcriptRef.current.trim().length > 0;
 
     if (normalizedVolume > threshold) {
-      // Reset silence timer — we’re still talking
       if (silenceTimerRef.current) {
         clearTimeout(silenceTimerRef.current);
         silenceTimerRef.current = null;
       }
     } else {
-      // 🧠 Only stop if we've captured *some* speech
-      if (
-        hasTranscript &&
-        !silenceTimerRef.current &&
-        params?.voiceMode // 👈 only auto-stop if in voice mode
-      ) {
+      if (hasTranscript && !silenceTimerRef.current && params?.voiceMode) {
         silenceTimerRef.current = setTimeout(() => {
           stopListening({ submit: true });
           params?.onAutoStop?.();
-        }, 1000); // short silence period is fine now
+        }, 1000);
       }
     }
 
@@ -123,19 +117,13 @@ export const useSTT = (params?: {
   const startListening = async () => {
     params?.setListening(true);
 
-    // 🧠 Sync form and transcript before starting recognition
     const currentFormContent = params?.form?.values?.content?.trim() || '';
-
     if (params?.voiceMode) {
-      // In voice mode, trust the UI is already cleared
       transcriptRef.current = '';
     } else {
-      // In dictation mode, keep prior user edits or resume transcript
       if (!currentFormContent && transcriptRef.current) {
-        // 🧾 Rehydrate form with stored transcript if form is empty
         params?.form?.setFieldValue('content', transcriptRef.current);
       } else {
-        // 🧠 Sync transcript to form value if it exists
         transcriptRef.current = currentFormContent;
       }
     }
@@ -151,7 +139,8 @@ export const useSTT = (params?: {
     analyser.fftSize = 64;
 
     const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
+    // ✅ Always plain ArrayBuffer
+    const dataArray = new Uint8Array(new ArrayBuffer(bufferLength));
 
     source.connect(analyser);
 
@@ -159,9 +148,7 @@ export const useSTT = (params?: {
     analyserRef.current = analyser;
     dataArrayRef.current = dataArray;
 
-    // 🚀 Calibrate ambient noise floor first
     const samples: number[] = [];
-
     const captureBaseline = () => {
       analyser.getByteFrequencyData(dataArray);
       const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
@@ -171,12 +158,11 @@ export const useSTT = (params?: {
         requestAnimationFrame(captureBaseline);
       } else {
         const baseline = samples.reduce((a, b) => a + b, 0) / samples.length;
-        silenceThresholdRef.current = baseline + 0.05; // small margin above ambient
-        updateVolume(); // begin normal volume tracking
+        silenceThresholdRef.current = baseline + 0.05;
+        updateVolume();
       }
     };
 
-    // capture in voice mode only
     if (params?.voiceMode) {
       captureBaseline();
     }
@@ -190,7 +176,6 @@ export const useSTT = (params?: {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
     }
-
     if (silenceTimerRef.current) {
       clearTimeout(silenceTimerRef.current);
       silenceTimerRef.current = null;
@@ -199,20 +184,18 @@ export const useSTT = (params?: {
     audioContextRef.current?.close();
     audioContextRef.current = null;
     analyserRef.current = null;
-    dataArrayRef.current = null;
 
-    // 🔇 STOP mic stream
+    // ✅ Keep dataArrayRef as empty array instead of null
+    dataArrayRef.current = new Uint8Array(new ArrayBuffer(0));
+
     if (mediaStreamRef.current) {
       mediaStreamRef.current.getTracks().forEach((track) => track.stop());
       mediaStreamRef.current = null;
     }
 
-    // Store transcript locally before resetting
     const spokenText = transcriptRef.current.trim();
-
     if (stopParams?.submit && spokenText.length > 0) {
       const response = await params?.handleSubmit?.(spokenText);
-
       if (params?.streamSpeech && params?.voiceMode) {
         await params?.streamSpeech({
           text: response,
@@ -225,9 +208,7 @@ export const useSTT = (params?: {
   };
 
   const resetTranscript = () => {
-    // 🔁 Reset transcript so next round starts fresh
     transcriptRef.current = '';
-    // Optional: clear UI too
     params?.form?.setValues({ content: '' });
   };
 

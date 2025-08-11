@@ -1,7 +1,8 @@
-import type { NextConfig } from 'next';
+/** @type {import('next').NextConfig} */
+
 import path from 'node:path';
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,

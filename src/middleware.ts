@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateSession } from './libraries/supabase/middleware';
+// import { updateSession } from './libraries/supabase/middleware';
 import {
   createRedirectHandler,
   setCorsHeaders,
@@ -29,8 +29,10 @@ export async function middleware(request: NextRequest) {
   // Set CORS headers for the response
   setCorsHeaders({ crossOrigins, request, response });
 
-  // Update the session in the response
-  return await updateSession(request, response);
+  // // Update the session in the response
+  // return await updateSession(request, response);
+
+  return response;
 }
 
 export const config = {
@@ -44,7 +46,6 @@ export const config = {
      */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|pdf)$).*)',
   ],
-  runtime: 'nodejs',
 };
 
 const handleRedirect = createRedirectHandler(

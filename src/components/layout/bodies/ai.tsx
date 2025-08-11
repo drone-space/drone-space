@@ -152,7 +152,7 @@ export default function AI({
         fz={'sm'}
         px={'xs'}
         type="auto"
-        ref={scrollableRef}
+        ref={scrollableRef as React.Ref<HTMLDivElement>}
         styles={{ scrollbar: { zIndex: 1 } }}
       >
         <Stack gap={'xs'} mt={'xs'}>
@@ -189,7 +189,7 @@ export default function AI({
         })}
 
         {submitted && (
-          <Box h={'37.5vh'} ref={targetRef}>
+          <Box h={'37.5vh'} ref={targetRef as React.Ref<HTMLDivElement>}>
             <UserMessage content={form.values.content} />
             {liveReply ? (
               <AssistantMessage
@@ -205,7 +205,7 @@ export default function AI({
           </Box>
         )}
 
-        <div ref={targetRef}></div>
+        <div ref={targetRef as React.Ref<HTMLDivElement>}></div>
       </ScrollArea>
     </LayoutSection>
   );

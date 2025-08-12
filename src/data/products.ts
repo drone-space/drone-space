@@ -1442,7 +1442,7 @@ const products = [
       ],
     },
     price: {
-      former: 180000,
+      former: 190000,
       latter: null,
     },
     kit: {
@@ -1538,7 +1538,7 @@ const products = [
         ],
 
         price: {
-          former: 30000,
+          former: 40000,
           latter: null,
         },
       },

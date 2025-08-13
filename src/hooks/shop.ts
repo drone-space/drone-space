@@ -24,9 +24,7 @@ export interface ShopParams {
   maxPrice?: string;
 }
 
-export const useShopFilter = (list: any[]) => {
-  const minMaxPrices = getMinMax(list.map((l) => l.price.former));
-
+export const useShopListing = (list: any[]) => {
   const emptyValues: ShopParams = {
     search: '',
     layout: Layout.GRID,
@@ -45,12 +43,34 @@ export const useShopFilter = (list: any[]) => {
   }, []);
 
   useEffect(() => {
-    const handlePopState = () => {
+    const updateParamsFromUrl = () => {
       setParams(getUrlParams());
     };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+
+    // Listen to browser back/forward
+    window.addEventListener('popstate', updateParamsFromUrl);
+
+    // Patch pushState and replaceState
+    const pushState = history.pushState;
+    history.pushState = function (...args) {
+      pushState.apply(this, args);
+      updateParamsFromUrl();
+    };
+
+    const replaceState = history.replaceState;
+    history.replaceState = function (...args) {
+      replaceState.apply(this, args);
+      updateParamsFromUrl();
+    };
+
+    return () => {
+      window.removeEventListener('popstate', updateParamsFromUrl);
+      history.pushState = pushState;
+      history.replaceState = replaceState;
+    };
   }, []);
+
+  const minMaxPrices = getMinMax(list.map((l) => l.price.former));
 
   // Step 1: Filtered list
   const filteredList = useMemo(() => {
@@ -68,12 +88,8 @@ export const useShopFilter = (list: any[]) => {
       result = filterCategory(result, params);
     }
 
-    if (params.minPrice || params.maxPrice) {
-      const min = Number(params.minPrice) || minMaxPrices.min;
-      const max = Number(params.maxPrice) || minMaxPrices.max;
-      result = result.filter(
-        (item) => item.price.former >= min && item.price.former <= max
-      );
+    if (params.minPrice && params.maxPrice) {
+      result = filterPriceRange(result, params, minMaxPrices);
     }
 
     return result;
@@ -94,13 +110,32 @@ export const useShopFilter = (list: any[]) => {
 
   // Step 3: Pagination
   const { items, activePage, setActivePage, totalPages, pageRange } =
-    usePaginate(sortedList, Number(params.listSize));
+    usePaginate(
+      sortedList.length ? sortedList : [],
+      Number(params.listSize || 6)
+    );
 
   // Step 4: Update params
   const updateParams = (newParams: Partial<ShopParams>) => {
     setParams((prev) => ({ ...prev, ...newParams }));
-    setUrlParams({ ...params, ...newParams });
   };
+
+  useEffect(() => {
+    if (!params) return;
+
+    const currentParams = getUrlParams();
+
+    // Only update the URL if something is different
+    const isDifferent = Object.keys(params).some(
+      (key) =>
+        String(params[key as keyof ShopParams] ?? '') !==
+        String(currentParams[key] ?? '')
+    );
+
+    if (isDifferent) {
+      setUrlParams(params);
+    }
+  }, [params]);
 
   return {
     params,
@@ -124,6 +159,19 @@ const filterSearch = (items: any[], params: ShopParams) =>
   items.filter((item) =>
     item.title.long.toLowerCase().includes(params?.search?.toLowerCase() ?? '')
   );
+
+const filterPriceRange = (
+  items: any[],
+  params: ShopParams,
+  prices: { min: number; max: number }
+) => {
+  const min = Number(params.minPrice) || prices.min;
+  const max = Number(params.maxPrice) || prices.max;
+
+  return items.filter(
+    (item) => item.price.former >= min && item.price.former <= max
+  );
+};
 
 const getMinMax = (numbers: number[]): { min: number; max: number } => {
   if (numbers.length === 0) {

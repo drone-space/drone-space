@@ -34,7 +34,7 @@ export default function List({ data }: { data: typeDrone }) {
       h={'100%'}
     >
       <Grid gutter={0}>
-        <GridCol span={{ md: 4 }}>
+        <GridCol span={{ sm: 4 }}>
           <CardSection pos={'relative'}>
             <ImageDefault
               src={
@@ -43,7 +43,7 @@ export default function List({ data }: { data: typeDrone }) {
                 ''
               }
               alt={data.title.long}
-              height={{ md: 240 }}
+              height={{ base: 240 }}
               fit={'contain'}
               width={'100%'}
               mode="grid"
@@ -63,8 +63,8 @@ export default function List({ data }: { data: typeDrone }) {
           </CardSection>
         </GridCol>
 
-        <GridCol span={{ md: 8 }}>
-          <Box pl={{ md: SECTION_SPACING / 3 }}>
+        <GridCol span={{ sm: 8 }}>
+          <Box pl={{ sm: SECTION_SPACING / 3 }}>
             <Title
               order={3}
               fz={'sm'}
@@ -86,7 +86,7 @@ export default function List({ data }: { data: typeDrone }) {
             <Divider />
           </CardSection>
 
-          <Box pl={{ md: SECTION_SPACING / 3 }}>
+          <Box pl={{ sm: SECTION_SPACING / 3 }}>
             {data.desc && (
               <Text fz={'sm'} lineClamp={3}>
                 {data.desc}

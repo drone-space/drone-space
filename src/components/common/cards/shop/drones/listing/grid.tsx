@@ -40,7 +40,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                 ''
               }
               alt={data.title.long}
-              height={{ md: 280 }}
+              height={{ base: 280 }}
               width={'100%'}
               mode="grid"
               pt={48}

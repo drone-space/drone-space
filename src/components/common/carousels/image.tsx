@@ -39,8 +39,8 @@ export default function Image({ data }: { data: string[] }) {
         indicator: classes.indicator,
       }}
       plugins={[autoplay.current]}
-      onMouseEnter={autoplay.current.stop}
-      onMouseLeave={autoplay.current.reset}
+      // onMouseEnter={autoplay.current.stop}
+      // onMouseLeave={autoplay.current.reset}
     >
       {slides}
     </Carousel>

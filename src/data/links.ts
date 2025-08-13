@@ -31,7 +31,7 @@ import { socials } from './app';
 
 export const shopLinks = [
   {
-    link: '/shop/drones/camera',
+    link: '/shop?category=camera&layout=grid&listSize=6#listing',
     label: 'Camera Drones',
     leftSection: IconDeviceCameraPhone,
     desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
@@ -40,7 +40,7 @@ export const shopLinks = [
     image: images.carousel.shop.image1,
   },
   {
-    link: '/shop/drones/cinematography',
+    link: '/shop?category=cinematography&layout=grid&listSize=6#listing',
     label: 'Cinematography & Filmmaking',
     leftSection: IconCell,
     desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
@@ -49,7 +49,7 @@ export const shopLinks = [
     image: images.carousel.shop.image5,
   },
   {
-    link: '/shop/drones/enterprise',
+    link: '/shop?category=enterprise&layout=grid&listSize=6#listing',
     label: 'Industrial & Enterprise Applications',
     leftSection: IconCell,
     desc: 'Powerful drones designed for industrial and commercial applications.',
@@ -58,7 +58,7 @@ export const shopLinks = [
     image: images.carousel.shop.image2,
   },
   {
-    link: '/shop/drones/mapping',
+    link: '/shop?category=mapping&layout=grid&listSize=6#listing',
     label: 'Surveying & Mapping',
     leftSection: IconCell,
     desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
@@ -67,7 +67,7 @@ export const shopLinks = [
     image: images.carousel.shop.image4,
   },
   {
-    link: '/shop/drones/agriculture',
+    link: '/shop?category=agriculture&layout=grid&listSize=6#listing',
     label: 'Agriculture & Precision Farming',
     leftSection: IconPlant2,
     desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
@@ -76,7 +76,7 @@ export const shopLinks = [
     image: images.carousel.shop.image3,
   },
   {
-    link: '/shop/drones/upcoming',
+    link: '/shop?category=upcoming&layout=grid&listSize=6#listing',
     label: 'Upcoming Releases',
     leftSection: IconPlant2,
     desc: 'Be the first to explore the latest drone innovations and upcoming models hitting the skies soon.',

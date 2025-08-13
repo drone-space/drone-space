@@ -3,17 +3,6 @@
   overflow: hidden;
   border: 1px solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-gray-3));
-
-  @include mantine.hover {
-    .controls {
-      opacity: 1;
-    }
-  }
-}
-
-.controls {
-  transition: 0.25s all ease;
-  opacity: 0;
 }
 
 .control {
@@ -31,5 +20,7 @@
     var(--mantine-color-pri-8),
     var(--mantine-color-pri-8)
   );
+  height: 0.5rem;
+  width: 0.5rem;
   color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
 }

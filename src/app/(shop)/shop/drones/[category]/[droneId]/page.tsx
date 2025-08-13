@@ -235,6 +235,16 @@ export default async function DroneDetail({
               </div>
             </Stack>
 
+            {product?.specs.desc && (
+              <>
+                <Divider mt={'xl'} />
+
+                <Text mt={'xl'} fz={'sm'}>
+                  {product?.specs.desc}
+                </Text>
+              </>
+            )}
+
             <Divider
               label={
                 <Text
@@ -280,12 +290,6 @@ export default async function DroneDetail({
           </GridCol>
         </Grid>
 
-        {product?.specs.desc && (
-          <Text mt={'xl'} ta={{ base: 'start', xs: 'center' }} fz={'sm'}>
-            {product?.specs.desc}
-          </Text>
-        )}
-
         <Group justify="center" mt={SECTION_SPACING / 2}>
           <ModalContactShop
             props={{
@@ -318,36 +322,32 @@ export default async function DroneDetail({
             <Grid gutter={0} w={'100%'}>
               {product?.kit?.basic && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                  <TabsTab
-                    w={'100%'}
-                    value="basic"
-                    leftSection={
+                  <TabsTab w={'100%'} value="basic">
+                    <Group justify="center">
                       <IconCube
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
-                    }
-                  >
-                    {product.kit.flyMore ? 'Basic Kit' : 'In the box'}
+
+                      {product.kit.flyMore ? 'Basic Kit' : 'In the box'}
+                    </Group>
                   </TabsTab>
                 </GridCol>
               )}
 
               {product?.kit?.flyMore && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                  <TabsTab
-                    w={'100%'}
-                    value="flyMore"
-                    leftSection={
+                  <TabsTab w={'100%'} value="flyMore">
+                    <Group justify="center">
                       <IconCubePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
-                    }
-                  >
-                    Fly More Kit
+
+                      <span>Fly More Kit</span>
+                    </Group>
                   </TabsTab>
                 </GridCol>
               )}
@@ -357,33 +357,34 @@ export default async function DroneDetail({
                   <TabsTab
                     w={'100%'}
                     value="battery"
-                    leftSection={
+                      >
+                      <Group justify="center">
                       <IconBattery3
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
-                    }
-                  >
+
+                    <span>
                     Intelligent Battery
+                    </span>
+                    </Group>
                   </TabsTab>
                 </GridCol>
               )} */}
 
               {product?.accessories?.other && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                  <TabsTab
-                    w={'100%'}
-                    value="other"
-                    leftSection={
+                  <TabsTab w={'100%'} value="other">
+                    <Group justify="center">
                       <IconCirclePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
                         color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
-                    }
-                  >
-                    Other
+
+                      <span>Other</span>
+                    </Group>
                   </TabsTab>
                 </GridCol>
               )}

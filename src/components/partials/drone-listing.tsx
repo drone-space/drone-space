@@ -17,6 +17,7 @@ import {
   CardSection,
   Center,
   Divider,
+  Flex,
   Grid,
   GridCol,
   Group,
@@ -37,6 +38,7 @@ import { useRouter } from 'next/navigation';
 import { Layout, Sort, useShopFilter } from '@/hooks/shop';
 import { prependZeros } from '@/utilities/formatters/number';
 import { Order } from '@/enums/sort';
+import { useMediaQuery } from '@mantine/hooks';
 
 export default function DroneListing() {
   const router = useRouter();
@@ -58,9 +60,25 @@ export default function DroneListing() {
 
   const [listSize, setListSize] = useState(Number(params?.listSize || 6));
 
+  const mobile = useMediaQuery('(max-width: 48em)');
+
+  const resetButton = (
+    <Button
+      fullWidth
+      color="gray"
+      variant="light"
+      onClick={() => {
+        updateParams(emptyValues);
+        router.push('#page-shop-listing');
+      }}
+    >
+      Reset Filters
+    </Button>
+  );
+
   return (
-    <Grid gutter={0}>
-      <GridCol span={{ md: 3 }} pr={{ md: 32 }}>
+    <Grid gutter={{ base: 'xl', md: 'md', lg: 0 }}>
+      <GridCol span={{ md: 3 }} pr={{ lg: 32 }} visibleFrom="md">
         <Stack pos={'sticky'} top={SECTION_SPACING / 2}>
           <Card withBorder>
             <Title order={3} fz={'md'} c={'var(--mantine-color-text)'}>
@@ -75,7 +93,7 @@ export default function DroneListing() {
               {catList.map((cl, i) => (
                 <Anchor
                   key={i}
-                  fz={'sm'}
+                  fz={{ base: 'xs', lg: 'sm' }}
                   underline="hover"
                   onClick={() => {
                     updateParams({ ...params, category: cl.category });
@@ -87,7 +105,7 @@ export default function DroneListing() {
                       {capitalizeWords(`${cl.category} Drones`)}
                     </Text>
 
-                    <Text component="span" inherit>
+                    <Text component="span" inherit fz={'xs'}>
                       ({cl.count})
                     </Text>
                   </Group>
@@ -139,23 +157,11 @@ export default function DroneListing() {
             />
           </Card>
 
-          <Group>
-            <Button
-              fullWidth
-              color="gray"
-              variant="light"
-              onClick={() => {
-                updateParams(emptyValues);
-                router.push('#page-shop-listing');
-              }}
-            >
-              Reset Filters
-            </Button>
-          </Group>
+          <Group>{resetButton}</Group>
         </Stack>
       </GridCol>
 
-      <GridCol span={{ md: 9 }} pl={{ md: 32 }}>
+      <GridCol span={{ base: 12, md: 9 }} pl={{ lg: 32 }}>
         <Group justify="space-between">
           <div>
             <TextInput
@@ -180,6 +186,7 @@ export default function DroneListing() {
               variant={params.layout === Layout.GRID ? 'light' : 'subtle'}
               radius="md"
               onClick={() => updateParams({ layout: Layout.GRID })}
+              visibleFrom="sm"
             >
               <IconLayoutGrid size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
@@ -190,6 +197,7 @@ export default function DroneListing() {
               variant={params.layout === Layout.LIST ? 'light' : 'subtle'}
               radius="md"
               onClick={() => updateParams({ layout: Layout.LIST })}
+              visibleFrom="sm"
             >
               <IconList size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
@@ -261,6 +269,10 @@ export default function DroneListing() {
           </Group>
         </Group>
 
+        <Group hiddenFrom="md" mt={'md'}>
+          {resetButton}
+        </Group>
+
         <Divider mt={'md'} />
 
         {!items.length ? (
@@ -274,13 +286,17 @@ export default function DroneListing() {
             {items.map((p, i) => (
               <GridCol
                 key={i}
-                span={{ md: params.layout === Layout.GRID ? 4 : 12 }}
+                span={
+                  params.layout === Layout.GRID
+                    ? { base: 12, xs: 6, md: 4 }
+                    : { base: 12, xs: 6, md: 12 }
+                }
                 mih={200}
               >
-                {params.layout === Layout.GRID ? (
-                  <CardShopDronesListingGrid data={p} />
-                ) : (
+                {params.layout === Layout.LIST && !mobile ? (
                   <CardShopDronesListingList data={p} />
+                ) : (
+                  <CardShopDronesListingGrid data={p} />
                 )}
               </GridCol>
             ))}
@@ -291,7 +307,12 @@ export default function DroneListing() {
           <>
             <Divider my={'xl'} />
 
-            <Group justify="space-between">
+            <Flex
+              direction={{ base: 'column', sm: 'row' }}
+              align={'center'}
+              gap={'md'}
+              justify={{ sm: 'space-between' }}
+            >
               <Pagination
                 size={'sm'}
                 total={totalPages}
@@ -304,7 +325,7 @@ export default function DroneListing() {
                 Showing {prependZeros(pageRange?.from || 0, 2)} -{' '}
                 {prependZeros(pageRange?.to || 0, 2)}
               </Text>
-            </Group>
+            </Flex>
           </>
         )}
       </GridCol>

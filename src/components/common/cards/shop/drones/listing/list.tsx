@@ -1,5 +1,4 @@
 import {
-  BackgroundImage,
   Badge,
   Box,
   Button,
@@ -9,7 +8,6 @@ import {
   Grid,
   GridCol,
   Group,
-  NumberFormatter,
   Overlay,
   Stack,
   Text,

@@ -11,11 +11,9 @@ import { capitalizeWords } from '@/utilities/formatters/string';
 import {
   ActionIcon,
   Anchor,
-  Box,
   Button,
   Card,
   CardSection,
-  Center,
   Divider,
   Flex,
   Grid,
@@ -37,7 +35,6 @@ import {
   IconLayoutGrid,
   IconList,
   IconSearch,
-  IconX,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import CardShopDronesListingGrid from '../common/cards/shop/drones/listing/grid';
@@ -242,7 +239,7 @@ export default function DroneListing() {
                 { value: '12', label: 'Show 12' },
                 { value: '15', label: 'Show 15' },
               ]}
-              value={params?.listSize}
+              value={params?.listSize || String(listSize)}
               onChange={(v) => {
                 setListSize(Number(v));
                 updateParams({ ...params, listSize: v || '' });
@@ -378,7 +375,7 @@ export default function DroneListing() {
 }
 
 const getCategoriesWithCounts = () => {
-  let categoriesWithCounts: { category: string; count: number }[] = [];
+  const categoriesWithCounts: { category: string; count: number }[] = [];
 
   for (const product of products) {
     const category = product.category;

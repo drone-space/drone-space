@@ -21,21 +21,29 @@ import {
   Grid,
   GridCol,
   Group,
+  Loader,
   NumberFormatter,
   Pagination,
   RangeSlider,
   Select,
+  Skeleton,
   Stack,
   Text,
   TextInput,
   Title,
 } from '@mantine/core';
-import { IconLayoutGrid, IconList, IconSearch } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import {
+  IconCircleX,
+  IconLayoutGrid,
+  IconList,
+  IconSearch,
+  IconX,
+} from '@tabler/icons-react';
+import React, { useEffect, useState } from 'react';
 import CardShopDronesListingGrid from '../common/cards/shop/drones/listing/grid';
 import CardShopDronesListingList from '../common/cards/shop/drones/listing/list';
 import { useRouter } from 'next/navigation';
-import { Layout, Sort, useShopFilter } from '@/hooks/shop';
+import { Layout, Sort, useShopListing } from '@/hooks/shop';
 import { prependZeros } from '@/utilities/formatters/number';
 import { Order } from '@/enums/sort';
 import { useMediaQuery } from '@mantine/hooks';
@@ -56,11 +64,17 @@ export default function DroneListing() {
     pageRange,
     emptyValues,
     prices,
-  } = useShopFilter(products);
+  } = useShopListing(products);
 
   const [listSize, setListSize] = useState(Number(params?.listSize || 6));
 
   const mobile = useMediaQuery('(max-width: 48em)');
+
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   const resetButton = (
     <Button
@@ -69,8 +83,9 @@ export default function DroneListing() {
       variant="light"
       onClick={() => {
         updateParams(emptyValues);
-        router.push('#page-shop-listing');
+        router.push('#listing');
       }}
+      disabled={hydrated == false}
     >
       Reset Filters
     </Button>
@@ -90,27 +105,37 @@ export default function DroneListing() {
             </CardSection>
 
             <Stack gap={'xs'}>
-              {catList.map((cl, i) => (
-                <Anchor
-                  key={i}
-                  fz={{ base: 'xs', lg: 'sm' }}
-                  underline="hover"
-                  onClick={() => {
-                    updateParams({ ...params, category: cl.category });
-                    router.push('#page-shop-listing');
-                  }}
-                >
-                  <Group justify="space-between">
-                    <Text component="span" inherit>
-                      {capitalizeWords(`${cl.category} Drones`)}
-                    </Text>
+              {hydrated == false ? (
+                <>
+                  <Skeleton h={21.7} />
+                  <Skeleton h={21.7} />
+                  <Skeleton h={21.7} />
+                  <Skeleton h={21.7} />
+                  <Skeleton h={21.7} />
+                </>
+              ) : (
+                catList.map((cl, i) => (
+                  <Anchor
+                    key={i}
+                    fz={{ base: 'xs', lg: 'sm' }}
+                    underline="hover"
+                    onClick={() => {
+                      updateParams({ ...params, category: cl.category });
+                      router.push('#listing');
+                    }}
+                  >
+                    <Group justify="space-between">
+                      <Text component="span" inherit>
+                        {capitalizeWords(`${cl.category} Drones`)}
+                      </Text>
 
-                    <Text component="span" inherit fz={'xs'}>
-                      ({cl.count})
-                    </Text>
-                  </Group>
-                </Anchor>
-              ))}
+                      <Text component="span" inherit fz={'xs'}>
+                        ({cl.count})
+                      </Text>
+                    </Group>
+                  </Anchor>
+                ))
+              )}
             </Stack>
           </Card>
 
@@ -154,6 +179,7 @@ export default function DroneListing() {
                 })
               }
               step={prices.max * 0.025}
+              disabled={hydrated == false}
             />
           </Card>
 
@@ -275,12 +301,30 @@ export default function DroneListing() {
 
         <Divider mt={'md'} />
 
-        {!items.length ? (
-          <Center mih={200}>
-            <Text c={'dimmed'} ta={'center'} fz={'sm'}>
+        {hydrated == false ? (
+          <Stack mih={200} justify="center" c={'dimmed'}>
+            <Group justify="center">
+              <Loader size={'sm'} type="dots" />
+            </Group>
+
+            <Text ta={'center'} fz={'sm'}>
+              Fetching products...
+            </Text>
+          </Stack>
+        ) : !items.length ? (
+          <Stack mih={200} justify="center" c={'dimmed'}>
+            <Group justify="center">
+              <IconCircleX
+                size={ICON_SIZE + 8}
+                stroke={ICON_STROKE_WIDTH}
+                color={'var(--mantine-color-pri-8)'}
+              />
+            </Group>
+
+            <Text ta={'center'} fz={'sm'}>
               No products found.
             </Text>
-          </Center>
+          </Stack>
         ) : (
           <Grid mt={'xl'}>
             {items.map((p, i) => (
@@ -303,7 +347,7 @@ export default function DroneListing() {
           </Grid>
         )}
 
-        {!items.length ? undefined : (
+        {hydrated == false || !items.length ? undefined : (
           <>
             <Divider my={'xl'} />
 
@@ -318,7 +362,7 @@ export default function DroneListing() {
                 total={totalPages}
                 value={activePage}
                 onChange={setActivePage}
-                onClick={() => router.push('#page-shop-listing')}
+                onClick={() => router.push('#listing')}
               />
 
               <Text fz={'sm'} c={'dimmed'}>

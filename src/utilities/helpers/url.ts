@@ -19,6 +19,45 @@ export const getUrlParam = (urlParamName: string): string | null => {
   return urlParams.get(urlParamName);
 };
 
+export const getUrlParams = (): Record<string, string> => {
+  if (typeof window === 'undefined') return {};
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const params: Record<string, string> = {};
+
+  urlParams.forEach((value, key) => {
+    params[key] = value;
+  });
+
+  return params;
+};
+
+export const setUrlParam = (urlParamName: string, urlParamValue: string) => {
+  if (typeof window === 'undefined') return '/';
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.set(urlParamName, urlParamValue);
+  return urlParams.toString();
+};
+
+export const setUrlParams = <T extends object>(params: T): string => {
+  if (typeof window === 'undefined') return '/';
+
+  const urlParams = new URLSearchParams(window.location.search);
+
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      urlParams.set(key, String(value));
+    }
+  });
+
+  const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+
+  // This actually updates the URL in the browser
+  window.history.replaceState({}, '', newUrl);
+
+  return newUrl;
+};
+
 export const processUrl = (link: string, host: string) => {
   // Remove trailing slash from host if present
   const cleanHost = host.endsWith('/') ? host.slice(0, -1) : host;

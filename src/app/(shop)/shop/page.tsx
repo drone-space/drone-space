@@ -55,7 +55,7 @@ export default async function Shop() {
         }}
       />
 
-      <LayoutSection id="page-shop-listing" padded>
+      <LayoutSection id="listing" padded>
         <PartialDroneListing />
       </LayoutSection>
 

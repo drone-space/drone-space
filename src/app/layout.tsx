@@ -5,6 +5,7 @@ import {
   mantineHtmlProps,
 } from '@mantine/core';
 import { Montserrat, Nova_Mono } from 'next/font/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
@@ -19,6 +20,7 @@ import appResolver from '@/styles/resolver';
 import { appName, companyDescription } from '@/data/app';
 import { linkify } from '@/utilities/formatters/string';
 import { Notifications } from '@mantine/notifications';
+import { isProduction } from '@/utilities/helpers/environment';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -41,6 +43,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
@@ -59,6 +63,8 @@ export default function RootLayout({
           <Notifications limit={3} position="bottom-right" />
           {children}
         </MantineProvider>
+
+        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

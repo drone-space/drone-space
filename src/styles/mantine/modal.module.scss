@@ -1,0 +1,22 @@
+.header {
+  padding: 0;
+}
+
+.body {
+  padding: 0;
+}
+
+.footer {
+  padding: 0;
+}
+
+.content {
+  @include mantine.larger-than(mantine.$mantine-breakpoint-xs) {
+    padding: var(--mantine-spacing-xl);
+    padding-top: var(--mantine-spacing-md);
+  }
+}
+
+.header {
+  margin-bottom: 0.5rem;
+}

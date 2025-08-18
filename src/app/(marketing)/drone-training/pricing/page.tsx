@@ -46,7 +46,7 @@ export default async function Pricing() {
           path: 'Pricing',
           title: 'Course Pricing',
           desc: metaDesc,
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          bg: images.web.hero,
         }}
       />
 

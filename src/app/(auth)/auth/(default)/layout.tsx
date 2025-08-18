@@ -3,7 +3,7 @@ import React from 'react';
 import LayoutBody from '@/components/layout/body';
 import LayoutSection from '@/components/layout/section';
 import ImageDefault from '@/components/common/images/default';
-import { Stack, Anchor, Center, Card } from '@mantine/core';
+import { Stack, Anchor, Center, Card, Group } from '@mantine/core';
 import { images } from '@/assets/images';
 import { appName } from '@/data/app';
 import Link from 'next/link';
@@ -24,15 +24,18 @@ export default function LayoutDefault({
             p={{ base: 'xl', xs: 40 }}
           >
             <Stack gap={'xl'}>
-              <Anchor component={Link} href={'/'}>
-                <ImageDefault
-                  src={images.brand.droneSpace.logo.landscape.default}
-                  alt={appName}
-                  height={{ base: 28 }}
-                  fit="contain"
-                  mode="grid"
-                />
-              </Anchor>
+              <Group justify="center">
+                <Anchor component={Link} href={'/'}>
+                  <ImageDefault
+                    src={images.brand.droneSpace.logo.landscape.default}
+                    alt={appName}
+                    height={{ base: 40 }}
+                    width={{ base: 200 }}
+                    fit="contain"
+                    mode="grid"
+                  />
+                </Anchor>
+              </Group>
 
               {children}
             </Stack>

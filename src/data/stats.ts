@@ -1,3 +1,5 @@
+import { aboutStats } from './app';
+
 const stats = [
   {
     stat: '20+',
@@ -16,7 +18,7 @@ const stats = [
     title: 'Major Industry Events',
   },
   {
-    stat: '250+',
+    stat: `${aboutStats.rplCertifications}+`,
     title: 'RPL Certifications',
   },
 ];

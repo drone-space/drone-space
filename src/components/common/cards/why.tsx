@@ -16,28 +16,18 @@ interface typeCardFeatureWhy {
 
 export default function Why({ data }: { data: typeCardFeatureWhy }) {
   return (
-    <Card className={classes.card}>
-      <Group justify="center">
-        <ThemeIcon
-          size={ICON_WRAPPER_SIZE * 2}
-          radius={48}
-          className={classes.icon}
-        >
-          <data.icon size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
+    <Card className={classes.card} p={{ md: 'xl' }}>
+      <Group>
+        <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} className={classes.icon}>
+          <data.icon size={ICON_SIZE * 1.25} stroke={ICON_STROKE_WIDTH} />
         </ThemeIcon>
       </Group>
 
-      <Title
-        mt={'md'}
-        ta={'center'}
-        order={2}
-        fz={'xl'}
-        className={classes.title}
-      >
+      <Title mt={'xl'} order={2} fz={'md'}>
         {data.title}
       </Title>
 
-      <Text mt={'xs'} ta={'center'} fz={{ base: 'sm', lg: 'md' }}>
+      <Text mt={'md'} fz={{ base: 'sm' }}>
         {data.desc}
       </Text>
     </Card>

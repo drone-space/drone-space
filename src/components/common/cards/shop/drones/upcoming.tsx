@@ -14,7 +14,7 @@ import classes from './upcoming.module.scss';
 export default function Upcoming({ data }: { data: any }) {
   return (
     <Card className={classes.card} padding={0} pos={'relative'} h={'100%'}>
-      <BackgroundImage src={data.card} radius="sm" pos={'relative'}>
+      <BackgroundImage src={data.card} pos={'relative'}>
         <Overlay opacity={0.4} zIndex={0} />
 
         <Stack

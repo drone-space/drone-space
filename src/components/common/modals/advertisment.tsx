@@ -44,12 +44,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
     <CarouselSlide key={index} mah={'fit-content'}>
       {slide.image && (
         <Group h={'100%'}>
-          <Image
-            src={slide.image}
-            alt={`Poster ${index + 1}`}
-            loading="lazy"
-            radius={'sm'}
-          />
+          <Image src={slide.image} alt={`Poster ${index + 1}`} loading="lazy" />
         </Group>
       )}
     </CarouselSlide>

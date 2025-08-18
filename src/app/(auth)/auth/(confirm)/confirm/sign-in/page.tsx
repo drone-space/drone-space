@@ -4,7 +4,7 @@ import React from 'react';
 // import { Metadata } from 'next';
 import { Button, Center, Group, Loader, ThemeIcon } from '@mantine/core';
 import LayoutPage from '@/components/layout/page';
-import IntroPage from '@/components/layout/intros/page';
+import IntroSection from '@/components/layout/intros/section';
 
 import {
   ICON_SIZE,
@@ -21,9 +21,9 @@ export default function SignIn() {
 
   return (
     <LayoutPage>
-      <IntroPage
+      <IntroSection
         props={{
-          path: `Magic Link`,
+          subTitle: `Magic Link`,
           title: !status.state
             ? `Confirm Sign In`
             : status.state == 'loading'
@@ -33,7 +33,7 @@ export default function SignIn() {
         }}
       />
 
-      <Group justify="center">
+      <Group justify="center" mt={'md'}>
         {!status.state ? (
           <Group h={ICON_WRAPPER_SIZE * 2} justify="center">
             <Button onClick={handleTrigger}>Sign In</Button>

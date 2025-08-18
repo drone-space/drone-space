@@ -50,6 +50,7 @@ export default function Providers() {
             mode="grid"
           />
         }
+        disabled={true}
       >
         Continue with {capitalizeWords(providerDetails.provider)}
       </Button>
@@ -71,9 +72,5 @@ const providers = [
   {
     image: images.icons.google,
     provider: 'google',
-  },
-  {
-    image: 'https://img.icons8.com/?size=100&id=16318&format=png&color=000000',
-    provider: 'github',
   },
 ];

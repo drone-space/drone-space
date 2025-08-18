@@ -43,13 +43,13 @@ export default async function TermsConditions() {
           path: `T & C`,
           title: 'Terms and Conditions',
           desc: `Review the terms and conditions governing the use of ${appName} services, training, and products.`,
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          bg: images.web.hero,
         }}
       />
 
       <LayoutSection id="children" padded bg={'var(--mantine-color-gray-1)'}>
         <>
-          <LayoutSection id="page-legal-privacy-header" containerized={'sm'}>
+          <LayoutSection id="page-legal-privacy-header" containerized={'md'}>
             <Text
               inherit
               c={'dimmed'}
@@ -72,7 +72,7 @@ export default async function TermsConditions() {
               key={index}
               id="page-legal-privacy-list"
               margined={40}
-              containerized={'sm'}
+              containerized={'md'}
             >
               <Title order={2} fz={'lg'}>
                 {legal.terms.indexOf(t) + 1}. {t.title}

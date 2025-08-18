@@ -6,6 +6,7 @@ import CommonForm from '../common/form';
 import FinePrint from '../common/fine-print';
 import { FormInquiryValues, useFormInquiry } from '@/hooks/form/inquiry';
 import CommonFooter from '../common/footer';
+import { ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Product({
   props,
@@ -21,7 +22,7 @@ export default function Product({
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} noValidate>
-      <Grid>
+      <Grid gutter={'xs'}>
         <CommonForm props={{ form }} />
 
         <GridCol span={12}>
@@ -31,9 +32,11 @@ export default function Product({
             placeholder={'Write your message here...'}
             {...form.getInputProps('message')}
             autosize
-            minRows={5}
-            styles={{ input: { height: '100%' } }}
-            maxRows={15}
+            styles={{
+              input: { height: '100%', borderWidth: ICON_STROKE_WIDTH },
+            }}
+            minRows={3}
+            maxRows={5}
           />
         </GridCol>
 

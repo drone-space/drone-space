@@ -15,19 +15,19 @@
 }
 
 .pulse {
-  border-color: var(--mantine-color-pri-7);
+  border-color: var(--mantine-color-pri-8);
   animation: borderPulse 3s infinite ease-in-out;
 }
 
 @keyframes borderPulse {
   0% {
-    border-color: var(--mantine-color-sec-4);
+    border-color: var(--mantine-color-sec-3);
   }
   50% {
-    border-color: var(--mantine-color-pri-7);
+    border-color: var(--mantine-color-pri-8);
   }
   100% {
-    border-color: var(--mantine-color-sec-4);
+    border-color: var(--mantine-color-sec-3);
   }
 }
 

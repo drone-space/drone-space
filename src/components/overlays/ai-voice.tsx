@@ -89,7 +89,6 @@ export default function AIVoice({
                   >
                     <ActionIcon
                       size={ICON_WRAPPER_SIZE * 2}
-                      radius={'50%'}
                       variant="light"
                       disabled={props.listening}
                       onClick={listeningProps.action}
@@ -104,7 +103,6 @@ export default function AIVoice({
                   <Tooltip label={'End'} fz={'xs'} color="pri" withArrow>
                     <ActionIcon
                       size={ICON_WRAPPER_SIZE * 2}
-                      radius={'50%'}
                       variant="light"
                       onClick={() => props.setVoiceMode(false)}
                     >

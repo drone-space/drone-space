@@ -4,15 +4,12 @@ import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
 } from '@/data/constants';
 import products from '@/data/products';
 import { capitalizeWords } from '@/utilities/formatters/string';
 import {
   ActionIcon,
   Anchor,
-  BackgroundImage,
-  Box,
   Button,
   Card,
   CardSection,
@@ -46,7 +43,6 @@ import { Layout, Sort, useShopListing } from '@/hooks/shop';
 import { prependZeros } from '@/utilities/formatters/number';
 import { Order } from '@/enums/sort';
 import { useMediaQuery } from '@mantine/hooks';
-import { images } from '@/assets/images';
 import CardShopFeatured from '../common/cards/shop/featured';
 
 export default function DroneListing() {

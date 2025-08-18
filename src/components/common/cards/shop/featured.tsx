@@ -9,7 +9,6 @@ import {
   Group,
   Overlay,
   Stack,
-  Text,
   Title,
 } from '@mantine/core';
 import Link from 'next/link';

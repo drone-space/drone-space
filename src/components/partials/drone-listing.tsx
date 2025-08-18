@@ -207,8 +207,20 @@ export default function DroneListing() {
           <Group>
             <ActionIcon
               size={ICON_WRAPPER_SIZE}
-              color={params.layout === Layout.GRID ? 'pri' : 'gray'} // highlight active
-              variant={params.layout === Layout.GRID ? 'light' : 'subtle'}
+              color={
+                !params.layout
+                  ? 'pri'
+                  : params.layout === Layout.GRID
+                    ? 'pri'
+                    : 'gray'
+              } // highlight active
+              variant={
+                !params.layout
+                  ? 'light'
+                  : params.layout === Layout.GRID
+                    ? 'light'
+                    : 'subtle'
+              }
               onClick={() => updateParams({ layout: Layout.GRID })}
               visibleFrom="sm"
             >
@@ -328,9 +340,11 @@ export default function DroneListing() {
               <GridCol
                 key={i}
                 span={
-                  params.layout === Layout.GRID
+                  !params.layout
                     ? { base: 12, xs: 6, md: 4 }
-                    : { base: 12, xs: 6, md: 12 }
+                    : params.layout === Layout.GRID
+                      ? { base: 12, xs: 6, md: 4 }
+                      : { base: 12, xs: 6, md: 12 }
                 }
                 mih={200}
               >

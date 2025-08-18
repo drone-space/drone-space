@@ -4,7 +4,6 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 
 import { typeParams } from '../layout';
-import { Stack } from '@mantine/core';
 import IntroPage from '@/components/layout/intros/page';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';

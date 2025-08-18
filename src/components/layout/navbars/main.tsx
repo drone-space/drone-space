@@ -14,8 +14,6 @@ import { images } from '@/assets/images';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import { appName } from '@/data/app';
-import { IconFileDownload } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Main({
   options,

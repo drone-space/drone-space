@@ -67,7 +67,7 @@ export default function Main() {
 
 const email = emails.info;
 const phone1 = phones.main;
-const phone2 = phones.other;
+// const phone2 = phones.other;
 const location = locations.main.location;
 
 const data = {

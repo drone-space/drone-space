@@ -67,13 +67,13 @@ export default async function Post({
         containerized={false}
         maw={1200}
         mx={'auto'}
+        p={'md'}
       >
         <ImageDefault
           src={processedImage}
           alt={post.title}
           height={{ base: 300, xs: 400, md: 560, lg: 640 }}
           priority
-          p={'md'}
         />
       </LayoutSection>
 

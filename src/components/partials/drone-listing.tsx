@@ -181,6 +181,8 @@ export default function DroneListing() {
           </Card>
 
           <Group>{resetButton}</Group>
+
+          <CardShopFeatured />
         </Stack>
       </GridCol>
 

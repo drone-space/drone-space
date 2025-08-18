@@ -73,6 +73,6 @@ const location = locations.main.location;
 const data = {
   left: [
     { icon: IconPhone, label: phone1, link: `tel:${phone1}` },
-    { icon: IconPhone, label: phone2, link: `tel:${phone2}` },
+    // { icon: IconPhone, label: phone2, link: `tel:${phone2}` },
   ],
 };

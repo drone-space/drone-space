@@ -230,10 +230,10 @@ const linkSets = [
         label: phone.pri,
         link: `tel:${phone.pri}`,
       },
-      {
-        label: phone.sec,
-        link: `tel:${phone.sec}`,
-      },
+      // {
+      //   label: phone.sec,
+      //   link: `tel:${phone.sec}`,
+      // },
     ],
   },
 ];

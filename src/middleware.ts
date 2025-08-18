@@ -8,15 +8,6 @@ import { dynamicRedirects, staticRedirects } from './data/redirects';
 import { crossOrigins } from './data/hosts';
 
 export async function middleware(request: NextRequest) {
-  // Handle preflight (OPTIONS) requests early
-  if (request.method === 'OPTIONS') {
-    return setCorsHeaders({
-      crossOrigins,
-      request,
-      response: new NextResponse(null, { status: 204 }),
-    });
-  }
-
   // First check for redirects
   const redirectResponse = handleRedirect(request);
 

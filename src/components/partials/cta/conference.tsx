@@ -5,7 +5,15 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { ActionIcon, Button, Group, Stack, Text, Title } from '@mantine/core';
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Overlay,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
 import React from 'react';
 import LayoutSection from '@/components/layout/section';
 import classes from './conference.module.scss';
@@ -23,7 +31,9 @@ export default function Conference({ close }: { close?: () => void }) {
         backgroundImage: `url('${images.posters.conference.poster1.landscape}')`,
       }}
     >
-      <Group className={classes.overlay} align={'start'} justify="end" p={'lg'}>
+      <Overlay backgroundOpacity={0.3} style={{ zIndex: 0 }} />
+
+      <Group justify="end" pt={'xl'}>
         <ActionIcon
           color="var(--mantine-color-white)"
           variant={'subtle'}
@@ -34,10 +44,11 @@ export default function Conference({ close }: { close?: () => void }) {
       </Group>
 
       <Stack
-        py={SECTION_SPACING / 2}
+        pb={SECTION_SPACING / 2}
         pos={'relative'}
         align={'center'}
         justify="center"
+        style={{ zIndex: 1 }}
       >
         <ImageDefault
           src={images.brand.conference.logo.landscape.light}

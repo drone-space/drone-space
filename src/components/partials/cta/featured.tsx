@@ -9,6 +9,7 @@ import {
   Grid,
   GridCol,
   Group,
+  Overlay,
   Stack,
   Text,
 } from '@mantine/core';
@@ -41,12 +42,9 @@ export default function Featured({ close }: { close?: () => void }) {
           backgroundImage: `url('${images.web.drone}')`,
         }}
       >
-        <Group
-          className={classes.overlay}
-          align={'start'}
-          justify="end"
-          p={'lg'}
-        >
+        <Overlay backgroundOpacity={0.3} style={{ zIndex: 0 }} />
+
+        <Group justify="end" pt={'xl'}>
           <ActionIcon
             color="var(--mantine-color-white)"
             variant={'subtle'}
@@ -59,8 +57,9 @@ export default function Featured({ close }: { close?: () => void }) {
         <Grid
           align={'center'}
           gutter={{ base: 'xl' }}
-          pt={{ base: SECTION_SPACING / 1.5, sm: SECTION_SPACING / 3 }}
+          // pt={{ base: SECTION_SPACING / 1.5, sm: SECTION_SPACING / 3 }}
           pb={{ base: 'xl', sm: SECTION_SPACING / 3 }}
+          style={{ zIndex: 1 }}
         >
           <GridCol span={{ base: 12, sm: 6 }}>
             <Card bg={'var(--mantine-color-body)'}>
@@ -115,7 +114,14 @@ export default function Featured({ close }: { close?: () => void }) {
                 </Stack>
 
                 <Group justify={'center'}>
-                  <ModalContactShop>
+                  <ModalContactShop
+                    props={{
+                      initialValues: {
+                        subject: `${productFeatured.title.short} Purchase Inquiry`,
+                        message: `I'd like to order the ${productFeatured.title.long}.`,
+                      },
+                    }}
+                  >
                     <Button color="sec.3">Order Now</Button>
                   </ModalContactShop>
 

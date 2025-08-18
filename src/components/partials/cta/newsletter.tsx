@@ -5,7 +5,15 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { ActionIcon, Button, Group, Stack, Text, Title } from '@mantine/core';
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Overlay,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
 import React from 'react';
 import FormNewsletter from '@/components/form/newsletter';
 import LayoutSection from '@/components/layout/section';
@@ -24,7 +32,9 @@ export default function Newsletter({ close }: { close?: () => void }) {
         backgroundImage: `url('${images.web.newsletter}')`,
       }}
     >
-      <Group className={classes.overlay} align={'start'} justify="end" p={'lg'}>
+      <Overlay backgroundOpacity={0.3} style={{ zIndex: 0 }} />
+
+      <Group justify="end" pt={'xl'}>
         <ActionIcon
           color="var(--mantine-color-white)"
           variant={'subtle'}
@@ -34,7 +44,12 @@ export default function Newsletter({ close }: { close?: () => void }) {
         </ActionIcon>
       </Group>
 
-      <Stack py={SECTION_SPACING / 2} pos={'relative'} gap={'xl'}>
+      <Stack
+        pb={SECTION_SPACING / 2}
+        pos={'relative'}
+        gap={'xl'}
+        style={{ zIndex: 1 }}
+      >
         <Stack gap={'xl'}>
           <Stack ta={{ base: 'center' }}>
             <Title order={2} c={'white'}>

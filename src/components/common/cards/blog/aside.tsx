@@ -42,7 +42,6 @@ export default function Aside({ post }: { post: PostRelations }) {
             src={processUrl(post.image, HOSTED_BASE_URL.DEFAULT)}
             alt={post.title}
             height={80}
-            radius={'lg'}
             mode="grid"
           />
         </Anchor>

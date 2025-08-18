@@ -18,11 +18,7 @@ export default function Why({ data }: { data: typeCardFeatureWhy }) {
   return (
     <Card className={classes.card} p={{ md: 'xl' }}>
       <Group>
-        <ThemeIcon
-          size={ICON_WRAPPER_SIZE * 1.5}
-          radius={48}
-          className={classes.icon}
-        >
+        <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} className={classes.icon}>
           <data.icon size={ICON_SIZE * 1.25} stroke={ICON_STROKE_WIDTH} />
         </ThemeIcon>
       </Group>

@@ -61,7 +61,7 @@ export default function Account() {
                   rightSection={<IconChevronRight size={16} />}
                   active={matchesPath(item.link)}
                   style={{
-                    borderRadius: 'var(--mantine-radius-md)',
+                    borderRadius: 'var(--mantine-radius-lg)',
                   }}
                   className={matchesPath(item.link) ? classes.linkActive : classes.link}
                 />
@@ -94,7 +94,7 @@ export default function Account() {
                   }
                   active={matchesPath(item.link)}
                   style={{
-                    borderRadius: 'var(--mantine-radius-md)',
+                    borderRadius: 'var(--mantine-radius-lg)',
                   }}
                   className={
                     matchesPath(item.link) ? classes.linkActive : classes.link
@@ -129,7 +129,7 @@ export default function Account() {
                   }
                   active={matchesPath(item.link)}
                   style={{
-                    borderRadius: 'var(--mantine-radius-md)',
+                    borderRadius: 'var(--mantine-radius-lg)',
                   }}
                   className={
                     matchesPath(item.link) ? classes.linkActive : classes.link
@@ -160,7 +160,7 @@ export default function Account() {
                   />
                 }
                 style={{
-                  borderRadius: 'var(--mantine-radius-md)',
+                  borderRadius: 'var(--mantine-radius-lg)',
                 }}
               />
             ))}

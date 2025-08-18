@@ -24,7 +24,6 @@ export default function Factor({
   return (
     <BackgroundImage
       src={data.image}
-      radius="sm"
       h={'100%'}
       c={'var(--mantine-color-white)'}
       pos={'relative'}

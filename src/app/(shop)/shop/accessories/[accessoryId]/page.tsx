@@ -112,7 +112,6 @@ export default async function AccessoryDetails({
                     <Group gap={'xs'} wrap="nowrap" align="start">
                       <ThemeIcon
                         size={ICON_WRAPPER_SIZE / 1.5}
-                        radius={'xl'}
                         color="sec.3"
                         c={'pri.8'}
                         mt={4}

@@ -30,7 +30,7 @@ export default function Gallery({ img }: typeModalGallery) {
         styles={{
           content: {
             padding: 0,
-            borderRadius: 'var(--mantine-radius-md)',
+            borderRadius: 'var(--mantine-radius-lg)',
             overflow: 'hidden',
           },
         }}

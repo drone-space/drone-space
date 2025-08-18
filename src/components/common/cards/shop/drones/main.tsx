@@ -32,7 +32,6 @@ export default function Main({ data }: { data: typeDrone }) {
           data.images.find((i) => i.includes('front')) ||
           ''
         }
-        radius="sm"
         pos={'relative'}
       >
         <Overlay opacity={0.2} zIndex={0} />
@@ -78,11 +77,10 @@ export default function Main({ data }: { data: typeDrone }) {
                   },
                 }}
               >
-                <Button radius={'xl'}>Order Now</Button>
+                <Button>Order Now</Button>
               </ModalContactShop>
 
               <Button
-                radius={'xl'}
                 variant="outline"
                 color="black"
                 component={Link}

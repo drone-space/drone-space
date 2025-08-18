@@ -271,7 +271,6 @@ export default async function DroneDetail({
                       <Group gap={'xs'}>
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}
-                          radius={'xl'}
                           color="sec.3"
                           c={'pri.8'}
                         >
@@ -661,7 +660,6 @@ export default async function DroneDetail({
                             <Group gap={'xs'}>
                               <ThemeIcon
                                 size={ICON_WRAPPER_SIZE / 1.5}
-                                radius={'xl'}
                                 color="sec.3"
                                 c={'pri.8'}
                                 visibleFrom="xs"

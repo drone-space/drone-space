@@ -58,7 +58,7 @@ export default function Basic({
         <Stack>
           {data.advanced && (
             <Group justify="end" opacity={offset ? 0 : 1}>
-              <Badge radius={'lg'} color="sec.3" c="pri.8">
+              <Badge color="sec.3" c="pri.8">
                 Advanced Course
               </Badge>
             </Group>
@@ -146,7 +146,6 @@ export default function Basic({
             icon={
               <ThemeIcon
                 size={ICON_WRAPPER_SIZE / 1.5}
-                radius={'xl'}
                 color="sec.3"
                 c={'pri.8'}
               >

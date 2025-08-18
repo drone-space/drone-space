@@ -209,7 +209,6 @@ export default function DroneListing() {
               size={ICON_WRAPPER_SIZE}
               color={params.layout === Layout.GRID ? 'pri' : 'gray'} // highlight active
               variant={params.layout === Layout.GRID ? 'light' : 'subtle'}
-              radius="md"
               onClick={() => updateParams({ layout: Layout.GRID })}
               visibleFrom="sm"
             >
@@ -220,7 +219,6 @@ export default function DroneListing() {
               size={ICON_WRAPPER_SIZE}
               color={params.layout === Layout.LIST ? 'pri' : 'gray'}
               variant={params.layout === Layout.LIST ? 'light' : 'subtle'}
-              radius="md"
               onClick={() => updateParams({ layout: Layout.LIST })}
               visibleFrom="sm"
             >

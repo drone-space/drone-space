@@ -158,7 +158,6 @@ export default function Claude({
                   size={ICON_WRAPPER_SIZE}
                   variant="light"
                   onClick={() => stopListening()}
-                  radius={'xl'}
                   style={{ borderWidth: ICON_STROKE_WIDTH }}
                 >
                   <IconSquareFilled

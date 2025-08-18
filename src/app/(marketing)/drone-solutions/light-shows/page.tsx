@@ -84,7 +84,6 @@ export default async function LighShow() {
               alt={"Let's Talk Drone Light Shows"}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 490, lg: 420 }}
-              radius={'lg'}
             />
           </GridCol>
 
@@ -137,7 +136,6 @@ export default async function LighShow() {
               alt={'Understanding Drone Light Shows'}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 580, lg: 500 }}
-              radius={'lg'}
             />
           </GridCol>
 
@@ -172,7 +170,7 @@ export default async function LighShow() {
               h={'100%'}
               style={{
                 overflow: 'hidden',
-                borderRadius: 'var(--mantine-radius-md)',
+                borderRadius: 'var(--mantine-radius-lg)',
               }}
             >
               <video
@@ -236,7 +234,6 @@ export default async function LighShow() {
               alt={'Why Choose Drone Light Shows?'}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 680, lg: 620 }}
-              radius={'lg'}
             />
           </GridCol>
 

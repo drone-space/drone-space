@@ -42,7 +42,6 @@ export default function New({ post }: { post: PostRelations }) {
               alt={post.title}
               height={360}
               mode="grid"
-              radius="lg"
             />
 
             <div className={classes.overlay}>

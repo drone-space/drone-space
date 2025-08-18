@@ -18,7 +18,7 @@ export default function AI({ onClose }: { onClose: () => void }) {
           <Box
             style={{
               overflow: 'hidden',
-              borderRadius: 'var(--mantine-radius-xs)',
+              borderRadius: 'var(--mantine-radius-lg)',
             }}
             w={24}
             h={24}
@@ -27,7 +27,6 @@ export default function AI({ onClose }: { onClose: () => void }) {
               src={images.icons.claude.default}
               alt={'Hekima AI'}
               loading="lazy"
-              radius={'lg'}
               width={24}
               height={24}
               style={{ transform: 'scale(1.4)' }}

@@ -191,7 +191,6 @@ export default async function About() {
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -235,7 +234,6 @@ export default async function About() {
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>

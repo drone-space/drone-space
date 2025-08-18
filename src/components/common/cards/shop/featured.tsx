@@ -22,7 +22,7 @@ export default function Featured() {
 
   return (
     <Card padding={0}>
-      <BackgroundImage src={images.web.drone} radius="sm" p={'md'}>
+      <BackgroundImage src={images.web.drone} p={'md'}>
         <Overlay opacity={0.3} style={{ zIndex: 0 }} />
 
         <Stack

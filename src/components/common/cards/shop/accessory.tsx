@@ -85,7 +85,6 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                   icon={
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.5}
-                      radius={'xl'}
                       color="sec.3"
                       c={'pri.8'}
                     >

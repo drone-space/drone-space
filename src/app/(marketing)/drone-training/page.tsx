@@ -102,7 +102,6 @@ export default async function DroneTraining() {
                   mt={2}
                   color="sec.3"
                   c={'pri.8'}
-                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -132,7 +131,6 @@ export default async function DroneTraining() {
                   mt={2}
                   color="sec.3"
                   c={'pri.8'}
-                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -156,7 +154,6 @@ export default async function DroneTraining() {
               alt={'Aerial Cinematography'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -220,7 +217,6 @@ export default async function DroneTraining() {
                   mt={2}
                   color="sec.3"
                   c={'pri.8'}
-                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -242,7 +238,6 @@ export default async function DroneTraining() {
               alt={'RPL Training'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -282,7 +277,6 @@ export default async function DroneTraining() {
                     mt={2}
                     color="sec.3"
                     c={'pri.8'}
-                    radius={'xl'}
                   >
                     <IconArrowRightDashed
                       size={ICON_SIZE / 1.5}
@@ -407,7 +401,6 @@ export default async function DroneTraining() {
               alt={'Radio Telephony'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -447,7 +440,6 @@ export default async function DroneTraining() {
                     mt={2}
                     color="sec.3"
                     c={'pri.8'}
-                    radius={'xl'}
                   >
                     <IconArrowRightDashed
                       size={ICON_SIZE / 1.5}
@@ -484,7 +476,6 @@ export default async function DroneTraining() {
                   mt={2}
                   color="sec.3"
                   c={'pri.8'}
-                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -562,7 +553,6 @@ export default async function DroneTraining() {
               alt={'Instructor Rating'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -676,7 +666,6 @@ export default async function DroneTraining() {
                   mt={2}
                   color="sec.3"
                   c={'pri.8'}
-                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -705,7 +694,6 @@ export default async function DroneTraining() {
               alt={'Drone Mapping and Survey'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -773,7 +761,6 @@ export default async function DroneTraining() {
                   mt={2}
                   color="sec.3"
                   c={'pri.8'}
-                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -803,7 +790,6 @@ export default async function DroneTraining() {
               alt={'Thermography'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
-              radius={'lg'}
             />
           </GridCol>
         </Grid>
@@ -882,7 +868,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -906,7 +891,6 @@ export default async function DroneTraining() {
                   alt={'Holiday Camp'}
                   height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
                   mode="grid"
-                  radius={'lg'}
                 />
               </GridCol>
             </Grid>
@@ -956,7 +940,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -989,7 +972,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -1041,7 +1023,6 @@ export default async function DroneTraining() {
                             mt={2}
                             color="sec.3"
                             c={'pri.8'}
-                            radius={'xl'}
                           >
                             <IconArrowRightDashed
                               size={ICON_SIZE / 1.5}
@@ -1076,7 +1057,6 @@ export default async function DroneTraining() {
                             mt={2}
                             color="sec.3"
                             c={'pri.8'}
-                            radius={'xl'}
                           >
                             <IconArrowRightDashed
                               size={ICON_SIZE / 1.5}
@@ -1175,7 +1155,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -1199,7 +1178,6 @@ export default async function DroneTraining() {
                   alt={'Holiday Camp'}
                   height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
                   mode="grid"
-                  radius={'lg'}
                 />
               </GridCol>
             </Grid>
@@ -1237,7 +1215,6 @@ export default async function DroneTraining() {
                         mt={2}
                         color="sec.3"
                         c={'pri.8'}
-                        radius={'xl'}
                       >
                         <IconArrowRightDashed
                           size={ICON_SIZE / 1.5}
@@ -1284,7 +1261,6 @@ export default async function DroneTraining() {
                             mt={2}
                             color="sec.3"
                             c={'pri.8'}
-                            radius={'xl'}
                           >
                             <IconArrowRightDashed
                               size={ICON_SIZE / 1.5}
@@ -1319,7 +1295,6 @@ export default async function DroneTraining() {
                             mt={2}
                             color="sec.3"
                             c={'pri.8'}
-                            radius={'xl'}
                           >
                             <IconArrowRightDashed
                               size={ICON_SIZE / 1.5}
@@ -1356,7 +1331,6 @@ export default async function DroneTraining() {
                         mt={2}
                         color="sec.3"
                         c={'pri.8'}
-                        radius={'xl'}
                       >
                         <IconArrowRightDashed
                           size={ICON_SIZE / 1.5}
@@ -1391,7 +1365,6 @@ export default async function DroneTraining() {
                         mt={2}
                         color="sec.3"
                         c={'pri.8'}
-                        radius={'xl'}
                       >
                         <IconArrowRightDashed
                           size={ICON_SIZE / 1.5}
@@ -1440,7 +1413,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -1473,7 +1445,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -1506,7 +1477,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -1539,7 +1509,6 @@ export default async function DroneTraining() {
                           mt={2}
                           color="sec.3"
                           c={'pri.8'}
-                          radius={'xl'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}

@@ -98,7 +98,6 @@ export default function Conference({ close }: { close?: () => void }) {
             target="_blank"
             color="white"
             variant="outline"
-            radius={'xl'}
             size="sm"
             rightSection={
               <IconExternalLink

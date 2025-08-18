@@ -50,7 +50,6 @@ export default function Poster({ active }: { active?: boolean }) {
           src={slide.image}
           alt={'Training Workshop'}
           loading="lazy"
-          radius={'lg'}
           component={NextImage}
           width={slide.width}
           height={slide.height}

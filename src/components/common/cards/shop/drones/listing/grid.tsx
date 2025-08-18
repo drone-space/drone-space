@@ -54,13 +54,19 @@ export default function Grid({ data }: { data: typeDrone }) {
                   </Card>
                 )}
 
-                <div>
+                <Group gap={'xs'}>
                   {data.new && (
                     <Badge size={'md'} color={'sec.3'} c={'pri.8'}>
-                      New Arrival
+                      New
                     </Badge>
                   )}
-                </div>
+
+                  {data.featured && (
+                    <Badge size={'md'} color={'pri.8'} c={'sec.3'}>
+                      Featured
+                    </Badge>
+                  )}
+                </Group>
               </Stack>
             </Overlay>
           </CardSection>
@@ -94,14 +100,11 @@ export default function Grid({ data }: { data: typeDrone }) {
               },
             }}
           >
-            <Button size="xs" radius={'xl'}>
-              Order
-            </Button>
+            <Button size="xs">Order</Button>
           </ModalContactShop>
 
           <Button
             size="xs"
-            radius={'xl'}
             variant="outline"
             color="black"
             component={Link}

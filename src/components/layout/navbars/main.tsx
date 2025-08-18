@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Group, Anchor, Divider, Button } from '@mantine/core';
+import { Group, Anchor, Divider, Button, Box } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import MenuNavbar from '@/components/common/menus/navbar';
@@ -11,9 +11,11 @@ import { usePathname } from 'next/navigation';
 import links from '@/data/links';
 import ImageDefault from '@/components/common/images/default';
 import { images } from '@/assets/images';
-
+import ModalDownloadDocument from '@/components/common/modals/download/document';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import { appName } from '@/data/app';
+import { IconFileDownload } from '@tabler/icons-react';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 
 export default function Main({
   options,
@@ -88,9 +90,17 @@ export default function Main({
               <Divider orientation="vertical" />
             </Group>
 
-            <Group>
+            <Group gap={'xs'}>
+              <Box visibleFrom="lg">
+                <ModalDownloadDocument props={{ type: 'brochure' }}>
+                  <Button size="xs" variant="light">
+                    Get Brochure
+                  </Button>
+                </ModalDownloadDocument>
+              </Box>
+
               <ModalContactCallback>
-                <Button size="sm" variant="gradient" className={classes.button}>
+                <Button size="xs" variant="gradient" className={classes.button}>
                   Inquire
                 </Button>
               </ModalContactCallback>

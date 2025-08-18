@@ -115,7 +115,7 @@ export default function Home() {
               </Text>
 
               <Text ta={alignment}>
-                Intake:{' '}
+                {slide.dates.length > 1 ? 'Intake Dates' : 'Schedule'}:{' '}
                 <Text component={'span'} inherit fw={'bold'}>
                   {getMonthName(
                     getRegionalDate(slide.dates[0], {

@@ -24,7 +24,11 @@ import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
 
-export default function Home() {
+export default function Home({
+  params,
+}: {
+  params?: { title?: string; desc?: string };
+}) {
   return (
     <LayoutSection
       id={'partial-cta-newsletter'}
@@ -41,14 +45,12 @@ export default function Home() {
           <Stack gap={'xl'}>
             <Stack ta={{ base: 'center', sm: 'start' }}>
               <Title order={2} c={'white'}>
-                Empowering Drone Professionals in Kenya
+                {params?.title || 'Empowering Drone Professionals in Kenya'}
               </Title>
 
               <Text inherit>
-                Whether you&apos;re looking to start a new career or expand your
-                skillset, our Remote Pilot License (RPL) training program is the
-                perfect place to begin your journey. Join us and become a
-                licensed drone operator today!
+                {params?.desc ||
+                  "Whether you're looking to start a new career or expand your skillset, our Remote Pilot License (RPL) training program is the perfect place to begin your journey. Join us and become a licensed drone operator today!"}
               </Text>
             </Stack>
 

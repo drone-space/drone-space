@@ -49,13 +49,19 @@ export default function List({ data }: { data: typeDrone }) {
 
             <Overlay backgroundOpacity={0.05} p={'xs'} style={{ zIndex: 1 }}>
               <Stack justify="space-between" h={'100%'}>
-                <div>
+                <Group>
                   {data.new && (
                     <Badge size={'md'} color={'sec.3'} c={'pri.8'}>
-                      New Arrival
+                      New
                     </Badge>
                   )}
-                </div>
+
+                  {data.featured && (
+                    <Badge size={'md'} color={'pri.8'} c={'sec.3'}>
+                      Featured
+                    </Badge>
+                  )}
+                </Group>
               </Stack>
             </Overlay>
           </CardSection>
@@ -99,14 +105,11 @@ export default function List({ data }: { data: typeDrone }) {
                   },
                 }}
               >
-                <Button size="xs" radius={'xl'}>
-                  Order
-                </Button>
+                <Button size="xs">Order</Button>
               </ModalContactShop>
 
               <Button
                 size="xs"
-                radius={'xl'}
                 variant="outline"
                 color="black"
                 component={Link}

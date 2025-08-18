@@ -11,6 +11,8 @@ import { capitalizeWords } from '@/utilities/formatters/string';
 import {
   ActionIcon,
   Anchor,
+  BackgroundImage,
+  Box,
   Button,
   Card,
   CardSection,
@@ -44,6 +46,8 @@ import { Layout, Sort, useShopListing } from '@/hooks/shop';
 import { prependZeros } from '@/utilities/formatters/number';
 import { Order } from '@/enums/sort';
 import { useMediaQuery } from '@mantine/hooks';
+import { images } from '@/assets/images';
+import CardShopFeatured from '../common/cards/shop/featured';
 
 export default function DroneListing() {
   const router = useRouter();
@@ -91,7 +95,7 @@ export default function DroneListing() {
   return (
     <Grid gutter={{ base: 'xl', md: 'md', lg: 0 }}>
       <GridCol span={{ md: 3 }} pr={{ lg: 32 }} visibleFrom="md">
-        <Stack pos={'sticky'} top={SECTION_SPACING / 2}>
+        <Stack pos={'sticky'} top={'2rem'}>
           <Card withBorder>
             <Title order={3} fz={'md'} c={'var(--mantine-color-text)'}>
               Categories
@@ -118,7 +122,7 @@ export default function DroneListing() {
                     underline="hover"
                     onClick={() => {
                       updateParams({ ...params, category: cl.category });
-                      router.push('#listing');
+                      setTimeout(() => router.push('#listing'), 250);
                     }}
                   >
                     <Group justify="space-between">

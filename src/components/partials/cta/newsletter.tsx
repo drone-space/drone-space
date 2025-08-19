@@ -5,94 +5,79 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import {
+  ActionIcon,
+  Button,
+  Group,
+  Overlay,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
+import React from 'react';
 import FormNewsletter from '@/components/form/newsletter';
 import LayoutSection from '@/components/layout/section';
 import classes from './newsletter.module.scss';
 import { images } from '@/assets/images';
-import { usePathname } from 'next/navigation';
-import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
-import ModalContactCallback from '@/components/common/modals/contact/callback';
+import { IconFileDownload, IconX } from '@tabler/icons-react';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
 
-export default function Newsletter() {
-  const pathname = usePathname();
-
-  const [selectedVariant, setSelectedVariant] = useState<
-    'pri' | 'sec' | undefined
-  >(undefined);
-
-  useEffect(() => {
-    // Randomly choose between two values
-    const randomChoice = Math.random() < 0.5 ? 'pri' : 'sec';
-    setSelectedVariant(randomChoice);
-  }, [pathname]); // This ensures the random value is set on mount
-
+export default function Newsletter({ close }: { close?: () => void }) {
   return (
     <LayoutSection
       id={'partial-cta-newsletter'}
       c={'var(--mantine-color-body)'}
       className={classes.section}
       style={{
-        backgroundImage: `url('${selectedVariant == 'pri' ? images.backgrounds.cta.newsletter.primary : images.backgrounds.cta.newsletter.secondary}')`,
+        backgroundImage: `url('${images.web.newsletter}')`,
       }}
     >
-      <div className={classes.overlay}></div>
+      <Overlay backgroundOpacity={0.3} style={{ zIndex: 0 }} />
 
-      <Grid py={SECTION_SPACING / 2} pos={'relative'} align="center">
-        <GridCol span={{ base: 12, sm: 8 }}>
-          <Stack gap={'xl'} w={{ sm: '90%', md: '66%' }}>
-            <Stack gap={0} ta={{ base: 'center', sm: 'start' }}>
-              <Title order={2} c={'white'}>
-                Join Our Community!
-              </Title>
+      <Group justify="end" pt={'xl'}>
+        <ActionIcon
+          color="var(--mantine-color-white)"
+          variant={'subtle'}
+          onClick={close}
+        >
+          <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+        </ActionIcon>
+      </Group>
 
-              <Text inherit>
-                Subscribe to our monthly newsletter to receive the latest drone
-                industry news, helpful tips, and exclusive offers from us
-              </Text>
-            </Stack>
+      <Stack
+        pb={SECTION_SPACING / 2}
+        pos={'relative'}
+        gap={'xl'}
+        style={{ zIndex: 1 }}
+      >
+        <Stack gap={'xl'}>
+          <Stack ta={{ base: 'center' }}>
+            <Title order={2} c={'white'}>
+              Join Our Community!
+            </Title>
 
-            <FormNewsletter />
+            <Text inherit>
+              Subscribe to our monthly newsletter to receive the latest drone
+              industry news, helpful tips, and exclusive offers from us
+            </Text>
           </Stack>
-        </GridCol>
 
-        <GridCol span={{ base: 12, sm: 4 }}>
-          <Flex
-            direction={{ base: 'column', xs: 'row', sm: 'column' }}
-            justify={'center'}
-            gap={'md'}
-            align={{ base: 'center', sm: 'end' }}
-          >
-            <ModalContactCallback>
-              <Button
-                leftSection={
-                  <IconPhoneCall size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
-                variant="outline"
-                color="white"
-              >
-                Request Callback
-              </Button>
-            </ModalContactCallback>
+          <FormNewsletter />
+        </Stack>
 
-            <ModalDownloadDocument props={{ type: 'brochure' }}>
-              <Button
-                leftSection={
-                  <IconFileDownload
-                    size={ICON_SIZE}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
-                variant="white"
-              >
-                Download Brochure
-              </Button>
-            </ModalDownloadDocument>
-          </Flex>
-        </GridCol>
-      </Grid>
+        <Group justify="center">
+          <ModalDownloadDocument props={{ type: 'brochure' }}>
+            <Button
+              leftSection={
+                <IconFileDownload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              variant="white"
+            >
+              Download Brochure
+            </Button>
+          </ModalDownloadDocument>
+        </Group>
+      </Stack>
     </LayoutSection>
   );
 }

@@ -4,7 +4,6 @@ import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
 
 import { typeParams } from '../layout';
-import { Stack } from '@mantine/core';
 import IntroPage from '@/components/layout/intros/page';
 import { HOSTED_BASE_URL, SECTION_SPACING } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
@@ -14,6 +13,8 @@ import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partials/blog-content';
 import { linkify, processUrl } from '@/utilities/formatters/string';
 import { postsGet } from '@/services/database/posts';
+import { images } from '@/assets/images';
+import CtaHome from '@/components/partials/cta/home';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -53,30 +54,43 @@ export default async function Post({
         props={{
           path: 'Blog',
           title: post.title,
-          desc: post.excerpt,
-          bg: processedImage,
+          // desc: post.excerpt,
+          bg: images.web.hero,
         }}
         options={{ spacing: 'padding', autoSizeText: true }}
       />
 
       <LayoutSection
         id={'page-post-content'}
+        my={SECTION_SPACING / 2}
+        containerized={false}
+        maw={1200}
+        mx={'auto'}
+        p={'md'}
+      >
+        <ImageDefault
+          src={processedImage}
+          alt={post.title}
+          height={{ base: 300, xs: 400, md: 560, lg: 640 }}
+          priority
+        />
+      </LayoutSection>
+
+      <LayoutSection
+        id={'page-post-content'}
         margined={SECTION_SPACING / 2}
         mt={'xl'}
-        containerized={'sm'}
+        containerized={'md'}
       >
-        <Stack gap={'xl'}>
-          <ImageDefault
-            src={processedImage}
-            alt={post.title}
-            height={{ base: 240, xs: 320, md: 360, lg: 400 }}
-            radius={'sm'}
-            priority
-          />
-
-          <BlogContent content={post.content} />
-        </Stack>
+        <BlogContent content={post.content} />
       </LayoutSection>
+
+      <CtaHome
+        params={{
+          title: 'Get the latest updates',
+          desc: 'Subscribe to get the most-popular content on drone products, drone training, drone services, and top drone industry news to help keep you up to speed.',
+        }}
+      />
     </LayoutPage>
   );
 }

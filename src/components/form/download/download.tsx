@@ -29,7 +29,7 @@ export default function Document({
         </GridCol>
 
         <GridCol span={12}>
-          <CommonFooter props={{ submitted }} />
+          <CommonFooter props={{ submitted, label: 'Download' }} />
         </GridCol>
       </Grid>
     </form>

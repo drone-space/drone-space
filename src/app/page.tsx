@@ -21,8 +21,11 @@ import {
 } from '@mantine/core';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
 import {
+  IconCalendarEvent,
   IconCertificate,
   IconCertificate2,
+  IconChalkboardTeacher,
+  IconDrone,
   IconFileDownload,
   IconPhoneCall,
   IconSchool,
@@ -39,7 +42,6 @@ import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
 import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
-import CtaNewsletter from '@/components/partials/cta/newsletter';
 import {
   COOKIE_NAME,
   ICON_SIZE,
@@ -47,11 +49,13 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import { Metadata } from 'next';
-
+import ModalNewsletter from '@/components/common/modals/newsletter';
 import IntroSection from '@/components/layout/intros/section';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
-import { appName } from '@/data/app';
+import { aboutStats, appName } from '@/data/app';
+import AlertConference from '@/components/common/alerts/conference';
+import CtaHome from '@/components/partials/cta/home';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -290,14 +294,14 @@ export default function Home() {
 
           <Grid justify="center">
             {whyUs.map((item, index) => (
-              <GridCol key={index} span={{ base: 12, xs: 6, sm: 4 }}>
+              <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
                 <CardWhy data={item} />
               </GridCol>
             ))}
           </Grid>
         </LayoutSection>
 
-        <CtaNewsletter />
+        <CtaHome />
       </LayoutPage>
     </HomeLayout>
   );
@@ -313,7 +317,7 @@ const drones = {
 
 const whyUs = [
   {
-    icon: IconSchool,
+    icon: IconChalkboardTeacher,
     title: 'Skilled Instructors',
     desc: 'Our highly skilled trainers use a rigorous teaching technique that ensures efficient learning.',
   },
@@ -327,6 +331,21 @@ const whyUs = [
     title: 'KFCB Certified',
     desc: 'Approved and licensed by Kenya Film Classification Board (KFCB) as a local film agent.',
   },
+  {
+    icon: IconSchool,
+    title: `Over ${aboutStats.rplCertifications} RPL Certifications`,
+    desc: 'The Remote Pilot Licence (RPL) Training is the initial license required for a delegate/student to start their professional drone pilot career. Join us today and experience the power of flight.',
+  },
+  {
+    icon: IconCalendarEvent,
+    title: 'Host of First Ever Drone Tech and Data Expo in the Region',
+    desc: 'Drone Space through its spaces and hub will develop different innovative spaces as well as training courses to meet the needs of drone operators, developers and innovators and to build strategic partnerships between them so as to support their innovations and developments.',
+  },
+  {
+    icon: IconDrone,
+    title: `${aboutStats.droneOperations}+ Drone Operations Completed`,
+    desc: 'Our skilled personnel are adept at spotting issues and verifying drone operations follow client specifications and regulatory standards. When problems arise, Drone Space provides instant reaction and communication to all parties.',
+  },
 ];
 
 async function HomeLayout({ children }: { children: React.ReactNode }) {
@@ -338,11 +357,18 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <ProviderStore colorScheme={colorSchemeState || 'light'}>
       <LayoutBody
-        header={<HeaderMain />}
+        header={
+          <>
+            <AlertConference />
+            <HeaderMain />
+          </>
+        }
         nav={<NavbarMain />}
         footer={<FooterMain />}
       >
         <main>{children}</main>
+
+        <ModalNewsletter />
 
         <AffixNavbar />
         {/* <AffixAssistant /> */}

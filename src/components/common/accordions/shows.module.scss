@@ -5,12 +5,12 @@
     var(--mantine-color-sec-3),
     var(--mantine-color-sec-3)
   );
-  color: light-dark(var(--mantine-color-pri-7), var(--mantine-color-pri-7));
+  color: light-dark(var(--mantine-color-pri-8), var(--mantine-color-pri-8));
 
   @include mantine.hover {
     background-color: light-dark(
-      var(--mantine-color-pri-7),
-      var(--mantine-color-pri-7)
+      var(--mantine-color-pri-8),
+      var(--mantine-color-pri-8)
     );
     color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
 
@@ -34,7 +34,7 @@
 }
 
 .item {
-  border-radius: var(--mantine-radius-sm);
+  border-radius: var(--mantine-radius-lg);
   border-bottom: 0px solid inherit;
   box-shadow: var(--mantine-shadow-xs);
   border: 1px solid

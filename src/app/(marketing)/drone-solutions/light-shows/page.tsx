@@ -84,6 +84,7 @@ export default async function LighShow() {
               alt={"Let's Talk Drone Light Shows"}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 490, lg: 420 }}
+              radius={'sm'}
             />
           </GridCol>
 
@@ -107,7 +108,7 @@ export default async function LighShow() {
                   <IconChevronsRight
                     size={ICON_SIZE * 1.5}
                     stroke={ICON_STROKE_WIDTH}
-                    color="var(--mantine-color-pri-8)"
+                    color="var(--mantine-color-pri-7)"
                   />
                 }
               >
@@ -136,6 +137,7 @@ export default async function LighShow() {
               alt={'Understanding Drone Light Shows'}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 580, lg: 500 }}
+              radius={'sm'}
             />
           </GridCol>
 
@@ -170,7 +172,7 @@ export default async function LighShow() {
               h={'100%'}
               style={{
                 overflow: 'hidden',
-                borderRadius: 'var(--mantine-radius-lg)',
+                borderRadius: 'var(--mantine-radius-md)',
               }}
             >
               <video
@@ -179,7 +181,7 @@ export default async function LighShow() {
                 autoPlay
                 muted
                 loop
-                // style={{ borderRadius: "var(--mantine-radius-lg)", overflow: "hidden" }}
+                // style={{ borderRadius: "var(--mantine-radius-sm)", overflow: "hidden" }}
                 // poster={images.gallery.innovation.jamuhuri.yr2020.image9}
                 height={'100%'}
               >
@@ -234,6 +236,7 @@ export default async function LighShow() {
               alt={'Why Choose Drone Light Shows?'}
               loading="lazy"
               height={{ base: 240, xs: 360, md: 680, lg: 620 }}
+              radius={'sm'}
             />
           </GridCol>
 
@@ -262,7 +265,7 @@ export default async function LighShow() {
                     )}
 
                     <ListItem mt={'md'}>
-                      <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                      <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                         {item.label}
                       </Text>
                       : {item.item}

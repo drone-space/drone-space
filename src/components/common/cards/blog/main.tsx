@@ -2,7 +2,15 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { Anchor, Badge, Box, Card, Group, Text, Title } from '@mantine/core';
+import {
+  Anchor,
+  Badge,
+  Card,
+  CardSection,
+  Group,
+  Text,
+  Title,
+} from '@mantine/core';
 
 import classes from './main.module.scss';
 import { PostRelations } from '@/types/models/post';
@@ -15,10 +23,10 @@ export default function Main({ post }: { post: PostRelations }) {
   const path = `/blog/${linkify(post.title)}-${post.id}`;
 
   return (
-    <Card className={classes.card} h={'100%'}>
-      <div
+    <Card className={classes.card} bg={'transparent'}>
+      <CardSection
         style={{
-          borderRadius: 'var(--mantine-radius-lg)',
+          borderRadius: 'var(--mantine-radius-sm)',
           overflow: 'hidden',
         }}
       >
@@ -39,20 +47,24 @@ export default function Main({ post }: { post: PostRelations }) {
 
           <div className={classes.overlay}>
             <Group>
-              <Badge color="white" c={'var(--mantine-color-pri-8)'}>
+              <Badge
+                color="white"
+                c={'var(--mantine-color-pri-7)'}
+                radius={'xs'}
+              >
                 {getRegionalDate(post.created_at).date}
               </Badge>
             </Group>
           </div>
         </Anchor>
-      </div>
+      </CardSection>
 
-      <Box mt={'lg'}>
+      <CardSection mt={'lg'}>
         <Title
           order={3}
           fz={{ base: 'xl' }}
           className={classes.title}
-          lineClamp={2}
+          lineClamp={1}
         >
           <Anchor
             component={Link}
@@ -69,7 +81,7 @@ export default function Main({ post }: { post: PostRelations }) {
         <Text className={classes.desc} lineClamp={3} mt={'md'}>
           {post.excerpt}
         </Text>
-      </Box>
+      </CardSection>
     </Card>
   );
 }

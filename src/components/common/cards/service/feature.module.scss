@@ -1,14 +1,14 @@
 .card {
   background-color: light-dark(
-    var(--mantine-color-pri-8),
-    var(--mantine-color-pri-8)
+    var(--mantine-color-pri-7),
+    var(--mantine-color-pri-7)
   ) !important;
   color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-white)
   ) !important;
   box-shadow: var(--mantine-shadow-sm);
-  border-radius: var(--mantine-radius-lg);
+  border-radius: var(--mantine-radius-sm);
   transition: 0.25s all ease;
 
   @include mantine.hover {

@@ -13,7 +13,6 @@ import { Metadata } from 'next';
 import { HOSTED_BASE_URL } from '@/data/constants';
 import { images } from '@/assets/images';
 import { appName, companyName } from '@/data/app';
-import CtaHome from '@/components/partials/cta/home';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -51,7 +50,7 @@ export default async function Blog() {
           path: 'News',
           title: 'Insights on Drone Training & Technology',
           desc: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations.`,
-          bg: images.web.hero,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 
@@ -79,13 +78,6 @@ export default async function Blog() {
           )}
         </Grid>
       </LayoutSection>
-
-      <CtaHome
-        params={{
-          title: 'Get the latest updates',
-          desc: 'Subscribe to get the most-popular content on drone products, drone training, drone services, and top drone industry news to help keep you up to speed.',
-        }}
-      />
     </LayoutPage>
   );
 }

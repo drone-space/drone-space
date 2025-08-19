@@ -10,7 +10,7 @@ export default function Section({
   options,
 }: {
   props: { subTitle?: string; title: string; desc?: string };
-  options?: { alignment?: 'start' | 'end' | any; spacing?: boolean };
+  options?: { alignment?: 'start' | 'end'; spacing?: boolean };
 }) {
   return (
     <LayoutSection id={'layout-intro-section'} containerized={false}>
@@ -19,7 +19,7 @@ export default function Section({
           <Text
             fw={'bold'}
             ta={options?.alignment || 'center'}
-            c={'sec.3'}
+            c={'sec.4'}
             tt={'uppercase'}
             fz={'sm'}
           >

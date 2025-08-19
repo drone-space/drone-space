@@ -1,8 +1,9 @@
 import React from 'react';
 import LayoutPage from '@/components/layout/page';
 import LayoutSection from '@/components/layout/section';
+import HeroShop from '@/components/layout/heros/shop';
 import CardShopFactor from '@/components/common/cards/shop/factor';
-import { Grid, GridCol } from '@mantine/core';
+import { Anchor, Grid, GridCol, Group, Stack } from '@mantine/core';
 import {
   IconDiscount2,
   IconDropletBolt,
@@ -12,58 +13,21 @@ import {
   IconPhotoSensor3,
 } from '@tabler/icons-react';
 import IntroSection from '@/components/layout/intros/section';
-import { appName, companyName } from '@/data/app';
-import { Metadata } from 'next';
-import { HOSTED_BASE_URL } from '@/data/constants';
-import { images } from '@/assets/images';
-import IntroPage from '@/components/layout/intros/page';
-import PartialDroneListing from '@/components/partials/drone-listing';
+import { shopLinks } from '@/data/links';
+import Link from 'next/link';
+import ImageDefault from '@/components/common/images/default';
+import CtaFeatured from '@/components/partials/cta/featured';
 
 export const dynamic = 'force-static';
-
-const metaTitle = `Drone Shop - Top Drones & Accessories at ${appName} Kenya`;
-const metaDesc = `Discover the best DJI drones in Kenya for every need at ${appName}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
-
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
-    title: metaTitle,
-    description: metaDesc,
-    url: `${HOSTED_BASE_URL.DEFAULT}/shop`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: companyName,
-      },
-    ],
-  },
-};
 
 export default async function Shop() {
   return (
     <LayoutPage>
-      <IntroPage
-        props={{
-          path: 'Shop',
-          title: `Top Drones At ${appName}`,
-          desc: 'Shop top-rated drones for beginners, professionals, and enthusiasts.',
-          bg: images.web.hero,
-        }}
-      />
+      <HeroShop />
 
-      <LayoutSection id="listing" padded>
-        <PartialDroneListing />
-      </LayoutSection>
+      <CtaFeatured />
 
-      <LayoutSection
-        id="page-shop-factors"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="page-shop-intro" padded>
         <IntroSection
           props={{
             subTitle: 'Factors',
@@ -82,6 +46,25 @@ export default async function Shop() {
           ))}
         </Grid>
       </LayoutSection>
+
+      {shopLinks.slice(0, shopLinks.length - 1).map((sl, i) => (
+        <LayoutSection
+          bg={i % 2 == 0 ? 'var(--mantine-color-gray-1)' : undefined}
+          id={`page-shop-${sl.label}`}
+          key={i}
+          padded
+        >
+          <DroneCategorySection
+            props={{
+              title: sl.label,
+              desc: sl.definition || '',
+              link: sl.link,
+              image: sl.image,
+              alternate: i % 2 == 0,
+            }}
+          />
+        </LayoutSection>
+      ))}
     </LayoutPage>
   );
 }
@@ -130,3 +113,63 @@ const factors = [
     desc: 'Most camera drones do not control the points at which images are taken; photographs are taken at ad hoc moments. This results in sub-optimal photographs creating more unnecessary data and time-consuming post-processing. This lack of detail could also result in a failed mapping mission for example.',
   },
 ];
+
+function DroneCategorySection({
+  props,
+}: {
+  props: {
+    title: string;
+    desc: string;
+    link: string;
+    image: string;
+    alternate?: boolean;
+  };
+}) {
+  return (
+    <div>
+      <Grid gutter={'xl'} align="center">
+        <GridCol
+          span={{ md: 6 }}
+          order={{ md: props.alternate ? 2 : undefined }}
+        >
+          <Stack align="start">
+            <IntroSection
+              props={{
+                subTitle: 'Drones',
+                title: props.title,
+                desc: props.desc,
+              }}
+              options={{ alignment: 'start' }}
+            />
+          </Stack>
+        </GridCol>
+
+        <GridCol
+          span={{ md: 6 }}
+          order={{ md: props.alternate ? 1 : undefined }}
+        >
+          <ImageDefault
+            src={props.image}
+            alt={'Agriculture'}
+            height={{ base: 240, xs: 320, sm: 400, md: 340, lg: 400 }}
+            mode="grid"
+            radius={'sm'}
+          />
+        </GridCol>
+      </Grid>
+
+      <Group mt={'xl'} justify={'center'}>
+        <Anchor
+          inherit
+          ta={'center'}
+          component={Link}
+          href={props.link}
+          fz={'sm'}
+          underline="hover"
+        >
+          See {props.title} drones
+        </Anchor>
+      </Group>
+    </div>
+  );
+}

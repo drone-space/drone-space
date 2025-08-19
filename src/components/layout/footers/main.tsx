@@ -13,33 +13,26 @@ import {
   ListItem,
   Stack,
   Image,
-  Button,
 } from '@mantine/core';
 import LayoutSection from '@/components/layout/section';
 import { images } from '@/assets/images';
 import classes from './main.module.scss';
-import { serviceLinks, socialLinks, trainingLinks } from '@/data/links';
+import { socialLinks } from '@/data/links';
 import NextImage from 'next/image';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@/data/constants';
-import { IconCircleFilled, IconMail, IconTicket } from '@tabler/icons-react';
+import { SECTION_SPACING } from '@/data/constants';
+import { IconCircleFilled } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
 import { appName, emails, phones } from '@/data/app';
-import ModalNewsletter from '@/components/common/modals/newsletter';
-import ModalConference from '@/components/common/modals/conference';
 
 export default function Main() {
   return (
     <LayoutSection
       id={'partial-footer-main'}
-      padded={'xl'}
+      padded={'lg'}
       className={classes.footer}
     >
-      <Grid mt={SECTION_SPACING / 2} gutter={{ base: 'xl', md: 0 }}>
-        <GridCol span={{ base: 12, md: 4.5 }}>
+      <Grid mt={SECTION_SPACING / 2} gutter={{ base: 'xl', md: 'md' }}>
+        <GridCol span={{ base: 12, md: 6 }}>
           <Stack gap={'xl'}>
             <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
               <Anchor component={Link} href={'/'}>
@@ -55,7 +48,7 @@ export default function Main() {
             </Flex>
 
             <Text
-              maw={{ md: '90%', lg: '80%' }}
+              maw={{ md: '75%', lg: '66%' }}
               ta={{ base: 'center', md: 'start' }}
               fz={'sm'}
             >
@@ -87,16 +80,16 @@ export default function Main() {
           </Stack>
         </GridCol>
 
-        <GridCol span={{ base: 12, md: 7.5 }} visibleFrom="sm">
-          <Grid gutter={{ md: 'md', lg: 0 }}>
+        <GridCol span={{ base: 12, md: 6 }} visibleFrom="sm">
+          <Grid>
             {linkSets.map((linkSet, index) => (
-              <GridCol key={index} span={{ sm: 4 }}>
+              <GridCol key={index} span={{ sm: 6 }}>
                 <Flex
                   direction={'column'}
                   align={{ base: 'center', md: 'start' }}
                   gap={'xl'}
                 >
-                  <Title order={4} fz={'md'} fw={700}>
+                  <Title order={4} fw={'bold'}>
                     {linkSet.title}
                   </Title>
 
@@ -108,7 +101,7 @@ export default function Main() {
                           href={link.link}
                           title={link.label}
                           className={classes.link}
-                          fz={{ base: 'sm', md: 'xs', lg: 'sm' }}
+                          fz={'sm'}
                         >
                           {link.label}
                         </Anchor>
@@ -122,38 +115,11 @@ export default function Main() {
         </GridCol>
       </Grid>
 
-      <Flex
-        align={'center'}
-        gap={'xs'}
-        justify={{ base: 'center', md: 'start' }}
+      <Divider
         mt={SECTION_SPACING / 2}
-        mb={'xl'}
-      >
-        <ModalNewsletter options={{ auto: false }}>
-          <Button
-            size={'xs'}
-            leftSection={
-              <IconMail size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            Newsletter
-          </Button>
-        </ModalNewsletter>
-
-        <ModalConference>
-          <Button
-            size={'xs'}
-            color="sec.3"
-            leftSection={
-              <IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            AI Conference
-          </Button>
-        </ModalConference>
-      </Flex>
-
-      <Divider mb={'xl'} color="var(--mantine-color-default-border)" />
+        mb={'lg'}
+        color="var(--mantine-color-default-border)"
+      />
 
       <Stack fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
         <Flex
@@ -185,7 +151,7 @@ export default function Main() {
           </Group>
 
           <Text component="span" inherit>
-            {appName} © {new Date().getFullYear()}, All Rights Reserved.
+            © {new Date().getFullYear()} {appName}. All Rights Reserved.
           </Text>
         </Flex>
       </Stack>
@@ -204,12 +170,29 @@ const phone = {
 
 const linkSets = [
   {
-    title: 'Drone Courses',
-    links: trainingLinks,
-  },
-  {
-    title: 'Drone Solutions',
-    links: serviceLinks,
+    title: 'Useful Links',
+    links: [
+      {
+        label: 'About Drone Space',
+        link: '/about',
+      },
+      {
+        label: 'Our Drone Solutions',
+        link: '/drone-solutions',
+      },
+      {
+        label: 'Drone Training',
+        link: '/drone-training',
+      },
+      {
+        label: 'Drone Shop',
+        link: '/shop',
+      },
+      {
+        label: 'Get in Touch',
+        link: '/contact',
+      },
+    ],
   },
   {
     title: 'Contact',
@@ -230,10 +213,10 @@ const linkSets = [
         label: phone.pri,
         link: `tel:${phone.pri}`,
       },
-      // {
-      //   label: phone.sec,
-      //   link: `tel:${phone.sec}`,
-      // },
+      {
+        label: phone.sec,
+        link: `tel:${phone.sec}`,
+      },
     ],
   },
 ];

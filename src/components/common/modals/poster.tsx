@@ -50,6 +50,7 @@ export default function Poster({ active }: { active?: boolean }) {
           src={slide.image}
           alt={'Training Workshop'}
           loading="lazy"
+          radius={'sm'}
           component={NextImage}
           width={slide.width}
           height={slide.height}
@@ -83,7 +84,7 @@ export default function Poster({ active }: { active?: boolean }) {
         </Carousel>
       </Modal>
 
-      <Button onClick={open} size="xs" color="sec.3" c={'pri.8'}>
+      <Button onClick={open} size="xs" color="sec.3" c={'pri.7'}>
         Training Workshop
       </Button>
     </>

@@ -15,7 +15,7 @@ export default function Info({
       position="top-end"
       withArrow
       transitionProps={{ transition: 'pop-bottom-right' }}
-      arrowOffset={16}
+      arrowOffset={8}
       {...restProps}
     >
       <Center style={{ cursor: 'help' }}>

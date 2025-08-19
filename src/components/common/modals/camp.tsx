@@ -44,6 +44,7 @@ export default function Camp({ active }: { active?: boolean }) {
           src={slide.image}
           alt={'Training Workshop'}
           loading="lazy"
+          radius={'sm'}
           component={NextImage}
           width={1080}
           height={1920}

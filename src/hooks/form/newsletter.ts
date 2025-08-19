@@ -5,8 +5,6 @@ import { useForm } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';
 import { useState } from 'react';
 import { contactAdd } from '@/handlers/requests/contact';
-import { saveToLocalStorage } from '@/utilities/helpers/storage';
-import { LOCAL_STORAGE_NAME } from '@/data/constants';
 
 export const useFormNewsletter = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -45,7 +43,6 @@ export const useFormNewsletter = () => {
 
         if (response.ok) {
           showNotification({ variant: Variant.SUCCESS }, response, result);
-          saveToLocalStorage(LOCAL_STORAGE_NAME.NEWSLETTER, true);
           return;
         }
 

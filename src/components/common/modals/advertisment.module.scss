@@ -1,5 +1,5 @@
 .content {
-  border-radius: var(--mantine-radius-lg);
+  border-radius: var(--mantine-radius-sm);
   overflow: hidden;
 
   @include mantine.hover {
@@ -17,11 +17,11 @@
   transition: 0.25s all ease;
 
   opacity: 0;
-  background-color: var(--mantine-color-pri-8);
+  background-color: var(--mantine-color-pri-7);
   color: var(--mantine-color-sec-3);
 }
 
 .indicator {
-  background-color: var(--mantine-color-pri-8);
+  background-color: var(--mantine-color-pri-7);
   // color: var(--mantine-color-sec-3);
 }

@@ -11,6 +11,7 @@ export default function Course() {
       <Indicator
         withBorder
         processing
+        radius={'sm'}
         size={16}
         label={
           <Text component="span" inherit fz={8}>
@@ -20,6 +21,7 @@ export default function Course() {
       >
         <Badge
           size="sm"
+          radius={'sm'}
           variant="gradient"
           gradient={{ from: 'pri', to: 'sec', deg: 165 }}
           leftSection={

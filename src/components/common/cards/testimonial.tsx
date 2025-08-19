@@ -40,7 +40,7 @@ export default function Testimonial({ props }: { props: Student }) {
           <Group
             style={{
               border: '2px solid var(--mantine-color-sec-3)',
-              borderRadius: 999,
+              borderRadius: 'var(--mantine-radius-xl)',
               overflow: 'hidden',
             }}
             miw={64}

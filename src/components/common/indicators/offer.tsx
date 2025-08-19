@@ -11,6 +11,7 @@ export default function Offer() {
       <Indicator
         withBorder
         processing
+        radius={'sm'}
         size={20}
         label={
           <Text component="span" inherit fz={{ base: 8, lg: 10 }}>
@@ -20,6 +21,7 @@ export default function Offer() {
       >
         <Badge
           size={'md'}
+          radius={'sm'}
           variant="gradient"
           gradient={{ from: 'pri', to: 'sec', deg: 165 }}
           leftSection={

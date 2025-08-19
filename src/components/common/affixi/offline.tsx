@@ -36,8 +36,8 @@ export default function Offline({
               p={'xs'}
               style={{
                 borderRadius: 0,
-                borderTopRightRadius: 'var(--mantine-radius-lg)',
-                borderBottomRightRadius: 'var(--mantine-radius-lg)',
+                borderTopRightRadius: 'var(--mantine-radius-sm)',
+                borderBottomRightRadius: 'var(--mantine-radius-sm)',
               }}
               icon={
                 networkStatus.online ? (

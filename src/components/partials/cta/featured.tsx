@@ -1,144 +1,100 @@
 import React from 'react';
 import LayoutSection from '@/components/layout/section';
 import {
-  ActionIcon,
-  Badge,
   Box,
   Button,
-  Card,
   Grid,
   GridCol,
   Group,
-  Overlay,
   Stack,
   Text,
+  Title,
 } from '@mantine/core';
 import ModalContactShop from '@/components/common/modals/contact/shop';
 import Link from 'next/link';
 import { linkify } from '@/utilities/formatters/string';
 import classes from './featured.module.scss';
 import products from '@/data/products';
-import { images } from '@/assets/images';
-import { IconX } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@/data/constants';
-import ImageDefault from '@/components/common/images/default';
 
-export default function Featured({ close }: { close?: () => void }) {
+export default function Featured() {
   const productFeatured = products.find((p: any) => p.featured);
 
-  if (!productFeatured) return;
-
   return (
-    <>
+    productFeatured && (
       <LayoutSection
-        id={'partial-cta-feat-drone'}
-        c={'var(--mantine-color-body)'}
-        className={classes.section}
-        style={{
-          backgroundImage: `url('${images.web.drone}')`,
-        }}
+        id="page-shop-featured"
+        containerized={'responsive'}
+        bg="linear-gradient(45deg, var(--mantine-color-sec-4) 0%, var(--mantine-color-sec-4) 0%, var(--mantine-color-pri-7) 90%, var(--mantine-color-pri-7) 100%)"
+        c={'var(--mantine-color-white)'}
+        visibleFrom="md"
+        padded={'xl'}
       >
-        <Overlay backgroundOpacity={0.3} style={{ zIndex: 0 }} />
+        <Grid align="center" gutter={0}>
+          {/* <GridCol span={12}>
+          <Group justify="center">
+            <Badge color={'sec.4'} c={'pri'}>
+              Featured Drone
+            </Badge>
+          </Group>
+        </GridCol> */}
 
-        <Group justify="end" pt={'xl'}>
-          <ActionIcon
-            color="var(--mantine-color-white)"
-            variant={'subtle'}
-            onClick={close}
-          >
-            <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          </ActionIcon>
-        </Group>
+          <GridCol span={{ sm: 4 }}>
+            <Stack>
+              <div>
+                <Text
+                  ta={{ base: 'center', sm: 'start' }}
+                  component="span"
+                  inherit
+                  fz={'lg'}
+                >
+                  &quot;Mini to the Max&quot;
+                </Text>
 
-        <Grid
-          align={'center'}
-          gutter={{ base: 'xl' }}
-          // pt={{ base: SECTION_SPACING / 1.5, sm: SECTION_SPACING / 3 }}
-          pb={{ base: 'xl', sm: SECTION_SPACING / 3 }}
-          style={{ zIndex: 1 }}
-        >
-          <GridCol span={{ base: 12, sm: 6 }}>
-            <Card bg={'var(--mantine-color-body)'}>
-              <ImageDefault
-                src={productFeatured.images[2]}
-                alt={productFeatured.title.short}
-                height={{ base: 280 }}
-                fit="contain"
-                mode="grid"
-              />
-            </Card>
+                <Title
+                  ta={{ base: 'center', sm: 'start' }}
+                  order={2}
+                  fz={{ md: '2rem' }}
+                  c={'var(--mantine-color-white)'}
+                >
+                  {productFeatured.title.long}
+                </Title>
+              </div>
+
+              <Group>
+                <ModalContactShop>
+                  <Button>Buy Now</Button>
+                </ModalContactShop>
+
+                <Button
+                  variant="outline"
+                  component={Link}
+                  href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}`}
+                >
+                  Learn More
+                </Button>
+              </Group>
+            </Stack>
           </GridCol>
 
-          <GridCol span={{ base: 12, sm: 6 }}>
-            <Stack pos={'relative'} gap={'xl'}>
-              <Stack gap={'xl'}>
-                <Stack ta={{ base: 'center' }}>
-                  <Group justify={'center'}>
-                    <Badge
-                      color="var(--mantine-color-white)"
-                      variant={'light'}
-                      fw={500}
-                      lts={1.5}
-                    >
-                      Featured Drone
-                    </Badge>
-                  </Group>
-
-                  <div>
-                    <Box className={classes.glitchContainer}>
-                      <Box
-                        component="h1"
-                        data-text={productFeatured.title.long}
-                        fz={{
-                          base: '1.5rem',
-                          lg: '2rem',
-                        }}
-                        tt={'uppercase'}
-                        lts={5}
-                        fw={700}
-                        // c={'sec.3'}
-                        className={classes.glitchText}
-                      >
-                        {productFeatured.title.long}
-                      </Box>
-                    </Box>
-
-                    <Text ta={'center'} inherit fz={'lg'}>
-                      Mini to the Max
-                    </Text>
-                  </div>
-                </Stack>
-
-                <Group justify={'center'}>
-                  <ModalContactShop
-                    props={{
-                      initialValues: {
-                        subject: `${productFeatured.title.short} Purchase Inquiry`,
-                        message: `I'd like to order the ${productFeatured.title.long}.`,
-                      },
-                    }}
-                  >
-                    <Button color="sec.3">Order Now</Button>
-                  </ModalContactShop>
-
-                  <Button
-                    variant="outline"
-                    color="white"
-                    component={Link}
-                    href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}`}
-                  >
-                    Learn More
-                  </Button>
-                </Group>
-              </Stack>
-            </Stack>
+          <GridCol span={{ sm: 8 }}>
+            <Group justify={'end'}>
+              <Box className={classes.glitchContainer}>
+                <Box
+                  data-text="Featured Drone"
+                  fz={{ sm: '2rem', md: '3rem', lg: '4rem' }}
+                  tt={'uppercase'}
+                  lts={5}
+                  fw={700}
+                  // c={'sec.4'}
+                  className={classes.glitchText}
+                >
+                  Featured Drone
+                </Box>
+              </Box>
+            </Group>
           </GridCol>
         </Grid>
       </LayoutSection>
-    </>
+    )
   );
 }

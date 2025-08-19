@@ -16,6 +16,7 @@ export default function Partner({
           alt={data.title}
           loading="lazy"
           fit="contain"
+          radius={'sm'}
           height={data.height}
           className={classes.image}
         />

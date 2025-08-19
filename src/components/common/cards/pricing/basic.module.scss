@@ -1,4 +1,5 @@
 .card {
+  padding: var(--mantine-spacing-lg);
   height: 100%;
 
   @include mantine.larger-than(mantine.$mantine-breakpoint-lg) {

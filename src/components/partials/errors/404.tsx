@@ -8,21 +8,21 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import IntroSection from '@/components/layout/intros/section';
+import IntroPage from '@/components/layout/intros/page';
 
 export default function Error404() {
   return (
     <LayoutSection id={'error-404'}>
       <Stack justify="center" mih={'100vh'} pb={SECTION_SPACING}>
-        <IntroSection
+        <IntroPage
           props={{
-            subTitle: `404`,
+            path: `404`,
             title: 'Not Found',
             desc: `The page you are trying to open does not exist.`,
           }}
         />
 
-        <Group justify="center" mt={'md'}>
+        <Group justify="center">
           <Button
             component={Link}
             href={'/'}

@@ -11,7 +11,7 @@ export default function Advantages({
   return (
     <Card className={classes.card} padding={0} bg={'transparent'}>
       <Group>
-        <ThemeIcon size={20} color="sec.3" c={'pri.8'}>
+        <ThemeIcon size={20} color="sec.3" c={'pri.7'}>
           <data.icon.icon size={12} stroke={3} />
         </ThemeIcon>
 

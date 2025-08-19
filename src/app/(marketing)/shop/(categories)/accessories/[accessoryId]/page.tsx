@@ -59,7 +59,7 @@ export default async function AccessoryDetails({
           path: `Accessories`,
           title:
             product?.title.long || product?.title.short || 'Drone Accessories',
-          bg: images.web.hero,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 
@@ -91,7 +91,7 @@ export default async function AccessoryDetails({
                   inherit
                   fw={500}
                   c={
-                    'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                    'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                   }
                   fz={{ md: 'xl' }}
                 >
@@ -112,8 +112,9 @@ export default async function AccessoryDetails({
                     <Group gap={'xs'} wrap="nowrap" align="start">
                       <ThemeIcon
                         size={ICON_WRAPPER_SIZE / 1.5}
+                        radius={'xl'}
                         color="sec.3"
-                        c={'pri.8'}
+                        c={'pri.7'}
                         mt={4}
                       >
                         <IconArrowRightDashed

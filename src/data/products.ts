@@ -2417,7 +2417,6 @@ const products = [
       long: 'Autel Evo II Dual 640T (Enterprise Bundle)',
       short: 'Evo II Dual 640T',
     },
-    desc: 'The Autel EVO II Dual is equipped with a high-resolution thermal imaging camera and an 8K visual camera, providing powerful imaging capabilities for a variety of professional applications. Its compact, foldable design and advanced obstacle avoidance make it ideal for industries such as firefighting, law enforcement, search and rescue, infrastructure inspection, and agriculture.',
     specs: {
       intro: [
         '50MP Ultra-Sensitive Camera',

@@ -56,7 +56,9 @@ export default function Shop() {
 
                 <Group justify={'center'}>
                   <MoadlContactShop>
-                    <Button color="sec.3">Inquire</Button>
+                    <Button color="sec.4" radius={'xl'}>
+                      Inquire
+                    </Button>
                   </MoadlContactShop>
 
                   <Button
@@ -64,6 +66,7 @@ export default function Shop() {
                     href={props.link}
                     variant="outline"
                     color="white"
+                    radius={'xl'}
                   >
                     Learn More
                   </Button>

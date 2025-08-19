@@ -25,13 +25,6 @@ export const images = {
     },
   },
 
-  web: {
-    hero: `${baseUrl.droneSpace}/web/hero-banner.webp`,
-    newsletter: `${baseUrl.droneSpace}/web/newsletter-banner.webp`,
-    drone: `${baseUrl.droneSpace}/web/drone-banner.webp`,
-    rpl: `${baseUrl.droneSpace}/web/rpl-banner.webp`,
-  },
-
   brand: {
     droneSpace: {
       icon: {

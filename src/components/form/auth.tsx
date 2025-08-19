@@ -30,7 +30,7 @@ export default function Auth({ action }: { action: AuthAction }) {
           </GridCol>
 
           <GridCol span={12}>
-            <Button fullWidth type="submit" loading={submitted} disabled={true}>
+            <Button fullWidth type="submit" loading={submitted}>
               {action === 'sign-in' ? 'Sign In' : 'Sign Up'}
             </Button>
           </GridCol>

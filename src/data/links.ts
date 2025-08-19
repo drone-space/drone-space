@@ -31,7 +31,7 @@ import { socials } from './app';
 
 export const shopLinks = [
   {
-    link: '/shop?category=camera&layout=grid&listSize=6#listing',
+    link: '/shop/drones/camera',
     label: 'Camera Drones',
     leftSection: IconDeviceCameraPhone,
     desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
@@ -40,7 +40,7 @@ export const shopLinks = [
     image: images.carousel.shop.image1,
   },
   {
-    link: '/shop?category=cinematography&layout=grid&listSize=6#listing',
+    link: '/shop/drones/cinematography',
     label: 'Cinematography & Filmmaking',
     leftSection: IconCell,
     desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
@@ -49,7 +49,7 @@ export const shopLinks = [
     image: images.carousel.shop.image5,
   },
   {
-    link: '/shop?category=enterprise&layout=grid&listSize=6#listing',
+    link: '/shop/drones/enterprise',
     label: 'Industrial & Enterprise Applications',
     leftSection: IconCell,
     desc: 'Powerful drones designed for industrial and commercial applications.',
@@ -58,7 +58,7 @@ export const shopLinks = [
     image: images.carousel.shop.image2,
   },
   {
-    link: '/shop?category=mapping&layout=grid&listSize=6#listing',
+    link: '/shop/drones/mapping',
     label: 'Surveying & Mapping',
     leftSection: IconCell,
     desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
@@ -67,7 +67,7 @@ export const shopLinks = [
     image: images.carousel.shop.image4,
   },
   {
-    link: '/shop?category=agriculture&layout=grid&listSize=6#listing',
+    link: '/shop/drones/agriculture',
     label: 'Agriculture & Precision Farming',
     leftSection: IconPlant2,
     desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
@@ -76,7 +76,7 @@ export const shopLinks = [
     image: images.carousel.shop.image3,
   },
   {
-    link: '/shop?category=upcoming&layout=grid&listSize=6#listing',
+    link: '/shop/drones/upcoming',
     label: 'Upcoming Releases',
     leftSection: IconPlant2,
     desc: 'Be the first to explore the latest drone innovations and upcoming models hitting the skies soon.',
@@ -91,48 +91,6 @@ export const shopLinks = [
     desc: 'Enhance your drone experience with high-quality accessories and add-ons.',
     image: images.carousel.shop.image1,
   },
-];
-
-export const trainingLinks = [
-  ...courseList
-    .map((course) => {
-      if (courseList.indexOf(course) < 5) {
-        return {
-          link: `/drone-training#${linkify(course.title)}`,
-          label: course.title,
-          leftSection: course.leftSection,
-          desc: course.linkDesc,
-        };
-      }
-
-      return null;
-    })
-    .filter((i) => i != null),
-
-  {
-    link: '/drone-training/pricing',
-    label: 'Training Pricing',
-    leftSection: IconCash,
-    desc: 'Find detailed information on costs and packages for all our training programs.',
-  },
-];
-
-export const serviceLinks = [
-  {
-    label: 'Drone Light Shows',
-    link: '/drone-solutions/light-shows',
-    leftSection: IconSun,
-    desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
-  },
-
-  ...services.map((service) => {
-    return {
-      link: `/drone-solutions#${linkify(service.title)}`,
-      label: service.title,
-      leftSection: service.leftSection,
-      desc: service.linkDesc,
-    };
-  }),
 ];
 
 export const navLinkItems = {
@@ -274,12 +232,50 @@ const links = [
   {
     link: '/drone-training',
     label: 'Drone Training',
-    subLinks: trainingLinks,
+    subLinks: [
+      ...courseList
+        .map((course) => {
+          if (courseList.indexOf(course) < 5) {
+            return {
+              link: `/drone-training#${linkify(course.title)}`,
+              label: course.title,
+              leftSection: course.leftSection,
+              desc: course.linkDesc,
+            };
+          }
+
+          return null;
+        })
+        .filter((i) => i != null),
+
+      {
+        link: '/drone-training/pricing',
+        label: 'Training Pricing',
+        leftSection: IconCash,
+        desc: 'Find detailed information on costs and packages for all our training programs.',
+      },
+    ],
   },
   {
     link: '/drone-solutions',
     label: 'Drone Solutions',
-    subLinks: serviceLinks,
+    subLinks: [
+      {
+        label: 'Drone Light Shows',
+        link: '/drone-solutions/light-shows',
+        leftSection: IconSun,
+        desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
+      },
+
+      ...services.map((service) => {
+        return {
+          link: `/drone-solutions#${linkify(service.title)}`,
+          label: service.title,
+          leftSection: service.leftSection,
+          desc: service.linkDesc,
+        };
+      }),
+    ],
   },
   {
     link: '/shop',

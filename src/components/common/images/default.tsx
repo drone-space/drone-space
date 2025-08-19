@@ -54,7 +54,6 @@ export default function Default({
         loading={restProps.priority ? undefined : 'lazy'}
         fill
         quality={restProps.quality || 100}
-        radius={'var(--mantine-radius-lg)'}
         {...restProps}
       />
     </Center>

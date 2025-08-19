@@ -5,8 +5,7 @@ import NavbarMain from '@/components/layout/navbars/main';
 import FooterMain from '@/components/layout/footers/main';
 import { COOKIE_NAME } from '@/data/constants';
 import { cookies } from 'next/headers';
-import ModalNewsletter from '@/components/common/modals/newsletter';
-import AffixNavbar from '@/components/common/affixi/navbar';
+import CtaNewsletter from '@/components/partials/cta/newsletter';
 
 export default async function LayoutMarketing({
   children, // will be a page or nested layout
@@ -21,11 +20,10 @@ export default async function LayoutMarketing({
   return (
     <ProviderStore colorScheme={colorSchemeState || 'light'}>
       <LayoutBody nav={<NavbarMain />} footer={<FooterMain />}>
-        <main>{children}</main>
-
-        <ModalNewsletter />
-
-        <AffixNavbar />
+        <main>
+          {children}
+          <CtaNewsletter />
+        </main>
       </LayoutBody>
     </ProviderStore>
   );

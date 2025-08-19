@@ -1,12 +1,14 @@
 import React from 'react';
 
+import { alpha } from '@mantine/core';
+
+import classes from './glass.module.scss';
+
 export default function Glass({ children }: { children: React.ReactNode }) {
   return (
     <div
-      style={{
-        backdropFilter: 'blur(8px) saturate(180%)',
-        WebkitBackdropFilter: 'blur(8px) saturate(180%)',
-      }}
+      className={classes.bg}
+      style={{ backgroundColor: alpha('var(--mantine-color-body)', 0.9) }}
     >
       {children}
     </div>

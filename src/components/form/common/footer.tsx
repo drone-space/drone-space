@@ -3,19 +3,15 @@ import { Button, Group } from '@mantine/core';
 import { IconSend } from '@tabler/icons-react';
 import React from 'react';
 
-export default function Footer({
-  props,
-}: {
-  props: { submitted: boolean; label?: string };
-}) {
+export default function Footer({ props }: { props: { submitted: boolean } }) {
   return (
-    <Group justify="end" mt={'xs'}>
+    <Group justify="end">
       <Button
         type="submit"
         loading={props.submitted}
         rightSection={<IconSend size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
       >
-        {props.label || 'Send'}
+        Submit
       </Button>
     </Group>
   );

@@ -49,7 +49,7 @@ export default async function Services() {
           path: 'Services',
           title: 'Drone Solutions',
           desc: `Discover professional drone services, including training, aerial photography, surveying, and light shows.`,
-          bg: images.web.hero,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 
@@ -84,7 +84,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -93,7 +94,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -115,13 +116,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Aerial Cinematography
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Aerial Cinematography Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -135,6 +130,7 @@ export default async function Services() {
               alt={'Aerial Cinematography'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -164,7 +160,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -173,7 +170,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -195,13 +192,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Agriculture
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Agriculture Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -212,6 +203,7 @@ export default async function Services() {
               alt={'Agriculture'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -248,7 +240,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -257,7 +250,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -279,13 +272,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Drone Mapping & Survey
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Drone Mapping & Survey Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -299,6 +286,7 @@ export default async function Services() {
               alt={'Drone Mapping and Survey'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -344,13 +332,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Thermal Inspection
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Thermal Inspection Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -361,6 +343,7 @@ export default async function Services() {
               alt={'Thermal Inspection'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -397,7 +380,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -406,7 +390,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -428,13 +412,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Search and Rescue
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Search and Rescue Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -448,6 +426,7 @@ export default async function Services() {
               alt={'Search and Rescue'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -477,7 +456,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -486,7 +466,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -508,13 +488,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Medical Delivery
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Medical Delivery Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -525,6 +499,7 @@ export default async function Services() {
               alt={'Medical Delivery'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -565,7 +540,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -574,7 +550,7 @@ export default async function Services() {
                 </ThemeIcon>
 
                 <Text fz={'sm'}>
-                  <Text component="span" inherit fw={'bold'} c={'pri.8'}>
+                  <Text component="span" inherit fw={'bold'} c={'pri.7'}>
                     {item.title}
                   </Text>
                   : {item.desc}
@@ -596,13 +572,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Consultancy and Resale
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request Consultancy and Resale Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -616,6 +586,7 @@ export default async function Services() {
               alt={'Consultancy and Resale'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -653,7 +624,8 @@ export default async function Services() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.7'}
+                  radius={'xl'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -679,13 +651,7 @@ export default async function Services() {
                   <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 }
               >
-                <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    ROC Support
-                  </Text>{' '}
-                  Service
-                </Text>
+                Request ROC Support Services
               </Button>
             </ModalContactService>
           </GridCol>
@@ -696,6 +662,7 @@ export default async function Services() {
               alt={'ROC Support'}
               height={{ base: 240, xs: 320, sm: 400, md: '100%' }}
               mode="grid"
+              radius={'sm'}
             />
           </GridCol>
         </Grid>

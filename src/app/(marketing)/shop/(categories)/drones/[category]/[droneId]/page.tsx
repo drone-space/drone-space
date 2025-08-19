@@ -83,7 +83,7 @@ export default async function DroneDetail({
         props={{
           path: `${product?.category} Drones`,
           title: product?.title.long || product?.title.short || 'Drone Shop',
-          bg: images.web.hero,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 
@@ -125,7 +125,7 @@ export default async function DroneDetail({
                     inherit
                     fw={500}
                     c={
-                      'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                      'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                     }
                     fz={{ md: 'xl' }}
                   >
@@ -159,7 +159,7 @@ export default async function DroneDetail({
                         inherit
                         fw={500}
                         c={
-                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                          'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                         }
                         fz={{ md: 'xl' }}
                       >
@@ -235,23 +235,13 @@ export default async function DroneDetail({
               </div>
             </Stack>
 
-            {product?.specs.desc && (
-              <>
-                <Divider mt={'xl'} />
-
-                <Text mt={'xl'} fz={'sm'}>
-                  {product?.specs.desc}
-                </Text>
-              </>
-            )}
-
             <Divider
               label={
                 <Text
                   component="span"
                   inherit
                   c={
-                    'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                    'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                   }
                 >
                   Specification Overview
@@ -271,8 +261,9 @@ export default async function DroneDetail({
                       <Group gap={'xs'}>
                         <ThemeIcon
                           size={ICON_WRAPPER_SIZE / 1.5}
+                          radius={'xl'}
                           color="sec.3"
-                          c={'pri.8'}
+                          c={'pri.7'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -288,6 +279,12 @@ export default async function DroneDetail({
             )}
           </GridCol>
         </Grid>
+
+        {product?.specs.desc && (
+          <Text mt={'xl'} ta={{ base: 'start', xs: 'center' }} fz={'sm'}>
+            {product?.specs.desc}
+          </Text>
+        )}
 
         <Group justify="center" mt={SECTION_SPACING / 2}>
           <ModalContactShop
@@ -321,32 +318,36 @@ export default async function DroneDetail({
             <Grid gutter={0} w={'100%'}>
               {product?.kit?.basic && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                  <TabsTab w={'100%'} value="basic">
-                    <Group justify="center">
+                  <TabsTab
+                    w={'100%'}
+                    value="basic"
+                    leftSection={
                       <IconCube
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
-
-                      {product.kit.flyMore ? 'Basic Kit' : 'In the box'}
-                    </Group>
+                    }
+                  >
+                    {product.kit.flyMore ? 'Basic Kit' : 'In the box'}
                   </TabsTab>
                 </GridCol>
               )}
 
               {product?.kit?.flyMore && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                  <TabsTab w={'100%'} value="flyMore">
-                    <Group justify="center">
+                  <TabsTab
+                    w={'100%'}
+                    value="flyMore"
+                    leftSection={
                       <IconCubePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
-
-                      <span>Fly More Kit</span>
-                    </Group>
+                    }
+                  >
+                    Fly More Kit
                   </TabsTab>
                 </GridCol>
               )}
@@ -356,34 +357,33 @@ export default async function DroneDetail({
                   <TabsTab
                     w={'100%'}
                     value="battery"
-                      >
-                      <Group justify="center">
+                    leftSection={
                       <IconBattery3
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
-
-                    <span>
+                    }
+                  >
                     Intelligent Battery
-                    </span>
-                    </Group>
                   </TabsTab>
                 </GridCol>
               )} */}
 
               {product?.accessories?.other && (
                 <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
-                  <TabsTab w={'100%'} value="other">
-                    <Group justify="center">
+                  <TabsTab
+                    w={'100%'}
+                    value="other"
+                    leftSection={
                       <IconCirclePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
-                        color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
+                        color="light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))"
                       />
-
-                      <span>Other</span>
-                    </Group>
+                    }
+                  >
+                    Other
                   </TabsTab>
                 </GridCol>
               )}
@@ -488,7 +488,7 @@ export default async function DroneDetail({
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                           }
                           fz={{ md: 'xl' }}
                         >
@@ -606,7 +606,7 @@ export default async function DroneDetail({
                           inherit
                           fw={500}
                           c={
-                            'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                            'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                           }
                           fz={{ md: 'xl' }}
                         >
@@ -660,8 +660,9 @@ export default async function DroneDetail({
                             <Group gap={'xs'}>
                               <ThemeIcon
                                 size={ICON_WRAPPER_SIZE / 1.5}
+                                radius={'xl'}
                                 color="sec.3"
-                                c={'pri.8'}
+                                c={'pri.7'}
                                 visibleFrom="xs"
                               >
                                 <IconArrowRightDashed
@@ -689,7 +690,7 @@ export default async function DroneDetail({
                         inherit
                         fw={500}
                         c={
-                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                          'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'
                         }
                         fz={{ md: 'xl' }}
                       >

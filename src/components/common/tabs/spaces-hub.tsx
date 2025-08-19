@@ -65,6 +65,7 @@ export default function SpacesHub() {
                 alt={'Mission'}
                 height={{ base: 240, xs: 320, sm: 480, md: 280 }}
                 mode="grid"
+                radius={'md'}
               />
             </GridCol>
 
@@ -75,7 +76,8 @@ export default function SpacesHub() {
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.25}
                       color="sec.3"
-                      c={'pri.8'}
+                      c={'pri.7'}
+                      radius={'xl'}
                     >
                       <IconArrowRightDashed
                         size={ICON_SIZE / 1.25}

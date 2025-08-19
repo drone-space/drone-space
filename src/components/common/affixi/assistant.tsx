@@ -123,6 +123,7 @@ export default function Assistant() {
                         src={images.icons.claude.default}
                         alt={'Hekima AI'}
                         loading="lazy"
+                        radius={'sm'}
                         fit={'contain'}
                         width={47}
                         height={47}

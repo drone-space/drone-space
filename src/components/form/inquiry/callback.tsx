@@ -28,7 +28,7 @@ export default function Callback({ props }: { props: { close?: () => void } }) {
         </GridCol>
 
         <GridCol span={12}>
-          <CommonFooter props={{ submitted, label: 'Request' }} />
+          <CommonFooter props={{ submitted }} />
         </GridCol>
       </Grid>
     </form>

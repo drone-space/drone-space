@@ -31,7 +31,7 @@ export default function Comments({
   return (
     <div>
       {(props.post._count.comments > 0 || loading) && !comments.length && (
-        <LayoutSection id={'page-post-comment'} margined containerized={'md'}>
+        <LayoutSection id={'page-post-comment'} margined containerized={'sm'}>
           <Button variant="default" fullWidth onClick={fetch} loading={loading}>
             Show Comments (
             <NumberFormatter
@@ -45,7 +45,7 @@ export default function Comments({
 
       {((props.post._count.comments > 0 && comments.length > 0) ||
         comments.length > 0) && (
-        <LayoutSection id={'page-post-comment'} margined containerized={'md'}>
+        <LayoutSection id={'page-post-comment'} margined containerized={'sm'}>
           <Title order={2}>Comments</Title>
 
           <Grid gutter={0} mt={'xl'}>
@@ -74,7 +74,7 @@ export default function Comments({
         <LayoutSection
           id={'page-post-comment-form'}
           margined
-          containerized={'md'}
+          containerized={'sm'}
         >
           <Card
             padding={0}

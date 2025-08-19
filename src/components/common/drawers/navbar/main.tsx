@@ -9,6 +9,7 @@ import {
   Drawer,
   Group,
   NavLink,
+  ScrollAreaAutosize,
   Stack,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -115,17 +116,19 @@ export default function Main({
         }}
         keepMounted={true}
       >
-        <Stack pb={'sm'}>
-          <Stack gap={0}>{navMobile}</Stack>
+        <ScrollAreaAutosize mah={'100vh'} type="auto" scrollbarSize={8}>
+          <Stack pb={'sm'}>
+            <Stack gap={0}>{navMobile}</Stack>
 
-          <Group px={'sm'} grow>
-            <ModalContactCallback>
-              <Button size="xs" variant="gradient" fullWidth>
-                Request Callback
-              </Button>
-            </ModalContactCallback>
-          </Group>
-        </Stack>
+            <Group px={'sm'} grow>
+              <ModalContactCallback>
+                <Button size="xs" variant="gradient" fullWidth>
+                  Request Callback
+                </Button>
+              </ModalContactCallback>
+            </Group>
+          </Stack>
+        </ScrollAreaAutosize>
       </Drawer>
 
       <Burger

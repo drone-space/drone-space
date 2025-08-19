@@ -14,18 +14,6 @@ export const staticRedirects = {
   '/resources/faq': '/faq',
   '/terms-conditions': '/legal/terms',
   '/privacy-policy': '/legal/policy',
-
-  '/shop/drones/camera': '/shop?category=camera&layout=grid&listSize=6#listing',
-  '/shop/drones/cinematography':
-    '/shop?category=cinematography&layout=grid&listSize=6#listing',
-  '/shop/drones/enterprise':
-    '/shop?category=enterprise&layout=grid&listSize=6#listing',
-  '/shop/drones/mapping':
-    '/shop?category=mapping&layout=grid&listSize=6#listing',
-  '/shop/drones/agriculture':
-    '/shop?category=agriculture&layout=grid&listSize=6#listing',
-  '/shop/drones/upcoming':
-    '/shop?category=upcoming&layout=grid&listSize=6#listing',
 };
 
 export const dynamicRedirects = [

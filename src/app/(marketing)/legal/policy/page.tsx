@@ -43,13 +43,13 @@ export default async function PrivacyPolicy() {
           path: `Discretion`,
           title: 'Privacy Policy',
           desc: `Learn how ${appName} collects, uses, and protects your personal information.`,
-          bg: images.web.hero,
+          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
         }}
       />
 
       <LayoutSection id="children" padded bg={'var(--mantine-color-gray-1)'}>
         <>
-          <LayoutSection id="page-legal-privacy-header" containerized={'md'}>
+          <LayoutSection id="page-legal-privacy-header" containerized={'sm'}>
             <Text
               inherit
               c={'dimmed'}
@@ -72,7 +72,7 @@ export default async function PrivacyPolicy() {
               id="page-legal-privacy-list"
               key={index}
               margined={40}
-              containerized={'md'}
+              containerized={'sm'}
             >
               <Title order={2} fz={'lg'}>
                 {legal.policy.indexOf(t) + 1}. {t.title}

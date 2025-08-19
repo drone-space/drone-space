@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import {
   Button,
   Card,
-  Divider,
   Grid,
   GridCol,
   Menu,
@@ -59,7 +58,7 @@ export default function Navbar({
       openDelay={50}
       closeDelay={50}
       offset={{
-        mainAxis: 0,
+        mainAxis: 5,
       }}
       transitionProps={{ transition: 'fade-up', duration: 100 }}
       classNames={{
@@ -89,15 +88,13 @@ export default function Navbar({
                 ))}
               </Grid>
 
-              <Divider color={'sec.3'} size={ICON_STROKE_WIDTH} />
-
               <Card
-                bg={'var(--mantine-color-pri-8)'}
+                bg={'var(--mantine-color-pri-7)'}
                 c={'var(--mantine-color-body)'}
                 radius={0}
               >
                 <Grid>
-                  <GridCol span={8}>
+                  <GridCol span={9}>
                     <Stack gap={'xs'}>
                       <Title order={3} fz={'sm'} lh={1} c={'white'}>
                         Downloads
@@ -111,21 +108,22 @@ export default function Navbar({
                     </Stack>
                   </GridCol>
 
-                  <GridCol span={4}>
-                    <Stack align="end" justify={'end'} h={'100%'} gap={'xs'}>
+                  <GridCol span={3}>
+                    <Stack justify={'end'} h={'100%'} gap={'xs'}>
                       <ModalDownloadDocument props={{ type: 'brochure' }}>
                         <Button
                           justify="space-between"
                           rightSection={
                             <IconFileDownload
-                              size={ICON_SIZE}
+                              size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
-                              color="var(--mantine-color-pri-8)"
+                              color="var(--mantine-color-pri-7)"
                             />
                           }
+                          fullWidth
                           color="sec.3"
-                          c="pri.8"
-                          size="sm"
+                          c="pri.7"
+                          size="compact-sm"
                         >
                           Brochure
                         </Button>
@@ -136,14 +134,15 @@ export default function Navbar({
                           justify="space-between"
                           rightSection={
                             <IconFileDownload
-                              size={ICON_SIZE}
+                              size={ICON_SIZE - 4}
                               stroke={ICON_STROKE_WIDTH}
                               color="var(--mantine-color-white)"
                             />
                           }
+                          fullWidth
                           variant="outline"
                           color="white"
-                          size="sm"
+                          size="compact-sm"
                         >
                           Profile
                         </Button>

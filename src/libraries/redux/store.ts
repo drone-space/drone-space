@@ -6,7 +6,6 @@ import { isProduction } from '@/utilities/helpers/environment';
 import reducerColorScheme from './slices/color-scheme';
 import reducerComments from './slices/comments';
 import reducerConversation from './slices/claude';
-import reducerModals from './slices/modals';
 
 export const makeStore = () => {
   return configureStore({
@@ -15,7 +14,6 @@ export const makeStore = () => {
       session: reducerSession,
       comments: reducerComments,
       claude: reducerConversation,
-      modals: reducerModals,
     },
 
     devTools: isProduction(),

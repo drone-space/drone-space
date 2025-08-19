@@ -1,26 +1,41 @@
 .link {
-  padding: var(--mantine-spacing-md) 0;
-  font-size: var(--mantine-font-size-sm);
+  padding: 1.5rem 0;
+  font-size: var(--mantine-font-size-md);
   color: var(--mantine-color-text) !important;
   transition: 0.25s color ease;
   font-weight: 500;
 
   @include mantine.hover {
-    color: var(--mantine-color-pri-7) !important;
+    color: var(--mantine-color-pri-8) !important;
   }
 }
 
 .linkAbsolute {
-  padding: var(--mantine-spacing-md) 0;
-  font-size: var(--mantine-font-size-sm);
+  padding: 1.5rem 0;
+  font-size: var(--mantine-font-size-md);
   color: var(--mantine-color-white) !important;
   transition: 0.25s color ease;
 
   @include mantine.hover {
-    color: var(--mantine-color-pri-7) !important;
+    color: var(--mantine-color-pri-8) !important;
   }
 }
 
 .linkActive {
-  color: var(--mantine-color-pri-7) !important;
+  color: var(--mantine-color-pri-8) !important;
+}
+
+.button {
+  background: linear-gradient(
+    45deg,
+    var(--mantine-color-pri-8),
+    var(--mantine-color-sec-3)
+  );
+  background-size: 133%;
+  background-position: left;
+  transition: background-position 0.25s ease;
+
+  @include mantine.hover {
+    background-position: top;
+  }
 }

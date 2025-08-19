@@ -6,7 +6,7 @@ import { FormInquiry } from '@/hooks/form/inquiry';
 export default function Common({ props }: { props: { form: FormInquiry } }) {
   return (
     <GridCol span={12} pt={'xs'}>
-      <Grid>
+      <Grid gutter={'xs'}>
         <GridCol span={{ base: 12, md: 6 }}>
           <TextInput
             required
@@ -41,6 +41,11 @@ export default function Common({ props }: { props: { form: FormInquiry } }) {
             aria-label={'Phone'}
             placeholder={`Your Phone *`}
             {...props.form.getInputProps('phone')}
+            rightSection={
+              <TooltipInputInfo
+                props={{ label: 'We will not share your number' }}
+              />
+            }
           />
         </GridCol>
 

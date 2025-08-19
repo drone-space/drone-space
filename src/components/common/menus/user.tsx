@@ -62,8 +62,8 @@ export default function User() {
       <MenuDropdown>
         {!session ? (
           <Stack gap={'xs'} align="center">
-            <Skeleton height={16} w={'50%'} radius="sm" />
-            <Skeleton height={16} w={'100%'} radius="sm" />
+            <Skeleton height={16} w={'50%'} radius="lg" />
+            <Skeleton height={16} w={'100%'} radius="lg" />
           </Stack>
         ) : (
           session && (

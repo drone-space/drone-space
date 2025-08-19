@@ -5,50 +5,31 @@ import {
   Anchor,
   Container,
   createTheme,
+  Modal,
   Notification,
+  Textarea,
+  TextInput,
   Title,
 } from '@mantine/core';
 import classesContainer from './mantine/container.module.scss';
 import classesNotification from './mantine/notification.module.scss';
+import classesModal from './mantine/modal.module.scss';
+import { ICON_STROKE_WIDTH } from '@/data/constants';
 
 const appTheme = createTheme({
   colors: {
-    // pri: [
-    //   '#edeffd',
-    //   '#d6daf5',
-    //   '#aab1ec',
-    //   '#7a86e6',
-    //   '#5362df',
-    //   '#3c4adc',
-    //   '#313fdb',
-    //   '#2431c3',
-    //   '#1e2caf',
-    //   '#13259a', // src
-    // ],
     pri: [
-      '#ebeefd',
-      '#c6cceb',
-      '#a1aadb',
-      '#7c88cd',
-      '#5766bf',
-      '#3e4ca7',
-      '#303b82',
-      '#222a5d', // src (7)
-      '#141939',
-      '#060917',
+      '#ebf3fd',
+      '#c6d5eb',
+      '#a1b6db',
+      '#7c96cd',
+      '#5774bf',
+      '#3e57a7',
+      '#304182',
+      '#222c5d',
+      '#141939', // src (8)
+      '#060a17',
     ],
-    // sec: [
-    //   '#e1fdfd',
-    //   '#d3f6f4',
-    //   '#aeeae6',
-    //   '#85dcd7', // src
-    //   '#63d2cb',
-    //   '#4ccbc4',
-    //   '#3bc8c0',
-    //   '#28b1a9',
-    //   '#149d97',
-    //   '#008982',
-    // ],
     sec: [
       '#e1fbfb',
       '#c3ebea',
@@ -64,13 +45,13 @@ const appTheme = createTheme({
   },
 
   primaryColor: 'pri',
-  defaultRadius: 'sm',
+  defaultRadius: 'lg',
   defaultGradient: {
-    from: 'pri.7',
-    to: 'sec.4',
+    from: 'pri.8',
+    to: 'sec.3',
     deg: 45,
   },
-  primaryShade: { light: 7, dark: 7 },
+  primaryShade: { light: 8, dark: 8 },
   cursorType: 'pointer',
 
   headings: {
@@ -79,12 +60,46 @@ const appTheme = createTheme({
   },
 
   components: {
+    Modal: Modal.extend({
+      classNames: classesModal,
+      defaultProps: {
+        transitionProps: {
+          duration: 250,
+          transition: 'fade',
+        },
+        overlayProps: {
+          backgroundOpacity: 0.5,
+          blur: 3,
+        },
+      },
+    }),
+
     Anchor: Anchor.extend({
       defaultProps: { underline: 'never' },
     }),
 
     Title: Title.extend({
-      defaultProps: { c: 'pri.7' },
+      defaultProps: { c: 'pri.8' },
+    }),
+
+    TextInput: TextInput.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderWidth: ICON_STROKE_WIDTH,
+          },
+        },
+      },
+    }),
+
+    Textarea: Textarea.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderWidth: ICON_STROKE_WIDTH,
+          },
+        },
+      },
     }),
 
     Container: Container.extend({

@@ -47,10 +47,9 @@ export default async function Contact() {
           path: 'Reach Out',
           title: 'Contact Us',
           desc: 'Please reach out to us if you have questions about Drone Space, our offerings, or anything else.',
+          bg: images.web.hero,
         }}
       />
-
-      <IframeContact props={{ src: locations.main.iframe }} />
 
       <LayoutSection
         id="page-contact-cards"
@@ -123,7 +122,6 @@ export default async function Contact() {
       <LayoutSection
         id="page-contact"
         padded={SECTION_SPACING / 2}
-        containerized={'sm'}
         bg={'var(--mantine-color-gray-1)'}
       >
         <IntroSection
@@ -135,11 +133,39 @@ export default async function Contact() {
           options={{ spacing: true }}
         />
 
-        <Card bg={'white'}>
-          <FormInquiryGeneral />
+        <Card bg={'white'} p={0}>
+          <Grid gutter={0} align="center">
+            <GridCol span={{ base: 12, md: 6 }}>
+              <Card padding={0}>
+                <IframeContact
+                  props={{
+                    src: locations.main.iframe,
+                    height: { base: 320, xs: 480, md: 640 },
+                  }}
+                />
+              </Card>
+            </GridCol>
+
+            <GridCol span={{ base: 12, md: 6 }}>
+              <Card
+                p={{
+                  base: 'md',
+                  xs: 'xl',
+                  sm: SECTION_SPACING / 3,
+                }}
+              >
+                <Text mb={'xl'}>
+                  Have a question or feedback? Fill out the form below, and
+                  we&apos;ll get back to you as soon as possible.
+                </Text>
+
+                <FormInquiryGeneral />
+              </Card>
+            </GridCol>
+          </Grid>
         </Card>
 
-        <Text ta={'center'} fz={'xs'} mt={'md'}>
+        <Text ta={'center'} fz={'xs'} mt={'xl'}>
           Please consult the{' '}
           <Anchor component={Link} inherit fw={500} href="/faq">
             FAQ
@@ -163,6 +189,7 @@ const CardContact = ({
       padding={'xl'}
       h={'100%'}
       style={{ display: 'flex', alignItems: 'center' }}
+      bg={'var(--mantine-color-gray-1)'}
     >
       <Title ta={'center'} order={3} my={'md'} fz={'xl'}>
         {props.title}

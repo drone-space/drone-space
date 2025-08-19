@@ -4,8 +4,7 @@ import React from 'react';
 // import { Metadata } from 'next';
 import { Button, Center, Group, Loader, ThemeIcon } from '@mantine/core';
 import LayoutPage from '@/components/layout/page';
-import IntroPage from '@/components/layout/intros/page';
-
+import IntroSection from '@/components/layout/intros/section';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -21,9 +20,9 @@ export default function Email() {
 
   return (
     <LayoutPage>
-      <IntroPage
+      <IntroSection
         props={{
-          path: `Verify Email`,
+          subTitle: `Verify Email`,
           title: !status.state
             ? `Confirm Sign Up`
             : status.state == 'loading'
@@ -33,7 +32,7 @@ export default function Email() {
         }}
       />
 
-      <Group justify="center">
+      <Group justify="center" mt={'md'}>
         {!status.state ? (
           <Group h={ICON_WRAPPER_SIZE * 2} justify="center">
             <Button onClick={handleTrigger}>Verify Email</Button>

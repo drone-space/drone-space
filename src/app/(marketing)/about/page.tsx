@@ -63,7 +63,7 @@ export default async function About() {
           path: `Who We Are`,
           title: 'About Drone Space',
           desc: `Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya`,
-          bg: images.gallery.innovation.jamuhuri.yr2020.image9,
+          bg: images.web.hero,
         }}
       />
 
@@ -79,7 +79,7 @@ export default async function About() {
                 loop
                 muted
                 style={{
-                  borderRadius: 'var(--mantine-radius-sm)',
+                  borderRadius: 'var(--mantine-radius-lg)',
                   overflow: 'hidden',
                 }}
                 poster={images.gallery.airfield.image1}
@@ -141,10 +141,10 @@ export default async function About() {
       <LayoutSection
         id="stats"
         padded={24}
-        bg={'light-dark(var(--mantine-color-pri-7),var(--mantine-color-pri-7))'}
+        bg={'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
-        <Grid justify="center">
+        <Grid justify="center" gutter={0}>
           {stats.map((stat, index) => (
             <GridCol key={index} span={{ base: 12, xs: 4, md: 'auto' }}>
               <CardStat data={stat} />
@@ -176,10 +176,7 @@ export default async function About() {
               visibleFrom="sm"
             />
 
-            <Text
-              mt={{ base: 'xs', md: 'xl' }}
-              ta={{ base: 'center', sm: 'start' }}
-            >
+            <Text mt={{ base: 'xs', md: 'xl' }}>
               Our mission is to be the preferred drone training and commercial
               operations organization for Government, corporates, and industry
               sector by providing quality, high standards, and reliable
@@ -194,7 +191,6 @@ export default async function About() {
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
-              radius={'sm'}
             />
           </GridCol>
         </Grid>
@@ -207,7 +203,7 @@ export default async function About() {
                   subTitle: 'Our',
                   title: 'Vision',
                 }}
-                options={{ alignment: 'end' }}
+                options={{ alignment: { base: 'start', md: 'end' } }}
               />
 
               <Divider
@@ -220,7 +216,7 @@ export default async function About() {
 
               <Text
                 mt={{ base: 'xs', md: 'xl' }}
-                ta={{ base: 'center', md: 'end' }}
+                ta={{ base: 'start', md: 'end' }}
               >
                 Our long-term vision is to contribute and empower to the
                 ever-growing youth in Kenya by equipping them with the drone
@@ -238,7 +234,6 @@ export default async function About() {
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
-              radius={'sm'}
             />
           </GridCol>
         </Grid>

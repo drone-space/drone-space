@@ -45,7 +45,7 @@ export default async function Faq() {
           path: `Q & A`,
           title: 'Frequently Asked Questions',
           desc: `Need a help with something? Here are our most frequently asked questions.`,
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

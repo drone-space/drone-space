@@ -49,7 +49,7 @@ export default async function Services() {
           path: 'Services',
           title: 'Drone Solutions',
           desc: `Discover professional drone services, including training, aerial photography, surveying, and light shows.`,
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

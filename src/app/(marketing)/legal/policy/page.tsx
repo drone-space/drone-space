@@ -43,7 +43,7 @@ export default async function PrivacyPolicy() {
           path: `Discretion`,
           title: 'Privacy Policy',
           desc: `Learn how ${appName} collects, uses, and protects your personal information.`,
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

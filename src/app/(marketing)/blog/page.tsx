@@ -51,7 +51,7 @@ export default async function Blog() {
           path: 'News',
           title: 'Insights on Drone Training & Technology',
           desc: `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations.`,
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

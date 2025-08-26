@@ -51,7 +51,7 @@ export default async function Shop() {
           path: 'Shop',
           title: `Top Drones At ${appName}`,
           desc: 'Shop top-rated drones for beginners, professionals, and enthusiasts.',
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

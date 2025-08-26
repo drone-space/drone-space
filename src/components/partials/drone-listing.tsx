@@ -89,8 +89,8 @@ export default function DroneListing() {
   );
 
   return (
-    <Grid gutter={{ base: 'xl', md: 'md', lg: 0 }}>
-      <GridCol span={{ md: 3 }} pr={{ lg: 32 }} visibleFrom="md">
+    <Grid gutter={{ base: 'xl', md: 'md', lg: 'xl' }}>
+      <GridCol span={{ md: 3.5 }} visibleFrom="md">
         <Stack pos={'sticky'} top={'2rem'}>
           <Card withBorder>
             <Title order={3} fz={'md'} c={'var(--mantine-color-text)'}>
@@ -123,7 +123,7 @@ export default function DroneListing() {
                   >
                     <Group justify="space-between">
                       <Text component="span" inherit>
-                        {capitalizeWords(`${cl.category} Drones`)}
+                        {capitalizeWords(`${cl.categoryName}`)}
                       </Text>
 
                       <Text component="span" inherit fz={'xs'}>
@@ -186,7 +186,7 @@ export default function DroneListing() {
         </Stack>
       </GridCol>
 
-      <GridCol span={{ base: 12, md: 9 }} pl={{ lg: 32 }}>
+      <GridCol span={{ base: 12, md: 8.5 }}>
         <Group justify="space-between">
           <div>
             <TextInput
@@ -388,20 +388,45 @@ export default function DroneListing() {
   );
 }
 
+const getCatName = (catName: string) => {
+  switch (catName) {
+    case 'camera':
+      return 'Camera Drones';
+    case 'cinematography':
+      return 'Cinematography & Filmmaking';
+    case 'enterprise':
+      return 'Industrial & Enterprise';
+    case 'mapping':
+      return 'Survey & Mapping';
+    case 'agriculture':
+      return 'Agriculture & Precision Farming';
+    case 'upcoming':
+      return 'Upcoming Releases';
+    default:
+      return 'All';
+  }
+};
+
 const getCategoriesWithCounts = () => {
-  const categoriesWithCounts: { category: string; count: number }[] = [];
+  const categoriesWithCounts: {
+    category: string;
+    categoryName: string;
+    count: number;
+  }[] = [];
 
   for (const product of products) {
-    const category = product.category;
-
     const existingCategory = categoriesWithCounts.find(
-      (item) => item.category == category
+      (item) => item.category == product.category
     );
 
     if (existingCategory) {
       existingCategory.count++;
     } else {
-      categoriesWithCounts.push({ category, count: 1 });
+      categoriesWithCounts.push({
+        category: product.category,
+        categoryName: getCatName(product.category),
+        count: 1,
+      });
     }
   }
 

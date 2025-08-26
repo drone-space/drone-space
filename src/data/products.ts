@@ -507,6 +507,11 @@ const products = [
           },
           {
             qty: 1,
+            item: 'Enterprise Series RTK Module',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/rtk.webp`,
+          },
+          {
+            qty: 1,
             item: 'Charging Hub',
             image: `${baseUrl}/products/drones/dji/agras/t50/box/charging-hub.webp`,
           },
@@ -533,6 +538,7 @@ const products = [
         accessories.find(
           (a) => a.title.short == 'Agras Series Spreading System'
         ),
+        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
       ].filter((i) => i != undefined),
     },
     category: 'agriculture',
@@ -723,6 +729,11 @@ const products = [
           // },
           {
             qty: 1,
+            item: 'Enterprise Series RTK Module',
+            image: `${baseUrl}/products/drones/dji/mavic/3m/box/rtk.webp`,
+          },
+          {
+            qty: 1,
             item: 'Carrying Case',
             image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/carrying-case.webp`,
           },
@@ -767,7 +778,9 @@ const products = [
     },
     accessories: {
       battery: accessories.find((a) => a.title.short == 'Matrice 350 Battery'),
-      other: null,
+      other: [
+        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
+      ].filter((i) => i != undefined),
     },
     category: 'mapping',
     available: true,

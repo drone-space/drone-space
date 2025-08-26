@@ -8,6 +8,7 @@ import {
   Grid,
   GridCol,
   Group,
+  NumberFormatter,
   Overlay,
   Stack,
   Text,
@@ -41,7 +42,7 @@ export default function List({ data }: { data: typeDrone }) {
                 ''
               }
               alt={data.title.long}
-              height={{ base: 240 }}
+              height={{ base: 320 }}
               fit={'contain'}
               width={'100%'}
               mode="grid"
@@ -97,6 +98,40 @@ export default function List({ data }: { data: typeDrone }) {
               </Text>
             )}
 
+            <Divider color="sec.4" my={'md'} />
+
+            <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
+              <Text inherit fw={'500'}>
+                <Text component="span" inherit fz={'xs'} fw={'normal'}>
+                  Ksh.
+                </Text>{' '}
+                <NumberFormatter thousandSeparator value={data.price?.former} />{' '}
+                {data.kit?.flyMore && (
+                  <Text component="sup" inherit fz={'xs'} fw={'normal'}>
+                    (Basic Kit)
+                  </Text>
+                )}
+              </Text>
+
+              {data.kit?.flyMore && (
+                <Text inherit fw={'500'}>
+                  <Text component="span" inherit fz={'xs'} fw={'normal'}>
+                    Ksh.
+                  </Text>{' '}
+                  <NumberFormatter
+                    thousandSeparator
+                    value={
+                      (data.price?.former || 0) +
+                      (data.kit?.flyMore?.price?.former || 0)
+                    }
+                  />{' '}
+                  <Text component="sup" inherit fz={'xs'} fw={'normal'}>
+                    (Flymore Kit)
+                  </Text>
+                </Text>
+              )}
+            </Stack>
+
             <Group gap={'xs'} mt={'md'}>
               <ModalContactShop
                 props={{
@@ -105,7 +140,7 @@ export default function List({ data }: { data: typeDrone }) {
                   },
                 }}
               >
-                <Button size="xs">Order</Button>
+                <Button size="xs">Order Now</Button>
               </ModalContactShop>
 
               <Button

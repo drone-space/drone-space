@@ -39,8 +39,8 @@ export const Email = ({
                     src={
                       'https://bvkuvosgdpxgsaudprtx.supabase.co/storage/v1/object/public/images/brand/logo/landscape/default.png'
                     }
-                    width={40}
-                    height={'auto'}
+                    width={200}
+                    height={40}
                     alt={appName}
                   />
                 </a>

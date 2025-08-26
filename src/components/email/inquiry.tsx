@@ -7,6 +7,7 @@ export const Inquiry = (props: {
   userName: string;
   userMessage: string;
   userPhone?: string;
+  kit?: string;
 }) => {
   return (
     <LayoutEmail
@@ -18,6 +19,13 @@ export const Inquiry = (props: {
 
         <Text style={text}>
           {props.userMessage || 'Sample text'} <br />
+          {props.kit && (
+            <>
+              <br />
+              Requested Drone Kit: {props.kit} Kit
+              <br />
+            </>
+          )}
           <br />
           Regards, <br />
           {props.userName || 'John Doe'}

@@ -16,6 +16,7 @@ export type FormInquiryValues = {
   email: string;
   phone: string;
   company: string;
+  kit: string;
   subject: string;
   message: string;
 };
@@ -30,6 +31,9 @@ export const useFormInquiry = (params: {
   initialValues?: Partial<FormInquiryValues>;
   document?: 'profile' | 'brochure';
   close?: () => void;
+  options?: {
+    withKit?: boolean;
+  };
 }) => {
   const [submitted, setSubmitted] = useState(false);
   const networkStatus = useNetwork();
@@ -41,6 +45,7 @@ export const useFormInquiry = (params: {
       email: params?.initialValues?.email || '',
       phone: params?.initialValues?.phone || '',
       company: params?.initialValues?.company || '',
+      kit: params?.initialValues?.kit || '',
       subject: params?.initialValues?.subject || '',
       message: params?.initialValues?.message || '',
     },
@@ -51,6 +56,10 @@ export const useFormInquiry = (params: {
       email: (value) => email(value.trim()),
       phone: hasLength({ min: 7, max: 15 }, 'Between 7 and 15 characters'),
       company: hasLength({ min: 0, max: 24 }, 'Between 0 and 24 characters'),
+      kit: hasLength(
+        { min: params.options?.withKit ? 1 : 0, max: 24 },
+        'Please select a drone kit'
+      ),
       subject: params.document
         ? undefined
         : hasLength({ min: 2, max: 255 }, 'Between 2 and 255 characters'),
@@ -145,6 +154,7 @@ const parseFormValues = (formValues: FormInquiryValues): FormInquiryValues => {
     email: formValues.email.trim().toLowerCase(),
     phone: formValues.phone.trim(),
     company: formValues.company.trim(),
+    kit: capitalizeWords(formValues.kit.trim()),
     subject: formValues.subject.trim(),
     message: formValues.message.trim(),
   };

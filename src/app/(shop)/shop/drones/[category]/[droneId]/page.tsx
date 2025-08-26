@@ -382,7 +382,7 @@ export default async function DroneDetail({
                         color="light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))"
                       />
 
-                      <span>Other</span>
+                      <span>More</span>
                     </Group>
                   </TabsTab>
                 </GridCol>

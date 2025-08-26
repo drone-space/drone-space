@@ -32,7 +32,10 @@ export const images = {
     },
     newsletter: `${baseUrl.droneSpace}/web/newsletter-banner.webp`,
     drone: `${baseUrl.droneSpace}/web/drone-banner.webp`,
-    rpl: `${baseUrl.droneSpace}/web/rpl-banner.webp`,
+    rpl: {
+      dark: `${baseUrl.droneSpace}/web/rpl-banner-dark.webp`,
+      light: `${baseUrl.droneSpace}/web/rpl-banner-light.webp`,
+    },
   },
 
   brand: {

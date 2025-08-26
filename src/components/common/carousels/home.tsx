@@ -7,6 +7,7 @@ import {
   Button,
   Divider,
   Group,
+  NumberFormatter,
   Overlay,
   Stack,
   Text,
@@ -26,43 +27,8 @@ export default function Home() {
 
   const now = new Date();
 
-  const currentMonthName = getMonthName(
-    getRegionalDate(now, {
-      locale: 'en-GB',
-      format: 'numeric',
-    }).date
-  );
-
-  const filteredIntakes = data.filter((intake) => {
-    const intakeMonth = getMonthName(
-      getRegionalDate(intake.dates[0], {
-        locale: 'en-GB',
-        format: 'numeric',
-      }).date
-    );
-
-    const sameMonth = intakeMonth == currentMonthName;
-
-    return sameMonth;
-  });
-
-  const filteredIntakeDates = filteredIntakes.filter((intake) => {
-    const newer = intake.dates.filter(
-      (d) =>
-        getDayNumber(
-          getRegionalDate(d, {
-            locale: 'en-GB',
-            format: 'numeric',
-          }).date
-        ) >
-        getDayNumber(
-          getRegionalDate(now, {
-            locale: 'en-GB',
-            format: 'numeric',
-          }).date
-        )
-    );
-
+  const filteredIntakeDates = data.filter((intake) => {
+    const newer = intake.dates.filter((d) => d.getTime() > now.getTime());
     return newer && newer.length > 0;
   });
 
@@ -78,15 +44,15 @@ export default function Home() {
               Intake Ongoing
             </Badge>
 
-            <div>
+            <Stack gap={0} align={alignment}>
               <Title order={1} ta={alignment} className={classes.title}>
                 {slide.title}
               </Title>
 
-              <Text ta={alignment} mt={'xs'}>
+              <Text ta={alignment} mt={'xs'} w={{ md: '75%', lg: '80%' }}>
                 {slide.intro}
               </Text>
-            </div>
+            </Stack>
 
             <Divider w={{ base: '100%', md: '50%' }} color="sec.3" />
 
@@ -140,6 +106,17 @@ export default function Home() {
                   ))}
                 </Text>
               </Text>
+
+              <Text ta={alignment}>
+                Course Fee:{' '}
+                <Text component={'span'} inherit fw={'bold'}>
+                  <NumberFormatter
+                    value={slide.price?.current || 0}
+                    thousandSeparator
+                    prefix="Ksh. "
+                  />
+                </Text>
+              </Text>
             </div>
 
             <Group>
@@ -163,14 +140,14 @@ export default function Home() {
   return (
     <div
       style={{
-        backgroundImage: `url('${images.web.rpl}')`,
+        backgroundImage: `url('${images.web.rpl.light}')`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         position: 'relative',
       }}
     >
-      <Overlay backgroundOpacity={0.5} style={{ zIndex: 0 }} />
+      <Overlay backgroundOpacity={0.4} style={{ zIndex: 0 }} />
 
       <div style={{ position: 'relative', zIndex: 1 }}></div>
       <Carousel
@@ -211,55 +188,85 @@ const data = [
     intro: 'Join our next RPL intake and start flying professionally',
     duration: '2 weeks',
     dates: [
-      new Date(2025, 7, 5), // intake date
-      new Date(2025, 7, 12),
-      new Date(2025, 7, 19),
-      new Date(2025, 7, 26),
+      new Date(2025, 8, 2), // intake date
+      new Date(2025, 8, 9),
+      new Date(2025, 8, 16),
+      new Date(2025, 8, 23),
+      new Date(2025, 8, 30),
     ],
+    price: {
+      former: 170000,
+      current: 136000,
+    },
   },
   {
     badge: 'IR',
     title: 'Instructor Rating',
-    intro: 'Join our next RPL intake and start flying professionally',
+    intro:
+      'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
     duration: '14 - 21 days',
     dates: [
       new Date(2025, 8, 1), // intake date
     ],
-  },
-  {
-    badge: 'RT',
-    title: 'Radio Telephony',
-    intro: 'Join our next RPL intake and start flying professionally',
-    duration: '5 days',
-    dates: [
-      new Date(2025, 7, 4), // intake date
-    ],
-  },
-  {
-    badge: 'Agri',
-    title: 'Agricultural Spraying',
-    intro: 'Join our next RPL intake and start flying professionally',
-    duration: '10 days',
-    dates: [
-      new Date(2025, 7, 18), // intake date
-    ],
-  },
-  {
-    badge: 'Masterclass',
-    title: 'Drone Mapping & Survey',
-    intro: 'Join our next RPL intake and start flying professionally',
-    duration: '5 days',
-    dates: [
-      new Date(2025, 7, 25), // intake date
-    ],
+    price: {
+      former: null,
+      current: 250000,
+    },
   },
   {
     badge: 'Thermal',
     title: 'Thermography (ITC Level I)',
-    intro: 'Join our next RPL intake and start flying professionally',
+    intro:
+      'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
     duration: '5 days',
     dates: [
       new Date(2025, 8, 22), // intake date
     ],
+    price: {
+      former: null,
+      current: 200000,
+    },
+  },
+  {
+    badge: 'RT',
+    title: 'Radio Telephony',
+    intro:
+      'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
+    duration: '5 days',
+    dates: [
+      new Date(2025, 8, 29), // intake date
+    ],
+    price: {
+      former: null,
+      current: 35000,
+    },
+  },
+  {
+    badge: 'Agri',
+    title: 'Agricultural Spraying',
+    intro:
+      'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
+    duration: '10 days',
+    dates: [
+      new Date(2025, 7, 18), // intake date
+    ],
+    price: {
+      former: null,
+      current: 70000,
+    },
+  },
+  {
+    badge: 'Masterclass',
+    title: 'Drone Mapping & Survey (Masterclass)',
+    intro:
+      'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
+    duration: '5 days',
+    dates: [
+      new Date(2025, 7, 25), // intake date
+    ],
+    price: {
+      former: null,
+      current: 110000,
+    },
   },
 ];

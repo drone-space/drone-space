@@ -52,7 +52,7 @@ export default async function Gallery() {
           path: 'Photos',
           title: 'Drone Space Gallery',
           desc: `Explore stunning visuals from our drone training graduations, aerial light shows, and other services.`,
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

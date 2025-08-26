@@ -83,7 +83,7 @@ export default async function DroneDetail({
         props={{
           path: `${product?.category} Drones`,
           title: product?.title.long || product?.title.short || 'Drone Shop',
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

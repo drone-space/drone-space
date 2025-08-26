@@ -48,7 +48,7 @@ export default function Page({
               top: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: `rgba(0,0,0, 0.2)`,
+              backgroundColor: `rgba(0,0,0, 0.05)`,
               zIndex: 0,
             }}
           ></div>
@@ -87,7 +87,7 @@ export default function Page({
                     ? undefined
                     : { base: 'xl', md: '2rem' }
                 }
-                c={props.bg ? 'var(--mantine-color-white)' : undefined}
+                c={props.bg ? 'var(--mantine-color-pri-8)' : undefined}
               >
                 {props.title}
               </Title>
@@ -100,7 +100,7 @@ export default function Page({
                       ? undefined
                       : { base: 'xs', xs: 'sm', md: 'md' }
                   }
-                  c={props.bg ? 'var(--mantine-color-white)' : undefined}
+                  c={props.bg ? 'var(--mantine-color-pri-8)' : undefined}
                 >
                   {props.desc}
                 </Text>

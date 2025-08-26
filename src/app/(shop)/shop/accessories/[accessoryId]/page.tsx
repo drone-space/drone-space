@@ -59,7 +59,7 @@ export default async function AccessoryDetails({
           path: `Accessories`,
           title:
             product?.title.long || product?.title.short || 'Drone Accessories',
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
       />
 

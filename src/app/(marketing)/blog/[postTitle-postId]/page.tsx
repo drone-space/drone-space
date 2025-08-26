@@ -55,7 +55,7 @@ export default async function Post({
           path: 'Blog',
           title: post.title,
           // desc: post.excerpt,
-          bg: images.web.hero,
+          bg: images.web.hero.light,
         }}
         options={{ spacing: 'padding', autoSizeText: true }}
       />

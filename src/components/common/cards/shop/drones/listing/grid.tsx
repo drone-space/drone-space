@@ -5,6 +5,7 @@ import {
   CardSection,
   Divider,
   Group,
+  NumberFormatter,
   Overlay,
   Stack,
   Text,
@@ -92,27 +93,63 @@ export default function Grid({ data }: { data: typeDrone }) {
           )}
         </div>
 
-        <Group gap={'xs'} mt={'md'}>
-          <ModalContactShop
-            props={{
-              initialValues: {
-                subject: `${data.title.short} Drone Purchase Inquiry`,
-              },
-            }}
-          >
-            <Button size="xs">Order</Button>
-          </ModalContactShop>
+        <Stack gap={'xs'} mt={'md'}>
+          <Divider color="sec.4" />
 
-          <Button
-            size="xs"
-            variant="outline"
-            color="black"
-            component={Link}
-            href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
-          >
-            Learn More
-          </Button>
-        </Group>
+          <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
+            <Text inherit fw={'500'}>
+              <Text component="span" inherit fz={'xs'} fw={'normal'}>
+                Ksh.
+              </Text>{' '}
+              <NumberFormatter thousandSeparator value={data.price?.former} />{' '}
+              {data.kit?.flyMore && (
+                <Text component="sup" inherit fz={'xs'} fw={'normal'}>
+                  (Basic Kit)
+                </Text>
+              )}
+            </Text>
+
+            {data.kit?.flyMore && (
+              <Text inherit fw={'500'}>
+                <Text component="span" inherit fz={'xs'} fw={'normal'}>
+                  Ksh.
+                </Text>{' '}
+                <NumberFormatter
+                  thousandSeparator
+                  value={
+                    (data.price?.former || 0) +
+                    (data.kit?.flyMore?.price?.former || 0)
+                  }
+                />{' '}
+                <Text component="sup" inherit fz={'xs'} fw={'normal'}>
+                  (Flymore Kit)
+                </Text>
+              </Text>
+            )}
+          </Stack>
+
+          <Group gap={'xs'} mt={'md'}>
+            <ModalContactShop
+              props={{
+                initialValues: {
+                  subject: `${data.title.short} Drone Purchase Inquiry`,
+                },
+              }}
+            >
+              <Button size="xs">Order Now</Button>
+            </ModalContactShop>
+
+            <Button
+              size="xs"
+              variant="outline"
+              color="black"
+              component={Link}
+              href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
+            >
+              Learn More
+            </Button>
+          </Group>
+        </Stack>
       </Stack>
     </Card>
   );

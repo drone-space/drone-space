@@ -27,12 +27,7 @@ export default function Home() {
 
   const now = new Date();
 
-  const filteredIntakeDates = data.filter((intake) => {
-    const newer = intake.dates.filter((d) => d.getTime() > now.getTime());
-    return newer && newer.length > 0;
-  });
-
-  const slides = filteredIntakeDates.map((slide, index) => {
+  const slides = data.map((slide, index) => {
     const cycle = ['start', 'center', 'end', 'center'];
     const alignment: any = cycle[index % cycle.length];
 
@@ -104,6 +99,7 @@ export default function Home() {
                           : ', '}
                     </span>
                   ))}
+                  {slide.dates.length > 1 ? '' : `, ${now.getFullYear()}`}
                 </Text>
               </Text>
 
@@ -151,7 +147,7 @@ export default function Home() {
 
       <div style={{ position: 'relative', zIndex: 1 }}></div>
       <Carousel
-        withIndicators={filteredIntakeDates.length > 1}
+        withIndicators={data.length > 1}
         emblaOptions={{ loop: true }}
         withControls={false}
         classNames={{
@@ -241,32 +237,32 @@ const data = [
       current: 35000,
     },
   },
-  {
-    badge: 'Agri',
-    title: 'Agricultural Spraying',
-    intro:
-      'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
-    duration: '10 days',
-    dates: [
-      new Date(2025, 7, 18), // intake date
-    ],
-    price: {
-      former: null,
-      current: 70000,
-    },
-  },
-  {
-    badge: 'Masterclass',
-    title: 'Drone Mapping & Survey (Masterclass)',
-    intro:
-      'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
-    duration: '5 days',
-    dates: [
-      new Date(2025, 7, 25), // intake date
-    ],
-    price: {
-      former: null,
-      current: 110000,
-    },
-  },
+  // {
+  //   badge: 'Agri',
+  //   title: 'Agricultural Spraying',
+  //   intro:
+  //     'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
+  //   duration: '10 days',
+  //   dates: [
+  //     new Date(2025, 7, 18), // intake date
+  //   ],
+  //   price: {
+  //     former: null,
+  //     current: 70000,
+  //   },
+  // },
+  // {
+  //   badge: 'Masterclass',
+  //   title: 'Drone Mapping & Survey (Masterclass)',
+  //   intro:
+  //     'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
+  //   duration: '5 days',
+  //   dates: [
+  //     new Date(2025, 7, 25), // intake date
+  //   ],
+  //   price: {
+  //     former: null,
+  //     current: 110000,
+  //   },
+  // },
 ];

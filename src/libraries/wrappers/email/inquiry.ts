@@ -23,6 +23,7 @@ export const sendEmailMarketingInquiry = async (
         userName: `${params.fname} ${params.lname}`,
         userMessage: params.message,
         userPhone: params.phone,
+        kit: params.kit,
       })
     ),
   });

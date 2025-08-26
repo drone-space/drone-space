@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  Grid,
-  GridCol,
-  NumberFormatter,
-  Select,
-  Text,
-  Textarea,
-} from '@mantine/core';
+import { Grid, GridCol, Select, Textarea } from '@mantine/core';
 import React from 'react';
 import CommonForm from '../common/form';
 import FinePrint from '../common/fine-print';

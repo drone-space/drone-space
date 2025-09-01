@@ -294,6 +294,7 @@ export default async function DroneDetail({
             props={{
               initialValues: {
                 subject: `${product?.title.short} Drone Purchase Inquiry`,
+                message: `I'd like to order the ${product?.title.long}.`,
               },
             }}
           >

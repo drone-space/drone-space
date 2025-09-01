@@ -332,6 +332,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `RPL Training Inquiry`,
+                message: `I'm interested in enrolling in your RPL drone training program.`,
               },
             }}
           >
@@ -342,7 +343,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For RPL Training
+              Enroll For RPL
             </Button>
           </ModalContactTraining>
         </Group>
@@ -494,6 +495,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `Radio Telephony Training Inquiry`,
+                message: `I'm interested in enrolling in your Radio Telephony drone training program.`,
               },
             }}
           >
@@ -504,7 +506,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For Radio Telephony Training
+              Enroll For Radio Telephony
             </Button>
           </ModalContactTraining>
         </Group>
@@ -614,6 +616,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `Instructor Rating Training Inquiry`,
+                message: `I'm interested in enrolling in your Instructor Rating drone training program.`,
               },
             }}
           >
@@ -624,7 +627,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For Instructor Rating Training
+              Enroll For Instructor Rating
             </Button>
           </ModalContactTraining>
         </Group>
@@ -703,6 +706,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `Drone Mapping and Survey Training Inquiry`,
+                message: `I'm interested in enrolling in your Drone Mapping and Survey training program.`,
               },
             }}
           >
@@ -713,7 +717,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For Drone Mapping and Survey Training
+              Enroll For Mapping and Survey
             </Button>
           </ModalContactTraining>
         </Group>
@@ -811,6 +815,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `Thermography Training Inquiry`,
+                message: `I'm interested in enrolling in your Thermography drone training program.`,
               },
             }}
           >
@@ -821,7 +826,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For Thermography Training
+              Enroll For Thermography
             </Button>
           </ModalContactTraining>
         </Group>
@@ -1092,6 +1097,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `${courseList[5].title} Training Inquiry`,
+                message: `I'm interested in enrolling in your ${courseList[5].title} drone training program.`,
               },
             }}
           >
@@ -1102,7 +1108,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For {courseList[5].title} Training
+              Enroll For {courseList[5].title}
             </Button>
           </ModalContactTraining>
         </Group>
@@ -1531,6 +1537,7 @@ export default async function DroneTraining() {
             props={{
               initialValues: {
                 subject: `${courseList[6].title} Training Inquiry`,
+                message: `I'm interested in enrolling in your ${courseList[6].title} drone training program.`,
               },
             }}
           >
@@ -1541,7 +1548,7 @@ export default async function DroneTraining() {
                 <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For {courseList[6].title} Training
+              Enroll For {courseList[6].title}
             </Button>
           </ModalContactTraining>
         </Group>

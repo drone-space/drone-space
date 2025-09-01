@@ -84,13 +84,13 @@ export const shopLinks = [
       'This category features the latest drone models set to hit the market. Whether it’s groundbreaking flight technology, improved sensors, or entirely new capabilities, upcoming releases give enthusiasts and professionals early insight into the future of drone innovation.',
     image: images.carousel.shop.image6,
   },
-  {
-    link: '/shop/accessories',
-    label: 'Drone Accessories',
-    leftSection: IconCirclePlus,
-    desc: 'Enhance your drone experience with high-quality accessories and add-ons.',
-    image: images.carousel.shop.image1,
-  },
+  // {
+  //   link: '/shop/accessories',
+  //   label: 'Drone Accessories',
+  //   leftSection: IconCirclePlus,
+  //   desc: 'Enhance your drone experience with high-quality accessories and add-ons.',
+  //   image: images.carousel.shop.image1,
+  // },
 ];
 
 export const trainingLinks = [

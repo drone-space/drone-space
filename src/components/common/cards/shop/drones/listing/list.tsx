@@ -137,6 +137,7 @@ export default function List({ data }: { data: typeDrone }) {
                 props={{
                   initialValues: {
                     subject: `${data.title.short} Drone Purchase Inquiry`,
+                    message: `I'd like to order the ${data.title.long}.`,
                   },
                 }}
               >

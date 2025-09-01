@@ -18,7 +18,7 @@ export default function Image({ data }: { data: string[] }) {
           src={slide}
           alt={'Intelligent battery'}
           loading="lazy"
-          height={{ base: 480 }}
+          height={{ base: 320, md: 400, lg: 480 }}
           width={'100%'}
           fit={'contain'}
         />

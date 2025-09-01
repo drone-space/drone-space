@@ -11,10 +11,8 @@
 }
 
 .content {
-  @include mantine.larger-than(mantine.$mantine-breakpoint-xs) {
-    padding: var(--mantine-spacing-xl);
-    padding-top: var(--mantine-spacing-md);
-  }
+  padding: var(--mantine-spacing-sm);
+  padding-top: var(--mantine-spacing-sm);
 }
 
 .header {

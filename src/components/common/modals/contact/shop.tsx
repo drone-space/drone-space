@@ -5,6 +5,7 @@ import { Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FormInquiryProduct from '@/components/form/inquiry/product';
 import { FormInquiryValues } from '@/hooks/form/inquiry';
+import LayoutModal from '@/components/layout/modal';
 
 export default function Shop({
   props,
@@ -17,26 +18,19 @@ export default function Shop({
 
   return (
     <>
-      <Modal
-        opened={opened}
-        onClose={close}
-        centered
-        title={
-          <Text component="span" inherit fw={'bold'} c={'pri'}>
-            Drone Purchase Inquiry
-          </Text>
-        }
-      >
-        <FormInquiryProduct
-          props={{
-            close,
-            initialValues: {
-              ...props?.initialValues,
-              subject:
-                props?.initialValues?.subject || 'Drone Purchase Inquiry',
-            },
-          }}
-        />
+      <Modal opened={opened} onClose={close} centered withCloseButton={false}>
+        <LayoutModal props={{ close: close, title: 'Drone Purchase Inquiry' }}>
+          <FormInquiryProduct
+            props={{
+              close,
+              initialValues: {
+                ...props?.initialValues,
+                subject:
+                  props?.initialValues?.subject || 'Drone Purchase Inquiry',
+              },
+            }}
+          />
+        </LayoutModal>
       </Modal>
 
       <span style={{ display: 'inline' }} onClick={open}>

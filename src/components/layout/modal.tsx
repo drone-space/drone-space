@@ -7,8 +7,10 @@ import { Alert } from '@/enums/notification';
 import {
   ActionIcon,
   Center,
+  Flex,
   Grid,
   GridCol,
+  Group,
   Stack,
   ThemeIcon,
   Title,
@@ -56,18 +58,31 @@ export default function Modal({
   }
 
   return (
-    <Grid>
-      <ActionIcon
-        size={ICON_WRAPPER_SIZE}
-        onClick={props.close}
-        variant="light"
-        color="gray"
-        pos={'absolute'}
-        top={'var(--mantine-spacing-xs)'}
-        right={'var(--mantine-spacing-xs)'}
-      >
-        <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-      </ActionIcon>
+    <Grid p={{ xs: 'sm', sm: 'md', md: 'lg' }}>
+      <GridCol span={12}>
+        <Flex
+          gap={{ base: 'xs', sm: 0 }}
+          direction={{ base: 'column-reverse', sm: 'row' }}
+          align={{ sm: 'end' }}
+          justify={{ sm: 'space-between' }}
+          mb={'xs'}
+        >
+          <Title order={1} fz={'xl'} lh={1}>
+            {props.title}
+          </Title>
+
+          <Group justify="end">
+            <ActionIcon
+              size={ICON_WRAPPER_SIZE}
+              onClick={props.close}
+              variant="light"
+              color="gray"
+            >
+              <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            </ActionIcon>
+          </Group>
+        </Flex>
+      </GridCol>
 
       {variant && (
         <GridCol span={{ base: 12, xs: size == 'xl' ? 2 : 2.5 }}>
@@ -91,18 +106,7 @@ export default function Modal({
           xs: variant ? (size == 'xl' ? 10 : 9.5) : undefined,
         }}
       >
-        <Stack gap={'md'}>
-          <Title
-            order={1}
-            fz={'xl'}
-            lh={1}
-            ta={{ base: 'center', xs: 'start' }}
-          >
-            {props.title}
-          </Title>
-
-          {children}
-        </Stack>
+        {children}
       </GridCol>
     </Grid>
   );

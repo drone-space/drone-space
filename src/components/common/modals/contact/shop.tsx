@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Modal, Text } from '@mantine/core';
+import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import FormInquiryProduct from '@/components/form/inquiry/product';
 import { FormInquiryValues } from '@/hooks/form/inquiry';

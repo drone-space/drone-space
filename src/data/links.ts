@@ -5,7 +5,6 @@ import {
   IconBellRinging,
   IconCash,
   IconCell,
-  IconCirclePlus,
   IconCopyright,
   IconDeviceCameraPhone,
   IconHeart,

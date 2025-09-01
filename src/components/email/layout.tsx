@@ -84,7 +84,7 @@ export const Email = ({
 export const content = {
   maxWidth: '560px',
   margin: '0 auto',
-  border: '1px solid #e4e6ed',
+  // border: '1px solid #e4e6ed',
   borderRadius: '0.25rem',
   padding: '3rem',
   fontFamily: "'Calibri', Arial, sans-serif",

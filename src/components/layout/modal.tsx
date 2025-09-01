@@ -11,7 +11,6 @@ import {
   Grid,
   GridCol,
   Group,
-  Stack,
   ThemeIcon,
   Title,
 } from '@mantine/core';

@@ -44,7 +44,16 @@ export const useShopListing = (list: any[]) => {
 
   useEffect(() => {
     const updateParamsFromUrl = () => {
-      setParams(getUrlParams());
+      const urlParams = getUrlParams();
+      setParams((prev) => {
+        const isDifferent = Object.keys(urlParams).some(
+          (key) =>
+            String(prev[key as keyof ShopParams] ?? '') !==
+            String(urlParams[key] ?? '')
+        );
+
+        return isDifferent ? { ...prev, ...urlParams } : prev;
+      });
     };
 
     // Listen to browser back/forward

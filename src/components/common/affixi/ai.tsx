@@ -16,14 +16,14 @@ import {
 import { usePathname } from 'next/navigation';
 import ModalAI from '../modals/ai';
 import { images } from '@/assets/images';
-import classes from './assistant.module.scss';
+import classes from './ai.module.scss';
 import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@/data/constants';
 import { getFromLocalStorage } from '@/utilities/helpers/storage';
 import { updateConversation } from '@/libraries/redux/slices/claude';
 import { useAppDispatch } from '@/hooks/redux';
 import ImageDefault from '../images/default';
 
-export default function Assistant() {
+export default function Ai() {
   const pathname = usePathname();
 
   const dispatch = useAppDispatch();

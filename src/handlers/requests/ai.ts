@@ -1,4 +1,4 @@
-import { Turn } from '@/types/claude';
+import { Turn } from '@/types/ai';
 import { API_URL } from '@/data/constants';
 
 export const sendPrompt = async (params: {
@@ -6,7 +6,7 @@ export const sendPrompt = async (params: {
   conversation: Turn[];
 }) => {
   try {
-    const response = await fetch(`${API_URL}/claude`, {
+    const response = await fetch(`${API_URL}/ai`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify([
@@ -16,7 +16,7 @@ export const sendPrompt = async (params: {
     });
 
     if (!response.ok || !response.body) {
-      throw new Error('Claude stream failed to start');
+      throw new Error('Stream failed to start');
     }
 
     return response;

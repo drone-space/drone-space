@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux';
 import { useForm, UseFormReturnType } from '@mantine/form';
-import { sendPrompt } from '@/handlers/requests/claude';
+import { sendPrompt } from '@/handlers/requests/ai';
 import { showNotification } from '@/utilities/notifications';
-import { updateConversation } from '@/libraries/redux/slices/claude';
+import { updateConversation } from '@/libraries/redux/slices/ai';
 import { Variant } from '@/enums/notification';
 import { saveToLocalStorage } from '@/utilities/helpers/storage';
 import { LOCAL_STORAGE_NAME } from '@/data/constants';
 import { parseSSEStream } from '@/libraries/wrappers/text';
 import { useNetwork } from '@mantine/hooks';
 
-export type FormClaudeType = UseFormReturnType<
+export type FormAIType = UseFormReturnType<
   { content: string },
   (values: { content: string }) => { content: string }
 >;
 
-export const useFormClaude = (params?: {
-  defaultValues?: Partial<FormClaudeType['values']>;
+export const useFormAi = (params?: {
+  defaultValues?: Partial<FormAIType['values']>;
 }) => {
   const [submitted, setSubmitted] = useState(false);
-  const conversation = useAppSelector((state) => state.claude.value);
+  const conversation = useAppSelector((state) => state.ai.value);
   const dispatch = useAppDispatch();
   const networkStatus = useNetwork();
 
@@ -83,7 +83,7 @@ export const useFormClaude = (params?: {
           ];
 
           dispatch(updateConversation(updatedConversation));
-          saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, updatedConversation);
+          saveToLocalStorage(LOCAL_STORAGE_NAME.AI, updatedConversation);
           setLiveReply(''); // clear temporary once persisted
           form.reset();
         }
@@ -108,7 +108,7 @@ export const useFormClaude = (params?: {
       setSubmitted(true);
       form.reset();
       dispatch(updateConversation([]));
-      saveToLocalStorage(LOCAL_STORAGE_NAME.CLAUDE, []);
+      saveToLocalStorage(LOCAL_STORAGE_NAME.AI, []);
     } catch (error) {
       showNotification({
         variant: Variant.FAILED,

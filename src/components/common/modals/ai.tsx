@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
-import { useFormClaude } from '@/hooks/form/claude';
+import { useFormAi } from '@/hooks/form/ai';
 import { useDisclosure } from '@mantine/hooks';
 import HeaderModalAI from '@/components/layout/headers/modal/ai';
 import LayoutBodyAI from '@/components/layout/bodies/ai';
 import FooterModalAI from '@/components/layout/footers/modal/ai';
 import LayoutSection from '@/components/layout/section';
-import FormClaude from '@/components/form/claude';
+import FormAi from '@/components/form/ai';
 import { useTTS } from '@/hooks/tts';
 import { useSTT } from '@/hooks/stt';
 import OverlayAIVoice from '@/components/overlays/ai-voice';
@@ -19,7 +19,7 @@ export default function AI({ children }: { children: React.ReactNode }) {
   const [voiceMode, setVoiceMode] = useState(false);
   const [listening, setListening] = useState(false);
   const { form, submitted, handleSubmit, resetConversation, liveReply } =
-    useFormClaude();
+    useFormAi();
   const { fetching, streamSpeech, volumeRef: volumeTTS } = useTTS();
   const {
     volumeRef: volumeSTT,
@@ -60,11 +60,11 @@ export default function AI({ children }: { children: React.ReactNode }) {
         opened={opened}
         onClose={handleClose}
         withCloseButton={false}
-        padding={0}
         size={'lg'}
         centered
         styles={{
           root: { position: 'relative', overflow: 'hidden' },
+          content: { padding: 0 },
         }}
       >
         <HeaderModalAI onClose={handleClose} />
@@ -86,10 +86,10 @@ export default function AI({ children }: { children: React.ReactNode }) {
           containerized={false}
           bordered
           bg={'var(--mantine-color-gray-1)'}
-          px={'xs'}
-          padded={'xs'}
+          px={'md'}
+          padded={'md'}
         >
-          <FormClaude
+          <FormAi
             props={{
               form,
               submitted,

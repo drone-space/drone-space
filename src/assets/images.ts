@@ -18,11 +18,7 @@ export const images = {
 
     google: `${iconUrl}/fluency/96/google-logo.png`,
     credentials: `${iconUrl}/material-rounded/96/mail.png`,
-
-    claude: {
-      default: `${iconUrl}/fluency/100/claude.png`,
-      outline: `${iconUrl}/ios/100/claude.png`,
-    },
+    openAi: `${iconUrl}/fluency/100/chatgpt--v2.png`,
   },
 
   web: {

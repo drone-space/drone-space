@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
-import { FormClaudeType } from './form/claude';
+import { FormAIType } from './form/ai';
 
 declare global {
   interface Window {
@@ -24,7 +24,7 @@ declare global {
 }
 
 export const useSTT = (params?: {
-  form?: FormClaudeType;
+  form?: FormAIType;
   handleSubmit?: (suVa?: any, noVa?: boolean) => Promise<any>;
   onAutoStop?: () => void;
   voiceMode?: boolean;

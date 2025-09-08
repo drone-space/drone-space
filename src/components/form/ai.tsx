@@ -4,17 +4,17 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Group, Stack, Textarea } from '@mantine/core';
 import { IconBrandTelegram } from '@tabler/icons-react';
 
-import classes from './claude.module.scss';
+import classes from './ai.module.scss';
 import { getHotkeyHandler } from '@mantine/hooks';
-import { FormClaudeType } from '@/hooks/form/claude';
+import { FormAIType } from '@/hooks/form/ai';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@/data/constants';
 import { companyName } from '@/data/app';
 
-export default function Claude({
+export default function Ai({
   props,
 }: {
   props: {
-    form: FormClaudeType;
+    form: FormAIType;
     submitted: boolean;
     handleSubmit: () => void;
     voiceMode: boolean;
@@ -71,7 +71,7 @@ export default function Claude({
               type="submit"
               loading={props.submitted}
               disabled={props.form.values.content.length == 0}
-              rightSection={
+              leftSection={
                 <IconBrandTelegram
                   size={ICON_SIZE / 1.2}
                   stroke={ICON_STROKE_WIDTH}

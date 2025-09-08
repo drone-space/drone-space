@@ -1,5 +1,5 @@
 import anthropic from '@/libraries/anthropic';
-import { Turn } from '@/types/claude';
+import { Turn } from '@/types/ai';
 import { NextRequest, NextResponse } from 'next/server';
 
 const documentUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/documents/anthropic.txt`;
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const stream = new ReadableStream({
       async start(controller) {
         const response = await anthropic.messages.stream({
-          model: process.env.NEXT_PUBLIC_CLAUDE_MODEL || '',
+          model: process.env.NEXT_PUBLIC_AI_MODEL || '',
           max_tokens: 1024,
           stream: true,
           system: `You're a consultant at the drone training and reselling company Drone Space. Please refer to the included information for context:\n\n${content}\n\nBe concise but retain some comprehensiveness.`,

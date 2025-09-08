@@ -1,4 +1,4 @@
-import anthropic from '@/libraries/anthropic';
+import openAiClient from '@/libraries/open-ai';
 import { Turn } from '@/types/ai';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -16,21 +16,37 @@ export async function POST(req: NextRequest) {
 
     const stream = new ReadableStream({
       async start(controller) {
-        const response = await anthropic.messages.stream({
+        const response = await openAiClient.chat.completions.create({
           model: process.env.NEXT_PUBLIC_AI_MODEL || '',
-          max_tokens: 1024,
           stream: true,
-          system: `You're a consultant at the drone training and reselling company Drone Space. Please refer to the included information for context:\n\n${content}\n\nBe concise but retain some comprehensiveness.`,
-          messages,
+          messages: [
+            {
+              role: 'system',
+              content: `You're a consultant at the drone training and reselling company Drone Space. Please refer to the included information for context:\n\n${content}\n\nBe concise but retain some comprehensiveness.`,
+            },
+            ...messages,
+          ],
         });
 
-        for await (const chunk of response) {
-          controller.enqueue(
-            new TextEncoder().encode(`data: ${JSON.stringify(chunk)}\n\n`)
-          );
-        }
+        console.log('response', response);
 
-        controller.close();
+        try {
+          for await (const chunk of response) {
+            const delta = chunk.choices[0]?.delta?.content || '';
+            if (delta) {
+              controller.enqueue(
+                new TextEncoder().encode(
+                  `data: ${JSON.stringify({ content: delta })}\n\n`
+                )
+              );
+            }
+          }
+        } catch (err) {
+          console.error('Streaming error:', err);
+          controller.error(err);
+        } finally {
+          controller.close();
+        }
       },
     });
 

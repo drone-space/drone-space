@@ -71,7 +71,7 @@ export const useFormAi = (params?: {
       await parseSSEStream(
         response,
         (data) => {
-          const delta = data.delta?.text || '';
+          const delta = data.content || '';
           assistantReply += delta;
           setLiveReply((prev) => prev + delta);
         },

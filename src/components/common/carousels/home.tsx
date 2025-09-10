@@ -21,13 +21,19 @@ import classes from './home.module.scss';
 import { locations } from '@/data/app';
 import ModalContactTraining from '../modals/contact/training';
 import { getRegionalDate } from '@/utilities/formatters/date';
+import { tree } from 'next/dist/build/templates/app-page';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
   const now = new Date();
 
-  const slides = data.map((slide, index) => {
+  const filteredData = data.filter((i) => {
+    if (i.title == 'Remote Pilot License') return true;
+    return i.dates.some((d) => d.getTime() > now.getTime());
+  });
+
+  const slides = filteredData.map((slide, index) => {
     const cycle = ['start', 'center', 'end', 'center'];
     const alignment: any = cycle[index % cycle.length];
 

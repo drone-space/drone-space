@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import LayoutSection from '@/components/layout/section';
 import {
   ActionIcon,
@@ -31,13 +31,13 @@ import { useCloseAllModals } from '@/hooks/buses/modal';
 export default function Featured({ close }: { close?: () => void }) {
   const productFeatured = products.find((p: any) => p.featured);
 
-  if (!productFeatured) return;
-
   const handleClose = () => {
     if (close) close();
   };
 
   useCloseAllModals(handleClose);
+
+  if (!productFeatured) return;
 
   return (
     <>

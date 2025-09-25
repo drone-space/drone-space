@@ -14,7 +14,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import FormNewsletter from '@/components/form/newsletter';
 import LayoutSection from '@/components/layout/section';
 import classes from './newsletter.module.scss';

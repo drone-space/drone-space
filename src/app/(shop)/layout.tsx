@@ -5,7 +5,6 @@ import NavbarMain from '@/components/layout/navbars/main';
 import FooterMain from '@/components/layout/footers/main';
 import { COOKIE_NAME } from '@/data/constants';
 import { cookies } from 'next/headers';
-import ModalNewsletter from '@/components/common/modals/newsletter';
 import ModalFeatureDrone from '@/components/common/modals/feature-drone';
 import AffixNavbar from '@/components/common/affixi/navbar';
 import AlertShipment from '@/components/common/alerts/shipment';
@@ -33,7 +32,7 @@ export default async function LayoutShop({
       >
         <main>{children}</main>
 
-        <ModalNewsletter />
+        {/* <ModalNewsletter /> */}
         <ModalFeatureDrone />
 
         <AffixNavbar />

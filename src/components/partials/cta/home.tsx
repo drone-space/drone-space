@@ -5,18 +5,8 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import {
-  Button,
-  Flex,
-  Grid,
-  GridCol,
-  Group,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
-import FormNewsletter from '@/components/form/newsletter';
 import LayoutSection from '@/components/layout/section';
 import classes from './home.module.scss';
 import { images } from '@/assets/images';
@@ -54,9 +44,9 @@ export default function Home({
               </Text>
             </Stack>
 
-            <Group>
+            {/* <Group>
               <FormNewsletter />
-            </Group>
+            </Group> */}
           </Stack>
         </GridCol>
 

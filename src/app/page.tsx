@@ -49,7 +49,6 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import { Metadata } from 'next';
-import ModalNewsletter from '@/components/common/modals/newsletter';
 import IntroSection from '@/components/layout/intros/section';
 import ProviderStore from '@/components/providers/store';
 import { cookies } from 'next/headers';
@@ -368,7 +367,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
       >
         <main>{children}</main>
 
-        <ModalNewsletter />
+        {/* <ModalNewsletter /> */}
 
         <AffixNavbar />
         {/* <AffixAssistant /> */}

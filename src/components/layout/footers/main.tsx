@@ -25,10 +25,9 @@ import {
   ICON_STROKE_WIDTH,
   SECTION_SPACING,
 } from '@/data/constants';
-import { IconCircleFilled, IconMail, IconTicket } from '@tabler/icons-react';
+import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
 import ImageDefault from '@/components/common/images/default';
 import { appName, emails, phones } from '@/data/app';
-import ModalNewsletter from '@/components/common/modals/newsletter';
 import ModalConference from '@/components/common/modals/conference';
 
 export default function Main() {
@@ -129,7 +128,7 @@ export default function Main() {
         mt={SECTION_SPACING / 2}
         mb={'xl'}
       >
-        <ModalNewsletter options={{ auto: false }}>
+        {/* <ModalNewsletter options={{ auto: false }}>
           <Button
             size={'xs'}
             leftSection={
@@ -138,7 +137,7 @@ export default function Main() {
           >
             Newsletter
           </Button>
-        </ModalNewsletter>
+        </ModalNewsletter> */}
 
         <ModalConference>
           <Button

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendEmailMarketingInquiry } from '@/libraries/wrappers/email/inquiry';
-import { contactAdd } from '@/services/api/email/contacts';
 import { FormInquiryValues } from '@/hooks/form/inquiry';
 
 export async function POST(request: NextRequest) {
@@ -14,13 +13,13 @@ export async function POST(request: NextRequest) {
       formData.recipient
     );
 
-    // add email contact to subscriber list
-    const addContact = await contactAdd(formData);
+    // // add email contact to subscriber list
+    // const addContact = await contactAdd(formData);
 
     return NextResponse.json(
       {
         sendMail,
-        addContact,
+        // addContact,
         message: 'Email sent successfully',
       },
       { status: 200, statusText: 'Email Sent' }

@@ -1,9 +1,8 @@
 'use server';
 
 import prisma from '@/libraries/prisma';
-import { StudentGet } from '@/types/models/student';
 
-export const studentsGet = async (): Promise<{ data: StudentGet[] } | null> => {
+export const studentsGet = async () => {
   try {
     const studentRecords = await prisma.student.findMany({
       where: { status: 'ACTIVE' },
@@ -13,7 +12,7 @@ export const studentsGet = async (): Promise<{ data: StudentGet[] } | null> => {
       throw new Error('No student records found');
     }
 
-    return { data: studentRecords };
+    return { items: studentRecords };
   } catch (error) {
     console.error('---> service error - (get student):', error);
     return null;

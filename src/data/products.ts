@@ -700,7 +700,7 @@ const products = [
       ],
     },
     price: {
-      former: 858000,
+      former: 1125000,
       latter: null,
     },
     kit: {

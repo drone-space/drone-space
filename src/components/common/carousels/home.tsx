@@ -189,10 +189,10 @@ const data = [
     intro: 'Join our next RPL intake and start flying professionally',
     duration: '2 weeks',
     dates: [
-      new Date(2025, 9, 7), // intake date
-      new Date(2025, 9, 14),
-      new Date(2025, 9, 21),
-      new Date(2025, 9, 28),
+      new Date(2025, 10, 4), // intake date
+      new Date(2025, 10, 11),
+      new Date(2025, 10, 18),
+      new Date(2025, 10, 25),
     ],
     price: {
       former: 170000,
@@ -206,7 +206,7 @@ const data = [
       'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
     duration: '14 - 21 days',
     dates: [
-      new Date(2025, 8, 1), // intake date
+      new Date(2025, 10, 24), // intake date
     ],
     price: {
       former: null,
@@ -234,7 +234,7 @@ const data = [
       'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
     duration: '5 days',
     dates: [
-      new Date(2025, 9, 13), // intake date
+      new Date(2025, 10, 24), // intake date
     ],
     price: {
       former: null,
@@ -262,7 +262,7 @@ const data = [
       'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
     duration: '5 days',
     dates: [
-      new Date(2025, 9, 6), // intake date
+      new Date(2025, 10, 17), // intake date
     ],
     price: {
       former: null,

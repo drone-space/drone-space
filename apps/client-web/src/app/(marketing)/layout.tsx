@@ -9,7 +9,9 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutBody from '@repo/components/layout/body';
 import AffixNavbar from '@repo/components/common/affixi/navbar';
+import HeaderMain from '@/components/layout/headers/main';
 import NavbarMain from '@/components/layout/navbars/main';
+import FooterMain from '@/components/layout/footers/main';
 import { appName } from '@repo/constants/app';
 
 export const metadata: Metadata = {
@@ -22,7 +24,11 @@ export default async function LayoutMarketing({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutBody>
+    <LayoutBody
+      header={<HeaderMain />}
+      nav={<NavbarMain />}
+      footer={<FooterMain />}
+    >
       <main>{children}</main>
 
       <AffixNavbar>

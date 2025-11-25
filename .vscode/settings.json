@@ -1,3 +1,8 @@
 {
-  "eslint.useFlatConfig": true
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTs": true,
+  "eslint.nodePath": "./node_modules",
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.enableDebugLogs": true
 }

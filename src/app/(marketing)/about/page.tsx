@@ -25,7 +25,8 @@ import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 // import { team } from '@/data/team';
 import IntroPage from '@/components/layout/intros/page';
 import { appName, companyName } from '@/data/app';
-import { studentsGet } from '@/services/database/students';
+import { StudentGet } from '@/types/models/student';
+import { studentsGet } from '@/handlers/requests/database/student';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -54,7 +55,8 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const payload = await studentsGet();
+  const { items: students }: { items: StudentGet[] | null } =
+    await studentsGet();
 
   return (
     <LayoutPage>
@@ -287,26 +289,25 @@ export default async function About() {
         <TabSpacesHub />
       </LayoutSection>
 
-      <LayoutSection
-        id="about-testimonials"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
-        <IntroSection
-          props={{
-            subTitle: 'Testimonials',
-            title: 'What Our Clients Say',
-            desc: `At ${appName}, we take pride in delivering exceptional
+      {students != null && (
+        <LayoutSection
+          id="about-testimonials"
+          padded
+          bg={'var(--mantine-color-gray-1)'}
+        >
+          <IntroSection
+            props={{
+              subTitle: 'Testimonials',
+              title: 'What Our Clients Say',
+              desc: `At ${appName}, we take pride in delivering exceptional
               results that exceed expectations. Take a moment to hear directly from the people who
               matter most: our valued clients.`,
-          }}
-          options={{ spacing: true }}
-        />
-
-        {payload != null && (
-          <CarouselTestimonials props={shuffleArray(payload.data)} />
-        )}
-      </LayoutSection>
+            }}
+            options={{ spacing: true }}
+          />
+          <CarouselTestimonials props={shuffleArray(students)} />
+        </LayoutSection>
+      )}
     </LayoutPage>
   );
 }

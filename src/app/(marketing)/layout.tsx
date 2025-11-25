@@ -5,7 +5,6 @@ import NavbarMain from '@/components/layout/navbars/main';
 import FooterMain from '@/components/layout/footers/main';
 import { COOKIE_NAME } from '@/data/constants';
 import { cookies } from 'next/headers';
-import ModalNewsletter from '@/components/common/modals/newsletter';
 import AffixNavbar from '@/components/common/affixi/navbar';
 import AffixAi from '@/components/common/affixi/ai';
 
@@ -24,7 +23,7 @@ export default async function LayoutMarketing({
       <LayoutBody nav={<NavbarMain />} footer={<FooterMain />}>
         <main>{children}</main>
 
-        <ModalNewsletter />
+        {/* <ModalNewsletter /> */}
 
         <AffixNavbar />
         <AffixAi />

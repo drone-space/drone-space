@@ -37,7 +37,7 @@ export const Email = ({
                 <a href="https://dronespace.co.ke">
                   <img
                     src={
-                      'https://bvkuvosgdpxgsaudprtx.supabase.co/storage/v1/object/public/images/brand/logo/landscape/default.png'
+                      'https://dronespace.co.ke/images/brand/logo/landscape/default.png'
                     }
                     width={200}
                     height={40}

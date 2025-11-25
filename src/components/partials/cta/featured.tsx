@@ -26,9 +26,16 @@ import {
   SECTION_SPACING,
 } from '@/data/constants';
 import ImageDefault from '@/components/common/images/default';
+import { useCloseAllModals } from '@/hooks/buses/modal';
 
 export default function Featured({ close }: { close?: () => void }) {
   const productFeatured = products.find((p: any) => p.featured);
+
+  const handleClose = () => {
+    if (close) close();
+  };
+
+  useCloseAllModals(handleClose);
 
   if (!productFeatured) return;
 
@@ -48,7 +55,7 @@ export default function Featured({ close }: { close?: () => void }) {
           <ActionIcon
             color="var(--mantine-color-white)"
             variant={'subtle'}
-            onClick={close}
+            onClick={handleClose}
           >
             <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
           </ActionIcon>
@@ -129,7 +136,8 @@ export default function Featured({ close }: { close?: () => void }) {
                     variant="outline"
                     color="white"
                     component={Link}
-                    href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}`}
+                    href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}#drone-category-intro`}
+                    onClick={handleClose}
                   >
                     Learn More
                   </Button>

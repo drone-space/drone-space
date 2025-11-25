@@ -27,7 +27,12 @@ export default function Home() {
 
   const now = new Date();
 
-  const slides = data.map((slide, index) => {
+  const filteredData = data.filter((i) => {
+    if (i.title == 'Remote Pilot License') return true;
+    return i.dates.some((d) => d.getTime() > now.getTime());
+  });
+
+  const slides = filteredData.map((slide, index) => {
     const cycle = ['start', 'center', 'end', 'center'];
     const alignment: any = cycle[index % cycle.length];
 
@@ -184,11 +189,10 @@ const data = [
     intro: 'Join our next RPL intake and start flying professionally',
     duration: '2 weeks',
     dates: [
-      new Date(2025, 8, 2), // intake date
-      new Date(2025, 8, 9),
-      new Date(2025, 8, 16),
-      new Date(2025, 8, 23),
-      new Date(2025, 8, 30),
+      new Date(2025, 10, 4), // intake date
+      new Date(2025, 10, 11),
+      new Date(2025, 10, 18),
+      new Date(2025, 10, 25),
     ],
     price: {
       former: 170000,
@@ -202,7 +206,7 @@ const data = [
       'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
     duration: '14 - 21 days',
     dates: [
-      new Date(2025, 8, 1), // intake date
+      new Date(2025, 10, 24), // intake date
     ],
     price: {
       former: null,
@@ -230,7 +234,7 @@ const data = [
       'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
     duration: '5 days',
     dates: [
-      new Date(2025, 8, 29), // intake date
+      new Date(2025, 10, 24), // intake date
     ],
     price: {
       former: null,
@@ -251,18 +255,18 @@ const data = [
   //     current: 70000,
   //   },
   // },
-  // {
-  //   badge: 'Masterclass',
-  //   title: 'Drone Mapping & Survey (Masterclass)',
-  //   intro:
-  //     'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
-  //   duration: '5 days',
-  //   dates: [
-  //     new Date(2025, 7, 25), // intake date
-  //   ],
-  //   price: {
-  //     former: null,
-  //     current: 110000,
-  //   },
-  // },
+  {
+    badge: 'Masterclass',
+    title: 'Drone Mapping & Survey (Masterclass)',
+    intro:
+      'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
+    duration: '5 days',
+    dates: [
+      new Date(2025, 10, 17), // intake date
+    ],
+    price: {
+      former: null,
+      current: 110000,
+    },
+  },
 ];

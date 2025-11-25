@@ -21,8 +21,15 @@ import classes from './newsletter.module.scss';
 import { images } from '@/assets/images';
 import { IconFileDownload, IconX } from '@tabler/icons-react';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
+import { useCloseAllModals } from '@/hooks/buses/modal';
 
 export default function Newsletter({ close }: { close?: () => void }) {
+  const handleClose = () => {
+    if (close) close();
+  };
+
+  useCloseAllModals(handleClose);
+
   return (
     <LayoutSection
       id={'partial-cta-newsletter'}
@@ -38,7 +45,7 @@ export default function Newsletter({ close }: { close?: () => void }) {
         <ActionIcon
           color="var(--mantine-color-white)"
           variant={'subtle'}
-          onClick={close}
+          onClick={handleClose}
         >
           <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
         </ActionIcon>

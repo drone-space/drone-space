@@ -6,7 +6,6 @@ import { email } from '@/utilities/validators/email';
 import { hasLength, useForm, UseFormReturnType } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';
 import { useState } from 'react';
-import { contactAdd } from '@/handlers/requests/contact';
 import { downloadProfile } from '@/handlers/downloaders/profile';
 import { downloadBrochure } from '@/handlers/downloaders/brochure';
 
@@ -83,11 +82,11 @@ export const useFormInquiry = (params: {
 
           // handle download
           if (params?.document) {
-            const response = await contactAdd(parseFormValues(form.values));
+            // const response = await contactAdd(parseFormValues(form.values));
 
-            if (!response.ok) {
-              throw new Error('Internal server error');
-            }
+            // if (!response.ok) {
+            //   throw new Error('Internal server error');
+            // }
 
             form.reset();
 

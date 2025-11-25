@@ -6,7 +6,7 @@ import FooterMain from '@/components/layout/footers/main';
 import { COOKIE_NAME } from '@/data/constants';
 import { cookies } from 'next/headers';
 import AffixNavbar from '@/components/common/affixi/navbar';
-import AffixAi from '@/components/common/affixi/ai';
+// import AffixAi from '@/components/common/affixi/ai';
 
 export default async function LayoutMarketing({
   children, // will be a page or nested layout
@@ -26,7 +26,7 @@ export default async function LayoutMarketing({
         {/* <ModalNewsletter /> */}
 
         <AffixNavbar />
-        <AffixAi />
+        {/* <AffixAi /> */}
       </LayoutBody>
     </ProviderStore>
   );

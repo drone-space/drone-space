@@ -8,7 +8,6 @@ import LayoutSection from '@/components/layout/section';
 import LayoutBody from '@/components/layout/body';
 import FooterMain from '@/components/layout/footers/main';
 import AffixNavbar from '@/components/common/affixi/navbar';
-// import AffixAssistant from '@/components/common/affixi/assistant';
 import {
   Anchor,
   Button,
@@ -55,7 +54,7 @@ import { cookies } from 'next/headers';
 import { aboutStats, appName } from '@/data/app';
 import AlertConference from '@/components/common/alerts/conference';
 import CtaHome from '@/components/partials/cta/home';
-import AffixAi from '@/components/common/affixi/ai';
+// import AffixAi from '@/components/common/affixi/ai';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -371,8 +370,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
         {/* <ModalNewsletter /> */}
 
         <AffixNavbar />
-        <AffixAi />
-        {/* <AffixAssistant /> */}
+        {/* <AffixAi /> */}
       </LayoutBody>
     </ProviderStore>
   );

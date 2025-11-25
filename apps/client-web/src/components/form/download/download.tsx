@@ -17,6 +17,7 @@ export default function Document({
     {
       document: props.type,
       close: props.close,
+      noMessage: true,
     }
   );
 

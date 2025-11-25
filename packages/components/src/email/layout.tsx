@@ -34,12 +34,12 @@ export const Email = ({
           <Container style={content}>
             {options.withHeader && (
               <Section style={{ textAlign: 'center' }}>
-                <a href="https://example.com">
+                <a href="https://dronespace.co.ke">
                   <img
                     src={
-                      'https://spewyluxhudgxpuhjjam.supabase.co/storage/v1/object/public/avatars/brand/icon/icon-light.png'
+                      'https://dronespace.co.ke/images/brand/logo/landscape/default.png'
                     }
-                    width={40}
+                    width={200}
                     height={'auto'}
                     alt={appName}
                   />

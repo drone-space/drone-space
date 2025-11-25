@@ -31,8 +31,8 @@ export const emailContactAdd = async (
         body: JSON.stringify({
           email: formData.email,
           fields: {
-            name: segmentFullName(formData.name || '').first,
-            last_name: segmentFullName(formData.name || '').last,
+            name: formData.fname || '',
+            last_name: formData.lname || '',
             phone: formData.phone || '',
           },
           groups: [process.env.NEXT_MAILERLITE_GROUP_GENERAL],

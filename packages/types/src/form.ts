@@ -11,7 +11,8 @@ import { UseFormReturnType } from '@mantine/form';
  * Inquiry
  */
 export const formValuesInitialInquiry = {
-  name: '',
+  fname: '',
+  lname: '',
   email: '',
   phone: '',
   company: '',

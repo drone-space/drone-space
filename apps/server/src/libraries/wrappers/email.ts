@@ -54,17 +54,20 @@ const emailSendBase = async (options: SendEmailOptions) => {
 export const emailSendInquiry = async (params: FormValuesInquiry) => {
   const recipientEmail = process.env.NEXT_PUBLIC_EMAIL_INFO || '';
 
+  const fullName = `${params.fname} ${params.lname}`;
+
   emailSendBase({
     to: recipientEmail,
-    subject: `${params.subject} (From ${params.name})`,
+    subject: `${params.subject} (From ${fullName})`,
     replyTo: params.email,
-    fromName: params.name,
+    fromName: fullName,
     fromType: 'delivery',
     html: await render(
       EmailInquiry({
-        userName: params.name,
+        userName: fullName,
         userMessage: params.message,
         userPhone: params.phone,
+        kit: params.kit,
       })
     ),
   });

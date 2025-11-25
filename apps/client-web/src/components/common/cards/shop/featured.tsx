@@ -1,3 +1,4 @@
+import React from 'react';
 import { images } from '@/assets/images';
 import {
   BackgroundImage,
@@ -9,8 +10,6 @@ import {
   Stack,
   Title,
 } from '@mantine/core';
-import Link from 'next/link';
-import React from 'react';
 import { linkify } from '@repo/utilities/url';
 import products from '@/data/products';
 import ModalContactShop from '../../modals/contact/shop';

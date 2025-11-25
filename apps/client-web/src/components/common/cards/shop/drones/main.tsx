@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   BackgroundImage,
   Badge,
@@ -9,11 +10,9 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import React from 'react';
 import classes from './main.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
-import Link from 'next/link';
 import ModalContactShop from '@/components/common/modals/contact/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 

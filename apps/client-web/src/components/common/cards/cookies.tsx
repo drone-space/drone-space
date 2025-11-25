@@ -1,6 +1,5 @@
 import React from 'react';
-import { Anchor, Button, Card, Group, Stack, Text } from '@mantine/core';
-import Link from 'next/link';
+import { Button, Card, Group, Stack, Text } from '@mantine/core';
 import classes from './cookies.module.scss';
 import { setCookieClient } from '@repo/utilities/cookie-client';
 import { WEEK } from '@repo/constants/sizes';

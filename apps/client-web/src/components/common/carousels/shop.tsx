@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useRef } from 'react';
-import Link from 'next/link';
 import { Button, Group, Stack, Text, Title } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';

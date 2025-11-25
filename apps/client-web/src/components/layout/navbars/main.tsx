@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { Group, Anchor, Divider, Button, Box } from '@mantine/core';
+import { Group, Divider, Button, Box } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
 import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import MenuNavbar from '@/components/common/menus/navbar';

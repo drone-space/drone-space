@@ -1,7 +1,6 @@
-import { Anchor, Text } from '@mantine/core';
-import NextLink from '@repo/components/common/anchor/next-link';
-import Link from 'next/link';
 import React from 'react';
+import { Text } from '@mantine/core';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function FinePrint() {
   return (

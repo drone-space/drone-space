@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Badge,
   Button,
@@ -11,11 +12,9 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import React from 'react';
 import classes from './grid.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
-import Link from 'next/link';
 import ImageDefault from '@repo/components/common/images/default';
 import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import ModalContactShop from '@/components/common/modals/contact/shop';

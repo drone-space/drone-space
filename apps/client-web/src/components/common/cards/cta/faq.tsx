@@ -1,7 +1,6 @@
 import React from 'react';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { Button, Card, Container, Group, Text, Title } from '@mantine/core';
-import Link from 'next/link';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Faq() {

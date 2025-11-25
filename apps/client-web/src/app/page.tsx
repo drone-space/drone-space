@@ -39,7 +39,6 @@ import {
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import ModalContactTraining from '@/components/common/modals/contact/training';
 import services from '@/data/services';
-import Link from 'next/link';
 import CardService from '@/components/common/cards/service';
 import { shuffleArray } from '@repo/utilities/array';
 import products from '@/data/products';

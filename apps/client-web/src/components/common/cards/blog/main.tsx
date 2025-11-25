@@ -1,9 +1,5 @@
 import React from 'react';
-
-import Link from 'next/link';
-
-import { Anchor, Badge, Box, Card, Group, Text, Title } from '@mantine/core';
-
+import { Badge, Box, Card, Group, Text, Title } from '@mantine/core';
 import classes from './main.module.scss';
 import { PostRelations } from '@repo/types/models/post';
 import { linkify, processUrl } from '@repo/utilities/url';

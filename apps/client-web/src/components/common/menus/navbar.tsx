@@ -23,6 +23,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import CardMenu from '../cards/menu';
 import { IconFileDownload } from '@tabler/icons-react';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Navbar({
   children,
@@ -40,7 +41,7 @@ export default function Navbar({
     subLinks.map(
       (item, index) =>
         subLinks.indexOf(item) < 6 && (
-          <NavLink href={item.link}>
+          <NextLink href={item.link}>
             <MenuItem
               key={index}
               className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
@@ -48,7 +49,7 @@ export default function Navbar({
             >
               {!item.desc ? item.label : <CardMenu props={item} />}
             </MenuItem>
-          </NavLink>
+          </NextLink>
         )
     );
 

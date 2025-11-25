@@ -13,8 +13,8 @@ export default function Main() {
           <ImageDefault
             src={images.brand.droneSpace.logo.potrait.default}
             alt={appName}
-            height={56}
-            width={104}
+            height={{ base: 80 }}
+            width={{ base: 200 }}
             fit="contain"
             mode="grid"
           />

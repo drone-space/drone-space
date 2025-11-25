@@ -13,7 +13,7 @@ export default function Callback({ props }: { props: { close?: () => void } }) {
       subject: 'Callback Request',
       message: 'Please call me back as soon as convenitently possible.',
     },
-    { close: props.close }
+    { close: props.close, noMessage: true }
   );
 
   return (

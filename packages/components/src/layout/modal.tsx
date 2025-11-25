@@ -48,7 +48,7 @@ export default function Modal({
 
   return (
     <Stack pos={'relative'} gap={'xl'}>
-      <Group justify="space-between" align="start">
+      <Group justify={options.icon ? 'space-between' : 'end'} align="start">
         {options.icon && (
           <Group>
             <ThemeIcon

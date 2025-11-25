@@ -28,7 +28,7 @@ export default function Product({
 
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
     props.initialValues,
-    { withKit: !!currentProduct?.kit.flyMore }
+    { withKit: !!currentProduct?.kit.flyMore, close: props.close }
   );
 
   return (
@@ -50,11 +50,11 @@ export default function Product({
               data={[
                 {
                   label: `Basic Kit - (Kshs. ${kit.basic})`,
-                  value: 'basic',
+                  value: 'Basic',
                 },
                 {
                   label: `Fly More Kit - (Kshs. ${(kit.basic || 0) + (kit.flyMore || 0)})`,
-                  value: 'flyMore',
+                  value: 'Fly More',
                 },
               ]}
             />

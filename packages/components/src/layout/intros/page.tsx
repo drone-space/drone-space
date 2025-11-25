@@ -12,6 +12,7 @@ import LayoutSection from '../section';
 import { usePathname } from 'next/navigation';
 import { Container, Stack, Text, Title } from '@mantine/core';
 import { crumbify } from '@repo/utilities/url';
+import { SECTION_SPACING } from '@repo/constants/sizes';
 
 interface PageHeaderProps {
   props: {
@@ -40,7 +41,7 @@ export default function Page({ props, options }: PageHeaderProps) {
 
   const pathContent =
     typeof props.path === 'string' ? (
-      <Text fw="bold" ta="center" c="pri.6" tt="uppercase" fz="sm">
+      <Text fw="bold" ta="center" c="pri.8" tt="uppercase" fz="sm">
         {props.path || fallbackLabel}
       </Text>
     ) : (
@@ -48,7 +49,11 @@ export default function Page({ props, options }: PageHeaderProps) {
     );
 
   const layout = (
-    <LayoutSection id="layout-intro-page" {...spacingProps}>
+    <LayoutSection
+      id="layout-intro-page"
+      {...spacingProps}
+      padded={SECTION_SPACING}
+    >
       <Stack>
         {pathContent}
 
@@ -82,18 +87,24 @@ export default function Page({ props, options }: PageHeaderProps) {
         backgroundSize: 'cover',
       }}
     >
-      {/* Dark overlay */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.05)',
-          zIndex: 0,
-        }}
-      />
+      <LayoutSection
+        id="layout-intro-page"
+        {...spacingProps}
+        padded={SECTION_SPACING}
+      >
+        {/* Dark overlay */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: 'rgba(0,0,0,0.05)',
+            zIndex: 0,
+          }}
+        />
 
-      {/* Ensure content is on top */}
-      <div style={{ position: 'relative', zIndex: 1 }}>{layout}</div>
+        {/* Ensure content is on top */}
+        <div style={{ position: 'relative', zIndex: 1 }}>{layout}</div>
+      </LayoutSection>
     </div>
   );
 }

@@ -12,6 +12,11 @@ export const COOKIE_NAME = {
   LOCAL: { COUNTRY: 'local.country', COUNTRIES: 'local.countries' },
   COLOR_SCHEME: 'theme.color-scheme',
   COLOR_SCHEME_STATE: 'theme.color-scheme-state',
+
+  SUB_REJECTED: 'sub.rejected',
+  CONFERENCE: 'conference',
+  SHIPMENT: 'shipment',
+  FEAT_DRONE_SEEN: 'feature.drone.seen',
 };
 
 export const LOCAL_STORAGE_NAME = {
@@ -19,6 +24,12 @@ export const LOCAL_STORAGE_NAME = {
   COUNTRY: 'country',
   COUNTRIES: 'countries',
   MANTINE_COLOR_SCHEME_VALUE: 'mantine-color-scheme-value',
+  AI: 'ai.conversation',
+  NEWSLETTER: 'newsletter',
+};
+
+export const SESSION_STORAGE_NAME = {
+  AI_COUNT: 'ai-count',
 };
 
 export const PARAM_NAME = {

@@ -32,6 +32,10 @@ export const HOSTED_BASE_URL = {
   SERVER: process.env.NEXT_PUBLIC_HOST_SERVER_PROD || '',
 };
 
+export const REMOTE_HOSTED_BASE_URLS = {
+  AI_CONFERENCE: process.env.NEXT_PUBLIC_HOST_AI_CONFERENCE || '',
+};
+
 export const API_URL = `${BASE_URL_SERVER}/api`;
 
 export const GEO_DATA_URL = {

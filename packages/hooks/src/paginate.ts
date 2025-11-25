@@ -7,7 +7,7 @@
 
 import { useState, useMemo, useEffect, useRef } from 'react';
 
-interface PageRange {
+export interface PageRange {
   from: number;
   to: number;
 }

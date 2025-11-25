@@ -13,8 +13,10 @@ import { UseFormReturnType } from '@mantine/form';
 export const formValuesInitialInquiry = {
   name: '',
   email: '',
-  subject: '',
   phone: '',
+  company: '',
+  kit: '',
+  subject: '',
   message: '',
 };
 

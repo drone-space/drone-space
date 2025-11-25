@@ -1,0 +1,47 @@
+.card {
+  height: 100%;
+
+  @include mantine.hover {
+    .image {
+      transform: scale(1.05);
+    }
+
+    .overlayContent {
+      opacity: 0;
+    }
+  }
+}
+
+.imageSection {
+  background-color: var(--mantine-color-white);
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: var(--mantine-spacing-md);
+  transition: 0.25s all ease;
+}
+
+.overlayContent {
+  transition: 0.25s all ease;
+  opacity: 1;
+}
+
+.imageContainer {
+  overflow: hidden;
+}
+
+.image {
+  transition: 0.25s all ease;
+  transform: scale(0.95);
+  padding: 0 var(--mantine-spacing-xl);
+}
+
+.title {
+}

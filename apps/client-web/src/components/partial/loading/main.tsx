@@ -11,7 +11,7 @@ export default function Main() {
       <Center mih={'100vh'}>
         <Stack align="center">
           <ImageDefault
-            src={images.brand.logo.light}
+            src={images.brand.droneSpace.logo.potrait.default}
             alt={appName}
             height={56}
             width={104}

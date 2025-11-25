@@ -3,24 +3,44 @@ import LayoutBody from '@repo/components/layout/body';
 import { typeParams } from '../layout';
 import { Metadata } from 'next';
 import { PostRelations } from '@repo/types/models/post';
-// import { postsGet } from '@repo/handlers/requests/database/posts';
-import { samplePosts as posts } from '@/data/sample/posts';
-import { extractUuidFromParam } from '@repo/utilities/url';
+import { postsGet } from '@repo/handlers/requests/database/posts';
+import { extractUuidFromParam, linkify } from '@repo/utilities/url';
+import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { images } from '@/assets/images';
+import { companyName } from '@repo/constants/app';
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: typeParams;
+  params: Promise<typeParams>;
 }): Promise<Metadata> => {
+  const { items: posts }: { items: PostRelations[] } = await postsGet();
+
+  if (posts == null) throw new Error('Posts not found');
+
   const postId = extractUuidFromParam((await params)['postTitle-postId']);
 
-  // const { items: posts }: { items: PostRelations[] } = await postsGet();
-  const post = ((posts || []) as PostRelations[]).find((p) => p.id == postId);
+  const post = posts.find((p) => p.id == postId);
+
+  const metaTitle = `${post?.title}`;
 
   return {
-    title: post?.title || '',
-    description: post?.excerpt || '',
-    category: post?.category?.title || '',
+    title: metaTitle,
+    description: post?.excerpt,
+    openGraph: {
+      title: metaTitle,
+      description: post?.excerpt,
+      url: `${HOSTED_BASE_URL.CLIENT_WEB}/blog/${linkify(post?.title || '')}-${post?.id}`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: companyName,
+        },
+      ],
+    },
   };
 };
 

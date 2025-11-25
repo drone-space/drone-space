@@ -1,105 +1,75 @@
 import React from 'react';
-import {
-  Card,
-  CardSection,
-  Group,
-  NumberFormatter,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+
+import Link from 'next/link';
+
+import { Anchor, Badge, Box, Card, Group, Text, Title } from '@mantine/core';
+
 import classes from './main.module.scss';
 import { PostRelations } from '@repo/types/models/post';
 import { linkify, processUrl } from '@repo/utilities/url';
 import { getRegionalDate } from '@repo/utilities/date-time';
-import { IconCircleFilled, IconMessageCircle } from '@tabler/icons-react';
 import ImageDefault from '@repo/components/common/images/default';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { HOSTED_BASE_URL } from '@repo/constants/paths';
-import AnchorNextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({ post }: { post: PostRelations }) {
   const path = `/blog/${linkify(post.title)}-${post.id}`;
 
   return (
-    <Card className={classes.card} bg={'transparent'}>
-      <Stack gap={'lg'}>
-        <CardSection
-          style={{
-            borderRadius: 'var(--mantine-radius-sm)',
-            overflow: 'hidden',
-          }}
+    <Card className={classes.card} h={'100%'}>
+      <div
+        style={{
+          borderRadius: 'var(--mantine-radius-lg)',
+          overflow: 'hidden',
+        }}
+      >
+        <Anchor
+          component={Link}
+          underline="hover"
+          inherit
+          href={path}
+          title={post.title}
+          pos={'relative'}
         >
-          <AnchorNextLink
+          <ImageDefault
+            src={processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB)}
+            alt={post.title}
+            height={200}
+            mode="grid"
+          />
+
+          <div className={classes.overlay}>
+            <Group>
+              <Badge color="white" c={'var(--mantine-color-pri-8)'}>
+                {getRegionalDate(post.created_at).date}
+              </Badge>
+            </Group>
+          </div>
+        </Anchor>
+      </div>
+
+      <Box mt={'lg'}>
+        <Title
+          order={3}
+          fz={{ base: 'xl' }}
+          className={classes.title}
+          lineClamp={2}
+        >
+          <Anchor
+            component={Link}
             underline="hover"
             inherit
             href={path}
-            pos={'relative'}
+            c={'inherit'}
+            title={post.title}
           >
-            <ImageDefault
-              src={processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB)}
-              alt={post.title}
-              height={200}
-              mode="grid"
-            />
-          </AnchorNextLink>
-        </CardSection>
+            {post.title}
+          </Anchor>
+        </Title>
 
-        <CardSection>
-          <Stack gap={'lg'} justify="space-between" h={'100%'}>
-            <Stack>
-              <Title
-                order={3}
-                fz={{ base: 'xl' }}
-                className={classes.title}
-                lineClamp={1}
-              >
-                <AnchorNextLink
-                  underline="hover"
-                  inherit
-                  href={path}
-                  c={'inherit'}
-                >
-                  {post.title}
-                </AnchorNextLink>
-              </Title>
-              <Text className={classes.desc} lineClamp={3}>
-                {post.excerpt}
-              </Text>
-            </Stack>
-
-            <Group justify="space-between" fz={'sm'}>
-              <Group gap={'xs'}>
-                <Text inherit>{getRegionalDate(post.created_at).date}</Text>
-
-                <IconCircleFilled size={4} />
-
-                <AnchorNextLink
-                  href={`/blog/categories/${post.category?.id}`}
-                  underline="never"
-                  inherit
-                >
-                  {post.category?.title}
-                </AnchorNextLink>
-              </Group>
-
-              {post._count.comments && (
-                <Group gap={4}>
-                  <IconMessageCircle
-                    size={ICON_SIZE - 4}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-
-                  <NumberFormatter
-                    thousandSeparator
-                    value={post._count.comments}
-                  />
-                </Group>
-              )}
-            </Group>
-          </Stack>
-        </CardSection>
-      </Stack>
+        <Text className={classes.desc} lineClamp={3} mt={'md'}>
+          {post.excerpt}
+        </Text>
+      </Box>
     </Card>
   );
 }

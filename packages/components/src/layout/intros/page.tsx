@@ -15,6 +15,8 @@ import { crumbify } from '@repo/utilities/url';
 
 interface PageHeaderProps {
   props: {
+    /** Background image URL */
+    bg?: string;
     /** If string, displayed as uppercase breadcrumb; if ReactNode, rendered directly */
     path?: string | React.ReactNode;
     title: string;
@@ -45,7 +47,7 @@ export default function Page({ props, options }: PageHeaderProps) {
       props.path
     );
 
-  return (
+  const layout = (
     <LayoutSection id="layout-intro-page" {...spacingProps}>
       <Stack>
         {pathContent}
@@ -65,5 +67,33 @@ export default function Page({ props, options }: PageHeaderProps) {
         </Container>
       </Stack>
     </LayoutSection>
+  );
+
+  // No background → return layout normally
+  if (!props.bg) return layout;
+
+  // With background, wrap layout like the old component
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${props.bg})`,
+        position: 'relative',
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+      }}
+    >
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'rgba(0,0,0,0.05)',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Ensure content is on top */}
+      <div style={{ position: 'relative', zIndex: 1 }}>{layout}</div>
+    </div>
   );
 }

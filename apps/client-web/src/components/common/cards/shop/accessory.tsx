@@ -25,6 +25,7 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@repo/constants/sizes';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Accessory({ data }: { data: typeAccessory }) {
   return (
@@ -32,8 +33,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
       <Stack justify="space-between" h={'100%'}>
         <div>
           <div className={classes.imageSection}>
-            <Anchor
-              component={Link}
+            <NextLink
               inherit
               href={`/shop/accessories/${linkify(data.title.long)}`}
             >
@@ -58,20 +58,19 @@ export default function Accessory({ data }: { data: typeAccessory }) {
               </Flex>
 
               <div className={classes.overlay}></div>
-            </Anchor>
+            </NextLink>
           </div>
 
           <Divider />
 
           <Stack p={'md'}>
             <Title order={3} className={classes.title} fz={{ md: 'md' }}>
-              <Anchor
-                component={Link}
+              <NextLink
                 inherit
                 href={`/shop/accessories/${linkify(data.title.long)}`}
               >
                 {data.title.short ? data.title.short : data.title.long}
-              </Anchor>
+              </NextLink>
             </Title>
 
             {typeof data.specs == 'string' ? (

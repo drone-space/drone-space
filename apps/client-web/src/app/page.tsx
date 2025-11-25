@@ -56,6 +56,7 @@ import IntroSection from '@repo/components/layout/intros/section';
 import { aboutStats, appName } from '@repo/constants/app';
 import AlertConference from '@/components/common/alerts/conference';
 import CtaHome from '@/components/partial/cta/home';
+import NextLink from '@repo/components/common/anchor/next-link';
 // import AffixAi from '@/components/common/affixi/ai';
 
 export default function Home() {
@@ -125,17 +126,19 @@ export default function Home() {
             </ModalContactTraining>
           </GridCol>
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
-            <Button component={Link} href={'/shop'} h={'100%'} fullWidth>
-              <Stack align="center" py={'md'}>
-                <IconShoppingCart
-                  size={ICON_SIZE * 1.5}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-                <Text inherit component="span" ta={'center'}>
-                  Shop for a Drone
-                </Text>
-              </Stack>
-            </Button>
+            <NextLink href={'/shop'}>
+              <Button h={'100%'} fullWidth>
+                <Stack align="center" py={'md'}>
+                  <IconShoppingCart
+                    size={ICON_SIZE * 1.5}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                  <Text inherit component="span" ta={'center'}>
+                    Shop for a Drone
+                  </Text>
+                </Stack>
+              </Button>
+            </NextLink>
           </GridCol>
         </Grid>
       </LayoutSection>
@@ -162,16 +165,15 @@ export default function Home() {
             )}
           </Grid>
 
-          <Anchor
+          <NextLink
             ta={'center'}
-            component={Link}
             href={'/drone-solutions'}
             fz={'sm'}
             underline="hover"
             c={'dimmed'}
           >
             See more drone solutions
-          </Anchor>
+          </NextLink>
         </Stack>
       </LayoutSection>
 
@@ -213,16 +215,15 @@ export default function Home() {
 
           <GridCol span={12}>
             <Group justify="center" mt={'md'}>
-              <Anchor
+              <NextLink
                 inherit
                 ta={'center'}
-                component={Link}
                 href={'/shop'}
                 fz={'sm'}
                 underline="hover"
               >
                 See more drones & categories
-              </Anchor>
+              </NextLink>
             </Group>
           </GridCol>
         </Grid>

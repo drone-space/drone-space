@@ -14,6 +14,7 @@ import {
 import { linkify } from '@repo/utilities/url';
 import { IconArrowRight } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 interface CourseProps {
   image: string;
@@ -48,10 +49,9 @@ export default function Course({ data }: { data: CourseProps }) {
             </Text>
           </Box>
 
-          <Anchor
-            inherit
-            component={Link}
+          <NextLink
             href={`#${linkify(data.title)}`}
+            inherit
             c={'var(--mantine-color-white)'}
             underline="hover"
             fz={'xs'}
@@ -66,7 +66,7 @@ export default function Course({ data }: { data: CourseProps }) {
                 stroke={ICON_STROKE_WIDTH}
               />
             </Group>
-          </Anchor>
+          </NextLink>
         </Stack>
       </BackgroundImage>
     </Card>

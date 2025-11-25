@@ -14,6 +14,7 @@ import { IconArrowRight } from '@tabler/icons-react';
 import typeService from '@/types/service';
 import { linkify } from '@repo/utilities/url';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Service({ data }: { data: typeService }) {
   return (
@@ -42,9 +43,8 @@ export default function Service({ data }: { data: typeService }) {
             </Text>
           </div>
 
-          <Anchor
+          <NextLink
             inherit
-            component={Link}
             href={`/drone-solutions#${linkify(data.title)}`}
             c={'var(--mantine-color-white)'}
             underline="hover"
@@ -61,7 +61,7 @@ export default function Service({ data }: { data: typeService }) {
                 stroke={ICON_STROKE_WIDTH}
               />
             </Group>
-          </Anchor>
+          </NextLink>
         </Stack>
       </BackgroundImage>
     </Card>

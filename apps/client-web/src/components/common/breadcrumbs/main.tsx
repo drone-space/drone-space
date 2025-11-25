@@ -6,6 +6,7 @@ import { IconChevronRight } from '@tabler/icons-react';
 import classes from './main.module.scss';
 import { Link as typeLink } from '@/types/link';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({ props }: { props: typeLink[] }) {
   const active = (breadcrumb: typeLink) =>
@@ -23,10 +24,9 @@ export default function Main({ props }: { props: typeLink[] }) {
       }
     >
       {props.map((item, index) => (
-        <Anchor
+        <NextLink
           key={index}
           underline="never"
-          component={Link}
           href={item.link}
           c={active(item) ? 'sec.3' : undefined}
           className={classes.link}
@@ -34,7 +34,7 @@ export default function Main({ props }: { props: typeLink[] }) {
           mt={'xs'}
         >
           {item.label}
-        </Anchor>
+        </NextLink>
       ))}
     </Breadcrumbs>
   );

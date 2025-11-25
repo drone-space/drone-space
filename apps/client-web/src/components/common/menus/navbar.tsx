@@ -13,6 +13,7 @@ import {
   MenuDropdown,
   MenuItem,
   MenuTarget,
+  NavLink,
   Stack,
   Text,
   Title,
@@ -40,15 +41,15 @@ export default function Navbar({
     subLinks.map(
       (item, index) =>
         subLinks.indexOf(item) < 6 && (
-          <MenuItem
-            key={index}
-            component={Link}
-            href={item.link}
-            className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
-            h={'100%'}
-          >
-            {!item.desc ? item.label : <CardMenu props={item} />}
-          </MenuItem>
+          <NavLink href={item.link}>
+            <MenuItem
+              key={index}
+              className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
+              h={'100%'}
+            >
+              {!item.desc ? item.label : <CardMenu props={item} />}
+            </MenuItem>
+          </NavLink>
         )
     );
 

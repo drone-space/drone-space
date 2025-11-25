@@ -2,6 +2,7 @@ import React from 'react';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { Button, Card, Container, Group, Text, Title } from '@mantine/core';
 import Link from 'next/link';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Faq() {
   return (
@@ -25,14 +26,14 @@ export default function Faq() {
         </Text>
 
         <Group justify="center" mt={'xl'}>
-          <Button
-            color="var(--mantine-color-body)"
-            c={'var(--mantine-color-pri-8)'}
-            component={Link}
-            href={'/contact'}
-          >
-            Contact Us
-          </Button>
+          <NextLink href={'/contact'}>
+            <Button
+              color="var(--mantine-color-body)"
+              c={'var(--mantine-color-pri-8)'}
+            >
+              Contact Us
+            </Button>
+          </NextLink>
         </Group>
       </Container>
     </Card>

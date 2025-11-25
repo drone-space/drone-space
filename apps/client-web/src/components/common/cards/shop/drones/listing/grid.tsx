@@ -19,6 +19,7 @@ import Link from 'next/link';
 import ImageDefault from '@repo/components/common/images/default';
 import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import ModalContactShop from '@/components/common/modals/contact/shop';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Grid({ data }: { data: typeDrone }) {
   return (
@@ -140,15 +141,13 @@ export default function Grid({ data }: { data: typeDrone }) {
               <Button size="xs">Order Now</Button>
             </ModalContactShop>
 
-            <Button
-              size="xs"
-              variant="outline"
-              color="black"
-              component={Link}
+            <NextLink
               href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
             >
-              Learn More
-            </Button>
+              <Button size="xs" variant="outline" color="black">
+                Learn More
+              </Button>
+            </NextLink>
           </Group>
         </Stack>
       </Stack>

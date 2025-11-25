@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { IconArrowRight } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { SignOut as WrapperSignOut } from '@/components/wrapper/auth';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 type NotifySectionProps = {
   id: string;
@@ -101,16 +102,16 @@ export const NotifySignOut = () => {
             <Button>Sign Out</Button>
           </WrapperSignOut>
 
-          <Button
-            component={Link}
-            href="/"
-            variant="light"
-            rightSection={
-              <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            Go Home
-          </Button>
+          <NextLink href="/">
+            <Button
+              variant="light"
+              rightSection={
+                <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Go Home
+            </Button>
+          </NextLink>
         </>
       }
     />

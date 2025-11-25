@@ -10,6 +10,7 @@ import { linkify, processUrl } from '@repo/utilities/url';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import ImageDefault from '@repo/components/common/images/default';
 import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({ post }: { post: PostRelations }) {
   const path = `/blog/${linkify(post.title)}-${post.id}`;
@@ -22,14 +23,7 @@ export default function Main({ post }: { post: PostRelations }) {
           overflow: 'hidden',
         }}
       >
-        <Anchor
-          component={Link}
-          underline="hover"
-          inherit
-          href={path}
-          title={post.title}
-          pos={'relative'}
-        >
+        <NextLink underline="hover" inherit href={path} pos={'relative'}>
           <ImageDefault
             src={processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB)}
             alt={post.title}
@@ -44,7 +38,7 @@ export default function Main({ post }: { post: PostRelations }) {
               </Badge>
             </Group>
           </div>
-        </Anchor>
+        </NextLink>
       </div>
 
       <Box mt={'lg'}>
@@ -54,16 +48,9 @@ export default function Main({ post }: { post: PostRelations }) {
           className={classes.title}
           lineClamp={2}
         >
-          <Anchor
-            component={Link}
-            underline="hover"
-            inherit
-            href={path}
-            c={'inherit'}
-            title={post.title}
-          >
+          <NextLink underline="hover" inherit href={path} c={'inherit'}>
             {post.title}
-          </Anchor>
+          </NextLink>
         </Title>
 
         <Text className={classes.desc} lineClamp={3} mt={'md'}>

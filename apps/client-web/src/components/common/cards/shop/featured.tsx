@@ -14,6 +14,7 @@ import React from 'react';
 import { linkify } from '@repo/utilities/url';
 import products from '@/data/products';
 import ModalContactShop from '../../modals/contact/shop';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Featured() {
   const productFeatured = products.find((p: any) => p.featured);
@@ -63,15 +64,13 @@ export default function Featured() {
               </Button>
             </ModalContactShop>
 
-            <Button
-              size={'compact-xs'}
-              variant="outline"
-              color="white"
-              component={Link}
+            <NextLink
               href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}`}
             >
-              Learn More
-            </Button>
+              <Button size={'compact-xs'} variant="outline" color="white">
+                Learn More
+              </Button>
+            </NextLink>
           </Group>
         </Stack>
       </BackgroundImage>

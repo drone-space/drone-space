@@ -29,6 +29,7 @@ import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
 import ImageDefault from '@repo/components/common/images/default';
 import ModalConference from '@/components/common/modals/conference';
 import { appName, emails, phones } from '@repo/constants/app';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main() {
   return (
@@ -41,7 +42,7 @@ export default function Main() {
         <GridCol span={{ base: 12, md: 4.5 }}>
           <Stack gap={'xl'}>
             <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
-              <Anchor component={Link} href={'/'}>
+              <NextLink href={'/'}>
                 <ImageDefault
                   src={images.brand.droneSpace.logo.landscape.default}
                   alt={appName}
@@ -50,7 +51,7 @@ export default function Main() {
                   fit="contain"
                   mode="grid"
                 />
-              </Anchor>
+              </NextLink>
             </Flex>
 
             <Text
@@ -102,15 +103,13 @@ export default function Main() {
                   <List listStyleType="none" spacing={'sm'}>
                     {linkSet.links.map((link, index) => (
                       <ListItem key={index} className={classes.listItem}>
-                        <Anchor
-                          component={Link}
+                        <NextLink
                           href={link.link}
-                          title={link.label}
                           className={classes.link}
                           fz={{ base: 'sm', md: 'xs', lg: 'sm' }}
                         >
                           {link.label}
-                        </Anchor>
+                        </NextLink>
                       </ListItem>
                     ))}
                   </List>
@@ -162,25 +161,15 @@ export default function Main() {
           gap={'md'}
         >
           <Group gap={'xs'} fz={'xs'}>
-            <Anchor
-              component={Link}
-              inherit
-              href="/legal/terms"
-              className={classes.link}
-            >
+            <NextLink inherit href="/legal/terms" className={classes.link}>
               Terms and Conditions
-            </Anchor>
+            </NextLink>
 
             <IconCircleFilled size={4} />
 
-            <Anchor
-              component={Link}
-              inherit
-              href="/legal/policy"
-              className={classes.link}
-            >
+            <NextLink inherit href="/legal/policy" className={classes.link}>
               Privacy Policy
-            </Anchor>
+            </NextLink>
           </Group>
 
           <Text component="span" inherit>

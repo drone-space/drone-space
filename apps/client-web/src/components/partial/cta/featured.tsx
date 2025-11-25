@@ -27,6 +27,7 @@ import {
 } from '@repo/constants/sizes';
 import ImageDefault from '@repo/components/common/images/default';
 import { useCloseAllModals } from '@/hooks/buses/modal';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Featured({ close }: { close?: () => void }) {
   const productFeatured = products.find((p: any) => p.featured);
@@ -132,15 +133,17 @@ export default function Featured({ close }: { close?: () => void }) {
                     <Button color="sec.3">Order Now</Button>
                   </ModalContactShop>
 
-                  <Button
-                    variant="outline"
-                    color="white"
-                    component={Link}
+                  <NextLink
                     href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}#drone-category-intro`}
-                    onClick={handleClose}
                   >
-                    Learn More
-                  </Button>
+                    <Button
+                      variant="outline"
+                      color="white"
+                      onClick={handleClose}
+                    >
+                      Learn More
+                    </Button>
+                  </NextLink>
                 </Group>
               </Stack>
             </Stack>

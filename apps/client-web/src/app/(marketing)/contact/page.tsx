@@ -18,6 +18,7 @@ import {
   phones,
 } from '@repo/constants/app';
 import FormContact from '@/components/form/contact';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export const dynamic = 'force-static';
 
@@ -172,9 +173,9 @@ export default async function Contact() {
 
         <Text ta={'center'} fz={'xs'} mt={'xl'}>
           Please consult the{' '}
-          <Anchor component={Link} inherit fw={500} href="/faq">
+          <NextLink inherit fw={500} href="/faq">
             FAQ
-          </Anchor>
+          </NextLink>
           &apos;s first.
         </Text>
       </LayoutSection>

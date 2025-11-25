@@ -11,6 +11,7 @@ import { SECTION_SPACING } from '@repo/constants/sizes';
 import { shopLinks } from '@/data/links';
 import MoadlContactShop from '../modals/contact/shop';
 import classes from './shop.module.scss';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Shop() {
   const autoplay = useRef(Autoplay({ delay: 4000 }));
@@ -59,14 +60,11 @@ export default function Shop() {
                     <Button color="sec.3">Inquire</Button>
                   </MoadlContactShop>
 
-                  <Button
-                    component={Link}
-                    href={props.link}
-                    variant="outline"
-                    color="white"
-                  >
-                    Learn More
-                  </Button>
+                  <NextLink href={props.link}>
+                    <Button variant="outline" color="white">
+                      Learn More
+                    </Button>
+                  </NextLink>
                 </Group>
               </Stack>
             </LayoutSection>

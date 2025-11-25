@@ -15,6 +15,7 @@ import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
 import Link from 'next/link';
 import ModalContactShop from '@/components/common/modals/contact/shop';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
@@ -81,14 +82,13 @@ export default function Main({ data }: { data: typeDrone }) {
                 <Button>Order Now</Button>
               </ModalContactShop>
 
-              <Button
-                variant="outline"
-                color="black"
-                component={Link}
+              <NextLink
                 href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
               >
-                Learn More
-              </Button>
+                <Button variant="outline" color="black">
+                  Learn More
+                </Button>
+              </NextLink>
             </Group>
 
             {data.desc && (

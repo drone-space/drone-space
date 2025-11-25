@@ -16,14 +16,14 @@ import {
 import { usePathname } from 'next/navigation';
 import ModalAI from '../modals/ai';
 import { images } from '@/assets/images';
-import classes from './assistant.module.scss';
+import classes from './ai.module.scss';
 import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@/data/constants';
 import { getFromLocalStorage } from '@/utilities/helpers/storage';
-import { updateConversation } from '@/libraries/redux/slices/claude';
+import { updateConversation } from '@/libraries/redux/slices/ai';
 import { useAppDispatch } from '@/hooks/redux';
 import ImageDefault from '../images/default';
 
-export default function Assistant() {
+export default function Ai() {
   const pathname = usePathname();
 
   const dispatch = useAppDispatch();
@@ -52,20 +52,20 @@ export default function Assistant() {
   useEffect(() => {
     if (pathname == '/' || routeIncluded) {
       try {
-        const count = sessionStorage.getItem(SESSION_STORAGE_NAME.CLAUDE_COUNT);
+        const count = sessionStorage.getItem(SESSION_STORAGE_NAME.AI_COUNT);
 
         if (!count) {
           start();
           setTimeout(() => setMenuOpened(false), 14000);
 
-          sessionStorage.setItem(SESSION_STORAGE_NAME.CLAUDE_COUNT, '0');
+          sessionStorage.setItem(SESSION_STORAGE_NAME.AI_COUNT, '0');
         } else {
           if (Number(count) <= routes.length) {
             start();
             setTimeout(() => setMenuOpened(false), 14000);
 
             sessionStorage.setItem(
-              SESSION_STORAGE_NAME.CLAUDE_COUNT,
+              SESSION_STORAGE_NAME.AI_COUNT,
               (Number(count) + 1).toString()
             );
           }
@@ -82,7 +82,7 @@ export default function Assistant() {
 
   useEffect(() => {
     // initialize conversation
-    const storedConversation = getFromLocalStorage(LOCAL_STORAGE_NAME.CLAUDE);
+    const storedConversation = getFromLocalStorage(LOCAL_STORAGE_NAME.AI);
     dispatch(updateConversation(storedConversation || []));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -120,7 +120,7 @@ export default function Assistant() {
 
                     <Box h={47} w={47}>
                       <ImageDefault
-                        src={images.icons.claude.default}
+                        src={images.icons.openAi}
                         alt={'Hekima AI'}
                         loading="lazy"
                         fit={'contain'}

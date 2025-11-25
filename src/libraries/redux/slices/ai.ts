@@ -1,8 +1,8 @@
-import { Turn } from '@/types/claude';
+import { Turn } from '@/types/ai';
 import { createSlice } from '@reduxjs/toolkit';
 
 export const sliceConversation = createSlice({
-  name: 'claude',
+  name: 'ai.conversation',
   initialState: {
     value: [] satisfies Turn[] as Turn[],
   },

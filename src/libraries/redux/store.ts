@@ -5,7 +5,7 @@ import reducerSession from './slices/session';
 import { isProduction } from '@/utilities/helpers/environment';
 import reducerColorScheme from './slices/color-scheme';
 import reducerComments from './slices/comments';
-import reducerConversation from './slices/claude';
+import reducerAi from './slices/ai';
 import reducerModals from './slices/modals';
 
 export const makeStore = () => {
@@ -14,7 +14,7 @@ export const makeStore = () => {
       colorScheme: reducerColorScheme,
       session: reducerSession,
       comments: reducerComments,
-      claude: reducerConversation,
+      ai: reducerAi,
       modals: reducerModals,
     },
 

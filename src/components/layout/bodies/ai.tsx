@@ -10,7 +10,7 @@ import {
 } from '@mantine/core';
 import { useScrollIntoView } from '@mantine/hooks';
 import LayoutSection from '@/components/layout/section';
-import { FormClaudeType } from '@/hooks/form/claude';
+import { FormAIType } from '@/hooks/form/ai';
 import { MarkdownComponent } from '@/components/wrapper/markdown';
 
 // Sample questions data
@@ -35,7 +35,7 @@ export default function AI({
   liveReply,
 }: {
   opened: boolean;
-  form: FormClaudeType;
+  form: FormAIType;
   submitted: boolean;
   handleSubmit: (sv?: any, nv?: boolean) => void;
   updated: boolean;
@@ -44,7 +44,7 @@ export default function AI({
   streamSpeech: (input: { text: string }) => void;
   liveReply: string;
 }) {
-  const conversation = useAppSelector((state) => state.claude.value);
+  const conversation = useAppSelector((state) => state.ai.value);
 
   const { targetRef, scrollableRef } = useScrollIntoView<
     HTMLDivElement,
@@ -94,7 +94,7 @@ export default function AI({
       <Stack
         gap={5}
         align="start"
-        my={'xs'}
+        my={'md'}
         mih={isLast && !submitted ? '30vh' : undefined}
         className={classes.assistant}
       >
@@ -150,7 +150,7 @@ export default function AI({
         h={'40vh'}
         scrollbarSize={8}
         fz={'sm'}
-        px={'xs'}
+        px={'md'}
         type="auto"
         ref={scrollableRef as React.Ref<HTMLDivElement>}
         styles={{ scrollbar: { zIndex: 1 } }}

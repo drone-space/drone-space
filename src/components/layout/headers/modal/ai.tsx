@@ -7,24 +7,24 @@ import { images } from '@/assets/images';
 export default function AI({ onClose }: { onClose: () => void }) {
   return (
     <LayoutSection
-      id="header"
+      id="ai-header"
       containerized={false}
-      px={'xs'}
-      padded={'xs'}
-      shadowed
+      px={'md'}
+      padded={'md'}
+      bordered
     >
       <Group justify="space-between">
         <Group gap={'xs'}>
           <Box
             style={{
               overflow: 'hidden',
-              borderRadius: 'var(--mantine-radius-lg)',
+              borderRadius: 'var(--mantine-radius-xs)',
             }}
             w={24}
             h={24}
           >
             <ImageDefault
-              src={images.icons.claude.default}
+              src={images.icons.openAi}
               alt={'Hekima AI'}
               loading="lazy"
               width={24}

@@ -39,12 +39,12 @@ export const COOKIE_NAME = {
 export const LOCAL_STORAGE_NAME = {
   COUNTRY: 'country',
   COUNTRIES: 'countries',
-  CLAUDE: 'claude',
+  AI: 'ai.conversation',
   NEWSLETTER: 'newsletter',
 };
 
 export const SESSION_STORAGE_NAME = {
-  CLAUDE_COUNT: 'claude-count',
+  AI_COUNT: 'ai-count',
 };
 
 export const PARAM_NAME = {

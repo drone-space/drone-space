@@ -1,4 +1,4 @@
-type SSEChunk = Record<string, any>; // You can narrow this based on your expected Claude chunk shape
+type SSEChunk = Record<string, any>;
 
 export const parseSSEStream = async (
   response: Response,

@@ -8,6 +8,7 @@ import { cookies } from 'next/headers';
 import ModalFeatureDrone from '@/components/common/modals/feature-drone';
 import AffixNavbar from '@/components/common/affixi/navbar';
 import AlertShipment from '@/components/common/alerts/shipment';
+import AffixAi from '@/components/common/affixi/ai';
 
 export default async function LayoutShop({
   children, // will be a page or nested layout
@@ -36,6 +37,7 @@ export default async function LayoutShop({
         <ModalFeatureDrone />
 
         <AffixNavbar />
+        <AffixAi />
       </LayoutBody>
     </ProviderStore>
   );

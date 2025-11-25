@@ -1,5 +1,5 @@
+import React from 'react';
 import {
-  Anchor,
   Card,
   Divider,
   Flex,
@@ -13,13 +13,11 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import React from 'react';
 import NextImage from 'next/image';
 import classes from './accessory.module.scss';
 import { typeAccessory } from '@/types/product';
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';
-import Link from 'next/link';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,

@@ -1,7 +1,5 @@
 import React from 'react';
-
-import Link from 'next/link';
-import { Anchor, Breadcrumbs } from '@mantine/core';
+import { Breadcrumbs } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 import classes from './main.module.scss';
 import { Link as typeLink } from '@/types/link';

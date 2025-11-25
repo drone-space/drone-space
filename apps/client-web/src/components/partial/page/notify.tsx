@@ -10,7 +10,6 @@
 import { Flex, Stack, Title, Text, Group, Button } from '@mantine/core';
 import { ReactNode } from 'react';
 import LayoutSection from '@repo/components/layout/section';
-import Link from 'next/link';
 import { IconArrowRight } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { SignOut as WrapperSignOut } from '@/components/wrapper/auth';

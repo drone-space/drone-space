@@ -14,7 +14,6 @@ import {
   Text,
 } from '@mantine/core';
 import ModalContactShop from '@/components/common/modals/contact/shop';
-import Link from 'next/link';
 import { linkify } from '@repo/utilities/url';
 import classes from './featured.module.scss';
 import products from '@/data/products';

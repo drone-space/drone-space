@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Badge,
   Box,
@@ -14,11 +15,9 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import React from 'react';
 import classes from './list.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
-import Link from 'next/link';
 import ImageDefault from '@repo/components/common/images/default';
 import { ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
 import ModalContactShop from '@/components/common/modals/contact/shop';

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { Stack, Button, Group } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
 import LayoutSection from '../../layout/section';

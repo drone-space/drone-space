@@ -132,7 +132,7 @@ export const loadInitialData = async (params: {
           updated_at: new Date(item.updated_at).toISOString(),
         }));
 
-        await db.add(params.dataStore, indexedServerItems);
+        await db.put(params.dataStore, indexedServerItems);
 
         combinedItems = indexedServerItems as any[];
 

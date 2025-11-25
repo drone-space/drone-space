@@ -14,6 +14,7 @@ import { images } from '@/assets/images';
 import ModalDownloadDocument from '@/components/common/modals/download/document';
 import ModalContactCallback from '@/components/common/modals/contact/callback';
 import { appName } from '@repo/constants/app';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({
   options,
@@ -30,25 +31,23 @@ export default function Main({
     return (
       <MenuNavbar key={index} subLinks={link.subLinks}>
         {!link.subLinks ? (
-          <Anchor
-            component={Link}
+          <NextLink
             href={link.link}
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
           >
             {link.label}
-          </Anchor>
+          </NextLink>
         ) : (
-          <Anchor
-            component={Link}
+          <NextLink
             href={link.link}
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
           >
             {link.label}
-          </Anchor>
+          </NextLink>
         )}
       </MenuNavbar>
     );
@@ -77,9 +76,9 @@ export default function Main({
         style={{ zIndex: 1 }}
       >
         <Group justify="space-between">
-          <Anchor component={Link} href={'/'} py={{ base: 5, md: 0 }}>
+          <NextLink href={'/'} py={{ base: 5, md: 0 }}>
             {imageBrand}
-          </Anchor>
+          </NextLink>
 
           <Group gap={'lg'} visibleFrom="md">
             <Group gap={'lg'}>{navLinks}</Group>

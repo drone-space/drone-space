@@ -19,6 +19,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 // import { useAppSelector } from '@/hooks/redux';
 import { usePathname } from 'next/navigation';
 import ModalContactCallback from '../../modals/contact/callback';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({
   props,
@@ -40,64 +41,64 @@ export default function Main({
     const subLinks =
       link.subLinks &&
       link.subLinks.map((subLink) => (
-        <NavLink
-          key={`${index}-${subLink.link}`}
-          component={Link}
-          href={subLink.link}
-          label={subLink.label}
-          active={matchesPath(subLink.link)}
-          onClick={close}
-          className={`${classes.link} ${pathname == subLink.link ? classes.linkActive : ''}`}
-        />
+        <NextLink href={subLink.link}>
+          <NavLink
+            key={`${index}-${subLink.link}`}
+            label={subLink.label}
+            active={matchesPath(subLink.link)}
+            onClick={close}
+            className={`${classes.link} ${pathname == subLink.link ? classes.linkActive : ''}`}
+          />
+        </NextLink>
       ));
 
     return !subLinks ? (
-      <NavLink
-        key={index}
-        component={Link}
-        href={link.link}
-        label={link.label}
-        active={matchesPath(link.link)}
-        onClick={close}
-        fw={pathname == link.link ? 500 : undefined}
-        leftSection={
-          link.leftSection ? (
-            <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          ) : undefined
-        }
-        rightSection={
-          link.rightSection ? (
-            <link.rightSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          ) : undefined
-        }
-        className={`${classes.link} ${
-          matchesPath(link.link) ? classes.linkActive : ''
-        }`}
-      />
+      <NavLink href={link.link}>
+        <NavLink
+          key={index}
+          label={link.label}
+          active={matchesPath(link.link)}
+          onClick={close}
+          fw={pathname == link.link ? 500 : undefined}
+          leftSection={
+            link.leftSection ? (
+              <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            ) : undefined
+          }
+          rightSection={
+            link.rightSection ? (
+              <link.rightSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            ) : undefined
+          }
+          className={`${classes.link} ${
+            matchesPath(link.link) ? classes.linkActive : ''
+          }`}
+        />
+      </NavLink>
     ) : (
-      <NavLink
-        key={`${index}-${link.link}`}
-        component={Link}
-        href={link.link}
-        label={link.label}
-        active={matchesPath(link.link)}
-        fw={pathname == link.link ? 500 : undefined}
-        defaultOpened={matchesPath(link.link)}
-        leftSection={
-          link.leftSection ? (
-            <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          ) : undefined
-        }
-        rightSection={
-          link.rightSection ? (
-            <link.rightSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          ) : undefined
-        }
-        className={`${classes.link} ${
-          matchesPath(link.link) ? classes.linkActive : ''
-        }`}
-      >
-        {subLinks}
+      <NavLink href={link.link}>
+        <NavLink
+          key={`${index}-${link.link}`}
+          label={link.label}
+          active={matchesPath(link.link)}
+          fw={pathname == link.link ? 500 : undefined}
+          defaultOpened={matchesPath(link.link)}
+          leftSection={
+            link.leftSection ? (
+              <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            ) : undefined
+          }
+          rightSection={
+            link.rightSection ? (
+              <link.rightSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            ) : undefined
+          }
+          className={`${classes.link} ${
+            matchesPath(link.link) ? classes.linkActive : ''
+          }`}
+        >
+          {subLinks}
+        </NavLink>
       </NavLink>
     );
   });

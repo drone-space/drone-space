@@ -17,6 +17,7 @@ import { PostRelations } from '@repo/types/models/post';
 import ImageDefault from '@repo/components/common/images/default';
 import { HOSTED_BASE_URL } from '@repo/constants/paths';
 import classes from './new.module.scss';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function New({ post }: { post: PostRelations }) {
   const path = `/blog/${linkify(post.title)}-${post.id}`;
@@ -25,14 +26,7 @@ export default function New({ post }: { post: PostRelations }) {
     <Card className={classes.card} h={'100%'}>
       <Grid gutter={0}>
         <GridCol span={{ base: 12, sm: 6 }}>
-          <Anchor
-            component={Link}
-            underline="hover"
-            inherit
-            href={path}
-            title={post.title}
-            pos={'relative'}
-          >
+          <NextLink underline="hover" inherit href={path} pos={'relative'}>
             <ImageDefault
               src={processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB)}
               alt={post.title}
@@ -47,7 +41,7 @@ export default function New({ post }: { post: PostRelations }) {
                 </Badge>
               </Group>
             </div>
-          </Anchor>
+          </NextLink>
         </GridCol>
 
         <GridCol span={{ base: 12, sm: 6 }}>
@@ -68,16 +62,9 @@ export default function New({ post }: { post: PostRelations }) {
               lh={{ md: 1 }}
               className={classes.title}
             >
-              <Anchor
-                component={Link}
-                underline="hover"
-                inherit
-                href={path}
-                c={'inherit'}
-                title={post.title}
-              >
+              <NextLink underline="hover" inherit href={path} c={'inherit'}>
                 {post.title}
-              </Anchor>
+              </NextLink>
             </Title>
 
             <Text mt={'md'} className={classes.desc} lineClamp={6}>

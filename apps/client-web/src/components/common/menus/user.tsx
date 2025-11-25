@@ -17,6 +17,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import PartialUser from '@/components/partial/user';
 import classes from './user.module.scss';
 import { useStoreSession } from '@/libraries/zustand/stores/session';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function User({ children }: { children: React.ReactNode }) {
   const { session } = useStoreSession();
@@ -53,37 +54,37 @@ export default function User({ children }: { children: React.ReactNode }) {
         {/* <MenuLabel>Activity</MenuLabel>
 
         {navLinkItems.activity.map((item) => (
-          <MenuItem
-            key={item.label}
-            leftSection={
-              <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-            component={Link}
-            href={item.link}
-            className={
-              matchesPath(item.link) ? classes.itemActive : classes.item
-            }
-          >
-            {item.label}
-          </MenuItem>
-        ))}
+          <NextLink href={item.link}>
+            <MenuItem
+              key={item.label}
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={
+                matchesPath(item.link) ? classes.itemActive : classes.item
+              }
+            >
+              {item.label}
+            </MenuItem>
+          </NextLink>
+        ))} */}
 
-        <MenuDivider mb={0} /> */}
+        <MenuDivider mb={0} />
 
         <MenuLabel>Account</MenuLabel>
 
         {navLinkItems.account.map((item) => (
-          <MenuItem
-            key={item.label}
-            leftSection={
-              <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-            component={Link}
-            href={item.link}
-            className={classes.item}
-          >
-            {item.label}
-          </MenuItem>
+          <NextLink href={item.link}>
+            <MenuItem
+              key={item.label}
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={classes.item}
+            >
+              {item.label}
+            </MenuItem>
+          </NextLink>
         ))}
 
         <MenuDivider mb={0} />
@@ -91,33 +92,33 @@ export default function User({ children }: { children: React.ReactNode }) {
         <MenuLabel>Support</MenuLabel>
 
         {navLinkItems.support.map((item) => (
-          <MenuItem
-            key={item.label}
-            leftSection={
-              <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-            component={Link}
-            href={item.link}
-            className={classes.item}
-          >
-            {item.label}
-          </MenuItem>
+          <NextLink href={item.link}>
+            <MenuItem
+              key={item.label}
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={classes.item}
+            >
+              {item.label}
+            </MenuItem>
+          </NextLink>
         ))}
 
         <MenuDivider mb={0} />
 
         {navLinkItems.danger.map((item) => (
-          <MenuItem
-            key={item.label}
-            leftSection={
-              <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
-            component={Link}
-            href={item.link}
-            className={classes.itemDanger}
-          >
-            {item.label}
-          </MenuItem>
+          <NextLink href={item.link}>
+            <MenuItem
+              key={item.label}
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={classes.itemDanger}
+            >
+              {item.label}
+            </MenuItem>
+          </NextLink>
         ))}
       </MenuDropdown>
     </Menu>

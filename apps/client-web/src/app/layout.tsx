@@ -14,7 +14,7 @@ import '@mantine/notifications/styles.css';
 import '../styles/globals.scss';
 
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Montserrat, Nova_Mono } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import ProviderMantine from '@repo/components/provider/mantine';
 import ProviderStore from '@/components/provider/store';
@@ -22,14 +22,15 @@ import { appName } from '@repo/constants/app';
 import { mantine } from '@/assets/styles';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const novaMono = Nova_Mono({
+  variable: '--font-nova-mono',
   subsets: ['latin'],
+  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -42,6 +43,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+
   return (
     <html
       lang="en"
@@ -55,7 +58,7 @@ export default async function RootLayout({
         <ColorSchemeScript defaultColorScheme={DEFAULT_COLOR_SCHEME} />
       </head>
 
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${montserrat.variable} ${novaMono.variable}`}>
         <ProviderMantine
           options={{ withNotifications: true }}
           appThemeProps={{ styleSheets: { ...mantine } }}

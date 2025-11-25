@@ -298,7 +298,9 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
 
         {/* <ModalNewsletter /> */}
 
-        <AffixNavbar />
+        <AffixNavbar>
+          <NavbarMain />
+        </AffixNavbar>
         {/* <AffixAi /> */}
       </LayoutPage>
     </LayoutBody>

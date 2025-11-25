@@ -73,9 +73,8 @@ export default function User({ children }: { children: React.ReactNode }) {
         <MenuLabel>Account</MenuLabel>
 
         {navLinkItems.account.map((item) => (
-          <NextLink href={item.link}>
+          <NextLink key={item.label} href={item.link}>
             <MenuItem
-              key={item.label}
               leftSection={
                 <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
@@ -91,9 +90,8 @@ export default function User({ children }: { children: React.ReactNode }) {
         <MenuLabel>Support</MenuLabel>
 
         {navLinkItems.support.map((item) => (
-          <NextLink href={item.link}>
+          <NextLink key={item.label} href={item.link}>
             <MenuItem
-              key={item.label}
               leftSection={
                 <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
@@ -107,9 +105,8 @@ export default function User({ children }: { children: React.ReactNode }) {
         <MenuDivider mb={0} />
 
         {navLinkItems.danger.map((item) => (
-          <NextLink href={item.link}>
+          <NextLink key={item.label} href={item.link}>
             <MenuItem
-              key={item.label}
               leftSection={
                 <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }

@@ -30,7 +30,7 @@ export default function Section({ props, options }: SectionHeaderProps) {
     <LayoutSection id="layout-intro-section" containerized={false}>
       <Stack>
         {props.subTitle && (
-          <Text fw="bold" ta={alignment} c="pri.6" tt="uppercase" fz="sm">
+          <Text fw="bold" ta={alignment} c="pri.8" tt="uppercase" fz="sm">
             {props.subTitle}
           </Text>
         )}

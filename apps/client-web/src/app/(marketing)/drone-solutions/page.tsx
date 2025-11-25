@@ -5,7 +5,7 @@ import LayoutSection from '@repo/components/layout/section';
 import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
 import ModalContactService from '@/components/common/modals/contact/service';
 import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/drone-solutions`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions`,
     type: 'website',
     images: [
       {

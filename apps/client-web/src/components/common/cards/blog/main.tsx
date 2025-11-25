@@ -9,7 +9,7 @@ import { PostRelations } from '@repo/types/models/post';
 import { linkify, processUrl } from '@repo/utilities/url';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import ImageDefault from '@repo/components/common/images/default';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({ post }: { post: PostRelations }) {
@@ -25,7 +25,7 @@ export default function Main({ post }: { post: PostRelations }) {
       >
         <NextLink underline="hover" inherit href={path} pos={'relative'}>
           <ImageDefault
-            src={processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB)}
+            src={processUrl(post.image, PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT)}
             alt={post.title}
             height={200}
             mode="grid"

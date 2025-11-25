@@ -1,12 +1,9 @@
-import {
-  HOSTED_BASE_URL,
-  REMOTE_HOSTED_BASE_URLS,
-} from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 
 const iconUrl = `https://img.icons8.com`;
 const baseUrl = {
-  droneSpace: `${HOSTED_BASE_URL.CLIENT_WEB}/images`,
-  conference: `${REMOTE_HOSTED_BASE_URLS.AI_CONFERENCE}/images`,
+  droneSpace: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`,
+  conference: `${PRODUCTION_BASE_URL_CLIENT_WEB.CONFERENCE}/images`,
 };
 
 export const images = {

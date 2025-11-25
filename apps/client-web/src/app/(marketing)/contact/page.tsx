@@ -2,10 +2,9 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
-import Link from 'next/link';
 import IntroSection from '@repo/components/layout/intros/section';
 import { Anchor, Card, Grid, GridCol, Text, Title } from '@mantine/core';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import IframeContact from '@/components/common/iframes/contact';
 import { images } from '@/assets/images';
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/contact`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/contact`,
     type: 'website',
     images: [
       {

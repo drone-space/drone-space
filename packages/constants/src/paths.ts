@@ -32,6 +32,11 @@ export const HOSTED_BASE_URL = {
   SERVER: process.env.NEXT_PUBLIC_HOST_SERVER_PROD || '',
 };
 
+export const PRODUCTION_BASE_URL_CLIENT_WEB = {
+  DEFAULT: `https://dronespace.co.ke`,
+  CONFERENCE: `https://aiconference.co.ke`,
+};
+
 export const REMOTE_HOSTED_BASE_URLS = {
   AI_CONFERENCE: process.env.NEXT_PUBLIC_HOST_AI_CONFERENCE || '',
 };

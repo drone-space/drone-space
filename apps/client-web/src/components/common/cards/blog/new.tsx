@@ -15,7 +15,7 @@ import { linkify, processUrl } from '@repo/utilities/url';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import { PostRelations } from '@repo/types/models/post';
 import ImageDefault from '@repo/components/common/images/default';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import classes from './new.module.scss';
 import NextLink from '@repo/components/common/anchor/next-link';
 
@@ -28,7 +28,10 @@ export default function New({ post }: { post: PostRelations }) {
         <GridCol span={{ base: 12, sm: 6 }}>
           <NextLink underline="hover" inherit href={path} pos={'relative'}>
             <ImageDefault
-              src={processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB)}
+              src={processUrl(
+                post.image,
+                PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT
+              )}
               alt={post.title}
               height={360}
               mode="grid"

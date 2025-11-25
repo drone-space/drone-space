@@ -4,7 +4,7 @@ import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
 import IntroPage from '@repo/components/layout/intros/page';
 import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { images } from '@/assets/images';
 import IntroSection from '@repo/components/layout/intros/section';
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/faq`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/faq`,
     type: 'website',
     images: [
       {

@@ -8,7 +8,7 @@ import CardPricingBasic from '@/components/common/cards/pricing/basic';
 import AccordionFaq from '@/components/common/accordions/faq';
 import IntroPage from '@repo/components/layout/intros/page';
 import courses from '@/data/courses';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@/assets/images';
 import { GetLayout } from '../../faq/page';
 import { appName, companyName } from '@repo/constants/app';
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/drone-training/pricing`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/pricing`,
     type: 'website',
     images: [
       {

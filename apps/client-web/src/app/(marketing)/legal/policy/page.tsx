@@ -4,7 +4,7 @@ import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@/assets/images';
 import IntroPage from '@repo/components/layout/intros/page';
 import { appName, companyName } from '@repo/constants/app';
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/legal/policy`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/legal/policy`,
     type: 'website',
     images: [
       {

@@ -35,7 +35,7 @@ import {
 import { images } from '@/assets/images';
 import videos from '@/assets/videos';
 import shows from '@/data/shows';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import ImageDefault from '@repo/components/common/images/default';
 import IntroSection from '@repo/components/layout/intros/section';
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/drone-solutions/light-shows`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/light-shows`,
     type: 'website',
     images: [
       {

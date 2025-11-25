@@ -11,7 +11,7 @@ import React from 'react';
 import ImageDefault from '@repo/components/common/images/default';
 import { StudentGet } from '@repo/types/models/student';
 import { IconQuote } from '@tabler/icons-react';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { ICON_SIZE, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { processUrl } from '@repo/utilities/url';
 
@@ -43,7 +43,10 @@ export default function Testimonial({ props }: { props: StudentGet }) {
             miw={64}
           >
             <ImageDefault
-              src={processUrl(props.image, HOSTED_BASE_URL.CLIENT_WEB)}
+              src={processUrl(
+                props.image,
+                PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT
+              )}
               alt={props.name}
               height={64}
               width={64}

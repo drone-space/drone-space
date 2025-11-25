@@ -1,6 +1,6 @@
 // app/robots.txt/route.ts
 import { NextResponse } from 'next/server';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 
 export const dynamic = 'force-static';
 
@@ -12,7 +12,7 @@ Disallow: /api/
 Disallow: /*?ref=*
 Disallow: /*?utm_*
 
-Sitemap: ${HOSTED_BASE_URL.CLIENT_WEB}/sitemap.xml
+Sitemap: ${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/sitemap.xml
   `.trim();
 
   return new NextResponse(content, {

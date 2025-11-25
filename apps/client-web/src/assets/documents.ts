@@ -1,6 +1,6 @@
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 
-const baseUrl = `${HOSTED_BASE_URL.CLIENT_WEB}/documents`;
+const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/documents`;
 
 const documents = {
   droneSpace: {

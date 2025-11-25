@@ -17,7 +17,7 @@ import {
 } from '@mantine/core';
 import ModalContactTraining from '@/components/common/modals/contact/training';
 import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/drone-training`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training`,
     type: 'website',
     images: [
       {

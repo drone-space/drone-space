@@ -4,7 +4,7 @@ import LayoutSection from '@repo/components/layout/section';
 import { typeParams } from '../layout';
 import IntroPage from '@repo/components/layout/intros/page';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import ImageDefault from '@repo/components/common/images/default';
 import { PostRelations } from '@repo/types/models/post';
 import { extractUuidFromParam } from '@repo/utilities/url';
@@ -43,7 +43,10 @@ export default async function Post({
   const post: undefined | PostRelations = posts.find((p) => p.id == postId);
   if (post == null) throw new Error('Post not found');
 
-  const processedImage = processUrl(post.image, HOSTED_BASE_URL.CLIENT_WEB);
+  const processedImage = processUrl(
+    post.image,
+    PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT
+  );
 
   return (
     <LayoutPage>

@@ -16,7 +16,7 @@ import videos from '@/assets/videos';
 import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { shuffleArray } from '@repo/utilities/array';
 import IntroSection from '@repo/components/layout/intros/section';
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/about`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/about`,
     type: 'website',
     images: [
       {

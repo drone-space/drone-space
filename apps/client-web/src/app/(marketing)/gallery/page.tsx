@@ -12,7 +12,7 @@ import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
 import PartialGallery from '@/components/partial/gallery';
 import tabs from '@/data/tabs';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@/assets/images';
 import IntroPage from '@repo/components/layout/intros/page';
 import { appName, companyName } from '@repo/constants/app';
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/gallery`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/gallery`,
     type: 'website',
     images: [
       {

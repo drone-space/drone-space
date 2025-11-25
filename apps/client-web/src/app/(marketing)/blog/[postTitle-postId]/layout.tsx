@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { PostRelations } from '@repo/types/models/post';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 import { extractUuidFromParam, linkify } from '@repo/utilities/url';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@/assets/images';
 import { companyName } from '@repo/constants/app';
 
@@ -30,7 +30,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: metaTitle,
       description: post?.excerpt,
-      url: `${HOSTED_BASE_URL.CLIENT_WEB}/blog/${linkify(post?.title || '')}-${post?.id}`,
+      url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/blog/${linkify(post?.title || '')}-${post?.id}`,
       type: 'website',
       images: [
         {

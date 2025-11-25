@@ -8,7 +8,7 @@ import IntroPage from '@repo/components/layout/intros/page';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 import { PostRelations } from '@repo/types/models/post';
 import { Metadata } from 'next';
-import { HOSTED_BASE_URL } from '@repo/constants/paths';
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@/assets/images';
 import { appName, companyName } from '@repo/constants/app';
 import CtaHome from '@/components/partial/cta/home';
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${HOSTED_BASE_URL.CLIENT_WEB}/blog`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/blog`,
     type: 'website',
     images: [
       {

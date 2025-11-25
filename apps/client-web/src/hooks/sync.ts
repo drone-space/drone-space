@@ -8,7 +8,7 @@
 import { useCallback, useEffect } from 'react';
 import { STORE_NAME } from '@repo/constants/names';
 import { postsUpdate } from '@repo/handlers/requests/database/posts';
-import { categoriesUpdate } from '@repo/handlers/requests/database/category';
+import { categoriesUpdate } from '@repo/handlers/requests/database/categories';
 import { useStorePost } from '@/libraries/zustand/stores/post';
 import { useStoreCategory } from '@/libraries/zustand/stores/category';
 import { SyncParams } from '@repo/types/sync';

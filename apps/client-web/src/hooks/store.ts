@@ -38,7 +38,6 @@ import {
   AppShellValue,
   useStoreAppShell,
 } from '@/libraries/zustand/stores/shell';
-import { samplePosts } from '@/data/sample/posts';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 
 export const useSessionStore = (params?: {
@@ -198,9 +197,7 @@ export const useStoreData = (params?: {
         session,
         dataFetchFunction: async () => {
           if (clientOnly) {
-            return {
-              items: samplePosts, // TODO: remove this after testing
-            };
+            return { items: [] };
           } else {
             return await postsGet();
           }

@@ -17,6 +17,7 @@ import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import ProviderMantine from '@repo/components/provider/mantine';
+import ProviderRedirects from '@repo/components/provider/redirect';
 import ProviderStore from '@/components/provider/store';
 import { appName } from '@repo/constants/app';
 import { mantine } from '@/assets/styles';
@@ -69,6 +70,7 @@ export default async function RootLayout({
           <ProviderStore>{children}</ProviderStore>
         </ProviderMantine>
 
+        <ProviderRedirects />
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>

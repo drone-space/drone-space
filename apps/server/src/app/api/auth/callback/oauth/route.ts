@@ -62,14 +62,19 @@ export async function GET(request: Request) {
     if (updateError) throw updateError;
 
     if (!existed && userData && userData.email) {
+      const segmentedName = segmentFullName(userData.user_metadata.name);
+
       await emailSendOnboardSignUp({
         to: userData.email,
-        userName:
-          segmentFullName(userData?.user_metadata.name).first || userData.email,
+        userName: segmentedName.first || userData.email,
       });
 
       await emailContactAdd(
-        { email: userData.email, name: userData.user_metadata.name },
+        {
+          email: userData.email,
+          fname: segmentedName.first,
+          lname: segmentedName.last,
+        },
         false
       );
     }

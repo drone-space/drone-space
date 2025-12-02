@@ -189,10 +189,10 @@ const data = [
     intro: 'Join our next RPL intake and start flying professionally',
     duration: '2 weeks',
     dates: [
-      new Date(2025, 10, 4), // intake date
-      new Date(2025, 10, 11),
-      new Date(2025, 10, 18),
-      new Date(2025, 10, 25),
+      new Date(2025, 11, 2), // intake date
+      new Date(2025, 11, 9),
+      new Date(2025, 11, 16),
+      new Date(2025, 11, 23),
     ],
     price: {
       former: 170000,

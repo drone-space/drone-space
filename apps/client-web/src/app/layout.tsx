@@ -21,6 +21,8 @@ import ProviderStore from '@/components/provider/store';
 import { appName } from '@repo/constants/app';
 import { mantine } from '@/assets/styles';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { isProduction } from '@repo/utilities/misc';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -66,6 +68,8 @@ export default async function RootLayout({
         >
           <ProviderStore>{children}</ProviderStore>
         </ProviderMantine>
+
+        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

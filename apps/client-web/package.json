@@ -17,6 +17,7 @@
     "@mantine/hooks": "^8.3.6",
     "@mantine/modals": "^8.3.6",
     "@mantine/notifications": "^8.3.6",
+    "@next/third-parties": "^15.4.6",
     "@repo/components": "workspace:*",
     "@repo/constants": "workspace:*",
     "@repo/db": "workspace:*",

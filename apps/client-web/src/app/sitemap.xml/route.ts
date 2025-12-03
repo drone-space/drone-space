@@ -4,7 +4,7 @@ import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { sitemapRoutes } from '@/data/routes';
 import { PostRelations } from '@repo/types/models/post';
 import { postsGet } from '@repo/handlers/requests/database/posts';
-import accessories from '@/data/accessories';
+// import accessories from '@/data/accessories';
 import { linkify } from '@repo/utilities/url';
 import products from '@/data/products';
 
@@ -43,15 +43,15 @@ export async function GET() {
     console.error('Posts fetch error:', e);
   }
 
-  // --- ACCESSORIES ---
-  const accessoryRoutes = accessories.map((acc) => ({
-    loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/accessories/${linkify(
-      acc.title.long
-    )}`,
-    lastmod: beginningOfYear,
-    changefreq: 'weekly',
-    priority: 0.5,
-  }));
+  // // --- ACCESSORIES ---
+  // const accessoryRoutes = accessories.map((acc) => ({
+  //   loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/accessories/${linkify(
+  //     acc.title.long
+  //   )}`,
+  //   lastmod: beginningOfYear,
+  //   changefreq: 'weekly',
+  //   priority: 0.5,
+  // }));
 
   // --- PRODUCT ROUTES BY CATEGORY ---
   const productRoutes = [
@@ -80,7 +80,7 @@ export async function GET() {
   const allRoutes = [
     ...staticRoutes,
     ...postRoutes,
-    ...accessoryRoutes,
+    // ...accessoryRoutes,
     ...productRoutes,
   ];
 

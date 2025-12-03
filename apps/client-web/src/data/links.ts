@@ -238,13 +238,13 @@ export const links = [
     label: 'About',
     subLinks: [
       {
-        link: '/about/#our-story',
+        link: '/about#our-story',
         label: 'Our Story',
         leftSection: IconCopyright,
         desc: 'Discover our story, mission, and the values that drive us forward.',
       },
       {
-        link: '/about/#spaces-and-hub',
+        link: '/about#spaces-and-hub',
         label: 'Spaces & Hub',
         leftSection: IconSpaces,
         desc: 'Striving to accelerate development in technology and innovation.',

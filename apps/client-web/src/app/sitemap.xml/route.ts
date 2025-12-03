@@ -85,26 +85,32 @@ export async function GET() {
   ];
 
   // --- CONVERT TO XML ---
-  const xml = `
-<?xml version="1.0" encoding="UTF-8"?>
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allRoutes
-  .map(
-    (r) => `
-  <url>
-    <loc>${r.loc}</loc>
-    <lastmod>${r.lastmod}</lastmod>
-    <changefreq>${r.changefreq}</changefreq>
-    <priority>${r.priority}</priority>
-  </url>`
-  )
-  .join('')}
-</urlset>
-`.trim();
+  .map((r) => {
+    return `<url>
+  <loc>${escapeXml(r.loc)}</loc>
+  <lastmod>${escapeXml(r.lastmod)}</lastmod>
+  <changefreq>${escapeXml(r.changefreq)}</changefreq>
+  <priority>${escapeXml(String(r.priority))}</priority>
+</url>`;
+  })
+  .join('\n')}
+</urlset>`.trim();
 
   return new NextResponse(xml, {
     headers: {
       'Content-Type': 'application/xml',
     },
   });
+}
+
+function escapeXml(str: string) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }

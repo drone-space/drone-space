@@ -1,20 +1,14 @@
-// app/sitemap.xml/route.ts
 import { NextResponse } from 'next/server';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { sitemapRoutes } from '@/data/routes';
 import { PostRelations } from '@repo/types/models/post';
 import { postsGet } from '@repo/handlers/requests/database/posts';
-// import accessories from '@/data/accessories';
 import { linkify } from '@repo/utilities/url';
-import products from '@/data/products';
 
 export const dynamic = 'force-static';
 
 export async function GET() {
   const today = new Date().toISOString().split('T')[0];
-  const beginningOfYear = new Date(new Date().getFullYear(), 0, 1)
-    .toISOString()
-    .split('T')[0];
 
   // --- STATIC ROUTES ---
   const staticRoutes = ['', ...sitemapRoutes].map((route) => ({
@@ -43,46 +37,8 @@ export async function GET() {
     console.error('Posts fetch error:', e);
   }
 
-  // // --- ACCESSORIES ---
-  // const accessoryRoutes = accessories.map((acc) => ({
-  //   loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/accessories/${linkify(
-  //     acc.title.long
-  //   )}`,
-  //   lastmod: beginningOfYear,
-  //   changefreq: 'weekly',
-  //   priority: 0.5,
-  // }));
-
-  // --- PRODUCT ROUTES BY CATEGORY ---
-  const productRoutes = [
-    { key: 'agriculture', base: 'agriculture' },
-    { key: 'camera', base: 'camera' },
-    { key: 'cinematography', base: 'cinematography' },
-    { key: 'enterprise', base: 'enterprise' },
-    { key: 'mapping', base: 'mapping' },
-    { key: 'upcoming', base: 'upcoming' },
-  ]
-    .map(({ key, base }) =>
-      products
-        .filter((p) => p.category === key)
-        .map((p) => ({
-          loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/drones/${base}/${linkify(
-            p.title.long
-          )}`,
-          lastmod: beginningOfYear,
-          changefreq: 'weekly',
-          priority: 0.5,
-        }))
-    )
-    .flat();
-
   // --- MERGE ALL ROUTES ---
-  const allRoutes = [
-    ...staticRoutes,
-    ...postRoutes,
-    // ...accessoryRoutes,
-    ...productRoutes,
-  ];
+  const allRoutes = [...staticRoutes, ...postRoutes];
 
   // --- CONVERT TO XML ---
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

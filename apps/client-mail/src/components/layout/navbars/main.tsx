@@ -1,17 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Group, Divider, Button, Box } from '@mantine/core';
+import { Group, Divider } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
-import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
 import MenuNavbar from '@/components/common/menus/navbar';
 import classes from './main.module.scss';
 import { usePathname } from 'next/navigation';
 import { links } from '@/data/links';
 import ImageDefault from '@repo/components/common/images/default';
 import { images } from '@/assets/images';
-import ModalDownloadDocument from '@/components/common/modals/download/document';
-import ModalContactCallback from '@/components/common/modals/contact/callback';
 import { appName } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
 
@@ -81,33 +78,6 @@ export default function Main({
 
           <Group gap={'lg'} visibleFrom="md">
             <Group gap={'lg'}>{navLinks}</Group>
-
-            <Group h={20}>
-              <Divider orientation="vertical" />
-            </Group>
-
-            <Group gap={'xs'}>
-              <Box visibleFrom="lg">
-                <ModalDownloadDocument props={{ type: 'brochure' }}>
-                  <Button size="xs" variant="light">
-                    Get Brochure
-                  </Button>
-                </ModalDownloadDocument>
-              </Box>
-
-              <ModalContactCallback>
-                <Button size="xs" variant="gradient" className={classes.button}>
-                  Inquire
-                </Button>
-              </ModalContactCallback>
-            </Group>
-          </Group>
-
-          <Group hiddenFrom="md" justify="end">
-            <DrawerNavbarMain
-              props={links}
-              options={{ absolute: options?.absolute }}
-            />
           </Group>
         </Group>
       </LayoutSection>

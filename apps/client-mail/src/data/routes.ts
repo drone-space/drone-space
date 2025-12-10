@@ -6,7 +6,7 @@
  */
 
 import { cleanPaths } from '@repo/utilities/array';
-import { links, shopLinks, trainingLinks, serviceLinks } from './links';
+import { links } from './links';
 
 export const authRoutes = [
   '/auth/password',
@@ -29,12 +29,7 @@ export const protectedDeadEndRoutes = [
   // Add other protected dead-end routes
 ];
 
-const mainLinks = [
-  ...links,
-  ...shopLinks,
-  ...trainingLinks,
-  ...serviceLinks,
-].map((l) => l.link);
+const mainLinks = [...links].map((l) => l.link);
 const subLinks: string[] = [];
 
 links.map((l) => {

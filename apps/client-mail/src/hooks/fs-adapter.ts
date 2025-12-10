@@ -1,7 +1,6 @@
 import { defaultBackupConfig } from '@/libraries/fsa';
 import { config } from '@/libraries/indexed-db';
-import { useStoreCategory } from '@/libraries/zustand/stores/category';
-import { useStorePost } from '@/libraries/zustand/stores/post';
+import { useStoreEmail } from '@/libraries/zustand/stores/email';
 import { useDebouncedCallback } from '@mantine/hooks';
 import { createFileSyncAdapter } from '@repo/libraries/fsa/handler';
 import { openDatabase } from '@repo/libraries/indexed-db/actions';
@@ -86,12 +85,11 @@ export function useFileSyncAdapter() {
 
 export function useBundledBackupSync({ clientOnly }: { clientOnly: boolean }) {
   const { fileSyncAdapter, hasHandle, hasAccess } = useFileSyncAdapter();
-  const { posts } = useStorePost();
-  const { categories } = useStoreCategory();
+  const { emails } = useStoreEmail();
 
   const debouncedFsWrite = useDebouncedCallback(async () => {
     if (!fileSyncAdapter) return;
-    const bundle = { posts, categories };
+    const bundle = { emails };
     await fileSyncAdapter.writeBackup(bundle); // atomic write internally
   }, 3000);
 
@@ -106,7 +104,6 @@ export function useBundledBackupSync({ clientOnly }: { clientOnly: boolean }) {
     debouncedFsWrite,
     hasAccess,
     hasHandle,
-    posts,
-    categories,
+    emails,
   ]);
 }

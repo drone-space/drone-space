@@ -7,68 +7,36 @@
 
 import { useCallback, useEffect } from 'react';
 import { STORE_NAME } from '@repo/constants/names';
-import { postsUpdate } from '@repo/handlers/requests/database/posts';
-import { categoriesUpdate } from '@repo/handlers/requests/database/categories';
-import { useStorePost } from '@/libraries/zustand/stores/post';
-import { useStoreCategory } from '@/libraries/zustand/stores/category';
+import { emailsUpdate } from '@repo/handlers/requests/database/emails';
+import { useStoreEmail } from '@/libraries/zustand/stores/email';
 import { SyncParams } from '@repo/types/sync';
 
-export const useSyncPosts = (params: {
+export const useSyncEmails = (params: {
   syncFunction: (input: SyncParams) => void;
   online: boolean;
 }) => {
   const { syncFunction, online } = params;
 
   const {
-    posts,
-    deleted: deletedPosts,
-    setPosts,
-    clearDeletedPosts,
-  } = useStorePost();
+    emails,
+    deleted: deletedEmails,
+    setEmails,
+    clearDeletedEmails,
+  } = useStoreEmail();
 
-  const syncPosts = useCallback(() => {
+  const syncEmails = useCallback(() => {
     syncFunction({
-      items: posts || [],
-      deletedItems: deletedPosts,
-      dataStore: STORE_NAME.POSTS,
-      stateUpdateFunctionDeleted: () => clearDeletedPosts(),
-      stateUpdateFunction: (i) => setPosts(i),
-      serverUpdateFunction: async (i, di) => await postsUpdate(i, di),
+      items: emails || [],
+      deletedItems: deletedEmails,
+      dataStore: STORE_NAME.EMAILS,
+      stateUpdateFunctionDeleted: () => clearDeletedEmails(),
+      stateUpdateFunction: (i) => setEmails(i),
+      serverUpdateFunction: async (i, di) => await emailsUpdate(i, di),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [posts, deletedPosts, setPosts, clearDeletedPosts]);
+  }, [emails, deletedEmails, setEmails, clearDeletedEmails]);
 
-  useEffect(() => syncPosts(), [posts, syncPosts, online]);
+  useEffect(() => syncEmails(), [emails, syncEmails, online]);
 
-  return { syncPosts };
-};
-
-export const useSyncCategories = (params: {
-  syncFunction: (input: SyncParams) => void;
-  online: boolean;
-}) => {
-  const { syncFunction, online } = params;
-
-  const {
-    categories,
-    deleted: deletedCategories,
-    setCategories,
-    clearDeletedCategories,
-  } = useStoreCategory();
-
-  const syncCategories = useCallback(() => {
-    syncFunction({
-      items: categories || [],
-      deletedItems: deletedCategories,
-      dataStore: STORE_NAME.CATEGORIES,
-      stateUpdateFunctionDeleted: () => clearDeletedCategories(),
-      stateUpdateFunction: (i) => setCategories(i),
-      serverUpdateFunction: async (i, di) => await categoriesUpdate(i, di),
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categories, deletedCategories, setCategories, clearDeletedCategories]);
-
-  useEffect(() => syncCategories(), [categories, syncCategories, online]);
-
-  return { syncCategories };
+  return { syncEmails };
 };

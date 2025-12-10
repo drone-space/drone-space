@@ -14,7 +14,7 @@ import {
   PARAM_NAME,
   STORE_NAME,
 } from '@repo/constants/names';
-import { useStorePost } from '@/libraries/zustand/stores/post';
+import { useStoreEmail } from '@/libraries/zustand/stores/email';
 import { loadInitialData } from '@/utilities/store';
 import {
   getFromLocalStorage,
@@ -38,7 +38,7 @@ import {
   AppShellValue,
   useStoreAppShell,
 } from '@/libraries/zustand/stores/shell';
-import { postsGet } from '@repo/handlers/requests/database/posts';
+import { emailsGet } from '@repo/handlers/requests/database/emails';
 
 export const useSessionStore = (params?: {
   options?: { clientOnly?: boolean };
@@ -154,7 +154,7 @@ export const useUserRoleStore = () => {
 
 export const useAppshellStore = () => {
   const desktop = useMediaQuery('(min-width: 62em)');
-  const { setAppShell } = useStoreAppShell();
+  const { appshell, setAppShell } = useStoreAppShell();
 
   useEffect(() => {
     if (!desktop) return;
@@ -164,16 +164,35 @@ export const useAppshellStore = () => {
         COOKIE_NAME.APP_SHELL
       );
 
-      setAppShell(appShellCookie);
+      let appShellValue: AppShellValue = null;
 
-      if (appShellCookie)
-        setCookieClient(COOKIE_NAME.APP_SHELL, appShellCookie, {
+      if (!appShellCookie) {
+        appShellValue = {
+          navbar: true,
+          aside: false,
+          child: { navbar: true, aside: false },
+        };
+
+        setCookieClient(COOKIE_NAME.APP_SHELL, appShellValue, {
           expiryInSeconds: WEEK,
         });
+      } else {
+        appShellValue = appShellCookie;
+      }
+
+      setAppShell(appShellValue);
     };
 
     initializeAppShell();
   }, [setAppShell, desktop]);
+
+  useEffect(() => {
+    if (!appshell) return;
+
+    setCookieClient(COOKIE_NAME.APP_SHELL, appshell, {
+      expiryInSeconds: WEEK,
+    });
+  }, [appshell]);
 };
 
 export const useStoreData = (params?: {
@@ -185,27 +204,27 @@ export const useStoreData = (params?: {
   const prevItemsRef = useRef<any[]>([]);
 
   const { session } = useStoreSession();
-  const { setPosts } = useStorePost();
+  const { setEmails } = useStoreEmail();
 
   useEffect(() => {
     if (prevItemsRef.current.length) return;
 
-    const loadPosts = async () => {
+    const loadEmails = async () => {
       await loadInitialData({
         prevItemsRef,
-        dataStore: STORE_NAME.POSTS,
+        dataStore: STORE_NAME.EMAILS,
         session,
         dataFetchFunction: async () => {
           if (clientOnly) {
             return { items: [] };
           } else {
-            return await postsGet();
+            return await emailsGet();
           }
         },
-        stateUpdateFunction: (stateUpdateItems) => setPosts(stateUpdateItems),
+        stateUpdateFunction: (stateUpdateItems) => setEmails(stateUpdateItems),
       });
     };
 
-    loadPosts();
-  }, [setPosts, session, clientOnly]);
+    loadEmails();
+  }, [setEmails, session, clientOnly]);
 };

@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { sitemapRoutes } from '@/data/routes';
-import { PostRelations } from '@repo/types/models/post';
-import { postsGet } from '@repo/handlers/requests/database/posts';
-import { linkify } from '@repo/utilities/url';
 
 export const dynamic = 'force-static';
 
@@ -18,27 +15,8 @@ export async function GET() {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  // --- POSTS ---
-  let postRoutes: any[] = [];
-
-  try {
-    const { items: posts }: { items: PostRelations[] } = await postsGet();
-    if (posts) {
-      postRoutes = posts.map((post) => ({
-        loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/blog/${linkify(
-          post.title
-        )}-${post.id}`,
-        lastmod: post.updated_at,
-        changefreq: 'weekly',
-        priority: 0.5,
-      }));
-    }
-  } catch (e) {
-    console.error('Posts fetch error:', e);
-  }
-
   // --- MERGE ALL ROUTES ---
-  const allRoutes = [...staticRoutes, ...postRoutes];
+  const allRoutes = [...staticRoutes];
 
   // --- CONVERT TO XML ---
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

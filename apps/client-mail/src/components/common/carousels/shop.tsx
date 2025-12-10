@@ -1,0 +1,95 @@
+'use client';
+
+import React from 'react';
+import { useRef } from 'react';
+import { Button, Group, Stack, Text, Title } from '@mantine/core';
+import { Carousel, CarouselSlide } from '@mantine/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import LayoutSection from '@repo/components/layout/section';
+import { SECTION_SPACING } from '@repo/constants/sizes';
+import { shopLinks } from '@/data/links';
+import MoadlContactShop from '../modals/contact/shop';
+import classes from './shop.module.scss';
+import NextLink from '@repo/components/common/anchor/next-link';
+
+export default function Shop() {
+  const autoplay = useRef(Autoplay({ delay: 4000 }));
+
+  const slides = shopLinks
+    .slice(0, shopLinks.length - 1)
+    .map((slide, index) => {
+      function Layout({ props }: { props: (typeof shopLinks)[0] }) {
+        return (
+          <div
+            style={{
+              background: `linear-gradient( rgba(0, 0, 0, 0.3) 10%, rgba(0, 0, 0, 0.3) 100%), url('${props.image}')`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+            }}
+          >
+            <LayoutSection
+              id={`carousel-shop-slide-${index}`}
+              containerized={false}
+              px={'xl'}
+            >
+              <Stack
+                py={SECTION_SPACING / 2}
+                c={'var(--mantine-color-white)'}
+                justify="space-between"
+                mih={440}
+              >
+                <Stack align="center">
+                  <Title
+                    order={2}
+                    fz={{ base: 'xl', md: '1.5rem' }}
+                    ta={'center'}
+                    c={'var(--mantine-color-white)'}
+                  >
+                    {props.label}
+                  </Title>
+
+                  <Text inherit fz={'sm'} ta={'center'} w={{ lg: '75%' }}>
+                    {props.desc}
+                  </Text>
+                </Stack>
+
+                <Group justify={'center'}>
+                  <MoadlContactShop>
+                    <Button color="sec.3">Inquire</Button>
+                  </MoadlContactShop>
+
+                  <NextLink href={props.link}>
+                    <Button variant="outline" color="white">
+                      Learn More
+                    </Button>
+                  </NextLink>
+                </Group>
+              </Stack>
+            </LayoutSection>
+          </div>
+        );
+      }
+
+      return (
+        <CarouselSlide key={index}>
+          <Layout props={slide} />
+        </CarouselSlide>
+      );
+    });
+
+  return (
+    <Carousel
+      withIndicators
+      withControls={false}
+      emblaOptions={{ loop: true, slidesToScroll: 'auto' }}
+      classNames={classes}
+      slideSize={{ base: '100%', md: '50%' }}
+      plugins={[autoplay.current]}
+      // onMouseEnter={autoplay.current.stop}
+      // onMouseLeave={autoplay.current.reset}
+    >
+      {slides}
+    </Carousel>
+  );
+}

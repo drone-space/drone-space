@@ -1,0 +1,44 @@
+.dropdown {
+  padding: 0;
+  overflow: hidden;
+  background-color: light-dark(
+    var(--mantine-color-body),
+    var(--mantine-color-dark-8)
+  );
+  min-width: 80px;
+  z-index: 10 !important;
+  border: 0px solid transparent;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.item {
+  transition: 0.25s color ease;
+  border-radius: 0;
+  overflow: hidden;
+  align-items: start;
+
+  @include mantine.hover {
+    background-color: light-dark(
+      var(--mantine-color-sec-light),
+      var(--mantine-color-sec-light)
+    );
+
+    .itemLabel {
+      color: var(--mantine-color-pri-8);
+    }
+  }
+}
+
+.itemActive {
+  font-weight: bold;
+  background-color: light-dark(
+    var(--mantine-color-sec-light),
+    var(--mantine-color-sec-light)
+  );
+  color: light-dark(var(--mantine-color-pri-8), var(--mantine-color-pri-8));
+}
+
+// .itemLabel {
+//   color: var(--mantine-color-text);
+// }

@@ -1,0 +1,14 @@
+.imageContainer {
+  overflow: hidden;
+  border-radius: var(--mantine-radius-lg);
+}
+
+.imageOuter {
+  transform: scale(1.1);
+  transition: 0.25s all ease;
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+}

@@ -16,7 +16,7 @@ import {
 import { useStoreSession } from '@/libraries/zustand/stores/session';
 import { useStoreSyncStatus } from '@/libraries/zustand/stores/sync-status';
 import { handleSync, syncToServerAfterDelay } from '@/utilities/sync';
-import { useSyncCategories, useSyncPosts } from '@/hooks/sync';
+import { useSyncEmails } from '@/hooks/sync';
 import { SyncParams } from '@repo/types/sync';
 
 export default function Sync({ children }: { children: React.ReactNode }) {
@@ -40,12 +40,7 @@ export default function Sync({ children }: { children: React.ReactNode }) {
     debounceSyncToServer,
   };
 
-  const { syncPosts } = useSyncPosts({
-    syncFunction: (i: SyncParams) => debounceSync({ ...i, ...restProps }),
-    online: networkStatus.online,
-  });
-
-  const { syncCategories } = useSyncCategories({
+  const { syncEmails } = useSyncEmails({
     syncFunction: (i: SyncParams) => debounceSync({ ...i, ...restProps }),
     online: networkStatus.online,
   });
@@ -53,9 +48,8 @@ export default function Sync({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!networkStatus.online) return;
 
-    syncPosts();
-    syncCategories();
-  }, [networkStatus.online, syncPosts, syncCategories]);
+    syncEmails();
+  }, [networkStatus.online, syncEmails]);
 
   return <div>{children}</div>;
 }

@@ -8,9 +8,10 @@
 import { appName } from '@repo/constants/app';
 import { STORE_NAME } from '@repo/constants/names';
 import { DBConfig } from '@repo/types/indexed-db';
+import { linkify } from '@repo/utilities/url';
 
 export const config: DBConfig = {
-  name: appName.toLowerCase(),
+  name: linkify(`${appName}-mail`),
   version: 1,
   stores: [
     // {
@@ -18,13 +19,8 @@ export const config: DBConfig = {
     //   keyPath: 'id',
     // },
     {
-      name: STORE_NAME.POSTS,
+      name: STORE_NAME.EMAILS,
       keyPath: 'id',
-      // indexes: [{ name: 'by_categoryId', keyPath: 'category_id' }],
     },
-    // {
-    //   name: STORE_NAME.CATEGORIES,
-    //   keyPath: 'id',
-    // },
   ],
 };

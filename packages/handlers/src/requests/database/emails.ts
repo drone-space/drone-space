@@ -7,11 +7,15 @@
 
 import { API_URL } from '@repo/constants/paths';
 import { HEADERS } from '@repo/constants/other';
-import { PostCreate, PostRelations, PostUpdate } from '@repo/types/models/post';
+import {
+  EmailCreate,
+  EmailRelations,
+  EmailUpdate,
+} from '@repo/types/models/email';
 
-const baseRequestUrl = `${API_URL}/posts`;
+const baseRequestUrl = `${API_URL}/emails`;
 
-export const postsGet = async () => {
+export const emailsGet = async () => {
   try {
     const request = new Request(baseRequestUrl, {
       method: 'GET',
@@ -24,15 +28,15 @@ export const postsGet = async () => {
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (get posts):', error);
+    console.error('---> handler error - (get emails):', error);
     throw error;
   }
 };
 
 let currentController: AbortController | null = null;
 
-export const postsUpdate = async (
-  posts: PostRelations[],
+export const emailsUpdate = async (
+  emails: EmailRelations[],
   deletedIds?: string[]
 ) => {
   // Cancel previous request if still in-flight
@@ -45,7 +49,7 @@ export const postsUpdate = async (
     const request = new Request(baseRequestUrl, {
       method: 'PUT',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify({ posts, deletedIds }),
+      body: JSON.stringify({ emails, deletedIds }),
     });
 
     const response = await fetch(request);
@@ -58,7 +62,7 @@ export const postsUpdate = async (
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (update posts):', error);
+    console.error('---> handler error - (update emails):', error);
     throw error;
   } finally {
     // Clear controller once done (important for GC)
@@ -66,9 +70,9 @@ export const postsUpdate = async (
   }
 };
 
-export const postGet = async (params: { postId: string }) => {
+export const emailGet = async (params: { emailId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${params.postId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.emailId}`, {
       method: 'GET',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -79,48 +83,48 @@ export const postGet = async (params: { postId: string }) => {
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (get post):', error);
+    console.error('---> handler error - (get email):', error);
     throw error;
   }
 };
 
-export const postCreate = async (post: PostCreate) => {
+export const emailCreate = async (email: EmailCreate) => {
   try {
     const request = new Request(`${baseRequestUrl}/create`, {
       method: 'POST',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(post),
+      body: JSON.stringify(email),
     });
 
     const response = await fetch(request);
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (create post):', error);
+    console.error('---> handler error - (create email):', error);
     throw error;
   }
 };
 
-export const postUpdate = async (post: PostUpdate) => {
+export const emailUpdate = async (email: EmailUpdate) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${post.id}`, {
+    const request = new Request(`${baseRequestUrl}/${email.id}`, {
       method: 'PUT',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(post),
+      body: JSON.stringify(email),
     });
 
     const response = await fetch(request);
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (update post):', error);
+    console.error('---> handler error - (update email):', error);
     throw error;
   }
 };
 
-export const postDelete = async (postId: string) => {
+export const emailDelete = async (emailId: string) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${postId}`, {
+    const request = new Request(`${baseRequestUrl}/${emailId}`, {
       method: 'DELETE',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -129,7 +133,7 @@ export const postDelete = async (postId: string) => {
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (delete post):', error);
+    console.error('---> handler error - (delete email):', error);
     throw error;
   }
 };

@@ -14,31 +14,24 @@ import '@mantine/notifications/styles.css';
 import '../styles/globals.scss';
 
 import type { Metadata } from 'next';
-import { Montserrat, Nova_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import ProviderMantine from '@repo/components/provider/mantine';
 import ProviderRedirects from '@repo/components/provider/redirect';
 import ProviderStore from '@/components/provider/store';
 import { appName } from '@repo/constants/app';
 import { mantine } from '@/assets/styles';
-import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { isProduction } from '@repo/utilities/misc';
+import { ColorScheme } from '@repo/types/enums';
 
-const montserrat = Montserrat({
-  variable: '--font-montserrat',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
-});
-
-const novaMono = Nova_Mono({
-  variable: '--font-nova-mono',
-  subsets: ['latin'],
-  weight: '400',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
-  title: appName,
-  description: '',
+  title: `${appName} Mail`,
+  description: 'Internal mail client for Drone Space',
 };
 
 export default async function RootLayout({
@@ -46,32 +39,29 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
-
   return (
     <html
       lang="en"
       {...mantineHtmlProps}
-      data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}
+      data-mantine-color-scheme={ColorScheme.DARK}
     >
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <ColorSchemeScript defaultColorScheme={DEFAULT_COLOR_SCHEME} />
+        <ColorSchemeScript defaultColorScheme={ColorScheme.DARK} />
       </head>
 
-      <body className={`${montserrat.variable} ${novaMono.variable}`}>
+      <body className={`${inter.variable}`}>
         <ProviderMantine
           options={{ withNotifications: true }}
           appThemeProps={{ styleSheets: { ...mantine } }}
-          colorScheme={DEFAULT_COLOR_SCHEME}
+          colorScheme={ColorScheme.DARK}
         >
           <ProviderStore>{children}</ProviderStore>
         </ProviderMantine>
 
         <ProviderRedirects />
-        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

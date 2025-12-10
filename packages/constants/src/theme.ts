@@ -11,13 +11,17 @@ import {
   Anchor,
   Container,
   createTheme,
+  Divider,
   Loader,
   MantineThemeOverride,
+  Menu,
   Modal,
   Notification,
+  ScrollArea,
   Textarea,
   TextInput,
   Title,
+  Tooltip,
 } from '@mantine/core';
 import cx from 'clsx';
 import { ICON_STROKE_WIDTH } from './sizes';
@@ -104,7 +108,7 @@ export const getAppTheme = (params?: AppThemeProps) => {
 
     primaryColor: 'pri',
     defaultRadius: 'lg',
-    primaryShade: { light: 8, dark: 8 },
+    primaryShade: { light: 8, dark: 3 },
     cursorType: 'pointer',
 
     headings: {
@@ -129,8 +133,31 @@ export const getAppTheme = (params?: AppThemeProps) => {
         defaultProps: { underline: 'never' },
       }),
 
+      Divider: Divider.extend({
+        defaultProps: { color: 'var(--mantine-color-default-border)' },
+      }),
+
+      Menu: Menu.extend({
+        styles: {
+          dropdown: {
+            backgroundColor: 'var(--mantine-color-body)',
+            borderColor: 'var(--mantine-color-default-border)',
+            padding: 'var(--mantine-spacing-xs)',
+          },
+        },
+      }),
+
       Title: Title.extend({
         defaultProps: { c: 'pri.8' },
+      }),
+
+      Tooltip: Tooltip.extend({
+        defaultProps: { withArrow: true, openDelay: 500 },
+      }),
+
+      ScrollArea: ScrollArea.extend({
+        defaultProps: { scrollbarSize: ICON_STROKE_WIDTH * 4, type: 'auto' },
+        styles: { scrollbar: { zIndex: 100 } },
       }),
 
       TextInput: TextInput.extend({

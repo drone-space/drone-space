@@ -49,5 +49,6 @@ export const STORE_NAME = {
   SESSION: 'session',
   SETTINGS: 'settings',
   POSTS: 'posts',
+  EMAILS: 'emails',
   CATEGORIES: 'categories',
 };

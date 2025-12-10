@@ -13,6 +13,11 @@ export const HOSTNAME_CLIENT_WEB = isProduction
   ? process.env.NEXT_PUBLIC_HOST_CLIENT_WEB_PROD
   : process.env.NEXT_PUBLIC_HOST_CLIENT_WEB_DEV;
 
+// Select mail client host
+export const HOSTNAME_CLIENT_MAIL = isProduction
+  ? process.env.NEXT_PUBLIC_HOST_CLIENT_MAIL_PROD
+  : process.env.NEXT_PUBLIC_HOST_CLIENT_MAIL_DEV;
+
 // Select server host
 const HOSTNAME_SERVER = isProduction
   ? process.env.NEXT_PUBLIC_HOST_SERVER_PROD
@@ -29,6 +34,7 @@ export const BASE_URL_SERVER = `${getUrlPrefix(HOSTNAME_SERVER)}${HOSTNAME_SERVE
 
 export const HOSTED_BASE_URL = {
   CLIENT_WEB: process.env.NEXT_PUBLIC_HOST_CLIENT_WEB_PROD || '',
+  CLIENT_MAIL: process.env.NEXT_PUBLIC_HOST_CLIENT_MAIL_PROD || '',
   SERVER: process.env.NEXT_PUBLIC_HOST_SERVER_PROD || '',
 };
 

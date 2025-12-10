@@ -1,0 +1,49 @@
+.viewport {
+  position: relative;
+  padding-top: 40px;
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  padding-right: var(--mantine-spacing-xs);
+  display: flex;
+  justify-content: end;
+  gap: var(--mantine-spacing-xs);
+}
+
+.control {
+  transition: 0.25s all ease;
+  background-color: var(--mantine-color-pri-8);
+  color: var(--mantine-color-sec-3);
+  border: 1px solid transparent;
+  border-radius: var(--mantine-radius-lg);
+  width: 40px;
+  height: 24px;
+
+  @include mantine.hover {
+    background-color: var(--mantine-color-pri-8);
+    color: var(--mantine-color-sec-3);
+  }
+}
+
+.indicators {
+  position: absolute;
+  top: 10.5px;
+  padding-left: var(--mantine-spacing-xs);
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+
+.indicator {
+  background-color: light-dark(
+    var(--mantine-color-pri-8),
+    var(--mantine-color-pri-8)
+  );
+  transition: 0.5s all ease;
+
+  &[data-active] {
+    width: 40px;
+  }
+}

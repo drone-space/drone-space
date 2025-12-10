@@ -12,21 +12,15 @@ import {
   ListItem,
   Stack,
   Image,
-  Button,
 } from '@mantine/core';
 import { images } from '@/assets/images';
 import classes from './main.module.scss';
-import { serviceLinks, socialLinks, trainingLinks } from '@/data/links';
+import { socialLinks } from '@/data/links';
 import NextImage from 'next/image';
 import LayoutSection from '@repo/components/layout/section';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
+import { SECTION_SPACING } from '@repo/constants/sizes';
+import { IconCircleFilled } from '@tabler/icons-react';
 import ImageDefault from '@repo/components/common/images/default';
-import ModalConference from '@/components/common/modals/conference';
 import { appName, emails, phones } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
 
@@ -98,57 +92,12 @@ export default function Main() {
                   <Title order={4} fz={'md'} fw={700}>
                     {linkSet.title}
                   </Title>
-
-                  <List listStyleType="none" spacing={'sm'}>
-                    {linkSet.links.map((link, index) => (
-                      <ListItem key={index} className={classes.listItem}>
-                        <NextLink
-                          href={link.link}
-                          className={classes.link}
-                          fz={{ base: 'sm', md: 'xs', lg: 'sm' }}
-                        >
-                          {link.label}
-                        </NextLink>
-                      </ListItem>
-                    ))}
-                  </List>
                 </Flex>
               </GridCol>
             ))}
           </Grid>
         </GridCol>
       </Grid>
-
-      <Flex
-        align={'center'}
-        gap={'xs'}
-        justify={{ base: 'center', md: 'start' }}
-        mt={SECTION_SPACING / 2}
-        mb={'xl'}
-      >
-        {/* <ModalNewsletter options={{ auto: false }}>
-          <Button
-            size={'xs'}
-            leftSection={
-              <IconMail size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            Newsletter
-          </Button>
-        </ModalNewsletter> */}
-
-        <ModalConference>
-          <Button
-            size={'xs'}
-            color="sec.3"
-            leftSection={
-              <IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            AI Conference
-          </Button>
-        </ModalConference>
-      </Flex>
 
       <Divider mb={'xl'} color="var(--mantine-color-default-border)" />
 
@@ -192,11 +141,9 @@ const phone = {
 const linkSets = [
   {
     title: 'Drone Courses',
-    links: trainingLinks,
   },
   {
     title: 'Drone Solutions',
-    links: serviceLinks,
   },
   {
     title: 'Contact',
@@ -217,10 +164,6 @@ const linkSets = [
         label: phone.pri,
         link: `tel:${phone.pri}`,
       },
-      // {
-      //   label: phone.sec,
-      //   link: `tel:${phone.sec}`,
-      // },
     ],
   },
 ];

@@ -18,6 +18,130 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
 
+  apps/client-mail:
+    dependencies:
+      '@mantine/carousel':
+        specifier: ^8.3.6
+        version: 8.3.6(@mantine/core@8.3.6(@mantine/hooks@8.3.6(react@19.2.0))(@types/react@19.1.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.6(react@19.2.0))(embla-carousel-react@8.5.2(react@19.2.0))(embla-carousel@8.5.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/core':
+        specifier: ^8.3.6
+        version: 8.3.6(@mantine/hooks@8.3.6(react@19.2.0))(@types/react@19.1.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/form':
+        specifier: ^8.3.6
+        version: 8.3.6(react@19.2.0)
+      '@mantine/hooks':
+        specifier: ^8.3.6
+        version: 8.3.6(react@19.2.0)
+      '@mantine/modals':
+        specifier: ^8.3.6
+        version: 8.3.6(@mantine/core@8.3.6(@mantine/hooks@8.3.6(react@19.2.0))(@types/react@19.1.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.6(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/notifications':
+        specifier: ^8.3.6
+        version: 8.3.6(@mantine/core@8.3.6(@mantine/hooks@8.3.6(react@19.2.0))(@types/react@19.1.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.6(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@next/third-parties':
+        specifier: ^15.4.6
+        version: 15.5.6(next@16.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.2))(react@19.2.0)
+      '@repo/components':
+        specifier: workspace:*
+        version: link:../../packages/components
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@repo/handlers':
+        specifier: workspace:*
+        version: link:../../packages/handlers
+      '@repo/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
+      '@repo/libraries':
+        specifier: workspace:*
+        version: link:../../packages/libraries
+      '@repo/services':
+        specifier: workspace:*
+        version: link:../../packages/services
+      '@repo/types':
+        specifier: workspace:*
+        version: link:../../packages/types
+      '@repo/utilities':
+        specifier: workspace:*
+        version: link:../../packages/utilities
+      '@supabase/ssr':
+        specifier: ^0.6.1
+        version: 0.6.1(@supabase/supabase-js@2.77.0)
+      '@supabase/supabase-js':
+        specifier: ^2.49.8
+        version: 2.77.0
+      '@tabler/icons-react':
+        specifier: ^3.35.0
+        version: 3.35.0(react@19.2.0)
+      embla-carousel-autoplay:
+        specifier: 8.5.2
+        version: 8.5.2(embla-carousel@8.5.2)
+      embla-carousel-fade:
+        specifier: 8.5.2
+        version: 8.5.2(embla-carousel@8.5.2)
+      embla-carousel-react:
+        specifier: 8.5.2
+        version: 8.5.2(react@19.2.0)
+      next:
+        specifier: ^16.0.1
+        version: 16.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.2)
+      react:
+        specifier: 19.2.0
+        version: 19.2.0
+      react-dom:
+        specifier: 19.2.0
+        version: 19.2.0(react@19.2.0)
+      react-markdown:
+        specifier: ^9.1.0
+        version: 9.1.0(@types/react@19.1.0)(react@19.2.0)
+      zustand:
+        specifier: ^5.0.8
+        version: 5.0.8(@types/react@19.1.0)(immer@10.2.0)(react@19.2.0)(use-sync-external-store@1.6.0(react@19.2.0))
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^20
+        version: 20.19.24
+      '@types/react':
+        specifier: ^19
+        version: 19.1.0
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.1.1(@types/react@19.1.0)
+      '@types/wicg-file-system-access':
+        specifier: ^2023.10.7
+        version: 2023.10.7
+      eslint:
+        specifier: ^9
+        version: 9.34.0(jiti@2.6.1)
+      eslint-plugin-prettier:
+        specifier: ^5.4.0
+        version: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.34.0(jiti@2.6.1)))(eslint@9.34.0(jiti@2.6.1))(prettier@3.6.2)
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.6
+      postcss-preset-mantine:
+        specifier: ^1.17.0
+        version: 1.18.0(postcss@8.5.6)
+      postcss-simple-vars:
+        specifier: ^7.0.1
+        version: 7.0.1(postcss@8.5.6)
+      sass-embedded:
+        specifier: ^1.89.0
+        version: 1.93.2
+      typescript:
+        specifier: ^5
+        version: 5.9.2
+
   apps/client-web:
     dependencies:
       '@mantine/carousel':

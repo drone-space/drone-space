@@ -6,7 +6,7 @@
  */
 
 import { PARAM_NAME } from '@repo/constants/names';
-import { capitalizeWords } from './string';
+import { capitalizeWords } from '@repo/utilities/string';
 
 /**
  * Appends a redirect query parameter to a target URL

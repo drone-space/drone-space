@@ -189,58 +189,66 @@ const data = [
     intro: 'Join our next RPL intake and start flying professionally',
     duration: '2 weeks',
     dates: [
-      new Date(2025, 11, 2), // intake date
-      new Date(2025, 11, 9),
-      new Date(2025, 11, 16),
-      new Date(2025, 11, 23),
+      // intake date (s)
+      new Date(2026, 0, 6),
+      new Date(2026, 0, 13),
+      new Date(2026, 0, 20),
+      new Date(2026, 0, 27),
     ],
     price: {
       former: 170000,
       current: 136000,
     },
   },
-  {
-    badge: 'IR',
-    title: 'Instructor Rating',
-    intro:
-      'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
-    duration: '14 - 21 days',
-    dates: [
-      new Date(2025, 10, 24), // intake date
-    ],
-    price: {
-      former: null,
-      current: 250000,
-    },
-  },
-  {
-    badge: 'Thermal',
-    title: 'Thermography (ITC Level I)',
-    intro:
-      'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
-    duration: '5 days',
-    dates: [
-      new Date(2025, 8, 22), // intake date
-    ],
-    price: {
-      former: null,
-      current: 200000,
-    },
-  },
-  {
-    badge: 'RT',
-    title: 'Radio Telephony',
-    intro:
-      'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
-    duration: '5 days',
-    dates: [
-      new Date(2025, 10, 24), // intake date
-    ],
-    price: {
-      former: null,
-      current: 35000,
-    },
-  },
+
+  // {
+  //   badge: 'IR',
+  //   title: 'Instructor Rating',
+  //   intro:
+  //     'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
+  //   duration: '14 - 21 days',
+  //   dates: [
+  //     // intake date (s)
+  //     new Date(2026, 10, 24),
+  //   ],
+  //   price: {
+  //     former: null,
+  //     current: 250000,
+  //   },
+  // },
+
+  // {
+  //   badge: 'Thermal',
+  //   title: 'Thermography (ITC Level I)',
+  //   intro:
+  //     'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
+  //   duration: '5 days',
+  //   dates: [
+  //     // intake date (s)
+  //     new Date(2026, 8, 22),
+  //   ],
+  //   price: {
+  //     former: null,
+  //     current: 200000,
+  //   },
+  // },
+
+  // {
+  //   badge: 'RT',
+  //   title: 'Radio Telephony',
+  //   intro:
+  //     'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
+  //   duration: '5 days',
+  //   dates: [
+  //     // intake date (s)
+  //     new Date(2026, 10, 24),
+  //   ],
+  //   price: {
+  //     former: null,
+  //     current: 35000,
+  //   },
+  // },
+
   // {
   //   badge: 'Agri',
   //   title: 'Agricultural Spraying',
@@ -248,25 +256,28 @@ const data = [
   //     'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
   //   duration: '10 days',
   //   dates: [
-  //     new Date(2025, 7, 18), // intake date
+  // // intake date (s)
+  //     new Date(2026, 7, 18),
   //   ],
   //   price: {
   //     former: null,
   //     current: 70000,
   //   },
   // },
-  {
-    badge: 'Masterclass',
-    title: 'Drone Mapping & Survey (Masterclass)',
-    intro:
-      'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
-    duration: '5 days',
-    dates: [
-      new Date(2025, 10, 17), // intake date
-    ],
-    price: {
-      former: null,
-      current: 110000,
-    },
-  },
+
+  // {
+  //   badge: 'Masterclass',
+  //   title: 'Drone Mapping & Survey (Masterclass)',
+  //   intro:
+  //     'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
+  //   duration: '5 days',
+  //   dates: [
+  //     // intake date (s)
+  //     new Date(2026, 10, 17),
+  //   ],
+  //   price: {
+  //     former: null,
+  //     current: 110000,
+  //   },
+  // },
 ];

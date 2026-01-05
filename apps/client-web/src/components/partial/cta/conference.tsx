@@ -81,7 +81,7 @@ export default function Conference({ close }: { close?: () => void }) {
           fz={{ base: 'lg', xs: 'xl', sm: 24, md: 32 }}
         >
           {/* JW Marriott Hotel, Westlands <br /> */}
-          {/* Tue 17th - Wed 18th September, 2025 */}
+          {/* Tue 24th - Wed 25th March, 2026 */}
           Venue and Date TBA
         </Title>
 

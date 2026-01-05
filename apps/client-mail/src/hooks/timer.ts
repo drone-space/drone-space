@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 
 /**
  * sample arguments:
- * - new Date(2025, 12, 31, 23, 59, 59)
- * - new Date('2025-12-31T23:59:59')
+ * - new Date(2026, 12, 31, 23, 59, 59)
+ * - new Date('2026-12-31T23:59:59')
  */
 export default function useTimer(
   targetDate: Date,

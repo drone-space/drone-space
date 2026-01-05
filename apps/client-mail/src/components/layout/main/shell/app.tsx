@@ -296,7 +296,7 @@ export default function App({ children }: { children: React.ReactNode }) {
                   </Group>
 
                   <Text inherit ta={'end'}>
-                    09/12/2025, 13:36
+                    09/12/2026, 13:36
                   </Text>
                 </Group>
 
@@ -350,7 +350,7 @@ const sampleEmails = [
     profile_id: '',
     status: Status.ACTIVE,
     subject:
-      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2025 November',
+      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2026 November',
     sync_status: SyncStatus.SYNCED,
     updated_at: new Date(),
   },
@@ -381,7 +381,7 @@ const sampleEmails = [
     profile_id: '',
     status: Status.ACTIVE,
     subject:
-      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2025 November',
+      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2026 November',
     sync_status: SyncStatus.SYNCED,
     updated_at: new Date(),
   },
@@ -412,7 +412,7 @@ const sampleEmails = [
     profile_id: '',
     status: Status.ACTIVE,
     subject:
-      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2025 November',
+      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2026 November',
     sync_status: SyncStatus.SYNCED,
     updated_at: new Date(),
   },
@@ -443,7 +443,7 @@ const sampleEmails = [
     profile_id: '',
     status: Status.ACTIVE,
     subject:
-      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2025 November',
+      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2026 November',
     sync_status: SyncStatus.SYNCED,
     updated_at: new Date(),
   },
@@ -474,7 +474,7 @@ const sampleEmails = [
     profile_id: '',
     status: Status.ACTIVE,
     subject:
-      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2025 November',
+      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2026 November',
     sync_status: SyncStatus.SYNCED,
     updated_at: new Date(),
   },
@@ -505,7 +505,7 @@ const sampleEmails = [
     profile_id: '',
     status: Status.ACTIVE,
     subject:
-      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2025 November',
+      'Comprehensive Performance Insights from Bing Webmaster Tools for site: http://dronespace.co.ke/ - 2026 November',
     sync_status: SyncStatus.SYNCED,
     updated_at: new Date(),
   },

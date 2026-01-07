@@ -1562,10 +1562,180 @@ const products = [
     },
     category: 'camera',
     available: true,
+    featured: false,
+    brand: 'dji',
+    make: 'mini',
+    model: null,
+  },
+
+  {
+    images: images.products.drones.dji.mini.m5pro.drone,
+    title: { long: 'DJI Mini 5 Pro', short: 'Mini 5 Pro' },
+    tag: 'Pro In Mini',
+    desc: '48MP camera, 4K/60fps HDR video, omnidirectional obstacle sensing, and 20km video transmission.',
+    specs: {
+      intro: [
+        '1 Inch-Large CMOS Camera',
+        'Nightscape Omnidirectional Obstacle Sensing',
+        'True Vertical Shooting',
+        '255 degree Flexibal Ggimbal Rotation',
+        'Extended Battery Life',
+        'Upgraded ActiveTrack (360 degrees)',
+      ],
+      aircraft: [
+        {
+          label: 'Takeoff Weight',
+          desc: '249.9 g',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery, 21.6 kph, no wind)',
+          desc: '36 mins',
+        },
+        {
+          label: 'Flight Time (Intelligent Battery Plus, 21.6 kph, no wind)',
+          desc: '52 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery, no wind)',
+          desc: '30 mins',
+        },
+        {
+          label: 'Hovering Time (Intelligent Battery Plus, no wind)',
+          desc: '40 mins',
+        },
+        {
+          label: 'Flight Distance (Intelligent Battery, 43.2 kph, no wind)',
+          desc: '18 km',
+        },
+        {
+          label:
+            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          desc: '25 km',
+        },
+        {
+          label: 'Wind Speed Resistance',
+          desc: '10.7 m/s (Level 5)',
+        },
+      ],
+    },
+    price: {
+      former: 230000,
+      latter: null,
+    },
+    kit: {
+      basic: {
+        image: `${baseUrl}/products/drones/dji/mini/5pro/box/collective.webp`,
+        contents: [
+          {
+            qty: 1,
+            item: 'Aircraft',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/aircraft.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Remote Controller',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/controller.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mini 5 Pro Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Mini 5 Pro Spare Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/propellers.webp`,
+          },
+          {
+            qty: 6,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/screws.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Screwdriver',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/screwdriver.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Cable (USB Type-C Connector)',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/rc-n2-rc-cable-usb-c-connector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'RC Cable (Lightning Connector)',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/rc-n2-rc-cable-lightning-connector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Type-C to Type-C PD Cable',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/type-c-to-type-c-pd-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Gimbal Protector',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/protector.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Propeller Holder',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/box/propeller-holder.webp`,
+          },
+        ],
+      },
+
+      flyMore: {
+        image: `${baseUrl}/products/drones/dji/mini/5pro/more/collective.webp`,
+        contents: [
+          {
+            qty: 2,
+            item: 'Mini 5 Pro Intelligent Flight Battery',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/more/battery.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Two-way Charging Hub',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/more/charging-hub.webp`,
+          },
+          {
+            qty: 1,
+            item: 'DJI Mini 5 Pro ND Filters Set (ND8/32/128)',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/more/filters-set.webp`,
+          },
+          {
+            qty: 2,
+            item: 'Mini 5 Pro Spare Propellers (Pair)',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/more/propellers.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Shoulder Bag',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/more/shoulder-bag.webp`,
+          },
+          {
+            qty: 12,
+            item: 'Screws',
+            image: `${baseUrl}/products/drones/dji/mini/5pro/more/screws.webp`,
+          },
+        ],
+
+        price: {
+          former: 40000,
+          latter: null,
+        },
+      },
+    },
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'Mini 5 Pro Battery'),
+      other: null,
+    },
+    category: 'camera',
+    available: true,
     featured: true,
     brand: 'dji',
     make: 'mini',
     model: null,
+    new: true,
   },
 
   {
@@ -2540,14 +2710,6 @@ const products = [
   },
 ];
 
-export const upcomingDrones = [
-  {
-    card: images.products.drones.dji.mini.m5pro.card,
-    title: { long: 'DJI Mini 5 Pro', short: 'Mini 5 Pro' },
-    tag: 'Revolutionizing Aerial Photography',
-    desc: 'A sub-250g drone rumored to include a larger 1" sensor, LiDAR-based obstacle avoidance, and enhanced AI tracking features.',
-    inverted: false,
-  },
-];
+export const upcomingDrones = [];
 
 export default products;

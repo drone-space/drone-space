@@ -817,6 +817,19 @@ export const images = {
           },
           m5pro: {
             card: `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/card.webp`,
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-top.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-folded.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/battery/battery-back.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/battery/battery-skew.webp`,
+              ],
+            },
           },
         },
         neo: {

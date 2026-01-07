@@ -683,6 +683,49 @@ const accessories = [
   },
 
   {
+    images: images.products.drones.dji.mini.m5pro.accessories.battery,
+    title: {
+      long: 'Mini 5 Pro Intelligent Flight Battery',
+      short: 'Mini 5 Pro Battery',
+    },
+    specs: [
+      {
+        label: 'Weight',
+        desc: 'Approx. 77.9 g',
+      },
+      {
+        label: 'Capacity',
+        desc: '2590 mAh',
+      },
+      {
+        label: 'Nominal Voltage',
+        desc: '7.32 V',
+      },
+      {
+        label: 'Max Charging Voltage',
+        desc: '8.6 V',
+      },
+      {
+        label: 'Battery Type',
+        desc: 'Li-ion',
+      },
+      {
+        label: 'Energy',
+        desc: '18.96 Wh',
+      },
+      {
+        label: 'Charging Temperature',
+        desc: '5° to 40° C (41° to 104° F)',
+      },
+      {
+        label: 'Charging Time (30W Charger, battery in Charging Hub)',
+        desc: '70 mins',
+      },
+    ],
+    price: null,
+  },
+
+  {
     images: images.products.drones.dji.inspire.inspire3.accessories.battery,
     title: {
       long: 'Inspire 3 Intelligent Flight Battery',

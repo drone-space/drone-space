@@ -34,6 +34,7 @@ import {
   IconLayoutGrid,
   IconList,
   IconSearch,
+  IconX,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 import CardShopDronesListingGrid from '../common/cards/shop/drones/listing/grid';
@@ -41,7 +42,7 @@ import CardShopDronesListingList from '../common/cards/shop/drones/listing/list'
 import { useRouter } from 'next/navigation';
 import { prependZeros } from '@repo/utilities/number';
 import { Order } from '@repo/types/enums';
-import { useMediaQuery } from '@mantine/hooks';
+import { useDebouncedCallback, useMediaQuery } from '@mantine/hooks';
 import CardShopFeatured from '../common/cards/shop/featured';
 import { Layout, Sort, useShopListing } from '@/hooks/shop';
 
@@ -68,6 +69,14 @@ export default function DroneListing() {
   const mobile = useMediaQuery('(max-width: 48em)');
 
   const [hydrated, setHydrated] = useState(false);
+  const [searchValue, setSearchValue] = useState(params?.search || '');
+  const [loading, setLoading] = useState(false);
+
+  const handleSearch = useDebouncedCallback((value: string) => {
+    setLoading(true);
+    updateParams({ ...params, search: value });
+    setLoading(false);
+  }, 500);
 
   useEffect(() => {
     setHydrated(true);
@@ -195,12 +204,28 @@ export default function DroneListing() {
               size="xs"
               w={240}
               rightSection={
-                <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                loading ? (
+                  <Loader size={ICON_SIZE - 4} />
+                ) : searchValue.length ? (
+                  <ActionIcon
+                    size={ICON_WRAPPER_SIZE - 4}
+                    variant="subtle"
+                    onClick={() => {
+                      setSearchValue('');
+                      handleSearch('');
+                    }}
+                  >
+                    <IconX size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                  </ActionIcon>
+                ) : (
+                  <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                )
               }
-              value={params?.search}
-              onChange={(event) =>
-                updateParams({ ...params, search: event.currentTarget.value })
-              }
+              value={searchValue}
+              onChange={(event) => {
+                setSearchValue(event.currentTarget.value);
+                handleSearch(event.currentTarget.value);
+              }}
             />
           </div>
 

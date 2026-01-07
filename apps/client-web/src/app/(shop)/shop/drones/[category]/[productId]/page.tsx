@@ -187,7 +187,7 @@ export default async function DroneDetail({
                       3,000
                     </Text>{' '}
                     <Text component="sup" inherit fz={'xs'}>
-                      (included in drone price)
+                      (included in price)
                     </Text>
                   </Text>
                 </Text>
@@ -200,7 +200,7 @@ export default async function DroneDetail({
                       18,000
                     </Text>{' '}
                     <Text component="sup" inherit fz={'xs'}>
-                      (included in drone price)
+                      (included in price)
                     </Text>
                   </Text>
                 </Text>
@@ -279,7 +279,7 @@ export default async function DroneDetail({
                           />
                         </ThemeIcon>
 
-                        <Text fz={{ md: 'xs', lg: 'sm' }}>{spec}</Text>
+                        <Text fz={{ base: 'xs', lg: 'sm' }}>{spec}</Text>
                       </Group>
                     </GridCol>
                   ))}

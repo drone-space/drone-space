@@ -74,7 +74,22 @@ export default async function About() {
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ base: 12, md: 6 }}>
             <AspectRatio ratio={1920 / 1080} h={'100%'}>
-              <video
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/1HOfFPQurpQ"
+                title="Drone Space Kenya - Unmanned Training Organization (UTO)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{
+                  borderWidth: 0,
+                  borderRadius: 'var(--mantine-radius-lg)',
+                  overflow: 'hidden',
+                }}
+              ></iframe>
+
+              {/* <video
                 width="100%"
                 height="100%"
                 controls
@@ -89,7 +104,7 @@ export default async function About() {
               >
                 <source src={videos.video1} type="video/mp4" />
                 Your browser does not support the video tag.
-              </video>
+              </video> */}
             </AspectRatio>
           </GridCol>
 

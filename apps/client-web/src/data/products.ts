@@ -1,6 +1,8 @@
 import { images } from '@/assets/images';
 import accessories from './accessories';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { sortArray } from '@repo/utilities/array';
+import { Order } from '@repo/types/enums';
 
 const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`;
 
@@ -293,6 +295,11 @@ const products = [
     make: 'mavic',
     model: null,
     new: true,
+    iframe: {
+      src: 'https://www.youtube.com/embed/BNEmDcQr6hk',
+      title: 'Introducing DJI Mavic 4 Pro',
+    },
+    releaseDate: new Date('2025-05-01'),
   },
 
   {
@@ -430,6 +437,11 @@ const products = [
     brand: 'dji',
     make: 'mavic',
     model: 'air',
+    iframe: {
+      src: 'https://www.youtube.com/embed/xi85DAbv5oU',
+      title: 'Introducing DJI Air 3',
+    },
+    releaseDate: new Date('2023-07-01'),
   },
 
   {
@@ -546,6 +558,11 @@ const products = [
     brand: 'dji',
     make: 'agras',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/G8gjm2HALEM',
+      title: 'Meet DJI Agras T50',
+    },
+    releaseDate: new Date('2024-09-01'),
   },
 
   // {
@@ -787,6 +804,11 @@ const products = [
     brand: 'dji',
     make: 'matrice',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/JPPHG5dSpwM',
+      title: 'DJI Enterprise - Introducing Matrice 350 RTK',
+    },
+    releaseDate: new Date('2023-05-01'),
   },
 
   {
@@ -951,6 +973,11 @@ const products = [
     brand: 'dji',
     make: 'mavic',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/r5kukRMmZNI',
+      title: 'Introducing DJI Mavic 3 Pro',
+    },
+    releaseDate: new Date('2023-05-01'),
   },
 
   {
@@ -1108,6 +1135,11 @@ const products = [
     brand: 'dji',
     make: 'mavic',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/R1lT-NatLMA',
+      title: 'DJI Enterprise - Introducing the Mavic 3 Enterprise Series',
+    },
+    releaseDate: new Date('2022-09-01'),
   },
 
   {
@@ -1245,6 +1277,11 @@ const products = [
     brand: 'dji',
     make: 'mavic',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/4f8NiLApHLk',
+      title: 'Introducing DJI Mavic 3 Multispectral',
+    },
+    releaseDate: new Date('2022-11-01'),
   },
 
   {
@@ -1402,6 +1439,11 @@ const products = [
     brand: 'dji',
     make: 'mavic',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/R1lT-NatLMA',
+      title: 'DJI Enterprise - Introducing the Mavic 3 Enterprise Series',
+    },
+    releaseDate: new Date('2022-09-01'),
   },
 
   {
@@ -1566,6 +1608,11 @@ const products = [
     brand: 'dji',
     make: 'mini',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/nbXneZzFh8w',
+      title: 'Meet DJI Mini 4 Pro',
+    },
+    releaseDate: new Date('2023-10-01'),
   },
 
   {
@@ -1736,6 +1783,12 @@ const products = [
     make: 'mini',
     model: null,
     new: true,
+    iframe: {
+      src: 'https://www.youtube.com/embed/jRzpagPx6uY',
+      title:
+        'Meet DJI Mini 5 Pro - All-In-One 1-Inch Large CMOS Mini Camera Drone',
+    },
+    releaseDate: new Date('2025-09-01'),
   },
 
   {
@@ -1899,6 +1952,11 @@ const products = [
     brand: 'dji',
     make: 'inspire',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/T5IgH__lL7I',
+      title: 'Introducing DJI Inspire 3 | DJI',
+    },
+    releaseDate: new Date('2023-04-01'),
   },
 
   {
@@ -2044,6 +2102,11 @@ const products = [
     brand: 'dji',
     make: 'matrice',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/uov1c1c8DKA',
+      title: 'Introducing DJI Matrice 4 Series: The Age of Intelligent Flight',
+    },
+    releaseDate: new Date('2025-01-01'),
   },
 
   {
@@ -2189,6 +2252,11 @@ const products = [
     brand: 'dji',
     make: 'matrice',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/uov1c1c8DKA',
+      title: 'Introducing DJI Matrice 4 Series: The Age of Intelligent Flight',
+    },
+    releaseDate: new Date('2025-01-01'),
   },
 
   // {
@@ -2592,6 +2660,11 @@ const products = [
     brand: 'dji',
     make: 'matrice',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/1ucIm6g9llg',
+      title: 'DJI Enterprise - Introducing the DJI M30 Series',
+    },
+    releaseDate: new Date('2022-06-01'),
   },
 
   {
@@ -2707,9 +2780,14 @@ const products = [
     brand: 'autel',
     make: 'evo',
     model: null,
+    iframe: {
+      src: 'https://www.youtube.com/embed/I1bGitwpep8',
+      title: 'EVO II Dual 640T Thermal Imaging Demonstration',
+    },
+    releaseDate: new Date('2021-09-01'),
   },
 ];
 
 export const upcomingDrones = [];
 
-export default products;
+export default sortArray(products, (i) => i.releaseDate, Order.DESCENDING);

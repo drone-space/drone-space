@@ -244,6 +244,25 @@ export default async function DroneDetail({
               </>
             )}
 
+            {product?.iframe && (
+              <Box mt={'xl'}>
+                <iframe
+                  width="100%"
+                  height="400"
+                  src={product.iframe.src}
+                  title={product.iframe.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  style={{
+                    borderWidth: 0,
+                    borderRadius: 'var(--mantine-radius-lg)',
+                    overflow: 'hidden',
+                  }}
+                ></iframe>
+              </Box>
+            )}
+
             <Divider
               label={
                 <Text

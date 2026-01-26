@@ -505,16 +505,16 @@ const products = [
             item: 'Intelligent Flight Battery',
             image: `${baseUrl}/products/drones/dji/agras/t50/box/battery.webp`,
           },
-          {
-            qty: 1,
-            item: 'Enterprise Series RTK Module',
-            image: `${baseUrl}/products/drones/dji/mavic/3m/box/rtk.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Charging Hub',
-            image: `${baseUrl}/products/drones/dji/agras/t50/box/charging-hub.webp`,
-          },
+          // {
+          //   qty: 1,
+          //   item: 'Enterprise Series RTK Module',
+          //   image: `${baseUrl}/products/drones/dji/mavic/3m/box/rtk.webp`,
+          // },
+          // {
+          //   qty: 1,
+          //   item: 'Charging Hub',
+          //   image: `${baseUrl}/products/drones/dji/agras/t50/box/charging-hub.webp`,
+          // },
           {
             qty: 1,
             item: 'Coaxial Twin Rotor',

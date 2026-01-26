@@ -21,6 +21,8 @@ import classes from './home.module.scss';
 import { locations } from '@repo/constants/app';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import ModalContactTraining from '../modals/contact/training';
+import { sortArray } from '@repo/utilities/array';
+import { Order } from '@repo/types/enums';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
@@ -28,11 +30,29 @@ export default function Home() {
   const now = new Date();
 
   const filteredData = data.filter((i) => {
-    if (i.title == 'Remote Pilot License') return true;
     return i.dates.some((d) => d.getTime() > now.getTime());
   });
 
-  const slides = filteredData.map((slide, index) => {
+  const slides = [
+    {
+      badge: 'RPL',
+      title: 'Remote Pilot License',
+      intro: 'Join our next RPL intake and start flying professionally',
+      duration: '2 weeks',
+      dates: [
+        // intake date (s)
+        new Date(2026, 1, 3),
+        new Date(2026, 1, 10),
+        new Date(2026, 1, 17),
+        new Date(2026, 1, 24),
+      ],
+      price: {
+        former: 170000,
+        current: 136000,
+      },
+    },
+    ...filteredData,
+  ].map((slide, index) => {
     const cycle = ['start', 'center', 'end', 'center'];
     const alignment: any = cycle[index % cycle.length];
 
@@ -182,102 +202,88 @@ function getDayNumber(dateStr: string): number {
   return day;
 }
 
-const data = [
-  {
-    badge: 'RPL',
-    title: 'Remote Pilot License',
-    intro: 'Join our next RPL intake and start flying professionally',
-    duration: '2 weeks',
-    dates: [
-      // intake date (s)
-      new Date(2026, 0, 6),
-      new Date(2026, 0, 13),
-      new Date(2026, 0, 20),
-      new Date(2026, 0, 27),
-    ],
-    price: {
-      former: 170000,
-      current: 136000,
+const data = sortArray(
+  [
+    {
+      badge: 'IR',
+      title: 'Instructor Rating',
+      intro:
+        'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
+      duration: '14 - 21 days',
+      dates: [
+        // intake date (s)
+        new Date(2026, 1, 16),
+      ],
+      price: {
+        former: null,
+        current: 250000,
+      },
     },
-  },
 
-  // {
-  //   badge: 'IR',
-  //   title: 'Instructor Rating',
-  //   intro:
-  //     'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
-  //   duration: '14 - 21 days',
-  //   dates: [
-  //     // intake date (s)
-  //     new Date(2026, 10, 24),
-  //   ],
-  //   price: {
-  //     former: null,
-  //     current: 250000,
-  //   },
-  // },
+    {
+      badge: 'Thermal',
+      title: 'Thermography (ITC Level I)',
+      intro:
+        'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
+      duration: '5 days',
+      dates: [
+        // intake date (s)
+        new Date(2026, 1, 9),
+      ],
+      price: {
+        former: null,
+        current: 200000,
+      },
+    },
 
-  // {
-  //   badge: 'Thermal',
-  //   title: 'Thermography (ITC Level I)',
-  //   intro:
-  //     'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
-  //   duration: '5 days',
-  //   dates: [
-  //     // intake date (s)
-  //     new Date(2026, 8, 22),
-  //   ],
-  //   price: {
-  //     former: null,
-  //     current: 200000,
-  //   },
-  // },
+    {
+      badge: 'RT',
+      title: 'Radio Telephony',
+      intro:
+        'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
+      duration: '5 days',
+      dates: [
+        // intake date (s)
+        new Date(2026, 1, 16),
+      ],
+      price: {
+        former: null,
+        current: 35000,
+      },
+    },
 
-  // {
-  //   badge: 'RT',
-  //   title: 'Radio Telephony',
-  //   intro:
-  //     'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
-  //   duration: '5 days',
-  //   dates: [
-  //     // intake date (s)
-  //     new Date(2026, 10, 24),
-  //   ],
-  //   price: {
-  //     former: null,
-  //     current: 35000,
-  //   },
-  // },
+    {
+      badge: 'Agri',
+      title: 'Agricultural Spraying',
+      intro:
+        'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
+      duration: '10 days',
+      dates: [
+        // intake date (s)
+        new Date(2026, 1, 23),
+      ],
+      price: {
+        former: null,
+        current: 70000,
+      },
+    },
 
-  // {
-  //   badge: 'Agri',
-  //   title: 'Agricultural Spraying',
-  //   intro:
-  //     'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
-  //   duration: '10 days',
-  //   dates: [
-  // // intake date (s)
-  //     new Date(2026, 7, 18),
-  //   ],
-  //   price: {
-  //     former: null,
-  //     current: 70000,
-  //   },
-  // },
-
-  // {
-  //   badge: 'Masterclass',
-  //   title: 'Drone Mapping & Survey (Masterclass)',
-  //   intro:
-  //     'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
-  //   duration: '5 days',
-  //   dates: [
-  //     // intake date (s)
-  //     new Date(2026, 10, 17),
-  //   ],
-  //   price: {
-  //     former: null,
-  //     current: 110000,
-  //   },
-  // },
-];
+    {
+      badge: 'Masterclass',
+      title: 'Drone Mapping & Survey (Masterclass)',
+      intro:
+        'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
+      duration: '5 days',
+      dates: [
+        // intake date (s)
+        new Date(2026, 1, 2),
+      ],
+      price: {
+        former: null,
+        current: 110000,
+      },
+    },
+  ],
+  (i) => i.dates[0],
+  Order.ASCENDING
+);

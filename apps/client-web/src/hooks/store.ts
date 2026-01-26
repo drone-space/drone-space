@@ -22,7 +22,7 @@ import {
 } from '@repo/utilities/storage';
 import { useStoreSession } from '@/libraries/zustand/stores/session';
 import { generateUUID } from '@repo/utilities/generators';
-import { createClient } from '@/libraries/supabase/client';
+import { supabase } from '@/libraries/supabase/client';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   getCookieClient,
@@ -47,7 +47,6 @@ export const useSessionStore = (params?: {
   const { clientOnly } = options || {};
 
   const { setSession } = useStoreSession();
-  const supabase = createClient();
 
   useEffect(() => {
     const getUserSession = async () => {

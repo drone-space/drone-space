@@ -56,7 +56,12 @@ import { aboutStats, appName } from '@repo/constants/app';
 import AlertConference from '@/components/common/alerts/conference';
 import CtaHome from '@/components/partial/cta/home';
 import NextLink from '@repo/components/common/anchor/next-link';
+import { Metadata } from 'next';
 // import AffixAi from '@/components/common/affixi/ai';
+
+export const metadata: Metadata = {
+  title: `${appName} - The Leading Drone Training Academy in Kenya`,
+};
 
 export default function Home() {
   return (

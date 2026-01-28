@@ -862,6 +862,7 @@ export const images = {
               `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-front.webp`,
               `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-top.webp`,
               `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-skew2.webp`,
               `${baseUrl.droneSpace}/products/drones/dji/mini/5pro/drone/drone-folded.webp`,
             ],
             accessories: {

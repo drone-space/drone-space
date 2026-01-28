@@ -158,7 +158,9 @@ export default function Grid({ data }: { data: typeDrone }) {
                           thousandSeparator
                           value={
                             (data.price?.former || 0) +
-                            (data.kit?.flyMore?.price?.former || 0)
+                            (data.kit?.flyMore?.price?.latter ||
+                              data.kit?.flyMore?.price?.former ||
+                              0)
                           }
                         />
                       </Text>

@@ -1,46 +1,48 @@
 import { images } from '@/assets/images';
 
 const accessories = [
-  // {
-  //   images: images.products.drones.dji.avata.avata2.accessories.battery,
-  //   title: {
-  //     long: 'DJI Avata 2 Intelligent Flight Battery',
-  //     short: 'Avata 2 Battery',
-  //   },
-  //   specs: [
-  //     {
-  //       label: 'Capacity',
-  //       desc: '2150 mAh',
-  //     },
-  //     {
-  //       label: 'Weight',
-  //       desc: '145 g',
-  //     },
-  //     {
-  //       label: 'Standard Voltage',
-  //       desc: '14.76 V',
-  //     },
-  //     {
-  //       label: 'Max Charging Voltage',
-  //       desc: '17 V',
-  //     },
-  //     {
-  //       label: 'Battery Type',
-  //       desc: 'Li-ion',
-  //     },
-  //     {
-  //       label: 'Energy',
-  //       desc: '31.7 Wh@0.5C',
-  //     },
-  //     {
-  //       label: 'Charging Temp',
-  //       desc: '5° to 40° C (41° to 104° F)',
-  //     },
-  //   ],
-  //   price: null,
-  // },
+  {
+    category: '',
+    images: images.products.drones.dji.avata.avata2.accessories.battery,
+    title: {
+      long: 'DJI Avata 2 Intelligent Flight Battery',
+      short: 'Avata 2 Battery',
+    },
+    specs: [
+      {
+        label: 'Capacity',
+        desc: '2150 mAh',
+      },
+      {
+        label: 'Weight',
+        desc: '145 g',
+      },
+      {
+        label: 'Standard Voltage',
+        desc: '14.76 V',
+      },
+      {
+        label: 'Max Charging Voltage',
+        desc: '17 V',
+      },
+      {
+        label: 'Battery Type',
+        desc: 'Li-ion',
+      },
+      {
+        label: 'Energy',
+        desc: '31.7 Wh@0.5C',
+      },
+      {
+        label: 'Charging Temp',
+        desc: '5° to 40° C (41° to 104° F)',
+      },
+    ],
+    price: null,
+  },
 
   // {
+  // category:'',
   //   images: images.products.drones.dji.air.air2s.accessories.battery,
   //   title: {
   //     long: 'Mavic Air 2 Intelligent Flight Battery',
@@ -79,16 +81,53 @@ const accessories = [
   //   price: null,
   // },
 
+  // {
+  // category:'',
+  //   images: images.products.drones.dji.air.air3.accessories.battery,
+  //   title: {
+  //     long: 'Mavic Air 3 Intelligent Flight Battery',
+  //     short: 'Mavic Air 3 Battery',
+  //   },
+  //   specs: [
+  //     {
+  //       label: 'Capacity',
+  //       desc: '4241 mAh',
+  //     },
+  //     {
+  //       label: 'Weight',
+  //       desc: '267 g',
+  //     },
+  //     {
+  //       label: 'Max Charging Voltage',
+  //       desc: '17 V',
+  //     },
+  //     {
+  //       label: 'Battery Type',
+  //       desc: 'Li-ion 4S',
+  //     },
+  //     {
+  //       label: 'Energy',
+  //       desc: '62.6 Wh',
+  //     },
+  //     {
+  //       label: 'Charging Temperature',
+  //       desc: '5° to 40° C (41° to 104° F)',
+  //     },
+  //   ],
+  //   price: null,
+  // },
+
   {
-    images: images.products.drones.dji.air.air3.accessories.battery,
+    category: '',
+    images: images.products.drones.dji.air.air3s.accessories.battery,
     title: {
-      long: 'Mavic Air 3 Intelligent Flight Battery',
-      short: 'Mavic Air 3 Battery',
+      long: 'Mavic Air 3s Intelligent Flight Battery',
+      short: 'Mavic Air 3s Battery',
     },
     specs: [
       {
         label: 'Capacity',
-        desc: '4241 mAh',
+        desc: '4276 mAh',
       },
       {
         label: 'Weight',
@@ -114,47 +153,49 @@ const accessories = [
     price: null,
   },
 
-  // {
-  //   images: images.products.drones.huida.hd540s.accessories.other.generator,
-  //   title: {
-  //     long: 'HUIDA HD540S Generator',
-  //     short: 'HUIDA HD540S Generator',
-  //   },
-  //   specs: [
-  //     {
-  //       label: 'Power (fast charging)',
-  //       desc: '230V/8500W socket',
-  //     },
-  //     {
-  //       label: 'Power (slow charging)',
-  //       desc: '230V/2300W socket (also as mains power)',
-  //     },
-  //     {
-  //       label: 'Principle',
-  //       desc: 'Single-phase AC gasoline generator',
-  //     },
-  //     {
-  //       label: 'Maximum Power',
-  //       desc: ' 8.5KW',
-  //     },
-  //     {
-  //       label: 'Rated Power',
-  //       desc: '8KW',
-  //     },
-  //     {
-  //       label: 'Tank',
-  //       desc: '38L gasoline tank (No. 92)',
-  //     },
-  //     {
-  //       label: 'Ambient Temperature',
-  //       desc: 'Upper limit (40°C), lower limit (-5°C)',
-  //     },
-  //   ],
-  //   price: null,
-  // },
+  {
+    category: '',
+    images: images.products.drones.huida.hd540s.accessories.other.generator,
+    title: {
+      long: 'HUIDA Series Generator',
+      short: 'HUIDA Series Generator',
+    },
+    specs: [
+      {
+        label: 'Fast charging',
+        desc: '230V/8500W socket',
+      },
+      {
+        label: 'Slow charging',
+        desc: '230V/2300W socket (also as mains power)',
+      },
+      {
+        label: 'Principle',
+        desc: 'Single-phase AC gasoline generator',
+      },
+      {
+        label: 'Maximum Power',
+        desc: ' 8.5KW',
+      },
+      {
+        label: 'Rated Power',
+        desc: '8KW',
+      },
+      {
+        label: 'Tank',
+        desc: '38L gasoline tank (No. 92)',
+      },
+      {
+        label: 'Ambient Temperature',
+        desc: 'Upper limit (40°C), lower limit (-5°C)',
+      },
+    ],
+    price: null,
+  },
 
   {
-    images: images.products.drones.dji.agras.t40.accessories.other.generator,
+    category: '',
+    images: images.products.drones.dji.agras.t100.accessories.other.generator,
     title: {
       long: 'Agras Series Multifunctional Inverter Generator (D12000iE)',
       short: 'Agras Series Generator (D12000iE)',
@@ -208,6 +249,7 @@ const accessories = [
   },
 
   // {
+  // category:'',
   //   images: images.products.drones.huida.hd540s.accessories.other.spreader,
   //   title: {
   //     long: 'HUIDA HD540S Spreading System',
@@ -243,6 +285,74 @@ const accessories = [
   // },
 
   {
+    category: '',
+    images: images.products.drones.huida.hd580.accessories.other.spreader,
+    title: {
+      long: 'HUIDA HD580 Spreading System',
+      short: 'HUIDA HD580 Spreading System',
+    },
+    specs: [
+      {
+        label: 'Spreading capacity',
+        desc: '100L',
+      },
+      {
+        label: 'Maximum Load',
+        desc: '80Kg',
+      },
+      {
+        label: 'Flow Rate',
+        desc: '300kg/min',
+      },
+      {
+        label: 'Operational Accuracy',
+        desc: '>95%',
+      },
+    ],
+    price: null,
+  },
+
+  {
+    category: '',
+    images: images.products.drones.huida.hd580.accessories.other.rtkStation,
+    title: {
+      long: 'HUIDA HD580 RTK Mobile Station',
+      short: 'HUIDA HD580 RTK Mobile Station',
+    },
+    specs: [
+      {
+        label: 'Transmission Distance',
+        desc: '>3km',
+      },
+      {
+        label: 'Operating Temperature',
+        desc: '-20° to 55° C (4° to 131° F )',
+      },
+      {
+        label: 'Resistance Rating',
+        desc: 'IP67',
+      },
+      {
+        label: 'Network',
+        desc: '4G',
+      },
+    ],
+    price: null,
+  },
+
+  {
+    category: '',
+    images: images.products.drones.huida.hd580.accessories.other.nozzleKit,
+    title: {
+      long: 'HUIDA HD580 Nozzle Kit',
+      short: 'HUIDA HD580 Nozzle Kit',
+    },
+    specs: [],
+    price: null,
+  },
+
+  {
+    category: '',
     images: images.products.drones.dji.agras.t40.accessories.other.spreader,
     title: {
       long: 'Agras Series Spreading System',
@@ -276,7 +386,40 @@ const accessories = [
     },
   },
 
+  {
+    category: '',
+    images: images.products.drones.dji.agras.t100.accessories.other.spreader,
+    title: {
+      long: 'Agras T100 Spreading System',
+      short: 'Agras T100 Spreading System',
+    },
+    specs: [
+      {
+        label: 'Tank Volume',
+        desc: '150 L',
+      },
+      {
+        label: 'Max Tank Load',
+        desc: '100 kg',
+      },
+      {
+        label: 'Structure Type',
+        desc: 'Centrifugal Cisc',
+      },
+      {
+        label: 'Spread Width',
+        desc: '3 - 10 m',
+      },
+      {
+        label: 'Max Discharge Rate',
+        desc: '400kg/min',
+      },
+    ],
+    price: null,
+  },
+
   // {
+  // category:'',
   //   images: images.products.drones.huida.hd540s.accessories.battery,
   //   title: {
   //     long: 'HUIDA HD540S Intelligent Flight Battery',
@@ -332,6 +475,7 @@ const accessories = [
   // },
 
   {
+    category: '',
     images: images.products.drones.dji.agras.t40.accessories.battery,
     title: {
       long: 'Agras Series Intelligent Flight Battery',
@@ -370,6 +514,43 @@ const accessories = [
   },
 
   {
+    category: '',
+    images: images.products.drones.dji.agras.t100.accessories.battery,
+    title: {
+      long: 'Agras T100 Intelligent Flight Battery',
+      short: 'Agras T100 Battery',
+    },
+    specs: [
+      {
+        label: 'Model',
+        desc: 'BAX601-30000mAh-52.22V',
+      },
+      {
+        label: 'Weight',
+        desc: '12 kg',
+      },
+      {
+        label: 'Capacity',
+        desc: '30000 mAh',
+      },
+      {
+        label: 'Voltage',
+        desc: '52.22 V',
+      },
+      {
+        label: 'Protection Rating',
+        desc: 'IPX6K',
+      },
+      {
+        label: 'Cycles in assurance (12 months or certain times',
+        desc: '1,500 cycles',
+      },
+    ],
+    price: null,
+  },
+
+  {
+    category: '',
     images: images.products.drones.dji.matrice.matrice30t.accessories.battery,
     title: {
       long: 'Matrice Series Intelligent Flight Battery',
@@ -408,6 +589,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.matrice.matrice350.accessories.battery,
     title: {
       long: 'Matrice 350 Intelligent Flight Battery',
@@ -447,6 +629,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.autel.evo2.accessories.battery,
     title: {
       long: 'Autel Evo 2 Series Intelligent Flight Battery',
@@ -490,6 +673,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.mavic.m3c.accessories.battery,
     title: {
       long: 'Mavic 3 Series Intelligent Flight Battery',
@@ -536,6 +720,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.mavic.m4pro.accessories.battery,
     title: {
       long: 'Mavic 4 Series Intelligent Flight Battery',
@@ -582,6 +767,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.mavic.m3m.accessories.other.tripod,
     title: {
       long: 'D-RTK 2 Mobile Station and Tripod',
@@ -637,6 +823,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.mini.m4pro.accessories.battery,
     title: {
       long: 'Mini 4 Pro Intelligent Flight Battery',
@@ -683,6 +870,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.mini.m5pro.accessories.battery,
     title: {
       long: 'Mini 5 Pro Intelligent Flight Battery',
@@ -726,6 +914,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.inspire.inspire3.accessories.battery,
     title: {
       long: 'Inspire 3 Intelligent Flight Battery',
@@ -761,6 +950,7 @@ const accessories = [
   },
 
   {
+    category: '',
     images: images.products.drones.dji.matrice.m4e.accessories.battery,
     title: {
       long: 'Matrice 4 Series Intelligent Flight Battery',
@@ -796,6 +986,7 @@ const accessories = [
   },
 
   // {
+  // category:'',
   //   images: images.products.drones.dji.matrice.m4d.accessories.battery,
   //   title: {
   //     long: 'Matrice 4D Series Intelligent Flight Battery',
@@ -835,6 +1026,7 @@ const accessories = [
   // },
 
   // {
+  // category:'',
   //   images: images.products.drones.dji.neo.accessories.battery,
   //   title: { long: 'Intelligent Flight Battery', short: 'Neo Battery' },
   //   specs: [

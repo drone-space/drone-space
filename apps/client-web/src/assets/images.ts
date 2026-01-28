@@ -529,6 +529,32 @@ export const images = {
               },
             },
           },
+          t100: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/agras/t100/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/agras/t100/drone/drone-side.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/agras/t100/drone/drone-back.webp`,
+            ],
+            kit: {
+              basic: `${baseUrl.droneSpace}/products/drones/dji/agras/t100/image-2.webp`,
+              flyMore: null,
+            },
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/agras/t100/battery/battery-front.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/agras/t100/battery/battery-side.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/agras/t100/battery/battery-skew.webp`,
+              ],
+              other: {
+                spreader: [
+                  `${baseUrl.droneSpace}/products/drones/dji/agras/t100/accessories/spreader.webp`,
+                ],
+                generator: [
+                  `${baseUrl.droneSpace}/products/drones/dji/agras/t100/accessories/generator.webp`,
+                ],
+              },
+            },
+          },
         },
         air: {
           air2s: {
@@ -561,6 +587,21 @@ export const images = {
                 `${baseUrl.droneSpace}/products/drones/dji/air/air3/battery/battery-back.webp`,
                 `${baseUrl.droneSpace}/products/drones/dji/air/air3/battery/battery-skew.webp`,
                 `${baseUrl.droneSpace}/products/drones/dji/air/air3/battery/battery-side.webp`,
+              ],
+            },
+          },
+          air3s: {
+            drone: [
+              `${baseUrl.droneSpace}/products/drones/dji/air/air3s/drone/drone-front.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/air/air3s/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/air/air3s/drone/drone-bottom.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/air/air3s/drone/drone-top.webp`,
+            ],
+            accessories: {
+              battery: [
+                `${baseUrl.droneSpace}/products/drones/dji/air/air3s/battery/battery-back.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/air/air3s/battery/battery-skew.webp`,
+                `${baseUrl.droneSpace}/products/drones/dji/air/air3s/battery/battery-side.webp`,
               ],
             },
           },
@@ -851,8 +892,8 @@ export const images = {
         avata: {
           avata2: {
             drone: [
-              `${baseUrl.droneSpace}/products/drones/dji/avata/avata2/drone/drone-front.webp`,
               `${baseUrl.droneSpace}/products/drones/dji/avata/avata2/drone/drone-skew.webp`,
+              `${baseUrl.droneSpace}/products/drones/dji/avata/avata2/drone/drone-front.webp`,
               `${baseUrl.droneSpace}/products/drones/dji/avata/avata2/drone/drone-top.webp`,
               `${baseUrl.droneSpace}/products/drones/dji/avata/avata2/drone/drone-back.webp`,
             ],
@@ -884,6 +925,32 @@ export const images = {
               ],
               generator: [
                 `${baseUrl.droneSpace}/products/drones/huida/hd540s/accessories/generator.webp`,
+              ],
+            },
+          },
+        },
+        hd580: {
+          drone: [
+            `${baseUrl.droneSpace}/products/drones/huida/hd580/drone/drone-front.webp`,
+            `${baseUrl.droneSpace}/products/drones/huida/hd580/drone/drone-side.webp`,
+            `${baseUrl.droneSpace}/products/drones/huida/hd580/drone/drone-folded.webp`,
+          ],
+          accessories: {
+            battery: [
+              `${baseUrl.droneSpace}/products/drones/huida/hd580/battery/battery-skew.webp`,
+            ],
+            other: {
+              spreader: [
+                `${baseUrl.droneSpace}/products/drones/huida/hd580/accessories/spreader.webp`,
+              ],
+              generator: [
+                `${baseUrl.droneSpace}/products/drones/huida/hd580/accessories/generator.webp`,
+              ],
+              rtkStation: [
+                `${baseUrl.droneSpace}/products/drones/huida/hd580/accessories/rtk-mobile-station.webp`,
+              ],
+              nozzleKit: [
+                `${baseUrl.droneSpace}/products/drones/huida/hd580/accessories/nozzle-kit.webp`,
               ],
             },
           },

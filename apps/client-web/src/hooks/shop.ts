@@ -28,7 +28,7 @@ export const useShopListing = (list: any[]) => {
   const emptyValues: ShopParams = {
     search: '',
     layout: Layout.GRID,
-    listSize: '6',
+    listSize: '9',
     sort: '',
     category: '',
     minPrice: '',
@@ -81,7 +81,9 @@ export const useShopListing = (list: any[]) => {
     };
   }, []);
 
-  const minMaxPrices = getMinMax(list.map((l) => l.price.former));
+  const minMaxPrices = getMinMax(
+    list.filter((li) => li.price).map((l) => l.price.former)
+  );
 
   // Filtering
   const filteredList = useMemo(() => {

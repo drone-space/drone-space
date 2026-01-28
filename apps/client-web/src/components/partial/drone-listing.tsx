@@ -30,6 +30,7 @@ import {
   Title,
 } from '@mantine/core';
 import {
+  IconArrowRight,
   IconCircleX,
   IconLayoutGrid,
   IconList,
@@ -45,6 +46,7 @@ import { Order } from '@repo/types/enums';
 import { useDebouncedCallback, useMediaQuery } from '@mantine/hooks';
 import CardShopFeatured from '../common/cards/shop/featured';
 import { Layout, Sort, useShopListing } from '@/hooks/shop';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function DroneListing() {
   const router = useRouter();
@@ -64,23 +66,32 @@ export default function DroneListing() {
     prices,
   } = useShopListing(products);
 
-  const [listSize, setListSize] = useState(Number(params?.listSize || 6));
+  const [listSize, setListSize] = useState(Number(params?.listSize || 9));
 
   const mobile = useMediaQuery('(max-width: 48em)');
 
   const [hydrated, setHydrated] = useState(false);
-  const [searchValue, setSearchValue] = useState(params?.search || '');
+  const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = useDebouncedCallback((value: string) => {
-    setLoading(true);
+  const debouncedSearch = useDebouncedCallback((value: string) => {
     updateParams({ ...params, search: value });
     setLoading(false);
-  }, 500);
+  }, 1000);
+
+  const handleSearch = (value: string) => {
+    setSearchValue(value);
+    setLoading(true);
+    debouncedSearch(value);
+  };
 
   useEffect(() => {
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    setSearchValue(params?.search || '');
+  }, [params.search]);
 
   const resetButton = (
     <Button
@@ -99,6 +110,45 @@ export default function DroneListing() {
 
   return (
     <Grid gutter={{ base: 'xl', md: 'md', lg: 'xl' }}>
+      <GridCol span={12}>
+        <Group justify="center">
+          <TextInput
+            aria-label="Search products"
+            placeholder="Search products..."
+            size="md"
+            radius={999}
+            w={{ base: 240, md: 520 }}
+            rightSection={
+              loading ? (
+                <Loader size={ICON_SIZE - 4} />
+              ) : searchValue.length ? (
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE - 4}
+                  variant="subtle"
+                  onClick={() => {
+                    setSearchValue('');
+                    handleSearch('');
+                  }}
+                >
+                  <IconX size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                </ActionIcon>
+              ) : (
+                <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+              )
+            }
+            defaultValue={searchValue}
+            value={searchValue}
+            onChange={(event) => {
+              handleSearch(event.currentTarget.value);
+            }}
+          />
+        </Group>
+      </GridCol>
+
+      <GridCol span={12}>
+        <Divider variant="dashed" />
+      </GridCol>
+
       <GridCol span={{ md: 3.5 }} visibleFrom="md">
         <Stack pos={'sticky'} top={'2rem'}>
           <Card withBorder>
@@ -197,39 +247,6 @@ export default function DroneListing() {
 
       <GridCol span={{ base: 12, md: 8.5 }}>
         <Group justify="space-between">
-          <div>
-            <TextInput
-              aria-label="Search products"
-              placeholder="Search products..."
-              size="xs"
-              w={240}
-              rightSection={
-                loading ? (
-                  <Loader size={ICON_SIZE - 4} />
-                ) : searchValue.length ? (
-                  <ActionIcon
-                    size={ICON_WRAPPER_SIZE - 4}
-                    variant="subtle"
-                    onClick={() => {
-                      setSearchValue('');
-                      handleSearch('');
-                    }}
-                  >
-                    <IconX size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-                  </ActionIcon>
-                ) : (
-                  <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-                )
-              }
-              defaultValue={params?.search}
-              value={searchValue}
-              onChange={(event) => {
-                setSearchValue(event.currentTarget.value);
-                handleSearch(event.currentTarget.value);
-              }}
-            />
-          </div>
-
           <Group>
             <ActionIcon
               size={ICON_WRAPPER_SIZE}
@@ -262,7 +279,9 @@ export default function DroneListing() {
             >
               <IconList size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
+          </Group>
 
+          <Group>
             <Select
               aria-label="Items to Show"
               placeholder="Items to Show"
@@ -305,7 +324,6 @@ export default function DroneListing() {
                     (item) => item.title.short,
                     Order.ASCENDING
                   );
-                  updateParams({ ...params, sort: v as Sort });
                 }
 
                 if (v == Sort.HIGHLOW) {
@@ -314,7 +332,6 @@ export default function DroneListing() {
                     (item) => item.price.former,
                     Order.DESCENDING
                   );
-                  updateParams({ ...params, sort: v as Sort });
                 }
 
                 if (v == Sort.LOWHIGH) {
@@ -323,10 +340,23 @@ export default function DroneListing() {
                     (item) => item.price.former,
                     Order.ASCENDING
                   );
-                  updateParams({ ...params, sort: v as Sort });
                 }
+
+                updateParams({ ...params, sort: v as Sort });
               }}
             />
+
+            <NextLink href="/shop/accessories">
+              <Button
+                size="xs"
+                variant="gradient"
+                rightSection={
+                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Accessories
+              </Button>
+            </NextLink>
           </Group>
         </Group>
 

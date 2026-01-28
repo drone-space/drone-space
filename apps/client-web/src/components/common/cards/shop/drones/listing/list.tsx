@@ -5,6 +5,7 @@ import {
   Button,
   Card,
   CardSection,
+  Center,
   Divider,
   Grid,
   GridCol,
@@ -19,7 +20,7 @@ import classes from './list.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
 import ImageDefault from '@repo/components/common/images/default';
-import { ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
+import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import ModalContactShop from '@/components/common/modals/contact/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 
@@ -31,22 +32,25 @@ export default function List({ data }: { data: typeDrone }) {
       style={{ borderWidth: ICON_STROKE_WIDTH }}
       shadow={'xs'}
       h={'100%'}
+      padding={0}
     >
       <Grid gutter={0}>
         <GridCol span={{ sm: 4 }}>
-          <CardSection pos={'relative'}>
-            <ImageDefault
-              src={
-                data.images.find((i) => i.includes('skew')) ||
-                data.images.find((i) => i.includes('front')) ||
-                ''
-              }
-              alt={data.title.long}
-              height={{ base: 320 }}
-              fit={'contain'}
-              width={'100%'}
-              mode="grid"
-            />
+          <CardSection pos={'relative'} h={'100%'}>
+            <Center h={'100%'}>
+              <ImageDefault
+                src={
+                  data.images.find((i) => i.includes('skew')) ||
+                  data.images.find((i) => i.includes('front')) ||
+                  ''
+                }
+                alt={data.title.long}
+                height={{ base: 200, lg: 240 }}
+                fit={'contain'}
+                width={'100%'}
+                mode="grid"
+              />
+            </Center>
 
             <Overlay backgroundOpacity={0.05} p={'xs'} style={{ zIndex: 1 }}>
               <Stack justify="space-between" h={'100%'}>
@@ -62,26 +66,37 @@ export default function List({ data }: { data: typeDrone }) {
                       Featured
                     </Badge>
                   )}
+
+                  {data.available == false && (
+                    <Badge size={'md'} color={'yellow'}>
+                      Currently Unavailable
+                    </Badge>
+                  )}
+
+                  {data.kit?.flyMore?.price?.latter && (
+                    <Badge size={'md'} color={'red'}>
+                      On Sale
+                    </Badge>
+                  )}
                 </Group>
               </Stack>
             </Overlay>
           </CardSection>
         </GridCol>
 
-        <GridCol span={{ sm: 8 }}>
-          <Box pl={{ sm: SECTION_SPACING / 3 }}>
+        <GridCol span={{ sm: 8 }} py={'md'} pr={'md'}>
+          <Box pl={{ md: 'lg' }}>
             <Title
               order={3}
               fz={'sm'}
               tt={'uppercase'}
               c={'var(--mantine-color-text)'}
-              mt={'md'}
             >
               {data.title.short ? data.title.short : data.title.long}
             </Title>
 
             {data.tag && (
-              <Text fw={500} fz={'xs'} mih={37.2}>
+              <Text fw={500} fz={'sm'} mih={37.2}>
                 {data.tag}
               </Text>
             )}
@@ -91,7 +106,7 @@ export default function List({ data }: { data: typeDrone }) {
             <Divider />
           </CardSection>
 
-          <Box pl={{ sm: SECTION_SPACING / 3 }}>
+          <Box pl={{ md: 'lg' }}>
             {data.desc && (
               <Text fz={'sm'} lineClamp={3}>
                 {data.desc}
@@ -101,35 +116,66 @@ export default function List({ data }: { data: typeDrone }) {
             <Divider color="sec.4" my={'md'} />
 
             <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
-              <Text inherit fw={'500'}>
-                <Text component="span" inherit fz={'xs'} fw={'normal'}>
-                  Ksh.
-                </Text>{' '}
-                <NumberFormatter thousandSeparator value={data.price?.former} />{' '}
-                {data.kit?.flyMore && (
-                  <Text component="sup" inherit fz={'xs'} fw={'normal'}>
-                    (Basic Kit)
+              <Text fz={'sm'} mih={58}>
+                {!data.price ? (
+                  <Text component="span" inherit>
+                    Price Undisclosed
                   </Text>
+                ) : (
+                  <>
+                    <Text component="span" inherit>
+                      Kes.{' '}
+                      <Text
+                        component="span"
+                        inherit
+                        fz={'md'}
+                        fw={'bold'}
+                        c={'pri'}
+                      >
+                        <NumberFormatter
+                          thousandSeparator
+                          value={data.price.former}
+                        />
+                      </Text>
+                      {data.kit?.flyMore && (
+                        <Text component="sup" inherit>
+                          {' '}
+                          (Basic Kit)
+                        </Text>
+                      )}
+                    </Text>
+
+                    {data.kit?.flyMore && (
+                      <Text fz={'sm'}>
+                        <Text component="span" inherit>
+                          Kes.
+                        </Text>{' '}
+                        <Text
+                          component="span"
+                          inherit
+                          fz={'md'}
+                          fw={'bold'}
+                          c={'pri'}
+                        >
+                          <NumberFormatter
+                            thousandSeparator
+                            value={
+                              (data.price?.former || 0) +
+                              (data.kit?.flyMore?.price?.latter ||
+                                data.kit?.flyMore?.price?.former ||
+                                0)
+                            }
+                          />
+                        </Text>
+                        <Text component="sup" inherit>
+                          {' '}
+                          (Flymore Kit)
+                        </Text>
+                      </Text>
+                    )}
+                  </>
                 )}
               </Text>
-
-              {data.kit?.flyMore && (
-                <Text inherit fw={'500'}>
-                  <Text component="span" inherit fz={'xs'} fw={'normal'}>
-                    Ksh.
-                  </Text>{' '}
-                  <NumberFormatter
-                    thousandSeparator
-                    value={
-                      (data.price?.former || 0) +
-                      (data.kit?.flyMore?.price?.former || 0)
-                    }
-                  />{' '}
-                  <Text component="sup" inherit fz={'xs'} fw={'normal'}>
-                    (Flymore Kit)
-                  </Text>
-                </Text>
-              )}
             </Stack>
 
             <Group gap={'xs'} mt={'md'}>

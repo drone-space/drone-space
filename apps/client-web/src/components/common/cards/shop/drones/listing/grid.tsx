@@ -48,8 +48,12 @@ export default function Grid({ data }: { data: typeDrone }) {
             <Overlay backgroundOpacity={0.05} p={'xs'} style={{ zIndex: 1 }}>
               <Stack justify="space-between" h={'100%'}>
                 {data.tag && (
-                  <Card bg={'var(--mantine-color-body)'} padding={'xs'}>
-                    <Text fw={500} fz={'xs'} mih={37.2}>
+                  <Card
+                    bg={'var(--mantine-color-body)'}
+                    padding={'xs'}
+                    w={'fit-content'}
+                  >
+                    <Text fw={500} fz={'xs'}>
                       {data.tag}
                     </Text>
                   </Card>
@@ -65,6 +69,18 @@ export default function Grid({ data }: { data: typeDrone }) {
                   {data.featured && (
                     <Badge size={'md'} color={'pri.8'} c={'sec.3'}>
                       Featured
+                    </Badge>
+                  )}
+
+                  {data.available == false && (
+                    <Badge size={'md'} color={'yellow'}>
+                      Currently Unavailable
+                    </Badge>
+                  )}
+
+                  {data.kit?.flyMore?.price?.latter && (
+                    <Badge size={'md'} color={'red'}>
+                      On Sale
                     </Badge>
                   )}
                 </Group>
@@ -97,35 +113,64 @@ export default function Grid({ data }: { data: typeDrone }) {
           <Divider color="sec.4" />
 
           <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
-            <Text inherit fw={'500'}>
-              <Text component="span" inherit fz={'xs'} fw={'normal'}>
-                Ksh.
-              </Text>{' '}
-              <NumberFormatter thousandSeparator value={data.price?.former} />{' '}
-              {data.kit?.flyMore && (
-                <Text component="sup" inherit fz={'xs'} fw={'normal'}>
-                  (Basic Kit)
+            <Text fz={'sm'} mih={58}>
+              {!data.price ? (
+                <Text component="span" inherit>
+                  Price Undisclosed
                 </Text>
+              ) : (
+                <>
+                  <Text component="span" inherit>
+                    Kes.{' '}
+                    <Text
+                      component="span"
+                      inherit
+                      fz={'md'}
+                      fw={'bold'}
+                      c={'pri'}
+                    >
+                      <NumberFormatter
+                        thousandSeparator
+                        value={data.price.former}
+                      />
+                    </Text>
+                    {data.kit?.flyMore && (
+                      <Text component="sup" inherit>
+                        {' '}
+                        (Basic Kit)
+                      </Text>
+                    )}
+                  </Text>
+
+                  {data.kit?.flyMore && (
+                    <Text fz={'sm'}>
+                      <Text component="span" inherit>
+                        Kes.
+                      </Text>{' '}
+                      <Text
+                        component="span"
+                        inherit
+                        fz={'md'}
+                        fw={'bold'}
+                        c={'pri'}
+                      >
+                        <NumberFormatter
+                          thousandSeparator
+                          value={
+                            (data.price?.former || 0) +
+                            (data.kit?.flyMore?.price?.former || 0)
+                          }
+                        />
+                      </Text>
+                      <Text component="sup" inherit>
+                        {' '}
+                        (Flymore Kit)
+                      </Text>
+                    </Text>
+                  )}
+                </>
               )}
             </Text>
-
-            {data.kit?.flyMore && (
-              <Text inherit fw={'500'}>
-                <Text component="span" inherit fz={'xs'} fw={'normal'}>
-                  Ksh.
-                </Text>{' '}
-                <NumberFormatter
-                  thousandSeparator
-                  value={
-                    (data.price?.former || 0) +
-                    (data.kit?.flyMore?.price?.former || 0)
-                  }
-                />{' '}
-                <Text component="sup" inherit fz={'xs'} fw={'normal'}>
-                  (Flymore Kit)
-                </Text>
-              </Text>
-            )}
           </Stack>
 
           <Group gap={'xs'} mt={'md'}>

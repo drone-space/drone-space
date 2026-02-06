@@ -23,6 +23,7 @@ import { getRegionalDate } from '@repo/utilities/date-time';
 import ModalContactTraining from '../modals/contact/training';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
+import ModalRequirements from '../modals/requirements';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
@@ -59,7 +60,12 @@ export default function Home() {
     return (
       <CarouselSlide key={index}>
         <LayoutSection id={`carousel-home-slide-${index}`} pt={'lg'} pb={'md'}>
-          <Stack gap={'xl'} align={alignment} justify="center" mih={520}>
+          <Stack
+            gap={'xl'}
+            align={alignment}
+            justify="center"
+            mih={{ base: 720, sm: 640 }}
+          >
             <Badge color="sec.3" c={'pri.8'}>
               Intake Ongoing
             </Badge>
@@ -151,6 +157,12 @@ export default function Home() {
               >
                 <Button variant={'white'}>Enroll Now</Button>
               </ModalContactTraining>
+
+              <ModalRequirements>
+                <Button color="sec.4" c={'pri'}>
+                  Requirements & Details
+                </Button>
+              </ModalRequirements>
             </Group>
           </Stack>
         </LayoutSection>

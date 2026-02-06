@@ -20,7 +20,7 @@ export default function Modal({
   variant,
 }: {
   children: React.ReactNode;
-  props: { title: string; close: () => void };
+  props: { title?: string; close: () => void };
   variant?: Alert;
   size?: string;
 }) {
@@ -47,7 +47,7 @@ export default function Modal({
   }
 
   return (
-    <Stack pos={'relative'} gap={'xl'}>
+    <Stack pos={'relative'}>
       <Group justify={options.icon ? 'space-between' : 'end'} align="start">
         {options.icon && (
           <Group>
@@ -72,9 +72,11 @@ export default function Modal({
       </Group>
 
       <Stack>
-        <Title order={1} fz={'xl'} lh={1} ta={{ base: 'center', xs: 'start' }}>
-          {props.title}
-        </Title>
+        {props.title && (
+          <Title order={1} fz={'xl'} lh={1}>
+            {props.title}
+          </Title>
+        )}
 
         {children}
       </Stack>

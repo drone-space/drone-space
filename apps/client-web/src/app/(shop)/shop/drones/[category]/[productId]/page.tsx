@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Anchor,
   Badge,
   Box,
   Button,
@@ -11,6 +12,7 @@ import {
   GridCol,
   Group,
   NumberFormatter,
+  Spoiler,
   Stack,
   Tabs,
   TabsList,
@@ -31,6 +33,7 @@ import {
   IconCirclePlus,
   IconCube,
   IconCubePlus,
+  IconInfoCircle,
   IconTruckDelivery,
 } from '@tabler/icons-react';
 import classes from './drone.module.scss';
@@ -111,72 +114,119 @@ export default async function DroneDetail({
             )}
 
             <Stack gap={'xl'} mt={'md'}>
-              <Flex
-                direction={{ base: 'column', md: 'row' }}
-                align={{ md: 'center' }}
-                gap={{ base: 'xs', md: 'xl' }}
-                mt={'md'}
-              >
-                <Text>
-                  Kshs.{' '}
-                  <Text
-                    component="span"
-                    inherit
-                    fw={500}
-                    c={
-                      'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
-                    }
-                    fz={{ md: 'xl' }}
-                  >
-                    {product?.price ? (
-                      <NumberFormatter
-                        value={product?.price.former}
-                        thousandSeparator
-                      />
-                    ) : (
-                      'TBD'
-                    )}
-                  </Text>{' '}
-                  {product?.kit?.flyMore && (
-                    <Text component="sup" inherit fz={'xs'}>
-                      (basic kit)
-                    </Text>
-                  )}
-                </Text>
-                {product?.price && product?.kit?.flyMore && (
-                  <>
-                    <Divider
-                      orientation="vertical"
-                      visibleFrom="xs"
-                      color="sec.3"
-                    />
-
-                    <Text>
-                      Kshs.{' '}
-                      <Text
-                        component="span"
-                        inherit
-                        fw={500}
-                        c={
-                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
-                        }
-                        fz={{ md: 'xl' }}
-                      >
+              <div>
+                <Flex
+                  direction={{ base: 'column', md: 'row' }}
+                  align={{ md: 'center' }}
+                  gap={{ base: 'xs', md: 'xl' }}
+                  mt={'md'}
+                >
+                  <Text>
+                    Kshs.{' '}
+                    <Text
+                      component="span"
+                      inherit
+                      fw={500}
+                      c={
+                        'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                      }
+                      fz={{ md: 'xl' }}
+                    >
+                      {product?.price ? (
                         <NumberFormatter
-                          value={
-                            product.price.former +
-                            product.kit.flyMore.price.former
-                          }
+                          value={product?.price.former}
                           thousandSeparator
                         />
-                      </Text>{' '}
+                      ) : (
+                        'TBD'
+                      )}
+                    </Text>{' '}
+                    {product?.kit?.flyMore && (
                       <Text component="sup" inherit fz={'xs'}>
-                        (fly more kit)
+                        (basic kit)
                       </Text>
-                    </Text>
-                  </>
+                    )}
+                  </Text>
+
+                  {product?.price && product?.kit?.flyMore && (
+                    <>
+                      <Divider
+                        orientation="vertical"
+                        visibleFrom="xs"
+                        color="sec.3"
+                      />
+
+                      <Text>
+                        Kshs.{' '}
+                        <Text
+                          component="span"
+                          inherit
+                          fw={500}
+                          c={
+                            'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                          }
+                          fz={{ md: 'xl' }}
+                        >
+                          <NumberFormatter
+                            value={
+                              product.price.former +
+                              product.kit.flyMore.price.former
+                            }
+                            thousandSeparator
+                          />
+                        </Text>{' '}
+                        <Text component="sup" inherit fz={'xs'}>
+                          (fly more kit)
+                        </Text>
+                      </Text>
+                    </>
+                  )}
+                </Flex>
+
+                {product?.addidionalCosts && (
+                  <Group
+                    gap={5}
+                    mt={5}
+                    c={'dimmed'}
+                    align="start"
+                    wrap="nowrap"
+                  >
+                    <Group mt={4}>
+                      <IconInfoCircle
+                        size={ICON_SIZE - 4}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </Group>
+
+                    <Spoiler
+                      maxHeight={0}
+                      showLabel={
+                        <Anchor fz={'sm'} c={'dimmed'} underline="hover" m={0}>
+                          View additional costs
+                        </Anchor>
+                      }
+                      hideLabel={
+                        <Anchor fz={'sm'} c={'dimmed'} underline="hover" m={0}>
+                          Hide
+                        </Anchor>
+                      }
+                    >
+                      <Text inherit fz={'sm'}>
+                        Shipping Cost:{' '}
+                        <Text component="span" inherit fz={'md'}>
+                          Kshs.{' '}
+                          <Text component="span" inherit fw={500}>
+                            <NumberFormatter
+                              value={product.addidionalCosts.shipping}
+                              thousandSeparator
+                            />
+                          </Text>
+                        </Text>
+                      </Text>
+                    </Spoiler>
+                  </Group>
                 )}
-              </Flex>
+              </div>
 
               <div>
                 <Text fz={'sm'}>

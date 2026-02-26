@@ -47,6 +47,9 @@
         "NEXT_RESEND_KEY_GENERAL",
         "NEXT_RESEND_EMAIL",
 
+        "ANTHROPIC_MODEL_HAIKU",
+        "ANTHROPIC_HAIKU_HEKIMA_API_KEY",
+
         "NEXT_PUBLIC_AI_MODEL",
         "NEXT_AI_KEY",
 

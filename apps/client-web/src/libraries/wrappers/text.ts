@@ -11,16 +11,21 @@ export const parseSSEStream = async (
   const decoder = new TextDecoder('utf-8');
   let buffer = '';
 
+  let finished = false;
+
   const processBuffer = () => {
     const lines = buffer.split('\n\n');
 
     for (const line of lines) {
       if (line.startsWith('data: ')) {
-        const json = line.slice(6).trim(); // Remove 'data: ' prefix
+        const json = line.slice(6).trim();
+
         if (json === '[DONE]') {
+          finished = true;
           onDone?.();
           return;
         }
+
         try {
           const parsed = JSON.parse(json);
           onMessage(parsed);
@@ -30,7 +35,6 @@ export const parseSSEStream = async (
       }
     }
 
-    // Keep any incomplete trailing chunk in buffer
     buffer = lines[lines.length - 1];
   };
 
@@ -47,5 +51,5 @@ export const parseSSEStream = async (
     processBuffer();
   }
 
-  onDone?.();
+  if (!finished) onDone?.();
 };

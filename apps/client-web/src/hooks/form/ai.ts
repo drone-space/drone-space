@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm, UseFormReturnType } from '@mantine/form';
-import { sendPrompt } from '@/handlers/requests/ai';
+import { getClaudeResponse } from '@repo/handlers/requests/ai';
 import { useNotification } from '@repo/hooks/notification';
 import { LOCAL_STORAGE_NAME } from '@repo/constants/names';
 import { useNetwork } from '@mantine/hooks';
@@ -60,7 +60,7 @@ export const useFormAi = (params?: {
     try {
       setSubmitted(true);
 
-      const response = await sendPrompt({
+      const response = await getClaudeResponse({
         content,
         conversation,
       });

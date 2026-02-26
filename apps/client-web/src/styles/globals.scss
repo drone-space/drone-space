@@ -52,3 +52,19 @@ a {
     color-scheme: dark;
   }
 }
+
+// rmd
+
+.markdown-wrapper {
+  h1 {
+    font-size: var(--mantine-h3-font-size);
+  }
+
+  h2 {
+    font-size: var(--mantine-h4-font-size);
+  }
+
+  h3 {
+    font-size: var(--mantine-h5-font-size);
+  }
+}

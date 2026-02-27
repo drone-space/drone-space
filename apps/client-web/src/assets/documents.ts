@@ -1,4 +1,6 @@
-const baseUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL}/documents`;
+import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+
+const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/documents`;
 
 const documents = {
   droneSpace: {

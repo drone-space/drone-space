@@ -52,7 +52,9 @@
 
         "NEXT_TTS_API_KEY",
         "NEXT_TTS_VOICE_ID",
-        "NEXT_TTS_MODEL_ID"
+        "NEXT_TTS_MODEL_ID",
+
+        "NEXT_PUBLIC_IMAGEKIT_URL"
       ],
       "outputs": [
         "src/generated/prisma/**",

@@ -1,6 +1,4 @@
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-
-const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/videos`;
+const baseUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL}/videos`;
 
 const videos = {
   hero: {

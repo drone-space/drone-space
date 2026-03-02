@@ -15,8 +15,10 @@ export async function POST(req: NextRequest) {
     const content = await document.text();
 
     const stream = await anthropic.messages.stream({
-      model: process.env.ANTHROPIC_MODEL_HAIKU!,
-      max_tokens: 1024,
+      model: process.env.NEXT_ANTHROPIC_MODEL_NAME!,
+      // max_tokens: 1024,
+      max_tokens: 300,
+      temperature: 0.2,
       messages,
       system: [
         {

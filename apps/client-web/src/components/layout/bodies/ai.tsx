@@ -17,9 +17,9 @@ import { useStoreConversation } from '@/libraries/zustand/stores/conversation';
 
 // Sample questions data
 const sampleQuestions = [
-  'What does Drone Space do?',
-  'What kind of drones does Drone Space sell?',
   'How long is the RPL training course?',
+  'Is tax included in your drone prices?',
+  `How can I enroll for the RPL course?`,
 ];
 
 export default function AI({

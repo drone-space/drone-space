@@ -1,7 +1,8 @@
 import { getUrlParam, setUrlParam } from '@repo/utilities/url';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSortArray } from '@repo/hooks/sort';
 import { usePaginate } from '@repo/hooks/paginate';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export enum Layout {
   GRID = 'grid',
@@ -25,69 +26,76 @@ export interface ShopParams {
 }
 
 export const useShopListing = (list: any[]) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const emptyValues: ShopParams = {
     search: '',
     layout: Layout.GRID,
-    listSize: '6',
+    listSize: '9',
     sort: '',
     category: '',
     minPrice: '',
     maxPrice: '',
   };
 
-  const [params, setParams] = useState<ShopParams>(emptyValues);
+  // ----------------------------
+  // URL → derived params
+  // ----------------------------
+  const params: ShopParams = useMemo(() => {
+    return {
+      search: searchParams.get('search') ?? '',
+      layout: (searchParams.get('layout') as Layout) ?? Layout.GRID,
+      listSize: searchParams.get('listSize') ?? '9',
+      sort: searchParams.get('sort') ?? '',
+      category: searchParams.get('category') ?? '',
+      minPrice: searchParams.get('minPrice') ?? '',
+      maxPrice: searchParams.get('maxPrice') ?? '',
+    };
+  }, [searchParams]);
 
-  // Parse URL on initial load
-  useEffect(() => {
-    const urlParams = (getUrlParam() as Record<string, string | null>) || {};
-    setParams((prev) => ({ ...prev, ...urlParams }));
-  }, []);
+  // ----------------------------
+  // Update params → push to URL
+  // ----------------------------
+  const updateParams = useCallback(
+    (newParams: Partial<ShopParams>) => {
+      const current = new URLSearchParams(searchParams.toString());
+      let changed = false;
 
-  // Sync URL → state when browser navigation triggers
-  useEffect(() => {
-    const updateParamsFromUrl = () => {
-      const urlParams = (getUrlParam() as Record<string, string | null>) || {};
+      Object.entries(newParams).forEach(([key, value]) => {
+        const existing = current.get(key);
 
-      setParams((prev) => {
-        const changed = Object.keys({ ...prev, ...urlParams }).some((key) => {
-          const before = String(prev[key as keyof ShopParams] ?? '');
-          const after = String(urlParams[key] ?? '');
-          return before !== after;
-        });
-
-        return changed ? { ...prev, ...urlParams } : prev;
+        if (!value) {
+          if (existing !== null) {
+            current.delete(key);
+            changed = true;
+          }
+        } else if (existing !== String(value)) {
+          current.set(key, String(value));
+          changed = true;
+        }
       });
-    };
 
-    window.addEventListener('popstate', updateParamsFromUrl);
+      if (changed) {
+        router.push(`${pathname}?${current.toString()}`, { scroll: false });
+      }
+    },
+    [router, pathname, searchParams]
+  );
 
-    // Patch pushState + replaceState
-    const originalPush = history.pushState;
-    history.pushState = function (...args) {
-      originalPush.apply(this, args as any);
-      updateParamsFromUrl();
-    };
+  // ----------------------------
+  // Min / Max Prices
+  // ----------------------------
+  const minMaxPrices = useMemo(() => {
+    return getMinMax(list.filter((li) => li.price).map((l) => l.price.former));
+  }, [list]);
 
-    const originalReplace = history.replaceState;
-    history.replaceState = function (...args) {
-      originalReplace.apply(this, args as any);
-      updateParamsFromUrl();
-    };
-
-    return () => {
-      window.removeEventListener('popstate', updateParamsFromUrl);
-      history.pushState = originalPush;
-      history.replaceState = originalReplace;
-    };
-  }, []);
-
-  const minMaxPrices = getMinMax(list.map((l) => l.price.former));
-
+  // ----------------------------
   // Filtering
+  // ----------------------------
   const filteredList = useMemo(() => {
-    const searchMode = params.search?.trim();
-
-    if (searchMode) {
+    if (params.search?.trim()) {
       return filterSearch(list, params);
     }
 
@@ -102,15 +110,18 @@ export const useShopListing = (list: any[]) => {
     }
 
     return result;
-  }, [list, params.search, params.category, params.minPrice, params.maxPrice]);
+  }, [
+    list,
+    params.search,
+    params.category,
+    params.minPrice,
+    params.maxPrice,
+    minMaxPrices,
+  ]);
 
-  // Reset pagination when search changes
-  useEffect(() => {
-    setActivePage(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.search]);
-
+  // ----------------------------
   // Sorting
+  // ----------------------------
   const [sortedList, setSortedList] = useState(filteredList);
   const { sortBy, orderMap } = useSortArray(setSortedList);
 
@@ -118,33 +129,16 @@ export const useShopListing = (list: any[]) => {
     setSortedList(filteredList);
   }, [filteredList]);
 
+  // ----------------------------
   // Pagination
+  // ----------------------------
   const { items, activePage, setActivePage, totalPages, pageRange } =
-    usePaginate(
-      sortedList.length ? sortedList : [],
-      Number(params.listSize || 6)
-    );
+    usePaginate(sortedList, Number(params.listSize || 9));
 
-  // Update params state
-  const updateParams = (newParams: Partial<ShopParams>) => {
-    setParams((prev) => ({ ...prev, ...newParams }));
-  };
-
-  // Push updated params to URL
+  // Reset page when search changes
   useEffect(() => {
-    const currentParams =
-      (getUrlParam() as Record<string, string | null>) || {};
-
-    const changed = Object.keys({ ...params, ...currentParams }).some((key) => {
-      const before = String(currentParams[key] ?? '');
-      const after = String(params[key as keyof ShopParams] ?? '');
-      return before !== after;
-    });
-
-    if (changed) {
-      setUrlParam(params as Record<string, string | null | undefined>);
-    }
-  }, [params]);
+    setActivePage(1);
+  }, [params.search, setActivePage]);
 
   return {
     params,
@@ -158,6 +152,9 @@ export const useShopListing = (list: any[]) => {
     pageRange,
     emptyValues,
     prices: minMaxPrices,
+    router,
+    pathname,
+    searchParams,
   };
 };
 

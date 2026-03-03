@@ -30,6 +30,7 @@ import {
   Title,
 } from '@mantine/core';
 import {
+  IconArrowRight,
   IconCircleX,
   IconLayoutGrid,
   IconList,
@@ -39,16 +40,15 @@ import {
 import React, { useEffect, useState } from 'react';
 import CardShopDronesListingGrid from '../common/cards/shop/drones/listing/grid';
 import CardShopDronesListingList from '../common/cards/shop/drones/listing/list';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { prependZeros } from '@repo/utilities/number';
 import { Order } from '@repo/types/enums';
 import { useDebouncedCallback, useMediaQuery } from '@mantine/hooks';
 import CardShopFeatured from '../common/cards/shop/featured';
 import { Layout, Sort, useShopListing } from '@/hooks/shop';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function DroneListing() {
-  const router = useRouter();
-
   const catList = getCategoriesWithCounts();
 
   const {
@@ -62,6 +62,9 @@ export default function DroneListing() {
     pageRange,
     emptyValues,
     prices,
+    router,
+    pathname,
+    searchParams,
   } = useShopListing(products);
 
   const [listSize, setListSize] = useState(Number(params?.listSize || 6));
@@ -69,18 +72,27 @@ export default function DroneListing() {
   const mobile = useMediaQuery('(max-width: 48em)');
 
   const [hydrated, setHydrated] = useState(false);
-  const [searchValue, setSearchValue] = useState(params?.search || '');
+  const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = useDebouncedCallback((value: string) => {
-    setLoading(true);
+  const debouncedSearch = useDebouncedCallback((value: string) => {
     updateParams({ ...params, search: value });
     setLoading(false);
-  }, 500);
+  }, 1000);
+
+  const handleSearch = (value: string) => {
+    setSearchValue(value);
+    setLoading(true);
+    debouncedSearch(value);
+  };
 
   useEffect(() => {
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    setSearchValue(params?.search || '');
+  }, [params.search]);
 
   const resetButton = (
     <Button
@@ -88,8 +100,7 @@ export default function DroneListing() {
       color="gray"
       variant="light"
       onClick={() => {
-        updateParams(emptyValues);
-        router.push('#listing');
+        router.push(`${pathname}#listing`, { scroll: false });
       }}
       disabled={hydrated == false}
     >
@@ -97,8 +108,59 @@ export default function DroneListing() {
     </Button>
   );
 
+  const [localRange, setLocalRange] = useState<[number, number]>([
+    Number(params.minPrice) || prices.min,
+    Number(params.maxPrice) || prices.max,
+  ]);
+
+  useEffect(() => {
+    setLocalRange([
+      Number(params.minPrice) || prices.min,
+      Number(params.maxPrice) || prices.max,
+    ]);
+  }, [params.minPrice, params.maxPrice, prices.min, prices.max]);
+
   return (
     <Grid gutter={{ base: 'xl', md: 'md', lg: 'xl' }}>
+      <GridCol span={12}>
+        <Group justify="center">
+          <TextInput
+            aria-label="Search products"
+            placeholder="Search products..."
+            size="md"
+            radius={999}
+            w={{ base: 240, md: 520 }}
+            rightSection={
+              loading ? (
+                <Loader size={ICON_SIZE - 4} />
+              ) : searchValue.length ? (
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE - 4}
+                  variant="subtle"
+                  onClick={() => {
+                    setSearchValue('');
+                    handleSearch('');
+                  }}
+                >
+                  <IconX size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                </ActionIcon>
+              ) : (
+                <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+              )
+            }
+            defaultValue={searchValue}
+            value={searchValue}
+            onChange={(event) => {
+              handleSearch(event.currentTarget.value);
+            }}
+          />
+        </Group>
+      </GridCol>
+
+      <GridCol span={12}>
+        <Divider variant="dashed" />
+      </GridCol>
+
       <GridCol span={{ md: 3.5 }} visibleFrom="md">
         <Stack pos={'sticky'} top={'2rem'}>
           <Card withBorder>
@@ -126,8 +188,14 @@ export default function DroneListing() {
                     fz={{ base: 'xs', lg: 'sm' }}
                     underline="hover"
                     onClick={() => {
-                      updateParams({ ...params, category: cl.category });
-                      setTimeout(() => router.push('#listing'), 250);
+                      const current = new URLSearchParams(
+                        searchParams.toString()
+                      );
+                      current.set('category', cl.category);
+
+                      router.push(`${pathname}?${current.toString()}#listing`, {
+                        scroll: false,
+                      });
                     }}
                   >
                     <Group justify="space-between">
@@ -155,7 +223,7 @@ export default function DroneListing() {
             </CardSection>
 
             <RangeSlider
-              color="blue"
+              color="pri"
               pt={'xs'}
               pb={'xl'}
               label={(v) => (
@@ -174,11 +242,9 @@ export default function DroneListing() {
                 { value: prices.max * 0.5, label: '50%' },
                 { value: prices.max * 0.8, label: '80%' },
               ]}
-              value={[
-                Number(params.minPrice) || prices.min,
-                Number(params.maxPrice) || prices.max,
-              ]}
-              onChange={(range) =>
+              value={localRange}
+              onChange={setLocalRange}
+              onChangeEnd={(range) =>
                 updateParams({
                   minPrice: String(range[0]),
                   maxPrice: String(range[1]),
@@ -197,39 +263,6 @@ export default function DroneListing() {
 
       <GridCol span={{ base: 12, md: 8.5 }}>
         <Group justify="space-between">
-          <div>
-            <TextInput
-              aria-label="Search products"
-              placeholder="Search products..."
-              size="xs"
-              w={240}
-              rightSection={
-                loading ? (
-                  <Loader size={ICON_SIZE - 4} />
-                ) : searchValue.length ? (
-                  <ActionIcon
-                    size={ICON_WRAPPER_SIZE - 4}
-                    variant="subtle"
-                    onClick={() => {
-                      setSearchValue('');
-                      handleSearch('');
-                    }}
-                  >
-                    <IconX size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-                  </ActionIcon>
-                ) : (
-                  <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-                )
-              }
-              defaultValue={params?.search}
-              value={searchValue}
-              onChange={(event) => {
-                setSearchValue(event.currentTarget.value);
-                handleSearch(event.currentTarget.value);
-              }}
-            />
-          </div>
-
           <Group>
             <ActionIcon
               size={ICON_WRAPPER_SIZE}
@@ -262,7 +295,9 @@ export default function DroneListing() {
             >
               <IconList size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
+          </Group>
 
+          <Group>
             <Select
               aria-label="Items to Show"
               placeholder="Items to Show"
@@ -305,7 +340,6 @@ export default function DroneListing() {
                     (item) => item.title.short,
                     Order.ASCENDING
                   );
-                  updateParams({ ...params, sort: v as Sort });
                 }
 
                 if (v == Sort.HIGHLOW) {
@@ -314,7 +348,6 @@ export default function DroneListing() {
                     (item) => item.price.former,
                     Order.DESCENDING
                   );
-                  updateParams({ ...params, sort: v as Sort });
                 }
 
                 if (v == Sort.LOWHIGH) {
@@ -323,10 +356,23 @@ export default function DroneListing() {
                     (item) => item.price.former,
                     Order.ASCENDING
                   );
-                  updateParams({ ...params, sort: v as Sort });
                 }
+
+                updateParams({ ...params, sort: v as Sort });
               }}
             />
+
+            <NextLink href="/shop/accessories">
+              <Button
+                size="xs"
+                variant="gradient"
+                rightSection={
+                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Accessories
+              </Button>
+            </NextLink>
           </Group>
         </Group>
 

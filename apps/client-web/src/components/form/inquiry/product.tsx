@@ -22,7 +22,7 @@ export default function Product({
   );
 
   const kit = {
-    basic: currentProduct?.price.former,
+    basic: currentProduct?.price?.former,
     flyMore: currentProduct?.kit.flyMore?.price.former,
   };
 

@@ -41,7 +41,7 @@ export default function Page({ props, options }: PageHeaderProps) {
 
   const pathContent =
     typeof props.path === 'string' ? (
-      <Text fw="bold" ta="center" c="pri.8" tt="uppercase" fz="sm">
+      <Text fw="bold" ta="center" c="sec.4" tt="uppercase" fz="sm">
         {props.path || fallbackLabel}
       </Text>
     ) : (

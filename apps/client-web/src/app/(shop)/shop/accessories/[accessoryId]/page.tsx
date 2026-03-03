@@ -30,15 +30,15 @@ export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  // const { data: droneAccessories, error } = await productsGet();
-  const { data: droneAccessories }: { data: any } = { data: accessories };
+  // const { items: droneAccessories, error } = await productsGet();
+  const { items: droneAccessories }: { items: any } = { items: accessories };
 
   // if (error) throw error;
   if (droneAccessories == null) return [];
 
   return droneAccessories.map((p: any) => ({
     // accessoryId: `${linkify(p.title)}-${p.id}`,
-    accessoryId: `${linkify(p.title.short)}`,
+    accessoryId: `${linkify(p.title.long)}`,
   }));
 }
 

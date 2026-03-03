@@ -1,5 +1,6 @@
 .card {
   height: 100%;
+  border-width: 2px !important;
 
   @include mantine.hover {
     .image {

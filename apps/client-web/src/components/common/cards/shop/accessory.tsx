@@ -39,7 +39,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                 direction={'column'}
                 justify={'center'}
                 className={classes.imageContainer}
-                h={{ md: 280 }}
+                h={{ base: 280 }}
               >
                 <Image
                   src={
@@ -119,21 +119,28 @@ export default function Accessory({ data }: { data: typeAccessory }) {
           </Stack>
         </div>
 
-        {data.price && (
-          <Group p={'md'} bg={'pri.8'} c={'var(--mantine-color-body)'}>
-            <Text>
-              Kshs.{' '}
-              <Text
-                component="span"
-                inherit
-                fw={500}
-                c={'var(--mantine-color-sec-3)'}
-              >
-                <NumberFormatter value={data.price.former} thousandSeparator />
-              </Text>
-            </Text>
-          </Group>
-        )}
+        <Group p={'md'} bg={'pri.8'} c={'var(--mantine-color-body)'}>
+          <Text>
+            {!data.price ? (
+              <span>Price Undisclosed</span>
+            ) : (
+              <>
+                Kshs.{' '}
+                <Text
+                  component="span"
+                  inherit
+                  fw={500}
+                  c={'var(--mantine-color-sec-3)'}
+                >
+                  <NumberFormatter
+                    value={data.price.former}
+                    thousandSeparator
+                  />
+                </Text>
+              </>
+            )}
+          </Text>
+        </Group>
       </Stack>
     </Card>
   );

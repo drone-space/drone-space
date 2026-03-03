@@ -362,7 +362,7 @@ export default function DroneListing() {
               }}
             />
 
-            <NextLink href="/shop/accessories">
+            {/* <NextLink href="/shop/accessories">
               <Button
                 size="xs"
                 variant="gradient"
@@ -372,7 +372,7 @@ export default function DroneListing() {
               >
                 Accessories
               </Button>
-            </NextLink>
+            </NextLink> */}
           </Group>
         </Group>
 

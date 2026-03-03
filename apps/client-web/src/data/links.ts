@@ -73,15 +73,15 @@ export const shopLinks = [
       'Agriculture drones are purpose-built to support modern farming. They help monitor crop health, manage irrigation, and even perform precise spraying tasks. By automating field assessments and data collection, these drones enable farmers to make timely, data-driven decisions that boost yield and reduce resource waste.',
     image: images.carousel.shop.image3,
   },
-  {
-    link: '/shop?category=upcoming&layout=grid&listSize=6#listing',
-    label: 'Upcoming Releases',
-    leftSection: IconPlant2,
-    desc: 'Be the first to explore the latest drone innovations and upcoming models hitting the skies soon.',
-    definition:
-      'This category features the latest drone models set to hit the market. Whether it’s groundbreaking flight technology, improved sensors, or entirely new capabilities, upcoming releases give enthusiasts and professionals early insight into the future of drone innovation.',
-    image: images.carousel.shop.image6,
-  },
+  // {
+  //   link: '/shop?category=upcoming&layout=grid&listSize=6#listing',
+  //   label: 'Upcoming Releases',
+  //   leftSection: IconPlant2,
+  //   desc: 'Be the first to explore the latest drone innovations and upcoming models hitting the skies soon.',
+  //   definition:
+  //     'This category features the latest drone models set to hit the market. Whether it’s groundbreaking flight technology, improved sensors, or entirely new capabilities, upcoming releases give enthusiasts and professionals early insight into the future of drone innovation.',
+  //   image: images.carousel.shop.image6,
+  // },
   // {
   //   link: '/shop/accessories',
   //   label: 'Drone Accessories',

@@ -132,7 +132,7 @@ export default function Navbar({
                         </Button>
                       </ModalDownloadDocument>
 
-                      <ModalDownloadDocument props={{ type: 'profile' }}>
+                      {/* <ModalDownloadDocument props={{ type: 'profile' }}>
                         <Button
                           justify="space-between"
                           rightSection={
@@ -148,7 +148,7 @@ export default function Navbar({
                         >
                           Profile
                         </Button>
-                      </ModalDownloadDocument>
+                      </ModalDownloadDocument> */}
                     </Stack>
                   </GridCol>
                 </Grid>

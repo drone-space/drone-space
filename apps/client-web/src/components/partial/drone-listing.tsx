@@ -40,7 +40,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import CardShopDronesListingGrid from '../common/cards/shop/drones/listing/grid';
 import CardShopDronesListingList from '../common/cards/shop/drones/listing/list';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { prependZeros } from '@repo/utilities/number';
 import { Order } from '@repo/types/enums';
 import { useDebouncedCallback, useMediaQuery } from '@mantine/hooks';
@@ -49,8 +49,6 @@ import { Layout, Sort, useShopListing } from '@/hooks/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function DroneListing() {
-  const router = useRouter();
-
   const catList = getCategoriesWithCounts();
 
   const {
@@ -64,9 +62,12 @@ export default function DroneListing() {
     pageRange,
     emptyValues,
     prices,
+    router,
+    pathname,
+    searchParams,
   } = useShopListing(products);
 
-  const [listSize, setListSize] = useState(Number(params?.listSize || 9));
+  const [listSize, setListSize] = useState(Number(params?.listSize || 6));
 
   const mobile = useMediaQuery('(max-width: 48em)');
 
@@ -99,14 +100,25 @@ export default function DroneListing() {
       color="gray"
       variant="light"
       onClick={() => {
-        updateParams(emptyValues);
-        router.push('#listing');
+        router.push(`${pathname}#listing`, { scroll: false });
       }}
       disabled={hydrated == false}
     >
       Reset Filters
     </Button>
   );
+
+  const [localRange, setLocalRange] = useState<[number, number]>([
+    Number(params.minPrice) || prices.min,
+    Number(params.maxPrice) || prices.max,
+  ]);
+
+  useEffect(() => {
+    setLocalRange([
+      Number(params.minPrice) || prices.min,
+      Number(params.maxPrice) || prices.max,
+    ]);
+  }, [params.minPrice, params.maxPrice, prices.min, prices.max]);
 
   return (
     <Grid gutter={{ base: 'xl', md: 'md', lg: 'xl' }}>
@@ -176,8 +188,14 @@ export default function DroneListing() {
                     fz={{ base: 'xs', lg: 'sm' }}
                     underline="hover"
                     onClick={() => {
-                      updateParams({ ...params, category: cl.category });
-                      setTimeout(() => router.push('#listing'), 250);
+                      const current = new URLSearchParams(
+                        searchParams.toString()
+                      );
+                      current.set('category', cl.category);
+
+                      router.push(`${pathname}?${current.toString()}#listing`, {
+                        scroll: false,
+                      });
                     }}
                   >
                     <Group justify="space-between">
@@ -205,7 +223,7 @@ export default function DroneListing() {
             </CardSection>
 
             <RangeSlider
-              color="blue"
+              color="pri"
               pt={'xs'}
               pb={'xl'}
               label={(v) => (
@@ -224,11 +242,9 @@ export default function DroneListing() {
                 { value: prices.max * 0.5, label: '50%' },
                 { value: prices.max * 0.8, label: '80%' },
               ]}
-              value={[
-                Number(params.minPrice) || prices.min,
-                Number(params.maxPrice) || prices.max,
-              ]}
-              onChange={(range) =>
+              value={localRange}
+              onChange={setLocalRange}
+              onChangeEnd={(range) =>
                 updateParams({
                   minPrice: String(range[0]),
                   maxPrice: String(range[1]),

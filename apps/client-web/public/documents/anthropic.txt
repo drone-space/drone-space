@@ -1,0 +1,427 @@
+1. About Drone Space
+We are an approved Unmanned Aircraft Systems Training Organization licensed and certified by the Kenya Civil Aviation Authority (one of the first certified UTO, ROC and Drone distributors in Kenya). Established in 2018, Drone Space is approved and certified by Kenya Civil Aviation Authority (KCAA) to offer Remote Pilot License (RPL) course in multi-rotor and fixed wing, RPL instructor rating and soon Beyond Visual Line of Sight (BVLOS) rating. The Academy provides Kenya's highest quality drone training with a simple yet comprehensive model for corporate clients, government agencies, public safety departments, and individuals.
+
+1.1. Operational Numbers (historical stats)
+- 20+ Strategic Partners
+- 20+ Instructor Ratings
+- 5+ Courses Offered
+- 2 Major Industry Events
+- 250+ RPL Certifications
+
+1.2. Our Mission
+Our mission is to be the preferred drone training and commercial operations organization for Government, corporates, and industry sector by providing quality, high standards, and reliable services.
+
+1.3. Our Vision
+Our long-term vision is to contribute and empower to the ever-growing youth in Kenya by equipping them with the drone technology skill and realization of economic prosperity for young entrepreneurs who in turn would be able to make a living through entrepreneurship.
+
+1.4. Our Team
+Our team is dedicated to delivering exceptional results and pushing boundaries. Get to know the people who bring our vision to life, one step at a time.
+- Anthony Mwangi: Co-Founder & CEO
+- Nicholas Njuguna: Co-Founder
+- Priscah Kinyanjui: Business Executive Lead
+- Kevin Kamau: Marketing Lead
+- Kevon Kibochi: Web Development Lead
+
+1.5 Contact Information
+Emails
+- info@dronespace.co.ke
+- training@dronespace.co.ke
+
+Office Address
+- 6th Floor Prosperity House, Westlands Road, Nairobi
+
+Phone Numbers
+- (254) 713 028-115
+- (254) 750 939-105
+
+2. Services
+Drone Space offers commercial drone services: Drone Mapping and Survey, Thermal Inspection, Agriculture, Aerial Cinematography, Remote Operator Certificate (ROC) support, Drone Consultancy and Resale, Search and Rescue, and Medical Delivery.
+
+2.1. Drone Training (drone school)
+2.1.1. Training Courses
+2.1.1.1. Remote Pilot License (RPL)
+The RPL course is designed for individuals who are interested in starting a career as a drone pilot or for unlicensed drone pilots who want to fly legally. This course is also suitable for individuals who are looking to add drone operation skills to their CVs.
+By obtaining an RPL, you will be able to legally operate drones in Kenya and potentially pursue a career in various industries, including cinematography, agriculture, and construction, survey and mapping among others.
+- Develop an understanding of drone regulations, safety procedures and drone technology.
+- Acquire skills in drone operation, including pre-flight checks, in-flight maneuvers, and emergency procedures.
+- Learn how to plan and execute drone missions.
+
+Part I - Theory
+- Air Law/ CAA (unmanned Aircraft systems) Regulations 2020
+- Operating Procedures and Specifications
+- UAS General Knowledge
+- UAS Theory of Flight
+- Meteorology
+- Navigation
+- Human Factors
+- Radio Telephony (Offered Separately - See below)
+
+Note: Mock exams are given at the end of each subject.
+
+Part II - Practical: One on One instruction with professional flight instructors with a recommendation of 5 hours of flight time.
+Part III - Checkout: Students undergo a checkout flight by a qualified designated flight examiner (DFE) where their knowledge of the rules of the air, regulations, airmanship & flight ability will be tested and evaluated in accordance with the KCAA's Manual of Implementing Standards.
+Part IV - RPL Certification: Passing this test will qualify our students to complete an application for a Remote Pilot. License (RPL) at KCAA.
+
+2.1.1.2. Radio Telephony
+The Radio Telephony License course, offered in partnership with the Nairobi Flight Academy, is designed for Remote Pilot License (RPL) holders seeking to operate drones in controlled airspace and conduct Beyond Visual Line of Sight (BVLOS) operations. This comprehensive training equips participants with the necessary skills in radio telephony procedures and communication protocols.
+Upon passing the exam administered by the Kenya Civil Aviation Authority (KCAA), successful participants are granted a Radio Telephony Operator License valid for two years, renewable upon expiration. The course spans five days and covers essential topics such as radio phraseology, air traffic control communication and emergency procedures.
+The Radio Telephony License course is an essential requirement for drone pilots operating in areas that require communication with air traffic control or for those planning BVLOS operations. With this license, participants gain the readiness to conduct missions in controlled airspace, ensuring safe and compliant drone operations. By partnering with the Nairobi Flight Academy, we deliver top-quality training that prepares RPL holders for the KCAA exam.
+
+Subjects Covered: General Phraseology, Aerodrome Control, Approach Control, Flight Information Service, Weather, Communication Failure, Distress and Urgency, VHF Propagation, Flight Scenario
+
+Note: An exam for each subject covered is offered at the training in readiness for the licensing exam.
+
+Learning Outcomes
+- Develop proficiency in radio telephony procedures for drone operations in controlled airspace and BVLOS missions.
+- Acquire comprehensive knowledge of radio phraseology, air traffic control communication, emergency procedures, and airspace regulations
+- Successfully pass the KCAA exam and obtain a two-year Radio Telephony Operator License, enabling compliant operations in controlled airspace.
+
+2.1.1.3. Instructor Rating
+The Instructor Rating course is designed for individuals who already hold an RPL and are interested in becoming certified drone instructors. This course is ideal for RPL holders who have a passion for teaching and want to share their knowledge and experience with others.
+By completing this course, students will learn how to effectively instruct RPL students, create course materials, and design training programs.
+
+Note: Upon completion, students will receive an instructor rating from the Kenya Civil Aviation Authority (KCAA), which will enable them to train and certify future RPL holders.
+
+Train The Trainer (1 day)
+Train the trainer is a program used by trainers to train potential instructors or less experienced instructors about the best ways to deliver training materials to others. RPL Instructor Ground School - (2 days) The first part of your RPL Instructor license is theoretical based on the CAA (UAS regulations) 2020 and addition practical presentation practices are incorporated.
+
+RPL Instructor Ground School (2 days)
+The first part of your RPL Instructor license is theoretical based on the FAA Aviation Instruction Handbook and addition practical presentation practices are incorporated.
+
+Practical Briefing & Patter Training (7 days)
+The RPL instructor practical briefing is a one-on-one which consists of preparing briefings and conducting 5hrs of briefing with an instructor. Briefing also consist of giving ground school theory subjects the supervision of an instructor.
+
+2.1.1.4. Drone Mapping and Survey
+The Drone Mapping and Survey course is a 5-day course designed for RPL holders who want to learn how to use drones for mapping and surveying purposes. This course is suitable for engineers, surveyors, environmental scientists, among others. It is also ideal for individuals interested in starting a drone mapping and surveying business.
+
+- Introduction - Mapping drones and payloads
+- Missions, Mission planning software & Flight planning
+- GCPs Pre-marking & GNSS Survey
+- Aerial LiDAR Mapping
+- Mission Planning with DJI Pilot & Drone Deploy
+- Data collection using Zenmuse Ll
+- Data Processing & Analysis using DJI TERRA, Pix 4D Mapper & Global Mapper
+- Workflow Review and Project Accuracy Verification Procedures
+- Practical session using a DJI Matrice 300
+
+By completing this course, students will acquire practical skills in drone operation, surveying techniques, and data analysis. They will also learn how to process and interpret data obtained from drone surveys to generate accurate maps and 3D models.
+
+2.1.1.5. Thermography (ITC - Level I)
+The Levell Thermography Certification course is designed for professionals who want to develop practical skills in using thermography for inspections and diagnostics. This course is suitable for individuals working in industries such as electrical, mechanical, and building inspections, as well as professionals involved in research and development. The certification is offered in collaboration with the Infrared Training Centre (ITC) and is globally recognized.
+
+- Introduction to Thermography
+- Heat & Temperature
+- Infrared Theory Basics
+- Measurement Techniques
+- Basic Heat transfer theory
+- Camera Measurement tools
+- Camera/Software familiarization
+- ITC Certification Test
+
+By completing this course, students will learn how to use thermal imaging cameras to identify and diagnose faults in various systems, including electrical equipment, buildings, and mechanical systems. They will also gain an understanding of infrared theory, heat transfer concepts, and thermal imaging standards.
+
+Note: Upon completion, students will receive an internationally recognized Levell Thermography Certification, which can enhance their career prospects and credibility in the industry.
+
+2.1.1.6. Under 18's Holiday Camp
+The U-18s Holiday Camp is a drone STEM program designed for kids, teens, and high school students between the ages of 7 and 17. The program is organized during school holidays to introduce young people to the emerging technology of drones and inspire their interest in science, technology, engineering, and mathematics (STEM) subjects. This program is suitable for young people who are curious about drones and want to learn about their applications and operations in a fun and safe environment.
+By participating in this program, students will learn the basics of drone operation, including flight controls, aerial maneuvers, and safety procedures. They will also learn about the various applications of drones in different industries and participate in drone-related challenges and competitions. This program aims to inspire young people's interest in STEM and encourage them to consider careers in technology and innovation.
+
+2.1.2. Training Logistics
+- RPL student intakes happen weekly.
+- The course lasts two weeks: one week of theory at Prosperity House (Westlands), and one week of practicals at the Drone Space Airfield (Sigona).
+- Drone insurance requires an RPL, a drone registered with KCAA, and flights conducted under an ROC.
+- We strongly recommend going for medical before training
+
+2.1.3. Training Prices
+- RPL Course: Kshs. 170,000  (currently offering 20% discount so 136,000/-, but) exclusive of medical
+- Instructor Rating Course: Kshs. 250,000
+- Radio Telephony Course: Kshs. 35,000 (Exclusive of Exam, English Proficiency and License Fees)
+- Drone Mapping and Survey Course: Kshs. 110,000
+- Thermography (ITC Level I) Course: Kshs. 200,000
+
+2.2. Commercial Drone Services
+2.2.1. Aerial Cinematography
+We offer professional aerial cinematography services to capture stunning aerial footage of any location. Our experienced drone pilots use state­of-the-art drone technology to produce high-quality aerial footage that will make your project stand out.
+- Stunning footage: Our aerial cinematography services produce stunning and captivating footage that will take your project to the next level.
+- Versatility: Our drones are equipped with a variety of cameras and lenses, allowing us to produce aerial footage for a wide range of applications, including real estate, film and video production, and tourism.
+- Fast Turnaround: Our team works quickly and efficiently to produce high-quality aerial footage in a timely manner, meeting your project deadlines.
+
+2.2.2. Agriculture
+From precise crop monitoring and targeted spraying to efficient data collection for informed decision­making, our drone technology optimizes resource allocation, reduces costs, and maximizes yields.
+- Increased Efficiency: Drone technology allows us to spread seedballs and other seeds quickly and efficiently, reducing the time and effort required to reforest large areas of land.
+- Increased Accuracy: Our drones can precisely target areas for reforestation, increasing the chances of successful seed germination and growth.
+- Cost-Effective: Drone seeding is a cost-effective alternative to traditional reforestation methods, saving you time and money.
+- Improved Access: Drone technology allows us to access difficult or remote areas for reforestation efforts, improving the overall success of reforestation efforts.
+- Climate Change Mitigation: By spreading seedballs and other seeds for reforestation, we can help mitigate the effects of climate change and improve the health of our planet.
+
+2.2.3. Drone Mapping & Survey
+We specialize in creating detailed maps, 3D models, and orthomosaics that empower informed decision­making in land surveying, construction, agriculture, environmental monitoring, and more.
+- High-Resolution Imaging: Our drones are equipped with advanced cameras capable of capturing high-resolution images. This enables us to create detailed maps with exceptional clarity, helping you visualize every inch of your project area.
+- Topographical Mapping: Accurate topographical maps are essential for various applications, including land development and infrastructure planning. Our drones gather elevation data with precision, allowing us to generate comprehensive topographical maps that serve as the foundation for your projects.
+- Orthomosaic Maps: We produce seamless orthomosaic maps by stitching together hundreds of aerial images. These maps provide a true-to-scale, geometrically accurate representation of your site, aiding in measurements, analysis, and project tracking.
+- 3D Models: Our drones capture data from multiple angles to generate detailed 3D models of your site. This immersive representation offers a deeper understanding of the terrain, structures, and surroundings, enhancing your project planning and visualization.
+- Volumetric Analysis: For industries such as mining and construction, accurately calculating volumes of stockpiles, excavations, and landfills is crucial. Our Aerial Drone Mapping services provide precise volumetric measurements to streamline your operations.
+- Environmental Monitoring: Whether it's tracking changes in vegetation, identifying erosion, or monitoring wildlife habitats, our services contribute to effective environmental management and conservation efforts.
+- Progress Monitoring: Keep track of your project's progress over time with our aerial mapping solutions. Regular updates and comparisons enable you to identify any deviations from the original plan and make adjustments as needed.
+
+2.2.4. Thermal Inspection
+Our thermal inspection services leverage advanced drone technology to provide detailed thermal imaging and analysis for a variety of applications. We specialize in identifying anomalies and potential issues in solar panels, landfills, dumpsites, geothermal sites, and power lines. Our high-resolution thermal data enables early detection of problems, facilitating timely maintenance and preventing costly failures.
+By combining innovative technologies with extensive inspection experience, our inspectors perform thorough examinations of solar panels as well as associated wiring and hardware in a professional, safe, and efficient manner.
+Our field employees have access to FLIR (Infra-Red Cameras) as well as Unmanned Aircraft Systems with Infra-red capabilities solution that enables customers to watch inspections. This facilitates real-time responses as opposed to long email chains that take up valuable time and data.
+
+2.2.5. Search and Rescue
+We are equipped to support search and rescue operations with our advanced drone technology. Our drones, equipped with thermal imaging cameras and long-range capabilities, can quickly scan vast areas, providing crucial aerial support to locate missing persons or assess disaster zones efficiently and safely.
+- Comprehensive Aerial Surveillance: Drones provide a bird’s-eye view, enabling rapid coverage of vast or difficult terrains, including forests, mountains, and water bodies. They deliver high-resolution imagery and live video feeds to enhance situational awareness.
+- Thermal and Night Vision Capabilities: With advanced thermal imaging, drones can detect heat signatures, making it possible to locate individuals even in darkness, dense vegetation, or challenging weather conditions.
+- Emergency Supply Delivery: Drones can deliver essential items such as first aid kits, water, food, or communication tools to stranded individuals, bridging the gap until help arrives.
+
+2.2.6. Medical Delivery
+Our drones can swiftly transport essential medical supplies to remote or hard-to-reach areas, ensuring access to critical healthcare when every second counts.
+- Emergency Medical Support: Drones deliver life-saving supplies like automated external defibrillators (AEDs), epinephrine injectors, and first aid kits directly to emergency scenes, ensuring rapid response during critical moments.
+- Remote Vaccination Campaigns: Medical drones reach isolated communities to distribute vaccines efficiently, especially during health crises like epidemics or pandemics.
+- Faster Diagnostic Sample Transfers: Quickly transport diagnostic samples—such as blood or swabs—to laboratories for prompt analysis and decision-making.
+- Disaster Relief and Humanitarian Aid: Drones deliver essential medical supplies to areas affected by natural disasters, ensuring healthcare support when traditional routes are disrupted.
+
+2.2.7. Consultancy and Resale
+We are authorized drone importers and resellers, offering a wide range of high-quality drone solutions to meet your needs. We also offer drone consultancy services to help you get the most out of your drone solutions. Our team of experts can help you with everything from drone selection and setup, to training and maintenance.
+- Wide Range of Products: We offer a wide range of drones and drone accessories, including multirotor, fixed-wing drones, and more, to meet your needs.
+- Expert Advice: Our team of experts can help you choose the right drone for your needs, taking into account your budget, requirements, and goals.
+- Affordable Prices: We offer competitive pricing on all of our products, ensuring that you can get the drone solutions you need at a price you can afford.
+- Authorized Reseller: Hassle-free importation and registration of your drone.
+
+2.2.8. ROC Support
+A ROC is a certification approved and issued by the KCAA that demonstrates that an organization fulfils the legal requirements to commercially operate a drone; Both the drone and the pilot will need to operate under a RPAS Operating Certificate.
+We are the holders of ROC 002. We support our clients' commercial operations through our ROC at affordable rates to ensure safety and legal compliance. Our ROC enables you carry out missions in a legal and compliant manner with significant cost savings on setup costs.
+- Simplified Monthly Subscription
+- Paperwork Support
+- Timely Processing of Authorizations
+- Incident/accident reporting
+
+2.2.9. Drone Light Shows
+Drone Space offers breathtaking 12-15 minute drone light shows, perfect for festivals, corporate events, sporting events, and public celebrations.
+
+2.2.9.1. Pricing
+- Small Shows (Up to 100 drones): $45,000
+- Medium Shows (Up to 200 drones): $60,000
+- Mid-Large Shows (Up to 300 drones): $80,000
+- Large Shows (500+ drones): $200,000
+- High-End Custom Shows: From $300,000
+
+2.2.9.2. Features
+- Advanced Drones: Equipped with state-of-the-art LED lights, our drones are capable of producing vibrant colors and dynamic light patterns.
+- Precision Synchronization: Our drones are meticulously programmed to perform intricate and perfectly synchronized movements, creating stunning visual effects.
+- Choreographed Displays: Each show is expertly choreographed to deliver a seamless and captivating performance, often synchronized with music or other multimedia elements.
+
+2.2.9.3. Drone Light Show Faq's
+What is a Drone Light Show?
+A drone light show is a coordinated display of drones equipped with LED lights, programmed to perform intricate and synchronized movements to create dynamic visual patterns and effects in the sky. These shows can be designed to form various shapes, images, animations, and colors, often synchronized with music, narration, or other multimedia elements to enhance the overall experience.
+
+How Drone Light Shows Work?
+- Planning and Design: The show begins with detailed planning and design, where the desired patterns, shapes, and movements are mapped out. Specialized software is used to create a flight plan for each drone.
+- Programming: Each drone is programmed with specific flight paths and lighting sequences. This programming ensures that all drones move in perfect synchronization to create the desired visual effects.
+- Rehearsals: Rehearsals are conducted to fine-tune the choreography and ensure the show runs smoothly. Adjustments may be made based on rehearsal feedback.
+- Performance: During the actual show, the drones take off and follow their pre-programmed paths, creating a stunning light display in the sky.
+- Post-Show Analysis After the show, data from the drones is analyzed to assess performance and identify any areas for improvement.
+
+How much does a drone light show cost?
+The cost of a drone light show can vary widely depending on several factors, including the complexity of the show, the number of drones used, the duration of the performance, and any additional customization or special requirements.
+
+2.2.9.4. Drone Light Show Project Timeline
+2.2.9.4.1. Preperation Task
+- Site and launch pad selection - Week 1
+- Location check by pilot - Week 1
+- Working out the technical rider for the launch - Week 1
+- Risk assessment and mitigation - Week 1
+- Contract negotiation and signing - Week 1
+
+2.2.9.4.2. Creative and Pre-production Task
+- Concept discussion with client	- Week 1 - 2
+- Preparing the Storyboard - Week 1 - 2
+- Creating the static figures - Week 1 - 2
+- Full animation (10 days before the 1st test flight) - Week 1 - 2
+- Preparing the technical part of the animation, crosscheck designers and pilots - Week 1 - 3
+
+2.2.9.4.3. Tech Preperation Task
+- Team appointment - Week 1
+- KCAA authorization and permits - Week 1 - 3
+- County permits - Week 1 - 3
+- Site preparation - duration unknown
+
+2.2.9.4.4. On-Site Task
+- Team arrival - Week 3 - 4
+- Tests with a small set of drones - Week 3 - 4
+- Dress rehearsal - Week 4
+- Reserve day - Week 4
+- Show time - Week 4
+
+2.2.9.4.5. Event Activations
+- Soundtrack production of the drone light show - Week 2 - 4
+- Capturing the show - Week 4
+
+2.2.9.4.6. After The Show
+- Team debrief and packing of equipment - Week 4
+- Preparation and approval of the content publication with client - Week 5
+- Report and delivery of raw footage - Week 5
+
+As for other further details requested on drone light shows, provide: their advantages over traditional means, why to choose them over alternatives, their applications, and any other relevant information needed for an informed decision.
+
+3. Our Products
+DJI Mavic 4 Pro (RC 2) - Basic Kit is 370,000 Shillings, Flymore Kit is 475,000 Shillings
+DJI Mavic Air 3 - Basic Kit is 290,000 Shillings, Flymore Kit is 349,000 Shillings
+DJI Mavic 3 Pro - Basic Kit is 530,000 Shillings, Flymore Kit is 665,000 Shillings
+DJI Mini 4 Pro - Basic Kit is 180,000 Shillings, Flymore Kit is 210,000 Shillings
+DJI Inspire 3 - 2,032,800 Shillings
+Mavic 3M Enterprise - 909,000 Shillings
+DJI Mavic 3T Enterprise - Basic Kit is 951,400 Shillings, Flymore Kit is 1,086,400 Shillings
+DJI Matrice 4E Enterprise - 726,000 Shillings
+DJI Matrice 4T Enterprise - 990,000 Shillings
+DJI Matrice 30T - 1,650,000 Shillings
+Autel Evo II Dual 640T: 900,000 Shillings
+DJI Matrice 350 - 858,000 Shillings
+DJI Mavic 3E Enterprise - Basic Kit is 690,000 Shillings, Flymore Kit is 825,000 Shillings
+Agras T50 - 2,315,000 Shillings
+
+Note: All prices are subject to change without prior notice. Currency is in Kenya Shillings. If further details about the above products are requested (such as their specs, what's in the box, their accessories, or any other related info), provide information from internet sources.
+
+4. Faq's (answer guidelines for questions similar to the ones below)
+How can I enroll in a course?
+You can enroll by visiting our website, calling our office, or emailing us directly. Payment plans are available for most courses on our drone training section.
+
+How long do the training courses take?
+The average completion time for the RPL courses is just under 2 weeks depending on personal schedule.
+
+What are the costs of your drone training programs?
+Costs vary depending on the course type. Please contact us for a detailed price list or check our training pricing section.
+
+Do you provide training equipment, or should I bring my own drone?
+We provide drones and training equipment for practical sessions. The training aircraft needs to be registered with the KCAA under our training organisation in order for flight time to be logged, therefore it is not necessary to bring your own drone for training purposes.
+
+Will I learn practical skills during the training?
+Yes, our training includes hands-on flight sessions, equipment maintenance, mission planning, and troubleshooting.
+
+Do you offer online or hybrid courses?
+Yes, we provide online theoretical modules that you can complete at your own pace, followed by in-person practical sessions.
+
+What should I bring on the first day of training?
+Only a valid ID will be required at first. 3 passport photos (1 regular sized and 2 small ones, 2cm by 2.5cm) and a copy of the medical certificate will be needed after.
+
+What types of drones will I learn to operate during training?
+Training primarily covers multirotor drones. Fixed-wing drones aren't currently included.
+
+What safety measures are covered in the training?
+We emphasize drone safety, including pre-flight checks, risk assessment, emergency procedures, and compliance with safety regulations.
+
+What certifications do I receive after completing the training?
+Upon successfully passing the Skills Test conducted by a Designated Flight Examiner (DFE) appointed by KCAA, candidates receive a Certificate of Completion from Drone Space and a Remote Pilot's License issued by KCAA.
+
+Does holding an RPL qualify me to operate drones commercially?
+While a Remote Pilot License (RPL) is an essential component of the RPAS Operator Certification (ROC), it alone does not authorize you to conduct legal commercial drone operations. To operate commercially, you must obtain an ROC. We can assist you with the consultation process to meet the necessary regulatory requirements.
+
+What types of drones do you sell?
+We offer a wide range of drones, including consumer drones for recreational use, professional-grade drones for commercial applications, and specialty drones for industries like agriculture, surveying, and cinematography.
+
+Do you offer both consumer and professional-grade drones?
+Yes, we cater to both markets, providing high-quality consumer drones as well as advanced professional drones designed for specialized tasks.
+
+What brands of drones do you carry?
+We carry top brands such as DJI, Autel Robotics, Huida, and other reputable manufacturers known for their reliability and innovation.
+
+How do I choose the right drone for my needs?
+Choosing the right drone depends on your purpose. For casual use, a lightweight consumer drone with basic features may suffice. For professional tasks, consider factors like camera quality, flight time, payload capacity, and compatibility with your specific industry requirements. Our team can guide you through this process.
+
+Do your drones come with warranties? If so, how long are they valid?
+Yes, all our drones come with manufacturer warranties, typically ranging from 6 months to 2 years, depending on the brand and model.
+
+Can I upgrade or customize the drones you sell?
+Yes, many of our drones support upgrades and customizations, but with limitations.
+
+What accessories are available for the drones you offer?
+We provide a variety of accessories, including spare batteries, propellers, carrying cases, filters, gimbals, and chargers. Specialized accessories like thermal cameras and agricultural sensors are also available for certain models.
+
+Do you offer payment plans for drone purchases?
+No, we don't offer installment plans. Contact us for details about payment grounds and processes.
+
+Are there any discounts for bulk purchases or corporate clients?
+Not at the moment, but we're planning to introduce discounts for bulk purchases and corporate clients soon. Let us know your requirements, and we’ll notify you once the program is available.
+
+Do your prices include taxes and shipping fees?
+Our prices are inclusive of taxes and shipping fees unless otherwise stated. During checkout, you’ll see a breakdown of all costs.
+
+Do you provide technical support for the drones you sell?
+We don’t currently offer dedicated technical support, but we’re working on establishing a support service to help with setup, operation, and troubleshooting.
+
+What is your return or exchange policy for drones?
+We’re in the process of finalizing a return or exchange policy, which will allow returns or exchanges within a specified period. Stay tuned for updates.
+
+Can I purchase drone insurance through your store?
+Not yet, but we’re working on partnering with reputable insurance providers to offer drone insurance options soon.
+
+Do you offer training or guidance for using the drones I purchase?
+We offer the Remote Pilot License (RPL) training course, the foundational entry-level program recognized by the Kenya Civil Aviation Authority (KCAA) for drone operation and certification.
+
+Are your drones compliant with local aviation regulations?
+Yes, all our drones comply with local aviation laws and safety requirements. We also stay updated on regulatory changes to ensure compliance.
+
+Can you assist with registering my drone with the relevant authorities?
+Yes, we can guide you through the drone registration process or handle it on your behalf, depending on your requirements.
+
+Do you sell drones that meet requirements for commercial use?
+Yes, we offer drones specifically designed for commercial use, meeting the necessary certifications and specifications for professional applications.
+
+Do you offer repair services for drones purchased from your store?
+We don’t currently provide repair services, but we plan to introduce professional repair options in the near future.
+
+Can I buy spare parts for my drone through your shop?
+Not yet, but we’re working on offering a wide range of spare parts, including propellers, motors, batteries, and cameras, for the brands we carry in the near future.
+
+How often should I service my drone, and do you provide maintenance services?
+We’re not offering maintenance services at the moment, but we’re developing plans to introduce them soon, including firmware updates, part replacements, and inspections.
+
+What is drone training, and why is it important?
+Drone training equips individuals with the knowledge and skills to safely operate unmanned aerial systems (UAS). It is essential for understanding regulations, proper handling, and maximizing drone capabilities.
+
+Who can enroll in your drone training programs?
+Our programs are open to anyone over the age of 18, whether you're a beginner or a seasoned drone operator looking to expand your skills. ie. Anyone intending to fly BVLOS unmanned aircraft, RPAS crews, pilots, ground control operators and maintainers regulators, multi-agency teams, company managers, procurement officers or safety system managers, persons interested in mitigating RPAS human factors in BVLOS operations
+
+Do I need prior experience with drones to join your program?
+No prior experience is needed. We offer beginner courses that cover the basics and more advanced courses for experienced operators.
+
+Is drone training mandatory to operate a drone?
+Yes, if you're using drones for commercial purposes, most countries require operators to have formal training and certifications.
+
+What industries can benefit from drone training?
+Our training programs are designed for industries such as agriculture, construction, media production, surveying, search and rescue, and more.
+
+Can I specialize in a specific area, such as drone photography or mapping?
+Yes, we offer specialized courses focusing on areas like aerial photography, mapping, inspection, and agricultural applications.
+
+Can I buy drones from your organization after completing training?
+Yes, we offer purchase options for a variety of drones to suit your needs. See our shop section for more details.
+
+Do you provide job placement or networking opportunities after training?
+While we don't guarantee job placement, we connect our graduates with industry opportunities and networks.
+
+Does holding an RPL qualify me to operate drones commercially?
+While a Remote Pilot License (RPL) is an essential component of the RPAS Operator Certification (ROC), it alone does not authorize you to conduct legal commercial drone operations. To operate commercially, you must obtain an ROC. We can assist you with the consultation process to meet the necessary regulatory requirements.
+
+Where am I permitted to operate my drone?
+Drones must be operated in compliance with aviation regulations. Specifically: Maintain a minimum distance of 50 meters from roads, people, or property. Avoid flying within a 10-kilometer radius of airports or aerodromes. Operate no higher than 400 feet above ground level and ensure the drone remains within 500 meters of the operator, adhering to Visual Line of Sight (VLOS) requirements.
+
+How can I insure my drone during flight?
+To obtain drone insurance for in-flight operations, the following conditions must be met: The pilot must hold a valid Remote Pilot License (RPL). The drone must be registered with the Kenya Civil Aviation Authority (KCAA). All flights must be conducted under an RPAS Operator Certification (ROC).
+
+Who issues Remote Pilot Licenses (RPLs)?
+All Remote Pilot Licenses (RPLs) are issued by the Kenya Civil Aviation Authority (KCAA), the regulatory body responsible for aviation safety and compliance in Kenya.
+
+Who are the KCAA-approved medical doctors for drone operators?
+The following KCAA-approved doctors are authorized to conduct medical evaluations for drone operators: Dr. Wanjohi: Contact at 0722 833 492 or via email at wambakiwanjohi@gmail.com, Dr. Phenny: Contact at 0722 302 086 or via email at kphenny123@gmail.com
+
+5. Important Considerations & Risks
+Warranty Voiding
+Unauthorized hardware modifications or firmware hacking may void warranty. Use official DJI channels for software integrations.
+
+Regulatory Compliance
+Certain modifications (e.g., removing geofencing, boosting signal range) may violate aviation laws. Always check with your Civil Aviation Authority.
+
+Flight Safety
+Unapproved changes can affect stability, battery performance, and reliability, increasing the risk of malfunctions or crashes.

@@ -42,10 +42,11 @@ export default function Home() {
       duration: '2 weeks',
       dates: [
         // intake date (s)
-        new Date(2026, 1, 3),
-        new Date(2026, 1, 10),
-        new Date(2026, 1, 17),
-        new Date(2026, 1, 24),
+        new Date(2026, 2, 3),
+        new Date(2026, 2, 10),
+        new Date(2026, 2, 17),
+        new Date(2026, 2, 24),
+        new Date(2026, 2, 31),
       ],
       price: {
         former: 170000,
@@ -224,7 +225,7 @@ const data = sortArray(
       duration: '14 - 21 days',
       dates: [
         // intake date (s)
-        new Date(2026, 1, 16),
+        new Date(2026, 2, 16),
       ],
       price: {
         former: null,
@@ -240,7 +241,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 1, 9),
+        new Date(2026, 2, 9),
       ],
       price: {
         former: null,
@@ -256,7 +257,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 1, 16),
+        new Date(2026, 2, 16),
       ],
       price: {
         former: null,
@@ -272,7 +273,7 @@ const data = sortArray(
       duration: '10 days',
       dates: [
         // intake date (s)
-        new Date(2026, 1, 23),
+        new Date(2026, 2, 23),
       ],
       price: {
         former: null,
@@ -288,7 +289,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 1, 2),
+        new Date(2026, 2, 30),
       ],
       price: {
         former: null,

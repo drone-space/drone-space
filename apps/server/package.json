@@ -11,6 +11,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "@mantine/core": "^8.3.6",
     "@mantine/notifications": "^8.3.6",
     "@react-email/render": "^1.1.2",

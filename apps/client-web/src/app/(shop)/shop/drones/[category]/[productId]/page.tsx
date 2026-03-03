@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Anchor,
   Alert,
   Badge,
   Box,
@@ -12,6 +13,7 @@ import {
   GridCol,
   Group,
   NumberFormatter,
+  Spoiler,
   Stack,
   Tabs,
   TabsList,
@@ -118,36 +120,38 @@ export default async function DroneDetail({
             </Group>
 
             <Stack gap={'xl'} mt={'md'}>
-              <Flex direction={{ base: 'column' }} mt={'md'}>
+              <Flex
+                direction={{ base: 'column', md: 'row' }}
+                align={{ md: 'center' }}
+                gap={{ base: 'xs', md: 'xl' }}
+                mt={'md'}
+              >
                 <Text>
+                  Kshs.{' '}
+                  <Text
+                    component="span"
+                    inherit
+                    fw={500}
+                    c={
+                      'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                    }
+                    fz={{ md: 'xl' }}
+                  >
+                    {product?.price ? (
+                      <NumberFormatter
+                        value={product?.price.former}
+                        thousandSeparator
+                      />
+                    ) : (
+                      'TBD'
+                    )}
+                  </Text>{' '}
                   {product?.kit?.flyMore && (
-                    <Text component="span" inherit>
-                      Basic -{' '}
+                    <Text component="sup" inherit fz={'xs'}>
+                      (basic kit)
                     </Text>
                   )}
-                  <Text component={'span'} inherit fw={500}>
-                    Kes.{' '}
-                    <Text
-                      component="span"
-                      inherit
-                      c={
-                        'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
-                      }
-                      fz={{ md: 'xl' }}
-                      fw={'bold'}
-                    >
-                      {product?.price ? (
-                        <NumberFormatter
-                          value={product?.price.former}
-                          thousandSeparator
-                        />
-                      ) : (
-                        'TBD'
-                      )}
-                    </Text>
-                  </Text>
                 </Text>
-
                 {product?.price && product?.kit?.flyMore && (
                   <>
                     <Divider
@@ -156,73 +160,29 @@ export default async function DroneDetail({
                       color="sec.3"
                     />
 
-                    <Stack gap={0}>
-                      <Text>
-                        <Text component="span" inherit>
-                          Fly More -{' '}
-                        </Text>
-                        <Text component="span" inherit fw={500}>
-                          Kes.{' '}
-                          <Text
-                            component="span"
-                            inherit
-                            fw={'bold'}
-                            c={
-                              'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
-                            }
-                            fz={{ md: 'xl' }}
-                          >
-                            <NumberFormatter
-                              value={
-                                product.price.former +
-                                (product.kit.flyMore.price.latter ||
-                                  product.kit.flyMore.price.former)
-                              }
-                              thousandSeparator
-                            />
-                          </Text>{' '}
-                          {product.kit.flyMore.price.latter && (
-                            <>
-                              <Text
-                                component="sup"
-                                inherit
-                                fz={'sm'}
-                                td={'line-through'}
-                              >
-                                <NumberFormatter
-                                  value={
-                                    product.price.former +
-                                    product.kit.flyMore.price.former
-                                  }
-                                  thousandSeparator
-                                />{' '}
-                              </Text>{' '}
-                              <Text
-                                component="span"
-                                inherit
-                                fz={'sm'}
-                                c={'green'}
-                                fw={500}
-                              >
-                                (
-                                {
-                                  // calculate % discount
-                                  (
-                                    (1 -
-                                      (product.price.former +
-                                        product.kit.flyMore.price.latter) /
-                                        (product.price.former +
-                                          product.kit.flyMore.price.former)) *
-                                    100
-                                  ).toFixed(1)
-                                }
-                                % off )
-                              </Text>
-                            </>
-                          )}
-                        </Text>
+                    <Text>
+                      Kshs.{' '}
+                      <Text
+                        component="span"
+                        inherit
+                        fw={500}
+                        c={
+                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                        }
+                        fz={{ md: 'xl' }}
+                      >
+                        <NumberFormatter
+                          value={
+                            product.price.former +
+                            product.kit.flyMore.price.former
+                          }
+                          thousandSeparator
+                        />
+                      </Text>{' '}
+                      <Text component="sup" inherit fz={'xs'}>
+                        (fly more kit)
                       </Text>
-                    </Stack>
+                    </Text>
                   </>
                 )}
               </Flex>

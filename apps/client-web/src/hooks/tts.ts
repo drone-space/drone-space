@@ -1,5 +1,5 @@
 import { Variant } from '@repo/types/enums';
-import { textToSpeech } from '@/handlers/requests/tts';
+import { textToSpeech } from '@repo/handlers/requests/tts';
 import { useRef, useState } from 'react';
 import { useNotification } from '@repo/hooks/notification';
 import { playAudioStream } from '@/libraries/wrappers/tts';

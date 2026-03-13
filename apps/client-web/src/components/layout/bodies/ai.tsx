@@ -253,6 +253,7 @@ function SampleQuestions({
         {questions.map((question, index) => (
           <Button
             key={index}
+            data-autofocus={index == 0}
             variant="gradient"
             fw={'normal'}
             size="xs"

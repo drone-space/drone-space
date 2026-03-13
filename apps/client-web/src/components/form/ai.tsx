@@ -56,7 +56,7 @@ export default function Ai({
             ],
             ['Enter', props.form.onSubmit(props.handleSubmit)],
           ])}
-          data-autofocus={true}
+          // data-autofocus={true}
           classNames={classes}
           w={'100%'}
           disabled={props.submitted}

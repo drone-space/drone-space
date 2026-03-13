@@ -7,6 +7,8 @@
 
 import { UseFormReturnType } from '@mantine/form';
 
+export type InquiryType = 'training' | 'service' | 'shop' | 'general';
+
 /**
  * Inquiry
  */
@@ -19,6 +21,7 @@ export const formValuesInitialInquiry = {
   kit: '',
   subject: '',
   message: '',
+  type: '' as InquiryType,
 };
 
 export type FormValuesInquiry = typeof formValuesInitialInquiry;

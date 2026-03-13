@@ -15,8 +15,8 @@ export default function Service({
   props: { initialValues: Partial<FormValuesInquiry>; close?: () => void };
 }) {
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
-    props.initialValues,
-    { close: props.close }
+    { type: 'service', close: props.close },
+    props.initialValues
   );
 
   return (

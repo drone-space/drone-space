@@ -9,11 +9,11 @@ import CommonFooter from '../common/footer';
 
 export default function Callback({ props }: { props: { close?: () => void } }) {
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
+    { type: 'general', close: props.close, noMessage: true },
     {
       subject: 'Callback Request',
       message: 'Please call me back as soon as convenitently possible.',
-    },
-    { close: props.close, noMessage: true }
+    }
   );
 
   return (

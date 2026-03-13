@@ -10,7 +10,11 @@ import { validators } from '@repo/utilities/validation';
 import { hasLength, UseFormReturnType } from '@mantine/form';
 import { handleInquiry } from '@repo/handlers/requests/email/inquiry';
 import { contactAdd } from '@repo/handlers/requests/contact';
-import { formValuesInitialInquiry, FormValuesInquiry } from '@repo/types/form';
+import {
+  formValuesInitialInquiry,
+  FormValuesInquiry,
+  InquiryType,
+} from '@repo/types/form';
 import { useFormBase } from '../form';
 import { useNotification } from '@repo/hooks/notification';
 import { Variant } from '@repo/types/enums';
@@ -23,6 +27,7 @@ type UseFormEmailInquiryOptions = {
   withKit?: boolean;
   noMessage?: boolean;
   document?: 'profile' | 'brochure';
+  type?: InquiryType;
 };
 
 export type FormEmailInquiry = UseFormReturnType<
@@ -31,8 +36,8 @@ export type FormEmailInquiry = UseFormReturnType<
 >;
 
 export const useFormEmailInquiry = (
-  initialValues?: Partial<FormValuesInquiry>,
-  options?: UseFormEmailInquiryOptions
+  options: UseFormEmailInquiryOptions,
+  initialValues?: Partial<FormValuesInquiry>
 ) => {
   const { showNotification } = useNotification();
 
@@ -64,37 +69,40 @@ export const useFormEmailInquiry = (
       {
         close: options?.close,
         resetOnSuccess: true,
+        hideSuccessNotification: true,
 
         onSubmit: async (rawValues) => {
           // handle download
           if (options?.document) {
             // const response = await contactAdd(parseFormValues(form.values));
 
-            // if (!response.ok) {
-            //   throw new Error('Internal server error');
-            // }
+            setTimeout(() => {
+              // if (options?.document === 'profile') {
+              //   downloadProfile();
+              // }
+
+              if (options?.document === 'brochure') {
+                downloadBrochure();
+              }
+            }, 2000);
+
+            showNotification({
+              variant: Variant.SUCCESS,
+              title: `Done`,
+              desc: `The ${options?.document === 'brochure' ? 'brochure' : 'company profile'} will load shortly`,
+            });
 
             form.reset();
-
-            // showNotification({
-            //   variant: Variant.SUCCESS,
-            //   desc: 'Your download will start shortly',
-            // });
-
-            if (options?.document === 'profile') {
-              downloadProfile();
-            }
-
-            if (options?.document === 'brochure') {
-              downloadBrochure();
-            }
 
             // close modal if exists
             if (options.close) options.close();
             return;
           }
 
-          const values = normalizeFormValues(rawValues);
+          const values = normalizeFormValues({
+            ...rawValues,
+            type: options?.type ?? 'general',
+          });
 
           // --- send the inquiry ---
           const response = await handleInquiry(values);
@@ -113,6 +121,14 @@ export const useFormEmailInquiry = (
             const addContact = await contactAdd(values);
             if (!addContact.ok) console.error('Failed to add email contact');
           }
+
+          setTimeout(() => {
+            showNotification({
+              variant: Variant.SUCCESS,
+              title: `Inquiry Sent`,
+              desc: `You'll hear from us within 24 hours`,
+            });
+          }, 500);
 
           return { response, result };
         },

@@ -15,10 +15,8 @@ export default function Training({
   props: { initialValues: Partial<FormValuesInquiry>; close?: () => void };
 }) {
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
-    props.initialValues,
-    {
-      close: props.close,
-    }
+    { type: 'training', close: props.close },
+    props.initialValues
   );
 
   return (

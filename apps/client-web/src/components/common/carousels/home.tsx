@@ -151,7 +151,7 @@ export default function Home() {
               <ModalContactTraining
                 props={{
                   initialValues: {
-                    subject: `${slide.title} Training Inquiry`,
+                    subject: `${slide.title} Course Inquiry`,
                     message: `I'm interested in enrolling in your ${slide.title} training program.`,
                   },
                 }}

@@ -111,7 +111,7 @@ export default function Home() {
             <ModalContactTraining
               props={{
                 initialValues: {
-                  subject: `RPL Training Inquiry`,
+                  subject: `RPL Course Inquiry`,
                   message: `I'm interested in enrolling in your RPL training program.`,
                 },
               }}

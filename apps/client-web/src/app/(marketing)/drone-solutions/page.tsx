@@ -104,7 +104,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Aerial Cinematography Drone Services Inquiry`,
+                  subject: `Aerial Cinematography Service Inquiry`,
+                  message: `Hello, I am interested in your aerial cinematography service. Please send me more information about it.`,
                 },
               }}
             >
@@ -116,11 +117,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Aerial Cinematography
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -184,7 +181,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Agriculture Drone Services Inquiry`,
+                  subject: `Agriculture Service Inquiry`,
+                  message: `Hello, I am interested in your agriculture service. Please send me more information about it.`,
                 },
               }}
             >
@@ -196,11 +194,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Agriculture
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -268,7 +262,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Drone Mapping & Survey Services Inquiry`,
+                  subject: `Mapping & Survey Service Inquiry`,
+                  message: `Hello, I am interested in your drone mapping and survey service. Please send me more information about it.`,
                 },
               }}
             >
@@ -280,11 +275,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Drone Mapping & Survey
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -333,7 +324,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Thermal Inspection Drone Services Inquiry`,
+                  subject: `Thermal Inspection Service Inquiry`,
+                  message: `Hello, I am interested in your thermal inspection service. Please send me more information about it.`,
                 },
               }}
             >
@@ -345,11 +337,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Thermal Inspection
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -417,7 +405,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Search and Rescue Drone Services Inquiry`,
+                  subject: `Search and Rescue Service Inquiry`,
+                  message: `Hello, I am interested in your search and rescue service. Please send me more information about it.`,
                 },
               }}
             >
@@ -429,11 +418,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Search and Rescue
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -497,7 +482,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Medical Delivery Drone Services Inquiry`,
+                  subject: `Medical Delivery Service Inquiry`,
+                  message: `Hello, I am interested in your medical delivery service. Please send me more information about it.`,
                 },
               }}
             >
@@ -509,11 +495,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Medical Delivery
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -585,7 +567,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Drone Consultancy and Resale Services Inquiry`,
+                  subject: `Drone Consultancy and Resale Service Inquiry`,
+                  message: `Hello, I am interested in your drone consultancy and resale services. Please send me more information about it.`,
                 },
               }}
             >
@@ -597,11 +580,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    Consultancy and Resale
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>
@@ -668,7 +647,8 @@ export default async function Services() {
             <ModalContactService
               props={{
                 initialValues: {
-                  subject: `Drone ROC Support Services Inquiry`,
+                  subject: `ROC Support Service Inquiry`,
+                  message: `Hello, I am interested in your ROC support services. Please send me more information about it.`,
                 },
               }}
             >
@@ -680,11 +660,7 @@ export default async function Services() {
                 }
               >
                 <Text component="span" inherit>
-                  Request{' '}
-                  <Text component="span" inherit visibleFrom="xs">
-                    ROC Support
-                  </Text>{' '}
-                  Service
+                  Inquire or Request a Quote
                 </Text>
               </Button>
             </ModalContactService>

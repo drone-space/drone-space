@@ -162,7 +162,7 @@ export default function Basic({
         <ModalContactTraining
           props={{
             initialValues: {
-              subject: `${courseTitle} Training Inquiry`,
+              subject: `${courseTitle} Course Inquiry`,
               message: `I'm interested in enrolling in your ${courseTitle} drone training program.`,
             },
           }}

@@ -331,7 +331,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `RPL Training Inquiry`,
+                subject: `RPL Course Inquiry`,
                 message: `I'm interested in enrolling in your RPL drone training program.`,
               },
             }}
@@ -494,7 +494,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `Radio Telephony Training Inquiry`,
+                subject: `Radio Telephony Course Inquiry`,
                 message: `I'm interested in enrolling in your Radio Telephony drone training program.`,
               },
             }}
@@ -615,7 +615,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `Instructor Rating Training Inquiry`,
+                subject: `Instructor Rating Course Inquiry`,
                 message: `I'm interested in enrolling in your Instructor Rating drone training program.`,
               },
             }}
@@ -705,7 +705,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `Drone Mapping and Survey Training Inquiry`,
+                subject: `Drone Mapping and Survey Course Inquiry`,
                 message: `I'm interested in enrolling in your Drone Mapping and Survey training program.`,
               },
             }}
@@ -814,7 +814,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `Thermography Training Inquiry`,
+                subject: `Thermography Course Inquiry`,
                 message: `I'm interested in enrolling in your Thermography drone training program.`,
               },
             }}
@@ -1096,7 +1096,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `${courseList[5].title} Training Inquiry`,
+                subject: `${courseList[5].title} Course Inquiry`,
                 message: `I'm interested in enrolling in your ${courseList[5].title} drone training program.`,
               },
             }}
@@ -1536,7 +1536,7 @@ export default async function DroneTraining() {
           <ModalContactTraining
             props={{
               initialValues: {
-                subject: `${courseList[6].title} Training Inquiry`,
+                subject: `${courseList[6].title} Course Inquiry`,
                 message: `I'm interested in enrolling in your ${courseList[6].title} drone training program.`,
               },
             }}

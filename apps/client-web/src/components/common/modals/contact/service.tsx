@@ -26,7 +26,7 @@ export default function Service({
               initialValues: {
                 ...props?.initialValues,
                 subject:
-                  props?.initialValues?.subject || 'Drone Solution Inquiry',
+                  props?.initialValues?.subject || 'Drone Services Inquiry',
               },
             }}
           />

@@ -24,11 +24,11 @@ export default function Contact({
   options?: { modal?: boolean; close?: () => void };
 }) {
   const { form, submitted, handleSubmit } = useFormEmailInquiry(
+    { close: options?.close },
     {
       subject: props?.subject,
       message: props?.message,
-    },
-    { close: options?.close }
+    }
   );
 
   return (

@@ -27,8 +27,12 @@ export default function Product({
   };
 
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
-    props.initialValues,
-    { withKit: !!currentProduct?.kit.flyMore, close: props.close }
+    {
+      type: 'shop',
+      withKit: !!currentProduct?.kit.flyMore,
+      close: props.close,
+    },
+    props.initialValues
   );
 
   return (

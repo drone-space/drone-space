@@ -12,14 +12,11 @@ export default function Document({
 }: {
   props: { type: 'brochure' | 'profile'; close?: () => void };
 }) {
-  const { form, handleSubmit, submitted } = useFormEmailInquiry(
-    {},
-    {
-      document: props.type,
-      close: props.close,
-      noMessage: true,
-    }
-  );
+  const { form, handleSubmit, submitted } = useFormEmailInquiry({
+    document: props.type,
+    close: props.close,
+    noMessage: true,
+  });
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)} noValidate>

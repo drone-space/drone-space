@@ -33,7 +33,7 @@ const emailSendBase = async (options: SendEmailOptions) => {
   if (!noReplyEmail) throw new Error('Missing no-reply email');
 
   const fromEmail =
-    options.fromType === 'delivery' ? deliveryEmail : noReplyEmail;
+    options.fromType === 'noreply' ? noReplyEmail : deliveryEmail;
 
   const { data, error } = await resend.emails.send({
     from: `${options.fromName ?? appName} <${fromEmail}>`,
@@ -52,7 +52,23 @@ const emailSendBase = async (options: SendEmailOptions) => {
 };
 
 export const emailSendInquiry = async (params: FormValuesInquiry) => {
-  const recipientEmail = process.env.NEXT_PUBLIC_EMAIL_INFO || '';
+  let recipientEmail = '';
+
+  switch (params.type) {
+    case 'training':
+      recipientEmail = process.env.NEXT_PUBLIC_EMAIL_TRAINING || '';
+      break;
+    case 'service':
+      recipientEmail = process.env.NEXT_PUBLIC_EMAIL_INFO || '';
+      break;
+    case 'shop':
+      recipientEmail = process.env.NEXT_PUBLIC_EMAIL_INFO || '';
+      break;
+
+    default:
+      recipientEmail = process.env.NEXT_PUBLIC_EMAIL_INFO || '';
+      break;
+  }
 
   const fullName = `${params.fname} ${params.lname}`;
 

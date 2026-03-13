@@ -13,39 +13,26 @@ export default function AI({ onClose }: { onClose: () => void }) {
       padded={'md'}
       bordered
     >
-      <Group justify="space-between">
+      <Group justify="space-between" align="start">
         <Group gap={'xs'}>
-          <Box
-            style={{
-              overflow: 'hidden',
-              borderRadius: 'var(--mantine-radius-xs)',
-            }}
-            w={24}
-            h={24}
-          >
+          <Box w={32} h={32}>
             <ImageDefault
-              src={images.icons.openAi}
+              src={images.icons.chatbot}
               alt={'Hekima AI'}
               loading="lazy"
-              width={24}
-              height={24}
-              style={{ transform: 'scale(1.4)' }}
+              fit={'contain'}
+              width={32}
+              height={32}
             />
           </Box>
 
-          <Title order={2} fz={'md'} mt={5} fw={'normal'} lh={1}>
+          <Title order={2} fz={'md'} fw={'normal'}>
             Ask Hekima
           </Title>
         </Group>
 
         <Group>
-          <Button
-            size="compact-xs"
-            color="gray"
-            variant="light"
-            fz={'xs'}
-            onClick={onClose}
-          >
+          <Button size="xs" color="dark" variant="light" onClick={onClose}>
             Hide Chat
           </Button>
         </Group>

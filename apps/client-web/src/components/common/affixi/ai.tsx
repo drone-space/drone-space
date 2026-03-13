@@ -1,10 +1,14 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import {
+  ActionIcon,
   Affix,
   Box,
+  Card,
   Center,
   Group,
+  Paper,
+  Stack,
   Text,
   Tooltip,
   Transition,
@@ -24,15 +28,21 @@ import { getFromLocalStorage } from '@repo/utilities/storage';
 import ImageDefault from '@repo/components/common/images/default';
 import ModalAI from '../modals/ai';
 import { useStoreConversation } from '@/libraries/zustand/stores/conversation';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@repo/constants/sizes';
+import { IconX } from '@tabler/icons-react';
+import { companyName } from '@repo/constants/app';
 
 export default function Ai() {
   const pathname = usePathname();
   const { setConversation } = useStoreConversation();
 
+  const [aiOpened, setAiOpened] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
-  const { start, clear } = useTimeout(() => setMenuOpened(true), 7000);
-
-  // const [scroll] = useWindowScroll();
+  const { start, clear } = useTimeout(() => setMenuOpened(true), 1000 * 5);
 
   const routes = ['drone-solutions', '/drone-training', '/shop'];
   const routeIncluded = routes.find((r) => pathname.includes(r));
@@ -40,13 +50,13 @@ export default function Ai() {
   const getRoute = () => {
     switch (routeIncluded) {
       case routes[0]:
-        return 'If you would like to know more about our services, ';
+        return ' about our drone solutions?';
       case routes[1]:
-        return 'For course details, course prices or any other training inquiries, ';
+        return ' about drone training?';
       case routes[2]:
-        return 'To see available drones and drone prices or if you have drone purchase inquiries, ';
+        return ' about our drones?';
       default:
-        return "If you're short for time and need to go through the website's content quickly, ";
+        return '?';
     }
   };
 
@@ -57,13 +67,13 @@ export default function Ai() {
 
         if (!count) {
           start();
-          setTimeout(() => setMenuOpened(false), 14000);
+          setTimeout(() => setMenuOpened(false), 1000 * 60);
 
           sessionStorage.setItem(SESSION_STORAGE_NAME.AI_COUNT, '0');
         } else {
           if (Number(count) <= routes.length) {
             start();
-            setTimeout(() => setMenuOpened(false), 14000);
+            setTimeout(() => setMenuOpened(false), 1000 * 60);
 
             sessionStorage.setItem(
               SESSION_STORAGE_NAME.AI_COUNT,
@@ -88,54 +98,90 @@ export default function Ai() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => setAiOpened(true), 1000 * 3);
+  }, []);
+
   return (
     <Affix
-      position={{ bottom: 'calc(var(--mantine-spacing-xl) * 1.5)', right: 0 }}
+      position={{
+        bottom: 'calc(var(--mantine-spacing-xl) * 1.5)',
+        right: 'var(--mantine-spacing-md)',
+      }}
     >
-      <Transition transition="slide-left" mounted={true}>
-        {(transitionStyles) => (
-          <div style={transitionStyles}>
-            <Tooltip
-              color="pri"
-              withArrow
-              position="bottom-end"
-              multiline
-              opened={true && menuOpened}
-              events={{ hover: true, focus: true, touch: false }}
-              w={220}
-              label={
-                <Text inherit fz={'xs'}>
-                  {getRoute()} ask our AI
-                </Text>
-              }
-            >
-              <Center
-                onClick={() => {
-                  clear();
-                  setMenuOpened(false);
-                }}
+      <Stack align="end" ta={'end'} fz={{ base: 'xs' }}>
+        <Transition transition="slide-left" mounted={menuOpened}>
+          {(transitionStyles) => (
+            <div style={transitionStyles}>
+              <Stack
+                align="end"
+                ta={'end'}
+                gap={'xs'}
+                maw={{ base: 240, md: 260, lg: 320 }}
+                fz={'12'}
               >
-                <ModalAI>
-                  <Group className={classes.child} gap={5}>
-                    <Text pl={'xs'}>Ask Hekima</Text>
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE}
+                  variant="white"
+                  style={{
+                    border: '1px solid var(--mantine-color-default-border)',
+                    boxShadow: 'var(--mantine-shadow-xs)',
+                  }}
+                  onClick={() => {
+                    clear();
+                    setMenuOpened(false);
+                  }}
+                >
+                  <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                </ActionIcon>
 
-                    <Box h={47} w={47}>
-                      <ImageDefault
-                        src={images.icons.openAi}
-                        alt={'Hekima AI'}
-                        loading="lazy"
-                        fit={'contain'}
-                        width={47}
-                        height={47}
-                      />
-                    </Box>
-                  </Group>
-                </ModalAI>
-              </Center>
-            </Tooltip>
-          </div>
-        )}
-      </Transition>
+                <Card withBorder shadow="xs" px={'sm'} py={'xs'}>
+                  <Text inherit>Hi, I&apos;m Hekima.</Text>
+                </Card>
+
+                <Card withBorder shadow="xs" px={'sm'} py={'xs'}>
+                  <Text inherit>The {companyName} AI assistant.</Text>
+                </Card>
+
+                <Card withBorder shadow="xs" px={'sm'} py={'xs'}>
+                  <Text inherit>What would you like to know{getRoute()}</Text>
+                </Card>
+              </Stack>
+            </div>
+          )}
+        </Transition>
+
+        <Transition transition="slide-left" mounted={aiOpened}>
+          {(transitionStyles) => (
+            <div style={transitionStyles}>
+              <ModalAI>
+                <Group
+                  className={classes.child}
+                  gap={5}
+                  p={'xs'}
+                  onClick={() => {
+                    clear();
+                    setMenuOpened(false);
+                  }}
+                >
+                  <Box h={aiImageSize} w={aiImageSize}>
+                    <ImageDefault
+                      src={images.icons.chatbot}
+                      alt={'Hekima AI'}
+                      loading="lazy"
+                      fit={'contain'}
+                      width={aiImageSize}
+                      height={aiImageSize}
+                    />
+                  </Box>
+                </Group>
+              </ModalAI>
+            </div>
+          )}
+        </Transition>
+      </Stack>
     </Affix>
   );
 }
+
+const aiImageSize = 40;

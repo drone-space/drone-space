@@ -17,9 +17,10 @@ import { useStoreConversation } from '@/libraries/zustand/stores/conversation';
 
 // Sample questions data
 const sampleQuestions = [
-  'How long is the RPL training course?',
+  `Is any experience needed to enroll for the RPL course?`,
+  'Are there any requirements for the RPL course?',
   'Is tax included in your drone prices?',
-  `How can I enroll for the RPL course?`,
+  'Which drones do you sell?',
 ];
 
 export default function AI({
@@ -215,7 +216,7 @@ function WelcomeMessage() {
   return (
     <MarkdownComponent
       markdown={
-        "Hi! I'm Hekima, an AI model trained provide Drone Space related content. Ask me anything you wish to know about the company."
+        "Hi, I'm Hekima. An AI model trained by Drone Space to provide the information you need. Ask me anything you wish to know about the company."
       }
     />
   );
@@ -245,16 +246,16 @@ function SampleQuestions({
   handleSubmit: (sv?: any) => void;
 }) {
   return (
-    <Stack gap={'xs'} pl={'xs'}>
-      <Text inherit>Some general questions:</Text>
+    <Stack gap={'xs'}>
+      <Text inherit>Some common questions:</Text>
 
       <Stack gap={'xs'} align="start" pl={{ xs: 'md' }}>
         {questions.map((question, index) => (
           <Button
             key={index}
-            variant="light"
+            variant="gradient"
             fw={'normal'}
-            size="compact-xs"
+            size="xs"
             disabled={submitted}
             onClick={async () => await handleSubmit(question.trim())}
           >

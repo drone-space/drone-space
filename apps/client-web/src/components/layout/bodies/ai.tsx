@@ -17,8 +17,8 @@ import { useStoreConversation } from '@/libraries/zustand/stores/conversation';
 
 // Sample questions data
 const sampleQuestions = [
-  `Is any experience needed to enroll for the RPL course?`,
-  'Are there any requirements for the RPL course?',
+  `Is any prior experience needed?`,
+  'Are there any enrollment requirements?',
   'Is tax included in your drone prices?',
   'Which drones do you sell?',
 ];

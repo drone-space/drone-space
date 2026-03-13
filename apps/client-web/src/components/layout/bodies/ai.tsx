@@ -216,7 +216,7 @@ function WelcomeMessage() {
   return (
     <MarkdownComponent
       markdown={
-        "Hi, I'm Hekima. An AI model trained by Drone Space to provide the information you need. Ask me anything you wish to know about the company."
+        "Hi, I'm Hekima. Ask me anything you wish to know about the company."
       }
     />
   );
@@ -249,7 +249,7 @@ function SampleQuestions({
     <Stack gap={'xs'}>
       <Text inherit>Some common questions:</Text>
 
-      <Stack gap={'xs'} align="start" pl={{ xs: 'md' }}>
+      <Stack gap={'xs'} align="start" pl={{ base: 'xs', xs: 'md' }}>
         {questions.map((question, index) => (
           <Button
             key={index}

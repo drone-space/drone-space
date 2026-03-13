@@ -108,6 +108,7 @@ export default function Ai() {
         bottom: 'calc(var(--mantine-spacing-xl) * 1.5)',
         right: 'var(--mantine-spacing-md)',
       }}
+      style={{ zIndex: 100 }}
     >
       <Stack align="end" ta={'end'} fz={{ base: 'xs' }}>
         <Transition transition="slide-left" mounted={menuOpened}>
@@ -184,4 +185,4 @@ export default function Ai() {
   );
 }
 
-const aiImageSize = 40;
+const aiImageSize = { base: 32, md: 40 };

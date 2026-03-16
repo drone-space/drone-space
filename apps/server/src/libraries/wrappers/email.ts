@@ -12,7 +12,7 @@ import EmailOnboardWelcome from '@repo/components/email/onboard/welcome';
 import { isProduction } from '@repo/utilities/misc';
 import { render } from '@react-email/render';
 import { FormValuesInquiry } from '@repo/types/form';
-import { appName } from '@repo/constants/app';
+import { appName, companyName } from '@repo/constants/app';
 
 type SendEmailOptions = {
   to: string;
@@ -25,15 +25,17 @@ type SendEmailOptions = {
 
 const emailSendBase = async (options: SendEmailOptions) => {
   const devEmail = process.env.NEXT_PUBLIC_EMAIL_DEV;
-  const deliveryEmail = process.env.NEXT_PUBLIC_EMAIL_DELIVERY;
+  // const deliveryEmail = process.env.NEXT_PUBLIC_EMAIL_DELIVERY;
+  const inquiryEmail = process.env.NEXT_PUBLIC_EMAIL_INQUIRY;
   const noReplyEmail = process.env.NEXT_PUBLIC_EMAIL_NOREPLY;
 
   if (!devEmail) throw new Error('Missing dev email');
-  if (!deliveryEmail) throw new Error('Missing delivery email');
+  // if (!deliveryEmail) throw new Error('Missing delivery email');
+  if (!inquiryEmail) throw new Error('Missing delivery email');
   if (!noReplyEmail) throw new Error('Missing no-reply email');
 
   const fromEmail =
-    options.fromType === 'noreply' ? noReplyEmail : deliveryEmail;
+    options.fromType === 'noreply' ? noReplyEmail : inquiryEmail;
 
   const { data, error } = await resend.emails.send({
     from: `${options.fromName ?? appName} <${fromEmail}>`,
@@ -76,7 +78,7 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
     to: recipientEmail,
     subject: `${params.subject} (From ${fullName})`,
     replyTo: params.email,
-    fromName: fullName,
+    fromName: `${companyName} Inquiries`,
     fromType: 'delivery',
     html: await render(
       EmailInquiry({

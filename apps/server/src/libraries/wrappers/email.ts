@@ -47,6 +47,7 @@ const emailSendBase = async (options: SendEmailOptions) => {
 
   if (error) {
     console.error('---> wrapper error - (send email):', error);
+    console.error('RESEND FULL ERROR:', JSON.stringify(error, null, 2));
     throw error;
   }
 

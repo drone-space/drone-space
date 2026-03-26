@@ -120,72 +120,118 @@ export default async function DroneDetail({
             </Group>
 
             <Stack gap={'xl'} mt={'md'}>
-              <Flex
-                direction={{ base: 'column', md: 'row' }}
-                align={{ md: 'center' }}
-                gap={{ base: 'xs', md: 'xl' }}
-                mt={'md'}
-              >
-                <Text>
-                  Kshs.{' '}
-                  <Text
-                    component="span"
-                    inherit
-                    fw={500}
-                    c={
-                      'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
-                    }
-                    fz={{ md: 'xl' }}
-                  >
-                    {product?.price ? (
-                      <NumberFormatter
-                        value={product?.price.former}
-                        thousandSeparator
-                      />
-                    ) : (
-                      'TBD'
-                    )}
-                  </Text>{' '}
-                  {product?.kit?.flyMore && (
-                    <Text component="sup" inherit fz={'xs'}>
-                      (basic kit)
-                    </Text>
-                  )}
-                </Text>
-                {product?.price && product?.kit?.flyMore && (
-                  <>
-                    <Divider
-                      orientation="vertical"
-                      visibleFrom="xs"
-                      color="sec.3"
-                    />
-
-                    <Text>
-                      Kshs.{' '}
-                      <Text
-                        component="span"
-                        inherit
-                        fw={500}
-                        c={
-                          'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
-                        }
-                        fz={{ md: 'xl' }}
-                      >
+              <div>
+                <Flex
+                  direction={{ base: 'column', md: 'row' }}
+                  align={{ md: 'center' }}
+                  gap={{ base: 'xs', md: 'xl' }}
+                  mt={'md'}
+                >
+                  <Text>
+                    Kshs.{' '}
+                    <Text
+                      component="span"
+                      inherit
+                      fw={500}
+                      c={
+                        'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                      }
+                      fz={{ md: 'xl' }}
+                    >
+                      {product?.price ? (
                         <NumberFormatter
-                          value={
-                            product.price.former +
-                            product.kit.flyMore.price.former
-                          }
+                          value={product?.price.former}
                           thousandSeparator
                         />
-                      </Text>{' '}
+                      ) : (
+                        'TBD'
+                      )}
+                    </Text>{' '}
+                    {product?.kit?.flyMore && (
                       <Text component="sup" inherit fz={'xs'}>
-                        (fly more kit)
+                        (basic kit)
                       </Text>
-                    </Text>
-                  </>
+                    )}
+                  </Text>
+                  {product?.price && product?.kit?.flyMore && (
+                    <>
+                      <Divider
+                        orientation="vertical"
+                        visibleFrom="xs"
+                        color="sec.3"
+                      />
+
+                      <Text>
+                        Kshs.{' '}
+                        <Text
+                          component="span"
+                          inherit
+                          fw={500}
+                          c={
+                            'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                          }
+                          fz={{ md: 'xl' }}
+                        >
+                          <NumberFormatter
+                            value={
+                              product.price.former +
+                              product.kit.flyMore.price.former
+                            }
+                            thousandSeparator
+                          />
+                        </Text>{' '}
+                        <Text component="sup" inherit fz={'xs'}>
+                          (fly more kit)
+                        </Text>
+                      </Text>
+                    </>
+                  )}
+                </Flex>
+
+                {product?.additionalCosts && (
+                  <Group
+                    gap={5}
+                    mt={5}
+                    c={'dimmed'}
+                    align="start"
+                    wrap="nowrap"
+                  >
+                    <Group mt={4}>
+                      <IconInfoCircle
+                        size={ICON_SIZE - 4}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </Group>
+
+                    <Spoiler
+                      maxHeight={0}
+                      showLabel={
+                        <Anchor fz={'sm'} c={'dimmed'} underline="hover" m={0}>
+                          View additional costs
+                        </Anchor>
+                      }
+                      hideLabel={
+                        <Anchor fz={'sm'} c={'dimmed'} underline="hover" m={0}>
+                          Hide
+                        </Anchor>
+                      }
+                    >
+                      <Text inherit fz={'sm'}>
+                        Shipping Cost:{' '}
+                        <Text component="span" inherit fz={'md'}>
+                          Kshs.{' '}
+                          <Text component="span" inherit fw={500}>
+                            <NumberFormatter
+                              value={product.additionalCosts.shipping}
+                              thousandSeparator
+                            />
+                          </Text>
+                        </Text>
+                      </Text>
+                    </Spoiler>
+                  </Group>
                 )}
-              </Flex>
+              </div>
 
               <div>
                 <Text fz={'sm'}>
@@ -348,9 +394,14 @@ export default async function DroneDetail({
           <TabsList fw={500}>
             <Grid gutter={0} w={'100%'}>
               {product?.kit?.basic && (
-                <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
+                <GridCol
+                  span={{
+                    base: 6,
+                    xs: 6,
+                  }}
+                >
                   <TabsTab w={'100%'} value="basic">
-                    <Group justify="center">
+                    <Stack align="center">
                       <IconCube
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
@@ -358,15 +409,15 @@ export default async function DroneDetail({
                       />
 
                       {product.kit.flyMore ? 'Basic Kit' : 'In the box'}
-                    </Group>
+                    </Stack>
                   </TabsTab>
                 </GridCol>
               )}
 
               {product?.kit?.flyMore && (
-                <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
+                <GridCol span={{ base: 6, xs: 6 }}>
                   <TabsTab w={'100%'} value="flyMore">
-                    <Group justify="center">
+                    <Stack align="center">
                       <IconCubePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
@@ -374,18 +425,18 @@ export default async function DroneDetail({
                       />
 
                       <span>Fly More Kit</span>
-                    </Group>
+                    </Stack>
                   </TabsTab>
                 </GridCol>
               )}
 
               {/* {product?.accessories?.battery && (
-                <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
+                <GridCol span={{ base: 6 }}>
                   <TabsTab
                     w={'100%'}
                     value="battery"
                       >
-                      <Group justify="center">
+                      <Group align="center">
                       <IconBattery3
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
@@ -401,9 +452,14 @@ export default async function DroneDetail({
               )} */}
 
               {product?.accessories?.other && (
-                <GridCol span={{ base: 12, xs: 6, md: 'auto' }}>
+                <GridCol
+                  span={{
+                    base: product?.kit?.flyMore ? 12 : 6,
+                    xs: 6,
+                  }}
+                >
                   <TabsTab w={'100%'} value="other">
-                    <Group justify="center">
+                    <Stack align="center">
                       <IconCubePlus
                         size={ICON_SIZE}
                         stroke={ICON_STROKE_WIDTH}
@@ -411,7 +467,7 @@ export default async function DroneDetail({
                       />
 
                       <span>Accessories (Extras)</span>
-                    </Group>
+                    </Stack>
                   </TabsTab>
                 </GridCol>
               )}

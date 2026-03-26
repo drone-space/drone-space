@@ -716,7 +716,7 @@ const products = [
     brand: 'dji',
     make: 'agras',
     model: null,
-    addidionalCosts: { shipping: 379000 },
+    additionalCosts: { shipping: 379000 },
     iframe: {
       src: 'https://www.youtube.com/embed/G8gjm2HALEM',
       title: 'Meet DJI Agras T50',

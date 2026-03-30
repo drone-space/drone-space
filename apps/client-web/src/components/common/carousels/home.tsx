@@ -42,11 +42,10 @@ export default function Home() {
       duration: '2 weeks',
       dates: [
         // intake date (s)
-        new Date(2026, 2, 3),
-        new Date(2026, 2, 10),
-        new Date(2026, 2, 17),
-        new Date(2026, 2, 24),
-        new Date(2026, 2, 31),
+        new Date(2026, 3, 7),
+        new Date(2026, 3, 14),
+        new Date(2026, 3, 21),
+        new Date(2026, 3, 28),
       ],
       price: {
         former: 170000,
@@ -225,7 +224,7 @@ const data = sortArray(
       duration: '14 - 21 days',
       dates: [
         // intake date (s)
-        new Date(2026, 2, 16),
+        new Date(2026, 3, 13),
       ],
       price: {
         former: null,
@@ -241,7 +240,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 2, 9),
+        new Date(2026, 3, 6),
       ],
       price: {
         former: null,
@@ -257,7 +256,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 2, 16),
+        new Date(2026, 3, 13),
       ],
       price: {
         former: null,
@@ -266,14 +265,14 @@ const data = sortArray(
     },
 
     {
-      badge: 'Agri',
+      badge: 'Agriculture',
       title: 'Agricultural Spraying',
       intro:
         'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
       duration: '10 days',
       dates: [
         // intake date (s)
-        new Date(2026, 2, 23),
+        new Date(2026, 3, 20),
       ],
       price: {
         former: null,
@@ -289,7 +288,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 2, 30),
+        new Date(2026, 3, 27),
       ],
       price: {
         former: null,

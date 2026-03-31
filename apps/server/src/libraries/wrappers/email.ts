@@ -5,7 +5,7 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import resend from '@/libraries/resend';
+import { resend } from '@/libraries/resend';
 import EmailInquiry from '@repo/components/email/inquiry';
 import EmailOnboardNewsletter from '@repo/components/email/onboard/newsletter';
 import EmailOnboardWelcome from '@repo/components/email/onboard/welcome';
@@ -34,11 +34,10 @@ const emailSendBase = async (options: SendEmailOptions) => {
   if (!inquiryEmail) throw new Error('Missing delivery email');
   if (!noReplyEmail) throw new Error('Missing no-reply email');
 
-  const fromEmail =
-    options.fromType === 'noreply' ? noReplyEmail : inquiryEmail;
+  const fromEmail = options.fromType === 'noreply' ? noReplyEmail : options.to;
 
   const { data, error } = await resend.emails.send({
-    from: `${options.fromName ?? appName} <${fromEmail}>`,
+    from: `${options.fromName ?? appName} <${isProduction() ? fromEmail : devEmail}>`,
     to: [isProduction() ? options.to : devEmail],
     subject: options.subject,
     replyTo: options.replyTo ?? noReplyEmail,

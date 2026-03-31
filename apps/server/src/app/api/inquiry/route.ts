@@ -7,10 +7,10 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { emailSendInquiry } from '@/libraries/wrappers/email';
-import { emailContactAdd } from '@/services/api/email/contacts';
+// import { emailContactAdd } from '@/services/api/email/contacts';
 import { FormValuesInquiry } from '@repo/types/form';
 
-export const runtime = 'nodejs';
+// export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   try {

@@ -1,12 +1,12 @@
 // app/sitemap.xml/route.ts
 import { NextResponse } from 'next/server';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { sitemapRoutes } from '@/data/routes';
+import { sitemapRoutes } from '@/data/links';
 import { PostRelations } from '@repo/types/models/post';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 // import accessories from '@/data/accessories';
 import { linkify } from '@repo/utilities/url';
-import products from '@/data/products';
+import { products } from '@repo/constants/products';
 
 export const dynamic = 'force-static';
 

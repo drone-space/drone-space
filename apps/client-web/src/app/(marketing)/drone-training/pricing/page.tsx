@@ -7,16 +7,16 @@ import LayoutSection from '@repo/components/layout/section';
 import CardPricingBasic from '@/components/common/cards/pricing/basic';
 import AccordionFaq from '@/components/common/accordions/faq';
 import IntroPage from '@repo/components/layout/intros/page';
-import courses from '@/data/courses';
+import { courseList, courses } from '@repo/constants/courses';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import { GetLayout } from '../../faq/page';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
-const metaTitle = `Drone Training Pricing - Affordable Courses at ${appName} Kenya`;
+const metaTitle = `Drone Training Pricing - Affordable Courses at ${APP_NAME} Kenya`;
 const metaDesc = `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`;
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

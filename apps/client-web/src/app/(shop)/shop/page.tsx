@@ -12,17 +12,17 @@ import {
   IconPhotoSensor3,
 } from '@tabler/icons-react';
 import IntroSection from '@repo/components/layout/intros/section';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { Metadata } from 'next';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
 import PartialDroneListing from '@/components/partial/drone-listing';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Drone Shop - Top Drones & Accessories at ${appName} Kenya`;
-const metaDesc = `Discover the best DJI drones in Kenya for every need at ${appName}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
+const metaTitle = `Drone Shop - Top Drones & Accessories at ${APP_NAME} Kenya`;
+const metaDesc = `Discover the best DJI drones in Kenya for every need at ${APP_NAME}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -49,7 +49,7 @@ export default async function Shop() {
       <IntroPage
         props={{
           path: 'Shop',
-          title: `Top Drones At ${appName}`,
+          title: `Top Drones At ${APP_NAME}`,
           desc: 'Shop top-rated drones for beginners, professionals, and enthusiasts.',
           bg: images.web.hero.light,
         }}

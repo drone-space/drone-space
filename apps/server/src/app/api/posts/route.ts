@@ -5,24 +5,19 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import prisma from '@/libraries/prisma';
+import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
-import { PostRelations } from '@repo/types/models/post';
-import { SyncStatus } from '@repo/types/models/enums';
+import { PostGet } from '@repo/types/models/post';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const userId = request.nextUrl.searchParams.get('userId');
+
     const postRecords = await prisma.post.findMany({
-      include: {
-        _count: { select: { comments: true } },
-
-        category: true,
-        profile: true,
-      },
-
+      where: !userId ? undefined : { profile_id: userId },
       orderBy: { created_at: 'desc' },
     });
 
@@ -45,7 +40,7 @@ export async function PUT(request: NextRequest) {
       posts,
       deletedIds,
     }: {
-      posts: PostRelations[];
+      posts: PostGet[];
       deletedIds?: string[];
     } = await request.json();
 
@@ -61,31 +56,13 @@ export async function PUT(request: NextRequest) {
       prisma.post.upsert({
         where: { id: post.id },
         update: {
-          image: post.image,
-          title: post.title,
-          excerpt: post.excerpt,
-          content: post.content,
-          allow_comments: post.allow_comments,
-          view_count: post.view_count,
-          status: post.status,
-          profile_id: post.profile_id,
-          category_id: post.category_id,
+          ...post,
           updated_at: new Date(post.updated_at),
         },
         create: {
-          id: post.id,
-          image: post.image,
-          title: post.title,
-          excerpt: post.excerpt,
-          content: post.content,
-          allow_comments: post.allow_comments,
-          view_count: post.view_count,
-          status: post.status,
-          profile_id: post.profile_id,
-          category_id: post.category_id,
+          ...post,
           created_at: new Date(post.created_at),
           updated_at: new Date(post.updated_at),
-          sync_status: post.sync_status || SyncStatus.SYNCED,
         },
       })
     );

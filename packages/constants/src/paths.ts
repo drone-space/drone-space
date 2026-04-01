@@ -8,15 +8,20 @@
 const isProduction = process.env.NODE_ENV === 'production';
 const useRemoteServer = process.env.NEXT_PUBLIC_USE_REMOTE_SERVER === 'true';
 
-// Select client host
+// Select WEB client host
 export const HOSTNAME_CLIENT_WEB = isProduction
   ? process.env.NEXT_PUBLIC_HOST_CLIENT_WEB_PROD
   : process.env.NEXT_PUBLIC_HOST_CLIENT_WEB_DEV;
 
-// Select mail client host
-export const HOSTNAME_CLIENT_MAIL = isProduction
-  ? process.env.NEXT_PUBLIC_HOST_CLIENT_MAIL_PROD
-  : process.env.NEXT_PUBLIC_HOST_CLIENT_MAIL_DEV;
+// Select SHOP client host
+export const HOSTNAME_CLIENT_SHOP = isProduction
+  ? process.env.NEXT_PUBLIC_HOST_CLIENT_SHOP_PROD
+  : process.env.NEXT_PUBLIC_HOST_CLIENT_SHOP_DEV;
+
+// Select LMS client host
+export const HOSTNAME_CLIENT_LMS = isProduction
+  ? process.env.NEXT_PUBLIC_HOST_CLIENT_LMS_PROD
+  : process.env.NEXT_PUBLIC_HOST_CLIENT_LMS_DEV;
 
 // Select server host
 const HOSTNAME_SERVER = isProduction
@@ -34,7 +39,8 @@ export const BASE_URL_SERVER = `${getUrlPrefix(HOSTNAME_SERVER)}${HOSTNAME_SERVE
 
 export const HOSTED_BASE_URL = {
   CLIENT_WEB: process.env.NEXT_PUBLIC_HOST_CLIENT_WEB_PROD || '',
-  CLIENT_MAIL: process.env.NEXT_PUBLIC_HOST_CLIENT_MAIL_PROD || '',
+  CLIENT_SHOP: process.env.NEXT_PUBLIC_HOST_CLIENT_SHOP_PROD || '',
+  CLIENT_LMS: process.env.NEXT_PUBLIC_HOST_CLIENT_LMS_PROD || '',
   SERVER: process.env.NEXT_PUBLIC_HOST_SERVER_PROD || '',
 };
 
@@ -51,4 +57,21 @@ export const API_URL = `${BASE_URL_SERVER}/api`;
 
 export const GEO_DATA_URL = {
   COUNTRIES: `${process.env.NEXT_PUBLIC_REST_COUNTRIES_API_URL}`,
+};
+
+export const AUTH_URLS = {
+  SIGN_IN: `/auth/sign-in`,
+  SIGN_UP: `/auth/sign-up`,
+  CHECK_EMAIL: `/auth/check-email`,
+  ERROR: `/auth/error`,
+  SIGN_OUT: `/auth/sign-out`,
+  REDIRECT: {
+    DEFAULT: '/app',
+  },
+};
+
+export const BASE_URL_CLIENT = {
+  LMS: `${getUrlPrefix(HOSTNAME_CLIENT_LMS)}${HOSTNAME_CLIENT_LMS}`,
+  SHOP: `${getUrlPrefix(HOSTNAME_CLIENT_SHOP)}${HOSTNAME_CLIENT_SHOP}`,
+  WEB: `${getUrlPrefix(HOSTNAME_CLIENT_WEB)}${HOSTNAME_CLIENT_WEB}`,
 };

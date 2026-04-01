@@ -13,7 +13,7 @@ import {
 import classes from './main.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
-import ModalContactShop from '@/components/common/modals/contact/shop';
+import ModalContactShop from '@repo/components/common/modals/contact/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({ data }: { data: typeDrone }) {

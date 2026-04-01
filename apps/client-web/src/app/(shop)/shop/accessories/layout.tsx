@@ -2,15 +2,15 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutBody from '@repo/components/layout/body';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
-import { appName, companyName } from '@repo/constants/app';
+import { images } from '@repo/constants/images';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 const metaTitle = `Drone Accessories`;
 
 export const metadata: Metadata = {
   title: {
     default: `Drone Accessories`,
-    template: `%s - ${metaTitle} - ${appName} Kenya`,
+    template: `%s - ${metaTitle} - ${APP_NAME} Kenya`,
   },
   openGraph: {
     title: metaTitle,
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

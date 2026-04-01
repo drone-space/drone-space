@@ -21,7 +21,7 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import ModalContactTraining from '../../modals/contact/training';
+import ModalContactTraining from '@repo/components/common/modals/contact/training';
 
 export default function Basic({
   data,

@@ -17,4 +17,5 @@ export enum SyncStatus {
   SAVED = 'SAVED',
   ERROR = 'ERROR',
   DELETED = 'DELETED',
+  SYNCED_CLIENT = 'SYNCED_CLIENT',
 }

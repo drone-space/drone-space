@@ -4,7 +4,7 @@ import React from 'react';
 import { usePathname } from 'next/navigation';
 import { Group, Stack, Title } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
-import BreadcrumbMain from '@/components/common/breadcrumbs/main';
+import BreadcrumbMain from '@repo/components/common/breadcrumbs/main';
 import { links } from '@/data/links';
 import classes from './main.module.scss';
 import { crumbify } from '@repo/utilities/url';

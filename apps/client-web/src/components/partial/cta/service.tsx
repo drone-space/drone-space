@@ -2,9 +2,9 @@ import React from 'react';
 import { Stack, Group, Text, Button, Title } from '@mantine/core';
 import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
 import LayoutSection from '@repo/components/layout/section';
-import ModalContactCallback from '@/components/common/modals/contact/callback';
+import ModalContactCallback from '@repo/components/common/modals/contact/callback';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ModalDownloadDocument from '@/components/common/modals/download/document';
+import ModalDownloadDocument from '@repo/components/common/modals/download/document';
 
 export default function Service() {
   return (

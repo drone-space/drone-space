@@ -6,11 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { emailSendInquiry } from '@/libraries/wrappers/email';
-// import { emailContactAdd } from '@/services/api/email/contacts';
+import { emailSendInquiry } from '@repo/libraries/wrappers/email';
+import { emailContactAdd } from '@repo/services/api/email/contacts';
 import { FormValuesInquiry } from '@repo/types/form';
-
-// export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,13 +17,13 @@ export async function POST(request: NextRequest) {
     // send email
     const sendMail = await emailSendInquiry(formData);
 
-    // // add email contact to subscriber list
-    // const addContact = await emailContactAdd(formData);
+    // add email contact to subscriber list
+    const addContact = await emailContactAdd(formData);
 
     return NextResponse.json(
       {
         sendMail,
-        // addContact,
+        addContact,
         message: 'Email sent successfully',
       },
       { status: 200, statusText: 'Email Sent' }

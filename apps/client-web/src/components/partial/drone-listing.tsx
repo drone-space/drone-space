@@ -5,7 +5,7 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@repo/constants/sizes';
-import products from '@/data/products';
+import { products } from '@repo/constants/products';
 import { capitalizeWords } from '@repo/utilities/string';
 import {
   ActionIcon,
@@ -45,7 +45,7 @@ import { prependZeros } from '@repo/utilities/number';
 import { Order } from '@repo/types/enums';
 import { useDebouncedCallback, useMediaQuery } from '@mantine/hooks';
 import CardShopFeatured from '../common/cards/shop/featured';
-import { Layout, Sort, useShopListing } from '@/hooks/shop';
+import { Layout, Sort, useShopListing } from '@repo/hooks/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function DroneListing() {

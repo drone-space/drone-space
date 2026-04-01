@@ -5,7 +5,7 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import prisma from '@/libraries/prisma';
+import prisma from '@repo/libraries/prisma';
 import { ProfileGet } from '@repo/types/models/profile';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -14,9 +14,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const profileRecords = await prisma.profile.findMany({
-      orderBy: { created_at: 'desc' },
-    });
+    const profileRecords = await prisma.profile.findMany();
 
     return NextResponse.json(
       { items: profileRecords },
@@ -50,22 +48,11 @@ export async function PUT(request: NextRequest) {
       prisma.profile.upsert({
         where: { id: profile.id },
         update: {
-          user_name: profile.user_name,
-          first_name: profile.first_name,
-          last_name: profile.last_name,
-          bio: profile.bio,
-          avatar: profile.avatar,
-          role: profile.role,
+          ...profile,
           updated_at: new Date(profile.updated_at),
         },
         create: {
-          id: profile.id,
-          user_name: profile.user_name,
-          first_name: profile.first_name,
-          last_name: profile.last_name,
-          bio: profile.bio,
-          avatar: profile.avatar,
-          role: profile.role,
+          ...profile,
           created_at: new Date(profile.created_at),
           updated_at: new Date(profile.updated_at),
         },

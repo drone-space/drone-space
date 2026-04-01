@@ -9,15 +9,15 @@ import { postsGet } from '@repo/handlers/requests/database/posts';
 import { PostRelations } from '@repo/types/models/post';
 import { Metadata } from 'next';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
-import { appName, companyName } from '@repo/constants/app';
+import { images } from '@repo/constants/images';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import CtaHome from '@/components/partial/cta/home';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
-const metaTitle = `${appName} Blog - Insights on Drone Training & Technology`;
-const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${appName} blog.`;
+const metaTitle = `${APP_NAME} Blog - Insights on Drone Training & Technology`;
+const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${APP_NAME} blog.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

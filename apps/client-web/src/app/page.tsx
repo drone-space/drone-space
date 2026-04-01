@@ -24,7 +24,7 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import ModalDownloadDocument from '@/components/common/modals/download/document';
+import ModalDownloadDocument from '@repo/components/common/modals/download/document';
 import {
   IconCalendarEvent,
   IconCertificate,
@@ -36,12 +36,12 @@ import {
   IconSchool,
   IconShoppingCart,
 } from '@tabler/icons-react';
-import ModalContactCallback from '@/components/common/modals/contact/callback';
-import ModalContactTraining from '@/components/common/modals/contact/training';
+import ModalContactCallback from '@repo/components/common/modals/contact/callback';
+import ModalContactTraining from '@repo/components/common/modals/contact/training';
 import services from '@/data/services';
 import CardService from '@/components/common/cards/service';
 import { shuffleArray } from '@repo/utilities/array';
-import products from '@/data/products';
+import { products } from '@repo/constants/products';
 import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
 import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
@@ -52,15 +52,15 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import IntroSection from '@repo/components/layout/intros/section';
-import { aboutStats, appName } from '@repo/constants/app';
-import AlertConference from '@/components/common/alerts/conference';
+import { ABOUT_STATS, COMPANY_NAME } from '@repo/constants/app';
+import AlertConference from '@repo/components/common/alerts/conference';
 import CtaHome from '@/components/partial/cta/home';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { Metadata } from 'next';
-import AffixAi from '@/components/common/affixi/ai';
+import AffixAi from '@repo/components/common/affixi/ai';
 
 export const metadata: Metadata = {
-  title: `${appName} - The Leading Drone Training Academy in Kenya`,
+  title: `${COMPANY_NAME} - The Leading Drone Training Academy in Kenya`,
 };
 
 export default function Home() {
@@ -152,7 +152,7 @@ export default function Home() {
           props={{
             subTitle: 'Services',
             title: 'Our Drone Solutions',
-            desc: `At ${appName}, we pride ourselves on delivering solutions tailored to meet your unique needs. From innovative strategies to hands-on support, our services are designed to help you achieve your goals and excel in a competitive landscape.`,
+            desc: `At ${COMPANY_NAME}, we pride ourselves on delivering solutions tailored to meet your unique needs. From innovative strategies to hands-on support, our services are designed to help you achieve your goals and excel in a competitive landscape.`,
           }}
           options={{ spacing: true }}
         />
@@ -238,7 +238,7 @@ export default function Home() {
           props={{
             subTitle: 'Relations',
             title: 'Our Clients',
-            desc: `At ${appName}, our clients are at the heart of everything we do. Over the years, we've had the privilege of collaborating with forward-thinking organizations across diverse industries, delivering tailored solutions that empower their success.`,
+            desc: `At ${COMPANY_NAME}, our clients are at the heart of everything we do. Over the years, we've had the privilege of collaborating with forward-thinking organizations across diverse industries, delivering tailored solutions that empower their success.`,
           }}
           options={{ spacing: true }}
         />
@@ -337,7 +337,7 @@ const whyUs = [
   },
   {
     icon: IconSchool,
-    title: `Over ${aboutStats.rplCertifications} RPL Certifications`,
+    title: `Over ${ABOUT_STATS.RPL_CERTIFICATIONS} RPL Certifications`,
     desc: 'The Remote Pilot Licence (RPL) Training is the initial license required for a delegate/student to start their professional drone pilot career. Join us today and experience the power of flight.',
   },
   {
@@ -347,7 +347,7 @@ const whyUs = [
   },
   {
     icon: IconDrone,
-    title: `${aboutStats.droneOperations}+ Drone Operations Completed`,
+    title: `${ABOUT_STATS.DRONE_OPERATIONS}+ Drone Operations Completed`,
     desc: 'Our skilled personnel are adept at spotting issues and verifying drone operations follow client specifications and regulatory standards. When problems arise, Drone Space provides instant reaction and communication to all parties.',
   },
 ];

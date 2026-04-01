@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
 import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
-import ModalContactService from '@/components/common/modals/contact/service';
+import ModalContactService from '@repo/components/common/modals/contact/service';
 import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
@@ -13,9 +13,9 @@ import {
 } from '@repo/constants/sizes';
 import IntroSection from '@repo/components/layout/intros/section';
 import ImageDefault from '@repo/components/common/images/default';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
-import { companyName } from '@repo/constants/app';
+import { COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

@@ -17,11 +17,10 @@ import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import ProviderMantine from '@repo/components/provider/mantine';
-import ProviderRedirects from '@repo/components/provider/redirect';
 import ProviderStore from '@/components/provider/store';
-import { appName } from '@repo/constants/app';
 import { mantine } from '@/assets/styles';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
+import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { isProduction } from '@repo/utilities/misc';
 
@@ -37,8 +36,8 @@ const novaMono = Nova_Mono({
 });
 
 export const metadata: Metadata = {
-  title: appName,
-  description: '',
+  title: COMPANY_NAME,
+  description: APP_DESC.WEB,
 };
 
 export default async function RootLayout({
@@ -70,7 +69,6 @@ export default async function RootLayout({
           <ProviderStore>{children}</ProviderStore>
         </ProviderMantine>
 
-        <ProviderRedirects />
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>

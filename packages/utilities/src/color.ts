@@ -5,7 +5,7 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import { generateSeededPrime, generateRandomPrime } from '@repo/utilities/generators';
+import { generateSeededPrime, generateRandomPrime } from './generators';
 
 /**
  * Options for color generation

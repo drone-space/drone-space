@@ -25,21 +25,21 @@ import CardShowsApplications from '@/components/common/cards/shows/applications'
 import AccordionShows from '@/components/common/accordions/shows';
 import CardShowsPrice from '@/components/common/cards/shows/price';
 import TableShows from '@/components/common/tables/shows';
-import ModalContactService from '@/components/common/modals/contact/service';
+import ModalContactService from '@repo/components/common/modals/contact/service';
 import CardShowsUnderstand from '@/components/common/cards/shows/understand';
 import {
   IconCalendarPlus,
   IconChevronsRight,
   IconPhone,
 } from '@tabler/icons-react';
-import { images } from '@/assets/images';
-import videos from '@/assets/videos';
+import { images } from '@repo/constants/images';
+import videos from '@repo/constants/videos';
 import shows from '@/data/shows';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import ImageDefault from '@repo/components/common/images/default';
 import IntroSection from '@repo/components/layout/intros/section';
-import { companyName, phones } from '@repo/constants/app';
+import { COMPANY_NAME, PHONES } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -374,7 +374,7 @@ export default async function LighShow() {
                 </ModalContactService>
                 <Button
                   component="a"
-                  href={`tel:${phones.main}`}
+                  href={`tel:${PHONES.MAIN}`}
                   miw={200}
                   color="sec.3"
                   c={'pri'}
@@ -382,7 +382,7 @@ export default async function LighShow() {
                     <IconPhone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                   }
                 >
-                  {phones.main}
+                  {PHONES.MAIN}
                 </Button>
               </Flex>
             </GridCol>

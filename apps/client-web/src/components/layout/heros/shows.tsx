@@ -10,7 +10,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import videos from '@/assets/videos';
+import videos from '@repo/constants/videos';
 import shows from '@/data/shows';
 
 export default function Shows() {

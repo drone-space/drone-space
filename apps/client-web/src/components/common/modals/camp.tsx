@@ -5,7 +5,7 @@ import NextImage from 'next/image';
 import { Modal, Image, Stack, Button } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import classes from './camp.module.scss';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import { IconCertificate } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';

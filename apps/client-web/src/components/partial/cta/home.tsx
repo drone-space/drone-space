@@ -9,10 +9,10 @@ import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
 import LayoutSection from '@repo/components/layout/section';
 import classes from './home.module.scss';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import { IconFileDownload, IconPhoneCall } from '@tabler/icons-react';
-import ModalContactCallback from '@/components/common/modals/contact/callback';
-import ModalDownloadDocument from '@/components/common/modals/download/document';
+import ModalContactCallback from '@repo/components/common/modals/contact/callback';
+import ModalDownloadDocument from '@repo/components/common/modals/download/document';
 
 export default function Home({
   params,

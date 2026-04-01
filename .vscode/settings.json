@@ -4,8 +4,10 @@
   "eslint.workingDirectories": [
     { "mode": "auto" },
 
+    { "directory": "packages/server", "changeProcessCWD": true },
     { "directory": "packages/client-web", "changeProcessCWD": true },
-    { "directory": "packages/client-mail", "changeProcessCWD": true },
+    { "directory": "packages/client-shop", "changeProcessCWD": true },
+    { "directory": "packages/client-lms", "changeProcessCWD": true },
 
     { "directory": "packages/components", "changeProcessCWD": true },
     { "directory": "packages/constants", "changeProcessCWD": true },

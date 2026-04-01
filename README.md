@@ -1,135 +1,250 @@
-# Turborepo starter
+# Drone Space Monorepo (Internal)
 
-This Turborepo starter is maintained by the Turborepo core team.
+![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
+![pnpm](https://img.shields.io/badge/package_manager-pnpm-blue)
+![Turborepo](https://img.shields.io/badge/monorepo-turborepo-orange)
+![Next.js](https://img.shields.io/badge/framework-Next.js%2016-black)
+![TypeScript](https://img.shields.io/badge/language-TypeScript-blue)
+![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-336791)
+![Prisma](https://img.shields.io/badge/orm-Prisma-2D3748)
+![License](https://img.shields.io/badge/license-Private-red)
 
-## Using this example
+---
 
-Run the following command:
+## Purpose
 
-```sh
-npx create-turbo@latest
-```
+Single repository for all Drone Space platforms.
 
-## What's inside?
+Goals:
 
-This Turborepo includes the following packages/apps:
+- Eliminate duplication across services
+- Enforce shared contracts (types, schema, validation)
+- Enable atomic changes across frontend + backend
+- Optimize build + dev performance via caching
 
-### Apps and Packages
+---
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Architectural Rules (Non-Negotiable)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. **No cross-app imports**
+   Apps must never import from other apps — only from `/packages`.
 
-### Utilities
+2. **Database is centralized**
+   All DB access goes through `packages/db`.
 
-This Turborepo has some additional tools already setup for you:
+3. **Types are global**
+   No redefining interfaces in apps.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+4. **Side effects are isolated**
+   External services (payments, email, etc.) live in `packages/services`.
 
-### Build
+5. **Apps are orchestration layers only**
+   Business logic belongs in packages.
 
-To build all apps and packages, run the following command:
+---
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Repository Structure
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+/apps
+  /web        → marketing site
+  /api        → backend (route handlers, services composition)
+  /academy    → LMS
+  /shop       → e-commerce
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+/packages
+  /db         → Prisma schema + client
+  /ui         → component system (Mantine)
+  /services   → external integrations
+  /handlers   → API abstractions (errors, responses)
+  /hooks      → shared React hooks
+  /libraries  → configured third-party utilities
+  /types      → global TS contracts
+  /constants  → enums + business rules
+  /utilities  → helpers
 ```
 
-### Develop
+---
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Dependency Flow
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+apps → packages → db
 ```
 
-### Remote Caching
+Strictly one-directional.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- Apps consume packages
+- Packages may depend on other packages
+- Only `db` talks to PostgreSQL
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+---
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## Environment Management
 
-```
-cd my-turborepo
+Each app has its own `.env`.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+Rules:
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+- No shared `.env` at root
+- Validate env using Zod (in `packages/libraries`)
+- Never access `process.env` directly in components — wrap via config layer
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+---
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Database Workflow
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+Location: `packages/db`
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+### Commands
+
+```bash
+npx prisma generate
+npx prisma migrate dev
+npx prisma studio
 ```
 
-## Useful Links
+### Rules
 
-Learn more about the power of Turborepo:
+- Schema changes must be backward compatible unless coordinated
+- Never manually edit generated Prisma client
+- Migrations are committed (no local-only state)
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+---
+
+## Development
+
+### Install
+
+```bash
+pnpm install
+```
+
+---
+
+### Run All Apps
+
+```bash
+pnpm dev
+```
+
+- Parallel execution via Turborepo
+- Cached builds where possible
+
+---
+
+### Run Single App
+
+```bash
+pnpm --filter web dev
+pnpm --filter api dev
+```
+
+---
+
+## Quality Gates
+
+Enforced at CI + local:
+
+- ESLint (strict)
+- Prettier (formatting)
+- TypeScript (no implicit any, strict mode)
+- Build must pass across all affected packages
+
+Failure in any package = pipeline failure.
+
+---
+
+## Build System (Turborepo)
+
+### Key Behavior
+
+- Task-level caching
+- Dependency graph aware
+- Incremental rebuilds
+
+### Example
+
+Change in:
+
+```
+packages/types
+```
+
+Triggers rebuild of:
+
+```
+→ api
+→ web
+→ academy
+→ shop
+```
+
+---
+
+## Common Pitfalls
+
+- Duplicating types inside apps
+- Calling Prisma outside `db` package
+- Embedding business logic in UI components
+- Direct third-party API calls in apps
+- Breaking schema without migration strategy
+
+---
+
+## Secrets & Security
+
+- `.env` files are ignored (never committed)
+- Secrets must not appear in logs
+- External services must handle:
+  - retries
+  - timeouts
+  - error normalization
+
+---
+
+## Observability (Planned / Partial)
+
+Not fully standardized yet.
+
+Recommended direction:
+
+- Centralized logging layer (package-level)
+- Request tracing across API
+- Structured logs (JSON)
+
+---
+
+## Scaling Strategy
+
+Current architecture favors:
+
+- speed of iteration
+- strong consistency
+
+If system complexity increases:
+
+- Introduce background jobs (queue workers)
+- Split heavy domains into isolated service modules (still inside monorepo)
+- Add caching layer (Redis) at service boundary, not UI
+
+---
+
+## Git Workflow
+
+- Branch from `main`
+- PR required
+- **Squash & merge only**
+
+Commit expectations:
+
+- atomic
+- descriptive
+- scoped
+
+---
+
+## License
+
+Private repository.
+Internal use only.

@@ -15,12 +15,12 @@ import {
 } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import LayoutSection from '@repo/components/layout/section';
 import classes from './home.module.scss';
-import { locations } from '@repo/constants/app';
+import { LOCATIONS } from '@repo/constants/app';
 import { getRegionalDate } from '@repo/utilities/date-time';
-import ModalContactTraining from '../modals/contact/training';
+import ModalContactTraining from '@repo/components/common/modals/contact/training';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 import ModalRequirements from '../modals/requirements';
@@ -86,14 +86,14 @@ export default function Home() {
               <Text ta={alignment} fz={'sm'}>
                 Theory Classes:{' '}
                 <Text component={'span'} inherit fw={'500'}>
-                  {locations.main.location}
+                  {LOCATIONS.MAIN.LOCATION}
                 </Text>
               </Text>
 
               <Text ta={alignment} fz={'sm'}>
                 Practicals:{' '}
                 <Text component={'span'} inherit fw={'500'}>
-                  {locations.airfield.location}
+                  {LOCATIONS.AIRFIELD.LOCATION}
                 </Text>
               </Text>
             </div>

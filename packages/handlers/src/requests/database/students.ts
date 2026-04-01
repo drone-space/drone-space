@@ -1,3 +1,10 @@
+/**
+ * @template-source next-template
+ * @template-sync auto
+ * @description This file originates from the base template repository.
+ * Do not modify unless you intend to backport changes to the template.
+ */
+
 import { API_URL } from '@repo/constants/paths';
 import { HEADERS } from '@repo/constants/other';
 import {
@@ -8,12 +15,15 @@ import {
 
 const baseRequestUrl = `${API_URL}/students`;
 
-export const studentsGet = async () => {
+export const studentsGet = async (params?: { userId?: string }) => {
   try {
-    const request = new Request(baseRequestUrl, {
-      method: 'GET',
-      headers: HEADERS.WITHOUT_BODY,
-    });
+    const request = new Request(
+      `${baseRequestUrl}?userId=${params?.userId || ''}`,
+      {
+        method: 'GET',
+        headers: HEADERS.WITHOUT_BODY,
+      }
+    );
 
     const response = await fetch(request);
 

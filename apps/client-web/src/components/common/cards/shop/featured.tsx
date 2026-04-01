@@ -1,5 +1,5 @@
 import React from 'react';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import {
   BackgroundImage,
   Badge,
@@ -11,8 +11,8 @@ import {
   Title,
 } from '@mantine/core';
 import { linkify } from '@repo/utilities/url';
-import products from '@/data/products';
-import ModalContactShop from '../../modals/contact/shop';
+import { products } from '@repo/constants/products';
+import ModalContactShop from '@repo/components/common/modals/contact/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Featured() {

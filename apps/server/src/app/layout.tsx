@@ -13,28 +13,27 @@ import '@mantine/notifications/styles.css';
 import '../styles/globals.scss';
 
 import type { Metadata } from 'next';
-import { Kanit, Tomorrow } from 'next/font/google';
+import { Montserrat, Nova_Mono } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import ProviderMantine from '@repo/components/provider/mantine';
-import { appName } from '@repo/constants/app';
+import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
-import { mantine } from '@/assets/styles';
+import { mantine } from '@/data/styles';
 
-const kanitSans = Kanit({
-  variable: '--font-kanit-sans',
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
-const tomorrowSans = Tomorrow({
-  variable: '--font-tomorrow-sans',
+const novaMono = Nova_Mono({
+  variable: '--font-nova-mono',
   subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: '400',
 });
 
 export const metadata: Metadata = {
-  title: `${appName} - API Engine`,
-  // description: '',
+  title: `${COMPANY_NAME} - API Engine`,
+  description: APP_DESC.WEB,
 };
 
 export default async function RootLayout({
@@ -53,12 +52,12 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* <meta name="description" content={''} /> */}
 
-        <title>{appName}</title>
+        <title>{COMPANY_NAME}</title>
 
         <ColorSchemeScript defaultColorScheme={DEFAULT_COLOR_SCHEME} />
       </head>
 
-      <body className={`${kanitSans.variable} ${tomorrowSans.variable}`}>
+      <body className={`${montserrat.variable} ${novaMono.variable}`}>
         <ProviderMantine
           appThemeProps={{ styleSheets: { ...mantine } }}
           options={{ withNotifications: true }}

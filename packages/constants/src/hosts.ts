@@ -5,13 +5,14 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-export const crossOrigins = [
+export const CROSS_ORIGINS = [
   'localhost',
   '127.0.0.1',
-  // vercel deployment
+
   'drone-space-client-web.vercel.app',
-  'drone-space-server.vercel.app',
-  // production domain
   'dronespace.co.ke',
-  'aiconference.co.ke',
+  'drone-space-client-shop.vercel.app',
+  'shop.dronespace.co.ke',
+  'drone-space-client-academy.vercel.app',
+  'academy.dronespace.co.ke',
 ];

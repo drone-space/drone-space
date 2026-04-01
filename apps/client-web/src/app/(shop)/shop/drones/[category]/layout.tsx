@@ -3,10 +3,10 @@ import { Metadata } from 'next';
 import LayoutBody from '@repo/components/layout/body';
 import { linkify } from '@repo/utilities/url';
 import { capitalizeWords } from '@repo/utilities/string';
-import products from '@/data/products';
+import { products } from '@repo/constants/products';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
-import { companyName } from '@repo/constants/app';
+import { images } from '@repo/constants/images';
+import { COMPANY_NAME } from '@repo/constants/app';
 
 export interface typeParams {
   category: string;
@@ -26,7 +26,7 @@ export const generateMetadata = async ({
   return {
     title: {
       default: metaTitle,
-      template: `%s - ${metaTitle} - ${companyName} Kenya`,
+      template: `%s - ${metaTitle} - ${COMPANY_NAME} Kenya`,
     },
     openGraph: {
       title: metaTitle,
@@ -38,7 +38,7 @@ export const generateMetadata = async ({
           url: images.brand.droneSpace.logo.potrait.meta,
           width: 1200,
           height: 1200,
-          alt: companyName,
+          alt: COMPANY_NAME,
         },
       ],
     },

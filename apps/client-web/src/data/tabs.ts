@@ -1,4 +1,4 @@
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 
 const tabs = {
   gallery: {

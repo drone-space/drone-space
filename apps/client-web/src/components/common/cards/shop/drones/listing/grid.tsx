@@ -17,7 +17,7 @@ import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
 import ImageDefault from '@repo/components/common/images/default';
 import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ModalContactShop from '@/components/common/modals/contact/shop';
+import ModalContactShop from '@repo/components/common/modals/contact/shop';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Grid({ data }: { data: typeDrone }) {
@@ -120,7 +120,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                 </Text>
               ) : (
                 <>
-                  <Text component="span" inherit>
+                  <Text component="span" inherit display={'block'}>
                     Kes.{' '}
                     <Text
                       component="span"
@@ -143,7 +143,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                   </Text>
 
                   {data.kit?.flyMore && (
-                    <Text fz={'sm'}>
+                    <Text fz={'sm'} component="span">
                       <Text component="span" inherit>
                         Kes.
                       </Text>{' '}

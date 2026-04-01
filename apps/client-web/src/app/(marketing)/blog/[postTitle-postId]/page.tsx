@@ -12,7 +12,7 @@ import { redirect } from 'next/navigation';
 import BlogContent from '@/components/partial/blog-content';
 import { linkify, processUrl } from '@repo/utilities/url';
 import { postsGet } from '@repo/handlers/requests/database/posts';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import CtaHome from '@/components/partial/cta/home';
 
 export const dynamic = 'force-static';

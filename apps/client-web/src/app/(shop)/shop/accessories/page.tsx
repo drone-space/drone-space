@@ -4,11 +4,11 @@ import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
 import CardShopDroneAccessory from '@/components/common/cards/shop/accessory';
 import { Grid, GridCol } from '@mantine/core';
-import accessories from '@/data/accessories';
+import accessories from '@repo/constants/accessories';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
-import { companyName } from '@repo/constants/app';
+import { COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

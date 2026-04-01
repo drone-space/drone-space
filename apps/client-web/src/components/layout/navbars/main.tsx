@@ -3,16 +3,16 @@
 import React from 'react';
 import { Group, Divider, Button, Box } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
-import DrawerNavbarMain from '@/components/common/drawers/navbar/main';
-import MenuNavbar from '@/components/common/menus/navbar';
+import DrawerNavbarMain from '@repo/components/common/drawers/navbar/main';
+import MenuNavbar from '@repo/components/common/menus/navbar';
 import classes from './main.module.scss';
 import { usePathname } from 'next/navigation';
 import { links } from '@/data/links';
 import ImageDefault from '@repo/components/common/images/default';
-import { images } from '@/assets/images';
-import ModalDownloadDocument from '@/components/common/modals/download/document';
-import ModalContactCallback from '@/components/common/modals/contact/callback';
-import { appName } from '@repo/constants/app';
+import { images } from '@repo/constants/images';
+import ModalDownloadDocument from '@repo/components/common/modals/download/document';
+import ModalContactCallback from '@repo/components/common/modals/contact/callback';
+import { APP_NAME } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main({
@@ -55,7 +55,7 @@ export default function Main({
   const imageBrand = (
     <ImageDefault
       src={images.brand.droneSpace.logo.landscape.default}
-      alt={appName}
+      alt={APP_NAME.WEB}
       height={{ base: 40 }}
       width={{ base: 200 }}
       fit="contain"

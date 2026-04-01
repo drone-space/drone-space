@@ -5,14 +5,14 @@ import LayoutSection from '@repo/components/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Privacy Policy - How ${appName} Protects Your Data`;
-const metaDesc = `Learn how ${appName} collects, uses, and protects your personal information. Your privacy is our priority.`;
+const metaTitle = `Privacy Policy - How ${APP_NAME.WEB} Protects Your Data`;
+const metaDesc = `Learn how ${APP_NAME.WEB} collects, uses, and protects your personal information. Your privacy is our priority.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -40,7 +40,7 @@ export default async function PrivacyPolicy() {
         props={{
           path: `Discretion`,
           title: 'Privacy Policy',
-          desc: `Learn how ${appName} collects, uses, and protects your personal information.`,
+          desc: `Learn how ${APP_NAME.WEB} collects, uses, and protects your personal information.`,
           bg: images.web.hero.light,
         }}
       />

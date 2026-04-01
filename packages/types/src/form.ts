@@ -21,6 +21,7 @@ export const formValuesInitialInquiry = {
   kit: '',
   subject: '',
   message: '',
+  APP_NAME: '',
   type: '' as InquiryType,
 };
 

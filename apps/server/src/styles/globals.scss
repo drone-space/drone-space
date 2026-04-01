@@ -27,7 +27,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-kanit-sans);
+  font-family: var(--font-montserrat);
   font-size: var(--mantine-font-size-md);
   line-height: var(--mantine-line-height);
   -webkit-font-smoothing: antialiased;
@@ -51,76 +51,4 @@ a {
   html {
     color-scheme: dark;
   }
-}
-
-/* Enable hover only on non-touch devices */
-/* @media (hover: hover) and (pointer: fine) {
-} */
-
-// scroll bar
-
-/* Width and height of the scrollbar */
-::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
-}
-
-/* Track (the background of the scrollbar) */
-::-webkit-scrollbar-track {
-  background: var(--mantine-color-dark-8);
-  border-radius: 0px;
-}
-
-/* Thumb (the draggable part) */
-::-webkit-scrollbar-thumb {
-  background: var(--mantine-color-pri-8);
-  border-radius: 0px;
-  border: 0px solid transparent;
-}
-
-/* Hover state for the thumb */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--mantine-color-pri-9);
-}
-
-// article styles
-.article section {
-  margin-top: var(--mantine-spacing-xl);
-}
-
-.article h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin-top: var(--mantine-spacing-md);
-}
-
-.article p {
-  margin-top: var(--mantine-spacing-md);
-  font-weight: 300;
-}
-
-.article ul,
-.article ol {
-  padding-left: 3rem;
-  margin-top: var(--mantine-spacing-md);
-}
-
-.article li {
-  margin-top: var(--mantine-spacing-xs);
-  font-weight: 300;
-}
-
-.code {
-  background-color: var(--mantine-color-gray-light);
-  margin: var(--mantine-spacing-xl) 0;
-  padding: 0 var(--mantine-spacing-lg);
-  border-radius: var(--mantine-radius-sm);
-}
-
-.code-inner {
-  overflow-x: auto;
 }

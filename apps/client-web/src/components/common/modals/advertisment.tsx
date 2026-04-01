@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Image, Button, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from './advertisment.module.scss';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import { IconSchool } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';

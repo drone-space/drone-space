@@ -4,8 +4,8 @@ import NavbarMain from '@/components/layout/navbars/main';
 import FooterMain from '@/components/layout/footers/main';
 import ModalFeatureDrone from '@/components/common/modals/feature-drone';
 import AffixNavbar from '@repo/components/common/affixi/navbar';
-import AffixAi from '@/components/common/affixi/ai';
-import AlertShipment from '@/components/common/alerts/shipment';
+import AffixAi from '@repo/components/common/affixi/ai';
+import AlertShipment from '@repo/components/common/alerts/shipment';
 // import AffixAi from '@/components/common/affixi/ai';
 
 export default async function LayoutShop({

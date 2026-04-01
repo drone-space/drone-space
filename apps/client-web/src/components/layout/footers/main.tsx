@@ -14,7 +14,7 @@ import {
   Image,
   Button,
 } from '@mantine/core';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import classes from './main.module.scss';
 import { serviceLinks, socialLinks, trainingLinks } from '@/data/links';
 import NextImage from 'next/image';
@@ -22,12 +22,13 @@ import LayoutSection from '@repo/components/layout/section';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
 import ImageDefault from '@repo/components/common/images/default';
-import ModalConference from '@/components/common/modals/conference';
-import { appName, emails, phones } from '@repo/constants/app';
+import ModalConference from '@repo/components/common/modals/conference';
+import { COMPANY_NAME, EMAILS, LOCATIONS, PHONES } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Main() {
@@ -44,7 +45,7 @@ export default function Main() {
               <NextLink href={'/'}>
                 <ImageDefault
                   src={images.brand.droneSpace.logo.landscape.default}
-                  alt={appName}
+                  alt={COMPANY_NAME}
                   height={{ base: 40 }}
                   width={{ base: 200 }}
                   fit="contain"
@@ -56,14 +57,14 @@ export default function Main() {
             <Text
               maw={{ md: '90%', lg: '80%' }}
               ta={{ base: 'center', md: 'start' }}
-              fz={'sm'}
+              fz={'md'}
             >
-              {appName} is approved and certified by KCAA to offer RPL courses
-              in multi-rotor and fixed wing, RPL instructor rating and soon
-              Beyond Visual Line of Sight (BVLOS) rating. The Academy provides
-              Kenya&apos;s highest quality drone training with a simple yet
-              comprehensive model for corporate clients, government agencies,
-              public safety departments, and individuals.
+              {COMPANY_NAME} is approved and certified by KCAA to offer RPL
+              courses in multi-rotor and fixed wing, RPL instructor rating and
+              soon Beyond Visual Line of Sight (BVLOS) rating. The Academy
+              provides Kenya&apos;s highest quality drone training with a simple
+              yet comprehensive model for corporate clients, government
+              agencies, public safety departments, and individuals.
             </Text>
 
             <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
@@ -75,8 +76,8 @@ export default function Main() {
                       alt={social.title}
                       title={social.title}
                       component={NextImage}
-                      height={24}
-                      width={24}
+                      height={ICON_WRAPPER_SIZE}
+                      width={ICON_WRAPPER_SIZE}
                       priority
                     />
                   </Stack>
@@ -105,7 +106,7 @@ export default function Main() {
                         <NextLink
                           href={link.link}
                           className={classes.link}
-                          fz={{ base: 'sm', md: 'xs', lg: 'sm' }}
+                          fz={{ base: 'sm', md: 'xs', lg: 'md' }}
                         >
                           {link.label}
                         </NextLink>
@@ -152,14 +153,20 @@ export default function Main() {
 
       <Divider mb={'xl'} color="var(--mantine-color-default-border)" />
 
-      <Stack fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
+      <Stack ta={{ base: 'center', md: 'start' }} lh={1}>
         <Flex
           align={'center'}
           justify={{ sm: 'space-between' }}
           direction={{ base: 'column', sm: 'row' }}
           gap={'md'}
+          fz={'sm'}
+          fw={500}
         >
-          <Group gap={'xs'} fz={'xs'}>
+          <Text component="span" inherit>
+            © {new Date().getFullYear()}, All Rights Reserved.
+          </Text>
+
+          <Group gap={'xs'}>
             <NextLink inherit href="/legal/terms" className={classes.link}>
               Terms and Conditions
             </NextLink>
@@ -170,10 +177,6 @@ export default function Main() {
               Privacy Policy
             </NextLink>
           </Group>
-
-          <Text component="span" inherit>
-            {appName} © {new Date().getFullYear()}, All Rights Reserved.
-          </Text>
         </Flex>
       </Stack>
     </LayoutSection>
@@ -181,12 +184,12 @@ export default function Main() {
 }
 
 const email = {
-  info: emails.info,
-  training: emails.training,
+  info: EMAILS.INFO,
+  training: EMAILS.TRAINING,
 };
 const phone = {
-  pri: phones.main,
-  sec: phones.other,
+  pri: PHONES.MAIN,
+  sec: PHONES.OTHER,
 };
 
 const linkSets = [

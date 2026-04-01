@@ -1,7 +1,8 @@
 import React from 'react';
 import LayoutSection from '@repo/components/layout/section';
-import CarouselShop from '@/components/common/carousels/shop';
+import CarouselShop from '@repo/components/common/carousels/shop';
 import classes from './shop.module.scss';
+import { shopLinks } from '@/data/links';
 
 export default function Shop() {
   return (
@@ -10,7 +11,7 @@ export default function Shop() {
       className={classes.hero}
       containerized={false}
     >
-      <CarouselShop />
+      <CarouselShop props={{ shopLinks }} />
     </LayoutSection>
   );
 }

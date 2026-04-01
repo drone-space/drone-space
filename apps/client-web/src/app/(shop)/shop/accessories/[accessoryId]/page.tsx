@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
-import accessories from '@/data/accessories';
+import accessories from '@repo/constants/accessories';
 import { linkify } from '@repo/utilities/url';
 import CarouselImage from '@/components/common/carousels/image';
 import IntroPage from '@repo/components/layout/intros/page';
@@ -24,7 +24,7 @@ import {
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
 } from '@repo/constants/sizes';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;

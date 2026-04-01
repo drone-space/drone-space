@@ -25,7 +25,7 @@ import {
 } from '@mantine/core';
 import LayoutPage from '@repo/components/layout/page';
 import LayoutSection from '@repo/components/layout/section';
-import ModalContactShop from '@/components/common/modals/contact/shop';
+import ModalContactShop from '@repo/components/common/modals/contact/shop';
 import CardShopAccessory from '@/components/common/cards/shop/accessory';
 import CarouselImage from '@/components/common/carousels/image';
 import { typeParams } from '../layout';
@@ -47,9 +47,9 @@ import {
 } from '@repo/constants/sizes';
 import ImageDefault from '@repo/components/common/images/default';
 import IntroPage from '@repo/components/layout/intros/page';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import classesBadge from './page.module.scss';
-import products from '@/data/products';
+import { products } from '@repo/constants/products';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;

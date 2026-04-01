@@ -18,7 +18,7 @@ interface SectionHeaderProps {
     desc?: string;
   };
   options?: {
-    alignment?: 'start' | 'end' | 'center' | any;
+    alignment?: any;
     spacing?: boolean;
   };
 }

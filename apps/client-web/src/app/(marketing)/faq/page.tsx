@@ -6,14 +6,14 @@ import IntroPage from '@repo/components/layout/intros/page';
 import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroSection from '@repo/components/layout/intros/section';
 import { Grid, GridCol } from '@mantine/core';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `${appName} FAQ - Answers to Your Drone Training Questions`;
+const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
   'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';
 
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

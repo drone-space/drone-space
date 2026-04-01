@@ -13,11 +13,11 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import ModalContactShop from '@/components/common/modals/contact/shop';
+import ModalContactShop from '@repo/components/common/modals/contact/shop';
 import { linkify } from '@repo/utilities/url';
 import classes from './featured.module.scss';
-import products from '@/data/products';
-import { images } from '@/assets/images';
+import { products } from '@repo/constants/products';
+import { images } from '@repo/constants/images';
 import { IconX } from '@tabler/icons-react';
 import {
   ICON_SIZE,
@@ -25,7 +25,7 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import ImageDefault from '@repo/components/common/images/default';
-import { useCloseAllModals } from '@/hooks/buses/modal';
+import { useCloseAllModals } from '@repo/hooks/buses/modal';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Featured({ close }: { close?: () => void }) {

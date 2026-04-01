@@ -1,4 +1,4 @@
-import anthropic from '@/libraries/anthropic';
+import anthropic from '@repo/libraries/anthropic';
 import { NextRequest, NextResponse } from 'next/server';
 import { MessageParam } from '@anthropic-ai/sdk/resources';
 

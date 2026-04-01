@@ -2,11 +2,11 @@ import React from 'react';
 import { Metadata } from 'next';
 import LayoutBody from '@repo/components/layout/body';
 import { linkify } from '@repo/utilities/url';
-import products from '@/data/products';
+import { products } from '@repo/constants/products';
 import { typeParams } from '../layout';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
-import { companyName } from '@repo/constants/app';
+import { images } from '@repo/constants/images';
+import { COMPANY_NAME } from '@repo/constants/app';
 
 export const generateMetadata = async ({
   params,
@@ -28,7 +28,7 @@ export const generateMetadata = async ({
           url: images.brand.droneSpace.logo.potrait.meta,
           width: 1200,
           height: 1200,
-          alt: companyName,
+          alt: COMPANY_NAME,
         },
       ],
     },

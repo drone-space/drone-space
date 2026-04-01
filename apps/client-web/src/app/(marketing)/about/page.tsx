@@ -11,8 +11,8 @@ import {
   GridCol,
   Text,
 } from '@mantine/core';
-import { images } from '@/assets/images';
-import videos from '@/assets/videos';
+import { images } from '@repo/constants/images';
+import videos from '@repo/constants/videos';
 import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
 import { SECTION_SPACING } from '@repo/constants/sizes';
@@ -25,14 +25,14 @@ import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 // import CardTeamMain from '@/components/common/cards/team/main';
 // import { team } from '@/data/team';
 import IntroPage from '@repo/components/layout/intros/page';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { StudentGet } from '@repo/types/models/student';
 import { studentsGet } from '@repo/handlers/requests/database/students';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
-const metaTitle = `About ${appName} - Kenya's Leading Drone Training Academy`;
+const metaTitle = `About ${APP_NAME.WEB} - Kenya's Leading Drone Training Academy`;
 const metaDesc =
   'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.';
 
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -119,9 +119,9 @@ export default async function About() {
             />
 
             <Text mt={'xl'}>
-              {appName} is one of the first certified UTO, ROC and Drone
-              distributors in Kenya. Established in 2018, {appName} is approved
-              and certified by{' '}
+              {APP_NAME.WEB} is one of the first certified UTO, ROC and Drone
+              distributors in Kenya. Established in 2018, {APP_NAME.WEB} is
+              approved and certified by{' '}
               <Anchor
                 inherit
                 underline="hover"
@@ -139,18 +139,18 @@ export default async function About() {
             </Text>
 
             <Text mt={'xs'}>
-              {appName} is a holder of Remote Operator&apos;s Certificate (ROC)
-              approved by KCAA to conduct drone operations in search and rescue,
-              power lines inspection, agricultural spraying, photography and
-              cinematography, solar inspection, runway calibration among other
-              operations.
+              {APP_NAME.WEB} is a holder of Remote Operator&apos;s Certificate
+              (ROC) approved by KCAA to conduct drone operations in search and
+              rescue, power lines inspection, agricultural spraying, photography
+              and cinematography, solar inspection, runway calibration among
+              other operations.
             </Text>
 
             <Text mt={'xs'}>
-              {appName} is also a certified distributor and a reseller of
-              Unmanned Aircraft Vehicles/drones. {appName} is one of the few
-              approved importers of UAS into Kenya having supplied the United
-              Nations-WFP, Museums of Kenya and Ericson&apos;s
+              {APP_NAME.WEB} is also a certified distributor and a reseller of
+              Unmanned Aircraft Vehicles/drones. {APP_NAME.WEB} is one of the
+              few approved importers of UAS into Kenya having supplied the
+              United Nations-WFP, Museums of Kenya and Ericson&apos;s
             </Text>
           </GridCol>
         </Grid>
@@ -315,7 +315,7 @@ export default async function About() {
             props={{
               subTitle: 'Testimonials',
               title: 'What Our Clients Say',
-              desc: `At ${appName}, we take pride in delivering exceptional
+              desc: `At ${APP_NAME.WEB}, we take pride in delivering exceptional
               results that exceed expectations. Take a moment to hear directly from the people who
               matter most: our valued clients.`,
             }}

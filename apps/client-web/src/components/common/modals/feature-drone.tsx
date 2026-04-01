@@ -8,7 +8,6 @@ import {
   setCookieClient,
 } from '@repo/utilities/cookie-client';
 import CtaFeatured from '@/components/partial/cta/featured';
-import { useStoreModal } from '@/libraries/zustand/stores/modals';
 
 export default function FeatureDrone({
   options,
@@ -19,7 +18,7 @@ export default function FeatureDrone({
 }) {
   const [opened, setOpened] = useState(false);
 
-  const { modal, setModal } = useStoreModal();
+  // const { modal, setModal } = useStoreModal();
 
   const close = () => {
     setCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN, true, {
@@ -28,19 +27,19 @@ export default function FeatureDrone({
       sameSite: 'Lax',
     });
 
-    setModal({ newsletter: modal?.newsletter ?? false, featuredDrone: false });
+    // setModal({ newsletter: modal?.newsletter ?? false, featuredDrone: false });
     setOpened(false);
   };
 
   useEffect(() => {
-    if (modal?.featuredDrone == null) return;
-    if (modal?.featuredDrone == true) return;
+    // if (modal?.featuredDrone == null) return;
+    // if (modal?.featuredDrone == true) return;
     if (options?.auto == false) return;
 
     const featDroneSeen = getCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN);
     if (featDroneSeen && featDroneSeen == 'true') return;
 
-    setModal({ newsletter: modal?.newsletter ?? false, featuredDrone: true });
+    // setModal({ newsletter: modal?.newsletter ?? false, featuredDrone: true });
     setOpened(true);
   }, []);
 
@@ -65,12 +64,12 @@ export default function FeatureDrone({
         <span
           style={{ display: 'inline' }}
           onClick={() => {
-            if (modal?.featuredDrone == true) return;
+            // if (modal?.featuredDrone == true) return;
 
-            setModal({
-              newsletter: modal?.newsletter ?? false,
-              featuredDrone: true,
-            });
+            // setModal({
+            //   newsletter: modal?.newsletter ?? false,
+            //   featuredDrone: true,
+            // });
             setOpened(true);
           }}
         >

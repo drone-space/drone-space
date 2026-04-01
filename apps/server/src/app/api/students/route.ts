@@ -5,9 +5,8 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import prisma from '@/libraries/prisma';
+import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
-import { SyncStatus } from '@repo/types/models/enums';
 import { StudentGet } from '@repo/types/models/student';
 
 export const dynamic = 'force-dynamic';
@@ -54,22 +53,11 @@ export async function PUT(request: NextRequest) {
       prisma.student.upsert({
         where: { id: student.id },
         update: {
-          image: student.image,
-          name: student.name,
-          position: student.position,
-          quote: student.quote,
-          status: student.status,
-          sync_status: student.sync_status,
+          ...student,
           updated_at: new Date(student.updated_at),
         },
         create: {
-          id: student.id,
-          image: student.image,
-          name: student.name,
-          position: student.position,
-          quote: student.quote,
-          status: student.status,
-          sync_status: student.sync_status || SyncStatus.SYNCED,
+          ...student,
           created_at: new Date(student.created_at),
           updated_at: new Date(student.updated_at),
         },

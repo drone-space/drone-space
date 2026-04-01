@@ -22,10 +22,11 @@ import {
 } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';
 import services from './services';
-import { courseList } from './courses';
-import { images } from '@/assets/images';
-import { AUTH_URLS } from './constants';
-import { socials } from '@repo/constants/app';
+import { courseList } from '@repo/constants/courses';
+import { images } from '@repo/constants/images';
+import { AUTH_URLS } from '@repo/constants/paths';
+import { SOCIALS } from '@repo/constants/app';
+import { cleanPaths } from '@repo/utilities/array';
 
 export const shopLinks = [
   {
@@ -207,28 +208,33 @@ export const navLinkItems = {
 export const socialLinks = [
   {
     image: images.icons.social.twitterx,
-    title: socials[0].label,
-    link: socials[0].link,
+    title: SOCIALS.X.label,
+    link: SOCIALS.X.link,
   },
   {
     image: images.icons.social.facebook,
-    title: socials[1].label,
-    link: socials[1].link,
+    title: SOCIALS.FB.label,
+    link: SOCIALS.FB.link,
   },
   {
     image: images.icons.social.instagram,
-    title: socials[2].label,
-    link: socials[2].link,
+    title: SOCIALS.IG.label,
+    link: SOCIALS.IG.link,
   },
   {
     image: images.icons.social.linkedin,
-    title: socials[3].label,
-    link: socials[3].link,
+    title: SOCIALS.LI.label,
+    link: SOCIALS.LI.link,
+  },
+  {
+    image: images.icons.social.youtube,
+    title: SOCIALS.YT.label,
+    link: SOCIALS.YT.link,
   },
   {
     image: images.icons.social.whatsapp,
-    title: socials[4].label,
-    link: socials[4].link,
+    title: SOCIALS.WA.label,
+    link: SOCIALS.WA.link,
   },
 ];
 
@@ -303,3 +309,33 @@ export const links = [
     ],
   },
 ];
+
+const mainLinks = [
+  ...links,
+  ...shopLinks,
+  ...trainingLinks,
+  ...serviceLinks,
+].map((l) => l.link);
+const subLinks: string[] = [];
+
+links.map((l) => {
+  if (l.subLinks) {
+    l.subLinks.map((sl) => {
+      subLinks.push(sl.link);
+    });
+  }
+});
+
+export const unprotectedRoutes = [
+  ...cleanPaths(
+    [
+      '/',
+      ...mainLinks,
+      ...subLinks,
+      // '/legal/terms',
+      // '/legal/policy',
+    ].filter((l) => !l.startsWith('/#'))
+  ),
+];
+
+export const sitemapRoutes = [...unprotectedRoutes].filter((l) => l != '/');

@@ -13,13 +13,13 @@ import LayoutSection from '@repo/components/layout/section';
 import PartialGallery from '@/components/partial/gallery';
 import tabs from '@/data/tabs';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `${appName} Gallery - Showcasing Our Training & Aerial Services`;
+const metaTitle = `${APP_NAME.WEB} Gallery - Showcasing Our Training & Aerial Services`;
 const metaDesc =
   'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },

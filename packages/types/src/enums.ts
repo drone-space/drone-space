@@ -63,3 +63,28 @@ export enum Platform {
   WHATSAPP = 'WHATSAPP',
   INSTAGRAM = 'INSTAGRAM',
 }
+
+export enum Weekdays {
+  MO = 'MO',
+  TU = 'TU',
+  WE = 'WE',
+  TH = 'TH',
+  FR = 'FR',
+  SA = 'SA',
+  SU = 'SU',
+}
+
+export enum Months {
+  JAN = 'JAN',
+  FEB = 'FEB',
+  MAR = 'MAR',
+  APR = 'APR',
+  MAY = 'MAY',
+  JUN = 'JUN',
+  JUL = 'JUL',
+  AUG = 'AUG',
+  SEP = 'SEP',
+  OCT = 'OCT',
+  NOV = 'NOV',
+  DEC = 'DEC',
+}

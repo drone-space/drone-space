@@ -57,6 +57,7 @@ export default function Default({
         fill
         quality={restProps.quality || 100}
         {...restProps}
+        radius={'lg'}
       />
     </Center>
   );

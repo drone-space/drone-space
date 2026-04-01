@@ -6,22 +6,22 @@ import IntroSection from '@repo/components/layout/intros/section';
 import { Anchor, Card, Grid, GridCol, Text, Title } from '@mantine/core';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import IframeContact from '@/components/common/iframes/contact';
-import { images } from '@/assets/images';
+import IframeContact from '@repo/components/common/iframes/contact';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
 import {
-  appName,
-  companyName,
-  emails,
-  locations,
-  phones,
+  APP_NAME,
+  COMPANY_NAME,
+  EMAILS,
+  LOCATIONS,
+  PHONES,
 } from '@repo/constants/app';
-import FormContact from '@/components/form/contact';
+import FormContact from '@repo/components/form/contact';
 import NextLink from '@repo/components/common/anchor/next-link';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Contact ${appName} - Reach Out for Training & Services`;
+const metaTitle = `Contact ${APP_NAME.WEB} - Reach Out for Training & Services`;
 const metaDesc =
   'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.';
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -58,7 +58,7 @@ export default async function Contact() {
 
       <LayoutSection
         id="page-contact-cards"
-        padded={SECTION_SPACING / 2}
+        padded
         containerized={'responsive'}
       >
         <Grid>
@@ -68,22 +68,22 @@ export default async function Contact() {
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`mailto:${emails.info}`}
+                href={`mailto:${EMAILS.INFO}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {emails.info}
+                {EMAILS.INFO}
               </Anchor>
 
               <Anchor
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`mailto:${emails.training}`}
+                href={`mailto:${EMAILS.TRAINING}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {emails.training}
+                {EMAILS.TRAINING}
               </Anchor>
             </CardContact>
           </GridCol>
@@ -91,7 +91,7 @@ export default async function Contact() {
           <GridCol span={{ base: 12, md: 4 }} order={{ xs: 3, md: 2 }}>
             <CardContact props={{ title: 'Office Address' }}>
               <Text ta={'center'} fz={'sm'} w={{ md: '75%', lg: '66%' }}>
-                {locations.main.location}
+                {LOCATIONS.MAIN.LOCATION}
               </Text>
             </CardContact>
           </GridCol>
@@ -102,22 +102,22 @@ export default async function Contact() {
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`tel:${phones.main}`}
+                href={`tel:${PHONES.MAIN}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {phones.main}
+                {PHONES.MAIN}
               </Anchor>
 
               <Anchor
                 inherit
                 ta={'center'}
                 fz={'sm'}
-                href={`tel:${phones.other}`}
+                href={`tel:${PHONES.OTHER}`}
                 underline="hover"
                 c={'var(--mantine-color-text)'}
               >
-                {phones.other}
+                {PHONES.OTHER}
               </Anchor>
             </CardContact>
           </GridCol>
@@ -126,7 +126,7 @@ export default async function Contact() {
 
       <LayoutSection
         id="page-contact"
-        padded={SECTION_SPACING / 2}
+        padded
         bg={'var(--mantine-color-gray-1)'}
       >
         <IntroSection
@@ -144,7 +144,7 @@ export default async function Contact() {
               <Card padding={0}>
                 <IframeContact
                   props={{
-                    src: locations.main.iframe,
+                    src: LOCATIONS.MAIN.IFRAME,
                     height: { base: 320, xs: 480, md: 640 },
                   }}
                 />

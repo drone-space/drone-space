@@ -5,14 +5,14 @@ import LayoutSection from '@repo/components/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Terms and Conditions - ${appName} Kenya`;
-const metaDesc = `Review the terms and conditions governing the use of ${appName} services, training, and products. Stay informed about our policies and commitments.`;
+const metaTitle = `Terms and Conditions - ${APP_NAME.WEB} Kenya`;
+const metaDesc = `Review the terms and conditions governing the use of ${APP_NAME.WEB} services, training, and products. Stay informed about our policies and commitments.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -40,7 +40,7 @@ export default async function TermsConditions() {
         props={{
           path: `T & C`,
           title: 'Terms and Conditions',
-          desc: `Review the terms and conditions governing the use of ${appName} services, training, and products.`,
+          desc: `Review the terms and conditions governing the use of ${APP_NAME.WEB} services, training, and products.`,
           bg: images.web.hero.light,
         }}
       />

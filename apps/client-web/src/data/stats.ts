@@ -1,4 +1,4 @@
-import { aboutStats } from '@repo/constants/app';
+import { ABOUT_STATS } from '@repo/constants/app';
 
 const stats = [
   {
@@ -18,7 +18,7 @@ const stats = [
     title: 'Major Industry Events',
   },
   {
-    stat: `${aboutStats.rplCertifications}+`,
+    stat: `${ABOUT_STATS.RPL_CERTIFICATIONS}+`,
     title: 'RPL Certifications',
   },
 ];

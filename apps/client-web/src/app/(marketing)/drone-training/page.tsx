@@ -15,7 +15,7 @@ import {
   Button,
   Stack,
 } from '@mantine/core';
-import ModalContactTraining from '@/components/common/modals/contact/training';
+import ModalContactTraining from '@repo/components/common/modals/contact/training';
 import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
@@ -26,16 +26,16 @@ import {
 } from '@repo/constants/sizes';
 import IntroSection from '@repo/components/layout/intros/section';
 import ImageDefault from '@repo/components/common/images/default';
-import { images } from '@/assets/images';
+import { images } from '@repo/constants/images';
 import CardCourse from '@/components/common/cards/training/course';
 import { linkify } from '@repo/utilities/url';
-import { courseList } from '@/data/courses';
+import { courseList } from '@repo/constants/courses';
 import IntroPage from '@repo/components/layout/intros/page';
-import { appName, companyName } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Drone Training In Kenya - Professional Courses at ${appName} Kenya`;
+const metaTitle = `Drone Training In Kenya - Professional Courses at ${APP_NAME.WEB} Kenya`;
 const metaDesc = `Kenya's leading KCAA certified drone training academy. Train with expert instructors in Nairobi and master drone technology. Enroll today!`;
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: images.brand.droneSpace.logo.potrait.meta,
         width: 1200,
         height: 1200,
-        alt: companyName,
+        alt: COMPANY_NAME,
       },
     ],
   },
@@ -83,7 +83,7 @@ export default async function DroneTraining() {
             />
 
             <Text pr={{ md: 'md' }} mt={'xl'}>
-              {companyName} is an authorized provider of the following ratings
+              {COMPANY_NAME} is an authorized provider of the following ratings
               for your Remote Pilot License (RPL) and more than one rating can
               be obtained:
             </Text>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Anchor, Flex, Group, Text } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
 import { IconCircleFilled, IconPhone } from '@tabler/icons-react';
-import { emails, locations, phones } from '@repo/constants/app';
+import { EMAILS, LOCATIONS, PHONES } from '@repo/constants/app';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 
 export default function Main() {
@@ -63,10 +63,10 @@ export default function Main() {
   );
 }
 
-const email = emails.info;
-const phone1 = phones.main;
+const email = EMAILS.INFO;
+const phone1 = PHONES.MAIN;
 // const phone2 = phones.other;
-const location = locations.main.location;
+const location = LOCATIONS.MAIN.LOCATION;
 
 const data = {
   left: [

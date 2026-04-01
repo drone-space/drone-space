@@ -19,7 +19,7 @@ import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `${APP_NAME} Gallery - Showcasing Our Training & Aerial Services`;
+const metaTitle = `${APP_NAME.WEB} Gallery - Showcasing Our Training & Aerial Services`;
 const metaDesc =
   'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';
 

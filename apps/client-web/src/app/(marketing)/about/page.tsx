@@ -32,7 +32,7 @@ import { studentsGet } from '@repo/handlers/requests/database/students';
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
-const metaTitle = `About ${APP_NAME} - Kenya's Leading Drone Training Academy`;
+const metaTitle = `About ${APP_NAME.WEB} - Kenya's Leading Drone Training Academy`;
 const metaDesc =
   'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.';
 

@@ -21,7 +21,7 @@ import NextLink from '@repo/components/common/anchor/next-link';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Contact ${APP_NAME} - Reach Out for Training & Services`;
+const metaTitle = `Contact ${APP_NAME.WEB} - Reach Out for Training & Services`;
 const metaDesc =
   'Have questions or need assistance? Get in touch with Drone Space today for drone training, services, and inquiries in Kenya.';
 
@@ -58,7 +58,7 @@ export default async function Contact() {
 
       <LayoutSection
         id="page-contact-cards"
-        padded={SECTION_SPACING / 2}
+        padded
         containerized={'responsive'}
       >
         <Grid>
@@ -126,7 +126,7 @@ export default async function Contact() {
 
       <LayoutSection
         id="page-contact"
-        padded={SECTION_SPACING / 2}
+        padded
         bg={'var(--mantine-color-gray-1)'}
       >
         <IntroSection

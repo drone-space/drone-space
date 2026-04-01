@@ -59,18 +59,19 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
   const fullName = `${params.fname || ''} ${params.lname || ''}`.trim();
 
   emailSendBase({
-    fromName: fullName,
+    fromName: 'Drone Space Inquiries',
     to: EMAILS.INFO,
     replyTo: params.email,
     fromType: 'delivery',
     template: {
-      id: 'inquiry-1',
+      id: 'inquiry',
       variables: {
         MESSAGE_PREVIEW: params.message,
         SUBJECT: `${params.subject} (From ${fullName})`,
         MESSAGE: params.message,
         NAME: fullName,
         PHONE: params.phone,
+        KIT: params.kit,
         SOURCE_SITE: params.APP_NAME,
       },
     },
@@ -80,8 +81,7 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
 export const emailSendOnboardNewsletter = async (params: {
   to: string;
   APP_NAME: string;
-}) =>
-  emailSendBase({ to: params.to, template: { id: 'onboarding-newsletter' } });
+}) => emailSendBase({ to: params.to, template: { id: 'onboard-newsletter' } });
 
 export const emailSendOnboarding = async (params: {
   to: string;

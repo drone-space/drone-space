@@ -10,7 +10,7 @@ const metaTitle = `Drone Accessories`;
 export const metadata: Metadata = {
   title: {
     default: `Drone Accessories`,
-    template: `%s - ${metaTitle} - ${APP_NAME} Kenya`,
+    template: `%s - ${metaTitle} - ${APP_NAME.WEB} Kenya`,
   },
   openGraph: {
     title: metaTitle,

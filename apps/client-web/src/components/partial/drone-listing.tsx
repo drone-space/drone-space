@@ -148,7 +148,7 @@ export default function DroneListing() {
                 <IconSearch size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
               )
             }
-            defaultValue={searchValue}
+            // defaultValue={searchValue}
             value={searchValue}
             onChange={(event) => {
               handleSearch(event.currentTarget.value);

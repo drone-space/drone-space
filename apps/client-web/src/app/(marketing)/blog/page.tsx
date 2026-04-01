@@ -16,8 +16,8 @@ import CtaHome from '@/components/partial/cta/home';
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
-const metaTitle = `${APP_NAME} Blog - Insights on Drone Training & Technology`;
-const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${APP_NAME} blog.`;
+const metaTitle = `${APP_NAME.WEB} Blog - Insights on Drone Training & Technology`;
+const metaDesc = `Stay informed with the latest tips, news, and insights about drone training, services, and industry innovations on the ${APP_NAME.WEB} blog.`;
 
 export const metadata: Metadata = {
   title: metaTitle,

@@ -11,8 +11,8 @@ import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Terms and Conditions - ${APP_NAME} Kenya`;
-const metaDesc = `Review the terms and conditions governing the use of ${APP_NAME} services, training, and products. Stay informed about our policies and commitments.`;
+const metaTitle = `Terms and Conditions - ${APP_NAME.WEB} Kenya`;
+const metaDesc = `Review the terms and conditions governing the use of ${APP_NAME.WEB} services, training, and products. Stay informed about our policies and commitments.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -40,7 +40,7 @@ export default async function TermsConditions() {
         props={{
           path: `T & C`,
           title: 'Terms and Conditions',
-          desc: `Review the terms and conditions governing the use of ${APP_NAME} services, training, and products.`,
+          desc: `Review the terms and conditions governing the use of ${APP_NAME.WEB} services, training, and products.`,
           bg: images.web.hero.light,
         }}
       />

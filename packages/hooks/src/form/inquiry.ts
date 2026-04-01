@@ -52,19 +52,19 @@ export const useFormEmailInquiry = (
         fname: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
         lname: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),
         email: (value) => validators.email(value.trim()),
-        subject: hasLength(
-          { min: 2, max: 255 },
-          'Between 2 and 255 characters'
-        ),
+        subject: options?.document
+          ? undefined
+          : hasLength({ min: 2, max: 255 }, 'Between 2 and 255 characters'),
         phone: hasLength({ min: 7, max: 15 }, 'Between 7 and 15 characters'),
-        message: hasLength(
-          { min: 3, max: 2048 },
-          'Between 3 and 2048 characters'
-        ),
+        company: hasLength({ min: 2, max: 48 }, 'Between 2 and 48 characters'),
+        message: options?.document
+          ? undefined
+          : hasLength({ min: 3, max: 2048 }, 'Between 3 and 2048 characters'),
       },
       {
         close: options?.close,
         resetOnSuccess: true,
+        hideSuccessNotification: true,
 
         onSubmit: async (rawValues) => {
           // handle download

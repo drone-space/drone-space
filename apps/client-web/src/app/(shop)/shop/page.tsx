@@ -21,8 +21,8 @@ import PartialDroneListing from '@/components/partial/drone-listing';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Drone Shop - Top Drones & Accessories at ${APP_NAME} Kenya`;
-const metaDesc = `Discover the best DJI drones in Kenya for every need at ${APP_NAME}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
+const metaTitle = `Drone Shop - Top Drones & Accessories at ${APP_NAME.WEB} Kenya`;
+const metaDesc = `Discover the best DJI drones in Kenya for every need at ${APP_NAME.WEB}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -49,7 +49,7 @@ export default async function Shop() {
       <IntroPage
         props={{
           path: 'Shop',
-          title: `Top Drones At ${APP_NAME}`,
+          title: `Top Drones At ${APP_NAME.WEB}`,
           desc: 'Shop top-rated drones for beginners, professionals, and enthusiasts.',
           bg: images.web.hero.light,
         }}

@@ -16,7 +16,7 @@ import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
 
-const metaTitle = `Drone Training Pricing - Affordable Courses at ${APP_NAME} Kenya`;
+const metaTitle = `Drone Training Pricing - Affordable Courses at ${APP_NAME.WEB} Kenya`;
 const metaDesc = `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`;
 
 export const metadata: Metadata = {

@@ -22,6 +22,7 @@ import LayoutSection from '@repo/components/layout/section';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
@@ -56,7 +57,7 @@ export default function Main() {
             <Text
               maw={{ md: '90%', lg: '80%' }}
               ta={{ base: 'center', md: 'start' }}
-              fz={'sm'}
+              fz={'md'}
             >
               {COMPANY_NAME} is approved and certified by KCAA to offer RPL
               courses in multi-rotor and fixed wing, RPL instructor rating and
@@ -75,8 +76,8 @@ export default function Main() {
                       alt={social.title}
                       title={social.title}
                       component={NextImage}
-                      height={24}
-                      width={24}
+                      height={ICON_WRAPPER_SIZE}
+                      width={ICON_WRAPPER_SIZE}
                       priority
                     />
                   </Stack>
@@ -105,7 +106,7 @@ export default function Main() {
                         <NextLink
                           href={link.link}
                           className={classes.link}
-                          fz={{ base: 'sm', md: 'xs', lg: 'sm' }}
+                          fz={{ base: 'sm', md: 'xs', lg: 'md' }}
                         >
                           {link.label}
                         </NextLink>
@@ -152,14 +153,20 @@ export default function Main() {
 
       <Divider mb={'xl'} color="var(--mantine-color-default-border)" />
 
-      <Stack fz={'sm'} ta={{ base: 'center', md: 'start' }} lh={1}>
+      <Stack ta={{ base: 'center', md: 'start' }} lh={1}>
         <Flex
           align={'center'}
           justify={{ sm: 'space-between' }}
           direction={{ base: 'column', sm: 'row' }}
           gap={'md'}
+          fz={'sm'}
+          fw={500}
         >
-          <Group gap={'xs'} fz={'xs'}>
+          <Text component="span" inherit>
+            © {new Date().getFullYear()}, All Rights Reserved.
+          </Text>
+
+          <Group gap={'xs'}>
             <NextLink inherit href="/legal/terms" className={classes.link}>
               Terms and Conditions
             </NextLink>
@@ -170,10 +177,6 @@ export default function Main() {
               Privacy Policy
             </NextLink>
           </Group>
-
-          <Text component="span" inherit>
-            {COMPANY_NAME} © {new Date().getFullYear()}, All Rights Reserved.
-          </Text>
         </Flex>
       </Stack>
     </LayoutSection>

@@ -120,7 +120,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                 </Text>
               ) : (
                 <>
-                  <Text component="span" inherit>
+                  <Text component="span" inherit display={'block'}>
                     Kes.{' '}
                     <Text
                       component="span"
@@ -143,7 +143,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                   </Text>
 
                   {data.kit?.flyMore && (
-                    <Text fz={'sm'}>
+                    <Text fz={'sm'} component="span">
                       <Text component="span" inherit>
                         Kes.
                       </Text>{' '}

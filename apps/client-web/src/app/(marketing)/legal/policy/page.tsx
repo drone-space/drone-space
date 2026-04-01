@@ -11,8 +11,8 @@ import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
 
-const metaTitle = `Privacy Policy - How ${APP_NAME} Protects Your Data`;
-const metaDesc = `Learn how ${APP_NAME} collects, uses, and protects your personal information. Your privacy is our priority.`;
+const metaTitle = `Privacy Policy - How ${APP_NAME.WEB} Protects Your Data`;
+const metaDesc = `Learn how ${APP_NAME.WEB} collects, uses, and protects your personal information. Your privacy is our priority.`;
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -40,7 +40,7 @@ export default async function PrivacyPolicy() {
         props={{
           path: `Discretion`,
           title: 'Privacy Policy',
-          desc: `Learn how ${APP_NAME} collects, uses, and protects your personal information.`,
+          desc: `Learn how ${APP_NAME.WEB} collects, uses, and protects your personal information.`,
           bg: images.web.hero.light,
         }}
       />

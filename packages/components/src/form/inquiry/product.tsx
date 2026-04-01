@@ -54,11 +54,11 @@ export default function Product({
               data={[
                 {
                   label: `Basic Kit - (Kshs. ${kit.basic})`,
-                  value: 'Basic',
+                  value: 'Basic Kit',
                 },
                 {
-                  label: `Fly More Kit - (Kshs. ${(kit.basic || 0) + (kit.flyMore || 0)})`,
-                  value: 'Fly More',
+                  label: `FlyMore Kit - (Kshs. ${(kit.basic || 0) + (kit.flyMore || 0)})`,
+                  value: 'FlyMore Kit',
                 },
               ]}
             />

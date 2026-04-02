@@ -56,10 +56,11 @@ export default function Main({
     <ImageDefault
       src={images.brand.droneSpace.logo.landscape.default}
       alt={APP_NAME.WEB}
-      height={{ base: 40 }}
+      height={{ base: 45 }}
       width={{ base: 200 }}
       fit="contain"
       mode="grid"
+      radius={0}
     />
   );
 

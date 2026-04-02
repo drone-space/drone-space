@@ -56,8 +56,8 @@ export default function Default({
         loading={restProps.priority ? undefined : 'lazy'}
         fill
         quality={restProps.quality || 100}
-        {...restProps}
         radius={'lg'}
+        {...restProps}
       />
     </Center>
   );

@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const stream = await anthropic.messages.stream({
       model: process.env.NEXT_ANTHROPIC_MODEL_NAME!,
       // max_tokens: 1024,
-      max_tokens: 300,
+      max_tokens: 1024,
       temperature: 0.2,
       messages,
       system: [

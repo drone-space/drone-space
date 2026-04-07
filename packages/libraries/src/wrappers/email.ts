@@ -55,12 +55,25 @@ const emailSendBase = async (options: SendEmailOptions) => {
 
 export const emailSendInquiry = async (params: FormValuesInquiry) => {
   if (!EMAILS.INFO) throw new Error('Missing INFO email');
+  if (!EMAILS.TRAINING) throw new Error('Missing TRAINING email');
 
   const fullName = `${params.fname || ''} ${params.lname || ''}`.trim();
 
+  let toEmail = '';
+
+  switch (params.type) {
+    case 'training':
+      toEmail = EMAILS.TRAINING;
+      break;
+
+    default:
+      toEmail = EMAILS.INFO;
+      break;
+  }
+
   emailSendBase({
     fromName: 'Drone Space Inquiries',
-    to: EMAILS.INFO,
+    to: toEmail,
     replyTo: params.email,
     fromType: 'delivery',
     template: {

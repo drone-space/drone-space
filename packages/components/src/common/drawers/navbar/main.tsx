@@ -35,10 +35,11 @@ export default function Main({
           key={`${index}-${subLink.link}`}
           component={Link}
           href={subLink.link}
-          label={subLink.label}
+          label={subLink.labelShort || subLink.label}
           active={matchesPath(subLink.link)}
           onClick={close}
           className={`${classes.link} ${pathname == subLink.link ? classes.linkActive : ''}`}
+          styles={{ label: { fontWeight: 600 } }}
         />
       ));
 
@@ -50,7 +51,6 @@ export default function Main({
         label={link.label}
         active={matchesPath(link.link)}
         onClick={close}
-        fw={pathname == link.link ? 500 : undefined}
         leftSection={
           link.leftSection ? (
             <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -64,6 +64,7 @@ export default function Main({
         className={`${classes.link} ${
           matchesPath(link.link) ? classes.linkActive : ''
         }`}
+        styles={{ label: { fontWeight: 'bold' } }}
       />
     ) : (
       <NavLink
@@ -74,6 +75,7 @@ export default function Main({
         active={matchesPath(link.link)}
         fw={pathname == link.link ? 500 : undefined}
         defaultOpened={matchesPath(link.link)}
+        childrenOffset={16}
         leftSection={
           link.leftSection ? (
             <link.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -87,6 +89,7 @@ export default function Main({
         className={`${classes.link} ${
           matchesPath(link.link) ? classes.linkActive : ''
         }`}
+        styles={{ label: { fontWeight: 'bold' } }}
       >
         {subLinks}
       </NavLink>
@@ -100,11 +103,12 @@ export default function Main({
         onClose={close}
         withCloseButton={false}
         size={280}
+        position="right"
         classNames={{
           body: classes.body,
           header: classes.header,
         }}
-        keepMounted={true}
+        hiddenFrom="md"
       >
         <Stack pb={'sm'}>
           <Stack gap={0}>{navMobile}</Stack>
@@ -125,6 +129,7 @@ export default function Main({
         size={'sm'}
         aria-label="Toggle Main Navbar"
         color={options?.absolute ? 'white' : undefined}
+        hiddenFrom="md"
         {...restProps}
       />
     </>

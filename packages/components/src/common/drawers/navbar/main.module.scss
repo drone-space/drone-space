@@ -9,14 +9,13 @@
 
 .link {
   transition: 0.25s all ease;
+  color: var(--mantine-color-pri-8);
 
   @include mantine.hover {
     background-color: light-dark(
       var(--mantine-color-pri-light),
       var(--mantine-color-dark-6)
     );
-
-    color: var(--mantine-color-pri-8);
   }
 }
 

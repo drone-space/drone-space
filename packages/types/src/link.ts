@@ -3,6 +3,7 @@ import { Icon } from '@tabler/icons-react';
 export interface Link {
   link: string;
   label: string;
+  labelShort?: string;
   desc?: string;
   icon?: Icon;
 }

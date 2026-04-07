@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Group, Divider, Button, Box } from '@mantine/core';
+import { Group, Divider, Button, Box, Text } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
 import DrawerNavbarMain from '@repo/components/common/drawers/navbar/main';
 import MenuNavbar from '@repo/components/common/menus/navbar';
@@ -26,7 +26,7 @@ export default function Main({
     return pathname == link || (pathname != '/' && pathname.includes(link));
   };
 
-  const navLinks = links.map((link, index) => {
+  const navLinks = links.navbar.map((link, index) => {
     return (
       <MenuNavbar key={index} subLinks={link.subLinks}>
         {!link.subLinks ? (
@@ -39,14 +39,16 @@ export default function Main({
             {link.label}
           </NextLink>
         ) : (
-          <NextLink
-            href={link.link}
+          <Text
+            // href={link.link}
+            style={{ cursor: 'pointer' }}
+            c={'pri.8'}
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
           >
             {link.label}
-          </NextLink>
+          </Text>
         )}
       </MenuNavbar>
     );
@@ -65,55 +67,41 @@ export default function Main({
   );
 
   return (
-    <>
-      <LayoutSection
-        id={'partial-navbar-main'}
-        pos={options?.absolute ? 'absolute' : undefined}
-        left={options?.absolute ? 0 : undefined}
-        top={options?.absolute ? 0 : undefined}
-        right={options?.absolute ? 0 : undefined}
-        bg={'var(--mantine-color-body)'}
-        style={{ zIndex: 1 }}
-      >
-        <Group justify="space-between">
-          <NextLink href={'/'} py={{ base: 5, md: 0 }}>
-            {imageBrand}
-          </NextLink>
+    <LayoutSection
+      id={'partial-navbar-main'}
+      pos={options?.absolute ? 'absolute' : undefined}
+      left={options?.absolute ? 0 : undefined}
+      top={options?.absolute ? 0 : undefined}
+      right={options?.absolute ? 0 : undefined}
+      bg={'var(--mantine-color-body)'}
+      style={{ zIndex: 1000, boxShadow: 'var(--mantine-shadow-xs)' }}
+    >
+      <Group justify="space-between">
+        <NextLink href={'/'} py={{ base: 5, md: 0 }}>
+          {imageBrand}
+        </NextLink>
 
-          <Group gap={'lg'} visibleFrom="md">
-            <Group gap={'lg'}>{navLinks}</Group>
+        <Group gap={'lg'} visibleFrom="md">
+          <Group gap={0}>{navLinks}</Group>
 
-            <Group h={20}>
-              <Divider orientation="vertical" />
-            </Group>
+          <Group gap={'xs'}>
+            <Button size="xs" variant="light">
+              Get a Quote
+            </Button>
 
-            <Group gap={'xs'}>
-              <Box visibleFrom="lg">
-                <ModalDownloadDocument props={{ type: 'brochure' }}>
-                  <Button size="xs" variant="light">
-                    Get Brochure
-                  </Button>
-                </ModalDownloadDocument>
-              </Box>
-
-              <ModalContactCallback>
-                <Button size="xs" variant="gradient" className={classes.button}>
-                  Inquire
-                </Button>
-              </ModalContactCallback>
-            </Group>
-          </Group>
-
-          <Group hiddenFrom="md" justify="end">
-            <DrawerNavbarMain
-              props={links}
-              options={{ absolute: options?.absolute }}
-            />
+            <ModalContactCallback>
+              <Button size="xs" variant="gradient">
+                Start Training
+              </Button>
+            </ModalContactCallback>
           </Group>
         </Group>
-      </LayoutSection>
 
-      {!options?.absolute && <Divider />}
-    </>
+        <DrawerNavbarMain
+          props={links.navbar}
+          options={{ absolute: options?.absolute }}
+        />
+      </Group>
+    </LayoutSection>
   );
 }

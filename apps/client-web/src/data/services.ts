@@ -3,11 +3,15 @@ import {
   IconCertificate,
   IconDrone,
   IconHeadset,
+  IconMap2,
   IconMapQuestion,
+  IconMedicalCross,
+  IconMessageChatbot,
   IconMovie,
   IconSeeding,
   IconSolarPanel,
   IconSos,
+  IconTemperatureCelsius,
 } from '@tabler/icons-react';
 
 const services = [
@@ -32,7 +36,8 @@ const services = [
   {
     image: images.services.mappSur,
     title: 'Drone Mapping and Survey',
-    leftSection: IconMapQuestion,
+    titleShort: 'Mapping and Survey',
+    leftSection: IconMap2,
     linkDesc:
       'High-precision aerial mapping and surveying solutions for accurate data collection.',
     desc: 'We specialize in creating detailed maps, 3D models, and orthomosaics that empower informed decision­making in land surveying, construction, agriculture, environmental monitoring, and more.',
@@ -41,7 +46,7 @@ const services = [
   {
     image: images.services.solIns,
     title: 'Thermal Inspection',
-    leftSection: IconSolarPanel,
+    leftSection: IconTemperatureCelsius,
     linkDesc:
       'Drone-powered thermal inspections for optimized performance and maintenance.',
     desc: 'Our thermal inspection services leverage advanced drone technology to provide detailed thermal imaging and analysis for a variety of applications. We specialize in identifying anomalies and potential issues in solar panels, landfills, dumpsites, geothermal sites, and power lines. Our high-resolution thermal data enables early detection of problems, facilitating timely maintenance and preventing costly failures.',
@@ -59,7 +64,7 @@ const services = [
   {
     image: images.services.medical,
     title: 'Medical Delivery',
-    leftSection: IconDrone,
+    leftSection: IconMedicalCross,
     linkDesc:
       'Fast and reliable transportation of medical supplies using advanced delivery solutions.',
     desc: 'Drones deliver life-saving supplies like automated external defibrillators (AEDs), epinephrine injectors, and first aid kits directly to emergency scenes, ensuring rapid response during critical moments.',
@@ -68,7 +73,8 @@ const services = [
   {
     image: images.services.conRes,
     title: 'Drone Consultancy and Resale',
-    leftSection: IconHeadset,
+    titleShort: 'Consultancy and Resale',
+    leftSection: IconMessageChatbot,
     linkDesc:
       'Expert guidance and access to premium drones tailored to your needs.',
     desc: 'We offer drone consultancy services to help you get the most out of your drone solutions. Our team of experts can help you with everything from drone selection and setup, to training and maintenance.',

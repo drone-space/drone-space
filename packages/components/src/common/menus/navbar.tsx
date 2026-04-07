@@ -3,22 +3,29 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import {
+  Box,
   Button,
   Card,
   Divider,
   Grid,
   GridCol,
+  Group,
   Menu,
   MenuDropdown,
   MenuItem,
   MenuTarget,
   Stack,
   Text,
+  ThemeIcon,
   Title,
 } from '@mantine/core';
 import { typeMenuNavbar } from '@repo/types/link';
 import classes from './navbar.module.scss';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@repo/constants/sizes';
 import CardMenu from '../cards/menu';
 import { IconFileDownload } from '@tabler/icons-react';
 import ModalDownloadDocument from '../modals/download/document';
@@ -37,31 +44,54 @@ export default function Navbar({
 
   const menuItems =
     subLinks &&
-    subLinks.map(
-      (item, index) =>
-        subLinks.indexOf(item) < 6 && (
-          <NextLink href={item.link} key={item.link}>
-            <MenuItem
-              key={index}
-              className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
-              h={'100%'}
-            >
-              {!item.desc ? item.label : <CardMenu props={item} />}
-            </MenuItem>
-          </NextLink>
-        )
-    );
+    subLinks.map((item, index) => (
+      <NextLink href={item.link} key={item.link}>
+        <MenuItem
+          key={index}
+          className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
+          h={'100%'}
+          leftSection={
+            !item.leftSection ? undefined : item.leftSection ==
+              ('empty' as any) ? (
+              <Box h={ICON_SIZE} w={ICON_SIZE}></Box>
+            ) : (
+              <ThemeIcon size={ICON_SIZE} variant="light">
+                <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              </ThemeIcon>
+            )
+          }
+        >
+          {!item.desc ? (
+            <>
+              <Group gap={'xs'}>
+                {item.leftSection && (
+                  <Divider
+                    orientation="vertical"
+                    h={16}
+                    my={'auto'}
+                    opacity={item.leftSection != ('empty' as any) ? 1 : 0}
+                  />
+                )}
+
+                {item.labelShort || item.label}
+              </Group>
+            </>
+          ) : (
+            <CardMenu props={item} />
+          )}
+        </MenuItem>
+      </NextLink>
+    ));
 
   return (
     <Menu
       width={'auto'}
-      trigger="click-hover"
-      openDelay={50}
-      closeDelay={50}
-      offset={{
-        mainAxis: 0,
-      }}
-      transitionProps={{ transition: 'fade-up', duration: 100 }}
+      trigger="hover"
+      position="bottom-start"
+      // openDelay={50}
+      offset={{ mainAxis: 0, crossAxis: -(ICON_SIZE + 20) }}
+      transitionProps={{ transition: 'fade', duration: 200 }}
+      shadow="xs"
       classNames={{
         dropdown: classes.dropdown,
         arrow: classes.arrow,
@@ -71,16 +101,15 @@ export default function Navbar({
         itemLabel: classes.itemLabel,
         itemSection: classes.itemSection,
       }}
-      keepMounted
     >
       <MenuTarget>{children}</MenuTarget>
 
       {menuItems && (
-        <MenuDropdown w={720}>
+        <MenuDropdown>
           {!megaMenu ? (
             menuItems
           ) : (
-            <Stack gap={0}>
+            <Stack gap={0} w={720}>
               <Grid gutter={0}>
                 {menuItems.map((menuItem, index) => (
                   <GridCol key={index} span={{ base: 12, xs: 6 }}>

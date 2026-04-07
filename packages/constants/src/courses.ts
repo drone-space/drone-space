@@ -445,6 +445,7 @@ export const courseList = [
     linkDesc:
       'Hands-on training in advanced geospatial and imaging techniques.',
     title: 'Drone Mapping and Survey',
+    titleShort: 'Drone Mapping',
     desc: 'The Drone Mapping and Survey course is a 5-day course designed for RPL holders who want to learn how to use drones for mapping and surveying purposes. This course is suitable for engineers, surveyors, environmental scientists, among others. It is also ideal for individuals interested in starting a drone mapping and surveying business. By completing this course, students will acquire practical skills in drone operation, surveying techniques, and data analysis. They will also learn how to process and interpret data obtained from drone surveys to generate accurate maps and 3D models. ',
   },
   {
@@ -453,6 +454,7 @@ export const courseList = [
     linkDesc:
       'ITC Level I training, ideal for applications in inspection, safety, and more.',
     title: 'Thermography (ITC - Level I)',
+    titleShort: 'Thermography',
     desc: 'The Level I Thermography Certification course is designed for professionals who want to develop practical skills in using thermography for inspections and diagnostics. This course is suitable for individuals working in industries such as electrical, mechanical, and building inspections, as well as professionals involved in research and development.',
   },
   {
@@ -467,7 +469,7 @@ export const courseList = [
     leftSection: IconPlaneTilt,
     linkDesc:
       'Designed for certified Remote Pilots seeking to operate drones beyond visual range',
-    title: 'Beyond Visual Line of Sight',
+    title: 'Beyond Visual Line of Sight (BVLOS)',
     desc: 'Drone Space Kenya’s Beyond Visual Line of Sight (BVLOS) Training Program is designed for certified Remote Pilots seeking to safely and effectively operate drones beyond visual range.',
   },
 ];

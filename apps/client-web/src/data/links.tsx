@@ -1,5 +1,6 @@
 import {
   IconAperture,
+  IconArrowRight,
   IconArticle,
   IconBellRinging,
   IconBolt,
@@ -38,8 +39,10 @@ import services from './services';
 import { courseList } from '@repo/constants/courses';
 import { images } from '@repo/constants/images';
 import { AUTH_URLS } from '@repo/constants/paths';
-import { SOCIALS } from '@repo/constants/app';
+import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
 import { cleanPaths } from '@repo/utilities/array';
+import { Button } from '@mantine/core';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 
 export const shopLinks = [
   {
@@ -271,6 +274,15 @@ export const socialLinks = [
   },
 ];
 
+const email = {
+  info: EMAILS.INFO,
+  training: EMAILS.TRAINING,
+};
+const phone = {
+  pri: PHONES.MAIN,
+  sec: PHONES.OTHER,
+};
+
 export const links = {
   navbar: [
     {
@@ -321,46 +333,125 @@ export const links = {
   ],
   footer: [
     {
-      link: '/about',
-      label: 'About',
+      title: 'Training',
+      links: trainingLinks,
+      // cta: (
+      //   <Button size="xs" variant="gradient">
+      //     Start Training
+      //   </Button>
+      // ),
     },
     {
-      link: '/drone-training',
-      label: 'Drone Training',
-      subLinks: trainingLinks,
+      title: 'Solutions',
+      links: serviceLinks,
+      cta: (
+        <Button
+          size="xs"
+          variant="transparent"
+          c="sec.3"
+          fz={'inherit'}
+          p={0}
+          radius={0}
+          fw={500}
+          mt={5}
+          rightSection={
+            <IconArrowRight
+              size={ICON_SIZE}
+              stroke={ICON_STROKE_WIDTH}
+              style={{ marginTop: 2 }}
+            />
+          }
+        >
+          Get a Quote
+        </Button>
+      ),
     },
     {
-      link: '/drone-solutions',
-      label: 'Drone Solutions',
-      subLinks: serviceLinks,
+      title: 'Shop',
+      links: shopLinks,
     },
     {
-      link: '/shop',
-      label: 'Shop',
-      subLinks: shopLinks,
-    },
-    {
-      link: '/blog',
-      label: 'Resources',
-      subLinks: [
+      title: 'Resources',
+      links: [
         {
           link: '/blog',
           label: 'Blog',
-          leftSection: IconArticle,
-          desc: 'Stay updated with insights, stories, and news from our community.',
+        },
+        {
+          link: '/downloads',
+          label: 'Downloads',
         },
         {
           link: '/gallery',
           label: 'Gallery',
-          leftSection: IconLibraryPhoto,
-          desc: 'See a visual showcase of our journey and achievements.',
         },
+        // {
+        //   link: '/case-studies',
+        //   label: 'Case Studies',
+        // },
         {
           link: '/faq',
           label: 'FAQ',
-          leftSection: IconHelp,
-          desc: 'Find quick answers to common questions about our services, products, and policies.',
         },
+      ],
+    },
+    {
+      title: 'About',
+      links: [
+        {
+          label: 'Our Story',
+          link: '/about',
+        },
+        {
+          label: 'Spaces & Hub',
+          link: `/about#spaces-and-hub`,
+        },
+        {
+          label: 'Testimonials',
+          link: `/about#testimonials`,
+        },
+      ],
+    },
+    {
+      title: 'Legal',
+      links: [
+        {
+          label: 'Terms & Conditions',
+          link: '/legal/terms',
+        },
+        {
+          label: 'Privacy Policy',
+          link: `/legal/policy`,
+        },
+        // {
+        //   label: 'Refund Policy',
+        //   link: `/legal/policy-refund`,
+        // },
+      ],
+    },
+    {
+      title: 'Contact',
+      links: [
+        {
+          label: LOCATIONS.MAIN.LOCATION_SHORT,
+          link: LOCATIONS.MAIN.PIN,
+        },
+        {
+          label: email.info,
+          link: `mailto:${email.info}`,
+        },
+        {
+          label: email.training,
+          link: `mailto:${email.training}`,
+        },
+        {
+          label: `+${phone.pri}`,
+          link: `tel:${phone.pri}`,
+        },
+        // {
+        //   label: phone.sec,
+        //   link: `tel:${phone.sec}`,
+        // },
       ],
     },
   ],
@@ -372,6 +463,7 @@ const mainLinks = [
   ...trainingLinks,
   ...serviceLinks,
 ].map((l) => l.link);
+
 const subLinks: string[] = [];
 
 links.navbar.map((l) => {
@@ -382,14 +474,25 @@ links.navbar.map((l) => {
   }
 });
 
+const footerLinks: string[] = [];
+
+links.footer.map((li) => {
+  if (li.links) {
+    li.links.map((li2) => {
+      subLinks.push(li2.link);
+    });
+  }
+});
+
 export const unprotectedRoutes = [
   ...cleanPaths(
     [
       '/',
       ...mainLinks,
       ...subLinks,
-      // '/legal/terms',
-      // '/legal/policy',
+      ...footerLinks,
+      '/legal/terms',
+      '/legal/policy',
     ].filter((l) => !l.startsWith('/#'))
   ),
 ];

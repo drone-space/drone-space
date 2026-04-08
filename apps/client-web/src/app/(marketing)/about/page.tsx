@@ -307,7 +307,7 @@ export default async function About() {
 
       {students != null && (
         <LayoutSection
-          id="about-testimonials"
+          id="testimonials"
           padded
           bg={'var(--mantine-color-gray-1)'}
         >
@@ -321,6 +321,7 @@ export default async function About() {
             }}
             options={{ spacing: true }}
           />
+
           <CarouselTestimonials props={shuffleArray(students)} />
         </LayoutSection>
       )}

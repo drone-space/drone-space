@@ -11,12 +11,18 @@ import {
   GridCol,
   ListItem,
   Stack,
-  Image,
   Button,
+  SimpleGrid,
 } from '@mantine/core';
 import { images } from '@repo/constants/images';
 import classes from './main.module.scss';
-import { serviceLinks, socialLinks, trainingLinks } from '@/data/links';
+import {
+  links,
+  serviceLinks,
+  shopLinks,
+  socialLinks,
+  trainingLinks,
+} from '@/data/links';
 import NextImage from 'next/image';
 import LayoutSection from '@repo/components/layout/section';
 import {
@@ -28,8 +34,8 @@ import {
 import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
 import ImageDefault from '@repo/components/common/images/default';
 import ModalConference from '@repo/components/common/modals/conference';
-import { COMPANY_NAME, EMAILS, LOCATIONS, PHONES } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
+import { COMPANY_NAME } from '@repo/constants/app';
 
 export default function Main() {
   return (
@@ -37,98 +43,80 @@ export default function Main() {
       id={'partial-footer-main'}
       padded={'xl'}
       className={classes.footer}
+      bg={'var(--mantine-color-pri-8)'}
+      c={'var(--mantine-color-white)'}
+      pt={SECTION_SPACING * 1.5}
     >
-      <Grid mt={SECTION_SPACING / 2} gutter={{ base: 'xl', md: 0 }}>
-        <GridCol span={{ base: 12, md: 4.5 }}>
-          <Stack gap={'xl'}>
-            <Flex align={'center'} justify={{ base: 'center', md: 'start' }}>
-              <NextLink href={'/'}>
-                <ImageDefault
-                  src={images.brand.droneSpace.logo.landscape.default}
-                  alt={COMPANY_NAME}
-                  height={{ base: 45 }}
-                  width={{ base: 200 }}
-                  fit="contain"
-                  mode="grid"
-                  radius={0}
-                />
-              </NextLink>
-            </Flex>
+      <Flex direction={'row'} justify={{ base: 'start', sm: 'center' }}>
+        <NextLink href={'/'}>
+          <ImageDefault
+            src={images.brand.droneSpace.logo.landscape.white}
+            alt={COMPANY_NAME}
+            height={{ base: 45, md: 60 }}
+            width={{ base: 240, md: 320 }}
+            fit="contain"
+            mode="grid"
+            radius={0}
+          />
+        </NextLink>
+      </Flex>
 
-            <Text
-              maw={{ md: '90%', lg: '80%' }}
-              ta={{ base: 'center', md: 'start' }}
-              fz={'md'}
+      <SimpleGrid
+        cols={{ base: 1, sm: 2, md: 3, lg: 4 }}
+        spacing={SECTION_SPACING}
+        my={SECTION_SPACING * 1.5}
+      >
+        {links.footer.map((linkSet, index) => (
+          <Stack key={index} gap={'md'} align="start">
+            <Title
+              order={4}
+              fz={{ base: 'md', md: 'lg' }}
+              fw={600}
+              c={'inherit'}
             >
-              {COMPANY_NAME} is approved and certified by KCAA to offer RPL
-              courses in multi-rotor and fixed wing, RPL instructor rating and
-              soon Beyond Visual Line of Sight (BVLOS) rating. The Academy
-              provides Kenya&apos;s highest quality drone training with a simple
-              yet comprehensive model for corporate clients, government
-              agencies, public safety departments, and individuals.
-            </Text>
+              {linkSet.title}
+            </Title>
 
-            <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
-              {socialLinks.map((social, index) => (
-                <Anchor key={index} href={social.link} target="_blank">
-                  <Stack>
-                    <Image
-                      src={social.image}
-                      alt={social.title}
-                      title={social.title}
-                      component={NextImage}
-                      height={ICON_WRAPPER_SIZE}
-                      width={ICON_WRAPPER_SIZE}
-                      priority
-                    />
-                  </Stack>
-                </Anchor>
+            <List listStyleType="none" spacing={'xs'}>
+              {linkSet.links.map((link, index) => (
+                <ListItem key={index} className={classes.listItem}>
+                  <NextLink
+                    href={link.link}
+                    className={classes.link}
+                    fz={{ base: 'sm', xs: 'md' }}
+                  >
+                    {(link as any).labelShort || link.label}
+                  </NextLink>
+                </ListItem>
               ))}
-            </Flex>
+
+              {linkSet.cta && <ListItem>{linkSet.cta}</ListItem>}
+            </List>
           </Stack>
-        </GridCol>
-
-        <GridCol span={{ base: 12, md: 7.5 }} visibleFrom="sm">
-          <Grid gutter={{ md: 'md', lg: 0 }}>
-            {linkSets.map((linkSet, index) => (
-              <GridCol key={index} span={{ sm: 4 }}>
-                <Flex
-                  direction={'column'}
-                  align={{ base: 'center', md: 'start' }}
-                  gap={'xl'}
-                >
-                  <Title order={4} fz={'md'} fw={700}>
-                    {linkSet.title}
-                  </Title>
-
-                  <List listStyleType="none" spacing={'sm'}>
-                    {linkSet.links.map((link, index) => (
-                      <ListItem key={index} className={classes.listItem}>
-                        <NextLink
-                          href={link.link}
-                          className={classes.link}
-                          fz={{ base: 'sm', md: 'xs', lg: 'md' }}
-                        >
-                          {link.label}
-                        </NextLink>
-                      </ListItem>
-                    ))}
-                  </List>
-                </Flex>
-              </GridCol>
-            ))}
-          </Grid>
-        </GridCol>
-      </Grid>
+        ))}
+      </SimpleGrid>
 
       <Flex
-        align={'center'}
-        gap={'xs'}
-        justify={{ base: 'center', md: 'start' }}
-        mt={SECTION_SPACING / 2}
-        mb={'xl'}
+        direction={{ base: 'column', sm: 'row' }}
+        align={{ base: 'start', sm: 'center' }}
+        justify={{ sm: 'space-between' }}
+        gap={'md'}
       >
-        {/* <ModalNewsletter options={{ auto: false }}>
+        <Group>
+          <ModalConference>
+            <Button
+              size={'xs'}
+              color="yellow.4"
+              c="var(--mantine-color-dark-6)"
+              leftSection={
+                <IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              AI Conference
+            </Button>
+          </ModalConference>
+
+          {/* <ModalNewsletter options={{ auto: false }}>
           <Button
             size={'xs'}
             leftSection={
@@ -138,93 +126,46 @@ export default function Main() {
             Newsletter
           </Button>
         </ModalNewsletter> */}
+        </Group>
 
-        <ModalConference>
-          <Button
-            size={'xs'}
-            color="sec.3"
-            leftSection={
-              <IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
-            }
-          >
-            AI Conference
-          </Button>
-        </ModalConference>
+        {socials}
       </Flex>
 
-      <Divider mb={'xl'} color="var(--mantine-color-default-border)" />
+      <Divider
+        mb={'xl'}
+        mt={'md'}
+        color="var(--mantine-color-gray-5)"
+        opacity={0.25}
+      />
 
-      <Stack ta={{ base: 'center', md: 'start' }} lh={1}>
-        <Flex
-          align={'center'}
-          justify={{ sm: 'space-between' }}
-          direction={{ base: 'column', sm: 'row' }}
-          gap={'md'}
-          fz={'sm'}
-          fw={500}
-        >
+      <Stack ta={{ base: 'center', md: 'start' }}>
+        <Group justify={'center'} gap={'md'} fz={'sm'} fw={500}>
           <Text component="span" inherit>
+            <Text component="span" inherit c={'sec.3'}>
+              {COMPANY_NAME}
+            </Text>{' '}
             © {new Date().getFullYear()}, All Rights Reserved.
           </Text>
-
-          <Group gap={'xs'}>
-            <NextLink inherit href="/legal/terms" className={classes.link}>
-              Terms and Conditions
-            </NextLink>
-
-            <IconCircleFilled size={4} />
-
-            <NextLink inherit href="/legal/policy" className={classes.link}>
-              Privacy Policy
-            </NextLink>
-          </Group>
-        </Flex>
+        </Group>
       </Stack>
     </LayoutSection>
   );
 }
 
-const email = {
-  info: EMAILS.INFO,
-  training: EMAILS.TRAINING,
-};
-const phone = {
-  pri: PHONES.MAIN,
-  sec: PHONES.OTHER,
-};
-
-const linkSets = [
-  {
-    title: 'Drone Courses',
-    links: trainingLinks,
-  },
-  {
-    title: 'Drone Solutions',
-    links: serviceLinks,
-  },
-  {
-    title: 'Contact',
-    links: [
-      {
-        label: 'Prosperity House, Westlands',
-        link: 'https://www.google.com/maps/place/Prosperity+House,+Nairobi/@-1.2723743,36.8091986,17z/data=!3m1!4b1!4m6!3m5!1s0x182f17307ceb423b:0x2b6f26cf176c4f6f!8m2!3d-1.2723743!4d36.8117789!16s%2Fg%2F12hlt4d1k?entry=ttu',
-      },
-      {
-        label: email.training,
-        link: `mailto:${email.training}`,
-      },
-      {
-        label: email.info,
-        link: `mailto:${email.info}`,
-      },
-      {
-        label: phone.pri,
-        link: `tel:${phone.pri}`,
-      },
-      // {
-      //   label: phone.sec,
-      //   link: `tel:${phone.sec}`,
-      // },
-    ],
-  },
-];
+const socials = (
+  <Flex gap={'xs'} justify={{ base: 'center', md: 'start' }}>
+    {socialLinks.map((social, index) => (
+      <Anchor key={index} href={social.link} target="_blank">
+        <ImageDefault
+          src={social.image}
+          alt={social.title}
+          title={social.title}
+          height={ICON_WRAPPER_SIZE}
+          width={ICON_WRAPPER_SIZE}
+          fit={'contain'}
+          radius={0}
+        />
+      </Anchor>
+    ))}
+  </Flex>
+);

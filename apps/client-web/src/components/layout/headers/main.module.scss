@@ -4,13 +4,10 @@
 }
 
 .link {
+  color: var(--mantine-color-white);
   transition: 0.25s all ease;
 
-  color: var(--mantine-color-dimmed);
-
   @include mantine.hover {
-    text-decoration: none;
-
-    color: var(--mantine-color-anchor);
+    color: var(--mantine-color-sec-3);
   }
 }

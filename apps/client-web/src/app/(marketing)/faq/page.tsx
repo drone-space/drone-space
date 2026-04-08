@@ -138,7 +138,7 @@ export function GetLayout({
   return (
     <Grid gutter={'xl'}>
       <GridCol span={{ md: 4.5 }}>
-        <div style={{ position: 'sticky', top: SECTION_SPACING }}>
+        <div style={{ position: 'sticky', top: SECTION_SPACING * 1.5 }}>
           {props.header}
         </div>
       </GridCol>

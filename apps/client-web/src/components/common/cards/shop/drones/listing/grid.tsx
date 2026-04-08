@@ -110,7 +110,7 @@ export default function Grid({ data }: { data: typeDrone }) {
         </div>
 
         <Stack gap={'xs'} mt={'md'}>
-          <Divider color="sec.4" />
+          <Divider color="sec.3" />
 
           <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
             <Text fz={'sm'} mih={58}>

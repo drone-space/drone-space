@@ -159,7 +159,7 @@ export default function Home() {
               </ModalContactTraining>
 
               <ModalRequirements>
-                <Button color="sec.4" c={'pri'}>
+                <Button color="sec.3" c={'pri'}>
                   Requirements & Details
                 </Button>
               </ModalRequirements>

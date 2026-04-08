@@ -7,6 +7,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { socialLinks } from '@/data/links';
 import ImageDefault from '@repo/components/common/images/default';
+import classes from './main.module.scss';
 
 export default function Main() {
   return (
@@ -32,19 +33,13 @@ export default function Main() {
             <Group gap={'xs'} key={item.link}>
               {i > 0 && <IconCircleFilled size={4} />}
 
-              <Anchor
-                inherit
-                component={'a'}
-                href={item.link}
-                c={'white'}
-                underline="hover"
-              >
-                <Group gap={5}>
-                  <item.icon size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+              <Group gap={5}>
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
 
+                <Anchor inherit href={item.link} className={classes.link}>
                   {item.label}
-                </Group>
-              </Anchor>
+                </Anchor>
+              </Group>
             </Group>
           ))}
         </Group>
@@ -54,7 +49,7 @@ export default function Main() {
             <Group gap={'xs'} key={item.link}>
               {i > 0 && <IconCircleFilled size={4} />}
 
-              <NextLink inherit href={item.link} c={'white'} underline="hover">
+              <NextLink inherit href={item.link} className={classes.link}>
                 {item.label}
               </NextLink>
             </Group>

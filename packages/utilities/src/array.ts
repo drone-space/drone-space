@@ -79,23 +79,30 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 };
 
 /**
- * Clean an array of paths: remove fragments (#) and duplicates
+ * Cleans paths by removing fragments, queries, trailing slashes,
+ * protocol-specific links, and absolute URLs.
  */
 export const cleanPaths = (paths: string[]): string[] => {
-  const cleaned = paths.map((path) => {
-    // Remove fragment
-    let clean = path.split('#')[0];
+  const cleaned = paths
+    .map((path) => {
+      // 1. Remove fragments and query parameters
+      let clean = path.split('#')[0].split('?')[0];
 
-    // Remove query params
-    clean = clean.split('?')[0];
+      // 2. Filter out absolute URLs (http/https) and protocol links (tel, mailto)
+      // This handles strings starting with letters followed by a colon
+      if (/^[a-z]+:/i.test(clean)) {
+        return null;
+      }
 
-    // Normalize trailing slash (except root)
-    if (clean.length > 1 && clean.endsWith('/')) {
-      clean = clean.slice(0, -1);
-    }
+      // 3. Normalize trailing slash (except root '/')
+      if (clean.length > 1 && clean.endsWith('/')) {
+        clean = clean.slice(0, -1);
+      }
 
-    return clean;
-  });
+      return clean.trim();
+    })
+    .filter((path): path is string => !!path && path.length > 0);
 
+  // 4. Deduplicate using Set
   return Array.from(new Set(cleaned));
 };

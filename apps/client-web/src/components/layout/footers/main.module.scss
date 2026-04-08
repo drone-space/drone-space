@@ -5,17 +5,14 @@
 
 .listItem {
   text-align: start;
-
-  @include mantine.smaller-than(mantine.$mantine-breakpoint-md) {
-    text-align: center;
-  }
 }
 
 .link {
-  color: light-dark(var(--mantine-color-text), var(--mantine-color-text));
+  color: var(--mantine-color-gray-5);
+  font-weight: 500;
   transition: 0.25s all ease;
 
   @include mantine.hover {
-    color: var(--mantine-color-pri-8);
+    color: var(--mantine-color-sec-3);
   }
 }

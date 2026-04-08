@@ -113,7 +113,7 @@ export default function List({ data }: { data: typeDrone }) {
               </Text>
             )}
 
-            <Divider color="sec.4" my={'md'} />
+            <Divider color="sec.3" my={'md'} />
 
             <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
               <Text fz={'sm'} mih={58}>

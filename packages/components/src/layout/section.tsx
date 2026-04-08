@@ -22,14 +22,14 @@ export default function Section({
 }: SectionProps & BoxProps) {
   const py =
     typeof padded === 'boolean'
-      ? SECTION_SPACING
+      ? SECTION_SPACING * 2
       : typeof padded !== 'undefined'
         ? padded
         : undefined;
 
   const my =
     typeof margined === 'boolean'
-      ? SECTION_SPACING
+      ? SECTION_SPACING * 2
       : typeof margined !== 'undefined'
         ? margined
         : undefined;

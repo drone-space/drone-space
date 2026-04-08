@@ -21,7 +21,7 @@ export default async function LayoutMarketing({
   return (
     <LayoutBody
       header={<HeaderMain />}
-      nav={<NavbarMain />}
+      nav={<NavbarMain options={{ border: true }} />}
       footer={<FooterMain />}
     >
       <main>{children}</main>

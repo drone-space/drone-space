@@ -88,8 +88,7 @@ export default function Navbar({
       width={'auto'}
       trigger="hover"
       position="bottom-start"
-      // openDelay={50}
-      offset={{ mainAxis: 0, crossAxis: -(ICON_SIZE + 20) }}
+      offset={{ crossAxis: -(ICON_SIZE + 20) }}
       transitionProps={{ transition: 'fade', duration: 200 }}
       shadow="xs"
       classNames={{

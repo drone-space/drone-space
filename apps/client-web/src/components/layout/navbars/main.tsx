@@ -18,7 +18,7 @@ import NextLink from '@repo/components/common/anchor/next-link';
 export default function Main({
   options,
 }: {
-  options?: { absolute?: boolean };
+  options?: { absolute?: boolean; border?: boolean };
 }) {
   const pathname = usePathname();
 
@@ -67,41 +67,44 @@ export default function Main({
   );
 
   return (
-    <LayoutSection
-      id={'partial-navbar-main'}
-      pos={options?.absolute ? 'absolute' : undefined}
-      left={options?.absolute ? 0 : undefined}
-      top={options?.absolute ? 0 : undefined}
-      right={options?.absolute ? 0 : undefined}
-      bg={'var(--mantine-color-body)'}
-      style={{ zIndex: 1000, boxShadow: 'var(--mantine-shadow-xs)' }}
-    >
-      <Group justify="space-between">
-        <NextLink href={'/'} py={{ base: 5, md: 0 }}>
-          {imageBrand}
-        </NextLink>
+    <>
+      <LayoutSection
+        id={'partial-navbar-main'}
+        pos={options?.absolute ? 'absolute' : undefined}
+        left={options?.absolute ? 0 : undefined}
+        top={options?.absolute ? 0 : undefined}
+        right={options?.absolute ? 0 : undefined}
+        style={{ zIndex: 1, boxShadow: 'var(--mantine-shadow-xs)' }}
+      >
+        <Group justify="space-between">
+          <NextLink href={'/'} py={{ base: 5, md: 0 }}>
+            {imageBrand}
+          </NextLink>
 
-        <Group gap={'lg'} visibleFrom="md">
-          <Group gap={0}>{navLinks}</Group>
+          <Group gap={'lg'} visibleFrom="md">
+            <Group gap={0}>{navLinks}</Group>
 
-          <Group gap={'xs'}>
-            <Button size="xs" variant="light">
-              Get a Quote
-            </Button>
-
-            <ModalContactCallback>
-              <Button size="xs" variant="gradient">
-                Start Training
+            <Group gap={'xs'}>
+              <Button size="xs" variant="light">
+                Get a Quote
               </Button>
-            </ModalContactCallback>
-          </Group>
-        </Group>
 
-        <DrawerNavbarMain
-          props={links.navbar}
-          options={{ absolute: options?.absolute }}
-        />
-      </Group>
-    </LayoutSection>
+              <ModalContactCallback>
+                <Button size="xs" variant="gradient">
+                  Start Training
+                </Button>
+              </ModalContactCallback>
+            </Group>
+          </Group>
+
+          <DrawerNavbarMain
+            props={links.navbar}
+            options={{ absolute: options?.absolute }}
+          />
+        </Group>
+      </LayoutSection>
+
+      {options?.border && <Divider />}
+    </>
   );
 }

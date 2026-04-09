@@ -57,7 +57,7 @@ export default function Navbar({
           h={'100%'}
           p={!item.desc ? 5 : 'inherit'}
           px={!item.desc ? 'xs' : undefined}
-          style={{ borderRadius: !item.desc ? undefined : 0 }}
+          // style={{ borderRadius: !item.desc ? undefined : 0 }}
         >
           {!item.desc ? (
             <>{item.labelShort || item.label}</>
@@ -98,7 +98,12 @@ export default function Navbar({
     >
       <MenuTarget>
         <div
-          style={{ color: opened ? 'var(--mantine-color-sec-4)' : undefined }}
+          style={{
+            color:
+              opened || subLinks?.some((sl) => sl.link == pathname)
+                ? 'var(--mantine-color-sec-4)'
+                : undefined,
+          }}
         >
           {children}
         </div>
@@ -111,7 +116,7 @@ export default function Navbar({
               menuItems
             ) : (
               <Stack gap={0}>
-                <Grid gutter={'lg'}>
+                <Grid gutter={'xs'}>
                   {menuItems.map((menuItem, index) => (
                     <GridCol key={index} span={{ base: 12, md: 4, lg: 3 }}>
                       {menuItem}

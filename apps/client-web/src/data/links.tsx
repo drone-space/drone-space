@@ -272,11 +272,11 @@ export const links = {
       label: 'Training',
       subLinks: trainingLinks,
       cta: (
-        <Group justify="space-between" wrap="nowrap">
+        <Group justify="space-between" wrap="nowrap" align="start">
           <div>
-            <Text inherit fz={'xs'}>
-              Get a quick overview of our services, solutions, and offerings in
-              our brochure.
+            <Text inherit fz={'sm'}>
+              Get a quick overview of our courses, pricing table, and enrollment
+              requirements in our brochure.
             </Text>
           </div>
 
@@ -298,28 +298,28 @@ export const links = {
       link: '/drone-solutions',
       label: 'Solutions',
       subLinks: serviceLinks,
-      cta: (
-        <Group justify="space-between" wrap="nowrap">
-          <div>
-            <Text inherit fz={'xs'}>
-              Discover in-depth details about our mission, expertise, and
-              accomplishments in our company profile.
-            </Text>
-          </div>
+      // cta: (
+      //   <Group justify="space-between" wrap="nowrap" align="start">
+      //     <div>
+      //       <Text inherit fz={'xs'}>
+      //         Discover in-depth details about our mission, expertise, and
+      //         accomplishments in our company profile.
+      //       </Text>
+      //     </div>
 
-          <div>
-            <Button
-              variant="gradient"
-              size="xs"
-              leftSection={
-                <IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-              }
-            >
-              Get Company Profile
-            </Button>
-          </div>
-        </Group>
-      ),
+      //     <div>
+      //       <Button
+      //         variant="gradient"
+      //         size="xs"
+      //         leftSection={
+      //           <IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+      //         }
+      //       >
+      //         Get Company Profile
+      //       </Button>
+      //     </div>
+      //   </Group>
+      // ),
     },
     {
       link: '/shop',

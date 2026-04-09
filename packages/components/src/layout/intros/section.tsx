@@ -20,6 +20,7 @@ interface SectionHeaderProps {
   options?: {
     alignment?: any;
     spacing?: boolean;
+    c?: string;
   };
 }
 
@@ -42,7 +43,7 @@ export default function Section({ props, options }: SectionHeaderProps) {
           mb={options?.spacing ? SECTION_SPACING : undefined}
         >
           <Stack>
-            <Title order={2} ta={alignment}>
+            <Title order={2} ta={alignment} c={options?.c}>
               {props.title}
             </Title>
 

@@ -147,7 +147,7 @@ export default function AI({
   return (
     <LayoutSection id="content" containerized={false} bordered>
       <ScrollArea
-        h={'40vh'}
+        h={`calc(100vh - ${64.8 + 133.1 + 118.4 + 2}px)`}
         scrollbarSize={8}
         fz={'sm'}
         px={'md'}
@@ -277,8 +277,8 @@ function UserMessage({ content }: { content: string }) {
   return (
     <Stack align="end" my={'sm'} gap={5} className={classes.user}>
       <Paper
-        bg={'var(--mantine-color-pri-light)'}
-        c={'var(--mantine-color-pri-8)'}
+        bg={'var(--mantine-color-sec-4)'}
+        c={'var(--mantine-color-white)'}
         px={'xs'}
         maw={'70%'}
         py={5}

@@ -1,7 +1,5 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
-import { Modal } from '@mantine/core';
+import { Drawer, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useFormAi } from '@repo/hooks/form/ai';
 import HeaderModalAI from '../../layout/header/modal/ai';
@@ -13,7 +11,7 @@ import { useTTS } from '@repo/hooks/tts';
 import { useSTT } from '@repo/hooks/stt';
 import OverlayAIVoice from '../../overlays/ai-voice';
 
-export default function AI({ children }: { children: React.ReactNode }) {
+export default function Ai({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [updated, setUpdated] = useState(false);
   const [voiceMode, setVoiceMode] = useState(false);
@@ -56,16 +54,13 @@ export default function AI({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Modal
+      <Drawer
         opened={opened}
-        onClose={handleClose}
+        onClose={close}
         withCloseButton={false}
-        size={'lg'}
-        centered
-        styles={{
-          root: { position: 'relative', overflow: 'hidden' },
-          content: { padding: 0 },
-        }}
+        // size={'lg'}
+        position="right"
+        padding={0}
       >
         <HeaderModalAI onClose={handleClose} />
 
@@ -118,7 +113,7 @@ export default function AI({ children }: { children: React.ReactNode }) {
             setVoiceMode,
           }}
         />
-      </Modal>
+      </Drawer>
 
       <div onClick={open} style={{ cursor: 'pointer' }}>
         {children}

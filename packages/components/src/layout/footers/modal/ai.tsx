@@ -1,16 +1,16 @@
 import React from 'react';
-import { Anchor, Button, Group, Stack, Text } from '@mantine/core';
+import { Anchor, Button, Divider, Group, Stack, Text } from '@mantine/core';
 import LayoutSection from '@repo/components/layout/section';
 import { IconMessageCirclePlus } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
 
-const modelUrl = 'https://openai.com';
+const modelUrl = 'https://anthropic.com';
 
 const links = {
-  terms: `${modelUrl}/policies/terms-of-use/`,
-  privacy: `${modelUrl}/policies/privacy-policy/`,
-  usage: `${modelUrl}/policies/`,
+  terms: `${modelUrl}/legal/commercial-terms`,
+  privacy: `${modelUrl}/legal/privacy`,
+  usage: `${modelUrl}/legal/aup`,
 };
 
 export default function ModalFooter({
@@ -23,12 +23,12 @@ export default function ModalFooter({
 
   return (
     <LayoutSection id="footer" containerized={false} px={'md'} padded={'md'}>
-      <Stack gap={'md'}>
-        <Group justify="space-between" fz={'xs'} align="end">
+      <Stack gap={'xs'} fz={'sm'}>
+        <Group justify="space-between" align="end">
           <Text inherit>
             Model from{' '}
             <Anchor href={modelUrl} target="_blank" inherit fw={'bold'}>
-              OpenAI
+              Anthropic
             </Anchor>
           </Text>
 
@@ -37,42 +37,33 @@ export default function ModalFooter({
               size="xs"
               onClick={resetConversation}
               disabled={!hasConversation}
-              leftSection={
-                <IconMessageCirclePlus
-                  size={ICON_SIZE / 1.5}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              }
             >
               New Chat
             </Button>
           </Group>
         </Group>
 
-        <Stack gap={5} c={'dimmed'} ta={'center'} fz={'xs'}>
-          <Text inherit c={'dimmed'} ta={'center'}>
-            Hekima may produce incorrect information. Double-check responses.
+        <Divider />
+
+        <Group c={'dimmed'} justify="center">
+          <Text inherit ta={'center'}>
+            Hekima may produce incorrect information.
           </Text>
+        </Group>
 
-          <Group justify="center" gap={'xs'} visibleFrom="xs">
-            <Anchor inherit href={links.terms} c={'dimmed'} underline="always">
-              Terms of Service
-            </Anchor>
+        <Group justify="center" gap={'xs'} visibleFrom="xs" fz={'xs'}>
+          <Anchor inherit href={links.terms} underline="hover" c={'dimmed'}>
+            Terms of Service
+          </Anchor>
 
-            <Anchor
-              inherit
-              href={links.privacy}
-              c={'dimmed'}
-              underline="always"
-            >
-              Privacy Policy
-            </Anchor>
+          <Anchor inherit href={links.privacy} underline="hover" c={'dimmed'}>
+            Privacy Policy
+          </Anchor>
 
-            <Anchor inherit href={links.usage} c={'dimmed'} underline="always">
-              Other Policies
-            </Anchor>
-          </Group>
-        </Stack>
+          <Anchor inherit href={links.usage} underline="hover" c={'dimmed'}>
+            Usage Policy
+          </Anchor>
+        </Group>
       </Stack>
     </LayoutSection>
   );

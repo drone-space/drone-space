@@ -1,10 +1,14 @@
 'use client';
 
 import React, { Dispatch, SetStateAction } from 'react';
-import { Button, Group, Stack, Textarea } from '@mantine/core';
-import { IconBrandTelegram } from '@tabler/icons-react';
+import { ActionIcon, Button, Group, Stack, Textarea } from '@mantine/core';
+import { IconArrowUp, IconBrandTelegram } from '@tabler/icons-react';
 import { getHotkeyHandler } from '@mantine/hooks';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@repo/constants/sizes';
 import { FormAIType } from '@repo/hooks/form/ai';
 import classes from './ai.module.scss';
 import { COMPANY_NAME } from '@repo/constants/app';
@@ -65,20 +69,14 @@ export default function Ai({
         <Group justify="end">
           <Group gap={'xs'}>
             {/* {showSendButton && ( */}
-            <Button
-              size={'xs'}
+            <ActionIcon
               type="submit"
+              size={ICON_WRAPPER_SIZE}
               loading={props.submitted}
               disabled={props.form.values.content.length == 0}
-              leftSection={
-                <IconBrandTelegram
-                  size={ICON_SIZE / 1.2}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              }
             >
-              Send
-            </Button>
+              <IconArrowUp size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            </ActionIcon>
             {/* )} */}
 
             {/* {showVoiceModeButton && (

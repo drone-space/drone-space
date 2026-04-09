@@ -41,15 +41,14 @@ import { images } from '@repo/constants/images';
 import { AUTH_URLS } from '@repo/constants/paths';
 import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
 import { cleanPaths } from '@repo/utilities/array';
-import { Button } from '@mantine/core';
+import { Button, Group, Text } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 
 export const shopLinks = [
   {
     link: '/shop',
     label: 'All Drones',
-    leftSection: IconDrone,
-    // desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
+    desc: 'Browse our full range of drones for every need.',
     // definition:
     //   'Camera drones are designed to capture high-quality photos and videos from the air. Equipped with stabilized gimbals and advanced imaging sensors, they offer unique perspectives ideal for creators, travelers, and hobbyists. Their user-friendly controls and intelligent flight modes make aerial photography more accessible than ever.',
   },
@@ -57,66 +56,52 @@ export const shopLinks = [
   {
     link: '/shop?category=camera&layout=grid&listSize=6#listing',
     label: 'Camera Drones',
-    leftSection: IconAperture,
-    // desc: 'Capture stunning aerial photos and videos with state-of-the-art camera drones.',
+    desc: 'Capture stunning aerial photos and videos with ease.',
     // definition:
     //   'Camera drones are designed to capture high-quality photos and videos from the air. Equipped with stabilized gimbals and advanced imaging sensors, they offer unique perspectives ideal for creators, travelers, and hobbyists. Their user-friendly controls and intelligent flight modes make aerial photography more accessible than ever.',
-    // image: images.carousel.shop.image1,
   },
   {
     link: '/shop?category=cinematography&layout=grid&listSize=6#listing',
     label: 'Cinematography & Filmmaking',
     labelShort: 'Cinematography',
-    leftSection: IconMovie,
-    // desc: 'Professional-grade drones built for filmmakers and content creators, offering smooth, high-resolution aerial footage.',
+    desc: 'Professional drones for smooth, high-quality aerial footage.',
     // definition:
     //   'Cinematography drones are high-end tools for filmmakers, production studios, and content creators. They feature large sensors, cinema-grade optics, and dynamic stabilization systems, enabling sweeping aerial shots with exceptional clarity and motion fluidity. Ideal for everything from indie films to major productions.',
-    // image: images.carousel.shop.image5,
   },
   {
     link: '/shop?category=enterprise&layout=grid&listSize=6#listing',
     label: 'Industrial & Enterprise Applications',
     labelShort: 'Industrial & Enterprise',
-    leftSection: IconBuildingFactory2,
-    // desc: 'Powerful drones designed for industrial and commercial applications.',
+    desc: 'Advanced drones built for industrial and commercial use.',
     // definition:
     //   'Enterprise drones introduce advanced data capture capabilities, encompassing high-resolution imagery, LiDAR scanning, and thermal imaging. These capabilities empower businesses to amass detailed and actionable insights efficiently over expansive areas. Processed through specialized software, the collected data can yield precise maps, 3D models, and a range of analytics on a large scale.',
-    // image: images.carousel.shop.image2,
   },
   {
     link: '/shop?category=mapping&layout=grid&listSize=6#listing',
     label: 'Surveying & Mapping',
-    leftSection: IconMap2,
-    // desc: 'Accurate and efficient drones tailored for geospatial mapping, land surveying, and 3D modeling applications.',
+    desc: 'Precise drones for mapping, surveying, and 3D modeling.',
     // definition:
     //   'Mapping and survey drones are specialized for collecting accurate geospatial data. Using technologies like RTK GPS, photogrammetry, and LiDAR, they can efficiently cover large areas to generate topographic maps, 3D models, and contour lines. They are widely used in industries like construction, mining, and urban planning.',
-    // image: images.carousel.shop.image4,
   },
   {
     link: '/shop?category=agriculture&layout=grid&listSize=6#listing',
     label: 'Agriculture & Precision Farming',
     labelShort: 'Agriculture',
-    leftSection: IconSeeding,
-    // desc: 'Transform farming with innovative drones for precision agriculture and crop management.',
+    desc: 'Smart drones for efficient farming and crop management.',
     // definition:
     //   'Agriculture drones are purpose-built to support modern farming. They help monitor crop health, manage irrigation, and even perform precise spraying tasks. By automating field assessments and data collection, these drones enable farmers to make timely, data-driven decisions that boost yield and reduce resource waste.',
-    // image: images.carousel.shop.image3,
   },
   // {
   //   link: '/shop?category=upcoming&layout=grid&listSize=6#listing',
   //   label: 'Upcoming Releases',
-  //   leftSection: IconPlant2,
   //   desc: 'Be the first to explore the latest drone innovations and upcoming models hitting the skies soon.',
   //   definition:
   //     'This category features the latest drone models set to hit the market. Whether it’s groundbreaking flight technology, improved sensors, or entirely new capabilities, upcoming releases give enthusiasts and professionals early insight into the future of drone innovation.',
-  //   image: images.carousel.shop.image6,
   // },
   // {
   //   link: '/shop/accessories',
   //   label: 'Drone Accessories',
-  //   leftSection: IconCirclePlus,
   //   desc: 'Enhance your drone experience with high-quality accessories and add-ons.',
-  //   image: images.carousel.shop.image1,
   // },
 ];
 
@@ -124,7 +109,7 @@ export const trainingLinks = [
   {
     link: `/drone-training`,
     label: 'Overview',
-    leftSection: IconBolt,
+    desc: 'Explore our drone training programs and certifications.',
   },
 
   ...courseList
@@ -133,7 +118,7 @@ export const trainingLinks = [
         link: `/drone-training/${linkify(course.title)}`,
         label: course.titleShort || course.title,
         leftSection: 'empty' as any,
-        // desc: course.linkDesc,
+        desc: course.linkDesc,
       };
     })
     .filter((i) => i != null),
@@ -141,8 +126,7 @@ export const trainingLinks = [
   {
     link: '/drone-training/pricing',
     label: 'Pricing',
-    leftSection: IconReceipt2,
-    // desc: 'Find detailed information on costs and packages for all our training programs.',
+    desc: 'View costs and packages for all training programs.',
   },
 ];
 
@@ -150,22 +134,20 @@ export const serviceLinks = [
   {
     link: `/drone-solutions`,
     label: 'Overview',
-    leftSection: IconBolt,
+    desc: 'Explore our full range of drone solutions and services.',
   },
 
   {
     label: 'Light Shows',
     link: '/drone-solutions/light-shows',
-    leftSection: IconSparkles,
-    // desc: 'Experience mesmerizing aerial displays that light up the skies with creativity and precision.',
+    desc: 'Mesmerizing aerial displays that light up the sky.',
   },
 
   ...services.map((service) => {
     return {
       link: `/drone-solutions/${linkify(service.title)}`,
       label: service.titleShort || service.title,
-      leftSection: service.leftSection,
-      // desc: service.linkDesc,
+      desc: service.linkDesc,
     };
   }),
 ];
@@ -289,11 +271,55 @@ export const links = {
       link: '/drone-training',
       label: 'Training',
       subLinks: trainingLinks,
+      cta: (
+        <Group justify="space-between" wrap="nowrap">
+          <div>
+            <Text inherit fz={'xs'}>
+              Get a quick overview of our services, solutions, and offerings in
+              our brochure.
+            </Text>
+          </div>
+
+          <div>
+            <Button
+              variant="gradient"
+              size="xs"
+              leftSection={
+                <IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Get Brochure
+            </Button>
+          </div>
+        </Group>
+      ),
     },
     {
       link: '/drone-solutions',
       label: 'Solutions',
       subLinks: serviceLinks,
+      cta: (
+        <Group justify="space-between" wrap="nowrap">
+          <div>
+            <Text inherit fz={'xs'}>
+              Discover in-depth details about our mission, expertise, and
+              accomplishments in our company profile.
+            </Text>
+          </div>
+
+          <div>
+            <Button
+              variant="gradient"
+              size="xs"
+              leftSection={
+                <IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              Get Company Profile
+            </Button>
+          </div>
+        </Group>
+      ),
     },
     {
       link: '/shop',
@@ -306,28 +332,28 @@ export const links = {
       subLinks: [
         {
           link: '/blog',
-          label: 'Blog',
+          label: 'News & Insights',
           leftSection: IconLibrary,
-          // desc: 'Stay updated with insights, stories, and news from our community.',
+          desc: 'Latest stories, insights, and updates from our community.',
         },
-        // {
-        //   link: '/gallery',
-        //   label: 'Gallery',
-        //   leftSection: IconLibraryPhoto,
-        //   // desc: 'See a visual showcase of our journey and achievements.',
-        // },
         {
           link: '/downloads',
           label: 'Downloads',
           leftSection: IconDownload,
-          // desc: 'Find quick answers to common questions about our services, products, and policies.',
+          desc: 'Access useful resources, files, and important documents.',
         },
-        // {
-        //   link: '/faq',
-        //   label: 'FAQ',
-        //   leftSection: IconQuestionMark,
-        //   // desc: 'Find quick answers to common questions about our services, products, and policies.',
-        // },
+        {
+          link: '/gallery',
+          label: 'Gallery',
+          leftSection: IconLibraryPhoto,
+          desc: 'See a visual showcase of our journey and achievements.',
+        },
+        {
+          link: '/faq',
+          label: 'FAQ',
+          leftSection: IconQuestionMark,
+          desc: 'Answers to common questions about our products & services.',
+        },
       ],
     },
   ],
@@ -375,7 +401,7 @@ export const links = {
       links: [
         {
           link: '/blog',
-          label: 'Blog',
+          label: 'News & Insights',
         },
         {
           link: '/downloads',
@@ -409,6 +435,10 @@ export const links = {
         {
           label: 'Testimonials',
           link: `/about#testimonials`,
+        },
+        {
+          label: 'Contact Us',
+          link: `/contact`,
         },
       ],
     },

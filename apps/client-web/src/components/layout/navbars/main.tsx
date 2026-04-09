@@ -28,9 +28,10 @@ export default function Main({
 
   const navLinks = links.navbar.map((link, index) => {
     return (
-      <MenuNavbar key={index} subLinks={link.subLinks}>
+      <MenuNavbar key={index} subLinks={link.subLinks} cta={link.cta}>
         {!link.subLinks ? (
           <NextLink
+            inherit
             href={link.link}
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
@@ -40,7 +41,7 @@ export default function Main({
           </NextLink>
         ) : (
           <Text
-            // href={link.link}
+            inherit
             style={{ cursor: 'pointer' }}
             c={'pri.8'}
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
@@ -85,14 +86,10 @@ export default function Main({
             <Group gap={0}>{navLinks}</Group>
 
             <Group gap={'xs'}>
-              <Button size="xs" variant="light">
-                Get a Quote
-              </Button>
+              <Button variant="light">Get a Quote</Button>
 
               <ModalContactCallback>
-                <Button size="xs" variant="gradient">
-                  Start Training
-                </Button>
+                <Button variant="gradient">Start Training</Button>
               </ModalContactCallback>
             </Group>
           </Group>

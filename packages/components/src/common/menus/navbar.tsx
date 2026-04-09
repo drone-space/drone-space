@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import {
   Box,
@@ -30,14 +30,19 @@ import CardMenu from '../cards/menu';
 import { IconFileDownload } from '@tabler/icons-react';
 import ModalDownloadDocument from '../modals/download/document';
 import NextLink from '@repo/components/common/anchor/next-link';
+import LayoutSection from '../../layout/section';
 
 export default function Navbar({
   children,
   subLinks,
+  cta,
 }: {
   children: React.ReactNode;
   subLinks?: typeMenuNavbar[];
+  cta?: React.ReactNode;
 }) {
+  const [opened, setOpened] = useState(false);
+
   const pathname = usePathname();
 
   const megaMenu = subLinks && subLinks[0].desc;
@@ -50,32 +55,12 @@ export default function Navbar({
           key={index}
           className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
           h={'100%'}
-          leftSection={
-            !item.leftSection ? undefined : item.leftSection ==
-              ('empty' as any) ? (
-              <Box h={ICON_SIZE} w={ICON_SIZE}></Box>
-            ) : (
-              <ThemeIcon size={ICON_SIZE} variant="light">
-                <item.leftSection size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              </ThemeIcon>
-            )
-          }
+          p={!item.desc ? 5 : 'inherit'}
+          px={!item.desc ? 'xs' : undefined}
+          style={{ borderRadius: !item.desc ? undefined : 0 }}
         >
           {!item.desc ? (
-            <>
-              <Group gap={'xs'}>
-                {item.leftSection && (
-                  <Divider
-                    orientation="vertical"
-                    h={16}
-                    my={'auto'}
-                    opacity={item.leftSection != ('empty' as any) ? 1 : 0}
-                  />
-                )}
-
-                {item.labelShort || item.label}
-              </Group>
-            </>
+            <>{item.labelShort || item.label}</>
           ) : (
             <CardMenu props={item} />
           )}
@@ -85,11 +70,21 @@ export default function Navbar({
 
   return (
     <Menu
-      width={'auto'}
-      trigger="hover"
-      position="bottom-start"
-      offset={{ crossAxis: -(ICON_SIZE + 20) }}
+      onChange={setOpened}
+      width="100vw"
+      trigger="click-hover"
+      offset={0}
+      position="bottom"
+      withinPortal={true}
       transitionProps={{ transition: 'fade', duration: 200 }}
+      portalProps={{
+        style: {
+          left: 0,
+          right: 0,
+          position: 'absolute',
+          width: '100%',
+        },
+      }}
       shadow="xs"
       classNames={{
         dropdown: classes.dropdown,
@@ -101,87 +96,41 @@ export default function Navbar({
         itemSection: classes.itemSection,
       }}
     >
-      <MenuTarget>{children}</MenuTarget>
+      <MenuTarget>
+        <div
+          style={{ color: opened ? 'var(--mantine-color-sec-4)' : undefined }}
+        >
+          {children}
+        </div>
+      </MenuTarget>
 
       {menuItems && (
         <MenuDropdown>
-          {!megaMenu ? (
-            menuItems
-          ) : (
-            <Stack gap={0} w={720}>
-              <Grid gutter={0}>
-                {menuItems.map((menuItem, index) => (
-                  <GridCol key={index} span={{ base: 12, xs: 6 }}>
-                    {menuItem}
-                  </GridCol>
-                ))}
-              </Grid>
+          <LayoutSection id={'navbar-dropdown'}>
+            {!megaMenu ? (
+              menuItems
+            ) : (
+              <Stack gap={0}>
+                <Grid gutter={'lg'}>
+                  {menuItems.map((menuItem, index) => (
+                    <GridCol key={index} span={{ base: 12, md: 4, lg: 3 }}>
+                      {menuItem}
+                    </GridCol>
+                  ))}
 
-              <Divider color={'sec.3'} size={ICON_STROKE_WIDTH} />
+                  {cta && (
+                    <GridCol span={12}>
+                      <Stack gap={'lg'}>
+                        <Divider />
 
-              <Card
-                bg={'var(--mantine-color-pri-8)'}
-                c={'var(--mantine-color-body)'}
-                radius={0}
-              >
-                <Grid>
-                  <GridCol span={8}>
-                    <Stack gap={'xs'}>
-                      <Title order={3} fz={'sm'} lh={1} c={'white'}>
-                        Downloads
-                      </Title>
-                      <Text fz={'xs'}>
-                        Get a quick overview of our services, solutions, and
-                        offerings in our brochure. Discover in-depth details
-                        about our mission, expertise, and accomplishments in our
-                        company profile.
-                      </Text>
-                    </Stack>
-                  </GridCol>
-
-                  <GridCol span={4}>
-                    <Stack align="end" justify={'end'} h={'100%'} gap={'xs'}>
-                      <ModalDownloadDocument props={{ type: 'brochure' }}>
-                        <Button
-                          justify="space-between"
-                          rightSection={
-                            <IconFileDownload
-                              size={ICON_SIZE}
-                              stroke={ICON_STROKE_WIDTH}
-                              color="var(--mantine-color-pri-8)"
-                            />
-                          }
-                          color="sec.3"
-                          c="pri.8"
-                          size="sm"
-                        >
-                          Brochure
-                        </Button>
-                      </ModalDownloadDocument>
-
-                      {/* <ModalDownloadDocument props={{ type: 'profile' }}>
-                        <Button
-                          justify="space-between"
-                          rightSection={
-                            <IconFileDownload
-                              size={ICON_SIZE}
-                              stroke={ICON_STROKE_WIDTH}
-                              color="var(--mantine-color-white)"
-                            />
-                          }
-                          variant="outline"
-                          color="white"
-                          size="sm"
-                        >
-                          Profile
-                        </Button>
-                      </ModalDownloadDocument> */}
-                    </Stack>
-                  </GridCol>
+                        {cta}
+                      </Stack>
+                    </GridCol>
+                  )}
                 </Grid>
-              </Card>
-            </Stack>
-          )}
+              </Stack>
+            )}
+          </LayoutSection>
         </MenuDropdown>
       )}
     </Menu>

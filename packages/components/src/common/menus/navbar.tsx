@@ -76,7 +76,7 @@ export default function Navbar({
       offset={0}
       position="bottom"
       withinPortal={true}
-      transitionProps={{ transition: 'fade', duration: 200 }}
+      transitionProps={{ transition: 'fade' }}
       portalProps={{
         style: {
           left: 0,

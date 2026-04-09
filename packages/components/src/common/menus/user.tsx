@@ -33,7 +33,7 @@ export default function User({ children }: { children: React.ReactNode }) {
       closeDelay={50}
       classNames={classes}
       opened={desktop ? undefined : false}
-      transitionProps={{ transition: 'pop-top-right', duration: 100 }}
+      transitionProps={{ transition: 'pop-top-right' }}
       withArrow
       arrowOffset={16}
       disabled={!session}

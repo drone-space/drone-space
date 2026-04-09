@@ -12,6 +12,7 @@ import {
   Container,
   createTheme,
   Divider,
+  Drawer,
   Loader,
   MantineThemeOverride,
   Menu,
@@ -61,7 +62,7 @@ export const getAppTheme = (params?: AppThemeProps) => {
       classNames: params?.styleSheets?.modal,
       defaultProps: {
         transitionProps: {
-          duration: 250,
+          duration: 150,
           transition: 'fade',
         },
         overlayProps: {
@@ -143,6 +144,19 @@ export const getAppTheme = (params?: AppThemeProps) => {
             backgroundColor: 'var(--mantine-color-body)',
             borderColor: 'var(--mantine-color-default-border)',
             padding: 'var(--mantine-spacing-xs)',
+          },
+        },
+      }),
+
+      Drawer: Drawer.extend({
+        defaultProps: {
+          transitionProps: {
+            duration: 150,
+            // transition: 'fade',
+          },
+          overlayProps: {
+            backgroundOpacity: 0.5,
+            blur: 3,
           },
         },
       }),

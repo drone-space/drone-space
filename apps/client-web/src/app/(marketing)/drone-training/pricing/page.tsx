@@ -7,7 +7,10 @@ import LayoutSection from '@repo/components/layout/section';
 import CardPricingBasic from '@/components/common/cards/pricing/basic';
 import AccordionFaq from '@/components/common/accordions/faq';
 import IntroPage from '@repo/components/layout/intros/page';
-import { courseList, courses } from '@repo/constants/courses';
+import {
+  courseList,
+  courses,
+} from '../../../../../../../packages/constants/src/courses';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { GetLayout } from '../../faq/page';

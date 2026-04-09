@@ -18,6 +18,7 @@ interface CourseProps {
   image: string;
   title: string;
   desc: string;
+  slug: string;
 }
 
 export default function Course({ data }: { data: CourseProps }) {
@@ -48,7 +49,7 @@ export default function Course({ data }: { data: CourseProps }) {
           </Box>
 
           <NextLink
-            href={`#${linkify(data.title)}`}
+            href={`/drone-training/${linkify(data.slug)}`}
             inherit
             c={'var(--mantine-color-white)'}
             underline="hover"

@@ -36,7 +36,7 @@ import {
 } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';
 import services from './services';
-import { courseList } from '@repo/constants/courses';
+import { courseList } from '../../../../packages/constants/src/courses';
 import { images } from '@repo/constants/images';
 import { AUTH_URLS } from '@repo/constants/paths';
 import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
@@ -115,7 +115,7 @@ export const trainingLinks = [
   ...courseList
     .map((course) => {
       return {
-        link: `/drone-training/${linkify(course.title)}`,
+        link: `/drone-training/${linkify(course.slug)}`,
         label: course.titleShort || course.title,
         leftSection: 'empty' as any,
         desc: course.linkDesc,

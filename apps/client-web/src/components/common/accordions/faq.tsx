@@ -41,9 +41,9 @@ export default function Faq({
 
   return (
     <Accordion
-      multiple
-      defaultValue={selection().map((i) => i.q)}
+      defaultValue={selection()[0].q}
       classNames={classes}
+      variant="filled"
     >
       {items}
     </Accordion>

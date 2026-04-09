@@ -10,7 +10,7 @@ import { SECTION_SPACING } from '@repo/constants/sizes';
 export default function Gallery({ props }: { props: { list: any[] } }) {
   const router = useRouter();
 
-  const divisor = 12;
+  const divisor = 16;
   const { items, totalPages, activePage, setActivePage } = usePaginate(
     props.list,
     divisor
@@ -27,10 +27,7 @@ export default function Gallery({ props }: { props: { list: any[] } }) {
     <>
       <Grid justify="center" gutter={'xs'} my={SECTION_SPACING / 2}>
         {items.map((item) => (
-          <GridCol
-            key={item.image}
-            span={{ base: 12, xs: 6, sm: 4, md: 3, xl: 2 }}
-          >
+          <GridCol key={item.image} span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
             <ModalGallery img={item.image} />
           </GridCol>
         ))}

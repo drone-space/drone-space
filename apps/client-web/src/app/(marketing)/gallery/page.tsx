@@ -57,10 +57,22 @@ export default async function Gallery() {
       <LayoutSection
         id="page-gallery"
         padded
-        bg={'var(--mantine-color-gray-1)'}
+        // bg={'var(--mantine-color-gray-1)'}
       >
-        <Tabs defaultValue={'conference'}>
-          <Grid component={TabsList} grow mb={'xl'} justify="center" gutter={0}>
+        <Tabs
+          defaultValue={'conference'}
+          variant="pills"
+          styles={{
+            tab: { border: `2px solid var(--mantine-color-gray-4)` },
+          }}
+        >
+          <Grid
+            component={TabsList}
+            grow
+            mb={'xl'}
+            justify="center"
+            gutter={'xs'}
+          >
             <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
               <TabsTab w={'100%'} value="conference">
                 Conference

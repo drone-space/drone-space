@@ -28,7 +28,12 @@ export default function Main({
 
   const navLinks = links.navbar.map((link, index) => {
     return (
-      <MenuNavbar key={index} subLinks={link.subLinks} cta={link.cta}>
+      <MenuNavbar
+        key={index}
+        link={link}
+        subLinks={link.subLinks}
+        cta={link.cta}
+      >
         {!link.subLinks ? (
           <NextLink
             inherit

@@ -31,13 +31,16 @@ import { IconFileDownload } from '@tabler/icons-react';
 import ModalDownloadDocument from '../modals/download/document';
 import NextLink from '@repo/components/common/anchor/next-link';
 import LayoutSection from '../../layout/section';
+import { COMPANY_NAME } from '@repo/constants/app';
 
 export default function Navbar({
   children,
+  link,
   subLinks,
   cta,
 }: {
   children: React.ReactNode;
+  link?: typeMenuNavbar;
   subLinks?: typeMenuNavbar[];
   cta?: React.ReactNode;
 }) {
@@ -74,6 +77,7 @@ export default function Navbar({
       width="100vw"
       trigger="click-hover"
       offset={0}
+      openDelay={100}
       position="bottom"
       withinPortal={true}
       transitionProps={{ transition: 'fade' }}
@@ -115,7 +119,13 @@ export default function Navbar({
             {!megaMenu ? (
               menuItems
             ) : (
-              <Stack gap={0}>
+              <Stack gap={'md'}>
+                <Group px={'sm'}>
+                  <Title order={2} fz={'lg'}>
+                    {COMPANY_NAME} {link?.label}
+                  </Title>
+                </Group>
+
                 <Grid gutter={'xs'}>
                   {menuItems.map((menuItem, index) => (
                     <GridCol key={index} span={{ base: 12, md: 4, lg: 3 }}>

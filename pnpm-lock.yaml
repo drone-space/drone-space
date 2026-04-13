@@ -554,8 +554,8 @@ importers:
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
-        specifier: ^20
-        version: 20.19.24
+        specifier: ^22.15.3
+        version: 22.15.3
       '@types/react':
         specifier: ^19
         version: 19.1.0

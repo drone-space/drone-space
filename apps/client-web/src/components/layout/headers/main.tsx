@@ -15,7 +15,7 @@ export default function Main() {
       id="layout-header-main"
       padded={7}
       shadowed
-      bg={'var(--mantine-color-pri-8)'}
+      bg={'var(--mantine-color-pri-9)'}
       c={'var(--mantine-color-white)'}
       visibleFrom="sm"
     >

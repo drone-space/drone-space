@@ -17,6 +17,7 @@ import CardCourse from '@/components/common/cards/training/course';
 import { courseList } from '@repo/constants/courses';
 import IntroPage from '@repo/components/layout/intros/page';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import CtaMain from '@/components/partial/cta/main';
 
 export const dynamic = 'force-static';
 
@@ -86,7 +87,7 @@ export default async function DroneTraining() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.9'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -115,7 +116,7 @@ export default async function DroneTraining() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.9'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -145,14 +146,29 @@ export default async function DroneTraining() {
       </LayoutSection>
 
       <LayoutSection id="course-list" padded>
+        <IntroSection
+          props={{
+            subTitle: 'Learning Paths',
+            title: 'Our Drone Training Courses',
+          }}
+          options={{ spacing: true }}
+        />
+
         <Grid justify="center">
           {courseList.map((item, index) => (
-            <GridCol key={index} span={{ base: 12, sm: 6, xl: 4 }}>
+            <GridCol key={index} span={{ base: 12, md: 6 }}>
               <CardCourse data={item} />
             </GridCol>
           ))}
         </Grid>
       </LayoutSection>
+
+      <CtaMain
+        props={{
+          title: 'Master the Future of Aviation',
+          desc: 'Step into the fast-growing drone industry with our comprehensive training programs. From beginner to advanced levels, we equip you with the skills, knowledge, and confidence to operate drones safely and professionally. Start your journey toward becoming a certified drone expert today.',
+        }}
+      />
     </LayoutPage>
   );
 }

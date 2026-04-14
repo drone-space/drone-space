@@ -29,8 +29,13 @@ import { linkify } from '@repo/utilities/url';
 import { courseList } from '@repo/constants/courses';
 import IntroPage from '@repo/components/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
+import { GetLayout } from '../../faq/page';
+import AccordionFaq from '@/components/common/accordions/faq';
+import CtaMain from '@/components/partial/cta/main';
 
-const course = courseList.find((c) => c.slug == 'agricultural-spraying');
+const course = courseList.find(
+  (c) => linkify(c.titleShort || c.title) == 'agricultural-spraying'
+);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.slug}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
     type: 'website',
     images: [
       {
@@ -105,7 +110,7 @@ export default async function Course() {
                           size={ICON_WRAPPER_SIZE / 1.5}
                           mt={2}
                           color="sec.3"
-                          c={'pri.8'}
+                          c={'pri.9'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -140,14 +145,14 @@ export default async function Course() {
                 <Divider color="sec.3" size={'md'} />
               </GridCol>
               <GridCol span={4}>
-                <Divider color="pri.8" size={'md'} />
+                <Divider color="pri.9" size={'md'} />
               </GridCol>
             </Grid>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }}>
             <Card
-              bg={'pri.8'}
+              bg={'pri.9'}
               c={'white'}
               withBorder
               shadow="xs"
@@ -177,7 +182,7 @@ export default async function Course() {
                           size={ICON_WRAPPER_SIZE / 1.5}
                           mt={2}
                           color="sec.3"
-                          c={'pri.8'}
+                          c={'pri.9'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -209,7 +214,7 @@ export default async function Course() {
                           size={ICON_WRAPPER_SIZE / 1.5}
                           mt={2}
                           color="sec.3"
-                          c={'pri.8'}
+                          c={'pri.9'}
                         >
                           <IconArrowRightDashed
                             size={ICON_SIZE / 1.5}
@@ -260,7 +265,7 @@ export default async function Course() {
                             size={ICON_WRAPPER_SIZE / 1.5}
                             mt={2}
                             color="sec.3"
-                            c={'pri.8'}
+                            c={'pri.9'}
                           >
                             <IconArrowRightDashed
                               size={ICON_SIZE / 1.5}
@@ -294,7 +299,7 @@ export default async function Course() {
                             size={ICON_WRAPPER_SIZE / 1.5}
                             mt={2}
                             color="sec.3"
-                            c={'pri.8'}
+                            c={'pri.9'}
                           >
                             <IconArrowRightDashed
                               size={ICON_SIZE / 1.5}
@@ -346,6 +351,37 @@ export default async function Course() {
           </ModalContactTraining>
         </Group>
       </LayoutSection>
+
+      <LayoutSection
+        id="pricing-training-faq"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: `FAQ's`,
+                  title: `Frequently Asked Questions`,
+                  desc: `For further information, please visit our training section, and for any other training inquiries, please send us a training inquiry.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
+          <AccordionFaq section="training" />
+        </GetLayout>
+      </LayoutSection>
+
+      <CtaMain
+        props={{
+          title: 'Revolutionize Modern Farming',
+          desc: 'Discover how drones are transforming agriculture. Our agricultural spraying training focuses on precision farming techniques, efficient chemical application, and safe operations. Help farmers increase yields while reducing costs and environmental impact.',
+          options: { course },
+        }}
+      />
     </LayoutPage>
   );
 }

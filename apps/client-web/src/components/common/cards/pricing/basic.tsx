@@ -39,7 +39,7 @@ export default function Basic({
       withBorder
       bg={
         data.featured
-          ? 'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+          ? 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
           : 'white'
       }
       c={
@@ -58,7 +58,7 @@ export default function Basic({
         <Stack>
           {data.advanced && (
             <Group justify="end" opacity={offset ? 0 : 1}>
-              <Badge color="sec.3" c="pri.8">
+              <Badge color="sec.3" c="pri.9">
                 Advanced Course
               </Badge>
             </Group>
@@ -99,7 +99,7 @@ export default function Basic({
             c={
               data.featured
                 ? 'light-dark(var(--mantine-color-white),var(--mantine-color-white))'
-                : 'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                : 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
             }
           >
             {data.title.full == 'Multi-Rotor'
@@ -147,7 +147,7 @@ export default function Basic({
               <ThemeIcon
                 size={ICON_WRAPPER_SIZE / 1.5}
                 color="sec.3"
-                c={'pri.8'}
+                c={'pri.9'}
               >
                 <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>
@@ -169,7 +169,7 @@ export default function Basic({
         >
           <Button
             color={data.featured ? 'sec.3' : 'pri'}
-            c={data.featured ? 'pri.8' : 'white'}
+            c={data.featured ? 'pri.9' : 'white'}
             fullWidth
             size="sm"
           >

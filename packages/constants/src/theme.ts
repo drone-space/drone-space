@@ -81,17 +81,30 @@ export const getAppTheme = (params?: AppThemeProps) => {
 
   const baseTheme: MantineThemeOverride = {
     colors: {
+      // pri: [
+      //   '#ebf3fd',
+      //   '#c6d5eb',
+      //   '#a1b6db',
+      //   '#7c96cd',
+      //   '#5774bf',
+      //   '#3e57a7',
+      //   '#304182',
+      //   '#151c2f',
+      //   '#121827', // src (8)
+      //   '#060a17',
+      // ],
       pri: [
         '#ebf3fd',
-        '#c6d5eb',
-        '#a1b6db',
-        '#7c96cd',
-        '#5774bf',
-        '#3e57a7',
+        // '#c2d3ea',
+        '#9ab2d6',
+        '#738fc0',
+        '#4f6da7',
+        '#3a568e',
         '#304182',
-        '#222c5d',
-        '#141939', // src (8)
-        '#060a17',
+        '#243367',
+        '#181F47',
+        '#181f3b',
+        '#151c2f', // src (9)
       ],
       sec: [
         '#e1fbfb',
@@ -111,6 +124,8 @@ export const getAppTheme = (params?: AppThemeProps) => {
     defaultRadius: 'lg',
     primaryShade: { light: 8, dark: 3 },
     cursorType: 'pointer',
+
+    defaultGradient: { from: 'pri.5', to: 'pri.8', deg: -60 },
 
     headings: {
       fontFamily: 'var(--font-montserrat)',
@@ -162,7 +177,7 @@ export const getAppTheme = (params?: AppThemeProps) => {
       }),
 
       Title: Title.extend({
-        defaultProps: { c: 'pri.8' },
+        defaultProps: { c: 'pri.9' },
       }),
 
       Tooltip: Tooltip.extend({

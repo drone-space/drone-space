@@ -398,7 +398,7 @@ export default function DroneListing() {
               <IconCircleX
                 size={ICON_SIZE + 8}
                 stroke={ICON_STROKE_WIDTH}
-                color={'var(--mantine-color-pri-8)'}
+                color={'var(--mantine-color-pri-9)'}
               />
             </Group>
 

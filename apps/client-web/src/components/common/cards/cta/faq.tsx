@@ -7,7 +7,7 @@ export default function Faq() {
   return (
     <Card
       bg={
-        'linear-gradient(-60deg, var(--mantine-color-pri-4) 0%, var(--mantine-color-pri-8) 100%)'
+        'linear-gradient(-60deg, var(--mantine-color-pri-4) 0%, var(--mantine-color-pri-9) 100%)'
       }
       padding={0}
       c={'var(--mantine-color-body)'}
@@ -28,7 +28,7 @@ export default function Faq() {
           <NextLink href={'/contact'}>
             <Button
               color="var(--mantine-color-body)"
-              c={'var(--mantine-color-pri-8)'}
+              c={'var(--mantine-color-pri-9)'}
             >
               Contact Us
             </Button>

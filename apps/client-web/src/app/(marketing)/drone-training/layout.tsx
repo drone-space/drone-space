@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LayoutBlog({
+export default function LayoutTraining({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;

@@ -51,6 +51,9 @@ export const images = {
       },
       logo: {
         landscape: {
+          left: {
+            default: `${baseUrl.droneSpace}/brand/logo/landscape/left/default.png`,
+          },
           black: `${baseUrl.droneSpace}/brand/logo/landscape/black.png`,
           default: `${baseUrl.droneSpace}/brand/logo/landscape/default.png`,
           white: `${baseUrl.droneSpace}/brand/logo/landscape/white.png`,
@@ -98,6 +101,14 @@ export const images = {
   },
 
   carousel: {
+    home: {
+      image1: `${baseUrl.droneSpace}/carousel/home/image-1.webp`,
+      image2: `${baseUrl.droneSpace}/carousel/home/image-2.png`,
+      image3: `${baseUrl.droneSpace}/carousel/home/image-3.webp`,
+      image4: `${baseUrl.droneSpace}/carousel/home/image-4.webp`,
+      image5: `${baseUrl.droneSpace}/carousel/home/image-5.webp`,
+      image6: `${baseUrl.droneSpace}/carousel/home/image-6.jpg`,
+    },
     shop: {
       image1: `${baseUrl.droneSpace}/carousel/shop/image-1.webp`,
       image2: `${baseUrl.droneSpace}/carousel/shop/image-2.webp`,
@@ -433,9 +444,12 @@ export const images = {
 
   backgrounds: {
     cta: {
+      secondary: `${baseUrl.droneSpace}/backgrounds/cta/secondary.webp`,
       newsletter: {
-        primary: `${baseUrl.droneSpace}/backgrounds/cta/newsletter/primary.webp`,
-        secondary: `${baseUrl.droneSpace}/backgrounds/cta/newsletter/secondary.webp`,
+        training: {
+          primary: `${baseUrl.droneSpace}/backgrounds/cta/newsletter/training/primary.webp`,
+          secondary: `${baseUrl.droneSpace}/backgrounds/cta/newsletter/training/secondary.webp`,
+        },
       },
     },
   },

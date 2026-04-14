@@ -18,6 +18,7 @@ import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import IntroPage from '@repo/components/layout/intros/page';
 import PartialDroneListing from '@/components/partial/drone-listing';
+import { SECTION_SPACING } from '@repo/constants/sizes';
 
 export const dynamic = 'force-static';
 
@@ -55,7 +56,7 @@ export default async function Shop() {
         }}
       />
 
-      <LayoutSection id="listing" padded>
+      <LayoutSection id="listing" padded pt={SECTION_SPACING}>
         <PartialDroneListing />
       </LayoutSection>
 

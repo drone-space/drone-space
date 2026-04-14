@@ -61,13 +61,13 @@ export default function Grid({ data }: { data: typeDrone }) {
 
                 <Group gap={'xs'}>
                   {data.new && (
-                    <Badge size={'md'} color={'sec.3'} c={'pri.8'}>
+                    <Badge size={'md'} color={'sec.3'} c={'pri.9'}>
                       New
                     </Badge>
                   )}
 
                   {data.featured && (
-                    <Badge size={'md'} color={'pri.8'} c={'sec.3'}>
+                    <Badge size={'md'} color={'pri.9'} c={'sec.3'}>
                       Featured
                     </Badge>
                   )}

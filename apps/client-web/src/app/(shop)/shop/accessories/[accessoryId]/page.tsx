@@ -90,7 +90,7 @@ export default async function AccessoryDetails({
                   inherit
                   fw={500}
                   c={
-                    'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'
+                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
                   }
                   fz={{ md: 'xl' }}
                 >
@@ -112,7 +112,7 @@ export default async function AccessoryDetails({
                       <ThemeIcon
                         size={ICON_WRAPPER_SIZE / 1.5}
                         color="sec.3"
-                        c={'pri.8'}
+                        c={'pri.9'}
                         mt={4}
                       >
                         <IconArrowRightDashed

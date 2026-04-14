@@ -43,7 +43,7 @@ export default function Main() {
       id={'partial-footer-main'}
       padded={'xl'}
       className={classes.footer}
-      bg={'var(--mantine-color-pri-8)'}
+      bg={'var(--mantine-color-pri-9)'}
       c={'var(--mantine-color-white)'}
       pt={SECTION_SPACING * 1.5}
     >

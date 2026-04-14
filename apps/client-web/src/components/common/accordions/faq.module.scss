@@ -1,16 +1,17 @@
 .control {
   transition: 0.25s all ease;
-  border-radius: 0;
   background-color: var(--mantine-color-gray-2);
+  // color: var(--mantine-color-white);
 
   @include mantine.hover {
-    background-color: var(--mantine-color-gray-3);
+    background-color: var(--mantine-color-gray-1);
   }
 }
 
 .label {
   transition: 0.25s all ease;
-  font-weight: 500;
+  color: var(--mantine-color-pri-9);
+  font-weight: 600;
 }
 
 .icon {
@@ -18,12 +19,9 @@
 }
 
 .item {
-  border-radius: var(--mantine-radius-lg);
-  border-bottom: 0px solid inherit;
-  box-shadow: var(--mantine-shadow-xs);
-  overflow: hidden;
 }
 
 .content {
   padding-top: var(--mantine-spacing-md);
+  padding-bottom: var(--mantine-spacing-xl);
 }

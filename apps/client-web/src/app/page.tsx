@@ -54,7 +54,7 @@ import {
 import IntroSection from '@repo/components/layout/intros/section';
 import { ABOUT_STATS, COMPANY_NAME } from '@repo/constants/app';
 import AlertConference from '@repo/components/common/alerts/conference';
-import CtaHome from '@/components/partial/cta/home';
+import CtaMain from '@/components/partial/cta/main';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { Metadata } from 'next';
 import AffixAi from '@repo/components/common/affixi/ai';
@@ -280,7 +280,7 @@ export default function Home() {
         </Grid>
       </LayoutSection>
 
-      <CtaHome />
+      <CtaMain />
     </HomeLayout>
   );
 }
@@ -302,9 +302,9 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
 
         {/* <ModalNewsletter /> */}
 
-        <AffixNavbar>
-          <NavbarMain />
-        </AffixNavbar>
+        {/* <AffixNavbar> */}
+        {/* <NavbarMain /> */}
+        {/* </AffixNavbar> */}
         <AffixAi />
       </LayoutPage>
     </LayoutBody>

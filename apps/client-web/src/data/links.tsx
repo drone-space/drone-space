@@ -36,13 +36,16 @@ import {
 } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';
 import services from './services';
-import { courseList } from '../../../../packages/constants/src/courses';
+import { courseList } from '@repo/constants/courses';
 import { images } from '@repo/constants/images';
 import { AUTH_URLS } from '@repo/constants/paths';
 import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
 import { cleanPaths } from '@repo/utilities/array';
 import { Button, Group, Text } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import ModalDownloadDocument from '@repo/components/common/modals/download/document';
+import ModalContactService from '@repo/components/common/modals/contact/service';
+import ModalContactTraining from '@repo/components/common/modals/contact/training';
 
 export const shopLinks = [
   {
@@ -115,7 +118,7 @@ export const trainingLinks = [
   ...courseList
     .map((course) => {
       return {
-        link: `/drone-training/${linkify(course.slug)}`,
+        link: `/drone-training/${linkify(course.titleShort || course.title)}`,
         label: course.titleShort || course.title,
         leftSection: 'empty' as any,
         desc: course.linkDesc,
@@ -131,11 +134,11 @@ export const trainingLinks = [
 ];
 
 export const serviceLinks = [
-  {
-    link: `/drone-solutions`,
-    label: 'Overview',
-    desc: 'Explore our full range of drone solutions and services.',
-  },
+  // {
+  //   link: `/drone-solutions`,
+  //   label: 'Overview',
+  //   desc: 'Explore our full range of drone solutions and services.',
+  // },
 
   {
     label: 'Light Shows',
@@ -145,7 +148,7 @@ export const serviceLinks = [
 
   ...services.map((service) => {
     return {
-      link: `/drone-solutions/${linkify(service.title)}`,
+      link: `/drone-solutions/${linkify(service.titleShort || service.title)}`,
       label: service.titleShort || service.title,
       desc: service.linkDesc,
     };
@@ -281,15 +284,20 @@ export const links = {
           </div>
 
           <div>
-            <Button
-              variant="gradient"
-              size="xs"
-              leftSection={
-                <IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-              }
-            >
-              Get Brochure
-            </Button>
+            <ModalDownloadDocument props={{ type: 'brochure' }}>
+              <Button
+                variant="gradient"
+                size="xs"
+                leftSection={
+                  <IconDownload
+                    size={ICON_SIZE - 4}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Get Brochure
+              </Button>
+            </ModalDownloadDocument>
           </div>
         </Group>
       ),
@@ -298,28 +306,33 @@ export const links = {
       link: '/drone-solutions',
       label: 'Solutions',
       subLinks: serviceLinks,
-      // cta: (
-      //   <Group justify="space-between" wrap="nowrap" align="start">
-      //     <div>
-      //       <Text inherit fz={'xs'}>
-      //         Discover in-depth details about our mission, expertise, and
-      //         accomplishments in our company profile.
-      //       </Text>
-      //     </div>
+      cta: (
+        <Group justify="space-between" wrap="nowrap" align="start">
+          <div>
+            <Text inherit fz={'sm'}>
+              Discover in-depth details about our mission, expertise, and
+              accomplishments in our company profile.
+            </Text>
+          </div>
 
-      //     <div>
-      //       <Button
-      //         variant="gradient"
-      //         size="xs"
-      //         leftSection={
-      //           <IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-      //         }
-      //       >
-      //         Get Company Profile
-      //       </Button>
-      //     </div>
-      //   </Group>
-      // ),
+          <div>
+            <ModalDownloadDocument props={{ type: 'profile' }}>
+              <Button
+                variant="gradient"
+                size="xs"
+                leftSection={
+                  <IconDownload
+                    size={ICON_SIZE - 4}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                }
+              >
+                Get Company Profile
+              </Button>
+            </ModalDownloadDocument>
+          </div>
+        </Group>
+      ),
     },
     {
       link: '/shop',
@@ -336,12 +349,12 @@ export const links = {
           leftSection: IconLibrary,
           desc: 'Latest stories, insights, and updates from our community.',
         },
-        {
-          link: '/downloads',
-          label: 'Downloads',
-          leftSection: IconDownload,
-          desc: 'Access useful resources, files, and important documents.',
-        },
+        // {
+        //   link: '/downloads',
+        //   label: 'Downloads',
+        //   leftSection: IconDownload,
+        //   desc: 'Access useful resources, files, and important documents.',
+        // },
         {
           link: '/gallery',
           label: 'Gallery',
@@ -361,35 +374,69 @@ export const links = {
     {
       title: 'Training',
       links: trainingLinks,
-      // cta: (
-      //   <Button size="xs" variant="gradient">
-      //     Start Training
-      //   </Button>
-      // ),
+      cta: (
+        <ModalContactTraining
+          props={{
+            initialValues: {
+              subject: `Drone training Inquiry`,
+              message: `I am interested in one of your drone training courses.`,
+            },
+          }}
+        >
+          <Button
+            size="xs"
+            variant="transparent"
+            c="sec.3"
+            fz={'inherit'}
+            p={0}
+            radius={0}
+            fw={500}
+            mt={5}
+            rightSection={
+              <IconArrowRight
+                size={ICON_SIZE}
+                stroke={ICON_STROKE_WIDTH}
+                style={{ marginTop: 2 }}
+              />
+            }
+          >
+            Enroll Now
+          </Button>
+        </ModalContactTraining>
+      ),
     },
     {
       title: 'Solutions',
       links: serviceLinks,
       cta: (
-        <Button
-          size="xs"
-          variant="transparent"
-          c="sec.3"
-          fz={'inherit'}
-          p={0}
-          radius={0}
-          fw={500}
-          mt={5}
-          rightSection={
-            <IconArrowRight
-              size={ICON_SIZE}
-              stroke={ICON_STROKE_WIDTH}
-              style={{ marginTop: 2 }}
-            />
-          }
+        <ModalContactService
+          props={{
+            initialValues: {
+              subject: `Drone Service Inquiry`,
+              message: `I am interested in one of your drone services.`,
+            },
+          }}
         >
-          Get a Quote
-        </Button>
+          <Button
+            size="xs"
+            variant="transparent"
+            c="sec.3"
+            fz={'inherit'}
+            p={0}
+            radius={0}
+            fw={500}
+            mt={5}
+            rightSection={
+              <IconArrowRight
+                size={ICON_SIZE}
+                stroke={ICON_STROKE_WIDTH}
+                style={{ marginTop: 2 }}
+              />
+            }
+          >
+            Get a Quote
+          </Button>
+        </ModalContactService>
       ),
     },
     {
@@ -403,10 +450,10 @@ export const links = {
           link: '/blog',
           label: 'News & Insights',
         },
-        {
-          link: '/downloads',
-          label: 'Downloads',
-        },
+        // {
+        //   link: '/downloads',
+        //   label: 'Downloads',
+        // },
         {
           link: '/gallery',
           label: 'Gallery',

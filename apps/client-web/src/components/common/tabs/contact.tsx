@@ -184,7 +184,7 @@ function PartialContact({ props }: { props: TabContact }) {
 
                   <Stack gap={'xl'}>
                     <Stack gap={0}>
-                      <Title order={3} fz={'lg'} c={'sec.4'}>
+                      <Title order={3} fz={'lg'} c={'sec.3'}>
                         Email Us
                       </Title>
 
@@ -204,7 +204,7 @@ function PartialContact({ props }: { props: TabContact }) {
                     </Stack>
 
                     <Stack gap={0}>
-                      <Title order={3} fz={'lg'} c={'sec.4'}>
+                      <Title order={3} fz={'lg'} c={'sec.3'}>
                         Call Us
                       </Title>
 
@@ -224,7 +224,7 @@ function PartialContact({ props }: { props: TabContact }) {
                     </Stack>
 
                     <Stack gap={0}>
-                      <Title order={3} fz={'lg'} c={'sec.4'}>
+                      <Title order={3} fz={'lg'} c={'sec.3'}>
                         Find Us
                       </Title>
 
@@ -245,7 +245,7 @@ function PartialContact({ props }: { props: TabContact }) {
                     </Stack>
 
                     <Stack gap={'xs'}>
-                      <Title order={3} fz={'lg'} c={'sec.4'}>
+                      <Title order={3} fz={'lg'} c={'sec.3'}>
                         Connect With Us
                       </Title>
 

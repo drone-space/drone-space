@@ -7,14 +7,12 @@ import LayoutSection from '@repo/components/layout/section';
 import CardPricingBasic from '@/components/common/cards/pricing/basic';
 import AccordionFaq from '@/components/common/accordions/faq';
 import IntroPage from '@repo/components/layout/intros/page';
-import {
-  courseList,
-  courses,
-} from '../../../../../../../packages/constants/src/courses';
+import { courseList, courses } from '@repo/constants/courses';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { GetLayout } from '../../faq/page';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import CtaMain from '@/components/partial/cta/main';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -102,6 +100,14 @@ export default async function Pricing() {
           <AccordionFaq section="training" />
         </GetLayout>
       </LayoutSection>
+
+      <CtaMain
+        props={{
+          title: 'Flexible Training Packages for Every Goal',
+          desc: "We offer competitive and transparent pricing tailored to your career path. Whether you're starting out or advancing your expertise, choose from a range of packages designed to deliver maximum value and professional growth. Invest in your future with confidence.",
+          options: { callback: true },
+        }}
+      />
     </LayoutPage>
   );
 }

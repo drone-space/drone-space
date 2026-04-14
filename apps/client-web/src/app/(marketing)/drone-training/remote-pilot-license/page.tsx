@@ -29,8 +29,13 @@ import { linkify } from '@repo/utilities/url';
 import { courseList, outcomes } from '@repo/constants/courses';
 import IntroPage from '@repo/components/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
+import { GetLayout } from '../../faq/page';
+import AccordionFaq from '@/components/common/accordions/faq';
+import CtaMain from '@/components/partial/cta/main';
 
-const course = courseList.find((c) => c.slug == 'remote-pilot-license');
+const course = courseList.find(
+  (c) => linkify(c.titleShort || c.title) == 'remote-pilot-license'
+);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.slug}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
     type: 'website',
     images: [
       {
@@ -65,11 +70,7 @@ export default async function Course() {
         }}
       />
 
-      <LayoutSection
-        id={linkify(course.title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(course.title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -112,7 +113,7 @@ export default async function Course() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.9'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -143,14 +144,14 @@ export default async function Course() {
             <Divider color="sec.3" size={'md'} />
           </GridCol>
           <GridCol span={8}>
-            <Divider color="pri.8" size={'md'} />
+            <Divider color="pri.9" size={'md'} />
           </GridCol>
         </Grid>
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING / 2}>
           <GridCol span={{ base: 12, md: 5.5 }}>
             <Card
-              bg={'pri.8'}
+              bg={'pri.9'}
               c={'white'}
               withBorder
               shadow="xs"
@@ -172,7 +173,7 @@ export default async function Course() {
                     size={ICON_WRAPPER_SIZE / 1.5}
                     mt={2}
                     color="sec.3"
-                    c={'pri.8'}
+                    c={'pri.9'}
                   >
                     <IconArrowRightDashed
                       size={ICON_SIZE / 1.5}
@@ -244,6 +245,37 @@ export default async function Course() {
           </ModalContactTraining>
         </Group>
       </LayoutSection>
+
+      <LayoutSection
+        id="pricing-training-faq"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: `FAQ's`,
+                  title: `Frequently Asked Questions`,
+                  desc: `For further information, please visit our training section, and for any other training inquiries, please send us a training inquiry.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
+          <AccordionFaq section="training" />
+        </GetLayout>
+      </LayoutSection>
+
+      <CtaMain
+        props={{
+          title: 'Launch Your Career as a Licensed Drone Pilot',
+          desc: 'Build a strong foundation in professional drone operations with our Remote Pilot License (RPL) training. Gain hands-on flying experience, understand aviation regulations, and develop the skills needed to operate drones safely and confidently in commercial environments.',
+          options: { course },
+        }}
+      />
     </LayoutPage>
   );
 }

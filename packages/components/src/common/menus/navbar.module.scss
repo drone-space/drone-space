@@ -22,19 +22,19 @@
   overflow: hidden;
   align-items: start;
   font-weight: 500;
-  color: var(--mantine-color-pri-8) !important;
+  color: var(--mantine-color-pri-9) !important;
   margin-right: var(--mantine-spacing-xs);
   background-color: transparent;
 
   @include mantine.hover {
     h2 {
-      color: var(--mantine-color-sec-4) !important;
+      color: var(--mantine-color-sec-3) !important;
     }
   }
 }
 
 .itemSection {
-  color: var(--mantine-color-sec-5) !important;
+  color: var(--mantine-color-sec-3) !important;
 }
 
 .itemActive {

@@ -80,6 +80,7 @@ export default function Navbar({
       openDelay={100}
       position="bottom"
       withinPortal={true}
+      keepMounted
       transitionProps={{ transition: 'fade' }}
       portalProps={{
         style: {
@@ -89,6 +90,7 @@ export default function Navbar({
           width: '100%',
         },
       }}
+      zIndex={10}
       shadow="xs"
       classNames={{
         dropdown: classes.dropdown,
@@ -105,7 +107,7 @@ export default function Navbar({
           style={{
             color:
               opened || subLinks?.some((sl) => sl.link == pathname)
-                ? 'var(--mantine-color-sec-4)'
+                ? 'var(--mantine-color-sec-3)'
                 : undefined,
           }}
         >
@@ -120,11 +122,11 @@ export default function Navbar({
               menuItems
             ) : (
               <Stack gap={'md'}>
-                <Group px={'sm'}>
+                {/* <Group px={'sm'}>
                   <Title order={2} fz={'lg'}>
                     {COMPANY_NAME} {link?.label}
                   </Title>
-                </Group>
+                </Group> */}
 
                 <Grid gutter={'xs'}>
                   {menuItems.map((menuItem, index) => (

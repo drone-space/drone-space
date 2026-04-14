@@ -17,14 +17,14 @@ import NextLink from '@repo/components/common/anchor/next-link';
 interface CourseProps {
   image: string;
   title: string;
+  titleShort?: string;
   desc: string;
-  slug: string;
 }
 
 export default function Course({ data }: { data: CourseProps }) {
   return (
     <Card c={'var(--mantine-color-white)'} padding={0} h={'100%'}>
-      <BackgroundImage src={data.image} p={'xl'} h={'100%'}>
+      <BackgroundImage src={data.image} p={{ base: 'md', xs: 'xl' }} h={'100%'}>
         <Overlay backgroundOpacity={0.5} zIndex={0} />
 
         <Stack
@@ -34,26 +34,22 @@ export default function Course({ data }: { data: CourseProps }) {
           pos={'relative'}
           h={'100%'}
         >
-          <Box mih={{ base: 200, xs: 220, sm: 180, md: 220, lg: 200 }}>
-            <Title
-              order={3}
-              fz={{ base: 'md', lg: 'lg' }}
-              c={'var(--mantine-color-white)'}
-            >
+          <Box mih={{ base: 200, xs: 240, md: 280 }}>
+            <Title order={3} fz={'xl'} c={'var(--mantine-color-white)'}>
               {data.title}
             </Title>
 
-            <Text mt={'xs'} fz="sm" lineClamp={6}>
+            <Text mt={'md'} lineClamp={6}>
               {data.desc}
             </Text>
           </Box>
 
           <NextLink
-            href={`/drone-training/${linkify(data.slug)}`}
+            href={`/drone-training/${linkify(data.titleShort || data.title)}`}
             inherit
             c={'var(--mantine-color-white)'}
             underline="hover"
-            fz={'xs'}
+            fz={'sm'}
           >
             <Group gap={'xs'}>
               <Text component="span" inherit>

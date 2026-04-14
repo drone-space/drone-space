@@ -28,8 +28,13 @@ import { linkify } from '@repo/utilities/url';
 import { courseList } from '@repo/constants/courses';
 import IntroPage from '@repo/components/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
+import { GetLayout } from '../../faq/page';
+import AccordionFaq from '@/components/common/accordions/faq';
+import CtaMain from '@/components/partial/cta/main';
 
-const course = courseList.find((c) => c.slug == 'instructor-rating');
+const course = courseList.find(
+  (c) => linkify(c.titleShort || c.title) == 'instructor-rating'
+);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -37,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.slug}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
     type: 'website',
     images: [
       {
@@ -64,11 +69,7 @@ export default async function Course() {
         }}
       />
 
-      <LayoutSection
-        id={linkify(course.title)}
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id={linkify(course.title)} padded>
         <Grid gutter={'xl'}>
           <GridCol
             span={{ base: 12, md: 6, lg: 6.5 }}
@@ -128,7 +129,7 @@ export default async function Course() {
             <Divider color="sec.3" size={'md'} />
           </GridCol>
           <GridCol span={8}>
-            <Divider color="pri.8" size={'md'} />
+            <Divider color="pri.9" size={'md'} />
           </GridCol>
         </Grid>
 
@@ -136,14 +137,14 @@ export default async function Course() {
           {instructorModules.map((module, index) => (
             <GridCol key={index} span={{ base: 12, md: 4 }}>
               <Card
-                bg={'pri.8'}
+                bg={'pri.9'}
                 c={'white'}
                 withBorder
                 shadow="xs"
                 p={{ base: 'md', lg: 'xl' }}
                 h={'100%'}
               >
-                <Paper bg={'sec.3'} c={'pri.8'} p={'xs'} w={'fit-content'}>
+                <Paper bg={'sec.3'} c={'pri.9'} p={'xs'} w={'fit-content'}>
                   <Text inherit fz={'xs'} fw={'bold'}>
                     {module.duration}
                   </Text>
@@ -184,6 +185,37 @@ export default async function Course() {
           </ModalContactTraining>
         </Group>
       </LayoutSection>
+
+      <LayoutSection
+        id="pricing-training-faq"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: `FAQ's`,
+                  title: `Frequently Asked Questions`,
+                  desc: `For further information, please visit our training section, and for any other training inquiries, please send us a training inquiry.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
+          <AccordionFaq section="training" />
+        </GetLayout>
+      </LayoutSection>
+
+      <CtaMain
+        props={{
+          title: 'Become a Certified Drone Instructor',
+          desc: 'Take your expertise to the next level by becoming a certified drone instructor. This program is designed for experienced pilots who want to train and mentor others. Share your knowledge, build your credibility, and play a key role in shaping the next generation of drone professionals.',
+          options: { course },
+        }}
+      />
     </LayoutPage>
   );
 }

@@ -37,7 +37,7 @@ export default function New({ post }: { post: PostRelations }) {
 
             <div className={classes.overlay}>
               <Group>
-                <Badge color="white" c={'var(--mantine-color-pri-8)'}>
+                <Badge color="white" c={'var(--mantine-color-pri-9)'}>
                   {getRegionalDate(post.created_at).date}
                 </Badge>
               </Group>

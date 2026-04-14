@@ -12,6 +12,7 @@ import ImageDefault from '@repo/components/common/images/default';
 import { images } from '@repo/constants/images';
 import ModalDownloadDocument from '@repo/components/common/modals/download/document';
 import ModalContactCallback from '@repo/components/common/modals/contact/callback';
+import ModalContactTraining from '@repo/components/common/modals/contact/training';
 import { APP_NAME } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
 
@@ -48,7 +49,7 @@ export default function Main({
           <Text
             inherit
             style={{ cursor: 'pointer' }}
-            c={'pri.8'}
+            c={'pri.9'}
             className={`${options?.absolute ? classes.linkAbsolute : classes.link} ${
               matchesPath(link.link) ? classes.linkActive : ''
             }`}
@@ -62,7 +63,7 @@ export default function Main({
 
   const imageBrand = (
     <ImageDefault
-      src={images.brand.droneSpace.logo.landscape.default}
+      src={images.brand.droneSpace.logo.landscape.left.default}
       alt={APP_NAME.WEB}
       height={{ base: 45 }}
       width={{ base: 200 }}
@@ -91,11 +92,20 @@ export default function Main({
             <Group gap={0}>{navLinks}</Group>
 
             <Group gap={'xs'}>
-              <Button variant="light">Get a Quote</Button>
-
               <ModalContactCallback>
-                <Button variant="gradient">Start Training</Button>
+                <Button variant="light">Get a Quote</Button>
               </ModalContactCallback>
+
+              <ModalContactTraining
+                props={{
+                  initialValues: {
+                    subject: `Course Inquiry`,
+                    message: `I'm interested in enrolling in one of your drone training courses.`,
+                  },
+                }}
+              >
+                <Button variant="gradient">Start Training</Button>
+              </ModalContactTraining>
             </Group>
           </Group>
 

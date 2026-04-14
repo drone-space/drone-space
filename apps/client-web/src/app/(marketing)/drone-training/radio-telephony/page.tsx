@@ -29,8 +29,13 @@ import { linkify } from '@repo/utilities/url';
 import { courseList, outcomes } from '@repo/constants/courses';
 import IntroPage from '@repo/components/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
+import { GetLayout } from '../../faq/page';
+import AccordionFaq from '@/components/common/accordions/faq';
+import CtaMain from '@/components/partial/cta/main';
 
-const course = courseList.find((c) => c.slug == 'radio-telephony');
+const course = courseList.find(
+  (c) => linkify(c.titleShort || c.title) == 'radio-telephony'
+);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.slug}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
     type: 'website',
     images: [
       {
@@ -127,14 +132,14 @@ export default async function Course() {
             <Divider color="sec.3" size={'md'} />
           </GridCol>
           <GridCol span={8} order={1}>
-            <Divider color="pri.8" size={'md'} />
+            <Divider color="pri.9" size={'md'} />
           </GridCol>
         </Grid>
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING / 2}>
           <GridCol span={{ base: 12, md: 5.5 }}>
             <Card
-              bg={'pri.8'}
+              bg={'pri.9'}
               c={'white'}
               withBorder
               shadow="xs"
@@ -156,7 +161,7 @@ export default async function Course() {
                     size={ICON_WRAPPER_SIZE / 1.5}
                     mt={2}
                     color="sec.3"
-                    c={'pri.8'}
+                    c={'pri.9'}
                   >
                     <IconArrowRightDashed
                       size={ICON_SIZE / 1.5}
@@ -192,7 +197,7 @@ export default async function Course() {
                   size={ICON_WRAPPER_SIZE / 1.5}
                   mt={2}
                   color="sec.3"
-                  c={'pri.8'}
+                  c={'pri.9'}
                 >
                   <IconArrowRightDashed
                     size={ICON_SIZE / 1.5}
@@ -227,6 +232,37 @@ export default async function Course() {
           </ModalContactTraining>
         </Group>
       </LayoutSection>
+
+      <LayoutSection
+        id="pricing-training-faq"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
+        <GetLayout
+          props={{
+            header: (
+              <IntroSection
+                props={{
+                  subTitle: `FAQ's`,
+                  title: `Frequently Asked Questions`,
+                  desc: `For further information, please visit our training section, and for any other training inquiries, please send us a training inquiry.`,
+                }}
+                options={{ alignment: 'start' }}
+              />
+            ),
+          }}
+        >
+          <AccordionFaq section="training" />
+        </GetLayout>
+      </LayoutSection>
+
+      <CtaMain
+        props={{
+          title: 'Communicate with Confidence in the Skies',
+          desc: 'Effective communication is critical in aviation. Our Radio Telephony training prepares you to handle real-world airspace communication with clarity and precision. Gain the essential skills needed to interact with air traffic control and operate safely in controlled environments.',
+          options: { course },
+        }}
+      />
     </LayoutPage>
   );
 }

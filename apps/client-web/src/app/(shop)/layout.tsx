@@ -3,7 +3,7 @@ import LayoutBody from '@repo/components/layout/body';
 import NavbarMain from '@/components/layout/navbars/main';
 import FooterMain from '@/components/layout/footers/main';
 import ModalFeatureDrone from '@/components/common/modals/feature-drone';
-import AffixNavbar from '@repo/components/common/affixi/navbar';
+// import AffixNavbar from '@repo/components/common/affixi/navbar';
 import AffixAi from '@repo/components/common/affixi/ai';
 import AlertShipment from '@repo/components/common/alerts/shipment';
 // import AffixAi from '@/components/common/affixi/ai';
@@ -28,9 +28,9 @@ export default async function LayoutShop({
       {/* <ModalNewsletter /> */}
       <ModalFeatureDrone />
 
-      <AffixNavbar>
+      {/* <AffixNavbar>
         <NavbarMain />
-      </AffixNavbar>
+      </AffixNavbar> */}
       <AffixAi />
     </LayoutBody>
   );

@@ -62,7 +62,7 @@ export default function Main({ data }: { data: typeDrone }) {
             )}
 
             {data.new && (
-              <Badge mt={'md'} size={'md'} color={'sec.3'} c={'pri.8'}>
+              <Badge mt={'md'} size={'md'} color={'sec.3'} c={'pri.9'}>
                 New Arrival
               </Badge>
             )}

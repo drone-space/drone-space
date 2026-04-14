@@ -24,6 +24,7 @@ import ModalContactTraining from '@repo/components/common/modals/contact/trainin
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 import ModalRequirements from '../modals/requirements';
+import WrapperUnderlayBlur from '@repo/components/wrappers/underlays/blur';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
@@ -36,6 +37,7 @@ export default function Home() {
 
   const slides = [
     {
+      image: images.carousel.home.image1,
       badge: 'RPL',
       title: 'Remote Pilot License',
       intro: 'Join our next RPL intake and start flying professionally',
@@ -54,151 +56,159 @@ export default function Home() {
     },
     ...filteredData,
   ].map((slide, index) => {
-    const cycle = ['start', 'center', 'end', 'center'];
-    const alignment: any = cycle[index % cycle.length];
+    // const cycle = ['start', 'center', 'end', 'center'];
+    // const alignment: any = cycle[index % cycle.length];
+    const alignment: any = 'start';
 
     return (
       <CarouselSlide key={index}>
-        <LayoutSection id={`carousel-home-slide-${index}`} pt={'lg'} pb={'md'}>
-          <Stack
-            gap={'xl'}
-            align={alignment}
-            justify="center"
-            mih={{ base: 720, sm: 640 }}
-          >
-            <Badge color="sec.3" c={'pri.8'}>
-              Intake Ongoing
-            </Badge>
+        <div
+          style={{
+            backgroundImage: `url('${slide.image || images.web.rpl.light}')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+            position: 'relative',
+          }}
+        >
+          <Overlay backgroundOpacity={0.6} style={{ zIndex: 0 }} />
 
-            <Stack gap={0} align={alignment}>
-              <Title order={1} ta={alignment} className={classes.title}>
-                {slide.title}
-              </Title>
-
-              <Text ta={alignment} mt={'xs'} w={{ md: '75%', lg: '80%' }}>
-                {slide.intro}
-              </Text>
-            </Stack>
-
-            <Divider w={{ base: '100%', md: '50%' }} color="sec.3" />
-
-            <div>
-              <Text ta={alignment} fz={'sm'}>
-                Theory Classes:{' '}
-                <Text component={'span'} inherit fw={'500'}>
-                  {LOCATIONS.MAIN.LOCATION}
-                </Text>
-              </Text>
-
-              <Text ta={alignment} fz={'sm'}>
-                Practicals:{' '}
-                <Text component={'span'} inherit fw={'500'}>
-                  {LOCATIONS.AIRFIELD.LOCATION}
-                </Text>
-              </Text>
-            </div>
-
-            <div>
-              <Text ta={alignment}>
-                Course Duration:{' '}
-                <Text component={'span'} inherit fw={'bold'}>
-                  {slide.duration}
-                </Text>
-              </Text>
-
-              <Text ta={alignment}>
-                {slide.dates.length > 1 ? 'Intake Dates' : 'Schedule'}:{' '}
-                <Text component={'span'} inherit fw={'bold'}>
-                  {getMonthName(
-                    getRegionalDate(slide.dates[0], {
-                      locale: 'en-GB',
-                      format: 'numeric',
-                    }).date
-                  )}{' '}
-                  {slide.dates.map((d, i) => (
-                    <span key={i}>
-                      {getDayNumber(
-                        getRegionalDate(d, {
-                          locale: 'en-GB',
-                          format: 'numeric',
-                        }).date
-                      )}
-                      {i === slide.dates.length - 2
-                        ? ' and '
-                        : i === slide.dates.length - 1
-                          ? ''
-                          : ', '}
-                    </span>
-                  ))}
-                  {slide.dates.length > 1 ? '' : `, ${now.getFullYear()}`}
-                </Text>
-              </Text>
-
-              <Text ta={alignment}>
-                Course Fee:{' '}
-                <Text component={'span'} inherit fw={'bold'}>
-                  <NumberFormatter
-                    value={slide.price?.current || 0}
-                    thousandSeparator
-                    prefix="Ksh. "
-                  />
-                </Text>
-              </Text>
-            </div>
-
-            <Group>
-              <ModalContactTraining
-                props={{
-                  initialValues: {
-                    subject: `${slide.title} Course Inquiry`,
-                    message: `I'm interested in enrolling in your ${slide.title} training program.`,
-                  },
-                }}
+          <WrapperUnderlayBlur props={{ blur: 2, saturate: 100 }}>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <LayoutSection
+                id={`carousel-home-slide-${index}`}
+                pt={'lg'}
+                pb={'md'}
               >
-                <Button variant={'white'}>Enroll Now</Button>
-              </ModalContactTraining>
+                <Stack
+                  gap={'xl'}
+                  align={alignment}
+                  justify="center"
+                  mih={{ base: 720, sm: 640 }}
+                >
+                  <Badge color="sec.3" c={'pri.9'}>
+                    Intake Ongoing
+                  </Badge>
 
-              <ModalRequirements>
-                <Button color="sec.4" c={'pri'}>
-                  Requirements & Details
-                </Button>
-              </ModalRequirements>
-            </Group>
-          </Stack>
-        </LayoutSection>
+                  <Stack gap={0} align={alignment}>
+                    <Title order={1} ta={alignment} className={classes.title}>
+                      {slide.title}
+                    </Title>
+
+                    <Text ta={alignment} mt={'xs'} w={{ md: '75%', lg: '80%' }}>
+                      {slide.intro}
+                    </Text>
+                  </Stack>
+
+                  <Divider w={{ base: '100%', md: '50%' }} color="sec.3" />
+
+                  <div>
+                    <Text ta={alignment} fz={'sm'}>
+                      Theory Classes:{' '}
+                      <Text component={'span'} inherit fw={'500'}>
+                        {LOCATIONS.MAIN.LOCATION}
+                      </Text>
+                    </Text>
+
+                    <Text ta={alignment} fz={'sm'}>
+                      Practicals:{' '}
+                      <Text component={'span'} inherit fw={'500'}>
+                        {LOCATIONS.AIRFIELD.LOCATION}
+                      </Text>
+                    </Text>
+                  </div>
+
+                  <div>
+                    <Text ta={alignment}>
+                      Course Duration:{' '}
+                      <Text component={'span'} inherit fw={'bold'}>
+                        {slide.duration}
+                      </Text>
+                    </Text>
+
+                    <Text ta={alignment}>
+                      {slide.dates.length > 1 ? 'Intake Dates' : 'Schedule'}:{' '}
+                      <Text component={'span'} inherit fw={'bold'}>
+                        {getMonthName(
+                          getRegionalDate(slide.dates[0], {
+                            locale: 'en-GB',
+                            format: 'numeric',
+                          }).date
+                        )}{' '}
+                        {slide.dates.map((d, i) => (
+                          <span key={i}>
+                            {getDayNumber(
+                              getRegionalDate(d, {
+                                locale: 'en-GB',
+                                format: 'numeric',
+                              }).date
+                            )}
+                            {i === slide.dates.length - 2
+                              ? ' and '
+                              : i === slide.dates.length - 1
+                                ? ''
+                                : ', '}
+                          </span>
+                        ))}
+                        {slide.dates.length > 1 ? '' : `, ${now.getFullYear()}`}
+                      </Text>
+                    </Text>
+
+                    <Text ta={alignment}>
+                      Course Fee:{' '}
+                      <Text component={'span'} inherit fw={'bold'}>
+                        <NumberFormatter
+                          value={slide.price?.current || 0}
+                          thousandSeparator
+                          prefix="Ksh. "
+                        />
+                      </Text>
+                    </Text>
+                  </div>
+
+                  <Group>
+                    <ModalContactTraining
+                      props={{
+                        initialValues: {
+                          subject: `${slide.title} Course Inquiry`,
+                          message: `I'm interested in enrolling in your ${slide.title} training program.`,
+                        },
+                      }}
+                    >
+                      <Button variant={'white'}>Enroll Now</Button>
+                    </ModalContactTraining>
+
+                    <ModalRequirements>
+                      <Button color="sec.3" c={'pri'}>
+                        Requirements & Details
+                      </Button>
+                    </ModalRequirements>
+                  </Group>
+                </Stack>
+              </LayoutSection>
+            </div>
+          </WrapperUnderlayBlur>
+        </div>
       </CarouselSlide>
     );
   });
 
   return (
-    <div
-      style={{
-        backgroundImage: `url('${images.web.rpl.light}')`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        position: 'relative',
+    <Carousel
+      withIndicators={data.length > 1}
+      emblaOptions={{ loop: true }}
+      withControls={false}
+      classNames={{
+        slide: classes.slide,
+        control: classes.control,
+        indicator: classes.indicator,
       }}
+      plugins={[autoplay.current]}
+      // onMouseEnter={autoplay.current.stop}
+      // onMouseLeave={autoplay.current.reset}
     >
-      <Overlay backgroundOpacity={0.4} style={{ zIndex: 0 }} />
-
-      <div style={{ position: 'relative', zIndex: 1 }}></div>
-      <Carousel
-        withIndicators={data.length > 1}
-        emblaOptions={{ loop: true }}
-        withControls={false}
-        classNames={{
-          slide: classes.slide,
-          control: classes.control,
-          indicator: classes.indicator,
-        }}
-        plugins={[autoplay.current]}
-        // onMouseEnter={autoplay.current.stop}
-        // onMouseLeave={autoplay.current.reset}
-      >
-        {slides}
-      </Carousel>
-    </div>
+      {slides}
+    </Carousel>
   );
 }
 
@@ -217,6 +227,7 @@ function getDayNumber(dateStr: string): number {
 const data = sortArray(
   [
     {
+      image: images.carousel.home.image3,
       badge: 'IR',
       title: 'Instructor Rating',
       intro:
@@ -233,6 +244,7 @@ const data = sortArray(
     },
 
     {
+      image: images.carousel.home.image6,
       badge: 'Thermal',
       title: 'Thermography (ITC Level I)',
       intro:
@@ -249,6 +261,7 @@ const data = sortArray(
     },
 
     {
+      image: images.carousel.home.image4,
       badge: 'RT',
       title: 'Radio Telephony',
       intro:
@@ -265,6 +278,7 @@ const data = sortArray(
     },
 
     {
+      image: images.carousel.home.image5,
       badge: 'Agriculture',
       title: 'Agricultural Spraying',
       intro:
@@ -281,6 +295,7 @@ const data = sortArray(
     },
 
     {
+      image: images.carousel.home.image2,
       badge: 'Masterclass',
       title: 'Drone Mapping & Survey (Masterclass)',
       intro:

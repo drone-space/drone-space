@@ -13,7 +13,7 @@ import BlogContent from '@/components/partial/blog-content';
 import { linkify, processUrl } from '@repo/utilities/url';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 import { images } from '@repo/constants/images';
-import CtaHome from '@/components/partial/cta/home';
+import CtaHome from '@/components/partial/cta/main';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -86,7 +86,7 @@ export default async function Post({
       </LayoutSection>
 
       <CtaHome
-        params={{
+        props={{
           title: 'Get the latest updates',
           desc: 'Subscribe to get the most-popular content on drone products, drone training, drone services, and top drone industry news to help keep you up to speed.',
         }}

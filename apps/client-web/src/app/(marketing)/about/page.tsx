@@ -28,6 +28,7 @@ import IntroPage from '@repo/components/layout/intros/page';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { StudentGet } from '@repo/types/models/student';
 import { studentsGet } from '@repo/handlers/requests/database/students';
+import CtaMain from '@/components/partial/cta/main';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -159,7 +160,7 @@ export default async function About() {
       <LayoutSection
         id="stats"
         padded={24}
-        bg={'light-dark(var(--mantine-color-pri-8),var(--mantine-color-pri-8))'}
+        bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
         <Grid justify="center" gutter={0}>
@@ -307,7 +308,7 @@ export default async function About() {
 
       {students != null && (
         <LayoutSection
-          id="about-testimonials"
+          id="testimonials"
           padded
           bg={'var(--mantine-color-gray-1)'}
         >
@@ -321,9 +322,12 @@ export default async function About() {
             }}
             options={{ spacing: true }}
           />
+
           <CarouselTestimonials props={shuffleArray(students)} />
         </LayoutSection>
       )}
+
+      <CtaMain />
     </LayoutPage>
   );
 }

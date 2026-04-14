@@ -11,7 +11,7 @@ import { Metadata } from 'next';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import CtaHome from '@/components/partial/cta/home';
+import CtaHome from '@/components/partial/cta/main';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -77,13 +77,6 @@ export default async function Blog() {
           )}
         </Grid>
       </LayoutSection>
-
-      <CtaHome
-        params={{
-          title: 'Get the latest updates',
-          desc: 'Subscribe to get the most-popular content on drone products, drone training, drone services, and top drone industry news to help keep you up to speed.',
-        }}
-      />
     </LayoutPage>
   );
 }

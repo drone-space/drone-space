@@ -83,7 +83,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.5}
                       color="sec.3"
-                      c={'pri.8'}
+                      c={'pri.9'}
                     >
                       <IconArrowRightDashed
                         size={ICON_SIZE / 1.5}
@@ -119,7 +119,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
           </Stack>
         </div>
 
-        <Group p={'md'} bg={'pri.8'} c={'var(--mantine-color-body)'}>
+        <Group p={'md'} bg={'pri.9'} c={'var(--mantine-color-body)'}>
           <Text>
             {!data.price ? (
               <span>Price Undisclosed</span>

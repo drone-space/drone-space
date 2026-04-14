@@ -75,7 +75,7 @@ export default function SpacesHub() {
                     <ThemeIcon
                       size={ICON_WRAPPER_SIZE / 1.25}
                       color="sec.3"
-                      c={'pri.8'}
+                      c={'pri.9'}
                     >
                       <IconArrowRightDashed
                         size={ICON_SIZE / 1.25}

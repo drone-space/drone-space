@@ -32,7 +32,7 @@ export default function Faq({
     <AccordionItem
       key={index}
       value={item.q}
-      mt={isFirstItem(selection(), item) ? undefined : 'md'}
+      // mt={isFirstItem(selection(), item) ? undefined : 'md'}
     >
       <AccordionControl>{item.q}</AccordionControl>
       <AccordionPanel fz={'sm'}>{item.a}</AccordionPanel>
@@ -41,9 +41,9 @@ export default function Faq({
 
   return (
     <Accordion
-      multiple
-      defaultValue={selection().map((i) => i.q)}
+      defaultValue={selection()[0].q}
       classNames={classes}
+      variant="contained"
     >
       {items}
     </Accordion>
@@ -55,36 +55,8 @@ export const faqs = {
     title: 'General Inquiries',
     desc: [
       {
-        q: 'What is drone training, and why is it important?',
-        a: 'Drone training equips individuals with the knowledge and skills to safely operate unmanned aerial systems (UAS). It is essential for understanding regulations, proper handling, and maximizing drone capabilities.',
-      },
-      {
-        q: 'Who can enroll in your drone training programs?',
-        a: "Our programs are open to anyone over the age of 18, whether you're a beginner or a seasoned drone operator looking to expand your skills. ie. Anyone intending to fly BVLOS unmanned aircraft, RPAS crews, pilots, ground control operators and maintainers regulators, multi-agency teams, company managers, procurement officers or safety system managers, persons interested in mitigating RPAS human factors in BVLOS operations",
-      },
-      {
-        q: 'Do I need prior experience with drones to join your program?',
-        a: 'No prior experience is needed. We offer beginner courses that cover the basics and more advanced courses for experienced operators.',
-      },
-      {
-        q: 'Is drone training mandatory to operate a drone?',
-        a: "Yes, if you're using drones for commercial purposes, most countries require operators to have formal training and certifications.",
-      },
-      {
-        q: 'What industries can benefit from drone training?',
-        a: 'Our training programs are designed for industries such as agriculture, construction, media production, surveying, search and rescue, and more.',
-      },
-      {
         q: 'Can I specialize in a specific area, such as drone photography or mapping?',
         a: 'Yes, we offer specialized courses focusing on areas like aerial photography, mapping, inspection, and agricultural applications.',
-      },
-      {
-        q: 'Can I buy drones from your organization after completing training?',
-        a: 'Yes, we offer purchase options for a variety of drones to suit your needs. See our shop section for more details.',
-      },
-      {
-        q: 'Do you provide job placement or networking opportunities after training?',
-        a: "While we don't guarantee job placement, we connect our graduates with industry opportunities and networks.",
       },
       {
         q: 'Does holding an RPL qualify me to operate drones commercially?',
@@ -92,171 +64,217 @@ export const faqs = {
       },
       {
         q: 'Where am I permitted to operate my drone?',
-        a: 'Drones must be operated in compliance with aviation regulations. Specifically: Maintain a minimum distance of 50 meters from roads, people, or property. Avoid flying within a 10-kilometer radius of airports or aerodromes. Operate no higher than 400 feet above ground level and ensure the drone remains within 500 meters of the operator, adhering to Visual Line of Sight (VLOS) requirements.',
+        a: 'Drones must be operated in compliance with aviation regulations. Maintain a minimum distance of 50 meters from roads, people, or property. Avoid flying within a 10-kilometer radius of airports or aerodromes. Operate no higher than 400 feet above ground level and ensure VLOS (Visual Line of Sight) compliance.',
       },
       {
         q: 'How can I insure my drone during flight?',
-        a: 'To obtain drone insurance for in-flight operations, the following conditions must be met: The pilot must hold a valid Remote Pilot License (RPL). The drone must be registered with the Kenya Civil Aviation Authority (KCAA). All flights must be conducted under an RPAS Operator Certification (ROC).',
+        a: 'Drone insurance requires a valid RPL, drone registration with KCAA, and operations under an RPAS Operator Certification (ROC).',
       },
       {
         q: 'Who issues Remote Pilot Licenses (RPLs)?',
-        a: 'All Remote Pilot Licenses (RPLs) are issued by the Kenya Civil Aviation Authority (KCAA), the regulatory body responsible for aviation safety and compliance in Kenya.',
+        a: 'All Remote Pilot Licenses are issued by the Kenya Civil Aviation Authority (KCAA).',
+      },
+
+      // NEW GENERAL FAQs
+      {
+        q: 'How do I book a consultation or training session?',
+        a: 'You can book a consultation or training session through our website, by phone, or by emailing our support team. We will guide you through available schedules and requirements.',
       },
       {
-        q: 'Who are the KCAA-approved medical doctors for drone operators?',
-        a: 'The following KCAA-approved doctors are authorized to conduct medical evaluations for drone operators: Dr. Wanjohi: Contact at 0722 833 492 or via email at wambakiwanjohi@gmail.com, Dr. Phenny: Contact at 0722 302 086 or via email at kphenny123@gmail.com',
+        q: 'Do you provide support after purchase or training?',
+        a: 'Yes, we provide guidance and basic support after training or purchase. Extended technical support services are being developed.',
+      },
+      {
+        q: 'What documents do I need to start the ROC certification process?',
+        a: 'You typically need a valid RPL, medical certificate, and drone registration details. We assist clients in preparing and submitting these requirements.',
       },
     ],
   },
+
   shop: {
     title: 'Drone Purchases & Reselling',
     desc: [
       {
         q: 'What types of drones do you sell?',
-        a: 'We offer a wide range of drones, including consumer drones for recreational use, professional-grade drones for commercial applications, and specialty drones for industries like agriculture, surveying, and cinematography.',
+        a: 'We offer consumer drones, professional-grade drones, and specialized industrial drones for agriculture, surveying, and cinematography.',
       },
       {
         q: 'Do you offer both consumer and professional-grade drones?',
-        a: 'Yes, we cater to both markets, providing high-quality consumer drones as well as advanced professional drones designed for specialized tasks.',
+        a: 'Yes, we cater to both recreational users and commercial operators.',
       },
       {
         q: 'What brands of drones do you carry?',
-        a: 'We carry top brands such as DJI, Autel Robotics, Huida, and other reputable manufacturers known for their reliability and innovation.',
+        a: 'We carry brands such as DJI, Autel Robotics, Huida, and other reputable manufacturers.',
       },
       {
         q: 'How do I choose the right drone for my needs?',
-        a: 'Choosing the right drone depends on your purpose. For casual use, a lightweight consumer drone with basic features may suffice. For professional tasks, consider factors like camera quality, flight time, payload capacity, and compatibility with your specific industry requirements. Our team can guide you through this process.',
+        a: 'Selection depends on your purpose, camera quality needs, flight time, payload capacity, and industry use case. We provide guidance to help you choose.',
       },
       {
-        q: 'Do your drones come with warranties? If so, how long are they valid?',
-        a: 'Yes, all our drones come with manufacturer warranties, typically ranging from 6 months to 2 years, depending on the brand and model.',
+        q: 'Do your drones come with warranties?',
+        a: 'Yes, warranties typically range from 6 months to 2 years depending on the model and manufacturer.',
       },
       {
         q: 'Can I upgrade or customize the drones you sell?',
-        a: 'Yes, many of our drones support upgrades and customizations, but with limitations.',
+        a: 'Yes, some drones support upgrades and limited customization depending on the model.',
       },
       {
         q: 'What accessories are available for the drones you offer?',
-        a: 'We provide a variety of accessories, including spare batteries, propellers, carrying cases, filters, gimbals, and chargers. Specialized accessories like thermal cameras and agricultural sensors are also available for certain models.',
+        a: 'We offer batteries, propellers, cases, filters, chargers, and specialized sensors like thermal or agricultural payloads.',
       },
       {
         q: 'Do you offer payment plans for drone purchases?',
-        a: "No, we don't offer installment plans. Contact us for details about payment grounds and processes.",
+        a: 'No, we currently do not offer installment plans.',
       },
       {
         q: 'Are there any discounts for bulk purchases or corporate clients?',
-        a: "Not at the moment, but we're planning to introduce discounts for bulk purchases and corporate clients soon. Let us know your requirements, and we’ll notify you once the program is available.",
+        a: 'Not currently, but we plan to introduce corporate and bulk purchase discounts soon.',
       },
       {
         q: 'Do your prices include taxes and shipping fees?',
-        a: 'Our prices are inclusive of taxes and shipping fees unless otherwise stated. During checkout, you’ll see a breakdown of all costs.',
+        a: 'Yes, prices are inclusive unless otherwise stated.',
       },
       {
         q: 'Do you provide technical support for the drones you sell?',
-        a: 'We don’t currently offer dedicated technical support, but we’re working on establishing a support service to help with setup, operation, and troubleshooting.',
+        a: 'Basic guidance is available, with expanded support services under development.',
       },
       {
-        q: 'What is your return or exchange policy for drones?',
-        a: 'We’re in the process of finalizing a return or exchange policy, which will allow returns or exchanges within a specified period. Stay tuned for updates.',
+        q: 'What is your return or exchange policy?',
+        a: 'We are currently finalizing a structured return and exchange policy.',
       },
       {
         q: 'Can I purchase drone insurance through your store?',
-        a: 'Not yet, but we’re working on partnering with reputable insurance providers to offer drone insurance options soon.',
+        a: 'Not yet, but we are working on insurance partnerships.',
       },
       {
-        q: 'Do you offer training or guidance for using the drones I purchase?',
-        a: 'We offer the Remote Pilot License (RPL) training course, the foundational entry-level program recognized by the Kenya Civil Aviation Authority (KCAA) for drone operation and certification.',
+        q: 'Do you offer training or guidance for drones you sell?',
+        a: 'Yes, we offer RPL training and operational guidance.',
       },
       {
-        q: 'Are your drones compliant with local aviation regulations?',
-        a: 'Yes, all our drones comply with local aviation laws and safety requirements. We also stay updated on regulatory changes to ensure compliance.',
+        q: 'Are your drones compliant with aviation regulations?',
+        a: 'Yes, all drones comply with applicable aviation standards.',
       },
       {
-        q: 'Can you assist with registering my drone with the relevant authorities?',
-        a: 'Yes, we can guide you through the drone registration process or handle it on your behalf, depending on your requirements.',
+        q: 'Can you assist with drone registration?',
+        a: 'Yes, we can guide or assist with registration processes.',
       },
       {
-        q: 'Do you sell drones that meet requirements for commercial use?',
-        a: 'Yes, we offer drones specifically designed for commercial use, meeting the necessary certifications and specifications for professional applications.',
+        q: 'Do you sell drones for commercial use?',
+        a: 'Yes, we supply drones suitable for commercial operations.',
       },
       {
-        q: 'Do you offer repair services for drones purchased from your store?',
-        a: 'We don’t currently provide repair services, but we plan to introduce professional repair options in the near future.',
+        q: 'Do you offer repair services?',
+        a: 'Not currently, but repair services are planned for the future.',
       },
       {
-        q: 'Can I buy spare parts for my drone through your shop?',
-        a: 'Not yet, but we’re working on offering a wide range of spare parts, including propellers, motors, batteries, and cameras, for the brands we carry in the near future.',
+        q: 'Can I buy spare parts?',
+        a: 'Not yet, but spare parts supply is in development.',
       },
       {
-        q: 'How often should I service my drone, and do you provide maintenance services?',
-        a: 'We’re not offering maintenance services at the moment, but we’re developing plans to introduce them soon, including firmware updates, part replacements, and inspections.',
+        q: 'How often should I service my drone?',
+        a: 'We recommend regular inspections depending on usage; formal maintenance services are coming soon.',
       },
     ],
   },
+
   training: {
     title: 'Training Logistics',
     desc: [
       {
-        q: 'How can I enroll in a course?',
-        a: 'You can enroll by visiting our website, calling our office, or emailing us directly. Payment plans are available for most courses on our drone training section.',
+        q: 'What is drone training, and why is it important?',
+        a: 'Drone training equips operators with knowledge of safe operations, regulations, and technical skills.',
       },
       {
-        q: 'How long do the training courses take?',
-        a: 'The average completion time for the RPL courses is just under 2 weeks depending on personal schedule.',
+        q: 'Who can enroll in your drone training programs?',
+        a: 'Anyone over 18, including beginners, professionals, and industry teams.',
       },
       {
-        q: 'What are the costs of your drone training programs?',
-        a: 'Costs vary depending on the course type. Please contact us for a detailed price list or check our training pricing section.',
+        q: 'Do I need prior experience?',
+        a: 'No prior experience is required.',
       },
       {
-        q: 'Do you provide training equipment, or should I bring my own drone?',
-        a: 'We provide drones and training equipment for practical sessions. The training aircraft needs to be registered with the KCAA under our training organisation in order for flight time to be logged, therefore it is not necessary to bring your own drone for training purposes.',
+        q: 'Is drone training mandatory?',
+        a: 'Yes, for commercial operations in most jurisdictions.',
       },
       {
-        q: 'Will I learn practical skills during the training?',
-        a: 'Yes, our training includes hands-on flight sessions, equipment maintenance, mission planning, and troubleshooting.',
+        q: 'What industries benefit from drone training?',
+        a: 'Agriculture, construction, media, surveying, and emergency services.',
       },
       {
-        q: 'Do you offer online or hybrid courses?',
-        a: 'Yes, we provide online theoretical modules that you can complete at your own pace, followed by in-person practical sessions.',
+        q: 'How can I enroll?',
+        a: 'Via website, phone, or email registration.',
       },
       {
-        q: 'What should I bring on the first day of training?',
-        a: 'Only a valid ID will be required at first. 3 passport photos (1 regular sized and 2 small ones, 2cm by 2.5cm) and a copy of the medical certificate will be needed after.',
+        q: 'How long does training take?',
+        a: 'RPL training typically takes under 2 weeks.',
       },
       {
-        q: 'What types of drones will I learn to operate during training?',
-        a: "Training primarily covers multirotor drones. Fixed-wing drones aren't currently included.",
+        q: 'What are the costs?',
+        a: 'Costs vary by course; contact us for details.',
       },
       {
-        q: 'What safety measures are covered in the training?',
-        a: 'We emphasize drone safety, including pre-flight checks, risk assessment, emergency procedures, and compliance with safety regulations.',
+        q: 'Do you provide training equipment?',
+        a: 'Yes, all training equipment is provided.',
       },
       {
-        q: 'What certifications do I receive after completing the training?',
-        a: "Upon successfully passing the Skills Test conducted by a Designated Flight Examiner (DFE) appointed by KCAA, candidates receive a Certificate of Completion from Drone Space and a Remote Pilot's License issued by KCAA.",
+        q: 'Will I learn practical skills?',
+        a: 'Yes, including flight operations and mission planning.',
       },
       {
-        q: 'Does holding an RPL qualify me to operate drones commercially?',
-        a: 'While a Remote Pilot License (RPL) is an essential component of the RPAS Operator Certification (ROC), it alone does not authorize you to conduct legal commercial drone operations. To operate commercially, you must obtain an ROC. We can assist you with the consultation process to meet the necessary regulatory requirements.',
+        q: 'Do you offer online training?',
+        a: 'Yes, we offer hybrid learning models.',
+      },
+      {
+        q: 'What should I bring?',
+        a: 'Valid ID, passport photos, and medical certificate (later stage).',
+      },
+      {
+        q: 'What drones are used in training?',
+        a: 'Primarily multirotor drones.',
+      },
+      {
+        q: 'What safety measures are covered?',
+        a: 'Risk assessment, emergency procedures, and compliance.',
+      },
+      {
+        q: 'What certification do I receive?',
+        a: 'RPL from KCAA and certificate of completion.',
+      },
+      {
+        q: 'Can I operate commercially after RPL?',
+        a: 'You also need an ROC for commercial operations.',
+      },
+      {
+        q: 'Do you help with job placement?',
+        a: 'We provide networking opportunities but not guaranteed placement.',
+      },
+      {
+        q: 'Who are the KCAA-approved doctors?',
+        a: 'We provide a list of approved medical examiners.',
       },
     ],
   },
+
   considerations: {
     title: 'Important Considerations & Risks',
     desc: [
       {
         q: 'Warranty Voiding',
-        a: 'Unauthorized hardware modifications or firmware hacking may void warranty. Use official DJI channels for software integrations.',
+        a: 'Unauthorized modifications may void warranty.',
       },
       {
         q: 'Regulatory Compliance',
-        a: 'Certain modifications (e.g., removing geofencing, boosting signal range) may violate aviation laws. Always check with your Civil Aviation Authority.',
+        a: 'Modifications may violate aviation laws.',
       },
       {
         q: 'Flight Safety',
-        a: 'Unapproved changes can affect stability, battery performance, and reliability, increasing the risk of malfunctions or crashes.',
+        a: 'Unapproved changes can increase crash risk.',
       },
     ],
+  },
+
+  solutions: {
+    title: 'Drone Services',
+    desc: [],
   },
 };

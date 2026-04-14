@@ -1,44 +1,42 @@
+/* classes.scss */
 .dropdown {
-  padding: 0 !important;
-  overflow: hidden;
-  background-color: light-dark(
-    var(--mantine-color-body),
-    var(--mantine-color-dark-8)
-  );
-  min-width: 80px;
-  z-index: 10 !important;
-  border: 0px solid transparent;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  position: absolute !important;
+  left: 0 !important;
+  /* Remove 'top' if you want it to sit naturally below the target */
+  width: 100% !important;
+  max-width: 100% !important;
+
+  /* Reset Mantine's default transform-origin and offsets */
+  transform: none !important;
+  left: 50% !important;
+  transform: translateX(
+    -50%
+  ) !important; /* Centers the 100% div relative to the screen */
+
+  border-radius: 0;
+  padding: var(--mantine-spacing-xl) 0 !important;
 }
 
 .item {
-  transition: 0.25s color ease;
-  border-radius: 0;
+  transition: 0.2s all ease !important;
   overflow: hidden;
   align-items: start;
+  font-weight: 500;
+  color: var(--mantine-color-pri-9) !important;
+  margin-right: var(--mantine-spacing-xs);
+  background-color: transparent;
 
   @include mantine.hover {
-    background-color: light-dark(
-      var(--mantine-color-sec-light),
-      var(--mantine-color-sec-light)
-    );
-
-    .itemLabel {
-      color: var(--mantine-color-pri-8);
+    h2 {
+      color: var(--mantine-color-sec-3) !important;
     }
   }
 }
 
-.itemActive {
-  font-weight: bold;
-  background-color: light-dark(
-    var(--mantine-color-sec-light),
-    var(--mantine-color-sec-light)
-  );
-  color: light-dark(var(--mantine-color-pri-8), var(--mantine-color-pri-8));
+.itemSection {
+  color: var(--mantine-color-sec-3) !important;
 }
 
-// .itemLabel {
-//   color: var(--mantine-color-text);
-// }
+.itemActive {
+  background-color: var(--mantine-color-gray-1);
+}

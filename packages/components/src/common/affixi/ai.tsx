@@ -26,7 +26,7 @@ import {
 } from '@repo/constants/names';
 import { getFromLocalStorage } from '@repo/utilities/storage';
 import ImageDefault from '@repo/components/common/images/default';
-import ModalAI from '../modals/ai';
+import DrawerAi from '../drawers/ai';
 import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
 import {
   ICON_SIZE,
@@ -155,7 +155,7 @@ export default function Ai() {
         <Transition transition="slide-left" mounted={aiOpened}>
           {(transitionStyles) => (
             <div style={transitionStyles}>
-              <ModalAI>
+              <DrawerAi>
                 <Group
                   className={classes.child}
                   gap={5}
@@ -176,7 +176,7 @@ export default function Ai() {
                     />
                   </Box>
                 </Group>
-              </ModalAI>
+              </DrawerAi>
             </div>
           )}
         </Transition>

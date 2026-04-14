@@ -4,12 +4,25 @@ import { typeMenuNavbar } from '@repo/types/link';
 
 export default function Menu({ props }: { props: typeMenuNavbar }) {
   return (
-    <Card py={5} px={2.5} bg={'transparent'} h={'100%'}>
-      <Title order={2} fz={'sm'} lh={1}>
-        {props.label}
+    <Card
+      bg={'transparent'}
+      h={'100%'}
+      padding={0}
+      py={'xs'}
+      px={'sm'}
+      radius={0}
+    >
+      <Title
+        order={2}
+        fz={{ sm: 'sm', xl: 'md' }}
+        lh={1}
+        fw={500}
+        style={{ transition: '.1s all ease' }}
+      >
+        {props.labelShort || props.label}
       </Title>
 
-      <Text mt={6} fz={'xs'} maw={{ md: '80%', lg: '90%' }}>
+      <Text mt={6} fz={{ sm: 'xs', xl: 'sm' }} maw={{ md: '80%', lg: '90%' }}>
         {props.desc}
       </Text>
     </Card>

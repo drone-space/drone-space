@@ -15,7 +15,7 @@
 }
 
 .pulse {
-  border-color: var(--mantine-color-pri-8);
+  border-color: var(--mantine-color-pri-9);
   animation: borderPulse 3s infinite ease-in-out;
 }
 
@@ -24,7 +24,7 @@
     border-color: var(--mantine-color-sec-3);
   }
   50% {
-    border-color: var(--mantine-color-pri-8);
+    border-color: var(--mantine-color-pri-9);
   }
   100% {
     border-color: var(--mantine-color-sec-3);

@@ -19,6 +19,7 @@ import { useFormBase } from '../form';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { useNotification } from '@repo/hooks/notification';
 import { downloadBrochure } from '@repo/handlers/downloaders/brochure';
+import { downloadProfile } from '@repo/handlers/downloaders/profile';
 import { Variant } from '@repo/types/enums';
 
 type UseFormEmailInquiryOptions = {
@@ -69,12 +70,10 @@ export const useFormEmailInquiry = (
         onSubmit: async (rawValues) => {
           // handle download
           if (options?.document) {
-            // const response = await contactAdd(parseFormValues(form.values));
-
             setTimeout(() => {
-              // if (options?.document === 'profile') {
-              //   downloadProfile();
-              // }
+              if (options?.document === 'profile') {
+                downloadProfile();
+              }
 
               if (options?.document === 'brochure') {
                 downloadBrochure();

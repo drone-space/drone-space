@@ -13,7 +13,7 @@ export default function Footer({
       <Button
         type="submit"
         loading={props.submitted}
-        rightSection={<IconSend size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+        // rightSection={<IconSend size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
       >
         {props.label || 'Send'}
       </Button>

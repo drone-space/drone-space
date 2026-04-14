@@ -56,13 +56,13 @@ export default function List({ data }: { data: typeDrone }) {
               <Stack justify="space-between" h={'100%'}>
                 <Group>
                   {data.new && (
-                    <Badge size={'md'} color={'sec.3'} c={'pri.8'}>
+                    <Badge size={'md'} color={'sec.3'} c={'pri.9'}>
                       New
                     </Badge>
                   )}
 
                   {data.featured && (
-                    <Badge size={'md'} color={'pri.8'} c={'sec.3'}>
+                    <Badge size={'md'} color={'pri.9'} c={'sec.3'}>
                       Featured
                     </Badge>
                   )}
@@ -113,7 +113,7 @@ export default function List({ data }: { data: typeDrone }) {
               </Text>
             )}
 
-            <Divider color="sec.4" my={'md'} />
+            <Divider color="sec.3" my={'md'} />
 
             <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
               <Text fz={'sm'} mih={58}>

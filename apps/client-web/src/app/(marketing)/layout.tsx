@@ -7,7 +7,7 @@
 
 import React from 'react';
 import LayoutBody from '@repo/components/layout/body';
-import AffixNavbar from '@repo/components/common/affixi/navbar';
+// import AffixNavbar from '@repo/components/common/affixi/navbar';
 import AffixAi from '@repo/components/common/affixi/ai';
 import HeaderMain from '@/components/layout/headers/main';
 import NavbarMain from '@/components/layout/navbars/main';
@@ -21,14 +21,14 @@ export default async function LayoutMarketing({
   return (
     <LayoutBody
       header={<HeaderMain />}
-      nav={<NavbarMain />}
+      nav={<NavbarMain options={{ border: true }} />}
       footer={<FooterMain />}
     >
       <main>{children}</main>
 
-      <AffixNavbar>
+      {/* <AffixNavbar>
         <NavbarMain />
-      </AffixNavbar>
+      </AffixNavbar> */}
       <AffixAi />
     </LayoutBody>
   );

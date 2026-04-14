@@ -1,19 +1,28 @@
 import React, { useEffect } from 'react';
 import {
+  ActionIcon,
   Box,
   Button,
+  Group,
   Paper,
   ScrollArea,
   Skeleton,
   Stack,
   Text,
+  Tooltip,
 } from '@mantine/core';
-import { useScrollIntoView } from '@mantine/hooks';
+import { useClipboard, useScrollIntoView } from '@mantine/hooks';
 import LayoutSection from '@repo/components/layout/section';
 import { FormAIType } from '@repo/hooks/form/ai';
 import { MarkdownComponent } from '../../wrappers/markdown';
 import classes from './ai.module.scss';
 import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
+import { IconCheck, IconCopy } from '@tabler/icons-react';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@repo/constants/sizes';
 
 // Sample questions data
 const sampleQuestions = [
@@ -85,10 +94,10 @@ export default function AI({
     animate: boolean;
     submitted: boolean;
   }) {
-    // const clipboard = useClipboard({ timeout: 1000 });
-    // const clipIndicators = {
-    //   icon: clipboard.copied ? IconCheck : IconCopy,
-    // };
+    const clipboard = useClipboard({ timeout: 1000 });
+    const clipIndicators = {
+      icon: clipboard.copied ? IconCheck : IconCopy,
+    };
 
     return (
       <Stack
@@ -100,7 +109,7 @@ export default function AI({
       >
         <MarkdownComponent markdown={content} />
 
-        {/* <Group gap={5} className={classes.assistantActions}>
+        <Group gap={5} className={classes.assistantActions}>
           <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
@@ -117,7 +126,7 @@ export default function AI({
             </ActionIcon>
           </Tooltip>
 
-          <Tooltip label="Read Aloud" withArrow fz={'xs'} color="pri">
+          {/* <Tooltip label="Read Aloud" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -127,9 +136,9 @@ export default function AI({
             >
               <IconVolume size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
-          </Tooltip>
+          </Tooltip> */}
 
-          <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
+          {/* <Tooltip label="Regenerate" withArrow fz={'xs'} color="pri">
             <ActionIcon
               size={ICON_WRAPPER_SIZE / 1.25}
               color="gray"
@@ -138,8 +147,8 @@ export default function AI({
             >
               <IconRefresh size={ICON_SIZE / 1.25} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
-          </Tooltip>
-        </Group> */}
+          </Tooltip> */}
+        </Group>
       </Stack>
     );
   }
@@ -277,10 +286,10 @@ function UserMessage({ content }: { content: string }) {
   return (
     <Stack align="end" my={'sm'} gap={5} className={classes.user}>
       <Paper
-        bg={'var(--mantine-color-sec-3)'}
-        c={'var(--mantine-color-white)'}
+        bg={'var(--mantine-color-pri-light)'}
+        c={'var(--mantine-color-pri-9)'}
         px={'xs'}
-        maw={'70%'}
+        maw={'80%'}
         py={5}
       >
         <Text inherit ta={'end'}>

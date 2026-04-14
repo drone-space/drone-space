@@ -1,29 +1,38 @@
 import anthropic from '@repo/libraries/anthropic';
 import { NextRequest, NextResponse } from 'next/server';
 import { MessageParam } from '@anthropic-ai/sdk/resources';
+import { unstable_cache } from 'next/cache';
 
 const documentUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/documents/anthropic.txt`;
+
+const getCachedDocument = unstable_cache(
+  async () => {
+    const response = await fetch(documentUrl);
+    if (!response.ok) throw new Error('Failed fetch');
+    return response.text();
+  },
+  ['drone-space-content'], // Cache key
+  {
+    revalidate: 3600, // Revalidate every hour (in seconds)
+    tags: ['document-content'],
+  }
+);
 
 export async function POST(req: NextRequest) {
   try {
     const messages: MessageParam[] = await req.json();
-
-    const document = await fetch(documentUrl);
-
-    if (!document.ok) throw new Error('Failed to Drone Space content');
-
-    const content = await document.text();
+    const content = await getCachedDocument(); // Fast after first call
 
     const stream = await anthropic.messages.stream({
       model: process.env.NEXT_ANTHROPIC_MODEL_NAME!,
-      // max_tokens: 1024,
       max_tokens: 1024,
       temperature: 0.2,
-      messages,
+      messages: [messages[messages.length - 1]],
       system: [
         {
           type: 'text',
           text: content,
+          cache_control: { type: 'ephemeral' }, // This triggers the cache
         },
       ],
     });

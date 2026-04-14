@@ -2,8 +2,8 @@ import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 
 const iconUrl = `https://img.icons8.com`;
 const baseUrl = {
-  droneSpace: `/images`,
-  // droneSpace: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`,
+  // droneSpace: `/images`,
+  droneSpace: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`,
   conference: `${PRODUCTION_BASE_URL_CLIENT_WEB.CONFERENCE}/images`,
 };
 

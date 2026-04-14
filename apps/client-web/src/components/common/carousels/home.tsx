@@ -73,7 +73,7 @@ export default function Home() {
         >
           <Overlay backgroundOpacity={0.6} style={{ zIndex: 0 }} />
 
-          <WrapperUnderlayBlur props={{ blur: 2, saturate: 100 }}>
+          <WrapperUnderlayBlur props={{ blur: 8, saturate: 150 }}>
             <div style={{ position: 'relative', zIndex: 1 }}>
               <LayoutSection
                 id={`carousel-home-slide-${index}`}

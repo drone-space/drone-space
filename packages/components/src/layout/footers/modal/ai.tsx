@@ -51,7 +51,7 @@ export default function ModalFooter({
           </Text>
         </Group>
 
-        <Group justify="center" gap={'xs'} visibleFrom="xs" fz={'xs'}>
+        <Group justify="center" gap={'xs'} fz={'xs'}>
           <Anchor inherit href={links.terms} underline="hover" c={'dimmed'}>
             Terms of Service
           </Anchor>

@@ -16,7 +16,7 @@ import {
   InquiryType,
 } from '@repo/types/form';
 import { useFormBase } from '../form';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { useNotification } from '@repo/hooks/notification';
 import { downloadBrochure } from '@repo/handlers/downloaders/brochure';
 import { downloadProfile } from '@repo/handlers/downloaders/profile';
@@ -46,8 +46,9 @@ export const useFormEmailInquiry = (
     useFormBase<FormValuesInquiry>(
       {
         ...formValuesInitialInquiry,
-        // APP_NAME: COMPANY_NAME,
+        APP_NAME: COMPANY_NAME,
         ...initialValues,
+        ...options,
       },
       {
         fname: hasLength({ min: 2, max: 24 }, 'Between 2 and 24 characters'),

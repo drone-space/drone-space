@@ -1,6 +1,8 @@
 .card {
   overflow: hidden;
+}
 
+.image {
   @include mantine.hover {
     .overlay {
       opacity: 0;

@@ -44,6 +44,11 @@ enum SyncStatus {
   DELETED
 }
 
+enum CategoryType {
+  BLOG
+  PRODUCT
+}
+
 // models
 
 model Profile {
@@ -99,8 +104,9 @@ model Post {
 }
 
 model Category {
-  id    String @id @default(uuid())
+  id    String       @id @default(uuid())
   title String
+  type  CategoryType @default(BLOG)
 
   posts  Post[]
   emails Email[]

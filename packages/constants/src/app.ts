@@ -47,7 +47,7 @@ export const LOCATIONS = {
 
 export const SOCIALS = {
   X: {
-    label: `X`,
+    label: `X (Twitter)`,
     link: 'https://x.com/DroneSpaceKenya',
   },
   FB: {

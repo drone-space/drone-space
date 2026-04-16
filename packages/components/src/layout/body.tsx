@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * @template-source next-template
  * @template-sync auto
@@ -9,6 +11,7 @@ import React, { useMemo } from 'react';
 import { Box, Divider, Flex } from '@mantine/core';
 import { BodyProps, Widths } from '@repo/types/layout';
 import LayoutSection from './section';
+import { usePathname } from 'next/navigation';
 
 export const DEFAULT_ASIDE_WIDTH = { md: 33, lg: 25 };
 
@@ -37,6 +40,8 @@ export default function Body({
     </Box>
   );
 
+  const pathname = usePathname();
+
   const widthMain = useMemo(() => {
     const leftMd = aside?.left?.width?.md ?? 0;
     const rightMd = aside?.right?.width?.md ?? 0;
@@ -54,7 +59,11 @@ export default function Body({
       {bar}
       {header}
       {nav}
-      {hero}
+      {!pathname.startsWith('/blog')
+        ? hero
+        : pathname == '/blog'
+          ? hero
+          : undefined}
 
       {aside ? (
         <LayoutSection

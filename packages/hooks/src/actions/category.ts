@@ -1,7 +1,7 @@
 import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 import { CategoryGet } from '@repo/types/models/category';
-import { Status, SyncStatus } from '@repo/types/models/enums';
+import { CategoryType, Status, SyncStatus } from '@repo/types/models/enums';
 import { generateUUID } from '@repo/utilities/generators';
 
 export const useCategoryActions = () => {
@@ -19,6 +19,7 @@ export const useCategoryActions = () => {
     const newCategory: CategoryGet = {
       id: params.id || id,
       title: params.title || 'New Project',
+      type: params.type || CategoryType.BLOG,
       status: params.status || Status.ACTIVE,
       sync_status: SyncStatus.PENDING,
       created_at: new Date(params.created_at || now).toISOString() as any,

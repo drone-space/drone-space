@@ -22,5 +22,9 @@ export const config: DBConfig = {
       name: STORE_NAME.CATEGORIES,
       keyPath: 'id',
     },
+    {
+      name: STORE_NAME.POSTS,
+      keyPath: 'id',
+    },
   ],
 };

@@ -16,7 +16,9 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { items: posts }: { items: PostRelations[] } = await postsGet();
 
-  if (posts == null) throw new Error('Posts not found');
+  if (posts == null) {
+    console.error('x--> Posts not found');
+  }
 
   const postId = extractUuidFromParam((await params)['postTitle-postId']);
 

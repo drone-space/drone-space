@@ -68,12 +68,7 @@ export default function Main() {
       >
         {links.footer.map((linkSet, index) => (
           <Stack key={index} gap={'md'} align="start">
-            <Title
-              order={4}
-              fz={{ base: 'md', md: 'lg' }}
-              fw={600}
-              c={'inherit'}
-            >
+            <Title order={4} fz={{ base: 'md', md: 'lg' }} c={'inherit'}>
               {linkSet.title}
             </Title>
 

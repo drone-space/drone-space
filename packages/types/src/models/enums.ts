@@ -19,3 +19,8 @@ export enum SyncStatus {
   DELETED = 'DELETED',
   SYNCED_CLIENT = 'SYNCED_CLIENT',
 }
+
+export enum CategoryType {
+  BLOG = 'BLOG',
+  PRODUCT = 'PRODUCT',
+}

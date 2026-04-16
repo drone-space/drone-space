@@ -136,7 +136,7 @@ export default function Home() {
                           }).date
                         )}{' '}
                         {slide.dates.map((d, i) => (
-                          <span key={i}>
+                          <span key={d.toISOString()}>
                             {getDayNumber(
                               getRegionalDate(d, {
                                 locale: 'en-GB',

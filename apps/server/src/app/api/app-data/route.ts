@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
         }),
       posts: () =>
         prisma.post.findMany({
-          where: { profile_id: userId },
+          // where: { profile_id: userId },
           orderBy: { created_at: 'desc' },
         }),
     };

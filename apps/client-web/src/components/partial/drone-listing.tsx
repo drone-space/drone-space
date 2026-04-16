@@ -182,9 +182,9 @@ export default function DroneListing() {
                   <Skeleton h={21.7} />
                 </>
               ) : (
-                catList.map((cl, i) => (
+                catList.map((cl) => (
                   <Anchor
-                    key={i}
+                    key={cl.categoryName}
                     fz={{ base: 'xs', lg: 'sm' }}
                     underline="hover"
                     onClick={() => {
@@ -408,9 +408,9 @@ export default function DroneListing() {
           </Stack>
         ) : (
           <Grid mt={'xl'}>
-            {items.map((p, i) => (
+            {items.map((p) => (
               <GridCol
-                key={i}
+                key={p}
                 span={
                   !params.layout
                     ? { base: 12, xs: 6, md: 4 }

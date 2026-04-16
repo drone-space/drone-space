@@ -27,7 +27,10 @@ export default function Store({
   // useUserRoleStore();
   // useThemeStore()
   // useAppshellStore();
-  useLoadAppData({ clientOnly: true, storesToLoad: {} });
+  useLoadAppData({
+    clientOnly: false,
+    storesToLoad: { categories: true, posts: true },
+  });
 
   return <div>{children}</div>;
 }

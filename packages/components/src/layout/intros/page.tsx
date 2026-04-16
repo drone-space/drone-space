@@ -26,10 +26,13 @@ interface PageHeaderProps {
   options?: {
     /** Controls vertical spacing style */
     spacing?: 'margin' | 'padding';
+    alignment?: any;
   };
 }
 
 export default function Page({ props, options }: PageHeaderProps) {
+  const alignment = options?.alignment ?? 'center';
+
   const pathname = usePathname();
   const segments = crumbify(pathname);
   const fallbackLabel = segments[segments.length - 1]?.label ?? '';
@@ -41,7 +44,7 @@ export default function Page({ props, options }: PageHeaderProps) {
 
   const pathContent =
     typeof props.path === 'string' ? (
-      <Text fw="bold" ta="center" c="sec.3" tt="uppercase" fz="sm">
+      <Text fw="bold" ta={alignment} c="sec.3" tt="uppercase" fz="sm">
         {props.path || fallbackLabel}
       </Text>
     ) : (
@@ -54,22 +57,31 @@ export default function Page({ props, options }: PageHeaderProps) {
       {...spacingProps}
       padded={SECTION_SPACING}
     >
-      <Stack>
+      <Stack align={alignment}>
         {pathContent}
 
-        <Container size="sm">
-          <Stack>
-            <Title order={1} ta="center">
+        <LayoutSection
+          id="layout-intro-page-content"
+          px={0}
+          containerized={options?.alignment ? false : 'sm'}
+          // mb={options?.spacing ? SECTION_SPACING : undefined}
+        >
+          <Stack align={alignment}>
+            <Title
+              order={1}
+              ta={alignment}
+              maw={options?.alignment ? { base: '100%', md: '70%' } : undefined}
+            >
               {props.title}
             </Title>
 
             {props.desc && (
-              <Text ta="center" fz="xl">
+              <Text ta={alignment} fz="xl">
                 {props.desc}
               </Text>
             )}
           </Stack>
-        </Container>
+        </LayoutSection>
       </Stack>
     </LayoutSection>
   );

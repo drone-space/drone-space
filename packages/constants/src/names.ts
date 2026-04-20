@@ -16,6 +16,7 @@ export const COOKIE_NAME = {
 
   SUB_REJECTED: 'sub.rejected',
   CONFERENCE: 'conference',
+  KCAA_UPDATE: 'kcaa-update',
   SHIPMENT: 'shipment',
   FEAT_DRONE_SEEN: 'feature.drone.seen',
 };

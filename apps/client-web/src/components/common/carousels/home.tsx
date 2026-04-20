@@ -86,8 +86,9 @@ export default function Home() {
                   justify="center"
                   mih={{ base: 720, sm: 640 }}
                 >
-                  <Badge color="sec.3" c={'pri.9'}>
-                    Intake Ongoing
+                  <Badge color="sec.3" c={'pri.8'} size="lg">
+                    {now.toLocaleString('en-GB', { month: 'long' })}{' '}
+                    {now.getFullYear()} Intake Ongoing
                   </Badge>
 
                   <Stack gap={0} align={alignment}>
@@ -175,11 +176,11 @@ export default function Home() {
                         },
                       }}
                     >
-                      <Button variant={'white'}>Enroll Now</Button>
+                      <Button variant={'gradient'}>Enroll Now</Button>
                     </ModalContactTraining>
 
                     <ModalRequirements>
-                      <Button color="sec.3" c={'pri'}>
+                      <Button color="white" variant="outline">
                         Requirements & Details
                       </Button>
                     </ModalRequirements>

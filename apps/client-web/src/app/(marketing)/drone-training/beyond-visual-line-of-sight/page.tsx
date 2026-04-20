@@ -15,7 +15,11 @@ import {
   Stack,
 } from '@mantine/core';
 import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
+import {
+  IconArrowRightDashed,
+  IconMessage,
+  IconSchool,
+} from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
@@ -495,12 +499,12 @@ export default async function Course() {
           >
             <Button
               mt={'xl'}
-              variant="outline"
+              variant="gradient"
               leftSection={
-                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
-              Enroll For {course.title}
+              Enroll For BVLOS
             </Button>
           </ModalContactTraining>
         </Group>

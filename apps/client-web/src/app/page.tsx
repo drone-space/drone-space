@@ -53,7 +53,7 @@ import {
 } from '@repo/constants/sizes';
 import IntroSection from '@repo/components/layout/intros/section';
 import { ABOUT_STATS, COMPANY_NAME } from '@repo/constants/app';
-import AlertConference from '@repo/components/common/alerts/conference';
+import AlertKCAAUpdate from '@repo/components/common/alerts/kcaa-update';
 import CtaMain from '@/components/partial/cta/main';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { Metadata } from 'next';
@@ -290,7 +290,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
     <LayoutBody
       header={
         <>
-          <AlertConference />
+          <AlertKCAAUpdate />
           <HeaderMain />
         </>
       }

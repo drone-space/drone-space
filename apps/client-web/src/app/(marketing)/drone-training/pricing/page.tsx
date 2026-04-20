@@ -57,11 +57,14 @@ export default async function Pricing() {
         bg={'var(--mantine-color-gray-1)'}
       >
         <Grid>
-          {courses.basic.units.map((course, index) => (
-            <GridCol key={index} span={{ sm: 6, md: 4 }}>
-              <CardPricingBasic data={course} />
-            </GridCol>
-          ))}
+          {courses.basic.units.map(
+            (course, index) =>
+              !course.subUnit && (
+                <GridCol key={index} span={{ sm: 6 }}>
+                  <CardPricingBasic data={course} />
+                </GridCol>
+              )
+          )}
         </Grid>
       </LayoutSection>
 

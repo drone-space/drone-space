@@ -12,9 +12,17 @@ import {
   Divider,
   Title,
   Button,
+  Stack,
+  Alert,
+  Box,
 } from '@mantine/core';
 import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
+import {
+  IconArrowRightDashed,
+  IconInfoCircle,
+  IconMessage,
+  IconSchool,
+} from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
@@ -83,6 +91,20 @@ export default async function Course() {
               }}
               options={{ alignment: 'start' }}
             />
+
+            <Box my={SECTION_SPACING / 2}>
+              <Alert
+                variant="light"
+                color="blue"
+                title="KCAA Updates"
+                icon={
+                  <IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                The Radiotelephony course is now part of the RPL course and is
+                therefore <strong>no longer offered separately</strong>.
+              </Alert>
+            </Box>
 
             <Text mt={'md'}>
               The Radio Telephony License course, offered in partnership with
@@ -173,7 +195,7 @@ export default async function Course() {
                 </Group>
               ))}
 
-              <Text fz={'xs'} c={'sec.3'} mt={'md'}>
+              <Text c={'sec.3'} mt={'md'}>
                 An exam for each subject covered is offered at the training in
                 readiness for the licensing exam.
               </Text>
@@ -211,26 +233,32 @@ export default async function Course() {
           </GridCol>
         </Grid>
 
-        <Group justify="center">
-          <ModalContactTraining
-            props={{
-              initialValues: {
-                subject: `Radio Telephony Course Inquiry`,
-                message: `I'm interested in enrolling in your Radio Telephony drone training program.`,
-              },
-            }}
-          >
-            <Button
-              mt={'xl'}
-              variant="outline"
-              leftSection={
-                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+        <Stack ta={'center'} mt={'xl'}>
+          <Text inherit c={'dimmed'} fz={'sm'}>
+            The Radiotelephony course is now part of the RPL course and is
+            therefore <strong>no longer offered separately</strong>.
+          </Text>
+
+          <Group justify="center">
+            <ModalContactTraining
+              props={{
+                initialValues: {
+                  subject: `RPL Course Inquiry`,
+                  message: `I'm interested in enrolling in your RPL drone training program.`,
+                },
+              }}
             >
-              Enroll For Radio Telephony
-            </Button>
-          </ModalContactTraining>
-        </Group>
+              <Button
+                variant="gradient"
+                leftSection={
+                  <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                Enroll For RPL
+              </Button>
+            </ModalContactTraining>
+          </Group>
+        </Stack>
       </LayoutSection>
 
       <LayoutSection

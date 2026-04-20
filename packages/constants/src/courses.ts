@@ -42,6 +42,7 @@ export const courses = {
       // },
       {
         featured: true,
+        subUnit: false,
         image: images.training.mulRot,
         title: {
           short: 'MR',
@@ -98,6 +99,7 @@ export const courses = {
       },
 
       {
+        subUnit: false,
         image: images.training.insRat,
         title: {
           short: 'IR',
@@ -172,6 +174,7 @@ export const courses = {
       },
 
       {
+        subUnit: true,
         image: images.training.radTel,
         title: {
           short: 'RadTel',

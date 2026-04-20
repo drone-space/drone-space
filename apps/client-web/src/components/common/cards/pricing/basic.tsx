@@ -3,6 +3,7 @@ import {
   Badge,
   Button,
   Card,
+  Divider,
   Group,
   List,
   ListItem,
@@ -109,9 +110,64 @@ export default function Basic({
 
           {data.featured && (
             <>
-              <Text component="span" fz={'xs'} c={'sec.3'} mb={'md'}>
-                Exclusive of Medical
-              </Text>
+              <Stack gap={'xs'} fz={'sm'} c={'dimmed'} maw={{ md: '80%' }}>
+                <Text inherit component="span">
+                  Radiotelephony is now part of RPL and therefore no longer
+                  offered separately.
+                </Text>
+
+                <div>
+                  <Text inherit component="span">
+                    RPL applicants are now required to undertake:
+                  </Text>
+                  <List size={'sm'}>
+                    <ListItem>an English Proficiency exam and</ListItem>
+                    <ListItem>an Oral Radiotelephony exam</ListItem>
+                  </List>
+                </div>
+
+                <div>
+                  <Text inherit component="span">
+                    The price above is exclusive of medical and exam fees:
+                  </Text>
+                  <List size={'sm'}>
+                    <ListItem>
+                      Medical fees:{' '}
+                      <Text inherit component="span" fw={500} c={'sec.3'}>
+                        <NumberFormatter
+                          value={10600}
+                          thousandSeparator
+                          prefix="Kes. "
+                        />
+                      </Text>
+                    </ListItem>
+                    <ListItem>
+                      RPL exam fees:{' '}
+                      <Text inherit component="span" fw={500} c={'sec.3'}>
+                        <NumberFormatter
+                          value={4000}
+                          thousandSeparator
+                          prefix="Kes. "
+                        />
+                      </Text>{' '}
+                      (paid to KCAA)
+                    </ListItem>
+                    <ListItem>
+                      Radiotelephony exam fees:{' '}
+                      <Text inherit component="span" fw={500} c={'sec.3'}>
+                        <NumberFormatter
+                          value={5100}
+                          thousandSeparator
+                          prefix="Kes. "
+                        />
+                      </Text>{' '}
+                      (paid to KCAA)
+                    </ListItem>
+                  </List>
+                </div>
+              </Stack>
+
+              <Divider color="dimmed" />
             </>
           )}
 
@@ -126,7 +182,7 @@ export default function Basic({
 
           {data.advanced && (
             <>
-              <Text w={{ md: '75%' }} fz={'sm'} mb={'md'}>
+              <Text w={{ md: '75%' }} fz={'sm'} mb={'md'} c={'dimmed'}>
                 For RPL hoders seeking to enhance their abilities and include{' '}
                 {data.title.full} to their skillset.
               </Text>

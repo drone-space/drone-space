@@ -12,9 +12,19 @@ import {
   Divider,
   Title,
   Button,
+  Alert,
+  Box,
+  Stack,
+  List,
+  ListItem,
 } from '@mantine/core';
 import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
+import {
+  IconArrowRightDashed,
+  IconInfoCircle,
+  IconMessage,
+  IconSchool,
+} from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
@@ -83,6 +93,48 @@ export default async function Course() {
               }}
               options={{ alignment: 'start' }}
             />
+
+            <Box my={SECTION_SPACING / 2}>
+              <Alert
+                variant="light"
+                color="blue"
+                title="KCAA Updates"
+                icon={
+                  <IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                <Stack gap={'xs'}>
+                  <Text inherit component="span">
+                    Main exams are now{' '}
+                    <strong>issued by and conducted at KCAA</strong>.
+                  </Text>
+
+                  <Text inherit component="span">
+                    The Radiotelephony course is now part of the RPL course and
+                    is therefore <strong>no longer offered separately</strong>.
+                  </Text>
+
+                  <div>
+                    <Text inherit component="span">
+                      RPL applicants are now required to undertake:
+                    </Text>
+                    <List size={'sm'}>
+                      <ListItem>
+                        an <strong>English Proficiency exam</strong> and
+                      </ListItem>
+                      <ListItem>
+                        an <strong>Oral Radiotelephony exam</strong>
+                      </ListItem>
+                    </List>
+                  </div>
+
+                  <Text inherit component="span">
+                    The RPL price is{' '}
+                    <strong>exclusive of medical and exam fees</strong>.
+                  </Text>
+                </Stack>
+              </Alert>
+            </Box>
 
             <Text mt={'md'}>
               The RPL course is designed for individuals who are interested in
@@ -185,7 +237,7 @@ export default async function Course() {
                 </Group>
               ))}
 
-              <Text fz={'xs'} c={'sec.3'} mt={'md'}>
+              <Text c={'sec.3'} mt={'md'}>
                 Mock exams are given at the end of each subject.
               </Text>
             </Card>
@@ -235,9 +287,9 @@ export default async function Course() {
           >
             <Button
               mt={'xl'}
-              variant="outline"
+              variant="gradient"
               leftSection={
-                <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               }
             >
               Enroll For RPL
@@ -281,13 +333,14 @@ export default async function Course() {
 }
 
 const rplModules = [
-  'Air Law/ CAA (unmanned Aircraft systems) Regulations 2020',
-  'Operating Procedures and Specifications',
-  'UAS General Knowledge',
-  'UAS Theory of Flight',
+  'Air Law',
+  'Oprtational Procedures',
   'Meteorology',
+  'RPAS General Knowledge',
+  'Principles of Flight',
+  'Human Performance',
   'Navigation',
-  'Human Factors',
-  // 'Flight Planning',
-  'Radio Telephony (Offered Separately - See below)',
+  'Flight Performance',
+  'Planning & Loading',
+  'Radiotelephony',
 ];

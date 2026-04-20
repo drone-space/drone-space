@@ -6,7 +6,6 @@ import IntroSection from '@repo/components/layout/intros/section';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import ImageDefault from '@repo/components/common/images/default';
-import BlogContent from '@/components/partial/blog-content';
 import { linkify, processUrl } from '@repo/utilities/url';
 import {
   Anchor,
@@ -21,6 +20,7 @@ import { getRegionalDate } from '@repo/utilities/date-time';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { useStorePost } from '@repo/libraries/zustand/stores/post';
 import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
+import ParserHtml from '@repo/components/parsers/html';
 
 export default function BlogDetail({ props }: { props: { postId: string } }) {
   const posts = useStorePost((s) => s.posts);
@@ -129,7 +129,9 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
               <Skeleton h={16} w={'50%'} />
             </Stack>
           ) : !post ? null : (
-            <BlogContent content={post.content} />
+            <div id={'html-parser-blog'}>
+              <ParserHtml props={{ html: post.content }} />
+            </div>
           )}
         </Box>
       </Stack>

@@ -33,9 +33,14 @@ import {
   IconBrandYoutube,
   IconCircleX,
 } from '@tabler/icons-react';
+import { extractUuidFromParam } from '@repo/utilities/url';
+import { usePathname } from 'next/navigation';
 
 export default function Main() {
   const { posts } = useStorePost();
+  const pathname = usePathname();
+  const postId = extractUuidFromParam(pathname);
+  const filteredPosts = (posts || []).filter((pi) => pi.id != postId);
 
   return (
     <LayoutSection
@@ -75,7 +80,11 @@ export default function Main() {
             </Stack>
           ) : (
             <Stack gap={'xl'}>
-              {sortArray(posts, (i) => i.created_at, Order.DESCENDING).map(
+              {sortArray(
+                filteredPosts,
+                (i) => i.created_at,
+                Order.DESCENDING
+              ).map(
                 (pi, i) => i < 3 && <CardBlogSide key={pi.id} props={pi} />
               )}
             </Stack>

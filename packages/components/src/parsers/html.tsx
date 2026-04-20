@@ -6,7 +6,9 @@ export default function Html({ props }: { props: { html: string } }) {
 
   return (
     <Typography>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div id={'html-parser'}>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
     </Typography>
   );
 }

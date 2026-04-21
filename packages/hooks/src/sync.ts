@@ -45,7 +45,7 @@ type SyncStoreConfig<TItems = any, THookReturn = any> = {
 };
 
 export const SYNC_STORES: Record<string, SyncStoreConfig> = {
-  categories: {
+  [STORE_NAME.CATEGORIES]: {
     dataStore: STORE_NAME.CATEGORIES,
     useStoreHook: useStoreCategory,
     serverUpdate: categoriesUpdate,
@@ -59,7 +59,7 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
 type SyncStoreKey = keyof typeof SYNC_STORES;
 
 const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
-  categories: {
+  [STORE_NAME.CATEGORIES]: {
     store: useStoreCategory,
     updateState: (items: any) =>
       useStoreCategory.getState().setCategories(items),
@@ -69,12 +69,7 @@ const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
 
 // Define a shape for the payload
 export interface MergedSyncPayload {
-  categories?: { items: any[]; deleted: any[] };
-  notes?: { items: any[]; deleted: any[] };
-  tasks?: { items: any[]; deleted: any[] };
-  reminders?: { items: any[]; deleted: any[] };
-  recurringRules?: { items: any[]; deleted: any[] };
-  views?: { items: any[]; deleted: any[] };
+  [STORE_NAME.CATEGORIES]?: { items: any[]; deleted: any[] };
 }
 
 // Update the MergedSyncParams to handle multiple datasets
@@ -108,6 +103,15 @@ export const useMergedSync = (params: {
     // Build the payload dynamically based on what's active
     storesToSync.forEach((key) => {
       const config = SYNC_STORES[key];
+
+      // Safety Check: skip if config doesn't exist for this key
+      if (!config) {
+        console.warn(
+          `Sync config for hook key "${key}" is missing in SYNC_STORES.`
+        );
+        return;
+      }
+
       const store = (stores as any)[key];
       const items = config.getItems(store) ?? [];
       const deleted = config.getDeleted(store) ?? [];
@@ -130,7 +134,12 @@ export const useMergedSync = (params: {
     if (hasDirtyData && params.syncStatus !== SyncStatus.PENDING) {
       await handleSync(payload);
     }
-  }, [storesToSync, categoryStore, handleSync, params.syncStatus]);
+  }, [
+    storesToSync,
+    // categoryStore,
+    handleSync,
+    params.syncStatus,
+  ]);
 
   useEffect(() => {
     if (!noSession && idle && online) {
@@ -169,8 +178,8 @@ export const handleMergedSync = async (
 
       await syncToClientDB({
         ...data,
-        items: data.items,
-        deletedItems: data.deleted,
+        items: data?.items || [],
+        deletedItems: data?.deleted || [],
         dataStore: config.dataStore,
         stateUpdateFunction: registry.updateState,
         stateUpdateFunctionDeleted: registry.clearDeleted,
@@ -238,30 +247,27 @@ const prepareStorePayload = (
 ) => {
   if (!data) return null;
 
-  // const { items, deleted } = data;
-
-  // Filter for items that aren't already synced
-  const unsyncedItems = data.items
-    .filter((i) => i.sync_status !== SyncStatus.SYNCED)
+  // 1. Get items that need saving/updating
+  const upserts = data.items
+    .filter(
+      (i) =>
+        i.sync_status !== SyncStatus.SYNCED &&
+        i.sync_status !== SyncStatus.DELETED
+    )
+    // ... rest of map
     .map((item) => ({
       ...item,
       updated_at: now.toISOString(),
       sync_status: SyncStatus.SYNCED,
     }));
 
-  // 2. Map pending/saved items to SYNCED status for the server
-  const upserts = unsyncedItems.map((item) => ({
-    ...item,
-    updated_at: now.toISOString(),
-    sync_status: SyncStatus.SYNCED,
-  }));
-
-  // Extract just the IDs for deletion
+  // 2. Get the IDs of items marked for deletion
+  // This is where your cart items live after orderUpdate runs
   const deletedIds = data.deleted.map((i) => i.id);
 
   return {
-    [key]: upserts, // e.g., "notes": [...]
-    deletedIds: deletedIds,
+    upserts, // Changed from [key] to a fixed key for easier API parsing
+    deletedIds,
   };
 };
 

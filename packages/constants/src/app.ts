@@ -21,6 +21,7 @@ export const EMAILS = {
   INFO: process.env.NEXT_PUBLIC_EMAIL_INFO,
   TRAINING: process.env.NEXT_PUBLIC_EMAIL_TRAINING,
   NO_REPLY: process.env.NEXT_PUBLIC_EMAIL_NOREPLY,
+  TONY: process.env.NEXT_PUBLIC_EMAIL_TONY,
 };
 
 export const BUSINESS_HOURS = {

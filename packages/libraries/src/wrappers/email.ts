@@ -12,6 +12,7 @@ import { COMPANY_NAME, EMAILS } from '@repo/constants/app';
 
 type SendEmailOptions = {
   to: string;
+  cc?: string;
   subject?: string;
   replyTo?: string;
   fromName?: string;
@@ -24,6 +25,7 @@ const emailSendBase = async (options: SendEmailOptions) => {
   if (!EMAILS.DEV) throw new Error('Missing dev email');
   if (!EMAILS.DELIVERY) throw new Error('Missing delivery email');
   if (!EMAILS.NO_REPLY) throw new Error('Missing no-reply email');
+  if (!EMAILS.TONY) throw new Error('Missing tony email');
 
   const fromEmail =
     options.fromType === 'delivery' ? EMAILS.DELIVERY : EMAILS.NO_REPLY;
@@ -31,6 +33,7 @@ const emailSendBase = async (options: SendEmailOptions) => {
   const { data, error } = await resend.emails.send({
     from: `${options.fromName ?? options.APP_NAME ?? COMPANY_NAME} <${fromEmail}>`,
     to: [isProduction() ? options.to : EMAILS.DEV],
+    cc: isProduction() ? (options.cc ? [options.cc] : undefined) : undefined,
     subject: options.subject,
     replyTo: options.replyTo ?? EMAILS.NO_REPLY,
     template: {
@@ -74,6 +77,7 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
   emailSendBase({
     fromName: 'Drone Space Inquiries',
     to: toEmail,
+    cc: isWeekend(new Date()) ? EMAILS.TONY : undefined, // CC Tony on weekends
     replyTo: params.email,
     fromType: 'delivery',
     template: {
@@ -105,3 +109,9 @@ export const emailSendOnboarding = async (params: {
     to: params.to,
     template: { id: 'onboarding', variables: { NAME: params.userName } },
   });
+
+// helper to return true if it is a weekend
+export const isWeekend = (date: Date) => {
+  const day = date.getDay();
+  return day === 0 || day === 6;
+};

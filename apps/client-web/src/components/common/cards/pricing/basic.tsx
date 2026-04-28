@@ -154,14 +154,31 @@ export default function Basic({
                     </ListItem>
                     <ListItem>
                       Radiotelephony exam fees:{' '}
-                      <Text inherit component="span" fw={500} c={'sec.3'}>
-                        <NumberFormatter
-                          value={5100}
-                          thousandSeparator
-                          prefix="Kes. "
-                        />
-                      </Text>{' '}
-                      (paid to KCAA)
+                      <List size={'sm'}>
+                        <ListItem>
+                          English Proficiency exam:{' '}
+                          <Text inherit component="span" fw={500} c={'sec.3'}>
+                            <NumberFormatter
+                              value={3000}
+                              thousandSeparator
+                              prefix="Kes. "
+                            />
+                          </Text>{' '}
+                          (paid to KCAA)
+                        </ListItem>
+
+                        <ListItem>
+                          Oral Radiotelephony exam:{' '}
+                          <Text inherit component="span" fw={500} c={'sec.3'}>
+                            <NumberFormatter
+                              value={1000}
+                              thousandSeparator
+                              prefix="Kes. "
+                            />
+                          </Text>{' '}
+                          (paid to KCAA)
+                        </ListItem>
+                      </List>
                     </ListItem>
                   </List>
                 </div>

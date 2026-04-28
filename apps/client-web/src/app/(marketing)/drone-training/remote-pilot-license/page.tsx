@@ -17,6 +17,7 @@ import {
   Stack,
   List,
   ListItem,
+  Anchor,
 } from '@mantine/core';
 import ModalContactTraining from '@repo/components/common/modals/contact/training';
 import {
@@ -42,6 +43,7 @@ import { COMPANY_NAME } from '@repo/constants/app';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 const course = courseList.find(
   (c) => linkify(c.titleShort || c.title) == 'remote-pilot-license'
@@ -132,6 +134,17 @@ export default async function Course() {
                     The RPL price is{' '}
                     <strong>exclusive of medical and exam fees</strong>.
                   </Text>
+
+                  <NextLink
+                    inherit
+                    href={'/drone-training/pricing'}
+                    underline="always"
+                    mt={'md'}
+                  >
+                    <Text inherit component="span">
+                      See the updated RPL price structure
+                    </Text>
+                  </NextLink>
                 </Stack>
               </Alert>
             </Box>

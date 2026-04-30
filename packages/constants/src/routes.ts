@@ -7,18 +7,17 @@
 
 export const authRoutes = [
   '/auth/sign-in',
-  '/auth/sign-up',
+  '/auth/error',
   '/api/auth',
   // Add other auth routes
 ];
 
 export const protectedRoutes = [
-  '/app',
+  '/',
   // Add other protected routes
 ];
 
 export const protectedDeadEndRoutes = [
   '/auth/sign-out',
-  '/auth/confirm/delete-account',
   // Add other protected dead-end routes
 ];

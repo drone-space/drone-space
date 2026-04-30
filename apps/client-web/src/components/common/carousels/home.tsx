@@ -4,6 +4,7 @@ import React from 'react';
 import { useRef } from 'react';
 import {
   Badge,
+  Box,
   Button,
   Divider,
   Group,
@@ -41,7 +42,30 @@ export default function Home() {
       badge: 'RPL',
       title: 'Remote Pilot License',
       intro: 'Join our next RPL intake and start flying professionally',
-      duration: '2 weeks',
+      duration: (
+        <Box mb={'md'}>
+          <Text inherit>
+            Theory Classes:{' '}
+            <Text component={'span'} inherit fw={'bold'}>
+              1 week
+            </Text>
+          </Text>
+
+          <Text inherit>
+            KCAA Exam:{' '}
+            <Text component={'span'} inherit fw={'bold'}>
+              waiting times are subject to KCAA scheduling
+            </Text>
+          </Text>
+
+          <Text inherit>
+            Practcal:{' '}
+            <Text component={'span'} inherit fw={'bold'}>
+              1 week
+            </Text>
+          </Text>
+        </Box>
+      ),
       dates: [
         // intake date (s)
         new Date(2026, 4, 4),
@@ -120,12 +144,18 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <Text ta={alignment}>
-                      Course Duration:{' '}
-                      <Text component={'span'} inherit fw={'bold'}>
-                        {slide.duration}
-                      </Text>
-                    </Text>
+                    {typeof slide.duration == 'string' ? (
+                      <>
+                        <Text ta={alignment}>
+                          Course Duration:{' '}
+                          <Text component={'span'} inherit fw={'bold'}>
+                            {slide.duration}
+                          </Text>
+                        </Text>
+                      </>
+                    ) : (
+                      slide.duration
+                    )}
 
                     <Text ta={alignment}>
                       {slide.dates.length > 1 ? 'Intake Dates' : 'Schedule'}:{' '}

@@ -190,14 +190,16 @@ export default function Home() {
 
         <Stack gap={SECTION_SPACING}>
           <Grid justify="center" gutter={'xl'}>
-            {courseList.map(
-              (item, index) =>
-                index < 3 && (
-                  <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
-                    <CardCourse data={item} />
-                  </GridCol>
-                )
-            )}
+            {courseList
+              .filter((ci) => !ci.title.toLowerCase().includes('telephony'))
+              .map(
+                (item, index) =>
+                  index < 3 && (
+                    <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
+                      <CardCourse data={item} />
+                    </GridCol>
+                  )
+              )}
           </Grid>
 
           <Group justify="center">

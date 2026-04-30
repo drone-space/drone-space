@@ -14,6 +14,7 @@ import {
   Title,
 } from '@mantine/core';
 import LayoutModal from '@repo/components/layout/modal';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Requirements({
   children,
@@ -99,6 +100,17 @@ export default function Requirements({
                     .
                   </ListItem>
                 </List>
+              </Stack>
+
+              <Divider />
+
+              <Stack gap={'xs'}>
+                <NextLink
+                  href="/blog/kcaa-updates-to-rpl-training-in-kenya-2026-what-you-need-to-know-56ce1258-32f8-42fd-98c2-25c8fd7074d1"
+                  underline="always"
+                >
+                  See recent KCAA updates regarding the RPL course
+                </NextLink>
               </Stack>
             </Stack>
           </ScrollAreaAutosize>

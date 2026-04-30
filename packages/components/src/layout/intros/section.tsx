@@ -39,7 +39,7 @@ export default function Section({ props, options }: SectionHeaderProps) {
         <LayoutSection
           id="layout-intro-section-desc"
           px={0}
-          containerized={options?.alignment ? false : 'sm'}
+          containerized={options?.alignment ? false : 'md'}
           mb={options?.spacing ? SECTION_SPACING : undefined}
         >
           <Stack>

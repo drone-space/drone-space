@@ -44,10 +44,10 @@ export default function Home() {
       duration: '2 weeks',
       dates: [
         // intake date (s)
-        new Date(2026, 3, 7),
-        new Date(2026, 3, 14),
-        new Date(2026, 3, 21),
-        new Date(2026, 3, 28),
+        new Date(2026, 4, 4),
+        new Date(2026, 4, 11),
+        new Date(2026, 4, 18),
+        new Date(2026, 4, 25),
       ],
       price: {
         former: 170000,
@@ -236,7 +236,7 @@ const data = sortArray(
       duration: '14 - 21 days',
       dates: [
         // intake date (s)
-        new Date(2026, 3, 13),
+        new Date(2026, 4, 11),
       ],
       price: {
         former: null,
@@ -253,28 +253,11 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 3, 6),
+        new Date(2026, 4, 4),
       ],
       price: {
         former: null,
         current: 200000,
-      },
-    },
-
-    {
-      image: images.carousel.home.image4,
-      badge: 'RT',
-      title: 'Radio Telephony',
-      intro:
-        'Learn to communicate like a pro—ace your aviation radio skills and stay compliant in controlled airspace',
-      duration: '5 days',
-      dates: [
-        // intake date (s)
-        new Date(2026, 3, 13),
-      ],
-      price: {
-        former: null,
-        current: 35000,
       },
     },
 
@@ -287,7 +270,7 @@ const data = sortArray(
       duration: '10 days',
       dates: [
         // intake date (s)
-        new Date(2026, 3, 20),
+        new Date(2026, 4, 18),
       ],
       price: {
         former: null,
@@ -304,7 +287,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 3, 27),
+        new Date(2026, 4, 25),
       ],
       price: {
         former: null,

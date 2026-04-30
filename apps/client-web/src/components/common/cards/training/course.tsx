@@ -2,7 +2,10 @@ import React from 'react';
 import {
   BackgroundImage,
   Box,
+  Button,
   Card,
+  CardSection,
+  Center,
   Group,
   Overlay,
   Stack,
@@ -13,6 +16,7 @@ import { linkify } from '@repo/utilities/url';
 import { IconArrowRight } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import NextLink from '@repo/components/common/anchor/next-link';
+import ImageDefault from '@repo/components/common/images/default';
 
 interface CourseProps {
   image: string;
@@ -23,47 +27,52 @@ interface CourseProps {
 
 export default function Course({ data }: { data: CourseProps }) {
   return (
-    <Card c={'var(--mantine-color-white)'} padding={0} h={'100%'}>
-      <BackgroundImage src={data.image} p={{ base: 'md', xs: 'xl' }} h={'100%'}>
-        <Overlay backgroundOpacity={0.5} zIndex={0} />
+    <Card bg={'transparent'} padding={0}>
+      <CardSection
+        pos={'relative'}
+        h={{ base: 240, xs: 320 }}
+        style={{
+          position: 'relative',
+          borderRadius: 'var(--mantine-radius-lg)',
+          overflow: 'hidden',
+        }}
+      >
+        <ImageDefault
+          src={data.image}
+          alt={data.title}
+          height={{ base: 240, xs: 320 }}
+          width={'100%'}
+          mode="grid"
+          radius={0}
+        />
 
-        <Stack
-          gap={'xl'}
-          justify="space-between"
-          align="start"
-          pos={'relative'}
-          h={'100%'}
+        <Overlay backgroundOpacity={0.3} />
+      </CardSection>
+
+      <Stack gap={'xl'} justify="space-between" align="start" h={'100%'}>
+        <Box pt={'md'}>
+          <Title order={3} fz={{ base: 'md', md: 'xl' }}>
+            {data.title}
+          </Title>
+
+          <Text mt={'sm'} lineClamp={6}>
+            {data.desc}
+          </Text>
+        </Box>
+
+        <NextLink
+          href={`/drone-training/${linkify(data.titleShort || data.title)}`}
         >
-          <Box mih={{ base: 200, xs: 240, md: 280 }}>
-            <Title order={3} fz={'xl'} c={'var(--mantine-color-white)'}>
-              {data.title}
-            </Title>
-
-            <Text mt={'md'} lineClamp={6}>
-              {data.desc}
-            </Text>
-          </Box>
-
-          <NextLink
-            href={`/drone-training/${linkify(data.titleShort || data.title)}`}
-            inherit
-            c={'var(--mantine-color-white)'}
-            underline="hover"
-            fz={'sm'}
+          <Button
+            color="sec.3"
+            rightSection={
+              <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            }
           >
-            <Group gap={'xs'}>
-              <Text component="span" inherit>
-                {data.title} Details
-              </Text>
-
-              <IconArrowRight
-                size={ICON_SIZE / 1.5}
-                stroke={ICON_STROKE_WIDTH}
-              />
-            </Group>
-          </NextLink>
-        </Stack>
-      </BackgroundImage>
+            {data.title} Details
+          </Button>
+        </NextLink>
+      </Stack>
     </Card>
   );
 }

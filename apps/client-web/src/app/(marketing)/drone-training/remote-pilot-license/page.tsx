@@ -135,16 +135,33 @@ export default async function Course() {
                     <strong>exclusive of medical and exam fees</strong>.
                   </Text>
 
-                  <NextLink
-                    inherit
-                    href={'/drone-training/pricing'}
-                    underline="always"
-                    mt={'md'}
-                  >
-                    <Text inherit component="span">
-                      See the updated RPL price structure
-                    </Text>
-                  </NextLink>
+                  <Stack gap={'xs'} mt={'md'}>
+                    <Group>
+                      <NextLink
+                        inherit
+                        href={
+                          '/blog/kcaa-updates-to-rpl-training-in-kenya-2026-what-you-need-to-know-56ce1258-32f8-42fd-98c2-25c8fd7074d1'
+                        }
+                        underline="always"
+                      >
+                        <Text inherit component="span">
+                          Learn more about the updates
+                        </Text>
+                      </NextLink>
+                    </Group>
+
+                    <Group>
+                      <NextLink
+                        inherit
+                        href={'/drone-training/pricing'}
+                        underline="always"
+                      >
+                        <Text inherit component="span">
+                          See the updated RPL price structure
+                        </Text>
+                      </NextLink>
+                    </Group>
+                  </Stack>
                 </Stack>
               </Alert>
             </Box>

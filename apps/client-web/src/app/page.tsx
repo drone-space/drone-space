@@ -17,6 +17,7 @@ import FooterMain from '@/components/layout/footers/main';
 import {
   Anchor,
   Button,
+  Divider,
   Grid,
   GridCol,
   Group,
@@ -26,6 +27,7 @@ import {
 } from '@mantine/core';
 import ModalDownloadDocument from '@repo/components/common/modals/download/document';
 import {
+  IconArrowRight,
   IconCalendarEvent,
   IconCertificate,
   IconCertificate2,
@@ -58,6 +60,9 @@ import CtaMain from '@/components/partial/cta/main';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { Metadata } from 'next';
 import AffixAi from '@repo/components/common/affixi/ai';
+import { courseList } from '@repo/constants/courses';
+import CardCourse from '@/components/common/cards/training/course';
+import CarouselPartners from '@/components/common/carousels/partners';
 
 export const metadata: Metadata = {
   title: `${COMPANY_NAME} - The Leading Drone Training Academy in Kenya`,
@@ -68,45 +73,58 @@ export default function Home() {
     <HomeLayout>
       <HeroHome />
 
+      <CarouselPartners data={partners} />
+
       <LayoutSection
         id="home-cta1"
         padded={SECTION_SPACING / 2}
-        containerized={'md'}
-        bg={
-          'light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light))'
-        }
+        bg={'var(--mantine-color-pri-9)'}
       >
         <Grid gutter={{ base: 'md', md: 'xl' }} justify="center">
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
             <ModalDownloadDocument props={{ type: 'brochure' }}>
-              <Button h={'100%'} fullWidth>
-                <Stack align="center" py={'md'}>
+              <Button h={'100%'} fullWidth variant="gradient">
+                <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
                   <IconFileDownload
-                    size={ICON_SIZE * 1.5}
+                    size={ICON_SIZE * 2.5}
                     stroke={ICON_STROKE_WIDTH}
                   />
-                  <Text inherit component="span" ta={'center'}>
+                  <Text
+                    inherit
+                    component="span"
+                    ta={'center'}
+                    fz={'lg'}
+                    c={'white'}
+                  >
                     Download Brochure
                   </Text>
                 </Stack>
               </Button>
             </ModalDownloadDocument>
           </GridCol>
+
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
             <ModalContactCallback>
-              <Button h={'100%'} fullWidth>
-                <Stack align="center" py={'md'}>
+              <Button h={'100%'} fullWidth variant="gradient">
+                <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
                   <IconPhoneCall
-                    size={ICON_SIZE * 1.5}
+                    size={ICON_SIZE * 2.5}
                     stroke={ICON_STROKE_WIDTH}
                   />
-                  <Text inherit component="span" ta={'center'}>
+                  <Text
+                    inherit
+                    component="span"
+                    ta={'center'}
+                    fz={'lg'}
+                    c={'white'}
+                  >
                     Request Callback
                   </Text>
                 </Stack>
               </Button>
             </ModalContactCallback>
           </GridCol>
+
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
             <ModalContactTraining
               props={{
@@ -116,28 +134,41 @@ export default function Home() {
                 },
               }}
             >
-              <Button h={'100%'} fullWidth>
-                <Stack align="center" py={'md'}>
+              <Button h={'100%'} fullWidth variant="gradient">
+                <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
                   <IconSchool
-                    size={ICON_SIZE * 1.5}
+                    size={ICON_SIZE * 2.5}
                     stroke={ICON_STROKE_WIDTH}
                   />
-                  <Text inherit component="span" ta={'center'}>
+                  <Text
+                    inherit
+                    component="span"
+                    ta={'center'}
+                    fz={'lg'}
+                    c={'white'}
+                  >
                     Register for RPL
                   </Text>
                 </Stack>
               </Button>
             </ModalContactTraining>
           </GridCol>
+
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
             <NextLink href={'/shop'}>
-              <Button h={'100%'} fullWidth>
-                <Stack align="center" py={'md'}>
+              <Button h={'100%'} fullWidth variant="gradient">
+                <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
                   <IconShoppingCart
-                    size={ICON_SIZE * 1.5}
+                    size={ICON_SIZE * 2.5}
                     stroke={ICON_STROKE_WIDTH}
                   />
-                  <Text inherit component="span" ta={'center'}>
+                  <Text
+                    inherit
+                    component="span"
+                    ta={'center'}
+                    fz={'lg'}
+                    c={'white'}
+                  >
                     Shop for a Drone
                   </Text>
                 </Stack>
@@ -147,48 +178,98 @@ export default function Home() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="home-solutions" padded containerized={'responsive'}>
+      <LayoutSection id="home-training" padded containerized={'responsive'}>
         <IntroSection
           props={{
-            subTitle: 'Services',
-            title: 'Our Drone Solutions',
-            desc: `At ${COMPANY_NAME}, we pride ourselves on delivering solutions tailored to meet your unique needs. From innovative strategies to hands-on support, our services are designed to help you achieve your goals and excel in a competitive landscape.`,
+            subTitle: 'Training',
+            title: 'Our Training Courses',
+            desc: `We offer comprehensive training programs designed to equip you with the skills and confidence to operate drone technology effectively. Whether you're a beginner or looking to advance your expertise, our courses combine practical experience with industry insights to help you stay ahead in a rapidly evolving field.`,
           }}
           options={{ spacing: true }}
         />
 
-        <Stack gap={SECTION_SPACING / 2}>
-          <Grid justify="center">
-            {services.map(
-              (service, index) =>
-                services.indexOf(service) < 4 && (
-                  <GridCol key={index} span={{ xs: 6, lg: 3 }}>
-                    <CardService data={service} />
+        <Stack gap={SECTION_SPACING}>
+          <Grid justify="center" gutter={'xl'}>
+            {courseList.map(
+              (item, index) =>
+                index < 3 && (
+                  <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
+                    <CardCourse data={item} />
                   </GridCol>
                 )
             )}
           </Grid>
 
-          <NextLink
-            ta={'center'}
-            href={'/drone-solutions'}
-            fz={'sm'}
-            underline="hover"
-            c={'dimmed'}
-          >
-            See more drone solutions
-          </NextLink>
+          <Group justify="center">
+            <Divider w={'75%'} />
+          </Group>
+
+          <Group justify="center">
+            <NextLink href={'/drone-training'}>
+              <Button
+                color="pri"
+                variant={'light'}
+                rightSection={
+                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                See more courses
+              </Button>
+            </NextLink>
+          </Group>
         </Stack>
       </LayoutSection>
 
       <LayoutSection
-        id="home-products"
+        id="home-solutions"
         padded
         containerized={'responsive'}
         bg={
           'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'
         }
       >
+        <IntroSection
+          props={{
+            subTitle: 'Services',
+            title: 'Our Drone Solutions',
+            desc: `We pride ourselves on delivering solutions tailored to meet your unique needs. From innovative strategies to hands-on support, our services are designed to help you achieve your goals and excel in a competitive landscape.`,
+          }}
+          options={{ spacing: true }}
+        />
+
+        <Stack gap={SECTION_SPACING}>
+          <Grid justify="center">
+            {services.map(
+              (service, index) =>
+                services.indexOf(service) < 3 && (
+                  <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
+                    <CardService data={service} />
+                  </GridCol>
+                )
+            )}
+          </Grid>
+
+          <Group justify="center">
+            <Divider w={'75%'} />
+          </Group>
+
+          <Group justify="center">
+            <NextLink href={'/drone-solutions'}>
+              <Button
+                color="pri"
+                variant={'light'}
+                rightSection={
+                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
+              >
+                See more drone solutions
+              </Button>
+            </NextLink>
+          </Group>
+        </Stack>
+      </LayoutSection>
+
+      <LayoutSection id="home-products" padded containerized={'responsive'}>
         <IntroSection
           props={{
             subTitle: 'Shop',
@@ -198,56 +279,45 @@ export default function Home() {
           options={{ spacing: true }}
         />
 
-        <Grid>
-          {drones.camera.map(
-            (product, index) =>
-              drones.camera.indexOf(product) < 2 && (
-                <GridCol key={index} span={{ base: 12, xs: 6 }}>
-                  <CardShopDroneMain data={product} />
-                </GridCol>
-              )
-          )}
+        <Stack gap={SECTION_SPACING}>
+          <Grid>
+            {drones.camera.map(
+              (product, index) =>
+                drones.camera.indexOf(product) < 2 && (
+                  <GridCol key={index} span={{ base: 12, xs: 6 }}>
+                    <CardShopDroneMain data={product} />
+                  </GridCol>
+                )
+            )}
 
-          {drones.enterprise.map(
-            (product, index) =>
-              drones.enterprise.indexOf(product) < 2 && (
-                <GridCol key={index} span={{ base: 12, xs: 6 }}>
-                  <CardShopDroneMain data={product} />
-                </GridCol>
-              )
-          )}
+            {drones.enterprise.map(
+              (product, index) =>
+                drones.enterprise.indexOf(product) < 2 && (
+                  <GridCol key={index} span={{ base: 12, xs: 6 }}>
+                    <CardShopDroneMain data={product} />
+                  </GridCol>
+                )
+            )}
+          </Grid>
 
-          <GridCol span={12}>
-            <Group justify="center" mt={'md'}>
-              <NextLink
-                inherit
-                ta={'center'}
-                href={'/shop'}
-                fz={'sm'}
-                underline="hover"
+          <Group justify="center">
+            <Divider w={'75%'} />
+          </Group>
+
+          <Group justify="center">
+            <NextLink href={'/drone-solutions'}>
+              <Button
+                color="pri"
+                variant={'light'}
+                rightSection={
+                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
               >
                 See more drones & categories
-              </NextLink>
-            </Group>
-          </GridCol>
-        </Grid>
-      </LayoutSection>
-
-      <LayoutSection id="home-partners" padded containerized={'responsive'}>
-        <IntroSection
-          props={{
-            subTitle: 'Relations',
-            title: 'Our Clients',
-            desc: `At ${COMPANY_NAME}, our clients are at the heart of everything we do. Over the years, we've had the privilege of collaborating with forward-thinking organizations across diverse industries, delivering tailored solutions that empower their success.`,
-          }}
-          options={{ spacing: true }}
-        />
-
-        <SimpleGrid cols={{ base: 2, xs: 3, md: 4, lg: 5 }}>
-          {partners.map((partner, index) => (
-            <CardPartner key={index} data={partner} />
-          ))}
-        </SimpleGrid>
+              </Button>
+            </NextLink>
+          </Group>
+        </Stack>
       </LayoutSection>
 
       <LayoutSection

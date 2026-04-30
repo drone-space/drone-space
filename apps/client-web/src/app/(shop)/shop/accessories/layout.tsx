@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
@@ -34,8 +34,8 @@ export default function AccessoriesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutBody>
+    <LayoutMain>
       <main>{children}</main>
-    </LayoutBody>
+    </LayoutMain>
   );
 }

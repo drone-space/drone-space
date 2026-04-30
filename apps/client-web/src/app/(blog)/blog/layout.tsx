@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 // import AffixNavbar from '@repo/components/common/affixi/navbar';
 // import AffixAi from '@repo/components/common/affixi/ai';
 import HeaderMain from '@/components/layout/headers/main';
@@ -33,7 +33,7 @@ export default async function LayoutBlog({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutBody
+    <LayoutMain
       header={<HeaderMain />}
       nav={<NavbarMain options={{ border: true }} />}
       hero={
@@ -70,6 +70,6 @@ export default async function LayoutBlog({
       </AffixNavbar> */}
 
       {/* <AffixAi /> */}
-    </LayoutBody>
+    </LayoutMain>
   );
 }

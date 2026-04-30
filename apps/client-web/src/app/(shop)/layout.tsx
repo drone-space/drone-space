@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 import NavbarMain from '@/components/layout/navbars/main';
 import FooterMain from '@/components/layout/footers/main';
 import ModalFeatureDrone from '@/components/common/modals/feature-drone';
@@ -14,7 +14,7 @@ export default async function LayoutShop({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutBody
+    <LayoutMain
       nav={
         <>
           <AlertShipment />
@@ -32,6 +32,6 @@ export default async function LayoutShop({
         <NavbarMain />
       </AffixNavbar> */}
       <AffixAi />
-    </LayoutBody>
+    </LayoutMain>
   );
 }

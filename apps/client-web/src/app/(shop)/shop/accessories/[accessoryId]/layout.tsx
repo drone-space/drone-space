@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 import { linkify } from '@repo/utilities/url';
 import accessories from '@repo/constants/accessories';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
@@ -46,5 +46,5 @@ export default function Accessory({
 }: {
   children: React.ReactNode;
 }) {
-  return <LayoutBody>{children}</LayoutBody>;
+  return <LayoutMain>{children}</LayoutMain>;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 import { linkify } from '@repo/utilities/url';
 import { products } from '@repo/constants/products';
 import { typeParams } from '../layout';
@@ -40,5 +40,5 @@ export default function Drone({
 }: {
   children: React.ReactNode;
 }) {
-  return <LayoutBody>{children}</LayoutBody>;
+  return <LayoutMain>{children}</LayoutMain>;
 }

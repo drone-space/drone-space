@@ -6,7 +6,7 @@
  */
 
 import LayoutPage from '@repo/components/layout/page';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 import AffixNavbar from '@repo/components/common/affixi/navbar';
 import LayoutSection from '@repo/components/layout/section';
 import React from 'react';
@@ -287,7 +287,7 @@ export default function Home() {
 
 async function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
-    <LayoutBody
+    <LayoutMain
       header={
         <>
           <AlertKCAAUpdate />
@@ -307,7 +307,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
         {/* </AffixNavbar> */}
         <AffixAi />
       </LayoutPage>
-    </LayoutBody>
+    </LayoutMain>
   );
 }
 

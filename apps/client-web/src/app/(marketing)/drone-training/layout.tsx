@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutBody from '@repo/components/layout/body';
+import LayoutMain from '@repo/components/layout/main';
 import { APP_NAME } from '@repo/constants/app';
 
 export type typeParams = Promise<{
@@ -19,5 +19,5 @@ export default function LayoutTraining({
 }: {
   children: React.ReactNode;
 }) {
-  return <LayoutBody>{children}</LayoutBody>;
+  return <LayoutMain>{children}</LayoutMain>;
 }

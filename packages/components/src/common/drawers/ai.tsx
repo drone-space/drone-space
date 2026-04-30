@@ -3,7 +3,7 @@ import { Drawer, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useFormAi } from '@repo/hooks/form/ai';
 import HeaderModalAI from '../../layout/header/modal/ai';
-import LayoutBodyAI from '../../layout/bodies/ai';
+import LayoutMainAI from '../../layout/bodies/ai';
 import FooterModalAI from '../../layout/footers/modal/ai';
 import LayoutSection from '@repo/components/layout/section';
 import FormAi from '../../form/ai';
@@ -64,7 +64,7 @@ export default function Ai({ children }: { children: React.ReactNode }) {
       >
         <HeaderModalAI onClose={handleClose} />
 
-        <LayoutBodyAI
+        <LayoutMainAI
           opened={opened}
           form={form}
           submitted={submitted}

@@ -10,7 +10,7 @@ import React from 'react';
 export type Sizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type Widths = Partial<Record<'md' | 'lg', number>>;
 
-export interface BodyProps {
+export interface MainProps {
   bar?: React.ReactNode;
   header?: React.ReactNode;
   nav?: React.ReactNode;

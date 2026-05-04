@@ -251,11 +251,11 @@ export default function Home() {
             )}
           </Grid>
 
-          <Group justify="center">
+          {/* <Group justify="center">
             <Divider w={'75%'} />
-          </Group>
+          </Group> */}
 
-          <Group justify="center">
+          {/* <Group justify="center">
             <NextLink href={'/drone-solutions'}>
               <Button
                 color="pri"
@@ -267,7 +267,7 @@ export default function Home() {
                 See more drone solutions
               </Button>
             </NextLink>
-          </Group>
+          </Group> */}
         </Stack>
       </LayoutSection>
 
@@ -307,7 +307,7 @@ export default function Home() {
           </Group>
 
           <Group justify="center">
-            <NextLink href={'/drone-solutions'}>
+            <NextLink href={'/shop'}>
               <Button
                 color="pri"
                 variant={'light'}

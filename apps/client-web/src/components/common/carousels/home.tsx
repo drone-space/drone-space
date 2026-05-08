@@ -300,7 +300,7 @@ const data = sortArray(
       duration: '10 days',
       dates: [
         // intake date (s)
-        new Date(2026, 4, 18),
+        new Date(2026, 4, 25),
       ],
       price: {
         former: null,
@@ -317,7 +317,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 4, 25),
+        new Date(2026, 4, 18),
       ],
       price: {
         former: null,

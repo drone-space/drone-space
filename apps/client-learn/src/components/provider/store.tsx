@@ -8,8 +8,13 @@
  */
 
 import React from 'react';
-import { useSessionStore, useLoadAppData } from '@repo/hooks/store';
+import {
+  useSessionStore,
+  useAppshellStore,
+  useLoadAppData,
+} from '@repo/hooks/store';
 import { User } from '@supabase/supabase-js';
+import { STORE_NAME } from '@repo/constants/names';
 
 export default function Store({
   props,
@@ -26,15 +31,15 @@ export default function Store({
   });
   // useUserRoleStore();
   // useThemeStore()
-  // useAppshellStore();
+  useAppshellStore();
   useLoadAppData({
     clientOnly: false,
     storesToLoad: {
-      quizzes: true,
-      questions: true,
-      options: true,
-      attempts: true,
-      answers: true,
+      [STORE_NAME.QUIZZES]: true,
+      [STORE_NAME.QUESTIONS]: true,
+      [STORE_NAME.OPTIONS]: true,
+      [STORE_NAME.ATTEMPTS]: true,
+      [STORE_NAME.ANSWERS]: true,
     },
   });
 

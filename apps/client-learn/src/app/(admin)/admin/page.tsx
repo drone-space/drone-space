@@ -4,8 +4,6 @@ import LayoutPage from '@repo/components/layout/page';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import { typeParams } from '@/app/(admin)/layout';
-import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-static';
 
@@ -19,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    // url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/faq`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/faq`,
     type: 'website',
     images: [
       {
@@ -32,18 +30,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Quiz({
-  params,
-}: {
-  params: Promise<typeParams>;
-}) {
-  const quizId = (await params).quizId;
-
-  if (!quizId) redirect('/not-found');
-
+export default async function Quizzes() {
   return (
     <LayoutPage>
-      <div>{quizId}</div>
+      <div>admin home page</div>
     </LayoutPage>
   );
 }

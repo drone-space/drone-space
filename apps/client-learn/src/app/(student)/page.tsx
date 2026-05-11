@@ -18,13 +18,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <HomeLayout>
-      {/* <LayoutSection
-        id="home-cta1"
-        padded={SECTION_SPACING / 2}
-        bg={'var(--mantine-color-pri-9)'}
-      >
-      </LayoutSection> */}
-      home
+      <div>home</div>
     </HomeLayout>
   );
 }

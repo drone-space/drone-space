@@ -33,7 +33,7 @@ export const sharedUserHandle = async (props: {
     await emailSendOnboarding({
       to: userData.email,
       userName: profile?.user_name || userData.email,
-      APP_NAME: COMPANY_NAME,
+      appName: COMPANY_NAME,
     });
 
     const nameSegment = segmentFullName(userData.user_metadata.name);

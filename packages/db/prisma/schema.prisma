@@ -66,7 +66,7 @@ model Profile {
   posts    Post[]
   comments Comment[]
   replies  Reply[]
-  emails   Email[]
+  // emails   Email[]
   attempts Attempt[]
 
   sync_status SyncStatus @default(SYNCED)
@@ -109,8 +109,8 @@ model Category {
   title String
   type  CategoryType @default(BLOG)
 
-  posts  Post[]
-  emails Email[]
+  posts Post[]
+  // emails Email[]
 
   status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)
@@ -183,40 +183,40 @@ model Student {
   @@map(name: "students")
 }
 
-model Email {
-  id         String  @id @default(uuid())
-  from_name  String?
-  from_email String?
-  to_name    String?
-  to_email   String?
-  subject    String?
-  body       String?
+// model Email {
+//   id         String  @id @default(uuid())
+//   from_name  String?
+//   from_email String?
+//   to_name    String?
+//   to_email   String?
+//   subject    String?
+//   body       String?
 
-  profile     Profile?  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
-  profile_id  String?
-  category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull)
-  category_id String?
+//   profile     Profile?  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+//   profile_id  String?
+//   category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull)
+//   category_id String?
 
-  status      Status     @default(DRAFT)
-  sync_status SyncStatus @default(SYNCED)
+//   status      Status     @default(DRAFT)
+//   sync_status SyncStatus @default(SYNCED)
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
 
-  @@unique([from_email, subject])
-  @@map(name: "emails")
-}
+//   @@unique([from_email, subject])
+//   @@map(name: "emails")
+// }
 
 model Quiz {
   id          String  @id @default(uuid())
   title       String
   description String?
 
-  status      Status     @default(ACTIVE)
-  sync_status SyncStatus @default(SYNCED)
-
   questions Question[]
   attempts  Attempt[]
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -233,6 +233,9 @@ model Question {
   quiz_id String
 
   options Option[]
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -251,6 +254,9 @@ model Option {
 
   answers Answer[]
 
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -260,7 +266,7 @@ model Option {
 
 model Attempt {
   id    String @id @default(uuid())
-  score Int
+  score Int?
 
   quiz       Quiz    @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
   quiz_id    String
@@ -268,6 +274,9 @@ model Attempt {
   profile_id String
 
   answers Answer[]
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -282,6 +291,9 @@ model Answer {
   attempt_id String
   option     Option  @relation(fields: [option_id], references: [id], onDelete: Cascade)
   option_id  String
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

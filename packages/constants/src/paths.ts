@@ -66,7 +66,7 @@ export const AUTH_URLS = {
   ERROR: `/auth/error`,
   SIGN_OUT: `/auth/sign-out`,
   REDIRECT: {
-    DEFAULT: '/app',
+    DEFAULT: '/',
   },
 };
 

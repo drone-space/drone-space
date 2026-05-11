@@ -8,7 +8,17 @@
 import { useCallback, useEffect } from 'react';
 import { STORE_NAME } from '@repo/constants/names';
 import { categoriesUpdate } from '@repo/handlers/requests/database/categories';
+import { quizzesUpdate } from '@repo/handlers/requests/database/quizzes';
+import { questionsUpdate } from '@repo/handlers/requests/database/questions';
+import { optionsUpdate } from '@repo/handlers/requests/database/options';
+import { attemptsUpdate } from '@repo/handlers/requests/database/attempts';
+import { answersUpdate } from '@repo/handlers/requests/database/answers';
 import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
+import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
+import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
+import { useStoreOption } from '@repo/libraries/zustand/stores/option';
+import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
+import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { SyncParams } from '@repo/types/sync';
 import {
   SessionValue,
@@ -54,6 +64,51 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
     setItems: (store, items) => store.setCategories(items),
     clearDeleted: (store) => store.clearDeletedCategories(),
   },
+  [STORE_NAME.QUIZZES]: {
+    dataStore: STORE_NAME.QUIZZES,
+    useStoreHook: useStoreQuiz,
+    serverUpdate: quizzesUpdate,
+    getItems: (store) => store.quizzes,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setQuizzes(items),
+    clearDeleted: (store) => store.clearDeletedQuizzes(),
+  },
+  [STORE_NAME.QUESTIONS]: {
+    dataStore: STORE_NAME.QUESTIONS,
+    useStoreHook: useStoreQuestion,
+    serverUpdate: questionsUpdate,
+    getItems: (store) => store.questions,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setQuestionuseStoreQuestions(items),
+    clearDeleted: (store) => store.clearDeletedQuestionuseStoreQuestions(),
+  },
+  [STORE_NAME.OPTIONS]: {
+    dataStore: STORE_NAME.OPTIONS,
+    useStoreHook: useStoreOption,
+    serverUpdate: optionsUpdate,
+    getItems: (store) => store.options,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setOptionuseStoreOptions(items),
+    clearDeleted: (store) => store.clearDeletedOptionuseStoreOptions(),
+  },
+  [STORE_NAME.ATTEMPTS]: {
+    dataStore: STORE_NAME.ATTEMPTS,
+    useStoreHook: useStoreAttempt,
+    serverUpdate: attemptsUpdate,
+    getItems: (store) => store.attempts,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setAttemptuseStoreAttempts(items),
+    clearDeleted: (store) => store.clearDeletedAttemptuseStoreAttempts(),
+  },
+  [STORE_NAME.ANSWERS]: {
+    dataStore: STORE_NAME.ANSWERS,
+    useStoreHook: useStoreAnswer,
+    serverUpdate: answersUpdate,
+    getItems: (store) => store.answers,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setAnsweruseStoreAnswers(items),
+    clearDeleted: (store) => store.clearDeletedAnsweruseStoreAnswers(),
+  },
 } as const;
 
 type SyncStoreKey = keyof typeof SYNC_STORES;
@@ -70,6 +125,11 @@ const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
 // Define a shape for the payload
 export interface MergedSyncPayload {
   [STORE_NAME.CATEGORIES]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.QUIZZES]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.QUESTIONS]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.OPTIONS]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.ATTEMPTS]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.ANSWERS]?: { items: any[]; deleted: any[] };
 }
 
 // Update the MergedSyncParams to handle multiple datasets
@@ -86,14 +146,24 @@ export const useMergedSync = (params: {
   syncStatus: SyncStatusValue;
 }) => {
   const { online, storesToSync, handleSync } = params;
-  const idle = useIdle(4000, { events: ['keypress', 'click'] });
+  const idle = useIdle(500, { events: ['keypress', 'click'] });
   const { noSession } = useSessionCheck();
 
   // Call all hooks at the top level (Required by Hook Rules)
   const categoryStore = useStoreCategory();
+  const quizStore = useStoreQuiz();
+  const questionStore = useStoreQuestion();
+  const optionStore = useStoreOption();
+  const attemptStore = useStoreAttempt();
+  const answerStore = useStoreAnswer();
 
   const stores = {
-    categories: categoryStore,
+    [STORE_NAME.CATEGORIES]: categoryStore,
+    [STORE_NAME.QUIZZES]: quizStore,
+    [STORE_NAME.QUESTIONS]: questionStore,
+    [STORE_NAME.OPTIONS]: optionStore,
+    [STORE_NAME.ATTEMPTS]: attemptStore,
+    [STORE_NAME.ANSWERS]: answerStore,
   };
 
   const sync = useCallback(async () => {

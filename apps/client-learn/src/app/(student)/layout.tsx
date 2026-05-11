@@ -7,19 +7,11 @@
 
 import React from 'react';
 import LayoutMain from '@repo/components/layout/main';
-import AppshellStudent from '@/components/layout/appshell/student';
-import ProviderStore from '@/components/provider/store';
 
 export default async function LayoutStudent({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <LayoutMain>
-      <ProviderStore>
-        <AppshellStudent>{children}</AppshellStudent>
-      </ProviderStore>
-    </LayoutMain>
-  );
+  return <LayoutMain>{children}</LayoutMain>;
 }

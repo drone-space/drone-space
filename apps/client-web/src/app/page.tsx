@@ -11,9 +11,6 @@ import AffixNavbar from '@repo/components/common/affixi/navbar';
 import LayoutSection from '@repo/components/layout/section';
 import React from 'react';
 import HeroHome from '@/components/layout/heros/home';
-import HeaderMain from '@/components/layout/headers/main';
-import NavbarMain from '@/components/layout/navbars/main';
-import FooterMain from '@/components/layout/footers/main';
 import {
   Anchor,
   Button,

@@ -53,4 +53,9 @@ export const STORE_NAME = {
   POSTS: 'posts',
   EMAILS: 'emails',
   CATEGORIES: 'categories',
+  QUIZZES: 'quizzes',
+  QUESTIONS: 'questions',
+  OPTIONS: 'options',
+  ATTEMPTS: 'attempts',
+  ANSWERS: 'answers',
 };

@@ -41,6 +41,31 @@ export async function GET(request: NextRequest) {
           // where: { profile_id: userId },
           orderBy: { created_at: 'desc' },
         }),
+      [STORE_NAME.QUIZZES]: () =>
+        prisma.quiz.findMany({
+          // where: { profile_id: userId },
+          orderBy: { created_at: 'desc' },
+        }),
+      [STORE_NAME.QUESTIONS]: () =>
+        prisma.question.findMany({
+          // where: { profile_id: userId },
+          orderBy: { created_at: 'desc' },
+        }),
+      [STORE_NAME.OPTIONS]: () =>
+        prisma.option.findMany({
+          // where: { profile_id: userId },
+          orderBy: { created_at: 'desc' },
+        }),
+      [STORE_NAME.ATTEMPTS]: () =>
+        prisma.attempt.findMany({
+          // where: { profile_id: userId },
+          orderBy: { created_at: 'desc' },
+        }),
+      [STORE_NAME.ANSWERS]: () =>
+        prisma.answer.findMany({
+          // where: { profile_id: userId },
+          orderBy: { created_at: 'desc' },
+        }),
     };
 
     // 3. Filter the map to only include requested stores
@@ -77,6 +102,11 @@ export async function GET(request: NextRequest) {
 const PRISMA_MODEL_MAP: Record<string, any> = {
   [STORE_NAME.CATEGORIES]: prisma.category,
   [STORE_NAME.POSTS]: prisma.post,
+  [STORE_NAME.QUIZZES]: prisma.quiz,
+  [STORE_NAME.QUESTIONS]: prisma.question,
+  [STORE_NAME.OPTIONS]: prisma.option,
+  [STORE_NAME.ATTEMPTS]: prisma.attempt,
+  [STORE_NAME.ANSWERS]: prisma.answer,
 };
 
 export async function POST(request: NextRequest) {

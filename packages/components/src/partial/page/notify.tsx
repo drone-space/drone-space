@@ -8,14 +8,15 @@
  */
 
 import { Flex, Stack, Title, Text, Group, Button } from '@mantine/core';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import LayoutSection from '@repo/components/layout/section';
 import Link from 'next/link';
-import { IconArrowRight } from '@tabler/icons-react';
+import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { SignOut as WrapperSignOut } from '@repo/components/wrappers/auth/actions';
 import { getUrlParam } from '@repo/utilities/url';
 import { config } from '@repo/libraries/indexed-db/config';
+import { AUTH_URLS } from '@repo/constants/paths';
 
 type NotifySectionProps = {
   id: string;
@@ -27,11 +28,19 @@ type NotifySectionProps = {
   containerized?: boolean;
   margined?: boolean;
   titleBold?: boolean;
+  baseUrl?: string;
 };
 
-export const NotifyError = () => {
-  const error = getUrlParam('error');
-  const errorMessage = getUrlParam('message');
+export const NotifyError = ({ props }: { props?: { baseUrl?: string } }) => {
+  const [error, setError] = useState<undefined | null | string>(undefined);
+  const [message, setMessage] = useState<undefined | null | string>(undefined);
+
+  useEffect(() => {
+    const paramError = getUrlParam('error');
+    setError((paramError as string) ?? null);
+    const paramErrorMessage = getUrlParam('message');
+    setMessage((paramErrorMessage as string) ?? null);
+  }, []);
 
   return (
     <NotifySection
@@ -40,7 +49,8 @@ export const NotifyError = () => {
       margined
       title={(error as string) ?? 'Authentication Error'}
       subtitle="An authentication error has occured."
-      message={(errorMessage as string) ?? ''}
+      message={(message as string) ?? ''}
+      baseUrl={props?.baseUrl}
     />
   );
 };
@@ -56,7 +66,13 @@ export const NotifySignOut = ({ props }: { props: { baseUrl: string } }) => {
       subtitle="Are you sure you want to sign out?"
       actions={
         <>
-          <WrapperSignOut props={{ baseUrl: props.baseUrl, dbConfig: config }}>
+          <WrapperSignOut
+            props={{
+              baseUrl: props.baseUrl,
+              dbConfig: config,
+              options: { clearDB: true },
+            }}
+          >
             <Button>Sign Out</Button>
           </WrapperSignOut>
 
@@ -76,6 +92,33 @@ export const NotifySignOut = ({ props }: { props: { baseUrl: string } }) => {
   );
 };
 
+export const NotifySignedOut = () => {
+  return (
+    <NotifySection
+      id="page-notify-signed-out"
+      containerized={false}
+      margined
+      title="Signed Out"
+      titleBold
+      subtitle="You’ve been signed out successfully."
+      actions={
+        <>
+          <Button
+            component={Link}
+            href={AUTH_URLS.SIGN_IN}
+            variant="light"
+            leftSection={
+              <IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            }
+          >
+            Sign Back In
+          </Button>
+        </>
+      }
+    />
+  );
+};
+
 export function NotifySection({
   id,
   title,
@@ -86,6 +129,7 @@ export function NotifySection({
   containerized = false,
   margined,
   titleBold = false,
+  baseUrl,
 }: NotifySectionProps) {
   return (
     <LayoutSection
@@ -104,12 +148,31 @@ export function NotifySection({
             {title}
           </Title>
 
-          <Stack gap={0} mih={24.8 * 2}>
+          <Stack mih={24.8 * 2}>
             {subtitle && (
               <Text ta={{ base: 'center', md: 'start' }}>{subtitle}</Text>
             )}
+
             {message && (
-              <Text ta={{ base: 'center', md: 'start' }}>{message}</Text>
+              <Text ta={{ base: 'center', md: 'start' }}>
+                {message?.includes('PKCE')
+                  ? 'PKCE code verifier mismatch. Try signing in again.'
+                  : message}
+              </Text>
+            )}
+
+            {message?.includes('PKCE') && baseUrl && (
+              <Group mt={'md'}>
+                <WrapperSignOut
+                  props={{
+                    baseUrl: baseUrl,
+                    dbConfig: config,
+                    options: { redirecUrl: AUTH_URLS.SIGN_IN },
+                  }}
+                >
+                  <Button>Try Again</Button>
+                </WrapperSignOut>
+              </Group>
             )}
           </Stack>
         </Stack>

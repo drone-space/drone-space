@@ -67,6 +67,7 @@ model Profile {
   comments Comment[]
   replies  Reply[]
   emails   Email[]
+  attempts Attempt[]
 
   sync_status SyncStatus @default(SYNCED)
 
@@ -204,4 +205,86 @@ model Email {
 
   @@unique([from_email, subject])
   @@map(name: "emails")
+}
+
+model Quiz {
+  id          String  @id @default(uuid())
+  title       String
+  description String?
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  questions Question[]
+  attempts  Attempt[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([title])
+  @@map(name: "quizzes")
+}
+
+model Question {
+  id      String @id @default(uuid())
+  content String
+
+  quiz    Quiz   @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_id String
+
+  options Option[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([content])
+  @@map(name: "questions")
+}
+
+model Option {
+  id      String  @id @default(uuid())
+  content String
+  correct Boolean @default(false)
+
+  question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  question_id String
+
+  answers Answer[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([content])
+  @@map(name: "options")
+}
+
+model Attempt {
+  id    String @id @default(uuid())
+  score Int
+
+  quiz       Quiz    @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_id    String
+  profile    Profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  profile_id String
+
+  answers Answer[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map(name: "attempts")
+}
+
+model Answer {
+  id String @id @default(uuid())
+
+  attempt    Attempt @relation(fields: [attempt_id], references: [id], onDelete: Cascade)
+  attempt_id String
+  option     Option  @relation(fields: [option_id], references: [id], onDelete: Cascade)
+  option_id  String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map(name: "answers")
 }

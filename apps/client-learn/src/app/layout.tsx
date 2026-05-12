@@ -56,7 +56,9 @@ export default async function RootLayout({
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
   const supabase = await createClient();
+  // console.log('supabase', supabase);
   const { data: session } = await supabase.auth.getUser();
+  console.log('session', session);
 
   // 1. Get the CALCULATED theme from middleware (not the 'auto' state)
   const theme =

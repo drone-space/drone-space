@@ -5,8 +5,6 @@ import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
-export const dynamic = 'force-static';
-
 const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
   'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';

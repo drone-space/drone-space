@@ -7,8 +7,6 @@ import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { typeParams } from '@/app/(admin)/layout';
 import { redirect } from 'next/navigation';
 
-export const dynamic = 'force-static';
-
 const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
   'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';

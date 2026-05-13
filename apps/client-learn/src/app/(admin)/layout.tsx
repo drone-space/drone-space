@@ -8,7 +8,6 @@
 import React from 'react';
 import LayoutMain from '@repo/components/layout/main';
 import AppshellAdmin from '@/components/layout/appshell/admin';
-import ProviderStore from '@/components/provider/store';
 
 export type typeParams = Promise<{
   quizId: string;
@@ -21,9 +20,7 @@ export default async function LayoutAdmin({
 }) {
   return (
     <LayoutMain>
-      <ProviderStore>
-        <AppshellAdmin>{children}</AppshellAdmin>
-      </ProviderStore>
+      <AppshellAdmin>{children}</AppshellAdmin>
     </LayoutMain>
   );
 }

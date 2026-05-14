@@ -48,6 +48,7 @@ export default function Confirm({
         opened={options?.global ? !!activeConfirm : opened}
         onClose={handleClose}
         pos={'relative'}
+        withCloseButton={false}
       >
         <LayoutModal
           props={{

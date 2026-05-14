@@ -13,7 +13,10 @@ export default function User({
 
   return (
     <Flex
-      direction={{ base: 'column', lg: 'row' }}
+      direction={{
+        base: 'column',
+        lg: options?.withoutAvatar ? 'column' : 'row',
+      }}
       align={'center'}
       // justify={'center'}
       gap={'xs'}
@@ -21,8 +24,8 @@ export default function User({
     >
       {!options?.withoutAvatar && <AvatarMain />}
 
-      <Stack gap={session == undefined ? 5 : 0}>
-        {session == undefined ? (
+      <Stack gap={session === undefined ? 5 : 0}>
+        {session === undefined ? (
           <Skeleton h={11} w={100} />
         ) : (
           <Title
@@ -33,15 +36,22 @@ export default function User({
               lg: options?.withoutAvatar ? undefined : 'start',
             }}
           >
-            {session.user_metadata.name}
+            {session?.user_metadata.name}
           </Title>
         )}
 
-        {session == undefined ? (
+        {session === undefined ? (
           <Skeleton h={9} w={130} />
         ) : (
-          <Text fz={'xs'} c={'dimmed'} ta={{ base: 'center', lg: 'start' }}>
-            {session.email}
+          <Text
+            fz={'xs'}
+            c={'dimmed'}
+            ta={{
+              base: 'center',
+              lg: options?.withoutAvatar ? undefined : 'start',
+            }}
+          >
+            {session?.email}
           </Text>
         )}
       </Stack>

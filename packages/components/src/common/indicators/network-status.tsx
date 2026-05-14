@@ -125,7 +125,7 @@ export default function NetworkStatus({
   );
 }
 
-const ENTER_DELAY = 50;
+const ENTER_DELAY = 0;
 const EXIT_DELAY = 100;
 
 const getSycnStatusProps = (params: {

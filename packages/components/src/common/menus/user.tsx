@@ -9,6 +9,7 @@ import {
   MenuTarget,
   MenuLabel,
   Stack,
+  Box,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { navLinkItems } from '@repo/constants/links';
@@ -37,16 +38,16 @@ export default function User({ children }: { children: React.ReactNode }) {
       withArrow
       arrowOffset={16}
       disabled={!session}
-      styles={{ dropdown: { overflow: 'hidden' } }}
+      styles={{ dropdown: { overflow: 'hidden', padding: 0 } }}
     >
       <MenuTarget>
         <div className={classes.target}>{children}</div>
       </MenuTarget>
 
       <MenuDropdown>
-        <Stack p={'md'}>
+        <Box p={'md'}>
           <PartialUser options={{ withoutAvatar: true }} />
-        </Stack>
+        </Box>
 
         {/* <MenuDivider mb={0} />
 

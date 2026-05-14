@@ -6,7 +6,7 @@ import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { typeParams } from '@/app/(admin)/layout';
 import { redirect } from 'next/navigation';
-import PartialPageEditQuiz from '@/components/partial/page/edit-quiz';
+import PartialPageQuizzesAdminEdit from '@/components/partial/page/quizzes/admin/edit';
 
 const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
@@ -42,7 +42,7 @@ export default async function Quiz({
 
   return (
     <LayoutPage>
-      <PartialPageEditQuiz props={{ quizId }} />
+      <PartialPageQuizzesAdminEdit props={{ quizId }} />
     </LayoutPage>
   );
 }

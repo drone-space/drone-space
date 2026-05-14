@@ -6,7 +6,7 @@ import TablesQuizzes from '@repo/components/common/tables/quizzes';
 import NextLink from '@repo/components/common/anchor/next-link';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 
-export default function Quizzes() {
+export default function View() {
   return (
     <div>
       <HeaderAppContent />

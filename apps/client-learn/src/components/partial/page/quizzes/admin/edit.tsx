@@ -53,7 +53,7 @@ import { useRouter } from 'next/navigation';
 
 type EditProps = { content: string; options: string };
 
-export default function EditQuiz({ props }: { props: { quizId: string } }) {
+export default function Edit({ props }: { props: { quizId: string } }) {
   const router = useRouter();
 
   const quizzes = useStoreQuiz((s) => s.quizzes);

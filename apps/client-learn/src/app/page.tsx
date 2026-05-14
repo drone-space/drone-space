@@ -10,6 +10,7 @@ import LayoutMain from '@repo/components/layout/main';
 import React from 'react';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { Metadata } from 'next';
+import PartialPageHome from '@/components/partial/page/home';
 
 export const metadata: Metadata = {
   title: `${COMPANY_NAME} - The Leading Drone Training Academy in Kenya`,
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <HomeLayout>
-      <div>home</div>
+      <PartialPageHome />
     </HomeLayout>
   );
 }
@@ -26,9 +27,7 @@ export default function Home() {
 async function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <LayoutMain>
-      <LayoutPage>
-        <main>{children}</main>
-      </LayoutPage>
+      <LayoutPage>{children}</LayoutPage>
     </LayoutMain>
   );
 }

@@ -7,11 +7,21 @@
 
 import React from 'react';
 import LayoutMain from '@repo/components/layout/main';
+import AppshellStudent from '@/components/layout/appshell/student';
+
+export type typeParams = Promise<{
+  quizId: string;
+  attemptId: string;
+}>;
 
 export default async function LayoutStudent({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
 }) {
-  return <LayoutMain>{children}</LayoutMain>;
+  return (
+    <LayoutMain>
+      <AppshellStudent>{children}</AppshellStudent>
+    </LayoutMain>
+  );
 }

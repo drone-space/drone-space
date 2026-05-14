@@ -4,7 +4,6 @@ import LayoutPage from '@repo/components/layout/page';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import PartialPageAttempts from '@/components/partial/page/attempts';
 
 const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
 export default async function Attempts() {
   return (
     <LayoutPage>
-      <PartialPageAttempts />
+      <div>attempts page</div>
     </LayoutPage>
   );
 }

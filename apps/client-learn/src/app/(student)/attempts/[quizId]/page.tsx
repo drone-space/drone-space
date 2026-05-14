@@ -4,7 +4,9 @@ import LayoutPage from '@repo/components/layout/page';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import PartialPageQuizzesAdminView from '@/components/partial/page/quizzes/admin/view';
+import { typeParams } from '../../layout';
+import { redirect } from 'next/navigation';
+import PartialPageAttemptsStudentResultsQuiz from '@/components/partial/page/attempts/student/results-quiz';
 
 const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
@@ -29,10 +31,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Quizzes() {
+export default async function AttemptsQuiz({
+  params,
+}: {
+  params: Promise<typeParams>;
+}) {
+  const quizId = (await params).quizId;
+
+  if (!quizId) redirect('/not-found');
+
   return (
     <LayoutPage>
-      <PartialPageQuizzesAdminView />
+      <PartialPageAttemptsStudentResultsQuiz props={{ quizId }} />
     </LayoutPage>
   );
 }

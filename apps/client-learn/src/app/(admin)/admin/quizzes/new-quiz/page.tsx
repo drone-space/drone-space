@@ -4,7 +4,7 @@ import LayoutPage from '@repo/components/layout/page';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import PartialPageQuizzesNew from '@/components/partial/page/quizzes-new';
+import PartialPageQuizzesAdminNew from '@/components/partial/page/quizzes/admin/new';
 
 const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
 const metaDesc =
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export default async function Quizzes() {
   return (
     <LayoutPage>
-      <PartialPageQuizzesNew />
+      <PartialPageQuizzesAdminNew />
     </LayoutPage>
   );
 }

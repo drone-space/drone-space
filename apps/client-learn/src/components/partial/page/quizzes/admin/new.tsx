@@ -5,7 +5,7 @@ import FormQuiz from '@repo/components/form/quiz';
 import { Fieldset, Grid, GridCol, Group } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 
-export default function QuizzesNew() {
+export default function New() {
   return (
     <div>
       <HeaderAppContent />

@@ -5,7 +5,7 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { STORE_NAME } from '@repo/constants/names';
 import { categoriesUpdate } from '@repo/handlers/requests/database/categories';
 import { quizzesUpdate } from '@repo/handlers/requests/database/quizzes';
@@ -24,7 +24,11 @@ import {
   SessionValue,
   useStoreSession,
 } from '@repo/libraries/zustand/stores/session';
-import { useIdle, UserNetworkReturnValue } from '@mantine/hooks';
+import {
+  useDebouncedCallback,
+  useIdle,
+  UserNetworkReturnValue,
+} from '@mantine/hooks';
 import { SyncStatusValue } from '@repo/libraries/zustand/stores/sync-status';
 import { SyncStatus } from '@repo/types/models/enums';
 import { openDatabase } from '@repo/libraries/indexed-db/actions';
@@ -114,17 +118,36 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
 type SyncStoreKey = keyof typeof SYNC_STORES;
 
 const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
-  [STORE_NAME.CATEGORIES]: {
-    store: useStoreCategory,
+  [STORE_NAME.QUIZZES]: {
+    store: useStoreQuiz,
+    updateState: (items: any) => useStoreQuiz.getState().setQuizzes(items),
+    clearDeleted: () => useStoreQuiz.getState().clearDeletedQuizzes(),
+  },
+  [STORE_NAME.QUESTIONS]: {
+    store: useStoreQuestion,
     updateState: (items: any) =>
-      useStoreCategory.getState().setCategories(items),
-    clearDeleted: () => useStoreCategory.getState().clearDeletedCategories(),
+      useStoreQuestion.getState().setQuestions(items),
+    clearDeleted: () => useStoreQuestion.getState().clearDeletedQuestions(),
+  },
+  [STORE_NAME.OPTIONS]: {
+    store: useStoreOption,
+    updateState: (items: any) => useStoreOption.getState().setOptions(items),
+    clearDeleted: () => useStoreOption.getState().clearDeletedOptions(),
+  },
+  [STORE_NAME.ATTEMPTS]: {
+    store: useStoreAttempt,
+    updateState: (items: any) => useStoreAttempt.getState().setAttempts(items),
+    clearDeleted: () => useStoreAttempt.getState().clearDeletedAttempts(),
+  },
+  [STORE_NAME.ANSWERS]: {
+    store: useStoreAnswer,
+    updateState: (items: any) => useStoreAnswer.getState().setAnswers(items),
+    clearDeleted: () => useStoreAnswer.getState().clearDeletedAnswers(),
   },
 };
 
 // Define a shape for the payload
 export interface MergedSyncPayload {
-  [STORE_NAME.CATEGORIES]?: { items: any[]; deleted: any[] };
   [STORE_NAME.QUIZZES]?: { items: any[]; deleted: any[] };
   [STORE_NAME.QUESTIONS]?: { items: any[]; deleted: any[] };
   [STORE_NAME.OPTIONS]?: { items: any[]; deleted: any[] };
@@ -146,11 +169,10 @@ export const useMergedSync = (params: {
   syncStatus: SyncStatusValue;
 }) => {
   const { online, storesToSync, handleSync } = params;
-  const idle = useIdle(500, { events: ['keypress', 'click'] });
+  const idle = useIdle(1000, { events: ['keypress', 'click'] });
   const { noSession } = useSessionCheck();
 
   // Call all hooks at the top level (Required by Hook Rules)
-  const categoryStore = useStoreCategory();
   const quizStore = useStoreQuiz();
   const questionStore = useStoreQuestion();
   const optionStore = useStoreOption();
@@ -158,7 +180,6 @@ export const useMergedSync = (params: {
   const answerStore = useStoreAnswer();
 
   const stores = {
-    [STORE_NAME.CATEGORIES]: categoryStore,
     [STORE_NAME.QUIZZES]: quizStore,
     [STORE_NAME.QUESTIONS]: questionStore,
     [STORE_NAME.OPTIONS]: optionStore,
@@ -166,7 +187,17 @@ export const useMergedSync = (params: {
     [STORE_NAME.ANSWERS]: answerStore,
   };
 
+  // Use a Ref for the current sync status to check it inside the callback
+  // without making the callback depend on it.
+  const syncStatusRef = useRef(params.syncStatus);
+  useEffect(() => {
+    syncStatusRef.current = params.syncStatus;
+  }, [params.syncStatus]);
+
   const sync = useCallback(async () => {
+    // Use the ref here
+    if (syncStatusRef.current === SyncStatus.PENDING) return;
+
     const payload: MergedSyncPayload = {};
     let hasDirtyData = false;
 
@@ -203,21 +234,34 @@ export const useMergedSync = (params: {
     });
 
     // Only proceed if we actually have work to do
-    if (hasDirtyData && params.syncStatus !== SyncStatus.PENDING) {
-      await handleSync(payload);
-    }
+    if (!hasDirtyData) return;
+
+    await handleSync(payload);
   }, [
-    storesToSync,
-    // categoryStore,
+    JSON.stringify(storesToSync),
     handleSync,
-    params.syncStatus,
+    quizStore.quizzes,
+    questionStore.questions,
+    optionStore.options,
+    attemptStore.attempts,
+    answerStore.answers,
   ]);
+
+  const debounceSyncFunction = useDebouncedCallback(() => sync(), 1000);
+  // Add a debounced version of your sync function
+  const debouncedSync = useMemo(
+    () => debounceSyncFunction, // Wait 1s after the last store change/idle event
+    [debounceSyncFunction]
+  );
 
   useEffect(() => {
     if (!noSession && idle && online) {
-      sync();
+      debouncedSync();
     }
-  }, [online, noSession, idle, sync]);
+
+    // Cleanup to avoid memory leaks or late executions
+    return () => debouncedSync.cancel?.();
+  }, [online, noSession, idle, debouncedSync]);
 };
 
 export const handleMergedSync = async (

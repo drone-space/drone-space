@@ -240,7 +240,7 @@ model Question {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@unique([content])
+  @@unique([content, quiz_id])
   @@map(name: "questions")
 }
 
@@ -260,7 +260,7 @@ model Option {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@unique([content])
+  @@unique([content, question_id])
   @@map(name: "options")
 }
 

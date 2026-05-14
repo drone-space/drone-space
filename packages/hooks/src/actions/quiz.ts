@@ -27,6 +27,8 @@ export const useQuizActions = () => {
     };
 
     addQuiz(newQuiz);
+
+    return newQuiz;
   };
 
   const quizUpdate = (params: QuizGet) => {
@@ -42,6 +44,8 @@ export const useQuizActions = () => {
     };
 
     updateQuiz(newQuiz);
+
+    return newQuiz;
   };
 
   const quizDelete = (params: QuizGet) => {

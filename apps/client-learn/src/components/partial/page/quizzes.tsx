@@ -1,30 +1,27 @@
 'use client';
 
 import React from 'react';
-import IntroPageSection from '@repo/components/layout/intros/section';
-import BreadcrumbsMain from '@repo/components/common/breadcrumbs/main';
-import { usePathname } from 'next/navigation';
-import { crumbify } from '@repo/utilities/url';
-import { Box } from '@mantine/core';
-import { SECTION_SPACING } from '@repo/constants/sizes';
+import { Box, Button, Group } from '@mantine/core';
 import TablesQuizzes from '@repo/components/common/tables/quizzes';
+import NextLink from '@repo/components/common/anchor/next-link';
+import HeaderAppContent from '@/components/layout/headers/app-content';
 
 export default function Quizzes() {
-  const pathname = usePathname();
-  const crumbs = crumbify(pathname);
-
   return (
     <div>
-      <div>
-        <IntroPageSection
-          props={{ title: 'Quizzes' }}
-          options={{ alignment: 'left' }}
-        />
+      <HeaderAppContent />
 
-        <BreadcrumbsMain props={crumbs} />
-      </div>
+      <Group justify="space-between" align="end">
+        <div></div>
 
-      <Box mt={SECTION_SPACING}>
+        <div>
+          <NextLink href={'/admin/quizzes/new-quiz'}>
+            <Button>New Quiz</Button>
+          </NextLink>
+        </div>
+      </Group>
+
+      <Box mt={'md'}>
         <TablesQuizzes />
       </Box>
     </div>

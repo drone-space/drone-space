@@ -3,11 +3,15 @@ import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 import { QuestionGet } from '@repo/types/models/question';
 import { Status, SyncStatus } from '@repo/types/models/enums';
 import { generateUUID } from '@repo/utilities/generators';
+import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 
 export const useQuestionActions = () => {
   const session = useStoreSession((s) => s.session);
   const addQuestion = useStoreQuestion((s) => s.addQuestion);
   const updateQuestion = useStoreQuestion((s) => s.updateQuestion);
+  const options = useStoreOption((s) => s.options);
+  const setOptions = useStoreOption((s) => s.setOptions);
+  const setDeletedOptions = useStoreOption((s) => s.setDeletedOptions);
   const deleteQuestion = useStoreQuestion((s) => s.deleteQuestion);
 
   const questionCreate = (params: Partial<QuestionGet>) => {
@@ -53,6 +57,23 @@ export const useQuestionActions = () => {
     if (!session) return;
 
     const now = new Date();
+
+    // mark current question options as deleted
+    setDeletedOptions(
+      options
+        ?.filter((oi) => oi.question_id == params.id)
+        .map((oi2) => {
+          return {
+            ...oi2,
+            sync_status: SyncStatus.DELETED,
+            created_at: new Date(params.created_at).toISOString() as any,
+            updated_at: new Date(now).toISOString() as any,
+          };
+        })
+    );
+
+    // remove question options from state
+    setOptions(options?.filter((oi) => oi.question_id != params.id));
 
     deleteQuestion({
       ...params,

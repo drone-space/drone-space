@@ -77,10 +77,15 @@ export const loadInitialData = async (params: {
 
     // 1. Attach profile_id for offline-created items if session exists
     if (session?.id) {
-      clientItems = clientItems.map((i) => ({
-        ...i,
-        profile_id: i.profile_id || session.id,
-      }));
+      clientItems = clientItems.map((i) => {
+        // skip items that don't have 'profile_id' property
+        if (i.profile_id === undefined) return i;
+
+        return {
+          ...i,
+          profile_id: i.profile_id || session.id,
+        };
+      });
     }
 
     let combinedItems: any[] = [];

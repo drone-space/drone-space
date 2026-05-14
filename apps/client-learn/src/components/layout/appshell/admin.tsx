@@ -10,6 +10,8 @@ import {
   Divider,
   Group,
   NavLink,
+  ScrollArea,
+  ScrollAreaAutosize,
   Stack,
   Transition,
 } from '@mantine/core';
@@ -27,8 +29,17 @@ import {
   IconReportAnalytics,
 } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+} from '@repo/constants/sizes';
 import Link from 'next/link';
+import FooterMain from '@/components/layout/footer/admin';
+import IndicatorNetworkStatus from '@repo/components/common/indicators/network-status';
+import { useStoreSyncStatus } from '@repo/libraries/zustand/stores/sync-status';
+import AvatarMain from '@repo/components/common/avatars/main';
+import MenuUser from '@repo/components/common/menus/user';
 
 export default function Admin({ children }: { children: React.ReactNode }) {
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
@@ -53,7 +64,18 @@ export default function Admin({ children }: { children: React.ReactNode }) {
       </AppShellNavbar>
 
       <AppShellMain>
-        <Box p={'sm'}>{children}</Box>
+        <ScrollArea
+          h={`calc(100vh - ${APPSHELL.HEADER.HEIGHT}px)`}
+          scrollbars={'y'}
+        >
+          <Box
+            mih={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + 61.7 + 1}px)`}
+            p={{ base: 'sm', md: 'xl' }}
+          >
+            {children}
+          </Box>
+          <FooterMain />
+        </ScrollArea>
       </AppShellMain>
     </AppShell>
   );
@@ -79,20 +101,31 @@ const brandImage = (
 
 function Header() {
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
+  const syncStatus = useStoreSyncStatus((s) => s.syncStatus);
 
   return (
-    <Group px={'sm'} h={'100%'}>
-      <Transition mounted={!navbarActive}>
-        {(styles) => (
-          <div style={styles}>
-            <Group>
-              <ButtonAppshellNavbar />
+    <Group px={'sm'} h={'100%'} justify="space-between">
+      <Group>
+        <Transition mounted={!navbarActive}>
+          {(styles) => (
+            <div style={styles}>
+              <Group>
+                <ButtonAppshellNavbar />
 
-              <div>{brandImage}</div>
-            </Group>
-          </div>
-        )}
-      </Transition>
+                <div>{brandImage}</div>
+              </Group>
+            </div>
+          )}
+        </Transition>
+      </Group>
+
+      <Group justify="end">
+        <IndicatorNetworkStatus props={{ syncStatus }} />
+
+        <MenuUser>
+          <AvatarMain size={ICON_WRAPPER_SIZE + 4} />
+        </MenuUser>
+      </Group>
     </Group>
   );
 }
@@ -117,6 +150,7 @@ const navlinksAdmin = [
 
 function Navbar() {
   const pathname = usePathname();
+
   return (
     <div>
       <Group h={APPSHELL.HEADER.HEIGHT - 1} p={'sm'}>
@@ -129,7 +163,10 @@ function Navbar() {
 
       <Stack gap={2} p={'sm'}>
         {navlinksAdmin.map((nli) => {
-          const active = pathname.includes(nli.link);
+          const active =
+            nli.link == '/admin'
+              ? pathname == nli.link
+              : pathname.includes(nli.link);
 
           return (
             <NavLink

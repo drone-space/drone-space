@@ -2,8 +2,10 @@
 
 import React from 'react';
 import {
+  ActionIcon,
   Button,
   Center,
+  Group,
   Loader,
   Stack,
   Table,
@@ -16,30 +18,57 @@ import {
 } from '@mantine/core';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { getRegionalDate } from '@repo/utilities/date-time';
-import { SECTION_SPACING } from '@repo/constants/sizes';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  ICON_WRAPPER_SIZE,
+  SECTION_SPACING,
+} from '@repo/constants/sizes';
+import { IconEdit } from '@tabler/icons-react';
+import NextLink from '../anchor/next-link';
+import BadgeStatus from '../badges/status';
 
 export default function Quizzes() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
 
   const rows = (quizzes || []).map((qi) => {
-    const updated = getRegionalDate(qi.updated_at);
+    const created = getRegionalDate(qi.created_at, {
+      // locale: 'en-GB',
+      // format: 'numeric',
+    });
+    const updated = getRegionalDate(qi.updated_at, {
+      // locale: 'en-GB',
+      // format: 'numeric',
+    });
 
     return (
       <TableTr key={qi.id}>
         <TableTd w={WIDTHS.TITLE}>{qi.title}</TableTd>
 
-        <TableTd w={WIDTHS.STATUS}>{qi.status}</TableTd>
+        <TableTd w={WIDTHS.STATUS}>
+          <BadgeStatus props={{ status: qi.status }} />
+        </TableTd>
 
         <TableTd w={WIDTHS.CREATED}>
-          {getRegionalDate(qi.created_at).date}
+          <Text component="span" inherit fz={'sm'}>
+            {created.date}, {`${created.time}`.toUpperCase()}
+          </Text>
         </TableTd>
 
         <TableTd w={WIDTHS.UPDATED}>
-          {updated.date}, {updated.time}
+          <Text component="span" inherit fz={'sm'}>
+            {updated.date}, {`${updated.time}`.toUpperCase()}
+          </Text>
         </TableTd>
 
         <TableTd w={WIDTHS.ACTIONS}>
-          {updated.date}, {updated.time}
+          <Group justify="end" gap={'xs'}>
+            <NextLink href={`/admin/quizzes/${qi.id}/edit-quiz`}>
+              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
+                <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              </ActionIcon>
+            </NextLink>
+          </Group>
         </TableTd>
       </TableTr>
     );
@@ -67,12 +96,15 @@ export default function Quizzes() {
               </Stack>
             </TableTd>
           </TableTr>
-        ) : !quizzes ? (
+        ) : !quizzes?.length ? (
           <TableTr>
             <TableTd colSpan={10}>
               <Stack align="center" ta={'center'} my={SECTION_SPACING * 2}>
                 <Text c={'dimmed'}>No quizzes found</Text>
-                <Button size={'xs'}>Create Quiz</Button>
+
+                <NextLink href="/admin/quizzes/new-quiz">
+                  <Button size={'xs'}>Create Quiz</Button>
+                </NextLink>
               </Stack>
             </TableTd>
           </TableTr>
@@ -85,9 +117,9 @@ export default function Quizzes() {
 }
 
 const WIDTHS = {
-  TITLE: '30%',
+  TITLE: '25%',
   STATUS: '20%',
-  CREATED: '20%',
-  UPDATED: '20%',
+  CREATED: '22.5%',
+  UPDATED: '22.5%',
   ACTIONS: '10%',
 };

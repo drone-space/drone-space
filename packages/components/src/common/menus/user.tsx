@@ -10,6 +10,7 @@ import {
   MenuLabel,
   Stack,
   Box,
+  MenuProps,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { navLinkItems } from '@repo/constants/links';
@@ -19,7 +20,10 @@ import classes from './user.module.scss';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 import NextLink from '@repo/components/common/anchor/next-link';
 
-export default function User({ children }: { children: React.ReactNode }) {
+export default function User({
+  children,
+  ...restProps
+}: { children: React.ReactNode } & MenuProps) {
   const { session } = useStoreSession();
 
   const mobile = useMediaQuery('(max-width: 48em)');
@@ -39,6 +43,7 @@ export default function User({ children }: { children: React.ReactNode }) {
       arrowOffset={16}
       disabled={!session}
       styles={{ dropdown: { overflow: 'hidden', padding: 0 } }}
+      {...restProps}
     >
       <MenuTarget>
         <div className={classes.target}>{children}</div>

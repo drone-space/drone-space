@@ -36,8 +36,8 @@ import {
 } from '@repo/constants/sizes';
 import Link from 'next/link';
 import FooterMain from '@/components/layout/footer/admin';
-import IndicatorNetworkStatus from '@repo/components/common/indicators/network-status';
 import { useStoreSyncStatus } from '@repo/libraries/zustand/stores/sync-status';
+import IndicatorNetworkStatus from '@repo/components/common/indicators/network-status';
 import AvatarMain from '@repo/components/common/avatars/main';
 import MenuUser from '@repo/components/common/menus/user';
 
@@ -121,7 +121,6 @@ function Header() {
 
       <Group justify="end">
         <IndicatorNetworkStatus props={{ syncStatus }} />
-
         <MenuUser>
           <AvatarMain size={ICON_WRAPPER_SIZE + 4} />
         </MenuUser>
@@ -134,7 +133,7 @@ const navlinksAdmin = [
   {
     link: '/admin',
     label: 'Dashboard',
-    icon: IconHome,
+    icon: IconDashboard,
   },
   {
     link: '/admin/quizzes',

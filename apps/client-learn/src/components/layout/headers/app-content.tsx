@@ -8,7 +8,11 @@ import { crumbify } from '@repo/utilities/url';
 import { usePathname } from 'next/navigation';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 
-export default function AppContent() {
+export default function AppContent({
+  props,
+}: {
+  props?: { title?: string; subTitle?: string };
+}) {
   const pathname = usePathname();
   const crumbs = crumbify(pathname);
 
@@ -16,7 +20,10 @@ export default function AppContent() {
     <Group mb={SECTION_SPACING}>
       <div>
         <IntroPageSection
-          props={{ title: crumbs[crumbs.length - 1].label }}
+          props={{
+            subTitle: props?.subTitle || '',
+            title: props?.title || crumbs[crumbs.length - 1].label,
+          }}
           options={{ alignment: 'left' }}
         />
 

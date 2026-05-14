@@ -30,7 +30,6 @@ export default function Store({
     options: { clientOnly: false },
   });
   // useUserRoleStore();
-  // useThemeStore()
   useAppshellStore();
   useLoadAppData({
     clientOnly: false,

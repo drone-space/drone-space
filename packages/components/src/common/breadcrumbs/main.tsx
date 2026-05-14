@@ -23,9 +23,13 @@ export default function Main({ props }: { props: typeLink[] }) {
       {props.map((item, index) => (
         <NextLink
           key={index}
-          underline="never"
+          underline="hover"
           href={item.link}
-          c={active(item) ? 'pri.9' : undefined}
+          c={
+            active(item)
+              ? 'light-dark(var(--mantine-color-pri-9), var(--mantine-color-sec-3))'
+              : 'var(--mantine-color-text)'
+          }
           onClick={(e) => e.preventDefault()} // remove top directive if you don't need this
           mt={'xs'}
         >

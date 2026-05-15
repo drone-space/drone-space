@@ -11,8 +11,10 @@ export const CROSS_ORIGINS = [
 
   'drone-space-client-web.vercel.app',
   'dronespace.co.ke',
+
   'drone-space-client-shop.vercel.app',
   'shop.dronespace.co.ke',
-  'drone-space-client-academy.vercel.app',
+
+  'drone-space-client-learn.vercel.app',
   'learn.dronespace.co.ke',
 ];

@@ -50,6 +50,7 @@ import ModalConfirm from '@repo/components/common/modals/confirm';
 import { useQuizActions } from '@repo/hooks/actions/quiz';
 import { useRouter } from 'next/navigation';
 import IntroSection from '@repo/components/layout/intros/section';
+import { shuffleArray } from '@repo/utilities/array';
 
 export default function Attempt({
   props,
@@ -73,11 +74,6 @@ export default function Attempt({
     (ai) => ai.attempt_id == props.attemptId
   );
   const { attemptUpdate } = useAttemptActions();
-
-  // Outside the component OR inside with useMemo
-  const target = useMemo(() => new Date(), []);
-
-  const { time } = useTimer(target, TimerDirection.UP, { active: true });
 
   const handleSubmit = () => {
     if (!attemptAnswers?.length) return;
@@ -116,6 +112,17 @@ export default function Attempt({
 
   const loading = quizzes === undefined || questions === undefined;
 
+  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionGet[]>([]);
+
+  useEffect(() => {
+    if (quizzes === undefined) return;
+    if (questions === undefined) return;
+
+    if (quizQuestions && !shuffledQuestions?.length) {
+      setShuffledQuestions(shuffleArray(quizQuestions || []));
+    }
+  }, [quizzes, questions]);
+
   return attempt?.status == Status.INTRO && intro ? (
     <StepperQuizIntro
       props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }}
@@ -146,7 +153,7 @@ export default function Attempt({
                 </Text>
               </Stack>
             ) : (
-              quizQuestions?.map((qqi, i) => (
+              shuffledQuestions.map((qqi, i) => (
                 <div key={`${qqi.id}-${i}`}>
                   {i > 0 && <Divider my={'xl'} />}
                   <CardQuestion
@@ -313,6 +320,18 @@ function CardQuestion({
   const attempt = attempts?.find((ai) => ai.id == props.attemptId);
   const { attemptUpdate } = useAttemptActions();
 
+  const [shuffledOptions, setShuffledOptions] = useState<OptionGet[]>([]);
+
+  useEffect(() => {
+    if (options === undefined) return;
+    if (answers === undefined) return;
+    if (attempts === undefined) return;
+
+    if (questionOptions && !shuffledOptions?.length) {
+      setShuffledOptions(shuffleArray(questionOptions || []));
+    }
+  }, [options, answers, attempts]);
+
   const handleOptionSelect = (option: OptionGet) => {
     const answer = answers?.find(
       (ai) =>
@@ -363,7 +382,7 @@ function CardQuestion({
             }
           >
             <Stack mt="xs">
-              {questionOptions?.map((qoi) => (
+              {shuffledOptions.map((qoi) => (
                 <Radio
                   key={qoi.id}
                   value={qoi.id}

@@ -175,7 +175,12 @@ export default function Student() {
                   </Text>
                 </Stack>
               ) : !attempts?.length ? (
-                <></>
+                <Stack mih={500}>
+                  <Text c={'dimmed'} fz={'sm'}>
+                    No attempts found. Attempts will appear here when you take
+                    quizzes.
+                  </Text>
+                </Stack>
               ) : (
                 <Grid>
                   {sortArray(

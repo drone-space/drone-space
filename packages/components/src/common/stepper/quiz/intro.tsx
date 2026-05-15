@@ -29,6 +29,7 @@ import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { Status } from '@repo/types/models/enums';
+import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 
 export default function Intro({
   props,
@@ -53,7 +54,11 @@ export default function Intro({
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
   const attempts = useStoreAttempt((s) => s.attempts);
-  const attempt = attempts?.find((ai) => ai.id == props.attemptId);
+  const session = useStoreSession((s) => s.session);
+  const userAttempts = attempts?.filter(
+    (ai) => ai.profile_id == session?.id && ai.status == Status.COMPLETE
+  );
+  const attempt = userAttempts?.find((ai) => ai.id == props.attemptId);
 
   const { attemptUpdate } = useAttemptActions();
 
@@ -76,22 +81,15 @@ export default function Intro({
             </Text>
             |
             <Text inherit>
-              Attempts (By All):{' '}
+              Times attempted (By You):{' '}
               <Text component="span" inherit fw={500} c={'primary'}>
-                <NumberFormatter value={123} />
-              </Text>
-            </Text>
-            |
-            <Text inherit>
-              Attempts (By You):{' '}
-              <Text component="span" inherit fw={500} c={'primary'}>
-                <NumberFormatter value={12} />
+                <NumberFormatter value={userAttempts?.length} />
               </Text>
             </Text>
           </Group>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>
-            Wrong quiz? You can go back.
+            Click next to see quiz instructions.
           </Text>
         </Stack>
       ),
@@ -107,8 +105,7 @@ export default function Intro({
             exactly 4 options. Only one option can be selected per question.
             There is a limited amount of time to complete the quiz. Time
             alocated depends on total number of questions in the quiz, and their
-            difficulty. Fullscreen mode will be automatically activated when the
-            quiz begins.
+            difficulty.
           </Text>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>
@@ -125,10 +122,10 @@ export default function Intro({
       content: (
         <Stack maw={{ md: '80%' }}>
           <Text inherit>
-            Once the quiz begins, do not try to: leave fullscreeen, leave ths
-            tab, disconnect from the network, remain idle for more than a few
-            minutes. As any of these actions will be watched for and, if
-            detected, will be recorded alongside your results.
+            Once the quiz begins, do not try to: leave ths tab, disconnect from
+            the network, remain idle for more than a few minutes. As any of
+            these actions will be watched for and, if detected, will be recorded
+            alongside your results.
           </Text>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>
@@ -183,8 +180,10 @@ export default function Intro({
             </ThemeIcon>
 
             <Stack maw={{ md: '80%' }}>
+              <Title order={3}>Introduction Complete</Title>
+
               <Text inherit>
-                Introduction complete. Click the start button to begin.
+                Click the start button to begin whenever you&apos;re ready.
               </Text>
             </Stack>
           </Stack>

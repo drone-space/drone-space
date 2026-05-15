@@ -16,9 +16,13 @@ import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
 import {
+  Box,
   ColorSchemeScript,
   MantineColorScheme,
   mantineHtmlProps,
+  Stack,
+  Text,
+  Title,
 } from '@mantine/core';
 import ProviderMantine from '@repo/components/provider/mantine';
 import { mantine } from '@/assets/styles';
@@ -31,6 +35,7 @@ import ProviderSync from '@/components/provider/sync';
 import { createClient } from '@repo/libraries/supabase/server';
 import { getCookieServer } from '@repo/utilities/cookie-server';
 import { COOKIE_NAME } from '@repo/constants/names';
+import { SECTION_SPACING } from '@repo/constants/sizes';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -82,9 +87,27 @@ export default async function RootLayout({
           appThemeProps={{ styleSheets: { ...mantine } }}
           colorScheme={resolvedTheme}
         >
-          <ProviderStore props={{ sessionUser: session.user }}>
-            <ProviderSync>{children}</ProviderSync>
-          </ProviderStore>
+          <Box hiddenFrom="md">
+            <Stack
+              py={SECTION_SPACING}
+              align="center"
+              justify="center"
+              ta={'center'}
+              mih={'100vh'}
+            >
+              <Title order={1}>Coming Soon</Title>
+              <Text>
+                Only the desktop version is currenly available. The mobile
+                version will be rolled out soon.
+              </Text>
+            </Stack>
+          </Box>
+
+          <Box visibleFrom="md">
+            <ProviderStore props={{ sessionUser: session.user }}>
+              <ProviderSync>{children}</ProviderSync>
+            </ProviderStore>
+          </Box>
         </ProviderMantine>
 
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

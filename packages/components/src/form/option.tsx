@@ -69,6 +69,7 @@ export default function Option({
               disabled={submitted}
               color="gray"
               variant="light"
+              size="xs"
               onClick={() => {
                 if (props?.onSubmit) props.onSubmit();
               }}

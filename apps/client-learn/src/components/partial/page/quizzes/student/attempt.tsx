@@ -196,13 +196,14 @@ export default function Attempt({
             >
               <Stack gap={5} fz={'sm'}>
                 <Text inherit>
-                  Do not try to: leave fullscreeen, leave ths tab, disconnect
-                  from the network, remain idle for more than a few minutes.
+                  Do <strong>not</strong> try to: leave ths tab, disconnect from
+                  the network, remain idle for more than a few minutes.
                 </Text>
 
                 <Text inherit>
-                  As any of these actions will be watched for and, if detected,
-                  will be recorded alongside your results.
+                  As any of these actions will be <strong>watched for</strong>{' '}
+                  and, if detected, will be{' '}
+                  <strong>recorded alongside your results</strong>.
                 </Text>
               </Stack>
             </Alert>

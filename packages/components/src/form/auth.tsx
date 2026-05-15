@@ -73,7 +73,7 @@ export default function Auth({
         <Stack>
           {header && <AuthHeader title={header.title} desc={header.desc} />}
 
-          <Box pos={'relative'}>
+          {/* <Box pos={'relative'}>
             {redirecting && (
               <Overlay
                 zIndex={1000}
@@ -86,7 +86,7 @@ export default function Auth({
             <AuthProviders props={{ baseUrl }} />
           </Box>
 
-          <Divider label="or" />
+          <Divider label="or" /> */}
 
           <Grid>
             <GridCol span={{ base: 12, sm: 12 }}>

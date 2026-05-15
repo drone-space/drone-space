@@ -7,20 +7,19 @@
 
 import { API_URL } from '@repo/constants/paths';
 import { HEADERS } from '@repo/constants/other';
-import {
-  EmailCreate,
-  EmailRelations,
-  EmailUpdate,
-} from '@repo/types/models/email';
+import { OptionCreate, OptionRelations, OptionUpdate } from '@repo/types/models/option';
 
-const baseRequestUrl = `${API_URL}/emails`;
+const baseRequestUrl = `${API_URL}/options`;
 
-export const emailsGet = async () => {
+export const optionsGet = async (params?: { userId?: string }) => {
   try {
-    const request = new Request(baseRequestUrl, {
-      method: 'GET',
-      headers: HEADERS.WITHOUT_BODY,
-    });
+    const request = new Request(
+      `${baseRequestUrl}?userId=${params?.userId || ''}`,
+      {
+        method: 'GET',
+        headers: HEADERS.WITHOUT_BODY,
+      }
+    );
 
     const response = await fetch(request);
 
@@ -28,15 +27,15 @@ export const emailsGet = async () => {
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (get emails):', error);
+    console.error('---> handler error - (get options):', error);
     throw error;
   }
 };
 
 let currentController: AbortController | null = null;
 
-export const emailsUpdate = async (
-  emails: EmailRelations[],
+export const optionsUpdate = async (
+  options: OptionRelations[],
   deletedIds?: string[]
 ) => {
   // Cancel previous request if still in-flight
@@ -49,7 +48,7 @@ export const emailsUpdate = async (
     const request = new Request(baseRequestUrl, {
       method: 'PUT',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify({ emails, deletedIds }),
+      body: JSON.stringify({ options, deletedIds }),
     });
 
     const response = await fetch(request);
@@ -62,7 +61,7 @@ export const emailsUpdate = async (
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (update emails):', error);
+    console.error('---> handler error - (update options):', error);
     throw error;
   } finally {
     // Clear controller once done (important for GC)
@@ -70,9 +69,9 @@ export const emailsUpdate = async (
   }
 };
 
-export const emailGet = async (params: { emailId: string }) => {
+export const optionGet = async (params: { optionId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${params.emailId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.optionId}`, {
       method: 'GET',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -83,48 +82,48 @@ export const emailGet = async (params: { emailId: string }) => {
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (get email):', error);
+    console.error('---> handler error - (get option):', error);
     throw error;
   }
 };
 
-export const emailCreate = async (email: EmailCreate) => {
+export const optionCreate = async (option: OptionCreate) => {
   try {
     const request = new Request(`${baseRequestUrl}/create`, {
       method: 'POST',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(email),
+      body: JSON.stringify(option),
     });
 
     const response = await fetch(request);
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (create email):', error);
+    console.error('---> handler error - (create option):', error);
     throw error;
   }
 };
 
-export const emailUpdate = async (email: EmailUpdate) => {
+export const optionUpdate = async (option: OptionUpdate) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${email.id}`, {
+    const request = new Request(`${baseRequestUrl}/${option.id}`, {
       method: 'PUT',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(email),
+      body: JSON.stringify(option),
     });
 
     const response = await fetch(request);
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (update email):', error);
+    console.error('---> handler error - (update option):', error);
     throw error;
   }
 };
 
-export const emailDelete = async (emailId: string) => {
+export const optionDelete = async (optionId: string) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${emailId}`, {
+    const request = new Request(`${baseRequestUrl}/${optionId}`, {
       method: 'DELETE',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -133,7 +132,7 @@ export const emailDelete = async (emailId: string) => {
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (delete email):', error);
+    console.error('---> handler error - (delete option):', error);
     throw error;
   }
 };

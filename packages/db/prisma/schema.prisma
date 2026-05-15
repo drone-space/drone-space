@@ -34,6 +34,12 @@ enum Status {
   INACTIVE
   DRAFT
   PUBLISHED
+
+  // attempts
+  INTRO
+  IN_PROGRESS
+  COMPLETE
+  ABANDONED
 }
 
 enum SyncStatus {
@@ -66,7 +72,8 @@ model Profile {
   posts    Post[]
   comments Comment[]
   replies  Reply[]
-  emails   Email[]
+  // emails   Email[]
+  attempts Attempt[]
 
   sync_status SyncStatus @default(SYNCED)
 
@@ -108,8 +115,8 @@ model Category {
   title String
   type  CategoryType @default(BLOG)
 
-  posts  Post[]
-  emails Email[]
+  posts Post[]
+  // emails Email[]
 
   status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)
@@ -182,26 +189,124 @@ model Student {
   @@map(name: "students")
 }
 
-model Email {
-  id         String  @id @default(uuid())
-  from_name  String?
-  from_email String?
-  to_name    String?
-  to_email   String?
-  subject    String?
-  body       String?
+// model Email {
+//   id         String  @id @default(uuid())
+//   from_name  String?
+//   from_email String?
+//   to_name    String?
+//   to_email   String?
+//   subject    String?
+//   body       String?
 
-  profile     Profile?  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
-  profile_id  String?
-  category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull)
-  category_id String?
+//   profile     Profile?  @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+//   profile_id  String?
+//   category    Category? @relation(fields: [category_id], references: [id], onDelete: SetNull)
+//   category_id String?
 
-  status      Status     @default(DRAFT)
+//   status      Status     @default(DRAFT)
+//   sync_status SyncStatus @default(SYNCED)
+
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
+
+//   @@unique([from_email, subject])
+//   @@map(name: "emails")
+// }
+
+model Quiz {
+  id             String  @id @default(uuid())
+  title          String
+  description    String?
+  pass_threshold Int?    @default(70)
+
+  questions Question[]
+  attempts  Attempt[]
+
+  status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@unique([from_email, subject])
-  @@map(name: "emails")
+  @@unique([title])
+  @@map(name: "quizzes")
+}
+
+model Question {
+  id      String @id @default(uuid())
+  content String
+
+  quiz    Quiz   @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_id String
+
+  options Option[]
+  answers Answer[]
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([content, quiz_id])
+  @@map(name: "questions")
+}
+
+model Option {
+  id      String  @id @default(uuid())
+  content String
+  correct Boolean @default(false)
+
+  question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  question_id String
+
+  answers Answer[]
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([content, question_id])
+  @@map(name: "options")
+}
+
+model Attempt {
+  id    String @id @default(uuid())
+  score Int?
+
+  quiz       Quiz    @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_id    String
+  profile    Profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  profile_id String
+
+  answers Answer[]
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map(name: "attempts")
+}
+
+model Answer {
+  id String @id @default(uuid())
+
+  attempt     Attempt  @relation(fields: [attempt_id], references: [id], onDelete: Cascade)
+  attempt_id  String
+  question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  question_id String
+  option      Option   @relation(fields: [option_id], references: [id], onDelete: Cascade)
+  option_id   String
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map(name: "answers")
 }

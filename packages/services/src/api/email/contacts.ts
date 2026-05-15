@@ -45,7 +45,7 @@ export const emailContactAdd = async (
       // send welcome email if new user
       await emailSendOnboardNewsletter({
         to: formData.email,
-        APP_NAME: formData.APP_NAME || '',
+        appName: formData.APP_NAME || '',
       });
     }
 

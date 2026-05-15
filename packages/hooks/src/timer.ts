@@ -22,64 +22,43 @@ export function useTimer(
 ) {
   const { active = true, autoSwitch = false } = options;
 
-  const getTime = useRef<(targetDate: Date) => Timer | null>(
-    direction === TimerDirection.DOWN ? getTimeRemaining : getTimeElapsed
-  );
-
-  const [time, setTime] = useState(() => getTime.current(targetDate));
   const [isActive, setActive] = useState(active);
   const [currentDirection, setDirection] = useState(direction);
-
-  const intervalRef = useRef<number | null>(null);
-
-  // Update getTime when direction changes
-  useEffect(() => {
-    getTime.current =
-      currentDirection === TimerDirection.DOWN
-        ? getTimeRemaining
-        : getTimeElapsed;
-  }, [currentDirection]);
+  // Initialize state directly to avoid the first "null" flicker
+  const [time, setTime] = useState<Timer | null>(() =>
+    direction === TimerDirection.DOWN
+      ? getTimeRemaining(targetDate)
+      : getTimeElapsed(targetDate)
+  );
 
   useEffect(() => {
-    if (!isActive) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-      return;
-    }
+    if (!isActive) return;
 
-    intervalRef.current = window.setInterval(() => {
-      const newTime = getTime.current(targetDate);
-      setTime(newTime);
+    const tick = () => {
+      const getLatestTime =
+        currentDirection === TimerDirection.DOWN
+          ? getTimeRemaining
+          : getTimeElapsed;
 
-      // Handle countdown completion
+      const newTime = getLatestTime(targetDate);
+
       if (currentDirection === TimerDirection.DOWN && newTime === null) {
-        clearInterval(intervalRef.current!);
-        intervalRef.current = null;
-
         if (autoSwitch) {
-          // Switch to counting up
           setDirection(TimerDirection.UP);
-          setActive(true);
         } else {
           setActive(false);
         }
       }
-    }, 1000);
 
-    // Cleanup
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
+      setTime(newTime);
     };
+
+    const intervalId = window.setInterval(tick, 1000);
+    return () => clearInterval(intervalId);
   }, [targetDate, isActive, currentDirection, autoSwitch]);
 
   return {
     time,
-    setTime,
     isActive,
     setActive,
     direction: currentDirection,

@@ -44,6 +44,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import { User } from '@supabase/supabase-js';
 import { API_URL } from '@repo/constants/paths';
 import { useStorePost } from '@repo/libraries/zustand/stores/post';
+import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
+import { useStoreOption } from '@repo/libraries/zustand/stores/option';
+import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
+import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
 
 export const useSessionStore = (params?: {
   sessionUser: User | null;
@@ -220,15 +225,40 @@ type LoadStoreConfig<TItems = any, THookReturn = any> = {
 };
 
 export const LOAD_STORES: Record<string, LoadStoreConfig> = {
-  categories: {
+  [STORE_NAME.CATEGORIES]: {
     dataStore: STORE_NAME.CATEGORIES,
     useStoreHook: useStoreCategory,
     setState: (store, items) => store.setCategories(items),
   },
-  posts: {
+  [STORE_NAME.POSTS]: {
     dataStore: STORE_NAME.POSTS,
     useStoreHook: useStorePost,
     setState: (store, items) => store.setPosts(items),
+  },
+  [STORE_NAME.QUIZZES]: {
+    dataStore: STORE_NAME.QUIZZES,
+    useStoreHook: useStoreQuiz,
+    setState: (store, items) => store.setQuizzes(items),
+  },
+  [STORE_NAME.QUESTIONS]: {
+    dataStore: STORE_NAME.QUESTIONS,
+    useStoreHook: useStoreQuestion,
+    setState: (store, items) => store.setQuestions(items),
+  },
+  [STORE_NAME.OPTIONS]: {
+    dataStore: STORE_NAME.OPTIONS,
+    useStoreHook: useStoreOption,
+    setState: (store, items) => store.setOptions(items),
+  },
+  [STORE_NAME.ATTEMPTS]: {
+    dataStore: STORE_NAME.ATTEMPTS,
+    useStoreHook: useStoreAttempt,
+    setState: (store, items) => store.setAttempts(items),
+  },
+  [STORE_NAME.ANSWERS]: {
+    dataStore: STORE_NAME.ANSWERS,
+    useStoreHook: useStoreAnswer,
+    setState: (store, items) => store.setAnswers(items),
   },
 } as const;
 
@@ -241,8 +271,13 @@ export const useLoadAppData = (options: {
   const session = useStoreSession((s) => s.session);
 
   const stores = {
-    categories: useStoreCategory(),
-    posts: useStorePost(),
+    [STORE_NAME.CATEGORIES]: useStoreCategory(),
+    [STORE_NAME.POSTS]: useStorePost(),
+    [STORE_NAME.QUIZZES]: useStoreQuiz(),
+    [STORE_NAME.QUESTIONS]: useStoreQuestion(),
+    [STORE_NAME.OPTIONS]: useStoreOption(),
+    [STORE_NAME.ATTEMPTS]: useStoreAttempt(),
+    [STORE_NAME.ANSWERS]: useStoreAnswer(),
   };
 
   useEffect(() => {

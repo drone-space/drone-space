@@ -23,6 +23,7 @@ import {
   TextInput,
   Title,
   Tooltip,
+  virtualColor,
 } from '@mantine/core';
 import cx from 'clsx';
 import { ICON_STROKE_WIDTH } from './sizes';
@@ -118,9 +119,15 @@ export const getAppTheme = (params?: AppThemeProps) => {
         '#0c3838',
         '#001414',
       ],
+
+      primary: virtualColor({
+        name: 'primary',
+        dark: 'sec',
+        light: 'pri',
+      }),
     },
 
-    primaryColor: 'pri',
+    primaryColor: 'primary',
     defaultRadius: 'lg',
     primaryShade: { light: 8, dark: 3 },
     cursorType: 'pointer',
@@ -177,7 +184,9 @@ export const getAppTheme = (params?: AppThemeProps) => {
       }),
 
       Title: Title.extend({
-        defaultProps: { c: 'pri.9' },
+        defaultProps: {
+          c: 'light-dark(var(--mantine-color-pri-9), var(--mantine-color-sec-3))',
+        },
       }),
 
       Tooltip: Tooltip.extend({

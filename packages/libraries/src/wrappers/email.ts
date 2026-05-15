@@ -97,13 +97,14 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
 
 export const emailSendOnboardNewsletter = async (params: {
   to: string;
-  APP_NAME: string;
-}) => emailSendBase({ to: params.to, template: { id: 'onboard-newsletter' } });
+  appName: string;
+}) =>
+  emailSendBase({ to: params.to, template: { id: 'onboarding-newsletter' } });
 
 export const emailSendOnboarding = async (params: {
   to: string;
   userName: string;
-  APP_NAME: string;
+  appName: string;
 }) =>
   emailSendBase({
     to: params.to,

@@ -56,7 +56,6 @@ export default function Theme() {
           <Text inherit>Switch to {capitalizeWord(buttonProps.label)}</Text>
         </Stack>
       }
-      position="right"
     >
       <Group>
         <ActionIcon

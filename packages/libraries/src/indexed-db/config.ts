@@ -26,5 +26,25 @@ export const config: DBConfig = {
       name: STORE_NAME.POSTS,
       keyPath: 'id',
     },
+    {
+      name: STORE_NAME.QUIZZES,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.QUESTIONS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.OPTIONS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.ATTEMPTS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.ANSWERS,
+      keyPath: 'id',
+    },
   ],
 };

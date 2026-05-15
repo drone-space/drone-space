@@ -9,12 +9,19 @@ export const authRoutes = [
   '/auth/sign-in',
   '/auth/error',
   '/api/auth',
+  '/auth/signed-out',
   // Add other auth routes
 ];
 
 export const protectedRoutes = [
-  '/',
+  '/admin',
+  '/quizzes',
   // Add other protected routes
+];
+
+export const ignoredRoutes = [
+  '/manifest.webmanifest',
+  // Add other ignored routes
 ];
 
 export const protectedDeadEndRoutes = [

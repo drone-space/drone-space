@@ -6,27 +6,10 @@ import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import PartialPageAttemptsStudentViewMany from '@/components/partial/page/attempts/student/view/many';
 
-const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Questions`;
-const metaDesc =
-  'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';
+const metaTitle = `Attempts`;
 
 export const metadata: Metadata = {
   title: metaTitle,
-  description: metaDesc,
-  openGraph: {
-    title: metaTitle,
-    description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/faq`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
 };
 
 export default async function AttemptsQuizzes() {

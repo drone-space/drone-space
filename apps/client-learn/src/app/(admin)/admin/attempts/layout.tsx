@@ -7,18 +7,17 @@
 
 import React from 'react';
 import LayoutMain from '@repo/components/layout/main';
-import AppshellAdmin from '@/components/layout/appshell/admin';
 import { Metadata } from 'next';
 import { APP_NAME } from '@repo/constants/app';
 
 export type typeParams = Promise<{
-  quizId: string;
+  attemptId: string;
 }>;
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dashboard',
-    template: `%s - Admin - ${APP_NAME.LMS}`,
+    default: 'Attempts',
+    template: `%s - Attempts - Admin - ${APP_NAME.LMS}`,
   },
 };
 
@@ -27,9 +26,5 @@ export default async function LayoutAdmin({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <LayoutMain>
-      <AppshellAdmin>{children}</AppshellAdmin>
-    </LayoutMain>
-  );
+  return <LayoutMain>{children}</LayoutMain>;
 }

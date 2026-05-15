@@ -20,6 +20,7 @@ export const useQuizActions = () => {
       id: params.id || id,
       title: params.title || 'New Quiz',
       description: params.description || '',
+      pass_threshold: params.pass_threshold || 70,
       status: params.status || Status.ACTIVE,
       sync_status: SyncStatus.PENDING,
       created_at: new Date(params.created_at || now).toISOString() as any,

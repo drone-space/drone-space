@@ -9,6 +9,12 @@ export enum Status {
   INACTIVE = 'INACTIVE',
   DRAFT = 'DRAFT',
   PUBLISHED = 'PUBLISHED',
+
+  // attempts
+  INTRO = 'INTRO',
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETE = 'COMPLETE',
+  ABANDONED = 'ABANDONED',
 }
 
 export enum SyncStatus {

@@ -26,13 +26,15 @@ export const useAttemptActions = () => {
       score: params.score || null,
       profile_id: params.profile_id || session.id,
       quiz_id: params.quiz_id,
-      status: params.status || Status.ACTIVE,
+      status: params.status || Status.INTRO,
       sync_status: SyncStatus.PENDING,
       created_at: new Date(params.created_at || now).toISOString() as any,
       updated_at: new Date(params.updated_at || now).toISOString() as any,
     };
 
     addAttempt(newAttempt);
+
+    return newAttempt;
   };
 
   const attemptUpdate = (params: AttemptGet) => {
@@ -48,6 +50,8 @@ export const useAttemptActions = () => {
     };
 
     updateAttempt(newAttempt);
+
+    return newAttempt;
   };
 
   const attemptDelete = (params: AttemptGet) => {

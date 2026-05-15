@@ -30,6 +30,11 @@ import { IconX } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import NextLink from '@repo/components/common/anchor/next-link';
+import { useAttemptActions } from '@repo/hooks/actions/attempt';
+import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
+import { QuestionGet } from '@repo/types/models/question';
+import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
+import { Status } from '@repo/types/models/enums';
 
 export default function One({ props }: { props: { quizId: string } }) {
   const router = useRouter();
@@ -37,6 +42,21 @@ export default function One({ props }: { props: { quizId: string } }) {
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
+  const attempts = useStoreAttempt((s) => s.attempts);
+  const quizAttempts = attempts?.filter(
+    (ai) => ai.quiz_id == quiz?.id && ai.status == Status.COMPLETE
+  );
+  const quizPasses =
+    attempts?.filter(
+      (ai) =>
+        ai.quiz_id == quiz?.id &&
+        ai.status == Status.COMPLETE &&
+        ai.score &&
+        ai.score > (quiz?.pass_threshold || 0)
+    ).length || 0;
+  const { attemptCreate } = useAttemptActions();
+  const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
+  const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
   useEffect(() => {
     if (quizzes === undefined) return;
@@ -44,21 +64,34 @@ export default function One({ props }: { props: { quizId: string } }) {
     if (!quiz) router.replace('/not-found');
   }, [quizzes]);
 
-  const attempts = 123;
-  const passes = 78;
-
   return (
     <div>
       <HeaderAppContent props={{ title: quiz?.title }} />
 
       <Grid gutter={'xl'}>
         <GridCol span={{ base: 12, md: 8 }}>
-          <Stack gap={'xl'}>
+          <Stack gap={'xl'} pr={{ md: 'xl' }}>
             <Group maw={{ md: '80%' }}>
               <Text>{quiz?.description}</Text>
             </Group>
 
-            <div>preview questions go here (3-5)</div>
+            <Stack gap={'md'}>
+              <Title order={3} fz={'md'} fw={500}>
+                Quiz Preview
+              </Title>
+
+              {quizQuestions === undefined ? (
+                <Loader />
+              ) : !quizQuestions.length ? (
+                <Text>No questions found for this quiz.</Text>
+              ) : (
+                quizQuestions
+                  .slice(0, 5)
+                  .map((qi) => (
+                    <CardQuestion key={qi.id} props={{ question: qi }} />
+                  ))
+              )}
+            </Stack>
           </Stack>
         </GridCol>
 
@@ -112,7 +145,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                       Attempts:
                     </Text>
                     <Text inherit ta={'end'} fw={500}>
-                      <NumberFormatter value={attempts} />
+                      <NumberFormatter value={quizAttempts?.length} />
                     </Text>
                   </Group>
 
@@ -126,18 +159,23 @@ export default function One({ props }: { props: { quizId: string } }) {
                     <Stack gap={0} align="end" ta={'end'}>
                       <Text inherit>
                         <Text component="span" inherit fw={500} c={'green.6'}>
-                          <NumberFormatter value={passes} />
-                        </Text>
-                        /
+                          <NumberFormatter value={quizPasses} />
+                        </Text>{' '}
+                        /{' '}
                         <Text component="span" inherit fw={500} c={'red.6'}>
-                          <NumberFormatter value={attempts - passes} />
+                          <NumberFormatter
+                            value={(quizAttempts?.length || 0) - quizPasses}
+                          />
                         </Text>
                       </Text>
 
                       <Text inherit fz={'sm'} c={'dimmed'}>
                         (Success rate:{' '}
                         <Text component="span" inherit fw={500}>
-                          {Math.floor((passes / attempts) * 100)}%
+                          {Math.floor(
+                            (quizPasses / (quizAttempts?.length || 1)) * 100
+                          )}
+                          %
                         </Text>
                         )
                       </Text>
@@ -148,11 +186,20 @@ export default function One({ props }: { props: { quizId: string } }) {
             </Card>
 
             <Group grow>
-              <NextLink href={`/quizzes/${props.quizId}/attempt`}>
-                <Button fullWidth size="xs">
-                  Start Quiz
-                </Button>
-              </NextLink>
+              <Button
+                fullWidth
+                size="xs"
+                onClick={() => {
+                  const newAttempt = attemptCreate({ quiz_id: props.quizId });
+
+                  if (newAttempt) {
+                    if (navbarChild) toggleNavbarChild();
+                    router.push(`/quizzes/${props.quizId}/${newAttempt.id}`);
+                  }
+                }}
+              >
+                Start Quiz
+              </Button>
 
               <NextLink href={`/attempts/${props.quizId}`}>
                 <Button fullWidth size="xs" color="dark" variant="light">
@@ -164,5 +211,15 @@ export default function One({ props }: { props: { quizId: string } }) {
         </GridCol>
       </Grid>
     </div>
+  );
+}
+
+function CardQuestion({ props }: { props: { question: QuestionGet } }) {
+  return (
+    <Card withBorder>
+      <CardSection p={'xs'}>
+        <Text>{props.question.content}</Text>
+      </CardSection>
+    </Card>
   );
 }

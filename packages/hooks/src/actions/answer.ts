@@ -18,6 +18,11 @@ export const useAnswerActions = () => {
       return;
     }
 
+    if (!params.question_id) {
+      console.error('Question id must be provided.');
+      return;
+    }
+
     if (!params.option_id) {
       console.error('Option id must be provided.');
       return;
@@ -29,6 +34,7 @@ export const useAnswerActions = () => {
     const newAnswer: AnswerGet = {
       id: params.id || id,
       attempt_id: params.attempt_id,
+      question_id: params.question_id,
       option_id: params.option_id,
       status: params.status || Status.ACTIVE,
       sync_status: SyncStatus.PENDING,

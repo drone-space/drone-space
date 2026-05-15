@@ -99,7 +99,7 @@ export default function Student({ children }: { children: React.ReactNode }) {
   );
 }
 
-const APPSHELL = {
+export const APPSHELL = {
   HEADER: { HEIGHT: 60 },
   FOOTER: { HEIGHT: ICON_WRAPPER_SIZE + 16 },
   NAVBAR: { WIDTH: 300 },

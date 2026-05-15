@@ -34,6 +34,12 @@ enum Status {
   INACTIVE
   DRAFT
   PUBLISHED
+
+  // attempts
+  INTRO
+  IN_PROGRESS
+  COMPLETE
+  ABANDONED
 }
 
 enum SyncStatus {
@@ -208,9 +214,10 @@ model Student {
 // }
 
 model Quiz {
-  id          String  @id @default(uuid())
-  title       String
-  description String?
+  id             String  @id @default(uuid())
+  title          String
+  description    String?
+  pass_threshold Int?    @default(70)
 
   questions Question[]
   attempts  Attempt[]
@@ -233,6 +240,7 @@ model Question {
   quiz_id String
 
   options Option[]
+  answers Answer[]
 
   status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)
@@ -287,10 +295,12 @@ model Attempt {
 model Answer {
   id String @id @default(uuid())
 
-  attempt    Attempt @relation(fields: [attempt_id], references: [id], onDelete: Cascade)
-  attempt_id String
-  option     Option  @relation(fields: [option_id], references: [id], onDelete: Cascade)
-  option_id  String
+  attempt     Attempt  @relation(fields: [attempt_id], references: [id], onDelete: Cascade)
+  attempt_id  String
+  question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  question_id String
+  option      Option   @relation(fields: [option_id], references: [id], onDelete: Cascade)
+  option_id   String
 
   status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)

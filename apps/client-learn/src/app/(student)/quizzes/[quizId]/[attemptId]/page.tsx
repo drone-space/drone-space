@@ -4,7 +4,7 @@ import LayoutPage from '@repo/components/layout/page';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import PartialPageQuizzesStudentAttemptComplete from '@/components/partial/page/quizzes/student/attempt-complete';
+import PartialPageQuizzesStudentAttempt from '@/components/partial/page/quizzes/student/attempt';
 import { typeParams } from '@/app/(student)/layout';
 import { redirect } from 'next/navigation';
 
@@ -36,13 +36,15 @@ export default async function Quizzes({
 }: {
   params: Promise<typeParams>;
 }) {
-  const quizId = (await params).quizId;
+  const resolvedParams = await params;
+  const quizId = resolvedParams.quizId;
+  const attemptId = resolvedParams.attemptId;
 
   if (!quizId) redirect('/not-found');
 
   return (
     <LayoutPage>
-      <PartialPageQuizzesStudentAttemptComplete props={{ quizId }} />
+      <PartialPageQuizzesStudentAttempt props={{ quizId, attemptId }} />
     </LayoutPage>
   );
 }

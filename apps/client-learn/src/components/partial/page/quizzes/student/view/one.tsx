@@ -11,18 +11,24 @@ import {
   Group,
   Loader,
   NumberFormatter,
+  Skeleton,
   Stack,
   Text,
   Title,
 } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
-import { SECTION_SPACING } from '@repo/constants/sizes';
+import {
+  ICON_SIZE,
+  ICON_STROKE_WIDTH,
+  SECTION_SPACING,
+} from '@repo/constants/sizes';
 import { useRouter } from 'next/navigation';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { QuestionGet } from '@repo/types/models/question';
 import { useQuizStats } from '@repo/hooks/quiz';
+import { IconSchool } from '@tabler/icons-react';
 
 export default function One({ props }: { props: { quizId: string } }) {
   const router = useRouter();
@@ -48,13 +54,21 @@ export default function One({ props }: { props: { quizId: string } }) {
       <Grid gutter={'xl'}>
         <GridCol span={{ base: 12, md: 8 }}>
           <Stack gap={'xl'} pr={{ md: 'xl' }}>
-            <Group maw={{ md: '80%' }}>
-              <Text>{quiz?.description}</Text>
-            </Group>
+            {quizzes === undefined ? (
+              <Stack gap={5} mih={74.4}>
+                <Skeleton h={16} />
+                <Skeleton h={16} w={'70%'} />
+                <Skeleton h={16} w={'50%'} />
+              </Stack>
+            ) : (
+              <Group maw={{ md: '80%' }}>
+                <Text>{quiz?.description}</Text>
+              </Group>
+            )}
 
             <Stack gap={'md'}>
               <Title order={3} fz={'md'} fw={500}>
-                Quiz Preview
+                Preview Questions
               </Title>
 
               {quizQuestions === undefined ? (
@@ -63,7 +77,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                 <Text>No questions found for this quiz.</Text>
               ) : (
                 quizQuestions
-                  .slice(0, 5)
+                  .slice(0, 4)
                   .map((qi) => (
                     <CardQuestion key={qi.id} props={{ question: qi }} />
                   ))
@@ -162,7 +176,9 @@ export default function One({ props }: { props: { quizId: string } }) {
             <Group grow>
               <Button
                 fullWidth
-                size="xs"
+                leftSection={
+                  <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                }
                 onClick={() => {
                   const newAttempt = attemptCreate({ quiz_id: props.quizId });
 

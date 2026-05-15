@@ -312,6 +312,46 @@ export const isYesterday = (date: Date | string): boolean => {
 };
 
 /**
+ * Returns true if a date is within the current calendar week
+ * @param startOnMonday - If true, week starts on Monday. If false, starts on Sunday.
+ */
+export const isThisWeek = (
+  date: Date | string,
+  startOnMonday = false
+): boolean => {
+  if (typeof date === 'string') date = new Date(date);
+
+  // Clone the date to avoid mutating the original input
+  const targetDate = new Date(date);
+  targetDate.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Calculate days to subtract to get to the start of the week
+  const currentDayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  const distanceToStart = startOnMonday
+    ? currentDayOfWeek === 0
+      ? 6
+      : currentDayOfWeek - 1
+    : currentDayOfWeek;
+
+  // Get the start of the current week (midnight)
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - distanceToStart);
+
+  // Get the end of the current week (11:59:59.999 PM on the last day)
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  return (
+    targetDate.getTime() >= startOfWeek.getTime() &&
+    targetDate.getTime() <= endOfWeek.getTime()
+  );
+};
+
+/**
  * Returns true if a date is today
  */
 export const isToday = (date: Date | string): boolean => {

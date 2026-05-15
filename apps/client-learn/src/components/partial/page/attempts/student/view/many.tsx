@@ -20,9 +20,12 @@ import {
 } from '@repo/constants/sizes';
 import { IconX } from '@tabler/icons-react';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
+import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 
 export default function Many() {
   const attempts = useStoreAttempt((s) => s.attempts);
+  const session = useStoreSession((s) => s.session);
+  const userAttempts = attempts?.filter((ai) => ai.profile_id == session?.id);
 
   return (
     <div>
@@ -30,25 +33,22 @@ export default function Many() {
 
       <Box mt={'md'}>
         {attempts === undefined ? (
-          <Stack align={'center'} ta={'center'} py={SECTION_SPACING}>
+          <Stack>
             <Loader size={'xs'} />
             <Text inherit c={'dimmed'} fz={'sm'}>
-              Fetching attempts
+              Fetching attempts.
             </Text>
           </Stack>
-        ) : !attempts?.length ? (
-          <Stack align={'center'} ta={'center'} py={SECTION_SPACING}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
-              <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            </ThemeIcon>
-
+        ) : !userAttempts?.length ? (
+          <Stack>
             <Text inherit c={'dimmed'} fz={'sm'}>
-              No attempts found.
+              No attempts found. Attempts will appear here when you take
+              quizzes.
             </Text>
           </Stack>
         ) : (
           <Grid gutter={'xl'}>
-            {attempts.map((ai) => (
+            {userAttempts.map((ai) => (
               <GridCol key={ai.id} span={{ base: 12 }}>
                 <CardAttemptStudentView props={{ attempt: ai }} />
               </GridCol>

@@ -23,6 +23,7 @@ export default function Home({ props }: { props: { quiz: QuizGet } }) {
       }
       withBorder
       p={{ base: 'md', md: 'lg' }}
+      h={'100%'}
     >
       <Stack>
         <Group>

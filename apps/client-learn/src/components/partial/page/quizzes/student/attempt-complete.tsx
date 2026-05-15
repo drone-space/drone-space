@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Anchor,
   Badge,
   Box,
   Button,
@@ -17,12 +18,19 @@ import {
 import NextLink from '@repo/components/common/anchor/next-link';
 import {
   ICON_SIZE,
+  ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
-import { IconPercentage } from '@tabler/icons-react';
-import React from 'react';
+import {
+  IconAlignLeft,
+  IconArrowLeft,
+  IconListCheck,
+  IconPercentage,
+  IconReload,
+} from '@tabler/icons-react';
+import React, { useState } from 'react';
 import LayoutSection from '@repo/components/layout/section';
 import CardQuestionWithAnswer from '@repo/components/common/cards/question/with-answer';
 import IntroSection from '@repo/components/layout/intros/section';
@@ -34,6 +42,8 @@ export default function AttemptComplete({
 }: {
   props: { attemptId: string };
 }) {
+  const [showCorrect, setShowCorrect] = useState(false);
+
   const {
     completeStats,
     quizzes,
@@ -50,7 +60,7 @@ export default function AttemptComplete({
 
   const actionComponent = (
     <SimpleGrid
-      cols={{ md: completeStats.passed ? 2 : 3 }}
+      cols={{ md: completeStats.passed ? 2 : showCorrect ? 2 : 3 }}
       maw={{ md: '80%' }}
       mx={'auto'}
     >
@@ -59,6 +69,9 @@ export default function AttemptComplete({
           fullWidth
           color="dark"
           variant="light"
+          leftSection={
+            <IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+          }
           onClick={() => {
             if (!navbarChild) toggleNavbarChild();
           }}
@@ -67,13 +80,33 @@ export default function AttemptComplete({
         </Button>
       </NextLink>
 
-      <a href="#correct-answers">
-        <Button fullWidth>View Correct Answers</Button>
-      </a>
+      <Anchor
+        href="#correct-answers"
+        display={!showCorrect ? undefined : 'none'}
+      >
+        <Button
+          fullWidth
+          leftSection={
+            <IconListCheck size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+          }
+          onClick={() => {
+            setShowCorrect(true);
+          }}
+        >
+          View Correct Answers
+        </Button>
+      </Anchor>
 
       {!completeStats.passed && (
         <NextLink href={`/quizzes/${quiz?.id}`}>
-          <Button fullWidth color="dark" variant="outline">
+          <Button
+            fullWidth
+            color="dark"
+            variant="outline"
+            leftSection={
+              <IconReload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+            }
+          >
             Re-Take Quiz
           </Button>
         </NextLink>
@@ -159,7 +192,11 @@ export default function AttemptComplete({
           {actionComponent}
         </Stack>
 
-        <LayoutSection id={'correct-answers'} padded>
+        <LayoutSection
+          id={'correct-answers'}
+          padded
+          display={showCorrect ? undefined : 'none'}
+        >
           <IntroSection
             props={{
               title: 'Correct Answers',

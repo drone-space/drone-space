@@ -4,8 +4,9 @@ import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Button, Group, Modal, Text } from '@mantine/core';
 import LayoutModal from '../../layout/modal';
-import { Alert } from '@repo/types/enums';
+import { Alert, Variant } from '@repo/types/enums';
 import { useStoreActiveItems } from '@repo/libraries/zustand/stores/active-items';
+import { useNotification } from '@repo/hooks/notification';
 
 export type ConfirmProps = {
   title?: string;
@@ -25,6 +26,8 @@ export default function Confirm({
   children: React.ReactNode;
 }) {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const { showNotification } = useNotification();
 
   const activeConfirm: ConfirmProps | null = useStoreActiveItems(
     (s) => s.activeItems?.confirm
@@ -69,6 +72,11 @@ export default function Confirm({
               variant="light"
               onClick={() => {
                 if (workingConfirm?.onCancel) workingConfirm.onCancel();
+                showNotification({
+                  title: 'Action Canceled',
+                  desc: 'The action has beeen aborted.',
+                  variant: Variant.WARNING,
+                });
                 handleClose();
               }}
             >

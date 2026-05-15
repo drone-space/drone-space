@@ -27,7 +27,7 @@ import { COMPANY_NAME } from '@repo/constants/app';
 import ImageDefault from '@repo/components/common/images/default';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { images } from '@repo/constants/images';
-import { IconArrowRight, IconPlus } from '@tabler/icons-react';
+import { IconArrowRight, IconDashboard, IconPlus } from '@tabler/icons-react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import CardQuizHome from '@repo/components/common/cards/quiz/home';
 
@@ -110,31 +110,63 @@ export default function Home() {
             span={{ md: 4 }}
             display={quizzes?.length ? undefined : 'none'}
           >
-            <NextLink href="/quizzes">
-              <Card
-                bg={
-                  'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-                }
-                withBorder
-                p={{ base: 'md', md: 'lg' }}
-                h={'100%'}
-                mih={198}
-              >
-                <Stack
-                  align="center"
-                  ta={'center'}
-                  fz={'sm'}
-                  justify="center"
-                  h={'100%'}
+            <Stack>
+              <NextLink href="/quizzes">
+                <Card
+                  bg={
+                    'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
+                  }
+                  withBorder
+                  p={{ base: 'md', md: 'lg' }}
+                  // mih={198 / 2}
                 >
-                  <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
-                    <IconPlus size={ICON_SIZE + 4} stroke={ICON_STROKE_WIDTH} />
-                  </ThemeIcon>
+                  <Stack
+                    align="center"
+                    ta={'center'}
+                    fz={'sm'}
+                    justify="center"
+                    h={'100%'}
+                  >
+                    <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
+                      <IconArrowRight
+                        size={ICON_SIZE + 4}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </ThemeIcon>
 
-                  <Text inherit>Browse more</Text>
-                </Stack>
-              </Card>
-            </NextLink>
+                    <Text inherit>Browse more quizzes</Text>
+                  </Stack>
+                </Card>
+              </NextLink>
+
+              <NextLink href="/dashboard">
+                <Card
+                  bg={
+                    'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
+                  }
+                  withBorder
+                  p={{ base: 'md', md: 'lg' }}
+                  // mih={198 / 2}
+                >
+                  <Stack
+                    align="center"
+                    ta={'center'}
+                    fz={'sm'}
+                    justify="center"
+                    h={'100%'}
+                  >
+                    <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
+                      <IconDashboard
+                        size={ICON_SIZE + 4}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </ThemeIcon>
+
+                    <Text inherit>Go to dashboard</Text>
+                  </Stack>
+                </Card>
+              </NextLink>
+            </Stack>
           </GridCol>
         </Grid>
 

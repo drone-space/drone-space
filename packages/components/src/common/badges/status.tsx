@@ -10,13 +10,22 @@ export default function Status({ props }: { props: { status: string } }) {
 
   switch (props.status) {
     case EnumStatus.ACTIVE:
-      badgeProps = { ...badgeProps, color: 'green' };
+      badgeProps = { ...badgeProps, color: 'green.6' };
       break;
     case EnumStatus.INACTIVE:
-      badgeProps = { ...badgeProps, color: 'yellow' };
+      badgeProps = { ...badgeProps, color: 'yellow.6' };
       break;
     case EnumStatus.DRAFT:
-      badgeProps = { ...badgeProps, color: 'blue' };
+      badgeProps = { ...badgeProps, color: 'blue.6' };
+      break;
+    case EnumStatus.ABANDONED:
+      badgeProps = { ...badgeProps, color: 'red.6' };
+      break;
+    case EnumStatus.COMPLETE:
+      badgeProps = { ...badgeProps, color: 'green.6' };
+      break;
+    case EnumStatus.INTRO:
+      badgeProps = { ...badgeProps, color: 'dark', label: 'Incomplete' };
       break;
 
     default:
@@ -24,7 +33,7 @@ export default function Status({ props }: { props: { status: string } }) {
   }
 
   return (
-    <Badge color={badgeProps.color} variant="light">
+    <Badge color={`${badgeProps.color}`} variant="light">
       {capitalizeWords(badgeProps.label)}
     </Badge>
   );

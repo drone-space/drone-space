@@ -22,6 +22,7 @@ import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 import { useQuizStats } from '@repo/hooks/quiz';
+import BadgeStatus from '../../../badges/status';
 
 export default function View({ props }: { props: { attempt: AttemptGet } }) {
   const { completeStats, quizzes, quiz } = useQuizStats({
@@ -82,6 +83,10 @@ export default function View({ props }: { props: { attempt: AttemptGet } }) {
                   {(completeStats.dateAttempted?.time || '').toUpperCase()}
                 </Text>
               </Text>
+            </Group>
+
+            <Group>
+              <BadgeStatus props={{ status: props.attempt.status }} />
             </Group>
           </Stack>
         </GridCol>

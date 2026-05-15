@@ -32,18 +32,14 @@ export default function Many() {
 
       <Box mt={'md'}>
         {quizzes === undefined ? (
-          <Stack align={'center'} ta={'center'} py={SECTION_SPACING}>
+          <Stack>
             <Loader size={'xs'} />
             <Text inherit c={'dimmed'} fz={'sm'}>
-              Fetching quizzes
+              Fetching quizzes.
             </Text>
           </Stack>
         ) : !quizzes?.length ? (
-          <Stack align={'center'} ta={'center'} py={SECTION_SPACING}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
-              <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            </ThemeIcon>
-
+          <Stack>
             <Text inherit c={'dimmed'} fz={'sm'}>
               No quizzes found.
             </Text>

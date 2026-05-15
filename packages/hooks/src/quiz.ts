@@ -3,6 +3,7 @@ import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 import { Status } from '@repo/types/models/enums';
 import { getRegionalDate } from '@repo/utilities/date-time';
 
@@ -12,7 +13,9 @@ export const useQuizStats = (params: {
 }) => {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const attempts = useStoreAttempt((s) => s.attempts);
-  const attempt = attempts?.find((ai) => ai.id == params.attemptId);
+  const session = useStoreSession((s) => s.session);
+  const userAttempts = attempts?.filter((ai) => ai.profile_id == session?.id);
+  const attempt = userAttempts?.find((ai) => ai.id == params.attemptId);
   const quiz = quizzes?.find((qi) => {
     if (params.quizId) return qi.id == params.quizId;
     return qi.id == attempt?.quiz_id;
@@ -22,10 +25,10 @@ export const useQuizStats = (params: {
     : getRegionalDate(quiz.created_at);
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
-  const quizAttempts = attempts?.filter(
+  const quizAttempts = userAttempts?.filter(
     (ai) => ai.quiz_id == quiz?.id && ai.status == Status.COMPLETE
   );
-  const quizPasses = attempts?.filter(
+  const quizPasses = userAttempts?.filter(
     (ai) =>
       ai.quiz_id == quiz?.id &&
       ai.status == Status.COMPLETE &&

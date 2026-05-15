@@ -14,6 +14,7 @@ import {
   Text,
   NumberFormatter,
   ThemeIcon,
+  Loader,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import {
@@ -26,11 +27,17 @@ import { IconCheck, IconSchool } from '@tabler/icons-react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
+import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
+import { Status } from '@repo/types/models/enums';
 
 export default function Intro({
   props,
 }: {
-  props: { quizId: string; setIntro: Dispatch<SetStateAction<boolean>> };
+  props: {
+    attemptId: string;
+    quizId: string;
+    setIntro: Dispatch<SetStateAction<boolean>>;
+  };
 }) {
   const router = useRouter();
 
@@ -45,6 +52,10 @@ export default function Intro({
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
+  const attempts = useStoreAttempt((s) => s.attempts);
+  const attempt = attempts?.find((ai) => ai.id == props.attemptId);
+
+  const { attemptUpdate } = useAttemptActions();
 
   const steps = [
     {
@@ -129,7 +140,17 @@ export default function Intro({
     },
   ];
 
-  return (
+  const loading = quizzes === undefined || questions === undefined;
+
+  return loading ? (
+    <Stack align="center" justify="center" mih={'50vh'}>
+      <Loader />
+
+      <Text c={'dimmed'} fz={'sm'}>
+        Loading quiz introduction.
+      </Text>
+    </Stack>
+  ) : (
     <>
       <Stepper active={active} onStepClick={setActive}>
         {steps.map((si) => (
@@ -192,6 +213,8 @@ export default function Intro({
             if (active < steps.length) {
               nextStep();
             } else {
+              if (attempt)
+                attemptUpdate({ ...attempt, status: Status.IN_PROGRESS });
               props.setIntro(false);
             }
           }}

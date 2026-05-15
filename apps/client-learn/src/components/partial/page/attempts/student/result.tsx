@@ -30,7 +30,7 @@ export default function Result({ props }: { props: { attemptId: string } }) {
   });
 
   return (
-    <LayoutSection id={'correct-answers'} padded>
+    <LayoutSection id={'correct-answers'} containerized={false}>
       <Stack gap={'md'} mb={SECTION_SPACING}>
         <IntroSection
           props={{

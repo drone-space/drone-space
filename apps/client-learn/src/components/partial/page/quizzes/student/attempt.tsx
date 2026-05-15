@@ -14,10 +14,12 @@ import {
   Group,
   List,
   ListItem,
+  Loader,
   NumberFormatter,
   Paper,
   Radio,
   RadioGroup,
+  Skeleton,
   Stack,
   Text,
   Title,
@@ -37,7 +39,7 @@ import { QuestionGet } from '@repo/types/models/question';
 import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
 import { OptionGet } from '@repo/types/models/option';
-import { IconInfoCircle } from '@tabler/icons-react';
+import { IconDoorExit, IconInfoCircle } from '@tabler/icons-react';
 import { useAnswerActions } from '@repo/hooks/actions/answer';
 import { useOptionActions } from '@repo/hooks/actions/option';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
@@ -47,6 +49,7 @@ import { useNotification } from '@repo/hooks/notification';
 import ModalConfirm from '@repo/components/common/modals/confirm';
 import { useQuizActions } from '@repo/hooks/actions/quiz';
 import { useRouter } from 'next/navigation';
+import IntroSection from '@repo/components/layout/intros/section';
 
 export default function Attempt({
   props,
@@ -111,40 +114,47 @@ export default function Attempt({
     router.replace(`/quizzes`);
   };
 
+  const loading = quizzes === undefined || questions === undefined;
+
   return attempt?.status == Status.INTRO && intro ? (
-    <StepperQuizIntro props={{ quizId: props.quizId, setIntro }} />
+    <StepperQuizIntro
+      props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }}
+    />
   ) : (
     <Grid gutter={'xl'}>
       <GridCol span={{ base: 12, md: 8 }}>
         <Stack gap={'xl'}>
-          <Paper
-            withBorder
-            p={'md'}
-            bg={
-              'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-            }
-          >
-            <Group justify="space-between" align="end">
-              <Title order={2} fz={'lg'}>
-                {quiz?.title} Quiz
-              </Title>
+          <Group justify="space-between" align="end">
+            <IntroSection
+              props={{
+                title: `${quiz?.title || '--------'} Quiz`,
+                desc: `You are currently attempting the ${quiz?.title || '--------'} quiz.`,
+              }}
+              options={{ alignment: 'start' }}
+            />
+          </Group>
 
-              {/* <Text fz={'sm'} c={'dimmed'}>
-                Page <NumberFormatter value={1} /> of{' '}
-                <NumberFormatter value={1} />
-              </Text> */}
-            </Group>
-          </Paper>
+          {/* <Divider variant="dashed" /> */}
 
           <Stack gap={0} pr={{ md: 'xl' }}>
-            {quizQuestions?.map((qqi, i) => (
-              <div key={`${qqi.id}-${i}`}>
-                {i > 0 && <Divider my={'xl'} />}
-                <CardQuestion
-                  props={{ question: qqi, attemptId: props.attemptId }}
-                />
-              </div>
-            ))}
+            {loading ? (
+              <Stack mih={'100vh'} mt={'xl'}>
+                <Loader />
+
+                <Text c={'dimmed'} fz={'sm'}>
+                  Loading quiz questions.
+                </Text>
+              </Stack>
+            ) : (
+              quizQuestions?.map((qqi, i) => (
+                <div key={`${qqi.id}-${i}`}>
+                  {i > 0 && <Divider my={'xl'} />}
+                  <CardQuestion
+                    props={{ question: qqi, attemptId: props.attemptId }}
+                  />
+                </div>
+              ))
+            )}
           </Stack>
 
           <Divider />
@@ -213,7 +223,7 @@ export default function Attempt({
                   </Text>
                 </Group>
 
-                <Divider />
+                {/* <Divider />
 
                 <Group justify="space-between">
                   <Text inherit fz={'sm'}>
@@ -224,7 +234,7 @@ export default function Attempt({
                     {prependZeros(time?.minutes || 0, 2)}:
                     {prependZeros(time?.seconds || 0, 2)}
                   </Text>
-                </Group>
+                </Group> */}
 
                 <Divider />
 
@@ -232,24 +242,29 @@ export default function Attempt({
                   <Text inherit fz={'sm'}>
                     % Complete:
                   </Text>
-                  <Text inherit ta={'end'} fw={500}>
-                    <NumberFormatter value={attemptAnswers?.length || 0} />/
-                    <NumberFormatter value={quizQuestions?.length || 0} /> (
-                    <NumberFormatter
-                      value={Math.floor(
-                        ((attemptAnswers?.length || 0) /
-                          (quizQuestions?.length || 0)) *
-                          100
-                      )}
-                    />
-                    %)
-                  </Text>
+
+                  {loading ? (
+                    <Skeleton h={24.8} w={65} />
+                  ) : (
+                    <Text inherit ta={'end'} fw={500}>
+                      <NumberFormatter value={attemptAnswers?.length || 0} />/
+                      <NumberFormatter value={quizQuestions?.length || 0} /> (
+                      <NumberFormatter
+                        value={Math.floor(
+                          ((attemptAnswers?.length || 0) /
+                            (quizQuestions?.length || 0)) *
+                            100
+                        )}
+                      />
+                      %)
+                    </Text>
+                  )}
                 </Group>
               </Stack>
             </Card>
 
             <Group grow>
-              <Tooltip label={"Abandon quiz and all it's progress."}>
+              <Tooltip label={'Abandon quiz and all your progress.'}>
                 <div>
                   <ModalConfirm
                     props={{
@@ -258,7 +273,17 @@ export default function Attempt({
                       onConfirm: handleQuit,
                     }}
                   >
-                    <Button fullWidth color="red.6" variant="light">
+                    <Button
+                      fullWidth
+                      color="red.6"
+                      variant="light"
+                      leftSection={
+                        <IconDoorExit
+                          size={ICON_SIZE}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      }
+                    >
                       Quit
                     </Button>
                   </ModalConfirm>

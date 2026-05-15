@@ -150,29 +150,29 @@ function Navbar() {
         withBorder
       >
         <Group>
-          {/* <MenuUser
+          <MenuUser
             transitionProps={{ transition: 'pop-top-left' }}
             position={'bottom-start'}
-          > */}
-          <Group gap={'xs'}>
-            <AvatarMain
-              size={
-                ICON_WRAPPER_SIZE
-                //  + 4
-              }
-            />
+          >
+            <Group gap={'xs'}>
+              <AvatarMain
+                size={
+                  ICON_WRAPPER_SIZE
+                  //  + 4
+                }
+              />
 
-            <Stack gap={0}>
-              <Title order={2} fz={'sm'} fw={500} lineClamp={1}>
-                {session?.user_metadata.name}
-              </Title>
+              <Stack gap={0}>
+                <Title order={2} fz={'sm'} fw={500} lineClamp={1}>
+                  {session?.user_metadata.name}
+                </Title>
 
-              {/* <Text fz={'xs'} c={'dimmed'} lineClamp={1}>
+                {/* <Text fz={'xs'} c={'dimmed'} lineClamp={1}>
                   {session?.user_metadata.email}
                 </Text> */}
-            </Stack>
-          </Group>
-          {/* </MenuUser> */}
+              </Stack>
+            </Group>
+          </MenuUser>
         </Group>
       </Paper>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Grid, GridCol } from '@mantine/core';
+import { Button, Grid, GridCol, Tooltip } from '@mantine/core';
 import { capitalizeWords } from '@repo/utilities/string';
 import ImageDefault from '@repo/components/common/images/default';
 import { AUTH_URLS } from '@repo/constants/paths';
@@ -52,25 +52,28 @@ export default function Providers({ props }: { props: { baseUrl: string } }) {
     };
 
     return (
-      <Button
-        key={providerDetails.provider}
-        fullWidth
-        color="dark"
-        variant="light"
-        onClick={handleClick}
-        loading={loading == providerDetails.provider}
-        leftSection={
-          <ImageDefault
-            src={providerDetails.image}
-            alt={providerDetails.provider}
-            height={24}
-            width={24}
-            mode="grid"
-          />
-        }
-      >
-        Continue with {capitalizeWords(providerDetails.provider)}
-      </Button>
+      <Tooltip label={'Coming soon'}>
+        <Button
+          key={providerDetails.provider}
+          fullWidth
+          color="dark"
+          variant="light"
+          onClick={handleClick}
+          disabled
+          loading={loading == providerDetails.provider}
+          leftSection={
+            <ImageDefault
+              src={providerDetails.image}
+              alt={providerDetails.provider}
+              height={24}
+              width={24}
+              mode="grid"
+            />
+          }
+        >
+          Continue with {capitalizeWords(providerDetails.provider)}
+        </Button>
+      </Tooltip>
     );
   };
 

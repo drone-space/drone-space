@@ -75,7 +75,12 @@ export default function Auth({
 
           <Box pos={'relative'}>
             {redirecting && (
-              <Overlay zIndex={1000} radius={8} backgroundOpacity={0.3} />
+              <Overlay
+                zIndex={1000}
+                radius={8}
+                backgroundOpacity={0.3}
+                style={{ borderRadius: 'var(--mantine-radius-lg)' }}
+              />
             )}
 
             <AuthProviders props={{ baseUrl }} />

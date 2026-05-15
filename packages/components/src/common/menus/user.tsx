@@ -74,7 +74,7 @@ export default function User({
           </NextLink>
         ))} */}
 
-        <MenuDivider mb={0} />
+        {/* <MenuDivider mb={0} />
 
         <MenuLabel>Account</MenuLabel>
 
@@ -89,7 +89,7 @@ export default function User({
               {item.label}
             </MenuItem>
           </NextLink>
-        ))}
+        ))} */}
 
         {/* <MenuDivider mb={0} />
 

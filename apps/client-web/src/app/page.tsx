@@ -60,6 +60,9 @@ import AffixAi from '@repo/components/common/affixi/ai';
 import { courseList } from '@repo/constants/courses';
 import CardCourse from '@/components/common/cards/training/course';
 import CarouselPartners from '@/components/common/carousels/partners';
+import HeaderMain from '@/components/layout/headers/main';
+import NavbarMain from '@/components/layout/navbars/main';
+import FooterMain from '@/components/layout/footers/main';
 
 export const metadata: Metadata = {
   title: `${COMPANY_NAME} - The Leading Drone Training Academy in Kenya`,

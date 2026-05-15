@@ -79,8 +79,8 @@ export const ABOUT_STATS = {
 };
 
 export const APP_NAME = {
-  SHOP: 'Shop',
-  LMS: 'LMS',
+  SHOP: `${COMPANY_NAME} Shop`,
+  LMS: `${COMPANY_NAME} Learn`,
   WEB: COMPANY_NAME,
 };
 

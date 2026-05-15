@@ -14,6 +14,7 @@ export const authRoutes = [
 ];
 
 export const protectedRoutes = [
+  '/',
   '/admin',
   '/quizzes',
   // Add other protected routes

@@ -111,7 +111,7 @@ export default function Student() {
     <div>
       <IntroSection
         props={{
-          title: `Welcome back, ${'John'}`,
+          title: `Welcome back, ${session?.user_metadata.name || 'Learner'}`,
           desc: "Here's a quick summary of your activity.",
         }}
         options={{ alignment: 'start', spacing: true }}

@@ -60,7 +60,9 @@ export default function AttemptComplete({
 
   const actionComponent = (
     <SimpleGrid
-      cols={{ md: completeStats.passed ? 2 : showCorrect ? 2 : 3 }}
+      cols={{
+        md: completeStats.passed ? (showCorrect ? 1 : 2) : showCorrect ? 2 : 3,
+      }}
       maw={{ md: '80%' }}
       mx={'auto'}
     >

@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 import {
-  Box,
   Button,
   Card,
   CardSection,
@@ -14,46 +13,24 @@ import {
   NumberFormatter,
   Stack,
   Text,
-  ThemeIcon,
   Title,
 } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
-import CardQuizStudent from '@repo/components/common/cards/quiz/student';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import { IconX } from '@tabler/icons-react';
+import { SECTION_SPACING } from '@repo/constants/sizes';
 import { useRouter } from 'next/navigation';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { QuestionGet } from '@repo/types/models/question';
-import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
-import { Status } from '@repo/types/models/enums';
+import { useQuizStats } from '@repo/hooks/quiz';
 
 export default function One({ props }: { props: { quizId: string } }) {
   const router = useRouter();
-  const quizzes = useStoreQuiz((s) => s.quizzes);
-  const quiz = quizzes?.find((qi) => qi.id == props.quizId);
-  const questions = useStoreQuestion((s) => s.questions);
-  const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
-  const attempts = useStoreAttempt((s) => s.attempts);
-  const quizAttempts = attempts?.filter(
-    (ai) => ai.quiz_id == quiz?.id && ai.status == Status.COMPLETE
-  );
-  const quizPasses =
-    attempts?.filter(
-      (ai) =>
-        ai.quiz_id == quiz?.id &&
-        ai.status == Status.COMPLETE &&
-        ai.score &&
-        ai.score > (quiz?.pass_threshold || 0)
-    ).length || 0;
+
+  const { metaStats, quizzes, quiz, quizQuestions } = useQuizStats({
+    quizId: props.quizId,
+  });
+
   const { attemptCreate } = useAttemptActions();
   const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
   const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
@@ -134,7 +111,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                       No. of Questions:
                     </Text>
                     <Text inherit ta={'end'} fw={500}>
-                      <NumberFormatter value={quizQuestions?.length} />
+                      <NumberFormatter value={metaStats.totalQuesions} />
                     </Text>
                   </Group>
 
@@ -145,7 +122,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                       Attempts:
                     </Text>
                     <Text inherit ta={'end'} fw={500}>
-                      <NumberFormatter value={quizAttempts?.length} />
+                      <NumberFormatter value={metaStats.timesAttempted} />
                     </Text>
                   </Group>
 
@@ -159,26 +136,23 @@ export default function One({ props }: { props: { quizId: string } }) {
                     <Stack gap={0} align="end" ta={'end'}>
                       <Text inherit>
                         <Text component="span" inherit fw={500} c={'green.6'}>
-                          <NumberFormatter value={quizPasses} />
+                          <NumberFormatter value={metaStats.timesPassed} />
                         </Text>{' '}
                         /{' '}
                         <Text component="span" inherit fw={500} c={'red.6'}>
-                          <NumberFormatter
-                            value={(quizAttempts?.length || 0) - quizPasses}
-                          />
+                          <NumberFormatter value={metaStats.timesFailed} />
                         </Text>
                       </Text>
 
-                      <Text inherit fz={'sm'} c={'dimmed'}>
-                        (Success rate:{' '}
-                        <Text component="span" inherit fw={500}>
-                          {Math.floor(
-                            (quizPasses / (quizAttempts?.length || 1)) * 100
-                          )}
-                          %
+                      {!metaStats.successRate ? null : (
+                        <Text inherit fz={'sm'} c={'dimmed'}>
+                          (Success rate:{' '}
+                          <Text component="span" inherit fw={500}>
+                            {metaStats.successRate}%
+                          </Text>
+                          )
                         </Text>
-                        )
-                      </Text>
+                      )}
                     </Stack>
                   </Group>
                 </Stack>
@@ -200,12 +174,6 @@ export default function One({ props }: { props: { quizId: string } }) {
               >
                 Start Quiz
               </Button>
-
-              <NextLink href={`/attempts/${props.quizId}`}>
-                <Button fullWidth size="xs" color="dark" variant="light">
-                  View Past Results
-                </Button>
-              </NextLink>
             </Group>
           </Stack>
         </GridCol>

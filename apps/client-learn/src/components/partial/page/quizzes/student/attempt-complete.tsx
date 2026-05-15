@@ -17,52 +17,43 @@ import {
 import NextLink from '@repo/components/common/anchor/next-link';
 import {
   ICON_SIZE,
-  ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
-import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { IconPercentage } from '@tabler/icons-react';
 import React from 'react';
 import LayoutSection from '@repo/components/layout/section';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import CardQuestionWithAnswer from '@repo/components/common/cards/question/with-answer';
 import IntroSection from '@repo/components/layout/intros/section';
 import { APPSHELL } from '@/components/layout/appshell/student';
+import { useQuizStats } from '@repo/hooks/quiz';
 
 export default function AttemptComplete({
   props,
 }: {
   props: { attemptId: string };
 }) {
-  const attempts = useStoreAttempt((s) => s.attempts);
-  const attempt = attempts?.find((ai) => ai.id == props.attemptId);
-  const quizzes = useStoreQuiz((s) => s.quizzes);
-  const quiz = quizzes?.find((qi) => qi.id == attempt?.quiz_id);
-  const questions = useStoreQuestion((s) => s.questions);
-  const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
-
-  const passed = (attempt?.score || 0) > (quiz?.pass_threshold || 0);
-
-  const options = useStoreOption((s) => s.options);
-  const answers = useStoreAnswer((s) => s.answers);
-  const attemptAnswers = answers?.filter(
-    (ai) => ai.attempt_id == props.attemptId
-  );
-  const correctAnswers = attemptAnswers?.filter((aai) => {
-    const answerOption = options?.find((oi) => oi.id == aai.option_id);
-    return answerOption?.correct;
+  const {
+    completeStats,
+    quizzes,
+    quiz,
+    quizQuestions,
+    options,
+    attemptAnswers,
+  } = useQuizStats({
+    attemptId: props.attemptId,
   });
 
   const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
   const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
   const actionComponent = (
-    <SimpleGrid cols={{ md: passed ? 2 : 3 }} maw={{ md: '80%' }} mx={'auto'}>
+    <SimpleGrid
+      cols={{ md: completeStats.passed ? 2 : 3 }}
+      maw={{ md: '80%' }}
+      mx={'auto'}
+    >
       <NextLink href="/dashboard">
         <Button
           fullWidth
@@ -80,7 +71,7 @@ export default function AttemptComplete({
         <Button fullWidth>View Correct Answers</Button>
       </a>
 
-      {!passed && (
+      {!completeStats.passed && (
         <NextLink href={`/quizzes/${quiz?.id}`}>
           <Button fullWidth color="dark" variant="outline">
             Re-Take Quiz
@@ -115,33 +106,28 @@ export default function AttemptComplete({
 
           <Stack align="center" ta={'center'}>
             <Badge
-              color={`${passed ? 'green' : 'red'}.6`}
-            >{`Quiz ${passed ? 'Passed' : 'Failed'}`}</Badge>
+              color={`${completeStats.passed ? 'green' : 'red'}.6`}
+            >{`Quiz ${completeStats.passed ? 'Passed' : 'Failed'}`}</Badge>
 
             <Group justify="center" fz={'lg'}>
               <Text inherit>
                 Answered:{' '}
                 <Text component="span" inherit fw={'bold'}>
-                  <NumberFormatter value={attemptAnswers?.length || 0} />
+                  <NumberFormatter value={completeStats.questions.total} />
                 </Text>
               </Text>
 
               <Text inherit>
                 Correct:{' '}
                 <Text component="span" inherit c={'green.6'} fw={'bold'}>
-                  <NumberFormatter value={correctAnswers?.length || 0} />
+                  <NumberFormatter value={completeStats.questions.correct} />
                 </Text>
               </Text>
 
               <Text inherit>
                 Wrong:{' '}
                 <Text component="span" inherit c={'red.6'} fw={'bold'}>
-                  <NumberFormatter
-                    value={
-                      (attemptAnswers?.length || 0) -
-                      (correctAnswers?.length || 0)
-                    }
-                  />
+                  <NumberFormatter value={completeStats.questions.wrong} />
                 </Text>
               </Text>
             </Group>
@@ -162,10 +148,10 @@ export default function AttemptComplete({
               <Text
                 component="span"
                 inherit
-                c={`${passed ? 'green' : 'red'}.6`}
+                c={`${completeStats.passed ? 'green' : 'red'}.6`}
                 fw={'bold'}
               >
-                <NumberFormatter value={attempt?.score || 0} />%
+                <NumberFormatter value={completeStats.score} />%
               </Text>
             </Text>
           </Stack>

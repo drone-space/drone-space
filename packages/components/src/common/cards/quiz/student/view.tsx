@@ -15,7 +15,7 @@ import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
-export default function Student({ props }: { props: { quiz: QuizGet } }) {
+export default function View({ props }: { props: { quiz: QuizGet } }) {
   return (
     <Card
       bg={

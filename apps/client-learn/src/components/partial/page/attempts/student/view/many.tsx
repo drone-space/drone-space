@@ -3,18 +3,15 @@
 import React from 'react';
 import {
   Box,
-  Button,
   Grid,
   GridCol,
-  Group,
   Loader,
   Stack,
   Text,
   ThemeIcon,
 } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
-import CardQuizStudentView from '@repo/components/common/cards/quiz/student/view';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import CardAttemptStudentView from '@repo/components/common/cards/attempt/student/view';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -22,37 +19,38 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { IconX } from '@tabler/icons-react';
+import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 
 export default function Many() {
-  const quizzes = useStoreQuiz((s) => s.quizzes);
+  const attempts = useStoreAttempt((s) => s.attempts);
 
   return (
     <div>
       <HeaderAppContent />
 
       <Box mt={'md'}>
-        {quizzes === undefined ? (
+        {attempts === undefined ? (
           <Stack align={'center'} ta={'center'} py={SECTION_SPACING}>
             <Loader size={'xs'} />
             <Text inherit c={'dimmed'} fz={'sm'}>
-              Fetching quizzes
+              Fetching attempts
             </Text>
           </Stack>
-        ) : !quizzes?.length ? (
+        ) : !attempts?.length ? (
           <Stack align={'center'} ta={'center'} py={SECTION_SPACING}>
             <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
               <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
 
             <Text inherit c={'dimmed'} fz={'sm'}>
-              No quizzes found.
+              No attempts found.
             </Text>
           </Stack>
         ) : (
           <Grid gutter={'xl'}>
-            {quizzes.map((qi) => (
-              <GridCol key={qi.id} span={{ base: 12, sm: 6, md: 4 }}>
-                <CardQuizStudentView props={{ quiz: qi }} />
+            {attempts.map((ai) => (
+              <GridCol key={ai.id} span={{ base: 12 }}>
+                <CardAttemptStudentView props={{ attempt: ai }} />
               </GridCol>
             ))}
           </Grid>

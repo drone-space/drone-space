@@ -39,26 +39,62 @@ import { Order } from '@repo/types/enums';
 import NextLink from '@repo/components/common/anchor/next-link';
 import { Status } from '@repo/types/models/enums';
 import { isThisWeek, isToday } from '@repo/utilities/date-time';
+import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
+import { useStoreOption } from '@repo/libraries/zustand/stores/option';
+import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
 
 export default function Student() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
-  const userAttempts = attempts?.filter((ai) => ai.profile_id == session?.id);
+  const questions = useStoreQuestion((s) => s.questions);
+  const options = useStoreOption((s) => s.options);
+  const answers = useStoreAnswer((s) => s.answers);
+
+  const userAttempts = attempts?.filter((ai) => ai.profile_id === session?.id);
   const quizzesTaken = userAttempts?.filter(
-    (ai) => ai.status == Status.COMPLETE
+    (ai) => ai.status === Status.COMPLETE
   );
+
+  // --- HELPER TO COMPUTE SCORE FOR A SPECIFIC ATTEMPT ---
+  const getAttemptScore = (attemptId: string, quizId: string): number => {
+    const attemptAnswers =
+      answers?.filter((an) => an.attempt_id === attemptId) || [];
+    if (attemptAnswers.length === 0) return 0;
+
+    const correctCount = attemptAnswers.filter((aai) => {
+      const answerOption = options?.find((oi) => oi.id === aai.option_id);
+      return answerOption?.correct;
+    }).length;
+
+    const quizQuestions =
+      questions?.filter((qi) => qi.quiz_id === quizId) || [];
+    const totalQuestions = quizQuestions.length || 1;
+
+    return Math.round((correctCount / totalQuestions) * 100);
+  };
+
+  // --- FILTERED ARRAYS WITH LIVE METRICS ---
   const quizzesPassed = quizzesTaken?.filter((ai) => {
-    const attemptQuiz = quizzes?.find((qi) => qi.id == ai.quiz_id);
-    return (attemptQuiz?.pass_threshold || 0) < (ai.score || 0);
+    const attemptQuiz = quizzes?.find((qi) => qi.id === ai.quiz_id);
+    const thresholdPass = attemptQuiz?.pass_threshold ?? 0;
+    const currentScore = getAttemptScore(ai.id, ai.quiz_id);
+
+    return currentScore >= thresholdPass;
   });
+
   const quizzesFailed = quizzesTaken?.filter((ai) => {
-    const attemptQuiz = quizzes?.find((qi) => qi.id == ai.quiz_id);
-    return (attemptQuiz?.pass_threshold || 0) > (ai.score || 0);
+    const attemptQuiz = quizzes?.find((qi) => qi.id === ai.quiz_id);
+    const thresholdPass = attemptQuiz?.pass_threshold ?? 0;
+    const currentScore = getAttemptScore(ai.id, ai.quiz_id);
+
+    return currentScore < thresholdPass;
   });
+
   const quizzesToday = quizzesTaken?.filter((ai) => {
     return isToday(ai.created_at);
   });
+
   const quizzesThisWeek = quizzesTaken?.filter((ai) => {
     return isThisWeek(ai.created_at);
   });

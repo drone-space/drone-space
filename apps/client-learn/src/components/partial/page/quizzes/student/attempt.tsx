@@ -68,7 +68,6 @@ export default function Attempt({
   const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
   const attempts = useStoreAttempt((s) => s.attempts);
   const attempt = attempts?.find((ai) => ai.id == props.attemptId);
-  const options = useStoreOption((s) => s.options);
   const answers = useStoreAnswer((s) => s.answers);
   const attemptAnswers = answers?.filter(
     (ai) => ai.attempt_id == props.attemptId
@@ -90,16 +89,7 @@ export default function Attempt({
 
     if (!attempt) return;
 
-    const correctAnswers = attemptAnswers.filter((aai) => {
-      const answerOption = options?.find((oi) => oi.id == aai.option_id);
-      return answerOption?.correct;
-    });
-
-    const score = Math.floor(
-      (correctAnswers.length / attemptAnswers.length) * 100
-    );
-
-    attemptUpdate({ ...attempt, score, status: Status.COMPLETE });
+    attemptUpdate({ ...attempt, status: Status.COMPLETE });
     router.replace(`/quizzes/${props.quizId}/${props.attemptId}/complete`);
   };
 

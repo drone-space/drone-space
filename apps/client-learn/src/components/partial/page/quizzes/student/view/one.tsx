@@ -125,7 +125,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                       No. of Questions:
                     </Text>
                     <Text inherit ta={'end'} fw={500}>
-                      <NumberFormatter value={metaStats.totalQuesions} />
+                      <NumberFormatter value={metaStats.totalQuestions} />
                     </Text>
                   </Group>
 

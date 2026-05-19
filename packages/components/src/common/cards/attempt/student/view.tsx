@@ -42,7 +42,7 @@ export default function View({ props }: { props: { attempt: AttemptGet } }) {
       <Grid>
         <GridCol span={10}>
           <Stack>
-            <Group>
+            <Group mb={'md'}>
               <Tooltip
                 label={quiz?.title}
                 position="top-start"

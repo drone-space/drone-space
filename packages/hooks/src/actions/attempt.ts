@@ -23,7 +23,6 @@ export const useAttemptActions = () => {
 
     const newAttempt: AttemptGet = {
       id: params.id || id,
-      score: params.score || null,
       profile_id: params.profile_id || session.id,
       quiz_id: params.quiz_id,
       status: params.status || Status.INTRO,

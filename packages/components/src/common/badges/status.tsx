@@ -16,13 +16,13 @@ export default function Status({ props }: { props: { status: string } }) {
       badgeProps = { ...badgeProps, color: 'yellow.6' };
       break;
     case EnumStatus.DRAFT:
-      badgeProps = { ...badgeProps, color: 'blue.6' };
+      badgeProps = { ...badgeProps, color: 'dark' };
       break;
     case EnumStatus.ABANDONED:
-      badgeProps = { ...badgeProps, color: 'red.6' };
+      badgeProps = { ...badgeProps, color: 'yellow.6' };
       break;
     case EnumStatus.COMPLETE:
-      badgeProps = { ...badgeProps, color: 'green.6' };
+      badgeProps = { ...badgeProps, color: 'blue.6' };
       break;
     case EnumStatus.INTRO:
       badgeProps = { ...badgeProps, color: 'dark', label: 'Incomplete' };

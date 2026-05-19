@@ -59,6 +59,9 @@ export default function Intro({
     (ai) => ai.profile_id == session?.id && ai.status == Status.COMPLETE
   );
   const attempt = userAttempts?.find((ai) => ai.id == props.attemptId);
+  const attemptsQuiz = attempts?.filter(
+    (ai) => ai.profile_id == session?.id && ai.status == Status.COMPLETE && ai.quiz_id==quiz?.id
+  );
 
   const { attemptUpdate } = useAttemptActions();
 
@@ -83,7 +86,7 @@ export default function Intro({
             <Text inherit>
               Times attempted (By You):{' '}
               <Text component="span" inherit fw={500} c={'primary'}>
-                <NumberFormatter value={userAttempts?.length} />
+                <NumberFormatter value={attemptsQuiz?.length} />
               </Text>
             </Text>
           </Group>

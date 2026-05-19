@@ -14,43 +14,56 @@ export const useQuizStats = (params: {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
-  const userAttempts = attempts?.filter((ai) => ai.profile_id == session?.id);
-  const attempt = userAttempts?.find((ai) => ai.id == params.attemptId);
+  const questions = useStoreQuestion((s) => s.questions);
+  const options = useStoreOption((s) => s.options);
+  const answers = useStoreAnswer((s) => s.answers);
+
+  const userAttempts = attempts?.filter((ai) => ai.profile_id === session?.id);
+  const attempt = userAttempts?.find((ai) => ai.id === params.attemptId);
+
   const quiz = quizzes?.find((qi) => {
-    if (params.quizId) return qi.id == params.quizId;
-    return qi.id == attempt?.quiz_id;
+    if (params.quizId) return qi.id === params.quizId;
+    return qi.id === attempt?.quiz_id;
   });
+
   const dateAttempted = !quiz?.created_at
     ? undefined
     : getRegionalDate(quiz.created_at);
-  const questions = useStoreQuestion((s) => s.questions);
-  const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
-  const quizAttempts = userAttempts?.filter(
-    (ai) => ai.quiz_id == quiz?.id && ai.status == Status.COMPLETE
-  );
-  const quizPasses = userAttempts?.filter(
-    (ai) =>
-      ai.quiz_id == quiz?.id &&
-      ai.status == Status.COMPLETE &&
-      ai.score &&
-      ai.score > (quiz?.pass_threshold || 0)
-  );
-  const options = useStoreOption((s) => s.options);
-  const answers = useStoreAnswer((s) => s.answers);
-  const attemptAnswers = answers?.filter(
-    (ai) => ai.attempt_id == params.attemptId
-  );
-  const correctAnswers = attemptAnswers?.filter((aai) => {
-    const answerOption = options?.find((oi) => oi.id == aai.option_id);
+
+  const quizQuestions = questions?.filter((qi) => qi.quiz_id === quiz?.id);
+  const thresholdPass = quiz?.pass_threshold ?? 0;
+
+  // --- HELPER TO COMPUTE SCORE FOR ANY ATTEMPT DYNAMICALLY ---
+  const getAttemptScore = (currAttemptId: string): number => {
+    const currentAttemptAnswers =
+      answers?.filter((an) => an.attempt_id === currAttemptId) || [];
+    if (currentAttemptAnswers.length === 0) return 0;
+
+    const correctCount = currentAttemptAnswers.filter((aai) => {
+      const answerOption = options?.find((oi) => oi.id === aai.option_id);
+      return answerOption?.correct;
+    }).length;
+
+    // Assuming score is a percentage integer (e.g., 85 for 85%)
+    // Adjust this formula if your previous score field was raw counts instead of percentage
+    const totalQuestionsInQuiz = quizQuestions?.length || 1;
+    return Math.round((correctCount / totalQuestionsInQuiz) * 100);
+  };
+
+  // --- SINGLE ATTEMPT STATS ---
+  const attemptAnswers =
+    answers?.filter((ai) => ai.attempt_id === params.attemptId) || [];
+  const correctAnswers = attemptAnswers.filter((aai) => {
+    const answerOption = options?.find((oi) => oi.id === aai.option_id);
     return answerOption?.correct;
   });
 
-  const answersCorrect = correctAnswers?.length || 0;
-  const answersWrong = (attemptAnswers?.length || 0) - answersCorrect;
-  const answersTotal = attemptAnswers?.length || 0;
+  const answersCorrect = correctAnswers.length;
+  const answersTotal = attemptAnswers.length;
+  const answersWrong = answersTotal - answersCorrect;
 
-  const quizScore = attempt?.score || 0;
-  const thresholdPass = quiz?.pass_threshold || 0;
+  // Compute live score for the focused attempt
+  const quizScore = params.attemptId ? getAttemptScore(params.attemptId) : 0;
 
   const completeStats = {
     questions: {
@@ -59,20 +72,33 @@ export const useQuizStats = (params: {
       total: answersTotal,
     },
     score: quizScore,
-    passed: quizScore > thresholdPass,
+    passed: quizScore >= thresholdPass, // Changed to >= to typically include threshold boundary
     dateAttempted,
   };
 
-  const attemptsQuiz = quizAttempts?.length || 0;
-  const passesQuiz = quizPasses?.length || 0;
+  // --- META/AGGREGATE STATS ---
+  const quizAttempts =
+    userAttempts?.filter(
+      (ai) => ai.quiz_id === quiz?.id && ai.status === Status.COMPLETE
+    ) || [];
+
+  // Dynamically compute passes across all historical attempts for this quiz
+  const quizPasses = quizAttempts.filter((ai) => {
+    const historicalScore = getAttemptScore(ai.id);
+    return historicalScore >= thresholdPass;
+  });
+
+  const attemptsQuiz = quizAttempts.length;
+  const passesQuiz = quizPasses.length;
   const questionsTotal = quizQuestions?.length || 0;
 
   const metaStats = {
     timesAttempted: attemptsQuiz,
     timesPassed: passesQuiz,
     timesFailed: attemptsQuiz - passesQuiz,
-    successRate: Math.floor((passesQuiz / attemptsQuiz) * 100),
-    totalQuesions: questionsTotal,
+    successRate:
+      attemptsQuiz > 0 ? Math.floor((passesQuiz / attemptsQuiz) * 100) : 0,
+    totalQuestions: questionsTotal,
   };
 
   return {

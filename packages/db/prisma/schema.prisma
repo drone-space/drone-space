@@ -273,8 +273,7 @@ model Option {
 }
 
 model Attempt {
-  id    String @id @default(uuid())
-  score Int?
+  id String @id @default(uuid())
 
   quiz       Quiz    @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
   quiz_id    String

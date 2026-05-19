@@ -69,7 +69,7 @@ export default function Student() {
         icon: IconReportAnalytics,
         stat: quizzesTaken?.length,
         title: 'Quizzes Taken',
-        desc: 'Attempts made on quizzes.',
+        desc: 'Total attempts on quizzes.',
       },
       {
         icon: IconArrowUpRight,
@@ -92,14 +92,14 @@ export default function Student() {
         stat: quizzesToday?.length,
         title: 'Quizzes Today',
         color: 'blue',
-        desc: 'Attempts made on quizzes today.',
+        desc: 'Attempts on quizzes today.',
       },
       {
         icon: IconCalendarWeek,
         stat: quizzesThisWeek?.length,
         title: 'Quizzes This Week',
         color: 'blue',
-        desc: 'Attempts made on quizzes this week.',
+        desc: 'Attempts on quizzes this week.',
       },
     ],
   };

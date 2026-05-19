@@ -47,7 +47,7 @@ export default function Many() {
         ) : (
           <Grid gutter={'xl'}>
             {quizzes.map((qi) => (
-              <GridCol key={qi.id} span={{ base: 12, sm: 6, md: 4 }}>
+              <GridCol key={qi.id} span={{ base: 12, sm: 6, xl: 4 }}>
                 <CardQuizStudentView props={{ quiz: qi }} />
               </GridCol>
             ))}

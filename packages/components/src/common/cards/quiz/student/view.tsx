@@ -2,6 +2,7 @@
 
 import {
   Anchor,
+  Box,
   Card,
   Group,
   Stack,
@@ -37,11 +38,13 @@ export default function View({ props }: { props: { quiz: QuizGet } }) {
           </Tooltip>
         </Group>
 
-        <Group fz={'sm'} c={'dimmed'}>
-          <Text inherit lineClamp={3}>
-            {props.quiz.description}
-          </Text>
-        </Group>
+        <Box mih={120}>
+          <Group fz={'sm'} c={'dimmed'}>
+            <Text inherit lineClamp={3}>
+              {props.quiz.description}
+            </Text>
+          </Group>
+        </Box>
 
         <Group mt={'md'}>
           <Anchor

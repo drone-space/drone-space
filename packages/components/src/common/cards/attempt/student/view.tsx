@@ -24,6 +24,7 @@ import React from 'react';
 import { useQuizStats } from '@repo/hooks/quiz';
 import BadgeStatus from '../../../badges/status';
 import BadgeResult from '../../../badges/result';
+import { Status } from '@repo/types/models/enums';
 
 export default function View({ props }: { props: { attempt: AttemptGet } }) {
   const { completeStats, quizzes, quiz } = useQuizStats({
@@ -88,18 +89,25 @@ export default function View({ props }: { props: { attempt: AttemptGet } }) {
 
             <Group>
               <BadgeStatus props={{ status: props.attempt.status }} />
-              <BadgeResult
-                props={{
-                  status: props.attempt.status,
-                  pass: completeStats.passed,
-                }}
-              />
+
+              {props.attempt.status == Status.COMPLETE && (
+                <BadgeResult
+                  props={{
+                    pass: completeStats.passed,
+                  }}
+                />
+              )}
             </Group>
           </Stack>
         </GridCol>
 
         <GridCol span={2}>
-          <Group justify={'end'}>
+          <Group
+            justify={'end'}
+            display={
+              props.attempt.status == Status.COMPLETE ? undefined : 'none'
+            }
+          >
             <Anchor
               component={Link}
               href={`/attempts/${props.attempt.id}`}

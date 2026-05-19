@@ -26,9 +26,9 @@ export const useQuizStats = (params: {
     return qi.id === attempt?.quiz_id;
   });
 
-  const dateAttempted = !quiz?.created_at
+  const dateAttempted = !attempt?.created_at
     ? undefined
-    : getRegionalDate(quiz.created_at);
+    : getRegionalDate(attempt.created_at);
 
   const quizQuestions = questions?.filter((qi) => qi.quiz_id === quiz?.id);
   const thresholdPass = quiz?.pass_threshold ?? 0;

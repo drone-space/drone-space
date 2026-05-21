@@ -17,18 +17,12 @@ export const useQuestionActions = () => {
   const questionCreate = (params: Partial<QuestionGet>) => {
     if (!session) return;
 
-    if (!params.quiz_id) {
-      console.error('Quiz id must be provided.');
-      return;
-    }
-
     const id = generateUUID();
     const now = new Date();
 
     const newQuestion: QuestionGet = {
       id: params.id || id,
       content: params.content || 'New question',
-      quiz_id: params.quiz_id,
       status: params.status || Status.ACTIVE,
       sync_status: SyncStatus.PENDING,
       created_at: new Date(params.created_at || now).toISOString() as any,
@@ -36,6 +30,8 @@ export const useQuestionActions = () => {
     };
 
     addQuestion(newQuestion);
+
+    return newQuestion;
   };
 
   const questionUpdate = (params: QuestionGet) => {

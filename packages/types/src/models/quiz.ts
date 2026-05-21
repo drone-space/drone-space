@@ -12,6 +12,6 @@ export type QuizGet = Quiz;
 // Type for fetched item with relations
 export type QuizRelations = Prisma.QuizGetPayload<{
   include: {
-    _count: { select: { attempts: true; questions: true } };
+    _count: { select: { attempts: true; quiz_questions: true } };
   };
 }>;

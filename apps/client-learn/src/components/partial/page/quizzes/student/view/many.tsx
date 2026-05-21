@@ -22,9 +22,11 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { IconX } from '@tabler/icons-react';
+import { Status } from '@repo/types/models/enums';
 
 export default function Many() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
+  const quizzesActive = quizzes?.filter((qi) => qi.status == Status.ACTIVE);
 
   return (
     <div>
@@ -38,7 +40,7 @@ export default function Many() {
               Fetching quizzes.
             </Text>
           </Stack>
-        ) : !quizzes?.length ? (
+        ) : !quizzesActive?.length ? (
           <Stack>
             <Text inherit c={'dimmed'} fz={'sm'}>
               No quizzes found.
@@ -46,8 +48,8 @@ export default function Many() {
           </Stack>
         ) : (
           <Grid gutter={'xl'}>
-            {quizzes.map((qi) => (
-              <GridCol key={qi.id} span={{ base: 12, sm: 6, xl: 4 }}>
+            {quizzesActive.map((qi) => (
+              <GridCol key={qi.id} span={{ base: 12, sm: 6 }}>
                 <CardQuizStudentView props={{ quiz: qi }} />
               </GridCol>
             ))}

@@ -36,6 +36,7 @@ export default function Store({
     storesToLoad: {
       [STORE_NAME.QUIZZES]: true,
       [STORE_NAME.QUESTIONS]: true,
+      [STORE_NAME.QUIZ_QUESTIONS]: true,
       [STORE_NAME.OPTIONS]: true,
       [STORE_NAME.ATTEMPTS]: true,
       [STORE_NAME.ANSWERS]: true,

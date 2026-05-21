@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useNotification } from '../notification';
 import { Variant } from '@repo/types/enums';
+import { Status } from '@repo/types/models/enums';
 
 export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
   const router = useRouter();
@@ -22,6 +23,7 @@ export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
     {
       title: params?.defaultValues?.title || '',
       description: params?.defaultValues?.description || '',
+      status: params?.defaultValues?.status || Status.ACTIVE,
     },
     {
       title: hasLength(

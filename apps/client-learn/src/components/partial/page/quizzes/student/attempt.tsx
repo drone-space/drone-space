@@ -51,6 +51,8 @@ import { useQuizActions } from '@repo/hooks/actions/quiz';
 import { useRouter } from 'next/navigation';
 import IntroSection from '@repo/components/layout/intros/section';
 import { shuffleArray } from '@repo/utilities/array';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 
 export default function Attempt({
   props,
@@ -62,10 +64,19 @@ export default function Attempt({
 
   const { showNotification } = useNotification();
 
+  const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
+  const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
+
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
   const questions = useStoreQuestion((s) => s.questions);
-  const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
+  const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
+
+  // 1. Filter out the bridge records for this quiz
+  const quizQuestionsQuiz = quizQuestions?.filter(
+    (qqqi) => qqqi.quiz_id == quiz?.id
+  );
+
   const attempts = useStoreAttempt((s) => s.attempts);
   const attempt = attempts?.find((ai) => ai.id == props.attemptId);
   const answers = useStoreAnswer((s) => s.answers);
@@ -75,10 +86,9 @@ export default function Attempt({
   const { attemptUpdate } = useAttemptActions();
 
   const handleSubmit = () => {
-    if (!attemptAnswers?.length) return;
-    if (!quizQuestions) return;
+    if (!attemptAnswers?.length || !quizQuestionsQuiz) return;
 
-    if (attemptAnswers.length < quizQuestions?.length) {
+    if (attemptAnswers.length < quizQuestionsQuiz.length) {
       showNotification({
         title: 'Quiz Incomplete',
         desc: 'Please answer all questions.',
@@ -97,21 +107,38 @@ export default function Attempt({
     if (!attempt) return;
 
     attemptUpdate({ ...attempt, status: Status.ABANDONED });
-    router.replace(`/quizzes`);
+
+    if (!navbarChild) {
+      toggleNavbarChild();
+    }
+
+    router.replace(`/dashboard`);
   };
 
-  const loading = quizzes === undefined || questions === undefined;
+  const loading =
+    quizzes === undefined ||
+    questions === undefined ||
+    quizQuestions === undefined;
 
   const [shuffledQuestions, setShuffledQuestions] = useState<QuestionGet[]>([]);
 
   useEffect(() => {
-    if (quizzes === undefined) return;
-    if (questions === undefined) return;
+    if (quizzes === undefined || questions === undefined || !quizQuestionsQuiz)
+      return;
 
-    if (quizQuestions && !shuffledQuestions?.length) {
-      setShuffledQuestions(shuffleArray(quizQuestions || []));
+    if (!shuffledQuestions.length) {
+      // 🔥 PERFORMANCE FIX: Create a lightning-fast key-value lookup map
+      // O(M) operation to build the map once
+      const questionMap = new Map(questions?.map((q) => [q.id, q]));
+
+      // O(N) operation to map the questions directly by key
+      const mappedQuestions = quizQuestionsQuiz
+        .map((qqqi) => questionMap.get(qqqi.question_id))
+        .filter((q): q is QuestionGet => !!q);
+
+      setShuffledQuestions(shuffleArray(mappedQuestions));
     }
-  }, [quizzes, questions]);
+  }, [quizzes, questions, quizQuestionsQuiz]); // Added proper dependencies
 
   return attempt?.status == Status.INTRO && intro ? (
     <StepperQuizIntro
@@ -246,11 +273,14 @@ export default function Attempt({
                   ) : (
                     <Text inherit ta={'end'} fw={500}>
                       <NumberFormatter value={attemptAnswers?.length || 0} />/
-                      <NumberFormatter value={quizQuestions?.length || 0} /> (
+                      <NumberFormatter
+                        value={quizQuestionsQuiz?.length || 0}
+                      />{' '}
+                      (
                       <NumberFormatter
                         value={Math.floor(
                           ((attemptAnswers?.length || 0) /
-                            (quizQuestions?.length || 0)) *
+                            (quizQuestionsQuiz?.length || 0)) *
                             100
                         )}
                       />

@@ -219,8 +219,8 @@ model Quiz {
   description    String?
   pass_threshold Int?    @default(70)
 
-  questions Question[]
-  attempts  Attempt[]
+  attempts       Attempt[]
+  quiz_questions QuizQuestion[]
 
   status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)
@@ -236,11 +236,9 @@ model Question {
   id      String @id @default(uuid())
   content String
 
-  quiz    Quiz   @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  quiz_id String
-
-  options Option[]
-  answers Answer[]
+  options        Option[]
+  answers        Answer[]
+  quiz_questions QuizQuestion[]
 
   status      Status     @default(ACTIVE)
   sync_status SyncStatus @default(SYNCED)
@@ -248,8 +246,26 @@ model Question {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@unique([content, quiz_id])
+  @@unique([content])
   @@map(name: "questions")
+}
+
+model QuizQuestion {
+  id String @id @default(uuid())
+
+  quiz        Quiz     @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+  quiz_id     String
+  question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  question_id String
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([quiz_id, question_id, created_at])
+  @@map(name: "quiz_questions")
 }
 
 model Option {

@@ -47,6 +47,7 @@ export default function Sync({ children }: { children: React.ReactNode }) {
     storesToSync: [
       STORE_NAME.QUIZZES,
       STORE_NAME.QUESTIONS,
+      STORE_NAME.QUIZ_QUESTIONS,
       STORE_NAME.OPTIONS,
       STORE_NAME.ATTEMPTS,
       STORE_NAME.ANSWERS,

@@ -10,7 +10,7 @@ import { STORE_NAME } from '@repo/constants/names';
 import { categoriesUpdate } from '@repo/handlers/requests/database/categories';
 import { quizzesUpdate } from '@repo/handlers/requests/database/quizzes';
 import { questionsUpdate } from '@repo/handlers/requests/database/questions';
-import { quizQuestionsUpdate } from '@repo/handlers/requests/database/quiz_questions';
+import { quizQuestionsUpdate } from '@repo/handlers/requests/database/quiz-questions';
 import { optionsUpdate } from '@repo/handlers/requests/database/options';
 import { attemptsUpdate } from '@repo/handlers/requests/database/attempts';
 import { answersUpdate } from '@repo/handlers/requests/database/answers';

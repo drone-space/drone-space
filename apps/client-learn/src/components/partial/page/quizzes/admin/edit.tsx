@@ -57,10 +57,10 @@ import ModalConfirm from '@repo/components/common/modals/confirm';
 import { useOptionActions } from '@repo/hooks/actions/option';
 import { useRouter } from 'next/navigation';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
-import { QuizQuestionGet } from '@repo/types/models/quiz_question';
+import { QuizQuestionGet } from '@repo/types/models/quiz-question';
 import { Status, SyncStatus } from '@repo/types/models/enums';
 import { generateUUID } from '@repo/utilities/generators';
-import { useQuizQuestionActions } from '@repo/hooks/actions/quiz_question';
+import { useQuizQuestionActions } from '@repo/hooks/actions/quiz-question';
 
 type EditProps = { content: string; options: string };
 

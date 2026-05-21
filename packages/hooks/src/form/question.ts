@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { Variant } from '@repo/types/enums';
 import { useNotification } from '../notification';
-import { useQuizQuestionActions } from '../actions/quiz_question';
+import { useQuizQuestionActions } from '../actions/quiz-question';
 
 export const useFormQuestion = (params?: {
   defaultValues?: Partial<QuestionGet>;

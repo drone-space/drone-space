@@ -7,7 +7,7 @@
 
 import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
-import { QuizQuestionGet } from '@repo/types/models/quiz_question';
+import { QuizQuestionGet } from '@repo/types/models/quiz-question';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
       { status: 200, statusText: 'QuizQuestions Retrieved' }
     );
   } catch (error) {
-    console.error('---> route handler error (get quiz_questions):', error);
+    console.error('---> route handler error (get quiz questions):', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -75,7 +75,7 @@ export async function PUT(request: NextRequest) {
       { status: 200, statusText: 'QuizQuestions Updated' }
     );
   } catch (error) {
-    console.error('---> route handler error (update quiz_questions):', error);
+    console.error('---> route handler error (update quiz questions):', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

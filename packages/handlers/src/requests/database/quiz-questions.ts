@@ -11,7 +11,7 @@ import {
   QuizQuestionCreate,
   QuizQuestionRelations,
   QuizQuestionUpdate,
-} from '@repo/types/models/quiz_question';
+} from '@repo/types/models/quiz-question';
 
 const baseRequestUrl = `${API_URL}/quiz-questions`;
 
@@ -31,7 +31,7 @@ export const quizQuestionsGet = async (params?: { userId?: string }) => {
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (get quiz_questions):', error);
+    console.error('---> handler error - (get quiz questions):', error);
     throw error;
   }
 };
@@ -39,7 +39,7 @@ export const quizQuestionsGet = async (params?: { userId?: string }) => {
 let currentController: AbortController | null = null;
 
 export const quizQuestionsUpdate = async (
-  quiz_questions: QuizQuestionRelations[],
+  quizQuestions: QuizQuestionRelations[],
   deletedIds?: string[]
 ) => {
   // Cancel previous request if still in-flight
@@ -52,7 +52,7 @@ export const quizQuestionsUpdate = async (
     const request = new Request(baseRequestUrl, {
       method: 'PUT',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify({ quiz_questions, deletedIds }),
+      body: JSON.stringify({ quizQuestions, deletedIds }),
     });
 
     const response = await fetch(request);
@@ -65,7 +65,7 @@ export const quizQuestionsUpdate = async (
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (update quiz_questions):', error);
+    console.error('---> handler error - (update quiz questions):', error);
     throw error;
   } finally {
     // Clear controller once done (important for GC)
@@ -73,9 +73,9 @@ export const quizQuestionsUpdate = async (
   }
 };
 
-export const quizQuestionGet = async (params: { quiz_questionId: string }) => {
+export const quizQuestionGet = async (params: { quizQuestionId: string }) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${params.quiz_questionId}`, {
+    const request = new Request(`${baseRequestUrl}/${params.quizQuestionId}`, {
       method: 'GET',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -86,48 +86,48 @@ export const quizQuestionGet = async (params: { quiz_questionId: string }) => {
 
     return result;
   } catch (error) {
-    console.error('---> handler error - (get quiz_question):', error);
+    console.error('---> handler error - (get quiz question):', error);
     throw error;
   }
 };
 
-export const quizQuestionCreate = async (quiz_question: QuizQuestionCreate) => {
+export const quizQuestionCreate = async (quizQuestion: QuizQuestionCreate) => {
   try {
     const request = new Request(`${baseRequestUrl}/create`, {
       method: 'POST',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(quiz_question),
+      body: JSON.stringify(quizQuestion),
     });
 
     const response = await fetch(request);
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (create quiz_question):', error);
+    console.error('---> handler error - (create quiz question):', error);
     throw error;
   }
 };
 
-export const quizQuestionUpdate = async (quiz_question: QuizQuestionUpdate) => {
+export const quizQuestionUpdate = async (quizQuestion: QuizQuestionUpdate) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${quiz_question.id}`, {
+    const request = new Request(`${baseRequestUrl}/${quizQuestion.id}`, {
       method: 'PUT',
       headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(quiz_question),
+      body: JSON.stringify(quizQuestion),
     });
 
     const response = await fetch(request);
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (update quiz_question):', error);
+    console.error('---> handler error - (update quiz question):', error);
     throw error;
   }
 };
 
-export const quizQuestionDelete = async (quiz_questionId: string) => {
+export const quizQuestionDelete = async (quizQuestionId: string) => {
   try {
-    const request = new Request(`${baseRequestUrl}/${quiz_questionId}`, {
+    const request = new Request(`${baseRequestUrl}/${quizQuestionId}`, {
       method: 'DELETE',
       headers: HEADERS.WITHOUT_BODY,
     });
@@ -136,7 +136,7 @@ export const quizQuestionDelete = async (quiz_questionId: string) => {
 
     return response;
   } catch (error) {
-    console.error('---> handler error - (delete quiz_question):', error);
+    console.error('---> handler error - (delete quiz question):', error);
     throw error;
   }
 };

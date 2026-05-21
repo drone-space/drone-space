@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { QuizQuestionGet } from '@repo/types/models/quiz_question';
+import type { QuizQuestionGet } from '@repo/types/models/quiz-question';
 
 export type QuizQuestionsValue = QuizQuestionGet[] | null | undefined;
 

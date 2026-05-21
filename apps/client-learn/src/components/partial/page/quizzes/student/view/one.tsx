@@ -33,7 +33,13 @@ import { IconSchool } from '@tabler/icons-react';
 export default function One({ props }: { props: { quizId: string } }) {
   const router = useRouter();
 
-  const { metaStats, quizzes, quiz, quizQuestions } = useQuizStats({
+  const {
+    metaStats,
+    quizzes,
+    quiz,
+    quizQuestions,
+    quizQuestionsQuizQuestions,
+  } = useQuizStats({
     quizId: props.quizId,
   });
 
@@ -73,13 +79,13 @@ export default function One({ props }: { props: { quizId: string } }) {
 
               {quizQuestions === undefined ? (
                 <Loader />
-              ) : !quizQuestions.length ? (
+              ) : !quizQuestionsQuizQuestions.length ? (
                 <Text>No questions found for this quiz.</Text>
               ) : (
-                quizQuestions
+                quizQuestionsQuizQuestions
                   .slice(0, 4)
-                  .map((qi) => (
-                    <CardQuestion key={qi.id} props={{ question: qi }} />
+                  .map((qqqqi) => (
+                    <CardQuestion key={qqqqi.id} props={{ question: qqqqi }} />
                   ))
               )}
             </Stack>

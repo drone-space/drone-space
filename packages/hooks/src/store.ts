@@ -49,6 +49,7 @@ import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 
 export const useSessionStore = (params?: {
   sessionUser: User | null;
@@ -245,6 +246,11 @@ export const LOAD_STORES: Record<string, LoadStoreConfig> = {
     useStoreHook: useStoreQuestion,
     setState: (store, items) => store.setQuestions(items),
   },
+  [STORE_NAME.QUIZ_QUESTIONS]: {
+    dataStore: STORE_NAME.QUIZ_QUESTIONS,
+    useStoreHook: useStoreQuizQuestion,
+    setState: (store, items) => store.setQuizQuestions(items),
+  },
   [STORE_NAME.OPTIONS]: {
     dataStore: STORE_NAME.OPTIONS,
     useStoreHook: useStoreOption,
@@ -275,6 +281,7 @@ export const useLoadAppData = (options: {
     [STORE_NAME.POSTS]: useStorePost(),
     [STORE_NAME.QUIZZES]: useStoreQuiz(),
     [STORE_NAME.QUESTIONS]: useStoreQuestion(),
+    [STORE_NAME.QUIZ_QUESTIONS]: useStoreQuizQuestion(),
     [STORE_NAME.OPTIONS]: useStoreOption(),
     [STORE_NAME.ATTEMPTS]: useStoreAttempt(),
     [STORE_NAME.ANSWERS]: useStoreAnswer(),

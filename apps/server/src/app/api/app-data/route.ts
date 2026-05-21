@@ -51,6 +51,11 @@ export async function GET(request: NextRequest) {
           // where: { profile_id: userId },
           orderBy: { created_at: 'desc' },
         }),
+      [STORE_NAME.QUIZ_QUESTIONS]: () =>
+        prisma.quizQuestion.findMany({
+          // where: { profile_id: userId },
+          orderBy: { created_at: 'desc' },
+        }),
       [STORE_NAME.OPTIONS]: () =>
         prisma.option.findMany({
           // where: { profile_id: userId },
@@ -104,6 +109,7 @@ const PRISMA_MODEL_MAP: Record<string, any> = {
   [STORE_NAME.POSTS]: prisma.post,
   [STORE_NAME.QUIZZES]: prisma.quiz,
   [STORE_NAME.QUESTIONS]: prisma.question,
+  [STORE_NAME.QUIZ_QUESTIONS]: prisma.quizQuestion,
   [STORE_NAME.OPTIONS]: prisma.option,
   [STORE_NAME.ATTEMPTS]: prisma.attempt,
   [STORE_NAME.ANSWERS]: prisma.answer,
@@ -114,9 +120,10 @@ const SYNC_PRIORITY: Record<string, number> = {
   [STORE_NAME.POSTS]: 2,
   [STORE_NAME.QUIZZES]: 3,
   [STORE_NAME.QUESTIONS]: 4,
-  [STORE_NAME.OPTIONS]: 5,
-  [STORE_NAME.ATTEMPTS]: 6,
-  [STORE_NAME.ANSWERS]: 7,
+  [STORE_NAME.QUIZ_QUESTIONS]: 5,
+  [STORE_NAME.OPTIONS]: 6,
+  [STORE_NAME.ATTEMPTS]: 7,
+  [STORE_NAME.ANSWERS]: 8,
 };
 
 export async function POST(request: NextRequest) {

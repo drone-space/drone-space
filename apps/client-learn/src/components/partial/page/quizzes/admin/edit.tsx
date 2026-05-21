@@ -50,6 +50,7 @@ import { useQuestionActions } from '@repo/hooks/actions/question';
 import ModalConfirm from '@repo/components/common/modals/confirm';
 import { useOptionActions } from '@repo/hooks/actions/option';
 import { useRouter } from 'next/navigation';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 
 type EditProps = { content: string; options: string };
 
@@ -71,7 +72,10 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     options: '',
   });
   const questions = useStoreQuestion((s) => s.questions);
-  const quizQuestions = questions?.filter((qi) => qi.quiz_id == props.quizId);
+  const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
+  const quizQuestionsQuiz = quizQuestions?.filter(
+    (qqqi) => qqqi.quiz_id == props.quizId
+  );
 
   return (
     <Box mb={SECTION_SPACING}>
@@ -92,14 +96,14 @@ export default function Edit({ props }: { props: { quizId: string } }) {
             <Fieldset legend="Quiz Questions" p={'md'}>
               <Stack gap={'md'}>
                 <Box mih={140}>
-                  {questions === undefined ? (
+                  {quizQuestions === undefined ? (
                     <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
                       <Loader />
                       <Text inherit c={'dimmed'}>
-                        Fetching questions
+                        Fetching quiz questions
                       </Text>
                     </Stack>
-                  ) : !quizQuestions?.length ? (
+                  ) : !quizQuestionsQuiz?.length ? (
                     <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
                       <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
                         <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -111,22 +115,30 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                   ) : (
                     <Stack gap={'xs'}>
                       {sortArray(
-                        quizQuestions,
+                        quizQuestionsQuiz,
                         (i) => i.created_at,
                         Order.ASCENDING
-                      )?.map((qi, i) => (
-                        <div key={qi.id}>
-                          <CardQuestion
-                            props={{
-                              index: i + 1,
-                              edit,
-                              setEdit,
-                              quizId: props.quizId,
-                              question: qi,
-                            }}
-                          />
-                        </div>
-                      ))}
+                      )?.map((qqqi, i) => {
+                        const question = questions?.find(
+                          (qi2) => qi2.id == qqqi.question_id
+                        );
+
+                        if (!question) return null;
+
+                        return (
+                          <div key={qqqi.id}>
+                            <CardQuestion
+                              props={{
+                                index: i + 1,
+                                edit,
+                                setEdit,
+                                quizId: props.quizId,
+                                question: question,
+                              }}
+                            />
+                          </div>
+                        );
+                      })}
                     </Stack>
                   )}
                 </Box>

@@ -42,18 +42,19 @@ import { isThisWeek, isToday } from '@repo/utilities/date-time';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 
 export default function Student() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
-  const questions = useStoreQuestion((s) => s.questions);
+  const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
   const options = useStoreOption((s) => s.options);
   const answers = useStoreAnswer((s) => s.answers);
 
   const userAttempts = attempts?.filter((ai) => ai.profile_id === session?.id);
-  const quizzesTaken = userAttempts?.filter(
-    (ai) => ai.status === Status.COMPLETE
+  const attemptsComplete = userAttempts?.filter(
+    (aci) => aci.status === Status.COMPLETE
   );
 
   // --- HELPER TO COMPUTE SCORE FOR A SPECIFIC ATTEMPT ---
@@ -67,43 +68,43 @@ export default function Student() {
       return answerOption?.correct;
     }).length;
 
-    const quizQuestions =
-      questions?.filter((qi) => qi.quiz_id === quizId) || [];
-    const totalQuestions = quizQuestions.length || 1;
+    const quizQuestionsQuiz =
+      quizQuestions?.filter((qqqi) => qqqi.quiz_id === quizId) || [];
+    const totalQuestions = quizQuestionsQuiz.length || 1;
 
     return Math.round((correctCount / totalQuestions) * 100);
   };
 
   // --- FILTERED ARRAYS WITH LIVE METRICS ---
-  const quizzesPassed = quizzesTaken?.filter((ai) => {
-    const attemptQuiz = quizzes?.find((qi) => qi.id === ai.quiz_id);
+  const quizzesPassed = attemptsComplete?.filter((aci) => {
+    const attemptQuiz = quizzes?.find((qi) => qi.id === aci.quiz_id);
     const thresholdPass = attemptQuiz?.pass_threshold ?? 0;
-    const currentScore = getAttemptScore(ai.id, ai.quiz_id);
+    const currentScore = getAttemptScore(aci.id, aci.quiz_id);
 
     return currentScore >= thresholdPass;
   });
 
-  const quizzesFailed = quizzesTaken?.filter((ai) => {
-    const attemptQuiz = quizzes?.find((qi) => qi.id === ai.quiz_id);
+  const quizzesFailed = attemptsComplete?.filter((aci) => {
+    const attemptQuiz = quizzes?.find((qi) => qi.id === aci.quiz_id);
     const thresholdPass = attemptQuiz?.pass_threshold ?? 0;
-    const currentScore = getAttemptScore(ai.id, ai.quiz_id);
+    const currentScore = getAttemptScore(aci.id, aci.quiz_id);
 
     return currentScore < thresholdPass;
   });
 
-  const quizzesToday = quizzesTaken?.filter((ai) => {
-    return isToday(ai.created_at);
+  const quizzesToday = attemptsComplete?.filter((aci) => {
+    return isToday(aci.created_at);
   });
 
-  const quizzesThisWeek = quizzesTaken?.filter((ai) => {
-    return isThisWeek(ai.created_at);
+  const quizzesThisWeek = attemptsComplete?.filter((aci) => {
+    return isThisWeek(aci.created_at);
   });
 
   const stats = {
     attempts: [
       {
         icon: IconReportAnalytics,
-        stat: quizzesTaken?.length,
+        stat: attemptsComplete?.length,
         title: 'Quizzes Taken',
         desc: 'Total attempts on quizzes.',
       },
@@ -220,7 +221,7 @@ export default function Student() {
               ) : (
                 <Grid>
                   {sortArray(
-                    quizzesTaken || [],
+                    attemptsComplete || [],
                     (i) => i.created_at,
                     Order.DESCENDING
                   )?.map(

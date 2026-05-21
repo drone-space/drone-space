@@ -28,7 +28,8 @@ export default function Question({
   const question = questions?.find((qi) => qi.id == props?.questionId);
 
   const { form, handleSubmit, submitted } = useFormQuestion({
-    defaultValues: { ...question, quiz_id: props?.quizId },
+    defaultValues: { ...question },
+    options: { quizId: props?.quizId },
   });
 
   return (

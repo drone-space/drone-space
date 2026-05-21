@@ -40,7 +40,7 @@ export default function View({ props }: { props: { quiz: QuizGet } }) {
 
         <Box mih={120}>
           <Group fz={'sm'} c={'dimmed'}>
-            <Text inherit lineClamp={3}>
+            <Text inherit lineClamp={5}>
               {props.quiz.description}
             </Text>
           </Group>

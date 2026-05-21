@@ -52,6 +52,7 @@ import { useRouter } from 'next/navigation';
 import IntroSection from '@repo/components/layout/intros/section';
 import { shuffleArray } from '@repo/utilities/array';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 
 export default function Attempt({
   props,
@@ -62,6 +63,9 @@ export default function Attempt({
   const [intro, setIntro] = useState(true);
 
   const { showNotification } = useNotification();
+
+  const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
+  const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
@@ -103,7 +107,12 @@ export default function Attempt({
     if (!attempt) return;
 
     attemptUpdate({ ...attempt, status: Status.ABANDONED });
-    router.replace(`/quizzes`);
+
+    if (!navbarChild) {
+      toggleNavbarChild();
+    }
+
+    router.replace(`/dashboard`);
   };
 
   const loading =
@@ -264,11 +273,14 @@ export default function Attempt({
                   ) : (
                     <Text inherit ta={'end'} fw={500}>
                       <NumberFormatter value={attemptAnswers?.length || 0} />/
-                      <NumberFormatter value={quizQuestions?.length || 0} /> (
+                      <NumberFormatter
+                        value={quizQuestionsQuiz?.length || 0}
+                      />{' '}
+                      (
                       <NumberFormatter
                         value={Math.floor(
                           ((attemptAnswers?.length || 0) /
-                            (quizQuestions?.length || 0)) *
+                            (quizQuestionsQuiz?.length || 0)) *
                             100
                         )}
                       />

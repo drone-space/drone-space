@@ -12,7 +12,7 @@ import { linkify } from '@repo/utilities/url';
 
 export const config: DBConfig = {
   name: linkify(COMPANY_NAME),
-  version: 2,
+  version: 3,
   stores: [
     {
       name: STORE_NAME.SETTINGS,
@@ -28,6 +28,10 @@ export const config: DBConfig = {
     },
     {
       name: STORE_NAME.QUIZZES,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.QUIZ_QUESTIONS,
       keyPath: 'id',
     },
     {

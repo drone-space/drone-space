@@ -23,6 +23,7 @@ export default function Result({ props }: { props: { attemptId: string } }) {
     quizzes,
     quiz,
     quizQuestions,
+    quizQuestionsQuizQuestions,
     options,
     attemptAnswers,
   } = useQuizStats({
@@ -82,26 +83,26 @@ export default function Result({ props }: { props: { attemptId: string } }) {
           <Stack>
             <Loader />
           </Stack>
-        ) : !quizzes?.length || !quizQuestions?.length ? (
+        ) : !quizzes?.length || !quizQuestionsQuizQuestions?.length ? (
           <Stack>
             <Text c={'dimmed'}>No questions found for this quiz.</Text>
           </Stack>
         ) : (
           <Stack gap={SECTION_SPACING}>
-            {quizQuestions.map((qq, i) => {
+            {quizQuestionsQuizQuestions.map((qqqqi, i) => {
               // find the user's answer for this question
               const userAnswer = attemptAnswers?.find((aa) => {
                 const option = options?.find((o) => o.id == aa.option_id);
-                return option?.question_id == qq.id;
+                return option?.question_id == qqqqi.id;
               });
 
               return (
-                <div key={qq.id}>
+                <div key={qqqqi.id}>
                   {i > 0 && <Divider mb={SECTION_SPACING} />}
 
                   <CardQuestionWithAnswer
                     props={{
-                      questionId: qq.id,
+                      questionId: qqqqi.id,
                       answerId: userAnswer?.id || '',
                     }}
                   />

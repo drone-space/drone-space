@@ -30,9 +30,11 @@ import { images } from '@repo/constants/images';
 import { IconArrowRight, IconDashboard, IconPlus } from '@tabler/icons-react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import CardQuizHome from '@repo/components/common/cards/quiz/home';
+import { Status } from '@repo/types/models/enums';
 
 export default function Home() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
+  const quizzesActive = quizzes?.filter((qi) => qi.status == Status.ACTIVE);
 
   return (
     <LayoutSection id={'section-home'} containerized={'md'}>
@@ -82,7 +84,7 @@ export default function Home() {
                 </GridCol>
               </Grid>
             </GridCol>
-          ) : !quizzes?.length ? (
+          ) : !quizzesActive?.length ? (
             <GridCol span={{ md: 4 }}>
               <Paper
                 bg={
@@ -96,7 +98,7 @@ export default function Home() {
               </Paper>
             </GridCol>
           ) : (
-            quizzes.map(
+            quizzesActive.map(
               (qi, i) =>
                 i < 2 && (
                   <GridCol key={qi.id} span={{ md: 4 }}>

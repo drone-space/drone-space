@@ -13,25 +13,26 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ quizId: string }> }
+  { params }: { params: Promise<{ quiz_questionId: string }> }
 ) {
   try {
-    const { quizId } = await params;
+    const { quiz_questionId } = await params;
 
-    const quizRecord = await prisma.quiz.findUnique({
-      where: { id: quizId },
+    const quizQuestionRecord = await prisma.quizQuestion.findUnique({
+      where: { id: quiz_questionId },
 
       include: {
-        _count: { select: { attempts: true, quiz_questions: true } },
+        quiz: true,
+        question: true,
       },
     });
 
     return NextResponse.json(
-      { item: quizRecord },
-      { status: 200, statusText: 'Quiz Retrieved' }
+      { item: quizQuestionRecord },
+      { status: 200, statusText: 'QuizQuestion Retrieved' }
     );
   } catch (error) {
-    console.error('---> route handler error (get quiz):', error);
+    console.error('---> route handler error (get quiz_question):', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

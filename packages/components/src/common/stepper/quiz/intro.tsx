@@ -25,6 +25,7 @@ import {
 } from '@repo/constants/sizes';
 import { IconCheck, IconSchool } from '@tabler/icons-react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
@@ -52,7 +53,10 @@ export default function Intro({
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
   const questions = useStoreQuestion((s) => s.questions);
-  const quizQuestions = questions?.filter((qi) => qi.quiz_id == quiz?.id);
+  const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
+  const quizQuestionsQuiz = quizQuestions?.filter(
+    (qqqi) => qqqi.quiz_id == quiz?.id
+  );
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
   const userAttempts = attempts?.filter(
@@ -60,7 +64,10 @@ export default function Intro({
   );
   const attempt = userAttempts?.find((ai) => ai.id == props.attemptId);
   const attemptsQuiz = attempts?.filter(
-    (ai) => ai.profile_id == session?.id && ai.status == Status.COMPLETE && ai.quiz_id==quiz?.id
+    (aqi) =>
+      aqi.profile_id == session?.id &&
+      aqi.status == Status.COMPLETE &&
+      aqi.quiz_id == quiz?.id
   );
 
   const { attemptUpdate } = useAttemptActions();
@@ -79,7 +86,7 @@ export default function Intro({
             <Text inherit>
               Total Questions:{' '}
               <Text component="span" inherit fw={500} c={'primary'}>
-                <NumberFormatter value={quizQuestions?.length} />
+                <NumberFormatter value={quizQuestionsQuiz?.length} />
               </Text>
             </Text>
             |

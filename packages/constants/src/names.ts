@@ -54,6 +54,7 @@ export const STORE_NAME = {
   EMAILS: 'emails',
   CATEGORIES: 'categories',
   QUIZZES: 'quizzes',
+  QUIZ_QUESTIONS: 'quiz-questions',
   QUESTIONS: 'questions',
   OPTIONS: 'options',
   ATTEMPTS: 'attempts',

@@ -10,6 +10,7 @@ import { STORE_NAME } from '@repo/constants/names';
 import { categoriesUpdate } from '@repo/handlers/requests/database/categories';
 import { quizzesUpdate } from '@repo/handlers/requests/database/quizzes';
 import { questionsUpdate } from '@repo/handlers/requests/database/questions';
+import { quizQuestionsUpdate } from '@repo/handlers/requests/database/quiz_questions';
 import { optionsUpdate } from '@repo/handlers/requests/database/options';
 import { attemptsUpdate } from '@repo/handlers/requests/database/attempts';
 import { answersUpdate } from '@repo/handlers/requests/database/answers';
@@ -38,6 +39,7 @@ import {
   Database,
   DatabaseError,
 } from '@repo/libraries/indexed-db/transactions';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 
 const useSessionCheck = () => {
   const session = useStoreSession((s) => s.session);
@@ -83,8 +85,17 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
     serverUpdate: questionsUpdate,
     getItems: (store) => store.questions,
     getDeleted: (store) => store.deleted,
-    setItems: (store, items) => store.setQuestionuseStoreQuestions(items),
-    clearDeleted: (store) => store.clearDeletedQuestionuseStoreQuestions(),
+    setItems: (store, items) => store.setQuestion(items),
+    clearDeleted: (store) => store.clearDeletedQuestion(),
+  },
+  [STORE_NAME.QUIZ_QUESTIONS]: {
+    dataStore: STORE_NAME.QUIZ_QUESTIONS,
+    useStoreHook: useStoreQuizQuestion,
+    serverUpdate: quizQuestionsUpdate,
+    getItems: (store) => store.quizQuestions,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setQuizQuestion(items),
+    clearDeleted: (store) => store.clearDeletedQuizQuestion(),
   },
   [STORE_NAME.OPTIONS]: {
     dataStore: STORE_NAME.OPTIONS,
@@ -92,8 +103,8 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
     serverUpdate: optionsUpdate,
     getItems: (store) => store.options,
     getDeleted: (store) => store.deleted,
-    setItems: (store, items) => store.setOptionuseStoreOptions(items),
-    clearDeleted: (store) => store.clearDeletedOptionuseStoreOptions(),
+    setItems: (store, items) => store.setOption(items),
+    clearDeleted: (store) => store.clearDeletedOption(),
   },
   [STORE_NAME.ATTEMPTS]: {
     dataStore: STORE_NAME.ATTEMPTS,
@@ -101,8 +112,8 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
     serverUpdate: attemptsUpdate,
     getItems: (store) => store.attempts,
     getDeleted: (store) => store.deleted,
-    setItems: (store, items) => store.setAttemptuseStoreAttempts(items),
-    clearDeleted: (store) => store.clearDeletedAttemptuseStoreAttempts(),
+    setItems: (store, items) => store.setAttempt(items),
+    clearDeleted: (store) => store.clearDeletedAttempt(),
   },
   [STORE_NAME.ANSWERS]: {
     dataStore: STORE_NAME.ANSWERS,
@@ -110,8 +121,8 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
     serverUpdate: answersUpdate,
     getItems: (store) => store.answers,
     getDeleted: (store) => store.deleted,
-    setItems: (store, items) => store.setAnsweruseStoreAnswers(items),
-    clearDeleted: (store) => store.clearDeletedAnsweruseStoreAnswers(),
+    setItems: (store, items) => store.setAnswer(items),
+    clearDeleted: (store) => store.clearDeletedAnswer(),
   },
 } as const;
 
@@ -128,6 +139,13 @@ const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
     updateState: (items: any) =>
       useStoreQuestion.getState().setQuestions(items),
     clearDeleted: () => useStoreQuestion.getState().clearDeletedQuestions(),
+  },
+  [STORE_NAME.QUIZ_QUESTIONS]: {
+    store: useStoreQuizQuestion,
+    updateState: (items: any) =>
+      useStoreQuizQuestion.getState().setQuizQuestions(items),
+    clearDeleted: () =>
+      useStoreQuizQuestion.getState().clearDeletedQuizQuestions(),
   },
   [STORE_NAME.OPTIONS]: {
     store: useStoreOption,
@@ -150,6 +168,7 @@ const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
 export interface MergedSyncPayload {
   [STORE_NAME.QUIZZES]?: { items: any[]; deleted: any[] };
   [STORE_NAME.QUESTIONS]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.QUIZ_QUESTIONS]?: { items: any[]; deleted: any[] };
   [STORE_NAME.OPTIONS]?: { items: any[]; deleted: any[] };
   [STORE_NAME.ATTEMPTS]?: { items: any[]; deleted: any[] };
   [STORE_NAME.ANSWERS]?: { items: any[]; deleted: any[] };
@@ -175,6 +194,7 @@ export const useMergedSync = (params: {
   // Call all hooks at the top level (Required by Hook Rules)
   const quizStore = useStoreQuiz();
   const questionStore = useStoreQuestion();
+  const quizQuestionStore = useStoreQuizQuestion();
   const optionStore = useStoreOption();
   const attemptStore = useStoreAttempt();
   const answerStore = useStoreAnswer();
@@ -182,6 +202,7 @@ export const useMergedSync = (params: {
   const stores = {
     [STORE_NAME.QUIZZES]: quizStore,
     [STORE_NAME.QUESTIONS]: questionStore,
+    [STORE_NAME.QUIZ_QUESTIONS]: quizQuestionStore,
     [STORE_NAME.OPTIONS]: optionStore,
     [STORE_NAME.ATTEMPTS]: attemptStore,
     [STORE_NAME.ANSWERS]: answerStore,

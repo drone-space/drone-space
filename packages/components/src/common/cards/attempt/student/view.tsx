@@ -27,7 +27,7 @@ import BadgeResult from '../../../badges/result';
 import { Status } from '@repo/types/models/enums';
 
 export default function View({ props }: { props: { attempt: AttemptGet } }) {
-  const { completeStats, quizzes, quiz } = useQuizStats({
+  const { completeStats, quizzes, metaStats, quiz } = useQuizStats({
     attemptId: props.attempt.id,
   });
 
@@ -55,25 +55,91 @@ export default function View({ props }: { props: { attempt: AttemptGet } }) {
             </Group>
 
             <Group>
-              <Text inherit>
-                Answered:{' '}
+              <Group gap={5}>
+                <Text component="span" inherit>
+                  Status:
+                </Text>
+
+                <BadgeStatus props={{ status: props.attempt.status }} />
+              </Group>
+
+              {props.attempt.status == Status.COMPLETE && (
+                <Group gap={5}>
+                  <Text component="span" inherit>
+                    Result:
+                  </Text>
+                  <BadgeResult
+                    props={{
+                      pass: completeStats.passed,
+                    }}
+                  />
+                </Group>
+              )}
+            </Group>
+
+            <Group>
+              <Text
+                inherit
+                display={
+                  props.attempt.status != Status.COMPLETE ? undefined : 'none'
+                }
+              >
                 <Text component="span" inherit fw={'bold'}>
-                  <NumberFormatter value={completeStats.questions.total} />
+                  <NumberFormatter
+                    value={Math.floor(
+                      (completeStats.questions.total /
+                        metaStats.totalQuestions) *
+                        100
+                    )}
+                  />
                 </Text>
+                % complete
               </Text>
 
-              <Text inherit>
-                Correct:{' '}
-                <Text component="span" inherit c={'green.6'} fw={'bold'}>
-                  <NumberFormatter value={completeStats.questions.correct} />
+              <Text
+                inherit
+                display={
+                  props.attempt.status == Status.COMPLETE ? undefined : 'none'
+                }
+              >
+                Score:{' '}
+                <Text
+                  component="span"
+                  inherit
+                  c={`${completeStats.passed ? 'green' : 'red'}.6`}
+                  fw={'bold'}
+                >
+                  <NumberFormatter value={completeStats.score} />%
+                </Text>{' '}
+                (
+                <Text
+                  component="span"
+                  fz={'sm'}
+                  inherit
+                  display={
+                    props.attempt.status == Status.COMPLETE ? undefined : 'none'
+                  }
+                >
+                  Correct:{' '}
+                  <Text component="span" inherit c={'green.6'} fw={'bold'}>
+                    <NumberFormatter value={completeStats.questions.correct} />
+                  </Text>
                 </Text>
-              </Text>
-
-              <Text inherit>
-                Wrong:{' '}
-                <Text component="span" inherit c={'red.6'} fw={'bold'}>
-                  <NumberFormatter value={completeStats.questions.wrong} />
+                ,{' '}
+                <Text
+                  component="span"
+                  fz={'sm'}
+                  inherit
+                  display={
+                    props.attempt.status == Status.COMPLETE ? undefined : 'none'
+                  }
+                >
+                  Wrong:{' '}
+                  <Text component="span" inherit c={'red.6'} fw={'bold'}>
+                    <NumberFormatter value={completeStats.questions.wrong} />
+                  </Text>
                 </Text>
+                )
               </Text>
             </Group>
 
@@ -85,18 +151,6 @@ export default function View({ props }: { props: { attempt: AttemptGet } }) {
                   {(completeStats.dateAttempted?.time || '').toUpperCase()}
                 </Text>
               </Text>
-            </Group>
-
-            <Group>
-              <BadgeStatus props={{ status: props.attempt.status }} />
-
-              {props.attempt.status == Status.COMPLETE && (
-                <BadgeResult
-                  props={{
-                    pass: completeStats.passed,
-                  }}
-                />
-              )}
             </Group>
           </Stack>
         </GridCol>

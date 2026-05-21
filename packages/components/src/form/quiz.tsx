@@ -8,11 +8,14 @@ import {
   Grid,
   GridCol,
   Group,
+  Select,
   Textarea,
   TextInput,
 } from '@mantine/core';
 import { QuizGet } from '@repo/types/models/quiz';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import { capitalizeWords } from '@repo/utilities/string';
+import { Status } from '@repo/types/models/enums';
 
 export default function Quiz({ props }: { props?: { quizId?: string } }) {
   const quizzes = useStoreQuiz((s) => s.quizzes);
@@ -61,6 +64,28 @@ export default function Quiz({ props }: { props?: { quizId?: string } }) {
             key={form.key('stay')}
             checked={stay}
             onChange={(event) => setStay(event.currentTarget.checked)}
+          />
+        </GridCol>
+
+        <GridCol span={{ base: 12 }}>
+          <Select
+            placeholder="Pick value"
+            key={form.key('status')}
+            {...form.getInputProps('status')}
+            data={[
+              {
+                label: capitalizeWords(Status.ACTIVE),
+                value: Status.ACTIVE,
+              },
+              {
+                label: capitalizeWords(Status.DRAFT),
+                value: Status.DRAFT,
+              },
+              {
+                label: capitalizeWords(Status.INACTIVE),
+                value: Status.INACTIVE,
+              },
+            ]}
           />
         </GridCol>
 

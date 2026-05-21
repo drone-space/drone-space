@@ -264,7 +264,7 @@ model QuizQuestion {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  @@unique([quiz_id, question_id])
+  @@unique([quiz_id, question_id, created_at])
   @@map(name: "quiz_questions")
 }
 

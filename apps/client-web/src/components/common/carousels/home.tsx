@@ -32,8 +32,19 @@ export default function Home() {
 
   const now = new Date();
 
+  // 1. Create a copy of 'now' and set it to midnight today
+  const todayStart = new Date(now);
+  todayStart.setHours(0, 0, 0, 0);
+
   const filteredData = data.filter((i) => {
-    return i.dates.some((d) => d.getTime() > now.getTime());
+    return i.dates.some((d) => {
+      // 2. Create a copy of the item's date and set it to midnight
+      const itemDateStart = new Date(d);
+      itemDateStart.setHours(0, 0, 0, 0);
+
+      // 3. Compare the dates (inclusive of today)
+      return itemDateStart.getTime() >= todayStart.getTime();
+    });
   });
 
   const slides = [
@@ -68,10 +79,11 @@ export default function Home() {
       ),
       dates: [
         // intake date (s)
-        new Date(2026, 4, 4),
-        new Date(2026, 4, 11),
-        new Date(2026, 4, 18),
-        new Date(2026, 4, 25),
+        new Date(2026, 5, 2),
+        new Date(2026, 5, 8),
+        new Date(2026, 5, 15),
+        new Date(2026, 5, 22),
+        new Date(2026, 5, 29),
       ],
       price: {
         former: 170000,
@@ -300,7 +312,7 @@ const data = sortArray(
       duration: '10 days',
       dates: [
         // intake date (s)
-        new Date(2026, 4, 25),
+        new Date(2026, 5, 2),
       ],
       price: {
         former: null,
@@ -317,7 +329,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 4, 18),
+        new Date(2026, 4, 25),
       ],
       price: {
         former: null,

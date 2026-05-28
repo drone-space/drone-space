@@ -1,8 +1,9 @@
 import { images } from './images';
 import accessories from './accessories';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+// import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 
-const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`;
+// const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`;
+const baseUrl = `/images`;
 
 export const products = [
   // {

@@ -29,8 +29,9 @@ export interface typeDrone {
   price: typePrice | null;
   kit: {
     basic: {
-      image: string;
+      image?: string | null;
       contents: { qty: number; item: string; image: string }[];
+      otherContents?: string[];
     };
     flyMore: {
       contents: { qty: number; item: string; image: string }[];

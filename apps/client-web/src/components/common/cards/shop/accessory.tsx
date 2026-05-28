@@ -125,7 +125,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
               <span>Price Undisclosed</span>
             ) : (
               <>
-                Kshs.{' '}
+                Kes.{' '}
                 <Text
                   component="span"
                   inherit

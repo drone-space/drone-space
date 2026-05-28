@@ -84,7 +84,7 @@ export default async function AccessoryDetails({
 
             {product?.price && (
               <Text mt={'md'}>
-                Kshs.{' '}
+                Kes.{' '}
                 <Text
                   component="span"
                   inherit

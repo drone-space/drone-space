@@ -62,7 +62,12 @@ export default function Accessory({ data }: { data: typeAccessory }) {
           <Divider />
 
           <Stack p={'md'}>
-            <Title order={3} className={classes.title} fz={{ md: 'md' }}>
+            <Title
+              order={3}
+              className={classes.title}
+              fz={{ md: 'md' }}
+              maw={{ md: '80%' }}
+            >
               <NextLink
                 inherit
                 href={`/shop/accessories/${linkify(data.title.long)}`}
@@ -111,9 +116,11 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                       )
                   )}
                 </List>
-                <Text component="span" inherit fw={500} ml={32}>
-                  ...
-                </Text>
+                {!!data.specs.length && (
+                  <Text component="span" inherit fw={500} ml={32}>
+                    ...
+                  </Text>
+                )}
               </Stack>
             )}
           </Stack>

@@ -1,5 +1,7 @@
 import { images } from './images';
 
+const baseUrl = `/images`;
+
 const accessories = [
   {
     category: '',
@@ -193,61 +195,6 @@ const accessories = [
     price: null,
   },
 
-  {
-    category: '',
-    images: images.products.drones.dji.agras.t100.accessories.other.generator,
-    title: {
-      long: 'Agras Series Multifunctional Inverter Generator (D12000iE)',
-      short: 'Agras Series Generator (D12000iE)',
-    },
-    specs: [
-      {
-        label: 'Weight',
-        desc: '101 KG',
-      },
-      {
-        label: 'Charging power',
-        desc: '7200 W',
-      },
-      {
-        label: 'DC output',
-        desc: '42-59.92 V/9000 W',
-      },
-      {
-        label: 'Battery Charging Time (one T40 battery)',
-        desc: '9-12 mins',
-      },
-      {
-        label: 'Fuel Tank Capacity',
-        desc: '30 L',
-      },
-      {
-        label: 'Starting Method',
-        desc: 'One-Button Start Switch',
-      },
-      {
-        label: 'Max Power of Engine',
-        desc: '12000 W',
-      },
-      {
-        label: 'Fuel Type',
-        desc: 'Unleaded gasoline (RON ≥91 (AKI ≥87), alcohol <10%)',
-      },
-      {
-        label: 'Reference Fuel Consumption',
-        desc: '500 ml/kWh',
-      },
-      {
-        label: 'Engine Oil Model',
-        desc: 'SJ 10W-40',
-      },
-    ],
-    price: {
-      former: 670000,
-      latter: null,
-    },
-  },
-
   // {
   // category:'',
   //   images: images.products.drones.huida.hd540s.accessories.other.spreader,
@@ -353,32 +300,135 @@ const accessories = [
 
   {
     category: '',
+    images: images.products.drones.dji.agras.t50.accessories.battery,
+    title: {
+      long: 'Intelligent Flight Battery (DB1560)',
+      short: 'Intelligent Flight Battery (DB1560)',
+    },
+    specs: [],
+    price: { former: 370000 },
+  },
+
+  {
+    category: '',
+    images: images.products.drones.dji.agras.t100.accessories.other.generator,
+    title: {
+      long: 'Agras Series Multifunctional Inverter Generator (D14000iE)',
+      short: 'Agras Series Generator (D14000iE)',
+    },
+    specs: [
+      // {
+      //   label: 'Weight',
+      //   desc: '101 KG',
+      // },
+      // {
+      //   label: 'Charging power',
+      //   desc: '7200 W',
+      // },
+      // {
+      //   label: 'DC output',
+      //   desc: '42-59.92 V/9000 W',
+      // },
+      // {
+      //   label: 'Battery Charging Time (one T40 battery)',
+      //   desc: '9-12 mins',
+      // },
+      // {
+      //   label: 'Fuel Tank Capacity',
+      //   desc: '30 L',
+      // },
+      // {
+      //   label: 'Starting Method',
+      //   desc: 'One-Button Start Switch',
+      // },
+      // {
+      //   label: 'Max Power of Engine',
+      //   desc: '12000 W',
+      // },
+      // {
+      //   label: 'Fuel Type',
+      //   desc: 'Unleaded gasoline (RON ≥91 (AKI ≥87), alcohol <10%)',
+      // },
+      // {
+      //   label: 'Reference Fuel Consumption',
+      //   desc: '500 ml/kWh',
+      // },
+      // {
+      //   label: 'Engine Oil Model',
+      //   desc: 'SJ 10W-40',
+      // },
+    ],
+    price: {
+      former: 373000,
+      latter: null,
+    },
+  },
+
+  {
+    category: '',
+    images: [
+      `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
+    ],
+    title: {
+      long: 'Intelligent Flight Battery (WB37)',
+      short: 'Intelligent Flight Battery (WB37)',
+    },
+    specs: [],
+    price: { former: 20000 },
+  },
+
+  {
+    category: '',
+    images: [
+      `${baseUrl}/products/drones/dji/agras/t50/box/charging-cable.webp`,
+    ],
+    title: {
+      long: 'T50 Charging Cable',
+      short: 'T50 Charging Cable',
+    },
+    specs: [],
+    price: { former: 28000 },
+  },
+
+  {
+    category: '',
+    images: [`${baseUrl}/products/drones/dji/agras/t50/box/charger.webp`],
+    title: {
+      long: 'Agras T50 C10000 Intelligent Charger',
+      short: 'T50 C10000 Intelligent Charger',
+    },
+    specs: [],
+    price: { former: 380000 },
+  },
+
+  {
+    category: '',
     images: images.products.drones.dji.agras.t40.accessories.other.spreader,
     title: {
       long: 'Agras Series Spreading System',
       short: 'Agras Series Spreading System',
     },
     specs: [
-      {
-        label: 'Applicable Materials',
-        desc: 'Solid dry particles with a diameter of 0.5 to 5 mm',
-      },
-      {
-        label: 'Spread Tank Volume',
-        desc: '70 L',
-      },
-      {
-        label: 'Spread Tank Internal Load',
-        desc: '50 kg',
-      },
-      {
-        label: 'Spread Width of Spreading System',
-        desc: '7 m',
-      },
-      {
-        label: 'Recommended Operating Temperature',
-        desc: '0°C to 40°C (32°F to 104°F)',
-      },
+      // {
+      //   label: 'Applicable Materials',
+      //   desc: 'Solid dry particles with a diameter of 0.5 to 5 mm',
+      // },
+      // {
+      //   label: 'Spread Tank Volume',
+      //   desc: '70 L',
+      // },
+      // {
+      //   label: 'Spread Tank Internal Load',
+      //   desc: '50 kg',
+      // },
+      // {
+      //   label: 'Spread Width of Spreading System',
+      //   desc: '7 m',
+      // },
+      // {
+      //   label: 'Recommended Operating Temperature',
+      //   desc: '0°C to 40°C (32°F to 104°F)',
+      // },
     ],
     price: {
       former: 140000,
@@ -394,26 +444,26 @@ const accessories = [
       short: 'Agras T100 Spreading System',
     },
     specs: [
-      {
-        label: 'Tank Volume',
-        desc: '150 L',
-      },
-      {
-        label: 'Max Tank Load',
-        desc: '100 kg',
-      },
-      {
-        label: 'Structure Type',
-        desc: 'Centrifugal Cisc',
-      },
-      {
-        label: 'Spread Width',
-        desc: '3 - 10 m',
-      },
-      {
-        label: 'Max Discharge Rate',
-        desc: '400kg/min',
-      },
+      // {
+      //   label: 'Tank Volume',
+      //   desc: '150 L',
+      // },
+      // {
+      //   label: 'Max Tank Load',
+      //   desc: '100 kg',
+      // },
+      // {
+      //   label: 'Structure Type',
+      //   desc: 'Centrifugal Cisc',
+      // },
+      // {
+      //   label: 'Spread Width',
+      //   desc: '3 - 10 m',
+      // },
+      // {
+      //   label: 'Max Discharge Rate',
+      //   desc: '400kg/min',
+      // },
     ],
     price: null,
   },

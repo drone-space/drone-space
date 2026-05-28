@@ -4,8 +4,8 @@ interface typeTitle {
 }
 
 interface typePrice {
-  former: number;
-  latter: number | null;
+  former?: number;
+  latter?: number | null;
 }
 
 export interface typeAccessory {

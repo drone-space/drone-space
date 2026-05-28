@@ -657,7 +657,8 @@ export const products = [
     },
     kit: {
       basic: {
-        image: `${baseUrl}/products/drones/dji/agras/t50/box/collective2.png`,
+        // image: `${baseUrl}/products/drones/dji/agras/t50/drone/drone-front.webp`,
+        image: null,
         contents: [
           {
             qty: 1,
@@ -679,16 +680,16 @@ export const products = [
             item: 'Remote Controller Lanyard/Strap',
             image: `${baseUrl}/products/drones/dji/agras/t50/box/lanyard.webp`,
           },
-          {
-            qty: 3,
-            item: 'Intelligent Flight Battery (DB1560)',
-            image: `${baseUrl}/products/drones/dji/agras/t50/box/battery-db1560.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Intelligent Flight Battery (WB37)',
-            image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
-          },
+          // {
+          //   qty: 1,
+          //   item: 'Intelligent Flight Battery (DB1560)',
+          //   image: `${baseUrl}/products/drones/dji/agras/t50/box/battery-db1560.webp`,
+          // },
+          // {
+          //   qty: 1,
+          //   item: 'Intelligent Flight Battery (WB37)',
+          //   image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
+          // },
           {
             qty: 1,
             item: 'USB-C Cable',
@@ -704,11 +705,11 @@ export const products = [
             item: 'Tool Box',
             image: `${baseUrl}/products/drones/dji/agras/t50/box/tool-kit.webp`,
           },
-          {
-            qty: 1,
-            item: 'Agras Series Generator (D14000iE)',
-            image: `${baseUrl}/products/drones/dji/agras/t50/accessories/generator.webp`,
-          },
+          // {
+          //   qty: 1,
+          //   item: 'Agras Series Generator (D14000iE)',
+          //   image: `${baseUrl}/products/drones/dji/agras/t50/accessories/generator.webp`,
+          // },
           // {
           //   qty: 1,
           //   item: 'Enterprise Series RTK Module',
@@ -725,21 +726,31 @@ export const products = [
           //   image: `${baseUrl}/products/drones/dji/agras/t50/box/coaxial.webp`,
           // },
         ],
+        otherContents: ['Screws and other accessories', 'Tools', 'Manuals'],
       },
       flyMore: null,
     },
-    // accessories: {
-    //   battery: accessories.find((a) => a.title.short == 'Agras Series Battery'),
-    //   other: [
-    //     accessories.find(
-    //       (a) => a.title.short == 'Agras Series Generator (D12000iE)'
-    //     ),
-    //     accessories.find(
-    //       (a) => a.title.short == 'Agras Series Spreading System'
-    //     ),
-    //     accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
-    //   ].filter((i) => i != undefined),
-    // },
+    accessories: {
+      battery: accessories.find((a) => a.title.short == 'Agras Series Battery'),
+      other: [
+        accessories.find(
+          (a) => a.title.short == 'Intelligent Flight Battery (DB1560)'
+        ),
+        accessories.find(
+          (a) => a.title.short == 'T50 C10000 Intelligent Charger'
+        ),
+        accessories.find(
+          (a) => a.title.short == 'Agras Series Spreading System'
+        ),
+        accessories.find(
+          (a) => a.title.short == 'Agras Series Generator (D14000iE)'
+        ),
+        accessories.find((a) => a.title.short == 'T50 Charging Cable'),
+        accessories.find(
+          (a) => a.title.short == 'Intelligent Flight Battery (WB37)'
+        ),
+      ].filter((i) => i != undefined),
+    },
     category: 'agriculture',
     available: true,
     brand: 'dji',

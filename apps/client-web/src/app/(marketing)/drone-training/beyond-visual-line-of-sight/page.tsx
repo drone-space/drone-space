@@ -37,9 +37,7 @@ import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
 
-const course = courseList.find(
-  (c) => linkify(c.titleShort || c.title) == 'beyond-visual-line-of-sight'
-);
+const course = courseList.find((c) => c.title == courseList[6].title);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -47,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.title}`,
     type: 'website',
     images: [
       {
@@ -85,7 +83,7 @@ export default async function Course() {
                 <IntroSection
                   props={{
                     subTitle: 'Who Is This For?',
-                    title: course.title,
+                    title: course.titleFull || course.title,
                   }}
                   options={{ alignment: 'start' }}
                 />

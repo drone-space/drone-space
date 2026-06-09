@@ -32,10 +32,9 @@ import services from '@/data/services';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
+import { redirect } from 'next/navigation';
 
-const service = services.find(
-  (c) => linkify(c.titleShort || c.title) == 'aerial-cinematography'
-);
+const service = services.find((c) => c.title == services[0].title);
 
 export const metadata: Metadata = {
   title: service?.metaTitle,
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: service?.metaTitle,
     description: service?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/${service?.titleShort || service?.title}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/${service?.title}`,
     type: 'website',
     images: [
       {
@@ -57,7 +56,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Service() {
-  if (!service) throw new Error('Service not foud');
+  if (!service) redirect('/404');
 
   return (
     <LayoutPage>

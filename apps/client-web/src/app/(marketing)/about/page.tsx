@@ -71,7 +71,7 @@ export default async function About() {
         }}
       />
 
-      <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="our-story" padded>
         <Grid gutter={{ base: 'xl', md: 48 }}>
           <GridCol span={{ base: 12, md: 6 }}>
             <AspectRatio ratio={1920 / 1080} h={'100%'}>
@@ -172,11 +172,7 @@ export default async function About() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="mission-vision"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="mission-vision" padded>
         <Grid align="center" gutter={'xl'}>
           <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2, sm: 1 }}>
             <IntroSection
@@ -293,7 +289,11 @@ export default async function About() {
         </Grid>
       </LayoutSection> */}
 
-      <LayoutSection id="spaces-and-hub" padded>
+      <LayoutSection
+        id="spaces-and-hub"
+        padded
+        bg={'var(--mantine-color-gray-1)'}
+      >
         <IntroSection
           props={{
             subTitle: 'Spaces & Hub',
@@ -307,11 +307,7 @@ export default async function About() {
       </LayoutSection>
 
       {students != null && (
-        <LayoutSection
-          id="testimonials"
-          padded
-          bg={'var(--mantine-color-gray-1)'}
-        >
+        <LayoutSection id="testimonials" padded>
           <IntroSection
             props={{
               subTitle: 'Testimonials',

@@ -48,7 +48,7 @@ export default async function Faq() {
         }}
       />
 
-      <LayoutSection id="training" padded bg={'var(--mantine-color-gray-1)'}>
+      <LayoutSection id="training" padded bordered>
         <GetLayout
           props={{
             header: (
@@ -68,7 +68,7 @@ export default async function Faq() {
         </GetLayout>
       </LayoutSection>
 
-      <LayoutSection id="reselling" padded>
+      <LayoutSection id="reselling" padded bordered>
         <GetLayout
           props={{
             header: (
@@ -87,7 +87,7 @@ export default async function Faq() {
         </GetLayout>
       </LayoutSection>
 
-      <LayoutSection id="general" padded bg={'var(--mantine-color-gray-1'}>
+      <LayoutSection id="general" padded bordered>
         <GetLayout
           props={{
             header: (
@@ -106,7 +106,7 @@ export default async function Faq() {
         </GetLayout>
       </LayoutSection>
 
-      <LayoutSection id="considerations" padded shadowed>
+      <LayoutSection id="considerations" padded>
         <GetLayout
           props={{
             header: (

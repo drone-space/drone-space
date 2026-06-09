@@ -118,7 +118,7 @@ export const trainingLinks = [
   ...courseList
     .map((course) => {
       return {
-        link: `/drone-training/${linkify(course.titleShort || course.title)}`,
+        link: `/drone-training/${linkify(course.title)}`,
         label: course.titleShort || course.title,
         leftSection: 'empty' as any,
         desc: course.linkDesc,
@@ -148,7 +148,7 @@ export const serviceLinks = [
 
   ...services.map((service) => {
     return {
-      link: `/drone-solutions/${linkify(service.titleShort || service.title)}`,
+      link: `/drone-solutions/${linkify(service.title)}`,
       label: service.titleShort || service.title,
       desc: service.linkDesc,
     };

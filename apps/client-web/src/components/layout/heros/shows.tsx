@@ -12,6 +12,7 @@ import {
 } from '@mantine/core';
 import videos from '@repo/constants/videos';
 import shows from '@/data/shows';
+import { SECTION_SPACING } from '@repo/constants/sizes';
 
 export default function Shows() {
   const data = shows;
@@ -36,7 +37,7 @@ export default function Shows() {
         </AspectRatio>
       </div>
 
-      <LayoutSection id="layout-hero-shows" padded>
+      <LayoutSection id="layout-hero-shows" padded={SECTION_SPACING * 2}>
         <Stack gap={48} align="center">
           <Stack gap={'xs'} align="center">
             <Title

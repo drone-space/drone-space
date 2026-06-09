@@ -21,7 +21,6 @@ import ImageDefault from '@repo/components/common/images/default';
 interface CourseProps {
   image: string;
   title: string;
-  titleShort?: string;
   desc: string;
 }
 
@@ -61,7 +60,7 @@ export default function Course({ data }: { data: CourseProps }) {
         </Box>
 
         <NextLink
-          href={`/drone-training/${linkify(data.titleShort || data.title)}`}
+          href={`/drone-training/${linkify(data.title)}`}
         >
           <Button
             color="sec.3"

@@ -119,7 +119,7 @@ export const trainingLinks = [
     .map((course) => {
       return {
         link: `/drone-training/${linkify(course.title)}`,
-        label: course.titleShort || course.title,
+        label: course.title,
         leftSection: 'empty' as any,
         desc: course.linkDesc,
       };

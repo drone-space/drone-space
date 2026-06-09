@@ -45,9 +45,7 @@ import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
 import NextLink from '@repo/components/common/anchor/next-link';
 
-const course = courseList.find(
-  (c) => linkify(c.titleShort || c.title) == 'remote-pilot-license'
-);
+const course = courseList.find((c) => c.title == courseList[0].title);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -55,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.title}`,
     type: 'website',
     images: [
       {
@@ -91,7 +89,7 @@ export default async function Course() {
             <IntroSection
               props={{
                 subTitle: 'Who Is This For?',
-                title: course.title,
+                title: course.titleFull || course.title,
               }}
               options={{ alignment: 'start' }}
             />

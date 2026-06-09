@@ -420,10 +420,10 @@ export default courses;
 
 export const courseList = [
   {
-    titleShort: 'Remote Pilot License',
     image: images.training.rpl,
     linkDesc: 'Earn your RPL to operate drones professionally.',
-    title: 'Remote Pilot License (RPL)',
+    title: 'Remote Pilot License',
+    titleFull: 'Remote Pilot License (RPL)',
     desc: 'The RPL course is designed for individuals who are interested in starting a career as a drone pilot or for unlicensed drone pilots who want to fly legally. This course is also suitable for individuals who are looking to add drone operation skills to their CVs. By obtaining an RPL, you will be able to legally operate drones in Kenya and potentially pursue a career in various industries, including cinematography, agriculture, and construction, survey and mapping among others.',
   },
   {
@@ -439,31 +439,29 @@ export const courseList = [
     desc: 'The Instructor Rating course is designed for individuals who already hold an RPL and are interested in becoming certified drone instructors. This course is ideal for RPL holders who have a passion for teaching and want to share their knowledge and experience with others. By completing this course, students will learn how to effectively instruct RPL students, create course materials, and design training programs. Upon completion, students will receive an instructor rating from the Kenya Civil Aviation Authority (KCAA), which will enable them to train and certify future RPL holders.',
   },
   {
-    titleShort: 'Drone Mapping',
     image: images.training.mapSur,
     linkDesc: 'Hands-on training in mapping, surveying, and data analysis.',
     title: 'Drone Mapping and Survey',
     desc: 'The Drone Mapping and Survey course is a 5-day course designed for RPL holders who want to learn how to use drones for mapping and surveying purposes. This course is suitable for engineers, surveyors, environmental scientists, among others. It is also ideal for individuals interested in starting a drone mapping and surveying business. By completing this course, students will acquire practical skills in drone operation, surveying techniques, and data analysis. They will also learn how to process and interpret data obtained from drone surveys to generate accurate maps and 3D models. ',
   },
   {
-    titleShort: 'Thermography',
     image: images.training.thermography,
     linkDesc: 'ITC Level I training for inspection and diagnostics.',
-    title: 'Thermography (ITC - Level I)',
+    title: 'Thermography',
+    titleFull: 'Thermography (ITC - Level I)',
     desc: 'The Level I Thermography Certification course is designed for professionals who want to develop practical skills in using thermography for inspections and diagnostics. This course is suitable for individuals working in industries such as electrical, mechanical, and building inspections, as well as professionals involved in research and development.',
   },
   {
-    titleShort: 'Agricultural Spraying',
     image: images.training.agriSpray,
     linkDesc: 'Comprehensive training in agricultural drone spraying.',
     title: 'Agricultural Spraying',
     desc: `Drone Space Kenya offers a comprehensive 8-day Agricultural Spraying Course combining 3 days of theory and 5 days of practical training. The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.`,
   },
   {
-    titleShort: 'Beyond Visual Line of Sight',
     image: images.training.bvlos,
     linkDesc: 'Train to operate drones beyond visual line of sight (BVLOS).',
-    title: 'Beyond Visual Line of Sight (BVLOS)',
+    title: 'Beyond Visual Line of Sight',
+    titleFull: 'Beyond Visual Line of Sight (BVLOS)',
     desc: 'Drone Space Kenya’s Beyond Visual Line of Sight (BVLOS) Training Program is designed for certified Remote Pilots seeking to safely and effectively operate drones beyond visual range.',
   },
 ];

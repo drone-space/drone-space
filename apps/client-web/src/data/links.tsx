@@ -118,7 +118,7 @@ export const trainingLinks = [
   ...courseList
     .map((course) => {
       return {
-        link: `/drone-training/${linkify(course.titleShort || course.title)}`,
+        link: `/drone-training/${linkify(course.title)}`,
         label: course.titleShort || course.title,
         leftSection: 'empty' as any,
         desc: course.linkDesc,

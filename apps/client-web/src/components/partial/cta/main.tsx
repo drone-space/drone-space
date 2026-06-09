@@ -122,8 +122,8 @@ export default function Main({
               <ModalContactTraining
                 props={{
                   initialValues: {
-                    subject: `${props.options.course.titleShort || props.options.course.title} Course Inquiry`,
-                    message: `I'm interested in enrolling in your ${props.options.course.titleShort || props.options.course.title} drone training program.`,
+                    subject: `${props.options.course.title} Course Inquiry`,
+                    message: `I'm interested in enrolling in your ${props.options.course.title} drone training program.`,
                   },
                 }}
               >
@@ -137,9 +137,7 @@ export default function Main({
                   variant="gradient"
                   size="xl"
                 >
-                  Enroll for{' '}
-                  {props.options.course.titleShort ||
-                    props.options.course.title}
+                  Enroll for {props.options.course.title}
                 </Button>
               </ModalContactTraining>
             )}
@@ -148,8 +146,8 @@ export default function Main({
               <ModalContactService
                 props={{
                   initialValues: {
-                    subject: `${props.options.service.titleShort || props.options.service.title} Service Inquiry`,
-                    message: `I am interested in your ${props.options.service.titleShort || props.options.service.title} service. Please send me a quote.`,
+                    subject: `${props.options.service.title} Service Inquiry`,
+                    message: `I am interested in your ${props.options.service.title} service. Please send me a quote.`,
                   },
                 }}
               >

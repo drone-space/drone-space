@@ -32,9 +32,7 @@ import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
 
-const course = courseList.find(
-  (c) => linkify(c.titleShort || c.title) == 'instructor-rating'
-);
+const course = courseList.find((c) => c.title == courseList[2].title);
 
 export const metadata: Metadata = {
   title: course?.title,
@@ -42,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.titleShort || course?.title}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.title}`,
     type: 'website',
     images: [
       {

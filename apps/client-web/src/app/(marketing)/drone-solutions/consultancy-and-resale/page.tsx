@@ -33,9 +33,7 @@ import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
 
-const service = services.find(
-  (c) => linkify(c.titleShort || c.title) == 'consultancy-and-resale'
-);
+const service = services.find((c) => c.title == services[6].title);
 
 export const metadata: Metadata = {
   title: service?.metaTitle,
@@ -43,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: service?.metaTitle,
     description: service?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/${service?.titleShort || service?.title}`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/${service?.title}`,
     type: 'website',
     images: [
       {

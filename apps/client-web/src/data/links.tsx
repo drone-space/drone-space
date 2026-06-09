@@ -148,7 +148,7 @@ export const serviceLinks = [
 
   ...services.map((service) => {
     return {
-      link: `/drone-solutions/${linkify(service.titleShort || service.title)}`,
+      link: `/drone-solutions/${linkify(service.title)}`,
       label: service.titleShort || service.title,
       desc: service.linkDesc,
     };

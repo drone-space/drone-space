@@ -73,7 +73,7 @@ export default async function LighShow() {
     <LayoutPage>
       <HeroShows />
 
-      <LayoutSection id="page-lightshow-intro" containerized={false}>
+      <LayoutSection id="page-lightshow-intro" containerized={false} padded>
         <Grid gutter={0}>
           <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
             <ImageDefault
@@ -121,6 +121,7 @@ export default async function LighShow() {
         id="page-lightshow-understand"
         bg={'var(--mantine-color-gray-1)'}
         containerized={false}
+        padded
       >
         <Grid gutter={0}>
           <GridCol
@@ -159,7 +160,7 @@ export default async function LighShow() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection id="page-lightshow-video" containerized={false}>
+      <LayoutSection id="page-lightshow-video" containerized={false} padded>
         <Grid gutter={0}>
           <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
             <AspectRatio
@@ -219,6 +220,7 @@ export default async function LighShow() {
         id="page-lightshow-why"
         containerized={false}
         bg={'var(--mantine-color-gray-1)'}
+        padded
       >
         <Grid gutter={0}>
           <GridCol
@@ -274,9 +276,9 @@ export default async function LighShow() {
 
       <LayoutSection
         id="page-lightshow-applications"
-        padded
         shadowed
         containerized={'responsive'}
+        padded
       >
         <IntroSection
           props={{
@@ -298,7 +300,6 @@ export default async function LighShow() {
 
       <LayoutSection
         id="page-lightshow-cta1"
-        padded={96}
         containerized={'responsive'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
         style={{
@@ -307,6 +308,7 @@ export default async function LighShow() {
           backgroundSize: 'cover',
         }}
         pos={'relative'}
+        padded
       >
         <Box
           pos={'absolute'}
@@ -392,8 +394,8 @@ export default async function LighShow() {
 
       <LayoutSection
         id="page-lightshow-faq"
-        padded
         containerized={'responsive'}
+        padded
       >
         <Grid gutter={{ base: 'xl', md: 'md' }}>
           <GridCol span={{ base: 12, md: 5.5 }}>
@@ -432,9 +434,9 @@ export default async function LighShow() {
 
       <LayoutSection
         id="page-lightshow-pricing"
-        padded
         containerized={'responsive'}
         bg={'var(--mantine-color-gray-1)'}
+        padded
       >
         <IntroSection
           props={{
@@ -474,8 +476,8 @@ export default async function LighShow() {
 
       <LayoutSection
         id="page-lightshow-timeline"
-        padded
         containerized={'responsive'}
+        padded
       >
         <IntroSection
           props={{

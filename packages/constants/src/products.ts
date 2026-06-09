@@ -1,8 +1,9 @@
 import { images } from './images';
 import accessories from './accessories';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+// import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 
-const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`;
+// const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`;
+const baseUrl = `/images`;
 
 export const products = [
   // {
@@ -656,7 +657,8 @@ export const products = [
     },
     kit: {
       basic: {
-        image: `${baseUrl}/products/drones/dji/agras/t50/box/collective.webp`,
+        // image: `${baseUrl}/products/drones/dji/agras/t50/drone/drone-front.webp`,
+        image: null,
         contents: [
           {
             qty: 1,
@@ -665,14 +667,49 @@ export const products = [
           },
           {
             qty: 1,
+            item: 'Spray Tank',
+            image: `${baseUrl}/products/drones/dji/agras/t50/box/spray-tank.webp`,
+          },
+          {
+            qty: 1,
             item: 'Remote Controller',
             image: `${baseUrl}/products/drones/dji/agras/t50/box/controller.webp`,
           },
           {
             qty: 1,
-            item: 'Intelligent Flight Battery',
-            image: `${baseUrl}/products/drones/dji/agras/t50/box/battery.webp`,
+            item: 'Remote Controller Lanyard/Strap',
+            image: `${baseUrl}/products/drones/dji/agras/t50/box/lanyard.webp`,
           },
+          // {
+          //   qty: 1,
+          //   item: 'Intelligent Flight Battery (DB1560)',
+          //   image: `${baseUrl}/products/drones/dji/agras/t50/box/battery-db1560.webp`,
+          // },
+          // {
+          //   qty: 1,
+          //   item: 'Intelligent Flight Battery (WB37)',
+          //   image: `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
+          // },
+          {
+            qty: 1,
+            item: 'USB-C Cable',
+            image: `${baseUrl}/products/drones/dji/agras/t50/box/ucb-c-cable.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Air-Cooled Heat Sink',
+            image: `${baseUrl}/products/drones/dji/agras/t50/box/heat-sink.webp`,
+          },
+          {
+            qty: 1,
+            item: 'Tool Box',
+            image: `${baseUrl}/products/drones/dji/agras/t50/box/tool-kit.webp`,
+          },
+          // {
+          //   qty: 1,
+          //   item: 'Agras Series Generator (D14000iE)',
+          //   image: `${baseUrl}/products/drones/dji/agras/t50/accessories/generator.webp`,
+          // },
           // {
           //   qty: 1,
           //   item: 'Enterprise Series RTK Module',
@@ -683,17 +720,13 @@ export const products = [
           //   item: 'Charging Hub',
           //   image: `${baseUrl}/products/drones/dji/agras/t50/box/charging-hub.webp`,
           // },
-          {
-            qty: 1,
-            item: 'Coaxial Twin Rotor',
-            image: `${baseUrl}/products/drones/dji/agras/t50/box/coaxial.webp`,
-          },
-          {
-            qty: 1,
-            item: 'Remote Controller Lanyard',
-            image: `${baseUrl}/products/drones/dji/agras/t50/box/lanyard.webp`,
-          },
+          // {
+          //   qty: 1,
+          //   item: 'Coaxial Twin Rotor',
+          //   image: `${baseUrl}/products/drones/dji/agras/t50/box/coaxial.webp`,
+          // },
         ],
+        otherContents: ['Screws and other accessories', 'Tools', 'Manuals'],
       },
       flyMore: null,
     },
@@ -701,12 +734,21 @@ export const products = [
       battery: accessories.find((a) => a.title.short == 'Agras Series Battery'),
       other: [
         accessories.find(
-          (a) => a.title.short == 'Agras Series Generator (D12000iE)'
+          (a) => a.title.short == 'Intelligent Flight Battery (DB1560)'
+        ),
+        accessories.find(
+          (a) => a.title.short == 'T50 C10000 Intelligent Charger'
         ),
         accessories.find(
           (a) => a.title.short == 'Agras Series Spreading System'
         ),
-        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
+        accessories.find(
+          (a) => a.title.short == 'Agras Series Generator (D14000iE)'
+        ),
+        accessories.find((a) => a.title.short == 'T50 Charging Cable'),
+        accessories.find(
+          (a) => a.title.short == 'Intelligent Flight Battery (WB37)'
+        ),
       ].filter((i) => i != undefined),
     },
     category: 'agriculture',

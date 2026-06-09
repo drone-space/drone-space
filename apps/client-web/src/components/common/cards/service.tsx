@@ -43,7 +43,7 @@ export default function Service({ data }: { data: typeService }) {
             </Text>
           </div>
 
-          <NextLink inherit href={`/drone-solutions#${linkify(data.title)}`}>
+          <NextLink inherit href={`/drone-solutions/${linkify(data.title)}`}>
             <Button
               color="white"
               variant={'outline'}

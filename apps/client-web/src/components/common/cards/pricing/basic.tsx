@@ -66,7 +66,7 @@ export default function Basic({
           )}
 
           <Text fz={'md'} fw={500} mb={'md'}>
-            Kshs.{' '}
+            Kes.{' '}
             <Text component="span" inherit fz={28} fw={'bold'}>
               <NumberFormatter
                 value={

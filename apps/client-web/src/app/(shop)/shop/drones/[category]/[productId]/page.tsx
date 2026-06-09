@@ -128,7 +128,7 @@ export default async function DroneDetail({
                   mt={'md'}
                 >
                   <Text>
-                    Kshs.{' '}
+                    Kes.{' '}
                     <Text
                       component="span"
                       inherit
@@ -162,7 +162,7 @@ export default async function DroneDetail({
                       />
 
                       <Text>
-                        Kshs.{' '}
+                        Kes.{' '}
                         <Text
                           component="span"
                           inherit
@@ -219,7 +219,7 @@ export default async function DroneDetail({
                       <Text inherit fz={'sm'}>
                         Shipping Cost:{' '}
                         <Text component="span" inherit fz={'md'}>
-                          Kshs.{' '}
+                          Kes.{' '}
                           <Text component="span" inherit fw={500}>
                             <NumberFormatter
                               value={product.additionalCosts.shipping}
@@ -237,7 +237,7 @@ export default async function DroneDetail({
                 <Text fz={'sm'}>
                   Import Permits:{' '}
                   <Text component="span" inherit fw={500}>
-                    Kshs.{' '}
+                    Kes.{' '}
                     <Text component="span" inherit tt={'uppercase'}>
                       3,000
                     </Text>{' '}
@@ -250,7 +250,7 @@ export default async function DroneDetail({
                 <Text fz={'sm'} mt={'xs'}>
                   Facilitiation Fee:{' '}
                   <Text component="span" inherit fw={500}>
-                    Kshs.{' '}
+                    Kes.{' '}
                     <Text component="span" inherit tt={'uppercase'}>
                       18,000
                     </Text>{' '}
@@ -397,7 +397,10 @@ export default async function DroneDetail({
                 <GridCol
                   span={{
                     base: 6,
-                    xs: 6,
+                    xs:
+                      product?.kit?.flyMore || product?.accessories?.other
+                        ? 6
+                        : 12,
                   }}
                 >
                   <TabsTab w={'100%'} value="basic">
@@ -536,19 +539,21 @@ export default async function DroneDetail({
                     span={{ base: 12, md: 5 }}
                     order={{ base: 1, md: 3 }}
                   >
-                    <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
-                      <ImageDefault
-                        src={
-                          product?.kit?.basic.image
-                            ? product?.kit.basic.image
-                            : product?.images[0] || ''
-                        }
-                        alt={`${product.title.long || ''} box contents`}
-                        fit={'contain'}
-                        loading="lazy"
-                        height={{ base: 320, xs: 400, md: 320, lg: 360 }}
-                      />
-                    </Card>
+                    {product?.kit?.basic.image === null ? null : (
+                      <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
+                        <ImageDefault
+                          src={
+                            product?.kit?.basic.image
+                              ? product?.kit.basic.image
+                              : product?.images[0] || ''
+                          }
+                          alt={`${product.title.long || ''} box contents`}
+                          fit={'contain'}
+                          loading="lazy"
+                          height={{ base: 320, xs: 400, md: 320, lg: 360 }}
+                        />
+                      </Card>
+                    )}
 
                     <Box pos={'sticky'} top={64}>
                       <Title order={3} fz={{ md: 'xl' }}>
@@ -567,6 +572,13 @@ export default async function DroneDetail({
                             </Text>
                           </GridCol>
                         ))}
+
+                        {product.kit.basic.otherContents &&
+                          product.kit.basic.otherContents.map((oi) => (
+                            <GridCol key={oi} span={{ md: 12 }}>
+                              <Text fz={{ md: 'sm' }}>{oi}</Text>
+                            </GridCol>
+                          ))}
                       </Grid>
 
                       <Text mt={'xl'}>
@@ -590,6 +602,40 @@ export default async function DroneDetail({
                           )}
                         </Text>
                       </Text>
+
+                      {product?.additionalCosts && (
+                        <Group
+                          gap={5}
+                          mt={5}
+                          c={'dimmed'}
+                          align="start"
+                          wrap="nowrap"
+                        >
+                          <Group mt={2}>
+                            <IconInfoCircle
+                              size={ICON_SIZE - 4}
+                              stroke={ICON_STROKE_WIDTH}
+                            />
+                          </Group>
+
+                          <Text inherit fz={'sm'}>
+                            <Text component="span" inherit fw={500}>
+                              Additional Costs:
+                            </Text>
+                            <br />
+                            Shipping Cost:{' '}
+                            <Text component="span" inherit fz={'md'}>
+                              Kes.{' '}
+                              <Text component="span" inherit fw={500}>
+                                <NumberFormatter
+                                  value={product.additionalCosts.shipping}
+                                  thousandSeparator
+                                />
+                              </Text>
+                            </Text>
+                          </Text>
+                        </Group>
+                      )}
                     </Box>
                   </GridCol>
                 </Grid>
@@ -609,7 +655,7 @@ export default async function DroneDetail({
                     span={{ base: 12, md: 6 }}
                     order={{ base: 3, md: 1 }}
                   >
-                    <Grid mt={'xl'}>
+                    <Grid>
                       {kitContents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
                           <Card withBorder bg={'var(--mantine-color-body)'}>
@@ -809,7 +855,7 @@ export default async function DroneDetail({
                     </Grid>
 
                     <Text mt={'xl'}>
-                      Kshs.{' '}
+                      Kes.{' '}
                       <Text
                         component="span"
                         inherit
@@ -853,13 +899,13 @@ export default async function DroneDetail({
                     />
                   }
                 >
-                  The following accessories/extras do not come with the{' '}
-                  {product.title.short} by default. They must be purchased
-                  separately, and therefore will be{' '}
+                  The following accessories/extras are not included in the{' '}
+                  {product.title.short} box by default. They come separately and
+                  are therefore{' '}
                   <Text component={'span'} inherit fw={500}>
                     charged separately
                   </Text>
-                  .
+                  . The prices for each are incuded below.
                 </Alert>
 
                 <Grid mt={'xl'}>

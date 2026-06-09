@@ -37,57 +37,52 @@ export default function Home() {
   const todayStart = new Date(now);
   todayStart.setHours(0, 0, 0, 0);
 
-  const filteredData = data.filter((i) => {
-    return i.dates.some((d) => {
-      // 2. Create a copy of the item's date and set it to midnight
-      const itemDateStart = new Date(d);
-      itemDateStart.setHours(0, 0, 0, 0);
+  const sortedData = sortArray(data, (i) => i.dates[0], Order.ASCENDING);
 
-      // 3. Compare the dates (inclusive of today)
-      return itemDateStart.getTime() >= todayStart.getTime();
-    });
-  });
+  const filteredData = [
+    ...filterItems({
+      list: [
+        {
+          image: images.carousel.home.image7,
+          badge: 'AI',
+          title: 'Introduction to AI and its Real-World Applications',
+          intro:
+            'A practical 3-day intensive course designed for professionals, enterpreneurs, students, managers, educators, marketers, business owners, and anyone who wants to understand and leverage the power of AI.',
+          duration: (
+            <Box mb={'md'}>
+              <Text inherit>
+                Duration:{' '}
+                <Text component={'span'} inherit fw={'bold'}>
+                  3 days
+                </Text>
+              </Text>
 
-  const slides = [
-    {
-      image: images.carousel.home.image7,
-      badge: 'AI',
-      title: 'Introduction to AI and its Real-World Applications',
-      intro:
-        'A practical 3-day intensive course designed for professionals, enterpreneurs, students, managers, educators, marketers, business owners, and anyone who wants to understand and leverage the power of AI.',
-      duration: (
-        <Box mb={'md'}>
-          <Text inherit>
-            Duration:{' '}
-            <Text component={'span'} inherit fw={'bold'}>
-              3 days
-            </Text>
-          </Text>
+              <Text inherit>
+                Time:{' '}
+                <Text component={'span'} inherit fw={'bold'}>
+                  9:00 AM - 4:00 PM
+                </Text>
+              </Text>
 
-          <Text inherit>
-            Time:{' '}
-            <Text component={'span'} inherit fw={'bold'}>
-              9:00 AM - 4:00 PM
-            </Text>
-          </Text>
-
-          <Text inherit>
-            Venue:{' '}
-            <Text component={'span'} inherit fw={'bold'}>
-              Drone Space (Inc. Lunch & Refreshments)
-            </Text>
-          </Text>
-        </Box>
-      ),
-      dates: [
-        // intake date (s)
-        new Date(2026, 5, 22),
+              <Text inherit>
+                Venue:{' '}
+                <Text component={'span'} inherit fw={'bold'}>
+                  Drone Space (Inc. Lunch & Refreshments)
+                </Text>
+              </Text>
+            </Box>
+          ),
+          dates: [
+            // intake date (s)
+            new Date(2026, 5, 22),
+          ],
+          price: {
+            former: 170000,
+            current: 22000,
+          },
+        },
       ],
-      price: {
-        former: 170000,
-        current: 22000,
-      },
-    },
+    }),
     {
       image: images.carousel.home.image1,
       badge: 'RPL',
@@ -130,8 +125,10 @@ export default function Home() {
         current: 136000,
       },
     },
-    ...filteredData,
-  ].map((slide, index) => {
+    ...filterItems({ list: sortedData }),
+  ];
+
+  const slides = filteredData.map((slide, index) => {
     // const cycle = ['start', 'center', 'end', 'center'];
     // const alignment: any = cycle[index % cycle.length];
     const alignment: any = 'start';
@@ -221,7 +218,7 @@ export default function Home() {
                             format: 'numeric',
                           }).date
                         )}{' '}
-                        {slide.dates.map((d, i) => (
+                        {slide.dates.map((d: any, i: any) => (
                           <span key={d.toISOString()}>
                             {getDayNumber(
                               getRegionalDate(d, {
@@ -312,76 +309,91 @@ function getDayNumber(dateStr: string): number {
   return day;
 }
 
-const data = sortArray(
-  [
-    {
-      image: images.carousel.home.image3,
-      badge: 'IR',
-      title: 'Instructor Rating',
-      intro:
-        'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
-      duration: '14 - 21 days',
-      dates: [
-        // intake date (s)
-        new Date(2026, 5, 15),
-      ],
-      price: {
-        former: null,
-        current: 250000,
-      },
+const data = [
+  {
+    image: images.carousel.home.image3,
+    badge: 'IR',
+    title: 'Instructor Rating',
+    intro:
+      'Take your drone career to new heights—become a certified drone instructor and lead the next generation of pilots',
+    duration: '14 - 21 days',
+    dates: [
+      // intake date (s)
+      new Date(2026, 5, 15),
+    ],
+    price: {
+      former: null,
+      current: 250000,
     },
+  },
 
-    {
-      image: images.carousel.home.image6,
-      badge: 'Thermal',
-      title: 'Thermography (ITC Level I)',
-      intro:
-        'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
-      duration: '5 days',
-      dates: [
-        // intake date (s)
-        new Date(2026, 4, 4),
-      ],
-      price: {
-        former: null,
-        current: 200000,
-      },
+  {
+    image: images.carousel.home.image6,
+    badge: 'Thermal',
+    title: 'Thermography (ITC Level I)',
+    intro:
+      'Master thermal imaging with globally recognized ITC certification—ideal for inspections, search & rescue, and more',
+    duration: '5 days',
+    dates: [
+      // intake date (s)
+      new Date(2026, 4, 4),
+    ],
+    price: {
+      former: null,
+      current: 200000,
     },
+  },
 
-    {
-      image: images.carousel.home.image5,
-      badge: 'Agriculture',
-      title: 'Agricultural Spraying',
-      intro:
-        'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
-      duration: '10 days',
-      dates: [
-        // intake date (s)
-        new Date(2026, 5, 2),
-      ],
-      price: {
-        former: null,
-        current: 70000,
-      },
+  {
+    image: images.carousel.home.image5,
+    badge: 'Agriculture',
+    title: 'Agricultural Spraying',
+    intro:
+      'Revolutionize farming—learn precision drone spraying techniques to boost crop yield and cut costs',
+    duration: '10 days',
+    dates: [
+      // intake date (s)
+      new Date(2026, 5, 2),
+    ],
+    price: {
+      former: null,
+      current: 70000,
     },
+  },
 
-    {
-      image: images.carousel.home.image2,
-      badge: 'Masterclass',
-      title: 'Drone Mapping & Survey (Masterclass)',
-      intro:
-        'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
-      duration: '5 days',
-      dates: [
-        // intake date (s)
-        new Date(2026, 5, 22),
-      ],
-      price: {
-        former: null,
-        current: 110000,
-      },
+  {
+    image: images.carousel.home.image2,
+    badge: 'Masterclass',
+    title: 'Drone Mapping & Survey (Masterclass)',
+    intro:
+      'Transform raw data into actionable insights—get hands-on with drone mapping, photogrammetry, and survey techniques',
+    duration: '5 days',
+    dates: [
+      // intake date (s)
+      new Date(2026, 5, 22),
+    ],
+    price: {
+      former: null,
+      current: 110000,
     },
-  ],
-  (i) => i.dates[0],
-  Order.ASCENDING
-);
+  },
+];
+
+function filterItems(params: { list: any[] }) {
+  const now = new Date();
+
+  // 1. Create a copy of 'now' and set it to midnight today
+  const todayStart = new Date(now);
+  todayStart.setHours(0, 0, 0, 0);
+
+  return params.list.filter((i) => {
+    return i.dates.some((d: any) => {
+      // 2. Create a copy of the item's date and set it to midnight
+      const itemDateStart = new Date(d);
+      itemDateStart.setHours(0, 0, 0, 0);
+
+      // 3. Compare the dates (inclusive of today)
+      return itemDateStart.getTime() >= todayStart.getTime();
+    });
+  });
+}

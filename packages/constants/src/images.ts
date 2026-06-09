@@ -102,6 +102,7 @@ export const images = {
 
   carousel: {
     home: {
+      image7: `${baseUrl.droneSpace}/backgrounds/bg-ai.jpg`,
       image1: `${baseUrl.droneSpace}/carousel/home/image-1.webp`,
       image2: `${baseUrl.droneSpace}/carousel/home/image-2.png`,
       image3: `${baseUrl.droneSpace}/carousel/home/image-3.webp`,

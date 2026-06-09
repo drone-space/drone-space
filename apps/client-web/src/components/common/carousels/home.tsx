@@ -26,6 +26,7 @@ import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 import ModalRequirements from '../modals/requirements';
 import WrapperUnderlayBlur from '@repo/components/wrappers/underlays/blur';
+import { SECTION_SPACING } from '@repo/constants/sizes';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
@@ -48,6 +49,45 @@ export default function Home() {
   });
 
   const slides = [
+    {
+      image: images.carousel.home.image7,
+      badge: 'AI',
+      title: 'Introduction to AI and its Real-World Applications',
+      intro:
+        'A practical 3-day intensive course designed for professionals, enterpreneurs, students, managers, educators, marketers, business owners, and anyone who wants to understand and leverage the power of AI.',
+      duration: (
+        <Box mb={'md'}>
+          <Text inherit>
+            Duration:{' '}
+            <Text component={'span'} inherit fw={'bold'}>
+              3 days
+            </Text>
+          </Text>
+
+          <Text inherit>
+            Time:{' '}
+            <Text component={'span'} inherit fw={'bold'}>
+              9:00 AM - 4:00 PM
+            </Text>
+          </Text>
+
+          <Text inherit>
+            Venue:{' '}
+            <Text component={'span'} inherit fw={'bold'}>
+              Drone Space (Inc. Lunch & Refreshments)
+            </Text>
+          </Text>
+        </Box>
+      ),
+      dates: [
+        // intake date (s)
+        new Date(2026, 5, 22),
+      ],
+      price: {
+        former: 170000,
+        current: 22000,
+      },
+    },
     {
       image: images.carousel.home.image1,
       badge: 'RPL',
@@ -107,9 +147,9 @@ export default function Home() {
             position: 'relative',
           }}
         >
-          <Overlay backgroundOpacity={0.6} style={{ zIndex: 0 }} />
+          <Overlay backgroundOpacity={0.5} style={{ zIndex: 0 }} />
 
-          <WrapperUnderlayBlur props={{ blur: 8, saturate: 150 }}>
+          <WrapperUnderlayBlur props={{ blur: 0, saturate: 100 }}>
             <div style={{ position: 'relative', zIndex: 1 }}>
               <LayoutSection
                 id={`carousel-home-slide-${index}`}
@@ -119,8 +159,9 @@ export default function Home() {
                 <Stack
                   gap={'xl'}
                   align={alignment}
-                  justify="center"
-                  mih={{ base: 720, sm: 640 }}
+                  // justify="center"
+                  mih={{ base: 900, sm: 640 }}
+                  pt={SECTION_SPACING}
                 >
                   <Badge color="sec.3" c={'pri.8'} size="lg">
                     {now.toLocaleString('en-GB', { month: 'long' })}{' '}
@@ -139,21 +180,23 @@ export default function Home() {
 
                   <Divider w={{ base: '100%', md: '50%' }} color="sec.3" />
 
-                  <div>
-                    <Text ta={alignment} fz={'sm'}>
-                      Theory Classes:{' '}
-                      <Text component={'span'} inherit fw={'500'}>
-                        {LOCATIONS.MAIN.LOCATION}
+                  {index > 0 && (
+                    <div>
+                      <Text ta={alignment} fz={'sm'}>
+                        Theory Classes:{' '}
+                        <Text component={'span'} inherit fw={'500'}>
+                          {LOCATIONS.MAIN.LOCATION}
+                        </Text>
                       </Text>
-                    </Text>
 
-                    <Text ta={alignment} fz={'sm'}>
-                      Practicals:{' '}
-                      <Text component={'span'} inherit fw={'500'}>
-                        {LOCATIONS.AIRFIELD.LOCATION}
+                      <Text ta={alignment} fz={'sm'}>
+                        Practicals:{' '}
+                        <Text component={'span'} inherit fw={'500'}>
+                          {LOCATIONS.AIRFIELD.LOCATION}
+                        </Text>
                       </Text>
-                    </Text>
-                  </div>
+                    </div>
+                  )}
 
                   <div>
                     {typeof slide.duration == 'string' ? (
@@ -221,11 +264,13 @@ export default function Home() {
                       <Button variant={'gradient'}>Enroll Now</Button>
                     </ModalContactTraining>
 
-                    <ModalRequirements>
-                      <Button color="white" variant="outline">
-                        Requirements & Details
-                      </Button>
-                    </ModalRequirements>
+                    {index > 0 && (
+                      <ModalRequirements>
+                        <Button color="white" variant="outline">
+                          Requirements & Details
+                        </Button>
+                      </ModalRequirements>
+                    )}
                   </Group>
                 </Stack>
               </LayoutSection>
@@ -278,7 +323,7 @@ const data = sortArray(
       duration: '14 - 21 days',
       dates: [
         // intake date (s)
-        new Date(2026, 4, 11),
+        new Date(2026, 5, 15),
       ],
       price: {
         former: null,
@@ -329,7 +374,7 @@ const data = sortArray(
       duration: '5 days',
       dates: [
         // intake date (s)
-        new Date(2026, 4, 25),
+        new Date(2026, 5, 22),
       ],
       price: {
         former: null,

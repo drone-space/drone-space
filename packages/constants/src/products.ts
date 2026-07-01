@@ -308,7 +308,7 @@ export const products = [
     brand: 'dji',
     make: 'mavic',
     model: null,
-    new: true,
+    new: false,
     iframe: {
       src: 'https://www.youtube.com/embed/BNEmDcQr6hk',
       title: 'Introducing DJI Mavic 4 Pro',
@@ -2214,7 +2214,7 @@ export const products = [
     brand: 'dji',
     make: 'mini',
     model: null,
-    new: true,
+    new: false,
     iframe: {
       src: 'https://www.youtube.com/embed/jRzpagPx6uY',
       title:

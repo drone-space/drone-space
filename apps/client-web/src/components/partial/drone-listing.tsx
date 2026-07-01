@@ -408,9 +408,9 @@ export default function DroneListing() {
           </Stack>
         ) : (
           <Grid mt={'xl'}>
-            {items.map((p) => (
+            {items.map((p, i) => (
               <GridCol
-                key={p}
+                key={`${p}-${i}`}
                 span={
                   !params.layout
                     ? { base: 12, xs: 6, md: 4 }

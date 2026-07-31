@@ -212,28 +212,7 @@ export default function Home() {
                     <Text ta={alignment}>
                       {slide.dates.length > 1 ? 'Intake Dates' : 'Schedule'}:{' '}
                       <Text component={'span'} inherit fw={'bold'}>
-                        {getMonthName(
-                          getRegionalDate(slide.dates[0], {
-                            locale: 'en-GB',
-                            format: 'numeric',
-                          }).date
-                        )}{' '}
-                        {slide.dates.map((d: any, i: any) => (
-                          <span key={d.toISOString()}>
-                            {getDayNumber(
-                              getRegionalDate(d, {
-                                locale: 'en-GB',
-                                format: 'numeric',
-                              }).date
-                            )}
-                            {i === slide.dates.length - 2
-                              ? ' and '
-                              : i === slide.dates.length - 1
-                                ? ''
-                                : ', '}
-                          </span>
-                        ))}
-                        {slide.dates.length > 1 ? '' : `, ${now.getFullYear()}`}
+                        {formatRplExamDates(slide.dates)}
                       </Text>
                     </Text>
 
@@ -397,3 +376,39 @@ function filterItems(params: { list: any[] }) {
     });
   });
 }
+
+export const formatRplExamDates = (
+  rplExamDates: Date[],
+  year = new Date().getFullYear()
+): React.ReactNode => {
+  if (!rplExamDates.length) return null;
+
+  const month = getMonthName(
+    getRegionalDate(rplExamDates[0], {
+      locale: 'en-GB',
+      format: 'numeric',
+    }).date
+  );
+
+  return (
+    <>
+      {month}{' '}
+      {rplExamDates.map((d, i) => (
+        <span key={d.toISOString()}>
+          {getDayNumber(
+            getRegionalDate(d, {
+              locale: 'en-GB',
+              format: 'numeric',
+            }).date
+          )}
+          {i === rplExamDates.length - 2
+            ? ' and '
+            : i === rplExamDates.length - 1
+              ? ''
+              : ', '}
+        </span>
+      ))}
+      {rplExamDates.length === 1 && `, ${year}`}
+    </>
+  );
+};

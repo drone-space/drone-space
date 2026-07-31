@@ -39,6 +39,8 @@ export default function Home() {
 
   const sortedData = sortArray(data, (i) => i.dates[0], Order.ASCENDING);
 
+  const rplExamDates = [new Date(2026, 7, 10), new Date(2026, 7, 24)];
+
   const filteredData = [
     ...filterItems({
       list: [
@@ -98,9 +100,9 @@ export default function Home() {
           </Text>
 
           <Text inherit>
-            KCAA Exam:{' '}
+            KCAA Exam Dates:{' '}
             <Text component={'span'} inherit fw={'bold'}>
-              waiting times are subject to KCAA scheduling
+              {formatRplExamDates(rplExamDates)}
             </Text>
           </Text>
 
@@ -114,11 +116,11 @@ export default function Home() {
       ),
       dates: [
         // intake date (s)
-        new Date(2026, 5, 2),
-        new Date(2026, 5, 8),
-        new Date(2026, 5, 15),
-        new Date(2026, 5, 22),
-        new Date(2026, 5, 29),
+        new Date(2026, 7, 3),
+        new Date(2026, 7, 10),
+        new Date(2026, 7, 17),
+        new Date(2026, 7, 24),
+        new Date(2026, 7, 31),
       ],
       price: {
         former: 170000,

@@ -18,8 +18,6 @@ export default function FeatureDrone({
 }) {
   const [opened, setOpened] = useState(false);
 
-  // const { modal, setModal } = useStoreModal();
-
   const close = () => {
     setCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN, true, {
       expiryInSeconds: 60 * 60 * 24 * 7,
@@ -27,19 +25,17 @@ export default function FeatureDrone({
       sameSite: 'Lax',
     });
 
-    // setModal({ newsletter: modal?.newsletter ?? false, featuredDrone: false });
     setOpened(false);
   };
 
   useEffect(() => {
-    // if (modal?.featuredDrone == null) return;
-    // if (modal?.featuredDrone == true) return;
     if (options?.auto == false) return;
 
     const featDroneSeen = getCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN);
-    if (featDroneSeen && featDroneSeen == 'true') return;
 
-    // setModal({ newsletter: modal?.newsletter ?? false, featuredDrone: true });
+    // Check if it's truthy (handles both boolean true or legacy string 'true')
+    if (featDroneSeen) return;
+
     setOpened(true);
   }, []);
 
@@ -64,12 +60,6 @@ export default function FeatureDrone({
         <span
           style={{ display: 'inline' }}
           onClick={() => {
-            // if (modal?.featuredDrone == true) return;
-
-            // setModal({
-            //   newsletter: modal?.newsletter ?? false,
-            //   featuredDrone: true,
-            // });
             setOpened(true);
           }}
         >

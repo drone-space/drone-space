@@ -216,7 +216,7 @@ export const products = [
       ],
     },
     price: {
-      former: 370000,
+      former: 396000,
       latter: null,
     },
     kit: {
@@ -292,7 +292,7 @@ export const products = [
         ],
 
         price: {
-          former: 105000,
+          former: 99000,
           latter: null,
         },
       },
@@ -506,7 +506,7 @@ export const products = [
       ],
     },
     price: {
-      former: 290000,
+      former: 310000,
       latter: null,
     },
     kit: {
@@ -580,7 +580,7 @@ export const products = [
           },
         ],
         price: {
-          former: 79000,
+          former: 80000,
           latter: null,
         },
       },
@@ -652,7 +652,7 @@ export const products = [
       ],
     },
     price: {
-      former: 2315000,
+      former: 2499000,
       latter: null,
     },
     kit: {
@@ -1149,7 +1149,7 @@ export const products = [
       ],
     },
     price: {
-      former: 1125000,
+      former: 1350000,
       latter: null,
     },
     kit: {
@@ -1455,7 +1455,7 @@ export const products = [
       ],
     },
     price: {
-      former: 690000,
+      former: 828000,
       latter: null,
     },
     kit: {
@@ -1551,7 +1551,7 @@ export const products = [
         ],
 
         price: {
-          former: 135000,
+          former: 162000,
           latter: null,
         },
       },
@@ -1620,7 +1620,7 @@ export const products = [
       ],
     },
     price: {
-      former: 909000,
+      former: 1090800,
       latter: null,
     },
     kit: {
@@ -1759,7 +1759,7 @@ export const products = [
       ],
     },
     price: {
-      former: 951400,
+      former: 1141680,
       latter: null,
     },
     kit: {
@@ -1855,7 +1855,7 @@ export const products = [
         ],
 
         price: {
-          former: 135000,
+          former: 162000,
           latter: null,
         },
       },
@@ -2098,7 +2098,7 @@ export const products = [
       ],
     },
     price: {
-      former: 230000,
+      former: 276000,
       latter: null,
     },
     kit: {
@@ -2199,7 +2199,7 @@ export const products = [
         ],
 
         price: {
-          former: 40000,
+          former: 48000,
           latter: null,
         },
       },
@@ -2274,7 +2274,7 @@ export const products = [
       ],
     },
     price: {
-      former: 2032800,
+      former: 2439360,
       latter: null,
     },
     kit: {
@@ -2442,7 +2442,7 @@ export const products = [
       ],
     },
     price: {
-      former: 726000,
+      former: 871200,
       latter: null,
     },
     kit: {
@@ -2592,7 +2592,7 @@ export const products = [
       ],
     },
     price: {
-      former: 990000,
+      former: 1188000,
       latter: null,
     },
     kit: {
@@ -3037,7 +3037,7 @@ export const products = [
       ],
     },
     price: {
-      former: 1650000,
+      former: 1980000,
       latter: null,
     },
     kit: {
@@ -3167,7 +3167,7 @@ export const products = [
       ],
     },
     price: {
-      former: 900000,
+      former: 1080000,
       latter: null,
     },
     kit: {

@@ -50,7 +50,7 @@ export const courses = {
         },
         price: {
           discount: 136000,
-          full: 170000,
+          full: 160000,
         },
         priceFeatures: [
           {

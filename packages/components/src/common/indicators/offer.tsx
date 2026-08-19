@@ -27,7 +27,7 @@ export default function Offer() {
         >
           RPL Course Discount (
           <Text component="span" inherit td={'line-through'}>
-            170,000/-
+            160,000/-
           </Text>{' '}
           136,000/-)
         </Badge>

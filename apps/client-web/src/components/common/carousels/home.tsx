@@ -79,7 +79,7 @@ export default function Home() {
             new Date(2026, 5, 22),
           ],
           price: {
-            former: 170000,
+            former: null,
             current: 22000,
           },
         },
@@ -123,7 +123,7 @@ export default function Home() {
         new Date(2026, 7, 31),
       ],
       price: {
-        former: 170000,
+        former: 160000,
         current: 136000,
       },
     },
@@ -226,7 +226,10 @@ export default function Home() {
                           thousandSeparator
                           prefix="Ksh. "
                         />
-                      </Text>
+                      </Text>{' '}
+                      {slide.badge == 'RPL'
+                        ? '(excl. medical & exam fees).'
+                        : undefined}
                     </Text>
                   </div>
 

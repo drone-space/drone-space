@@ -171,7 +171,7 @@ export default function Basic({
                           Oral Radiotelephony exam:{' '}
                           <Text inherit component="span" fw={500} c={'sec.3'}>
                             <NumberFormatter
-                              value={1000}
+                              value={2000}
                               thousandSeparator
                               prefix="Kes. "
                             />

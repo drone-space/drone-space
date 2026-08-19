@@ -82,16 +82,24 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
             {posts === undefined ? (
               <Skeleton h={18} w={160} />
             ) : !post ? null : (
-              <Tooltip label={'Date Published'}>
-                <Text inherit style={{ cursor: 'pointer' }}>
-                  {
-                    getRegionalDate(post?.created_at, {
-                      locale: 'en-GB',
-                      format: 'full',
-                    }).date
-                  }
-                </Text>
-              </Tooltip>
+              <Text inherit>
+                Last Updated:{' '}
+                <Tooltip label={'Last Updated'}>
+                  <Text
+                    component="span"
+                    inherit
+                    fw={500}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {
+                      getRegionalDate(post?.updated_at, {
+                        locale: 'en-GB',
+                        format: 'short',
+                      }).date
+                    }
+                  </Text>
+                </Tooltip>
+              </Text>
             )}
 
             <Group visibleFrom="xs">

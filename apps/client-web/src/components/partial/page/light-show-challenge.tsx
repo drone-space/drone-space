@@ -83,7 +83,7 @@ export default function LightShowChallenge() {
               </Group>
 
               <Title order={1} c={'sec.3'}>
-                Alumni Light Show Challenge
+                Alumni Drone Light Show Challenge
               </Title>
 
               <Text inherit fz={'xl'}>

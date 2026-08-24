@@ -27,6 +27,7 @@ import { Order } from '@repo/types/enums';
 import ModalRequirements from '../modals/requirements';
 import WrapperUnderlayBlur from '@repo/components/wrappers/underlays/blur';
 import { SECTION_SPACING } from '@repo/constants/sizes';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Home() {
   const autoplay = useRef(Autoplay({ delay: 5000 }));
@@ -252,6 +253,12 @@ export default function Home() {
                         </Button>
                       </ModalRequirements>
                     )}
+
+                    <NextLink href="/drone-solutions/light-shows/drone-light-show-challenge">
+                      <Button color="white" variant="outline">
+                        Alumni Light Show Challenge
+                      </Button>
+                    </NextLink>
                   </Group>
                 </Stack>
               </LayoutSection>

@@ -3,9 +3,11 @@ import LayoutSection from '@repo/components/layout/section';
 import classes from './shows.module.scss';
 import {
   AspectRatio,
+  Button,
   Card,
   Grid,
   GridCol,
+  Group,
   Stack,
   Text,
   Title,
@@ -13,6 +15,7 @@ import {
 import videos from '@repo/constants/videos';
 import shows from '@/data/shows';
 import { SECTION_SPACING } from '@repo/constants/sizes';
+import NextLink from '@repo/components/common/anchor/next-link';
 
 export default function Shows() {
   const data = shows;
@@ -76,6 +79,19 @@ export default function Shows() {
               </GridCol>
             ))}
           </Grid>
+
+          <Text ta={'center'}>
+            Attempt a drone light show challenge and get a chance to win a free
+            ticket (exclusive to Drone Space Alumni).
+          </Text>
+
+          <Group justify="center">
+            <NextLink href="light-shows/drone-light-show-challenge">
+              <Button color="white" variant="outline">
+                Alumni Light Show Challenge
+              </Button>
+            </NextLink>
+          </Group>
         </Stack>
       </LayoutSection>
     </div>

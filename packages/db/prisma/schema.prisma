@@ -189,6 +189,25 @@ model Student {
   @@map(name: "students")
 }
 
+model AlumniChallenger {
+  id            String @id @default(uuid())
+  srpl          String
+  fname         String
+  lname         String
+  email         String
+  phone         String
+  answer_option String
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([srpl])
+  @@map(name: "alumni_challengers")
+}
+
 // model Email {
 //   id         String  @id @default(uuid())
 //   from_name  String?

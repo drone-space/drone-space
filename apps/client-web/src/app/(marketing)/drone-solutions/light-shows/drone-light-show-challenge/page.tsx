@@ -7,9 +7,9 @@ import PartialLightShowChallenge from '@/components/partial/page/light-show-chal
 
 export const dynamic = 'force-static';
 
-const metaTitle = 'Drone Light Shows - Stunning Aerial Displays by Drone Space';
+const metaTitle = 'Drone Light Show Challenge | Win an Event Ticket';
 const metaDesc =
-  'Experience breathtaking drone light shows for events and celebrations. Discover how Drone Space creates unforgettable aerial art.';
+  'Take our quick 1-question alumni challenge for a chance to win an exclusive ticket to a stunning Drone Space drone light show. Test your knowledge now!';
 
 export const metadata: Metadata = {
   title: metaTitle,
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/light-shows`,
+    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/light-shows/drone-light-show-challenge`,
     type: 'website',
     images: [
       {

@@ -33,6 +33,10 @@ export function useTimer(
       : getTimeElapsed(targetDate)
   );
 
+  // A helper to determine if the target date has been reached or passed
+  const checkIfComplete = (tDate: Date) => Date.now() >= tDate.getTime();
+  const [complete, setComplete] = useState(() => checkIfComplete(targetDate));
+
   // Use refs to avoid stale closures inside setInterval without resetting the timer
   const targetDateRef = useRef(targetDate);
   targetDateRef.current = targetDate;
@@ -52,12 +56,20 @@ export function useTimer(
     setDirection(direction);
   }, [direction]);
 
+  // Keep `complete` in sync if targetDate changes
+  useEffect(() => {
+    setComplete(checkIfComplete(targetDate));
+  }, [targetDate]);
+
   useEffect(() => {
     if (!isActive) return;
 
     const intervalId = window.setInterval(() => {
       const dir = directionRef.current;
       const tDate = targetDateRef.current;
+
+      const isCompleteNow = checkIfComplete(tDate);
+      setComplete(isCompleteNow);
 
       const getLatestTime =
         dir === TimerDirection.DOWN ? getTimeRemaining : getTimeElapsed;
@@ -85,6 +97,7 @@ export function useTimer(
     setActive,
     direction: currentDirection,
     setDirection,
+    complete,
   };
 }
 

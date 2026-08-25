@@ -50,6 +50,7 @@ import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { useStoreAlumniChallenger } from '@repo/libraries/zustand/stores/alumni-challenger';
 
 export const useSessionStore = (params?: {
   sessionUser: User | null;
@@ -266,6 +267,11 @@ export const LOAD_STORES: Record<string, LoadStoreConfig> = {
     useStoreHook: useStoreAnswer,
     setState: (store, items) => store.setAnswers(items),
   },
+  [STORE_NAME.ALUMNI_CHALLENGERS]: {
+    dataStore: STORE_NAME.ALUMNI_CHALLENGERS,
+    useStoreHook: useStoreAlumniChallenger,
+    setState: (store, items) => store.setAlumniChallengers(items),
+  },
 } as const;
 
 type LoadStoreKey = keyof typeof LOAD_STORES;
@@ -285,6 +291,7 @@ export const useLoadAppData = (options: {
     [STORE_NAME.OPTIONS]: useStoreOption(),
     [STORE_NAME.ATTEMPTS]: useStoreAttempt(),
     [STORE_NAME.ANSWERS]: useStoreAnswer(),
+    [STORE_NAME.ALUMNI_CHALLENGERS]: useStoreAlumniChallenger(),
   };
 
   useEffect(() => {

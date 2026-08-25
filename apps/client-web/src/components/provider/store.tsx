@@ -10,6 +10,7 @@
 import React from 'react';
 import { useSessionStore, useLoadAppData } from '@repo/hooks/store';
 import { User } from '@supabase/supabase-js';
+import { STORE_NAME } from '@repo/constants/names';
 
 export default function Store({
   props,
@@ -29,7 +30,11 @@ export default function Store({
   // useAppshellStore();
   useLoadAppData({
     clientOnly: false,
-    storesToLoad: { categories: true, posts: true },
+    storesToLoad: {
+      categories: true,
+      posts: true,
+      [STORE_NAME.ALUMNI_CHALLENGERS]: true,
+    },
   });
 
   return <div>{children}</div>;

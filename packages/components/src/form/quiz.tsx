@@ -53,7 +53,7 @@ export default function Quiz({ props }: { props?: { quizId?: string } }) {
             key={form.key('description')}
             {...form.getInputProps('description')}
             autosize
-            minRows={3}
+            minRows={2}
             maxRows={8}
           />
         </GridCol>

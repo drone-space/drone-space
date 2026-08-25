@@ -39,7 +39,10 @@ export const useFormAlumni = (params: {
   >(
     { srpl: '', fname: '', lname: '', email: '', phone: '' },
     {
-      srpl: hasLength({ min: 2, max: 48 }, true),
+      srpl: (value) =>
+        /^YK-RPL-\d{5}$/.test(value || '')
+          ? null
+          : 'Invalid format. Format must be YK-RPL-NNNNN (e.g., YK-RPL-12345)',
       fname: hasLength({ min: 2, max: 48 }, true),
       lname: hasLength({ min: 2, max: 48 }, true),
       email: (value) => validators.email((value || '').trim()),

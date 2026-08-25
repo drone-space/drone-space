@@ -32,6 +32,7 @@ import {
 } from '@repo/constants/sizes';
 import { prependZeros } from '@repo/utilities/number';
 import IntroSection from '@repo/components/layout/intros/section';
+import { useStoreAlumniChallenger } from '@repo/libraries/zustand/stores/alumni-challenger';
 import {
   IconCheck,
   IconForms,
@@ -40,16 +41,28 @@ import {
 } from '@tabler/icons-react';
 import FormAlumni from '@repo/components/form/alumni';
 import { useRouter } from 'next/navigation';
+import { useMediaQuery } from '@mantine/hooks';
 
 const targetDateWithTime = new Date('2026-08-29T17:00:00');
-// const targetDateWithTime = new Date('2026-08-25T11:38:30');
-const challengeStartDate = new Date('2026-08-25T14:00:00');
-// const challengeStartDate = new Date('2026-08-25T12:20:00');
+// const targetDateWithTime = new Date('2026-08-25T14:00:00');
+const challengeStartDate = new Date('2026-08-27T14:00:00');
+// const challengeStartDate = new Date('2026-08-25T14:00:00');
 const eventEndDate = new Date('2026-08-29T22:00:00');
-// const eventEndDate = new Date('2026-08-25T12:23:50');
+// const eventEndDate = new Date('2026-08-25T14:00:00');
 
 export default function LightShowChallenge() {
-  // const now = new Date();
+  const mobile = useMediaQuery('(max-width: 36em)');
+
+  const alumniChallengers = useStoreAlumniChallenger(
+    (s) => s.alumniChallengers
+  );
+
+  const challengersWon = alumniChallengers?.filter(
+    (ac) => Number(ac.answer_option) == correctOption
+  );
+
+  const availableTickets = totalTickets - (challengersWon?.length || 0);
+  const soldOut = availableTickets < 1;
 
   const [selectedOption, setSelectedOption] = useState<null | string>(null);
   const [option, setOption] = useState('');
@@ -103,7 +116,7 @@ export default function LightShowChallenge() {
                     root: { color: 'var(--mantine-color-white)' },
                   }}
                 >
-                  250 drones - 10 Alumni tickets
+                  250 drones - {totalTickets} Alumni tickets
                 </Badge>
               </Group>
 
@@ -128,7 +141,7 @@ export default function LightShowChallenge() {
                   radius={999}
                   component="a"
                   href="#challenge"
-                  disabled={completeEventEnd}
+                  disabled={completeEventEnd || soldOut}
                 >
                   Alumni Challenge
                 </Button>
@@ -168,21 +181,23 @@ export default function LightShowChallenge() {
         display={completeEventEnd ? 'none' : undefined}
       >
         <Grid gutter={'xl'}>
-          <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
+          <GridCol
+            span={{ base: 12, md: 6 }}
+            display={selectedOption && mobile ? 'none' : undefined}
+          >
             <Stack gap={'xl'} ta={'start'} mt={{ base: 'xl', md: 0 }}>
               <Box maw={{ md: '100%', lg: '90%', xl: '100%' }}>
                 <IntroSection
                   props={{
                     subTitle: 'Think you know drones? Prove it.',
-                    title:
-                      'Answer correctly and be among the first 10 to win an alumni ticket.',
-                    desc: "We're giving 10 Drone Space alumni a chance to attend this Saturday's drone light show for free.",
+                    title: `Answer correctly and be among the first ${totalTickets} to win an alumni ticket.`,
+                    desc: `We're giving ${totalTickets} Drone Space alumni a chance to attend this Saturday's drone light show for free.`,
                   }}
                   options={{ alignment: 'start', spacing: false }}
                 />
               </Box>
 
-              <Stack>
+              <Stack display={!completeChalenge && mobile ? 'none' : undefined}>
                 <Title order={2} fz={'xl'}>
                   Question:
                 </Title>
@@ -234,7 +249,7 @@ export default function LightShowChallenge() {
                             key={qo}
                             value={qo}
                             label={qo}
-                            disabled={!!selectedOption}
+                            disabled={!!selectedOption || soldOut}
                           />
                         ))}
                       </Stack>
@@ -242,7 +257,7 @@ export default function LightShowChallenge() {
 
                     <Group>
                       <Button
-                        disabled={!!selectedOption || !option}
+                        disabled={!!selectedOption || !option || soldOut}
                         onClick={() => {
                           setSelectedOption(option);
                           router.push('#challenge');
@@ -257,11 +272,13 @@ export default function LightShowChallenge() {
             </Stack>
           </GridCol>
 
-          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
+          <GridCol span={{ base: 12, md: 6 }}>
             <SelectionDisplay
               value={selectedOption}
               time={timeChallenge}
               complete={completeChalenge}
+              availableTickets={availableTickets}
+              soldOut={soldOut}
             />
           </GridCol>
         </Grid>
@@ -316,15 +333,23 @@ function SelectionDisplay({
   value,
   time,
   complete,
+  availableTickets,
+  soldOut,
 }: {
   value: string | null;
   complete: boolean;
   time: any;
+  availableTickets: number;
+  soldOut: boolean;
 }) {
+  const alumniChallengers = useStoreAlumniChallenger(
+    (s) => s.alumniChallengers
+  );
+
   const [showForm, setShowForm] = useState(!!value);
   const [submitted, setSubmitted] = useState(false);
 
-  const isCorrect = value == questionOptions[corerctOption];
+  const isCorrect = value == questionOptions[correctOption];
 
   const displayProps = {
     cardBg: `var(--mantine-color-${!submitted ? 'gray-2' : isCorrect ? 'green-light' : 'red-light'})`,
@@ -339,15 +364,19 @@ function SelectionDisplay({
     iconC: !submitted ? 'sec.3' : 'white',
     title: !submitted
       ? !value
-        ? 'Select an option'
+        ? soldOut
+          ? 'Sold Out'
+          : 'Select an option'
         : 'Fill in your details'
       : isCorrect
         ? "YOU'RE IN."
         : 'NOT THIS TIME.',
     desc: !submitted
-      ? 'ONE QUESTION. ONE CHANCE.'
+      ? soldOut
+        ? `All ${totalTickets} tickets have already been sold out.`
+        : 'ONE QUESTION. ONE CHANCE.'
       : isCorrect
-        ? "You've answered correctly. If you're among the first 10 eligible alumni, we will contact you with your event ticket. You will be expected to provide your original and valid RPL to confirm that the RPL number you entered here is actually yours."
+        ? `You've answered correctly. If you're among the first ${totalTickets} eligible alumni, we will contact you with your event ticket. You will be expected to provide your original and valid RPL to confirm that the RPL number you entered here is actually yours.`
         : 'Sorry, better luck next time. Thanks for taking the challenge. Follow us on social media for the show.',
   };
 
@@ -389,16 +418,31 @@ function SelectionDisplay({
 
             <Group
               justify="center"
-              display={!value || !submitted ? undefined : 'none'}
+              display={!soldOut && (!value || !submitted) ? undefined : 'none'}
             >
-              <Badge size="xl">{10} Tickets remaining</Badge>
+              <Badge size="xl">
+                {alumniChallengers === undefined || alumniChallengers === null
+                  ? '-- '
+                  : `${availableTickets} `}
+                Tickets remaining
+              </Badge>
             </Group>
+
+            <Text
+              inherit
+              ta={'center'}
+              display={!soldOut && (!value || !submitted) ? undefined : 'none'}
+            >
+              A Valid RPL is required!
+            </Text>
           </>
         )}
 
         {!complete && (
           <Stack>
-            <Text>Challenge starts in:</Text>
+            <Text inert ta={'center'}>
+              Challenge starts in:
+            </Text>
 
             <Countdown time={time} />
 
@@ -413,10 +457,14 @@ function SelectionDisplay({
                 </Text>{' '}
                 •{' '}
                 <Text inherit component="span">
-                  10 winners
+                  {totalTickets} winners
                 </Text>
               </Text>
             </Group>
+
+            <Text inherit ta={'center'}>
+              A Valid RPL is required!
+            </Text>
           </Stack>
         )}
 
@@ -442,4 +490,6 @@ const questionOptions = [
   'The drones follow a lead drone',
 ];
 
-const corerctOption = 1;
+const correctOption = 1;
+
+const totalTickets = 10;

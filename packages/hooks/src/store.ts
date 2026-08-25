@@ -54,6 +54,7 @@ import { FileSyncAdapter } from '@repo/types/fsa';
 import { openDatabase } from '@repo/libraries/indexed-db/actions';
 import { config } from '@repo/libraries/indexed-db/config';
 import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
+import { useStoreAlumniChallenger } from '@repo/libraries/zustand/stores/alumni-challenger';
 
 export const useSessionStore = (params?: {
   sessionUser: User | null;
@@ -276,6 +277,11 @@ export const LOAD_STORES: Record<string, LoadStoreConfig> = {
     useStoreHook: useStoreSrpl,
     setState: (store, items) => store.setSrpls(items),
   },
+  [STORE_NAME.ALUMNI_CHALLENGERS]: {
+    dataStore: STORE_NAME.ALUMNI_CHALLENGERS,
+    useStoreHook: useStoreAlumniChallenger,
+    setState: (store, items) => store.setAlumniChallengers(items),
+  },
 } as const;
 
 type LoadStoreKey = keyof typeof LOAD_STORES;
@@ -297,6 +303,7 @@ export const useLoadAppData = (options: {
     [STORE_NAME.ATTEMPTS]: useStoreAttempt(),
     [STORE_NAME.ANSWERS]: useStoreAnswer(),
     [STORE_NAME.SRPLS]: useStoreSrpl(),
+    [STORE_NAME.ALUMNI_CHALLENGERS]: useStoreAlumniChallenger(),
   };
 
   useEffect(() => {

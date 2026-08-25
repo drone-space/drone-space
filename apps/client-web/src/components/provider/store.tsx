@@ -45,4 +45,5 @@ export default function Store({
 const STORES_TO_LOAD = {
   [STORE_NAME.CATEGORIES]: true,
   [STORE_NAME.POSTS]: true,
+  [STORE_NAME.ALUMNI_CHALLENGERS]: true,
 };

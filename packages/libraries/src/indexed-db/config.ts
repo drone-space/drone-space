@@ -54,5 +54,9 @@ export const config: DBConfig = {
       name: STORE_NAME.SRPLS,
       keyPath: 'id',
     },
+    {
+      name: STORE_NAME.ALUMNI_CHALLENGERS,
+      keyPath: 'id',
+    },
   ],
 };

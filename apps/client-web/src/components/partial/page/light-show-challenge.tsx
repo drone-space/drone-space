@@ -14,9 +14,11 @@ import {
   Grid,
   GridCol,
   Group,
+  Loader,
   Overlay,
   Radio,
   RadioGroup,
+  Skeleton,
   Stack,
   Text,
   ThemeIcon,
@@ -40,16 +42,39 @@ import FormAlumni from '@repo/components/form/alumni';
 import { useRouter } from 'next/navigation';
 
 const targetDateWithTime = new Date('2026-08-29T17:00:00');
+// const targetDateWithTime = new Date('2026-08-25T11:38:30');
+const challengeStartDate = new Date('2026-08-25T14:00:00');
+// const challengeStartDate = new Date('2026-08-25T12:20:00');
+const eventEndDate = new Date('2026-08-29T22:00:00');
+// const eventEndDate = new Date('2026-08-25T12:23:50');
 
 export default function LightShowChallenge() {
+  // const now = new Date();
+
   const [selectedOption, setSelectedOption] = useState<null | string>(null);
   const [option, setOption] = useState('');
 
   const router = useRouter();
 
-  const { time } = useTimer(targetDateWithTime, TimerDirection.DOWN, {
+  const { time, complete } = useTimer(targetDateWithTime, TimerDirection.DOWN, {
     active: true,
   });
+
+  const { time: timeChallenge, complete: completeChalenge } = useTimer(
+    challengeStartDate,
+    TimerDirection.DOWN,
+    {
+      active: true,
+    }
+  );
+
+  const { complete: completeEventEnd } = useTimer(
+    eventEndDate,
+    TimerDirection.DOWN,
+    {
+      active: true,
+    }
+  );
 
   const bgImg =
     'https://iflydrones.com/wp-content/uploads/2025/11/Synchronized-drone-light-show.jpg';
@@ -78,16 +103,21 @@ export default function LightShowChallenge() {
                     root: { color: 'var(--mantine-color-white)' },
                   }}
                 >
-                  250 drones. One light show. 10 tickets.
+                  250 drones - 10 Alumni tickets
                 </Badge>
               </Group>
 
               <Title order={1} c={'sec.3'}>
-                Alumni Drone Light Show Challenge
+                250+ Drone Light Show
               </Title>
 
               <Text inherit fz={'xl'}>
-                Think you know drones? Prove it.
+                Join us for our first ever light show event featuring 250+
+                drones in the sky.
+              </Text>
+
+              <Text inherit fz={'xl'} fw={'bold'}>
+                Carnival Gardens | 29th August, 2026
               </Text>
 
               <Group justify="center">
@@ -98,60 +128,33 @@ export default function LightShowChallenge() {
                   radius={999}
                   component="a"
                   href="#challenge"
+                  disabled={completeEventEnd}
                 >
-                  Take the Challenge
+                  Alumni Challenge
                 </Button>
               </Group>
 
-              <Group justify="center" fz={'2rem'} fw={'bold'} py={'md'}>
-                <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
-                  <Text inherit>{prependZeros(time?.days || 0, 2)}</Text>
-
-                  <Text inherit component="span" fz={'md'}>
-                    Days
+              <Box mih={106.4}>
+                {completeEventEnd ? (
+                  <Text
+                    ta={'center'}
+                    fw={'bold'}
+                    fz={{ base: '2rem', lg: '3rem' }}
+                  >
+                    EVENT CLOSED
                   </Text>
-                </Stack>
-
-                <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
-                  <Text inherit>{prependZeros(time?.hours || 0, 2)}</Text>
-
-                  <Text inherit component="span" fz={'md'}>
-                    Hours
+                ) : complete ? (
+                  <Text
+                    ta={'center'}
+                    fw={'bold'}
+                    fz={{ base: '2rem', lg: '3rem' }}
+                  >
+                    EVENT LIVE
                   </Text>
-                </Stack>
-
-                <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
-                  <Text inherit>{prependZeros(time?.minutes || 0, 2)}</Text>
-
-                  <Text inherit component="span" fz={'md'}>
-                    Minutes
-                  </Text>
-                </Stack>
-
-                <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
-                  <Text inherit>{prependZeros(time?.seconds || 0, 2)}</Text>
-
-                  <Text inherit component="span" fz={'md'}>
-                    Seconds
-                  </Text>
-                </Stack>
-              </Group>
-
-              <Group justify="center">
-                <Text inherit>
-                  <Text inherit component="span">
-                    Alumni exclusive
-                  </Text>{' '}
-                  •{' '}
-                  <Text inherit component="span">
-                    1 question
-                  </Text>{' '}
-                  •{' '}
-                  <Text inherit component="span">
-                    10 winners
-                  </Text>
-                </Text>
-              </Group>
+                ) : (
+                  <Countdown time={time} />
+                )}
+              </Box>
             </Stack>
           </Box>
         </BackgroundImage>
@@ -162,6 +165,7 @@ export default function LightShowChallenge() {
         bg={'var(--mantine-color-gray-1)'}
         // containerized={'md'}
         padded={SECTION_SPACING}
+        display={completeEventEnd ? 'none' : undefined}
       >
         <Grid gutter={'xl'}>
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
@@ -169,11 +173,12 @@ export default function LightShowChallenge() {
               <Box maw={{ md: '100%', lg: '90%', xl: '100%' }}>
                 <IntroSection
                   props={{
-                    subTitle: 'ONE QUESTION. ONE CHANCE.',
-                    title: 'Answer correctly and be among the first 10.',
-                    desc: "We're giving 10 Drone Space alumni a chance to attend this Saturday's drone light show.",
+                    subTitle: 'Think you know drones? Prove it.',
+                    title:
+                      'Answer correctly and be among the first 10 to win an alumni ticket.',
+                    desc: "We're giving 10 Drone Space alumni a chance to attend this Saturday's drone light show for free.",
                   }}
-                  options={{ alignment: 'start', spacing: true }}
+                  options={{ alignment: 'start', spacing: false }}
                 />
               </Box>
 
@@ -182,69 +187,140 @@ export default function LightShowChallenge() {
                   Question:
                 </Title>
 
-                <Text>{question}</Text>
+                {!completeChalenge ? (
+                  <>
+                    <Text>
+                      The question will be displayed when the challenge begins.
+                    </Text>
 
-                <RadioGroup
-                  name={question}
-                  aria-label={question}
-                  value={option}
-                  onChange={setOption}
-                >
-                  <Stack>
-                    {questionOptions.map((qo) => (
-                      <Radio
-                        key={qo}
-                        value={qo}
-                        label={qo}
-                        disabled={!!selectedOption}
-                      />
-                    ))}
-                  </Stack>
-                </RadioGroup>
+                    <Stack gap={'xs'}>
+                      <Skeleton animate={false} h={12} w={'100%'} />
+                      <Skeleton animate={false} h={12} w={'90%'} />
+                      <Skeleton animate={false} h={12} w={'70%'} />
+                    </Stack>
+
+                    <Stack gap={'xs'}>
+                      <Group wrap="nowrap" gap={'xs'}>
+                        <Skeleton animate={false} h={20} w={20} />
+                        <Skeleton animate={false} h={12} w={'50%'} />
+                      </Group>
+                      <Group wrap="nowrap" gap={'xs'}>
+                        <Skeleton animate={false} h={20} w={20} />
+                        <Skeleton animate={false} h={12} w={'50%'} />
+                      </Group>
+                      <Group wrap="nowrap" gap={'xs'}>
+                        <Skeleton animate={false} h={20} w={20} />
+                        <Skeleton animate={false} h={12} w={'50%'} />
+                      </Group>
+                      <Group wrap="nowrap" gap={'xs'}>
+                        <Skeleton animate={false} h={20} w={20} />
+                        <Skeleton animate={false} h={12} w={'50%'} />
+                      </Group>
+                    </Stack>
+                  </>
+                ) : (
+                  <>
+                    <Text>{question}</Text>
+
+                    <RadioGroup
+                      name={question}
+                      aria-label={question}
+                      value={option}
+                      onChange={setOption}
+                    >
+                      <Stack>
+                        {questionOptions.map((qo) => (
+                          <Radio
+                            key={qo}
+                            value={qo}
+                            label={qo}
+                            disabled={!!selectedOption}
+                          />
+                        ))}
+                      </Stack>
+                    </RadioGroup>
+
+                    <Group>
+                      <Button
+                        disabled={!!selectedOption || !option}
+                        onClick={() => {
+                          setSelectedOption(option);
+                          router.push('#challenge');
+                        }}
+                      >
+                        Submit Answer
+                      </Button>
+                    </Group>
+                  </>
+                )}
               </Stack>
-
-              <Group>
-                <Button
-                  disabled={!!selectedOption || !option}
-                  onClick={() => {
-                    setSelectedOption(option);
-                    router.push('#challenge');
-                  }}
-                >
-                  Submit Answer
-                </Button>
-              </Group>
             </Stack>
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }}>
-            <SelectionDisplay value={selectedOption} />
+            <SelectionDisplay
+              value={selectedOption}
+              time={timeChallenge}
+              complete={completeChalenge}
+            />
           </GridCol>
         </Grid>
-      </LayoutSection>
-
-      <LayoutSection id="page-lightshow-video" padded={SECTION_SPACING}>
-        <IntroSection
-          props={{
-            subTitle: '250 DRONES. ONE SKY.',
-            title: 'On the Eve of This Saturday',
-            desc: 'Join us for our first ever light show event featuring 250+ drones in the sky.',
-          }}
-          options={{
-            // alignment: 'start',
-            spacing: true,
-          }}
-        />
-
-        <Stack ta={'center'}>
-          <Text inherit>[ EVENT DETAILS / DATE / LOCATION ]</Text>
-        </Stack>
       </LayoutSection>
     </LayoutPage>
   );
 }
 
-function SelectionDisplay({ value }: { value: string | null }) {
+function Countdown({ time }: { time: any }) {
+  return (
+    <Group justify="center" fz={'1.5rem'} fw={'bold'} py={'md'}>
+      <Stack
+        gap={0}
+        w={{ base: 'inherit', xs: 100 }}
+        display={time?.days ? undefined : 'none'}
+      >
+        <Text inherit>{prependZeros(time?.days || 0, 2)}</Text>
+
+        <Text inherit component="span" fz={'md'}>
+          Days
+        </Text>
+      </Stack>
+
+      <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
+        <Text inherit>{prependZeros(time?.hours || 0, 2)}</Text>
+
+        <Text inherit component="span" fz={'md'}>
+          Hours
+        </Text>
+      </Stack>
+
+      <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
+        <Text inherit>{prependZeros(time?.minutes || 0, 2)}</Text>
+
+        <Text inherit component="span" fz={'md'}>
+          Minutes
+        </Text>
+      </Stack>
+
+      <Stack gap={0} w={{ base: 'inherit', xs: 100 }}>
+        <Text inherit>{prependZeros(time?.seconds || 0, 2)}</Text>
+
+        <Text inherit component="span" fz={'md'}>
+          Seconds
+        </Text>
+      </Stack>
+    </Group>
+  );
+}
+
+function SelectionDisplay({
+  value,
+  time,
+  complete,
+}: {
+  value: string | null;
+  complete: boolean;
+  time: any;
+}) {
   const [showForm, setShowForm] = useState(!!value);
   const [submitted, setSubmitted] = useState(false);
 
@@ -269,10 +345,10 @@ function SelectionDisplay({ value }: { value: string | null }) {
         ? "YOU'RE IN."
         : 'NOT THIS TIME.',
     desc: !submitted
-      ? 'You only get one shot. Make it count.'
+      ? 'ONE QUESTION. ONE CHANCE.'
       : isCorrect
         ? "You've answered correctly. If you're among the first 10 eligible alumni, we will contact you with your event ticket. You will be expected to provide your original and valid RPL to confirm that the RPL number you entered here is actually yours."
-        : 'Thanks for taking the challenge. Follow us for the show.',
+        : 'Sorry, better luck next time. Thanks for taking the challenge. Follow us on social media for the show.',
   };
 
   return (
@@ -287,27 +363,62 @@ function SelectionDisplay({ value }: { value: string | null }) {
         gap={'xl'}
         mih={{ lg: 600, xl: 500 }}
       >
-        <Group justify="center">
-          <ThemeIcon
-            size={ICON_WRAPPER_SIZE * 3}
-            color={displayProps.iconColor}
-            c={displayProps.iconC}
-            radius={99}
-          >
-            <displayProps.icon
-              size={ICON_SIZE * 3}
-              stroke={ICON_STROKE_WIDTH}
-            />
-          </ThemeIcon>
-        </Group>
+        {complete && (
+          <>
+            <Group justify="center">
+              <ThemeIcon
+                size={ICON_WRAPPER_SIZE * 3}
+                color={displayProps.iconColor}
+                c={displayProps.iconC}
+                radius={99}
+              >
+                <displayProps.icon
+                  size={ICON_SIZE * 3}
+                  stroke={ICON_STROKE_WIDTH}
+                />
+              </ThemeIcon>
+            </Group>
 
-        <Title order={2} c={displayProps.iconColor}>
-          {showForm ? 'Enter Your Details' : displayProps.title}
-        </Title>
+            <Title order={2} c={displayProps.iconColor}>
+              {showForm ? 'Enter Your Details' : displayProps.title}
+            </Title>
 
-        <Text display={!value || submitted ? undefined : 'none'}>
-          {displayProps.desc}
-        </Text>
+            <Text display={!value || submitted ? undefined : 'none'}>
+              {displayProps.desc}
+            </Text>
+
+            <Group
+              justify="center"
+              display={!value || !submitted ? undefined : 'none'}
+            >
+              <Badge size="xl">{10} Tickets remaining</Badge>
+            </Group>
+          </>
+        )}
+
+        {!complete && (
+          <Stack>
+            <Text>Challenge starts in:</Text>
+
+            <Countdown time={time} />
+
+            <Group justify="center">
+              <Text inherit>
+                <Text inherit component="span">
+                  Alumni exclusive
+                </Text>{' '}
+                •{' '}
+                <Text inherit component="span">
+                  1 question
+                </Text>{' '}
+                •{' '}
+                <Text inherit component="span">
+                  10 winners
+                </Text>
+              </Text>
+            </Group>
+          </Stack>
+        )}
 
         <Box display={!value || submitted ? 'none' : undefined}>
           <FormAlumni

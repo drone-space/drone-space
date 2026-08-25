@@ -50,7 +50,7 @@ export default function Option({
             {...form.getInputProps('content')}
             data-autofocus
             autosize
-            minRows={3}
+            minRows={1}
             maxRows={8}
           />
         </GridCol>

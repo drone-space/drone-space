@@ -50,13 +50,27 @@ export default function Question({
             {...form.getInputProps('content')}
             data-autofocus
             autosize
-            minRows={3}
+            minRows={1}
             maxRows={8}
           />
         </GridCol>
 
         <GridCol span={{ base: 12 }}>
-          <Group>
+          <Textarea
+            // required
+            label="Answer Explanation"
+            placeholder="Answer explanation"
+            key={form.key('explanation')}
+            {...form.getInputProps('explanation')}
+            data-autofocus
+            autosize
+            minRows={2}
+            maxRows={8}
+          />
+        </GridCol>
+
+        <GridCol span={{ base: 12 }}>
+          <Group mt={'xs'}>
             <Button
               disabled={submitted}
               size="xs"

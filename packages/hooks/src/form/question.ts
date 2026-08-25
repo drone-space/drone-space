@@ -21,6 +21,7 @@ export const useFormQuestion = (params?: {
 
   const { form, submitted, handleSubmit } = useFormBase<Partial<QuestionGet>>(
     {
+      explanation: params?.defaultValues?.explanation || '',
       content: params?.defaultValues?.content || '',
     },
     {

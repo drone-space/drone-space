@@ -23,6 +23,7 @@ export const useQuestionActions = () => {
     const newQuestion: QuestionGet = {
       id: params.id || id,
       content: params.content || 'New question',
+      explanation: params.explanation || '',
       status: params.status || Status.ACTIVE,
       sync_status: SyncStatus.PENDING,
       created_at: new Date(params.created_at || now).toISOString() as any,

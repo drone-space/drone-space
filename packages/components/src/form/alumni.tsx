@@ -26,10 +26,8 @@ export default function Alumni(params: {
             required
             data-autofocus
             aria-label={'Valid RPL Number'}
-            placeholder={`Valid RPL Number *`}
-            description={
-              'Format should be KCAA-RPL-YYYY-NNNN (e.g., KCAA-RPL-2026-0452)'
-            }
+            placeholder={`Valid RPL Number * (e.g. YK-RPL-12345)`}
+            // description={'Format should be YK-RPL-NNNNN (e.g., YK-RPL-12345)'}
             {...form.getInputProps('srpl')}
             rightSection={
               <TooltipInputInfo

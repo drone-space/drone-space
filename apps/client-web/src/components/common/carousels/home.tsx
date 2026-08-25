@@ -23,13 +23,23 @@ import { LOCATIONS } from '@repo/constants/app';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import ModalContactTraining from '@repo/components/common/modals/contact/training';
 import { sortArray } from '@repo/utilities/array';
-import { Order } from '@repo/types/enums';
+import { Order, TimerDirection } from '@repo/types/enums';
 import ModalRequirements from '../modals/requirements';
 import WrapperUnderlayBlur from '@repo/components/wrappers/underlays/blur';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import NextLink from '@repo/components/common/anchor/next-link';
+import { useTimer } from '@repo/hooks/timer';
+import { alumniChallenge } from '@repo/constants/dates';
 
 export default function Home() {
+  const { complete } = useTimer(
+    alumniChallenge.eventStartDate,
+    TimerDirection.DOWN,
+    {
+      active: true,
+    }
+  );
+
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
   const now = new Date();
@@ -254,11 +264,13 @@ export default function Home() {
                       </ModalRequirements>
                     )}
 
-                    <NextLink href="/drone-solutions/light-shows/drone-light-show-challenge">
-                      <Button color="white" variant="outline">
-                        Alumni Light Show Challenge
-                      </Button>
-                    </NextLink>
+                    {!complete && (
+                      <NextLink href="/drone-solutions/light-shows/drone-light-show-challenge">
+                        <Button color="white" variant="outline">
+                          Alumni Light Show Challenge
+                        </Button>
+                      </NextLink>
+                    )}
                   </Group>
                 </Stack>
               </LayoutSection>

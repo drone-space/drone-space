@@ -42,13 +42,7 @@ import {
 import FormAlumni from '@repo/components/form/alumni';
 import { useRouter } from 'next/navigation';
 import { useMediaQuery } from '@mantine/hooks';
-
-const targetDateWithTime = new Date('2026-08-29T17:00:00');
-// const targetDateWithTime = new Date('2026-08-25T14:00:00');
-const challengeStartDate = new Date('2026-08-27T14:00:00');
-// const challengeStartDate = new Date('2026-08-25T14:00:00');
-const eventEndDate = new Date('2026-08-29T22:00:00');
-// const eventEndDate = new Date('2026-08-25T14:00:00');
+import { alumniChallenge } from '@repo/constants/dates';
 
 export default function LightShowChallenge() {
   const mobile = useMediaQuery('(max-width: 36em)');
@@ -69,12 +63,16 @@ export default function LightShowChallenge() {
 
   const router = useRouter();
 
-  const { time, complete } = useTimer(targetDateWithTime, TimerDirection.DOWN, {
-    active: true,
-  });
+  const { time, complete } = useTimer(
+    alumniChallenge.eventStartDate,
+    TimerDirection.DOWN,
+    {
+      active: true,
+    }
+  );
 
   const { time: timeChallenge, complete: completeChalenge } = useTimer(
-    challengeStartDate,
+    alumniChallenge.challengeStartDate,
     TimerDirection.DOWN,
     {
       active: true,
@@ -82,7 +80,7 @@ export default function LightShowChallenge() {
   );
 
   const { complete: completeEventEnd } = useTimer(
-    eventEndDate,
+    alumniChallenge.eventEndDate,
     TimerDirection.DOWN,
     {
       active: true,

@@ -25,15 +25,15 @@ export default function Alumni(params: {
           <TextInput
             required
             data-autofocus
-            aria-label={'SRPL Number'}
-            placeholder={`SRPL Number *`}
+            aria-label={'Valid RPL Number'}
+            placeholder={`Valid RPL Number *`}
             description={
-              'Format should be KCAA-SRPL-YYYY-NNNN (e.g., KCAA-SRPL-2026-0452)'
+              'Format should be KCAA-RPL-YYYY-NNNN (e.g., KCAA-RPL-2026-0452)'
             }
             {...form.getInputProps('srpl')}
             rightSection={
               <TooltipInputInfo
-                props={{ label: 'We will not share your SRPL' }}
+                props={{ label: 'We will not share your RPL number' }}
               />
             }
           />

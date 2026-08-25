@@ -271,7 +271,7 @@ function SelectionDisplay({ value }: { value: string | null }) {
     desc: !submitted
       ? 'You only get one shot. Make it count.'
       : isCorrect
-        ? "You've answered correctly. If you're among the first 10 eligible alumni, we will contact you with your event ticket. You will be expected to provide your original SRPL to confirm that the SRPL number you entered here is actually yours."
+        ? "You've answered correctly. If you're among the first 10 eligible alumni, we will contact you with your event ticket. You will be expected to provide your original and valid RPL to confirm that the RPL number you entered here is actually yours."
         : 'Thanks for taking the challenge. Follow us for the show.',
   };
 

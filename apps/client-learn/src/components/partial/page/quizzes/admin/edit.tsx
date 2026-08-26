@@ -482,46 +482,43 @@ function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {(questionOptions || []).length < 4 && (
-                <>
+              {(questionOptions || []).length < 4 &&
+                !props.question.explanation && (
                   <Divider orientation="vertical" mx={'xs'} />
+                )}
 
-                  <Tooltip label={'4 question options are required.'}>
-                    <Group>
-                      <ThemeIcon
-                        color="yellow.6"
-                        size={ICON_WRAPPER_SIZE - 4}
-                        variant={'subtle'}
-                      >
-                        <IconAlertTriangle
-                          size={ICON_SIZE - 4}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
-                      </ThemeIcon>
-                    </Group>
-                  </Tooltip>
-                </>
+              {(questionOptions || []).length < 4 && (
+                <Tooltip label={'4 question options are required.'}>
+                  <Group>
+                    <ThemeIcon
+                      color="yellow.6"
+                      size={ICON_WRAPPER_SIZE - 4}
+                      variant={'subtle'}
+                    >
+                      <IconAlertTriangle
+                        size={ICON_SIZE - 4}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </ThemeIcon>
+                  </Group>
+                </Tooltip>
               )}
 
               {!props.question.explanation && (
-                <>
-                  <Divider orientation="vertical" mx={'xs'} />
-
-                  <Tooltip label={'Missing answer explanation.'}>
-                    <Group>
-                      <ThemeIcon
-                        color="yellow.6"
-                        size={ICON_WRAPPER_SIZE - 4}
-                        variant={'subtle'}
-                      >
-                        <IconAlertTriangle
-                          size={ICON_SIZE - 4}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
-                      </ThemeIcon>
-                    </Group>
-                  </Tooltip>
-                </>
+                <Tooltip label={'Missing answer explanation.'}>
+                  <Group>
+                    <ThemeIcon
+                      color="yellow.6"
+                      size={ICON_WRAPPER_SIZE - 4}
+                      variant={'subtle'}
+                    >
+                      <IconAlertTriangle
+                        size={ICON_SIZE - 4}
+                        stroke={ICON_STROKE_WIDTH}
+                      />
+                    </ThemeIcon>
+                  </Group>
+                </Tooltip>
               )}
             </Group>
 

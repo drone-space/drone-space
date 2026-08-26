@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { PostRelations } from '@repo/types/models/post';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 import { extractUuidFromParam, linkify } from '@repo/utilities/url';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { API_URL, PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
 import { COMPANY_NAME } from '@repo/constants/app';
 
@@ -14,7 +14,9 @@ export const generateMetadata = async ({
 }: {
   params: Promise<typeParams>;
 }): Promise<Metadata> => {
-  const { items: posts }: { items: PostRelations[] } = await postsGet();
+  const { items: posts }: { items: PostRelations[] } = await postsGet({
+    apiUrl: API_URL,
+  });
 
   if (posts == null) {
     console.error('x--> Posts not found');

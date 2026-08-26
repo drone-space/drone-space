@@ -121,7 +121,8 @@ export const useUserRoleStore = () => {
           // fetch user profile
           const getUserProfile = async () => {
             const { item }: { item: ProfileGet } = await profileGet({
-              profileId: session?.id as string,
+              apiUrl: API_URL,
+              profileId: session.id as string,
             });
 
             return item;
@@ -308,7 +309,7 @@ export const useLoadAppData = (options: {
         const storeQuery = activeStoreKeys.join(',');
 
         const res = await fetch(
-          `${options.apiUrl}/app-data?userId=${session.id}&stores=${storeQuery}`
+          `${options.apiUrl}/app-data?userId=${session?.id}&stores=${storeQuery}`
         );
 
         if (!res.ok) {

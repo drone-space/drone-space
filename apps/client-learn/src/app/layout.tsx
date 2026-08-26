@@ -106,7 +106,7 @@ export default async function RootLayout({
 
           <Box visibleFrom="md">
             <ProviderStore
-              props={{ baseUrl: API_URL, sessionUser: session.user }}
+              props={{ apiUrl: API_URL, sessionUser: session.user }}
             >
               <ProviderSync>{children}</ProviderSync>
             </ProviderStore>

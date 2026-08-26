@@ -18,6 +18,7 @@ import {
   useMergedSync,
 } from '@repo/hooks/sync';
 import { STORE_NAME } from '@repo/constants/names';
+import { API_URL } from '@repo/constants/paths';
 
 export default function Sync({ children }: { children: React.ReactNode }) {
   const networkStatus = useNetwork();
@@ -44,17 +45,21 @@ export default function Sync({ children }: { children: React.ReactNode }) {
   useMergedSync({
     syncStatus: restProps.syncStatus,
     online: networkStatus.online,
-    storesToSync: [
-      STORE_NAME.QUIZZES,
-      STORE_NAME.QUESTIONS,
-      STORE_NAME.QUIZ_QUESTIONS,
-      STORE_NAME.OPTIONS,
-      STORE_NAME.ATTEMPTS,
-      STORE_NAME.ANSWERS,
-    ],
+    // Use an array of keys for stability in the hook's dependency array
+    storesToSync: STORES_TO_SYNC,
+    // The payload (i) passed here is now the MergedSyncPayload { notes, categories }
     handleSync: (payload: MergedSyncPayload) =>
-      handleMergedSync({ payload, ...restProps }),
+      handleMergedSync({ payload, ...restProps, apiUrl: API_URL }),
   });
 
   return <div>{children}</div>;
 }
+
+const STORES_TO_SYNC = [
+  STORE_NAME.QUIZZES,
+  STORE_NAME.QUESTIONS,
+  STORE_NAME.QUIZ_QUESTIONS,
+  STORE_NAME.OPTIONS,
+  STORE_NAME.ATTEMPTS,
+  STORE_NAME.ANSWERS,
+];

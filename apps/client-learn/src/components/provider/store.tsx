@@ -21,7 +21,7 @@ export default function Store({
   props,
   children,
 }: {
-  props: { baseUrl: string; sessionUser: User | null; cookie?: AppShellValue };
+  props: { apiUrl: string; sessionUser: User | null; cookie?: AppShellValue };
   children: React.ReactNode;
 }) {
   // initialize stores
@@ -33,7 +33,7 @@ export default function Store({
   // useUserRoleStore();
   useAppshellStore();
   useLoadAppData({
-    apiUrl: props.baseUrl,
+    apiUrl: props.apiUrl,
     clientOnly: false,
     storesToLoad: STORES_TO_LOAD,
   });

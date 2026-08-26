@@ -7,12 +7,15 @@ import { redirect } from 'next/navigation';
 import { linkify } from '@repo/utilities/url';
 import { postsGet } from '@repo/handlers/requests/database/posts';
 import PartialPageBlogDetail from '@/components/partial/page/blog-detail';
+import { API_URL } from '@repo/constants/paths';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const { items: posts }: { items: PostRelations[] } = await postsGet();
+  const { items: posts }: { items: PostRelations[] } = await postsGet({
+    apiUrl: API_URL,
+  });
 
   if (posts == null) return [];
 

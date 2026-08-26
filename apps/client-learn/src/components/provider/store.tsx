@@ -15,12 +15,13 @@ import {
 } from '@repo/hooks/store';
 import { User } from '@supabase/supabase-js';
 import { STORE_NAME } from '@repo/constants/names';
+import { AppShellValue } from '@repo/libraries/zustand/stores/shell';
 
 export default function Store({
   props,
   children,
 }: {
-  props?: { sessionUser: User | null };
+  props: { baseUrl: string; sessionUser: User | null; cookie?: AppShellValue };
   children: React.ReactNode;
 }) {
   // initialize stores
@@ -32,16 +33,19 @@ export default function Store({
   // useUserRoleStore();
   useAppshellStore();
   useLoadAppData({
+    apiUrl: props.baseUrl,
     clientOnly: false,
-    storesToLoad: {
-      [STORE_NAME.QUIZZES]: true,
-      [STORE_NAME.QUESTIONS]: true,
-      [STORE_NAME.QUIZ_QUESTIONS]: true,
-      [STORE_NAME.OPTIONS]: true,
-      [STORE_NAME.ATTEMPTS]: true,
-      [STORE_NAME.ANSWERS]: true,
-    },
+    storesToLoad: STORES_TO_LOAD,
   });
 
   return <div>{children}</div>;
 }
+
+const STORES_TO_LOAD = {
+  [STORE_NAME.QUIZZES]: true,
+  [STORE_NAME.QUESTIONS]: true,
+  [STORE_NAME.QUIZ_QUESTIONS]: true,
+  [STORE_NAME.OPTIONS]: true,
+  [STORE_NAME.ATTEMPTS]: true,
+  [STORE_NAME.ANSWERS]: true,
+};

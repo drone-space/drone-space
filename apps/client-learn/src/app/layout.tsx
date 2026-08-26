@@ -36,6 +36,7 @@ import { createClient } from '@repo/libraries/supabase/server';
 import { getCookieServer } from '@repo/utilities/cookie-server';
 import { COOKIE_NAME } from '@repo/constants/names';
 import { SECTION_SPACING } from '@repo/constants/sizes';
+import { API_URL } from '@repo/constants/paths';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -104,7 +105,9 @@ export default async function RootLayout({
           </Box>
 
           <Box visibleFrom="md">
-            <ProviderStore props={{ sessionUser: session.user }}>
+            <ProviderStore
+              props={{ baseUrl: API_URL, sessionUser: session.user }}
+            >
               <ProviderSync>{children}</ProviderSync>
             </ProviderStore>
           </Box>

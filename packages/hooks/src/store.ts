@@ -14,7 +14,7 @@ import {
   PARAM_NAME,
   STORE_NAME,
 } from '@repo/constants/names';
-import { loadInitialData } from '@repo/libraries/store';
+import { loadInitialData, mergeItems } from '@repo/libraries/store';
 import {
   getFromLocalStorage,
   saveToLocalStorage,
@@ -29,7 +29,7 @@ import {
   getCookieClient,
   setCookieClient,
 } from '@repo/utilities/cookie-client';
-import { Role } from '@repo/types/models/enums';
+import { Role, SyncStatus } from '@repo/types/models/enums';
 import { WEEK } from '@repo/constants/sizes';
 import { ProfileGet } from '@repo/types/models/profile';
 import { profileGet } from '@repo/handlers/requests/database/profiles';
@@ -50,6 +50,9 @@ import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { FileSyncAdapter } from '@repo/types/fsa';
+import { openDatabase } from '@repo/libraries/indexed-db/actions';
+import { config } from '@repo/libraries/indexed-db/config';
 
 export const useSessionStore = (params?: {
   sessionUser: User | null;
@@ -271,6 +274,7 @@ export const LOAD_STORES: Record<string, LoadStoreConfig> = {
 type LoadStoreKey = keyof typeof LOAD_STORES;
 
 export const useLoadAppData = (options: {
+  apiUrl: string;
   storesToLoad: Partial<Record<LoadStoreKey, boolean>>;
   clientOnly?: boolean;
 }) => {
@@ -302,10 +306,18 @@ export const useLoadAppData = (options: {
         // 2. Fetch only the required data
         // Pass the requested stores as a query param so the server can optimize
         const storeQuery = activeStoreKeys.join(',');
+
         const res = await fetch(
-          `${API_URL}/app-data?userId=${session.id}&stores=${storeQuery}`
+          `${options.apiUrl}/app-data?userId=${session.id}&stores=${storeQuery}`
         );
-        if (!res.ok) throw new Error('Failed to fetch app data');
+
+        if (!res.ok) {
+          const errorText = await res.text().catch(() => 'No response body');
+
+          throw new Error(
+            `Failed to fetch app data (${res.status} ${res.statusText}): ${errorText}`
+          );
+        }
 
         const fullPayload = await res.json();
 

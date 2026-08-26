@@ -129,6 +129,8 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     setAdd(false); // Close the selection area safely
   };
 
+  const [addFromExisting, setAddFromExisting] = useState(false);
+
   return (
     <Box mb={SECTION_SPACING}>
       <HeaderAppContent
@@ -217,6 +219,12 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                     }}
                   >
                     <Stack>
+                      <Box display={!addFromExisting ? undefined : 'none'}>
+                        <Button onClick={() => setAddFromExisting(true)}>
+                          Add from existing questions
+                        </Button>
+                      </Box>
+
                       <Fieldset
                         p={'md'}
                         pr={0}
@@ -224,6 +232,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                         styles={{
                           legend: { color: 'var(--mantine-color-gray-6)' },
                         }}
+                        display={addFromExisting ? undefined : 'none'}
                       >
                         <Stack gap={0}>
                           <ScrollAreaAutosize mah={240}>
@@ -323,6 +332,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                               setEdit({ content: '', options: '' });
                               setAdd(false);
                             },
+                            setAddFromExisting,
                           }}
                         />
                       </Fieldset>

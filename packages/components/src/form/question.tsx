@@ -22,6 +22,7 @@ export default function Question({
     questionId?: string;
     onSubmit?: () => void;
     onCancel?: () => void;
+    setAddFromExisting?: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }) {
   const questions = useStoreQuestion((s) => s.questions);
@@ -78,6 +79,7 @@ export default function Question({
               variant="light"
               onClick={() => {
                 if (props?.onSubmit) props.onSubmit();
+                if (props?.setAddFromExisting) props.setAddFromExisting(false);
               }}
             >
               Cancel

@@ -733,64 +733,66 @@ function CardOption({
     >
       <Stack>
         <Stack gap={'xs'}>
-          <Group justify="space-between">
-            <Group>
-              <Text>{props.option.content}</Text>
+          <div>
+            <Text>{props.option.content}</Text>
+          </div>
 
+          <Group justify="space-between">
+            <Group gap={5}>
+              <Tooltip label={'Edit option content.'}>
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE - 4}
+                  variant={active.content ? 'light' : 'subtle'}
+                  onClick={() =>
+                    props.setEdit &&
+                    props.setEdit(!active.content ? props.option.id : '')
+                  }
+                >
+                  <displayProps.iconEdit
+                    size={ICON_SIZE - 4}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ActionIcon>
+              </Tooltip>
+
+              <Tooltip label={'Delete question option.'}>
+                <div>
+                  <ModalConfirm
+                    props={{
+                      onConfirm: () => {
+                        if (props.setEdit) props.setEdit('');
+
+                        optionDelete(props.option);
+                      },
+                      title: 'Delete question option',
+                      desc: 'This action is irreversible. Proceed?',
+                    }}
+                  >
+                    <Group>
+                      <ActionIcon
+                        color="red.6"
+                        size={ICON_WRAPPER_SIZE - 4}
+                        variant={'subtle'}
+                        onClick={() => props.setEdit && props.setEdit('')}
+                      >
+                        <IconTrash
+                          size={ICON_SIZE - 4}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      </ActionIcon>
+                    </Group>
+                  </ModalConfirm>
+                </div>
+              </Tooltip>
+            </Group>
+
+            <Group>
               {props.option.correct && (
                 <Badge size="xs" variant="light" color="green.6">
                   Correct
                 </Badge>
               )}
             </Group>
-          </Group>
-
-          <Group gap={5}>
-            <Tooltip label={'Edit option content.'}>
-              <ActionIcon
-                size={ICON_WRAPPER_SIZE - 4}
-                variant={active.content ? 'light' : 'subtle'}
-                onClick={() =>
-                  props.setEdit &&
-                  props.setEdit(!active.content ? props.option.id : '')
-                }
-              >
-                <displayProps.iconEdit
-                  size={ICON_SIZE - 4}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              </ActionIcon>
-            </Tooltip>
-
-            <Tooltip label={'Delete question option.'}>
-              <div>
-                <ModalConfirm
-                  props={{
-                    onConfirm: () => {
-                      if (props.setEdit) props.setEdit('');
-
-                      optionDelete(props.option);
-                    },
-                    title: 'Delete question option',
-                    desc: 'This action is irreversible. Proceed?',
-                  }}
-                >
-                  <Group>
-                    <ActionIcon
-                      color="red.6"
-                      size={ICON_WRAPPER_SIZE - 4}
-                      variant={'subtle'}
-                      onClick={() => props.setEdit && props.setEdit('')}
-                    >
-                      <IconTrash
-                        size={ICON_SIZE - 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ActionIcon>
-                  </Group>
-                </ModalConfirm>
-              </div>
-            </Tooltip>
           </Group>
         </Stack>
 

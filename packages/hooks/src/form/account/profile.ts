@@ -11,6 +11,7 @@ import { createClient } from '@repo/libraries/supabase/client';
 import { profileUpdate } from '@repo/handlers/requests/database/profiles';
 import { useFormBase } from '../../form';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
+import { API_URL } from '@repo/constants/paths';
 
 export const useFormUserProfile = () => {
   const supabase = createClient();
@@ -45,7 +46,7 @@ export const useFormUserProfile = () => {
           userName: rawValues.user_name.trim(),
         };
 
-        const response = await profileUpdate({
+        const response = await profileUpdate(API_URL, {
           customized: true,
           id: session.id,
           first_name: cleanValues.firstName,

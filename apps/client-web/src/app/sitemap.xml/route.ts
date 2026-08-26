@@ -1,6 +1,6 @@
 // app/sitemap.xml/route.ts
 import { NextResponse } from 'next/server';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { API_URL, PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { sitemapRoutes } from '@/data/links';
 import { PostRelations } from '@repo/types/models/post';
 import { postsGet } from '@repo/handlers/requests/database/posts';
@@ -28,7 +28,9 @@ export async function GET() {
   let postRoutes: any[] = [];
 
   try {
-    const { items: posts }: { items: PostRelations[] } = await postsGet();
+    const { items: posts }: { items: PostRelations[] } = await postsGet({
+      apiUrl: API_URL,
+    });
     if (posts) {
       postRoutes = posts.map((post) => ({
         loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/blog/${linkify(

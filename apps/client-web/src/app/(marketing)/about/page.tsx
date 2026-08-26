@@ -16,7 +16,7 @@ import videos from '@repo/constants/videos';
 import CardStat from '@/components/common/cards/stat';
 import stats from '@/data/stats';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { API_URL, PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { shuffleArray } from '@repo/utilities/array';
 import IntroSection from '@repo/components/layout/intros/section';
@@ -57,8 +57,9 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const { items: students }: { items: StudentGet[] | null } =
-    await studentsGet();
+  const { items: students }: { items: StudentGet[] | null } = await studentsGet(
+    { apiUrl: API_URL }
+  );
 
   return (
     <LayoutPage>

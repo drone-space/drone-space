@@ -27,11 +27,17 @@ import {
 import { IconEdit } from '@tabler/icons-react';
 import NextLink from '../anchor/next-link';
 import BadgeStatus from '../badges/status';
+import { sortArray } from '@repo/utilities/array';
+import { Order } from '@repo/types/enums';
 
 export default function Quizzes() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
 
-  const rows = (quizzes || []).map((qi) => {
+  const rows = sortArray(
+    quizzes || [],
+    (i) => i.created_at,
+    Order.DESCENDING
+  ).map((qi) => {
     const created = getRegionalDate(qi.created_at, {
       // locale: 'en-GB',
       // format: 'numeric',

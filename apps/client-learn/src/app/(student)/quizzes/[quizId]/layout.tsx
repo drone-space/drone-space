@@ -5,13 +5,16 @@ import { Metadata } from 'next';
 import { QuizGet } from '@repo/types/models/quiz';
 import { quizzesGet } from '@repo/handlers/requests/database/quizzes';
 import { APP_NAME } from '@repo/constants/app';
+import { API_URL } from '@repo/constants/paths';
 
 export const generateMetadata = async ({
   params,
 }: {
   params: Promise<typeParams>;
 }): Promise<Metadata> => {
-  const { items: quizzes }: { items: QuizGet[] } = await quizzesGet();
+  const { items: quizzes }: { items: QuizGet[] } = await quizzesGet({
+    apiUrl: API_URL,
+  });
 
   if (quizzes == null) {
     console.error('x--> Quizzes not found');

@@ -23,6 +23,7 @@ import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
 import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { isProduction } from '@repo/utilities/misc';
+import { API_URL } from '@repo/constants/paths';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -66,7 +67,7 @@ export default async function RootLayout({
           appThemeProps={{ styleSheets: { ...mantine } }}
           colorScheme={DEFAULT_COLOR_SCHEME}
         >
-          <ProviderStore>{children}</ProviderStore>
+          <ProviderStore props={{ apiUrl: API_URL }}>{children}</ProviderStore>
         </ProviderMantine>
 
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

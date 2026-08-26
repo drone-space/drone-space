@@ -8,14 +8,20 @@
  */
 
 import React from 'react';
-import { useSessionStore, useLoadAppData } from '@repo/hooks/store';
+import {
+  useSessionStore,
+  useAppshellStore,
+  useLoadAppData,
+} from '@repo/hooks/store';
 import { User } from '@supabase/supabase-js';
+import { STORE_NAME } from '@repo/constants/names';
+import { AppShellValue } from '@repo/libraries/zustand/stores/shell';
 
 export default function Store({
   props,
   children,
 }: {
-  props?: { sessionUser: User | null };
+  props: { apiUrl: string; sessionUser?: User | null; cookie?: AppShellValue };
   children: React.ReactNode;
 }) {
   // initialize stores
@@ -28,9 +34,15 @@ export default function Store({
   // useThemeStore()
   // useAppshellStore();
   useLoadAppData({
+    apiUrl: props.apiUrl,
     clientOnly: false,
-    storesToLoad: { categories: true, posts: true },
+    storesToLoad: STORES_TO_LOAD,
   });
 
   return <div>{children}</div>;
 }
+
+const STORES_TO_LOAD = {
+  [STORE_NAME.CATEGORIES]: true,
+  [STORE_NAME.POSTS]: true,
+};

@@ -5,84 +5,51 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import { API_URL } from '@repo/constants/paths';
-import { HEADERS } from '@repo/constants/other';
-import { CategoryRelations } from '@repo/types/models/category';
+import { CategoryCreate, CategoryGet, CategoryUpdate } from '@repo/types/models/category';
+import { apiCall } from './fetch';
 
-const baseRequestUrl = `${API_URL}/categories`;
+const segment = 'categories';
 
-export const categoriesGet = async (params?: { userId?: string }) => {
-  try {
-    const request = new Request(
-      `${baseRequestUrl}?userId=${params?.userId || ''}`,
-      {
-        method: 'GET',
-        headers: HEADERS.WITHOUT_BODY,
-      }
-    );
-
-    const response = await fetch(request);
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (get categories):', error);
-    throw error;
-  }
+export const categoriesGet = (params: { apiUrl: string; userId?: string }) => {
+  const query = params?.userId ? `?userId=${params.userId}` : '';
+  return apiCall(segment + query, 'GET', params.apiUrl);
 };
 
 let currentController: AbortController | null = null;
 
 export const categoriesUpdate = async (
-  categories: CategoryRelations[],
+  apiUrl: string,
+  categories: CategoryGet[],
   deletedIds?: string[]
 ) => {
-  // Cancel previous request if still in-flight
   if (currentController) currentController.abort();
-
-  // New controller for this request
   currentController = new AbortController();
 
   try {
-    const request = new Request(baseRequestUrl, {
-      method: 'PUT',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify({ categories, deletedIds }),
-    });
-
-    const response = await fetch(request);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (update categories):', error);
-    throw error;
+    return await apiCall(
+      segment + '',
+      'PUT',
+      apiUrl,
+      { categories, deletedIds },
+      currentController.signal
+    );
   } finally {
-    // Clear controller once done (important for GC)
     currentController = null;
   }
 };
 
-export const categoryGet = async (slug: { categoryId: string }) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${slug.categoryId}`, {
-      method: 'GET',
-      headers: HEADERS.WITHOUT_BODY,
-    });
+export const categoryGet = (params: { apiUrl: string; categoryId: string }) => {
+  return apiCall(segment + `/${params.categoryId}`, 'GET', params.apiUrl);
+};
 
-    const response = await fetch(request);
+export const categoryCreate = (apiUrl: string, category: CategoryCreate) => {
+  return apiCall(segment + '/create', 'POST', apiUrl, category);
+};
 
-    const result = await response.json();
+export const categoryUpdate = (apiUrl: string, category: CategoryUpdate) => {
+  return apiCall(segment + `/${category.id}`, 'PUT', apiUrl, category);
+};
 
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (get category):', error);
-    throw error;
-  }
+export const categoryDelete = (apiUrl: string, categoryId: string) => {
+  return apiCall(segment + `/${categoryId}`, 'DELETE', apiUrl);
 };

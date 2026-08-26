@@ -18,6 +18,7 @@ import {
   useMergedSync,
 } from '@repo/hooks/sync';
 import { STORE_NAME } from '@repo/constants/names';
+import { API_URL } from '@repo/constants/paths';
 
 export default function Sync({ children }: { children: React.ReactNode }) {
   const networkStatus = useNetwork();
@@ -46,7 +47,7 @@ export default function Sync({ children }: { children: React.ReactNode }) {
     online: networkStatus.online,
     storesToSync: [],
     handleSync: (payload: MergedSyncPayload) =>
-      handleMergedSync({ payload, ...restProps }),
+      handleMergedSync({ payload, ...restProps, apiUrl: API_URL }),
   });
 
   return <div>{children}</div>;

@@ -5,138 +5,55 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import { API_URL } from '@repo/constants/paths';
-import { HEADERS } from '@repo/constants/other';
 import {
   QuestionCreate,
-  QuestionRelations,
+  QuestionGet,
   QuestionUpdate,
 } from '@repo/types/models/question';
+import { apiCall } from './fetch';
 
-const baseRequestUrl = `${API_URL}/questions`;
+const segment = 'questions';
 
-export const questionsGet = async (params?: { userId?: string }) => {
-  try {
-    const request = new Request(
-      `${baseRequestUrl}?userId=${params?.userId || ''}`,
-      {
-        method: 'GET',
-        headers: HEADERS.WITHOUT_BODY,
-      }
-    );
-
-    const response = await fetch(request);
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (get questions):', error);
-    throw error;
-  }
+export const questionsGet = (params: { apiUrl: string; userId?: string }) => {
+  const query = params?.userId ? `?userId=${params.userId}` : '';
+  return apiCall(segment + query, 'GET', params.apiUrl);
 };
 
 let currentController: AbortController | null = null;
 
 export const questionsUpdate = async (
-  questions: QuestionRelations[],
+  apiUrl: string,
+  questions: QuestionGet[],
   deletedIds?: string[]
 ) => {
-  // Cancel previous request if still in-flight
   if (currentController) currentController.abort();
-
-  // New controller for this request
   currentController = new AbortController();
 
   try {
-    const request = new Request(baseRequestUrl, {
-      method: 'PUT',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify({ questions, deletedIds }),
-    });
-
-    const response = await fetch(request);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (update questions):', error);
-    throw error;
+    return await apiCall(
+      segment + '',
+      'PUT',
+      apiUrl,
+      { questions, deletedIds },
+      currentController.signal
+    );
   } finally {
-    // Clear controller once done (important for GC)
     currentController = null;
   }
 };
 
-export const questionGet = async (params: { questionId: string }) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${params.questionId}`, {
-      method: 'GET',
-      headers: HEADERS.WITHOUT_BODY,
-    });
-
-    const response = await fetch(request);
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (get question):', error);
-    throw error;
-  }
+export const questionGet = (params: { apiUrl: string; questionId: string }) => {
+  return apiCall(segment + `/${params.questionId}`, 'GET', params.apiUrl);
 };
 
-export const questionCreate = async (question: QuestionCreate) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/create`, {
-      method: 'POST',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(question),
-    });
-
-    const response = await fetch(request);
-
-    return response;
-  } catch (error) {
-    console.error('---> handler error - (create question):', error);
-    throw error;
-  }
+export const questionCreate = (apiUrl: string, question: QuestionCreate) => {
+  return apiCall(segment + '/create', 'POST', apiUrl, question);
 };
 
-export const questionUpdate = async (question: QuestionUpdate) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${question.id}`, {
-      method: 'PUT',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(question),
-    });
-
-    const response = await fetch(request);
-
-    return response;
-  } catch (error) {
-    console.error('---> handler error - (update question):', error);
-    throw error;
-  }
+export const questionUpdate = (apiUrl: string, question: QuestionUpdate) => {
+  return apiCall(segment + `/${question.id}`, 'PUT', apiUrl, question);
 };
 
-export const questionDelete = async (questionId: string) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${questionId}`, {
-      method: 'DELETE',
-      headers: HEADERS.WITHOUT_BODY,
-    });
-
-    const response = await fetch(request);
-
-    return response;
-  } catch (error) {
-    console.error('---> handler error - (delete question):', error);
-    throw error;
-  }
+export const questionDelete = (apiUrl: string, questionId: string) => {
+  return apiCall(segment + `/${questionId}`, 'DELETE', apiUrl);
 };

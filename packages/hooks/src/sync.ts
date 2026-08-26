@@ -53,7 +53,11 @@ const useSessionCheck = () => {
 type SyncStoreConfig<TItems = any, THookReturn = any> = {
   dataStore: (typeof STORE_NAME)[keyof typeof STORE_NAME];
   useStoreHook: () => THookReturn;
-  serverUpdate: (items: TItems[], deleted: TItems[]) => Promise<any>;
+  serverUpdate: (
+    apiurl: string,
+    items: TItems[],
+    deleted: TItems[]
+  ) => Promise<any>;
   getItems: (store: THookReturn) => TItems[];
   getDeleted: (store: THookReturn) => TItems[];
   setItems: (store: THookReturn, items: TItems[]) => void;
@@ -131,35 +135,36 @@ type SyncStoreKey = keyof typeof SYNC_STORES;
 const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
   [STORE_NAME.QUIZZES]: {
     store: useStoreQuiz,
-    updateState: (items: any) => useStoreQuiz.getState().setQuizzes(items),
+    updateState: (items: any) => useStoreQuiz.getState().mergeQuizzes(items),
     clearDeleted: () => useStoreQuiz.getState().clearDeletedQuizzes(),
   },
   [STORE_NAME.QUESTIONS]: {
     store: useStoreQuestion,
     updateState: (items: any) =>
-      useStoreQuestion.getState().setQuestions(items),
+      useStoreQuestion.getState().mergeQuestions(items),
     clearDeleted: () => useStoreQuestion.getState().clearDeletedQuestions(),
   },
   [STORE_NAME.QUIZ_QUESTIONS]: {
     store: useStoreQuizQuestion,
     updateState: (items: any) =>
-      useStoreQuizQuestion.getState().setQuizQuestions(items),
+      useStoreQuizQuestion.getState().mergeQuizQuestions(items),
     clearDeleted: () =>
       useStoreQuizQuestion.getState().clearDeletedQuizQuestions(),
   },
   [STORE_NAME.OPTIONS]: {
     store: useStoreOption,
-    updateState: (items: any) => useStoreOption.getState().setOptions(items),
+    updateState: (items: any) => useStoreOption.getState().mergeOptions(items),
     clearDeleted: () => useStoreOption.getState().clearDeletedOptions(),
   },
   [STORE_NAME.ATTEMPTS]: {
     store: useStoreAttempt,
-    updateState: (items: any) => useStoreAttempt.getState().setAttempts(items),
+    updateState: (items: any) =>
+      useStoreAttempt.getState().mergeAttempts(items),
     clearDeleted: () => useStoreAttempt.getState().clearDeletedAttempts(),
   },
   [STORE_NAME.ANSWERS]: {
     store: useStoreAnswer,
-    updateState: (items: any) => useStoreAnswer.getState().setAnswers(items),
+    updateState: (items: any) => useStoreAnswer.getState().mergeAnswers(items),
     clearDeleted: () => useStoreAnswer.getState().clearDeletedAnswers(),
   },
 };
@@ -176,6 +181,7 @@ export interface MergedSyncPayload {
 
 // Update the MergedSyncParams to handle multiple datasets
 export type MergedSyncParams = {
+  apiUrl: string;
   payload: MergedSyncPayload;
   onSuccess?: (key: keyof MergedSyncPayload, updatedItems: any[]) => void;
   onClearDeleted?: (key: keyof MergedSyncPayload) => void;
@@ -187,43 +193,39 @@ export const useMergedSync = (params: {
   handleSync: (payload: MergedSyncPayload) => Promise<void>;
   syncStatus: SyncStatusValue;
 }) => {
-  const { online, storesToSync, handleSync } = params;
-  const idle = useIdle(1000, { events: ['keypress', 'click'] });
+  const { online } = params;
+  const idle = useIdle(500, { events: ['keypress', 'click'] });
   const { noSession } = useSessionCheck();
 
-  // Call all hooks at the top level (Required by Hook Rules)
-  const quizStore = useStoreQuiz();
-  const questionStore = useStoreQuestion();
-  const quizQuestionStore = useStoreQuizQuestion();
-  const optionStore = useStoreOption();
-  const attemptStore = useStoreAttempt();
-  const answerStore = useStoreAnswer();
+  // Store params in a ref so sync always reads fresh state without re-triggering useEffect
+  const paramsRef = useRef(params);
+  paramsRef.current = params;
 
-  const stores = {
-    [STORE_NAME.QUIZZES]: quizStore,
-    [STORE_NAME.QUESTIONS]: questionStore,
-    [STORE_NAME.QUIZ_QUESTIONS]: quizQuestionStore,
-    [STORE_NAME.OPTIONS]: optionStore,
-    [STORE_NAME.ATTEMPTS]: attemptStore,
-    [STORE_NAME.ANSWERS]: answerStore,
-  };
+  // Ref guard to prevent concurrent sync executions
+  const isSyncingRef = useRef(false);
 
-  // Use a Ref for the current sync status to check it inside the callback
-  // without making the callback depend on it.
-  const syncStatusRef = useRef(params.syncStatus);
-  useEffect(() => {
-    syncStatusRef.current = params.syncStatus;
-  }, [params.syncStatus]);
+  const triggerSync = useCallback(async () => {
+    // Prevent execution if already syncing or pending
+    if (
+      isSyncingRef.current ||
+      paramsRef.current.syncStatus === SyncStatus.PENDING
+    ) {
+      return;
+    }
 
-  const sync = useCallback(async () => {
-    // Use the ref here
-    if (syncStatusRef.current === SyncStatus.PENDING) return;
+    const stores = {
+      [STORE_NAME.QUIZZES]: useStoreQuiz.getState(),
+      [STORE_NAME.QUESTIONS]: useStoreQuestion.getState(),
+      [STORE_NAME.QUIZ_QUESTIONS]: useStoreQuizQuestion.getState(),
+      [STORE_NAME.OPTIONS]: useStoreOption.getState(),
+      [STORE_NAME.ATTEMPTS]: useStoreAttempt.getState(),
+      [STORE_NAME.ANSWERS]: useStoreAnswer.getState(),
+    };
 
     const payload: MergedSyncPayload = {};
     let hasDirtyData = false;
 
-    // Build the payload dynamically based on what's active
-    storesToSync.forEach((key) => {
+    paramsRef.current.storesToSync.forEach((key) => {
       const config = SYNC_STORES[key];
 
       // Safety Check: skip if config doesn't exist for this key
@@ -238,7 +240,6 @@ export const useMergedSync = (params: {
       const items = config.getItems(store) ?? [];
       const deleted = config.getDeleted(store) ?? [];
 
-      // ONLY add to payload if there is something that needs action
       const needsSync = items.some(
         (i) =>
           i.sync_status === SyncStatus.PENDING ||
@@ -249,40 +250,28 @@ export const useMergedSync = (params: {
       );
 
       if (needsSync || deleted.length > 0) {
+        console.log('--> [info] syncing', key);
         (payload as any)[key] = { items, deleted };
         hasDirtyData = true;
       }
     });
 
-    // Only proceed if we actually have work to do
-    if (!hasDirtyData) return;
+    if (hasDirtyData) {
+      try {
+        isSyncingRef.current = true;
+        await paramsRef.current.handleSync(payload);
+      } finally {
+        isSyncingRef.current = false;
+      }
+    }
+  }, []);
 
-    await handleSync(payload);
-  }, [
-    JSON.stringify(storesToSync),
-    handleSync,
-    quizStore.quizzes,
-    questionStore.questions,
-    optionStore.options,
-    attemptStore.attempts,
-    answerStore.answers,
-  ]);
-
-  const debounceSyncFunction = useDebouncedCallback(() => sync(), 1000);
-  // Add a debounced version of your sync function
-  const debouncedSync = useMemo(
-    () => debounceSyncFunction, // Wait 1s after the last store change/idle event
-    [debounceSyncFunction]
-  );
-
+  // Effect ONLY re-runs when idle, online, or session state actually transitions
   useEffect(() => {
     if (!noSession && idle && online) {
-      debouncedSync();
+      triggerSync();
     }
-
-    // Cleanup to avoid memory leaks or late executions
-    return () => debouncedSync.cancel?.();
-  }, [online, noSession, idle, debouncedSync]);
+  }, [online, noSession, idle, triggerSync]);
 };
 
 export const handleMergedSync = async (
@@ -308,7 +297,7 @@ export const handleMergedSync = async (
     const db = await openDatabase(config);
 
     // 1. Client-Side Batch Update
-    // We loop through the payload keys (e.g., ['notes', 'categories'])
+    // We loop through the payload keys (e.g., ['posts', 'categories'])
     for (const [storeKey, data] of Object.entries(payload)) {
       const config = SYNC_STORES[storeKey as SyncStoreKey];
       const registry = SYNC_REGISTRY[storeKey as SyncStoreKey];
@@ -317,7 +306,7 @@ export const handleMergedSync = async (
         ...data,
         items: data?.items || [],
         deletedItems: data?.deleted || [],
-        dataStore: config.dataStore,
+        dataStore: config!.dataStore,
         stateUpdateFunction: registry.updateState,
         stateUpdateFunctionDeleted: registry.clearDeleted,
         online: networkStatus.online,
@@ -339,15 +328,19 @@ export const handleMergedSync = async (
   }
 };
 
-export const syncToServerDBMerged = async (payload: MergedSyncPayload) => {
+export const syncToServerDBMerged = async (
+  payload: MergedSyncPayload,
+  options: { apiUrl: string }
+) => {
   const now = new Date();
   const finalPayload: Record<string, any> = {};
   const activeStores: string[] = [];
 
-  // Iterate through the keys (notes, categories, etc.)
+  // Iterate through the keys (posts, categories, etc.)
   (Object.keys(payload) as SyncStoreKey[]).forEach((key) => {
     const data = (payload as any)[key];
     if (data && (data.items.length > 0 || data.deleted.length > 0)) {
+      // This now contains { upserts: [...], deletedIds: [...] }
       finalPayload[key] = prepareStorePayload(key, data, now);
       activeStores.push(key);
     }
@@ -357,7 +350,7 @@ export const syncToServerDBMerged = async (payload: MergedSyncPayload) => {
     if (activeStores.length === 0) return;
 
     const response = await fetch(
-      `${API_URL}/app-data?stores=${activeStores.join(',')}`,
+      `${options.apiUrl}/app-data?stores=${activeStores.join(',')}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -418,7 +411,13 @@ export const handleServerResponse = async (
     const config = SYNC_STORES[key as SyncStoreKey];
     const registry = SYNC_REGISTRY[key as SyncStoreKey];
 
-    if (!config || !registry) continue;
+    // Safety Check: skip if config doesn't exist for this key
+    if (!config || !registry) {
+      console.warn(
+        `Sync config for hook key "${key}" is missing in SYNC_STORES.`
+      );
+      continue;
+    }
 
     // 2. Update Client DB & Zustand to 'SYNCED'
     // We use your existing syncToClientDB but with 'fromServer' flag
@@ -451,7 +450,9 @@ export const syncToServerAfterDelay = async (
     setSyncStatus(SyncStatus.PENDING);
 
     // 1. Send the merged payload
-    const result = await syncToServerDBMerged(payload);
+    const result = await syncToServerDBMerged(payload, {
+      apiUrl: params.apiUrl,
+    });
 
     if (result?.error) {
       // handle errors (marking items with SyncStatus.ERROR)
@@ -461,7 +462,7 @@ export const syncToServerAfterDelay = async (
 
     // 2. Process the successful return to update local state
     if (result?.data) {
-      await handleServerResponse(result.data, networkStatus, params.db);
+      await handleServerResponse(result.data.items, networkStatus, params.db);
     }
 
     setSyncStatus(SyncStatus.SYNCED);

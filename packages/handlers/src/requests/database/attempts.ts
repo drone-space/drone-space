@@ -5,134 +5,55 @@
  * Do not modify unless you intend to backport changes to the template.
  */
 
-import { API_URL } from '@repo/constants/paths';
-import { HEADERS } from '@repo/constants/other';
-import { AttemptCreate, AttemptRelations, AttemptUpdate } from '@repo/types/models/attempt';
+import {
+  AttemptCreate,
+  AttemptGet,
+  AttemptUpdate,
+} from '@repo/types/models/attempt';
+import { apiCall } from './fetch';
 
-const baseRequestUrl = `${API_URL}/attempts`;
+const segment = 'attempts';
 
-export const attemptsGet = async (params?: { userId?: string }) => {
-  try {
-    const request = new Request(
-      `${baseRequestUrl}?userId=${params?.userId || ''}`,
-      {
-        method: 'GET',
-        headers: HEADERS.WITHOUT_BODY,
-      }
-    );
-
-    const response = await fetch(request);
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (get attempts):', error);
-    throw error;
-  }
+export const attemptsGet = (params: { apiUrl: string; userId?: string }) => {
+  const query = params?.userId ? `?userId=${params.userId}` : '';
+  return apiCall(segment + query, 'GET', params.apiUrl);
 };
 
 let currentController: AbortController | null = null;
 
 export const attemptsUpdate = async (
-  attempts: AttemptRelations[],
+  apiUrl: string,
+  attempts: AttemptGet[],
   deletedIds?: string[]
 ) => {
-  // Cancel previous request if still in-flight
   if (currentController) currentController.abort();
-
-  // New controller for this request
   currentController = new AbortController();
 
   try {
-    const request = new Request(baseRequestUrl, {
-      method: 'PUT',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify({ attempts, deletedIds }),
-    });
-
-    const response = await fetch(request);
-
-    if (!response.ok) {
-      throw new Error(`${response.status}: ${response.statusText}`);
-    }
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (update attempts):', error);
-    throw error;
+    return await apiCall(
+      segment + '',
+      'PUT',
+      apiUrl,
+      { attempts, deletedIds },
+      currentController.signal
+    );
   } finally {
-    // Clear controller once done (important for GC)
     currentController = null;
   }
 };
 
-export const attemptGet = async (params: { attemptId: string }) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${params.attemptId}`, {
-      method: 'GET',
-      headers: HEADERS.WITHOUT_BODY,
-    });
-
-    const response = await fetch(request);
-
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    console.error('---> handler error - (get attempt):', error);
-    throw error;
-  }
+export const attemptGet = (params: { apiUrl: string; attemptId: string }) => {
+  return apiCall(segment + `/${params.attemptId}`, 'GET', params.apiUrl);
 };
 
-export const attemptCreate = async (attempt: AttemptCreate) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/create`, {
-      method: 'POST',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(attempt),
-    });
-
-    const response = await fetch(request);
-
-    return response;
-  } catch (error) {
-    console.error('---> handler error - (create attempt):', error);
-    throw error;
-  }
+export const attemptCreate = (apiUrl: string, attempt: AttemptCreate) => {
+  return apiCall(segment + '/create', 'POST', apiUrl, attempt);
 };
 
-export const attemptUpdate = async (attempt: AttemptUpdate) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${attempt.id}`, {
-      method: 'PUT',
-      headers: HEADERS.WITH_BODY,
-      body: JSON.stringify(attempt),
-    });
-
-    const response = await fetch(request);
-
-    return response;
-  } catch (error) {
-    console.error('---> handler error - (update attempt):', error);
-    throw error;
-  }
+export const attemptUpdate = (apiUrl: string, attempt: AttemptUpdate) => {
+  return apiCall(segment + `/${attempt.id}`, 'PUT', apiUrl, attempt);
 };
 
-export const attemptDelete = async (attemptId: string) => {
-  try {
-    const request = new Request(`${baseRequestUrl}/${attemptId}`, {
-      method: 'DELETE',
-      headers: HEADERS.WITHOUT_BODY,
-    });
-
-    const response = await fetch(request);
-
-    return response;
-  } catch (error) {
-    console.error('---> handler error - (delete attempt):', error);
-    throw error;
-  }
+export const attemptDelete = (apiUrl: string, attemptId: string) => {
+  return apiCall(segment + `/${attemptId}`, 'DELETE', apiUrl);
 };

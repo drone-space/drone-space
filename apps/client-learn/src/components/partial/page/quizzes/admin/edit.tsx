@@ -127,7 +127,9 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
   return (
     <Box mb={SECTION_SPACING}>
-      <HeaderAppContent />
+      <HeaderAppContent
+        props={{ title: !quiz ? undefined : `Edit ${quiz.title}` }}
+      />
 
       <Grid>
         <GridCol span={{ base: 12, xl: 5 }} order={{ xl: 2 }}>
@@ -377,7 +379,7 @@ function CardQuestion({
     >
       <Stack>
         <Stack gap={'xs'}>
-          <Group justify="space-between">
+          <Group justify="space-between" wrap="nowrap">
             <div>
               <Text>{props.question.content}</Text>
             </div>

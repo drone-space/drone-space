@@ -25,8 +25,8 @@ export const useFormOption = (params?: {
     },
     {
       content: hasLength(
-        { min: 2, max: 2048 },
-        'Between 2 and 2048 characters required'
+        { min: 1, max: 2048 },
+        'Between 1 and 2048 characters required'
       ),
     },
     {

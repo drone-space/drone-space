@@ -194,8 +194,6 @@ function App() {
           variant="filled"
           aria-label="theme"
           size="xs"
-          checkIconPosition="right"
-          allowDeselect={false}
           w={120}
           data={themes}
           value={colorScheme}
@@ -215,8 +213,6 @@ function App() {
             variant="filled"
             aria-label="theme"
             size="xs"
-            checkIconPosition="right"
-            allowDeselect={false}
             disabled
             w={120}
             value={colors[0].value}

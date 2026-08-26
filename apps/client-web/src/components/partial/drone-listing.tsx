@@ -301,8 +301,6 @@ export default function DroneListing() {
             <Select
               aria-label="Items to Show"
               placeholder="Items to Show"
-              checkIconPosition="right"
-              unselectable={'on'}
               size="xs"
               w={140}
               data={[
@@ -322,8 +320,6 @@ export default function DroneListing() {
             <Select
               aria-label="Sort By"
               placeholder="Sort By"
-              checkIconPosition="right"
-              unselectable={'on'}
               size="xs"
               w={160}
               data={[

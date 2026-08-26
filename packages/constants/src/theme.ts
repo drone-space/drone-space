@@ -19,6 +19,7 @@ import {
   Modal,
   Notification,
   ScrollArea,
+  Select,
   Textarea,
   TextInput,
   Title,
@@ -205,6 +206,13 @@ export const getAppTheme = (params?: AppThemeProps) => {
               borderWidth: ICON_STROKE_WIDTH,
             },
           },
+        },
+      }),
+
+      Select: Select.extend({
+        defaultProps: {
+          allowDeselect: false,
+          checkIconPosition: 'right',
         },
       }),
 

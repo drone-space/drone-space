@@ -109,8 +109,6 @@ export default function Contact({
                 placeholder={
                   options?.modal ? 'Inquiry *' : 'What are you inquiring about?'
                 }
-                checkIconPosition={'right'}
-                allowDeselect={false}
                 {...form.getInputProps('subject')}
                 data={subjectOptions}
                 value={

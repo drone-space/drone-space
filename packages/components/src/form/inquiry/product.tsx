@@ -45,8 +45,6 @@ export default function Product({
             <Select
               aria-label="Drone Kit"
               placeholder="Prefered Drone Kit"
-              allowDeselect={false}
-              checkIconPosition="right"
               {...form.getInputProps('kit')}
               styles={{
                 input: { height: '100%', borderWidth: ICON_STROKE_WIDTH },

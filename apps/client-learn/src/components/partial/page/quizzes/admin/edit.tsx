@@ -210,135 +210,132 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                   </Button>
                 </Box>
 
-                {add && (
-                  <Fieldset
-                    p={'md'}
-                    legend={'Add question'}
-                    styles={{
-                      legend: { color: 'var(--mantine-color-gray-6)' },
-                    }}
-                  >
-                    <Stack>
-                      <Box display={!addFromExisting ? undefined : 'none'}>
-                        <Button onClick={() => setAddFromExisting(true)}>
-                          Add from existing questions
-                        </Button>
-                      </Box>
+                <Fieldset
+                  p={'md'}
+                  legend={'Add question'}
+                  styles={{
+                    legend: { color: 'var(--mantine-color-gray-6)' },
+                  }}
+                  display={add ? undefined : 'none'}
+                >
+                  <Stack>
+                    <Box display={!addFromExisting ? undefined : 'none'}>
+                      <Button onClick={() => setAddFromExisting(true)}>
+                        Add from existing questions
+                      </Button>
+                    </Box>
 
-                      <Fieldset
-                        p={'md'}
-                        pr={0}
-                        legend={'Add from existing questions'}
-                        styles={{
-                          legend: { color: 'var(--mantine-color-gray-6)' },
-                        }}
-                        display={addFromExisting ? undefined : 'none'}
-                      >
-                        <Stack gap={0}>
-                          <ScrollAreaAutosize mah={240}>
-                            <Stack pr={'md'} pb={'md'} gap={5}>
-                              {/* Changed conditional check to look at available items */}
-                              {!questionsAvailableToAdd.length ? (
-                                <Stack
-                                  align="center"
-                                  ta={'center'}
-                                  py={'xl'}
-                                  fz={'sm'}
-                                >
-                                  <ThemeIcon
-                                    size={ICON_WRAPPER_SIZE}
-                                    variant="light"
-                                  >
-                                    <IconX
-                                      size={ICON_SIZE}
-                                      stroke={ICON_STROKE_WIDTH}
-                                    />
-                                  </ThemeIcon>
-                                  <Text inherit c={'dimmed'}>
-                                    No questions found
-                                  </Text>
-                                </Stack>
-                              ) : (
-                                questionsAvailableToAdd.map((question) => (
-                                  <div key={question.id}>
-                                    <CardQuestion
-                                      props={{
-                                        question: question,
-                                        options: { select: true },
-                                        edit,
-                                        setEdit,
-                                        checked: questionIds.includes(
-                                          question.id
-                                        ),
-                                        setChecked: () => {
-                                          if (
-                                            questionIds.includes(question.id)
-                                          ) {
-                                            setQuestionIds(
-                                              questionIds.filter(
-                                                (id) => id !== question.id
-                                              )
-                                            );
-                                          } else {
-                                            setQuestionIds([
-                                              ...questionIds,
-                                              question.id,
-                                            ]);
-                                          }
-                                        },
-                                      }}
-                                    />
-                                  </div>
-                                ))
-                              )}
-                            </Stack>
-                          </ScrollAreaAutosize>
-
-                          <Box pr={'md'}>
-                            <Divider />
-                          </Box>
-
-                          <Group justify="end" pr={'md'} mt={'md'}>
-                            <Tooltip
-                              label={
-                                !questionIds.length
-                                  ? 'Select at least 1 question to add'
-                                  : 'Add questions'
-                              }
-                            >
-                              <Button
-                                size="xs"
-                                disabled={!questionIds.length}
-                                onClick={handleAddExistingQuestion}
+                    <Fieldset
+                      p={'md'}
+                      pr={0}
+                      legend={'Add from existing questions'}
+                      styles={{
+                        legend: { color: 'var(--mantine-color-gray-6)' },
+                      }}
+                      display={addFromExisting ? undefined : 'none'}
+                    >
+                      <Stack gap={0}>
+                        <ScrollAreaAutosize mah={240}>
+                          <Stack pr={'md'} pb={'md'} gap={5}>
+                            {/* Changed conditional check to look at available items */}
+                            {!questionsAvailableToAdd.length ? (
+                              <Stack
+                                align="center"
+                                ta={'center'}
+                                py={'xl'}
+                                fz={'sm'}
                               >
-                                Add
-                              </Button>
-                            </Tooltip>
-                          </Group>
-                        </Stack>
-                      </Fieldset>
+                                <ThemeIcon
+                                  size={ICON_WRAPPER_SIZE}
+                                  variant="light"
+                                >
+                                  <IconX
+                                    size={ICON_SIZE}
+                                    stroke={ICON_STROKE_WIDTH}
+                                  />
+                                </ThemeIcon>
+                                <Text inherit c={'dimmed'}>
+                                  No questions found
+                                </Text>
+                              </Stack>
+                            ) : (
+                              questionsAvailableToAdd.map((question) => (
+                                <div key={question.id}>
+                                  <CardQuestion
+                                    props={{
+                                      question: question,
+                                      options: { select: true },
+                                      edit,
+                                      setEdit,
+                                      checked: questionIds.includes(
+                                        question.id
+                                      ),
+                                      setChecked: () => {
+                                        if (questionIds.includes(question.id)) {
+                                          setQuestionIds(
+                                            questionIds.filter(
+                                              (id) => id !== question.id
+                                            )
+                                          );
+                                        } else {
+                                          setQuestionIds([
+                                            ...questionIds,
+                                            question.id,
+                                          ]);
+                                        }
+                                      },
+                                    }}
+                                  />
+                                </div>
+                              ))
+                            )}
+                          </Stack>
+                        </ScrollAreaAutosize>
 
-                      <Fieldset
-                        p={'md'}
-                        legend={'Create new question'}
-                        styles={{
-                          legend: { color: 'var(--mantine-color-gray-6)' },
+                        <Box pr={'md'}>
+                          <Divider />
+                        </Box>
+
+                        <Group justify="end" pr={'md'} mt={'md'}>
+                          <Tooltip
+                            label={
+                              !questionIds.length
+                                ? 'Select at least 1 question to add'
+                                : 'Add questions'
+                            }
+                          >
+                            <Button
+                              size="xs"
+                              disabled={!questionIds.length}
+                              onClick={handleAddExistingQuestion}
+                            >
+                              Add
+                            </Button>
+                          </Tooltip>
+                        </Group>
+                      </Stack>
+                    </Fieldset>
+
+                    <Fieldset
+                      p={'md'}
+                      legend={'Create new question'}
+                      styles={{
+                        legend: { color: 'var(--mantine-color-gray-6)' },
+                      }}
+                    >
+                      <FormQuestion
+                        props={{
+                          quizId: props.quizId,
+                          onSubmit: () => {
+                            setEdit({ content: '', options: '' });
+                            setAdd(false);
+                          },
+                          setAddFromExisting,
                         }}
-                      >
-                        <FormQuestion
-                          props={{
-                            quizId: props.quizId,
-                            onSubmit: () => {
-                              setEdit({ content: '', options: '' });
-                              setAdd(false);
-                            },
-                            setAddFromExisting,
-                          }}
-                        />
-                      </Fieldset>
-                    </Stack>
-                  </Fieldset>
-                )}
+                      />
+                    </Fieldset>
+                  </Stack>
+                </Fieldset>
               </Stack>
             </Fieldset>
           </Stack>
@@ -362,6 +359,11 @@ function CardQuestion({
     options?: { select?: boolean };
   };
 }) {
+  const options = useStoreOption((s) => s.options);
+  const questionOptions = options?.filter(
+    (oi) => oi.question_id == props.question.id
+  );
+
   const active = {
     content: props.edit?.content == props.question.id,
     options: props.edit?.options == props.question.id,
@@ -412,108 +414,134 @@ function CardQuestion({
             </Group>
           </Group>
 
-          <Group gap={5} display={props.options?.select ? 'none' : undefined}>
-            <Tooltip label={'Edit question content.'}>
-              <ActionIcon
-                size={ICON_WRAPPER_SIZE - 4}
-                variant={active.content ? 'light' : 'subtle'}
-                onClick={() =>
-                  props.setEdit &&
-                  props.setEdit({
-                    options: '',
-                    content: !active.content ? props.question.id : '',
-                  })
-                }
-              >
-                <displayProps.iconEdit
-                  size={ICON_SIZE - 4}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              </ActionIcon>
-            </Tooltip>
-
-            <Tooltip label={'Add/edit question options.'}>
-              <ActionIcon
-                size={ICON_WRAPPER_SIZE - 4}
-                variant={active.options ? 'light' : 'subtle'}
-                onClick={() =>
-                  props.setEdit &&
-                  props.setEdit({
-                    content: '',
-                    options: !active.options ? props.question.id : '',
-                  })
-                }
-              >
-                <displayProps.iconOptions
-                  size={ICON_SIZE - 4}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              </ActionIcon>
-            </Tooltip>
-
-            <Tooltip label={'Remove question from quiz.'}>
-              <Group>
+          <Group
+            display={props.options?.select ? 'none' : undefined}
+            justify="space-between"
+          >
+            <Group gap={5}>
+              <Tooltip label={'Edit question content.'}>
                 <ActionIcon
-                  color="red.6"
                   size={ICON_WRAPPER_SIZE - 4}
-                  variant={'subtle'}
-                  onClick={() => {
-                    handleRemoveQuestionFromQuiz();
-
-                    if (props.setEdit) {
-                      props.setEdit({
-                        content: '',
-                        options: '',
-                      });
-                    }
-                  }}
+                  variant={active.content ? 'light' : 'subtle'}
+                  onClick={() =>
+                    props.setEdit &&
+                    props.setEdit({
+                      options: '',
+                      content: !active.content ? props.question.id : '',
+                    })
+                  }
                 >
-                  <IconCircleMinus
+                  <displayProps.iconEdit
                     size={ICON_SIZE - 4}
                     stroke={ICON_STROKE_WIDTH}
                   />
                 </ActionIcon>
-              </Group>
-            </Tooltip>
+              </Tooltip>
 
-            <Divider orientation="vertical" mx={'xs'} />
-
-            <Tooltip label={'Delete question.'}>
-              <div>
-                <ModalConfirm
-                  props={{
-                    onConfirm: () => {
-                      if (props.setEdit)
-                        props.setEdit({ content: '', options: '' });
-
-                      questionDelete(props.question);
-                    },
-                    title: 'Delete question',
-                    desc: 'Deleting a question will also delete it in all other quizzes. This action is irreversible. Proceed?',
-                  }}
+              <Tooltip label={'Add/edit question options.'}>
+                <ActionIcon
+                  size={ICON_WRAPPER_SIZE - 4}
+                  variant={active.options ? 'light' : 'subtle'}
+                  onClick={() =>
+                    props.setEdit &&
+                    props.setEdit({
+                      content: '',
+                      options: !active.options ? props.question.id : '',
+                    })
+                  }
                 >
-                  <Group>
-                    <ActionIcon
-                      color="red.6"
-                      size={ICON_WRAPPER_SIZE - 4}
-                      variant={'subtle'}
-                      onClick={() =>
-                        props.setEdit &&
+                  <displayProps.iconOptions
+                    size={ICON_SIZE - 4}
+                    stroke={ICON_STROKE_WIDTH}
+                  />
+                </ActionIcon>
+              </Tooltip>
+
+              <Tooltip label={'Remove question from quiz.'}>
+                <Group>
+                  <ActionIcon
+                    color="red.6"
+                    size={ICON_WRAPPER_SIZE - 4}
+                    variant={'subtle'}
+                    onClick={() => {
+                      handleRemoveQuestionFromQuiz();
+
+                      if (props.setEdit) {
                         props.setEdit({
                           content: '',
                           options: '',
-                        })
+                        });
                       }
-                    >
-                      <IconTrash
-                        size={ICON_SIZE - 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ActionIcon>
-                  </Group>
-                </ModalConfirm>
-              </div>
-            </Tooltip>
+                    }}
+                  >
+                    <IconCircleMinus
+                      size={ICON_SIZE - 4}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
+                  </ActionIcon>
+                </Group>
+              </Tooltip>
+
+              {(questionOptions || []).length < 4 && (
+                <>
+                  <Divider orientation="vertical" mx={'xs'} />
+
+                  <Tooltip label={'4 qestion options are required.'}>
+                    <Group>
+                      <ThemeIcon
+                        color="yellow.6"
+                        size={ICON_WRAPPER_SIZE - 4}
+                        variant={'subtle'}
+                      >
+                        <IconAlertTriangle
+                          size={ICON_SIZE - 4}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      </ThemeIcon>
+                    </Group>
+                  </Tooltip>
+                </>
+              )}
+            </Group>
+
+            <Group gap={5}>
+              <Tooltip label={'Delete question.'}>
+                <div>
+                  <ModalConfirm
+                    props={{
+                      onConfirm: () => {
+                        if (props.setEdit)
+                          props.setEdit({ content: '', options: '' });
+
+                        questionDelete(props.question);
+                      },
+                      title: 'Delete question',
+                      desc: 'Deleting a question will also delete it in all other quizzes. This action is irreversible. Proceed?',
+                    }}
+                  >
+                    <Group>
+                      <ActionIcon
+                        color="red.6"
+                        size={ICON_WRAPPER_SIZE - 4}
+                        variant={'subtle'}
+                        onClick={() =>
+                          props.setEdit &&
+                          props.setEdit({
+                            content: '',
+                            options: '',
+                          })
+                        }
+                      >
+                        <IconTrash
+                          size={ICON_SIZE - 4}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      </ActionIcon>
+                    </Group>
+                  </ModalConfirm>
+                </div>
+              </Tooltip>
+            </Group>
           </Group>
         </Stack>
 

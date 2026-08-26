@@ -89,7 +89,11 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
   // 1. Filter bridge items for this quiz
   const quizQuestionsQuiz = useMemo(() => {
-    return quizQuestions?.filter((qqqi) => qqqi.quiz_id === props.quizId) || [];
+    return sortArray(
+      quizQuestions?.filter((qqqi) => qqqi.quiz_id === props.quizId) || [],
+      (i) => i.created_at,
+      Order.ASCENDING
+    );
   }, [quizQuestions, props.quizId]);
 
   // 🔥 PERFORMANCE FIX: Build a hash-map lookup for questions

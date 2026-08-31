@@ -61,6 +61,7 @@ import { QuizQuestionGet } from '@repo/types/models/quiz-question';
 import { Status, SyncStatus } from '@repo/types/models/enums';
 import { generateUUID } from '@repo/utilities/generators';
 import { useQuizQuestionActions } from '@repo/hooks/actions/quiz-question';
+import InputSearch from '@/components/input/search';
 
 type EditProps = { content: string; options: string };
 
@@ -106,10 +107,22 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     return new Set(quizQuestionsQuiz.map((qq) => qq.question_id));
   }, [quizQuestionsQuiz]);
 
+  const [search, setSearch] = useState('');
+
   // 🔥 THE FIX: Filter the GLOBAL questions store for items NOT in the active quiz set
   const questionsAvailableToAdd = useMemo(() => {
-    return questions?.filter((q) => !activeQuizQuestionIds.has(q.id)) || [];
-  }, [questions, activeQuizQuestionIds]);
+    const availableQuestions =
+      questions?.filter((q) => !activeQuizQuestionIds.has(q.id)) || [];
+
+    const availableQuestionsSearch = availableQuestions.filter((aqs) =>
+      aqs.content
+        .trim()
+        .toLowerCase()
+        .includes(search.trim().toLocaleLowerCase())
+    );
+
+    return availableQuestionsSearch;
+  }, [questions, activeQuizQuestionIds, search]);
 
   const handleAddExistingQuestion = () => {
     const now = new Date();
@@ -235,7 +248,18 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                       display={addFromExisting ? undefined : 'none'}
                     >
                       <Stack gap={0}>
-                        <ScrollAreaAutosize mah={240}>
+                        <ScrollAreaAutosize mah={240} pos={'relative'}>
+                          <Box
+                            pos={'sticky'}
+                            top={0}
+                            bg={'var(--mantine-color-body)'}
+                            pr={'md'}
+                            pb={'md'}
+                            style={{ zIndex: 10 }}
+                          >
+                            <InputSearch state={search} setState={setSearch} />
+                          </Box>
+
                           <Stack pr={'md'} pb={'md'} gap={5}>
                             {/* Changed conditional check to look at available items */}
                             {!questionsAvailableToAdd.length ? (

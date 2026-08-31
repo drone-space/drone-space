@@ -77,10 +77,16 @@ export const loadInitialData = async (params: {
 
     // 1. Attach profile_id for offline-created items if session exists
     if (session?.id) {
-      clientItems = clientItems.map((i) => ({
-        ...i,
-        profile_id: i.profile_id || session.id,
-      }));
+      clientItems = clientItems.map((i) => {
+        // Only set profile_id if the property already exists on the object
+        if (Object.hasOwn(i, 'profile_id')) {
+          return {
+            ...i,
+            profile_id: i.profile_id || session.id,
+          };
+        }
+        return i;
+      });
     }
 
     let combinedItems: any[] = [];
@@ -93,7 +99,9 @@ export const loadInitialData = async (params: {
         source = bundle?.[dataStore.toLowerCase()] || clientItems;
       }
       // Filter out items the user deleted locally while offline
-      combinedItems = source.filter((i) => i.sync_status !== SyncStatus.DELETED);
+      combinedItems = source.filter(
+        (i) => i.sync_status !== SyncStatus.DELETED
+      );
     }
 
     // 3. Scenario B: Server-Sync Mode

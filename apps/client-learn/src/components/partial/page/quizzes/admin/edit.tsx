@@ -341,7 +341,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                       {sortArray(
                         quizQuestionsQuiz,
                         (i) => i.created_at,
-                        Order.ASCENDING
+                        Order.DESCENDING
                       )?.map((qqqi, i) => {
                         // O(1) Instant map lookup replaces old .find() loop
                         const question = questionsMap.get(qqqi.question_id);

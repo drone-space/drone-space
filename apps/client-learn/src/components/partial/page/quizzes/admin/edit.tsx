@@ -164,56 +164,9 @@ export default function Edit({ props }: { props: { quizId: string } }) {
           <Stack>
             <Fieldset legend="Quiz Questions" p={'md'}>
               <Stack gap={'md'}>
-                <Box mih={140}>
-                  {quizQuestions === undefined ? (
-                    <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
-                      <Loader />
-                      <Text inherit c={'dimmed'}>
-                        Fetching quiz questions
-                      </Text>
-                    </Stack>
-                  ) : !quizQuestionsQuiz.length ? (
-                    <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
-                      <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
-                        <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                      </ThemeIcon>
-                      <Text inherit c={'dimmed'}>
-                        Quiz has no questions
-                      </Text>
-                    </Stack>
-                  ) : (
-                    <Stack gap={'xs'}>
-                      {sortArray(
-                        quizQuestionsQuiz,
-                        (i) => i.created_at,
-                        Order.ASCENDING
-                      )?.map((qqqi, i) => {
-                        // O(1) Instant map lookup replaces old .find() loop
-                        const question = questionsMap.get(qqqi.question_id);
-
-                        if (!question) return null;
-
-                        return (
-                          <div key={qqqi.id}>
-                            <CardQuestion
-                              props={{
-                                index: i + 1,
-                                edit,
-                                setEdit,
-                                quizId: props.quizId,
-                                question: question,
-                              }}
-                            />
-                          </div>
-                        );
-                      })}
-                    </Stack>
-                  )}
-                </Box>
-
                 <Box display={!add ? undefined : 'none'}>
-                  <Divider variant="dashed" mb={'md'} />
                   <Button
+                    fullWidth
                     onClick={() => {
                       setEdit({ content: '', options: '' });
                       setAdd(true);
@@ -221,6 +174,8 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                   >
                     Add Question
                   </Button>
+
+                  <Divider variant="dashed" mt={'md'} />
                 </Box>
 
                 <Fieldset
@@ -233,7 +188,10 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                 >
                   <Stack>
                     <Box display={!addFromExisting ? undefined : 'none'}>
-                      <Button onClick={() => setAddFromExisting(true)}>
+                      <Button
+                        fullWidth
+                        onClick={() => setAddFromExisting(true)}
+                      >
                         Add from existing questions
                       </Button>
                     </Box>
@@ -360,6 +318,53 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                     </Fieldset>
                   </Stack>
                 </Fieldset>
+
+                <Box mih={140}>
+                  {quizQuestions === undefined ? (
+                    <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
+                      <Loader />
+                      <Text inherit c={'dimmed'}>
+                        Fetching quiz questions
+                      </Text>
+                    </Stack>
+                  ) : !quizQuestionsQuiz.length ? (
+                    <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
+                      <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
+                        <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+                      </ThemeIcon>
+                      <Text inherit c={'dimmed'}>
+                        Quiz has no questions
+                      </Text>
+                    </Stack>
+                  ) : (
+                    <Stack gap={'xs'}>
+                      {sortArray(
+                        quizQuestionsQuiz,
+                        (i) => i.created_at,
+                        Order.ASCENDING
+                      )?.map((qqqi, i) => {
+                        // O(1) Instant map lookup replaces old .find() loop
+                        const question = questionsMap.get(qqqi.question_id);
+
+                        if (!question) return null;
+
+                        return (
+                          <div key={qqqi.id}>
+                            <CardQuestion
+                              props={{
+                                index: i + 1,
+                                edit,
+                                setEdit,
+                                quizId: props.quizId,
+                                question: question,
+                              }}
+                            />
+                          </div>
+                        );
+                      })}
+                    </Stack>
+                  )}
+                </Box>
               </Stack>
             </Fieldset>
           </Stack>
@@ -421,7 +426,9 @@ function CardQuestion({
         <Stack gap={'xs'}>
           <Group justify="space-between" wrap="nowrap">
             <div>
-              <Text>{props.question.content}</Text>
+              <Text inherit mih={49.6}>
+                {props.question.content}
+              </Text>
             </div>
 
             <Group

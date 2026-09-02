@@ -79,6 +79,7 @@ export default function Question({
               autosize
               minRows={1}
               maxRows={8}
+              disabled={!options?.inline && !!form.values.id}
             />
           </GridCol>
 
@@ -93,6 +94,7 @@ export default function Question({
               autosize
               minRows={2}
               maxRows={8}
+              disabled={!options?.inline && !!form.values.id}
             />
           </GridCol>
 
@@ -106,6 +108,7 @@ export default function Question({
                 searchable
                 value={quizId}
                 onChange={setQuizId}
+                disabled={!!form.values.id}
                 data={(quizzes || []).map((qi) => {
                   return {
                     label: qi.title,

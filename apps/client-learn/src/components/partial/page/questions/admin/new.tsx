@@ -2,7 +2,7 @@
 
 import React from 'react';
 import FormQuestion from '@repo/components/form/question';
-import { Fieldset, Grid, GridCol } from '@mantine/core';
+import { Box, Fieldset, Grid, GridCol } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 
 export default function New() {
@@ -12,9 +12,11 @@ export default function New() {
 
       <Grid>
         <GridCol span={{ base: 12, md: 7 }}>
-          <Fieldset legend="Question Details">
-            <FormQuestion />
-          </Fieldset>
+          <Box pb={'30vh'}>
+            <Fieldset legend="Question Details">
+              <FormQuestion />
+            </Fieldset>
+          </Box>
         </GridCol>
 
         <GridCol span={{ base: 12, md: 5 }}></GridCol>

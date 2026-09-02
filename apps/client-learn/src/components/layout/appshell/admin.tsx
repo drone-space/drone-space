@@ -26,6 +26,7 @@ import {
   IconClockEdit,
   IconDashboard,
   IconHome,
+  IconQuestionMark,
   IconReportAnalytics,
 } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
@@ -139,6 +140,11 @@ const navlinksAdmin = [
     link: '/admin/quizzes',
     label: 'Quizzes',
     icon: IconClockEdit,
+  },
+  {
+    link: '/admin/questions',
+    label: 'Questions',
+    icon: IconQuestionMark,
   },
   {
     link: '/admin/attempts',

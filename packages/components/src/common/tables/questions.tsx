@@ -108,7 +108,7 @@ export default function Questions() {
           <TableTh w={WIDTHS.TITLE}>Title</TableTh>
           <TableTh w={WIDTHS.STATUS}>Status</TableTh>
           <TableTh w={WIDTHS.CREATED}>Date Created</TableTh>
-          <TableTh w={WIDTHS.QUIZZES}>No. of Questions</TableTh>
+          <TableTh w={WIDTHS.QUIZZES}>No. of Quizzes</TableTh>
           <TableTh w={WIDTHS.ACTIONS} />
         </TableTr>
       </TableThead>

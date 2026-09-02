@@ -10,16 +10,17 @@ import { useQuizQuestionActions } from '../actions/quiz-question';
 
 export const useFormQuestion = (params?: {
   defaultValues?: Partial<QuestionGet>;
-  options: { quizId?: string }; // newly added because it's no longer in defaultValues (i'll pass it manually)
+  options: { quizId?: string; inline?: boolean }; // newly added because it's no longer in defaultValues (i'll pass it manually)
 }) => {
   const { questionCreate, questionUpdate } = useQuestionActions();
   // 🔥 NEW ACTION: You need your action hook for creating the join table row
   const { quizQuestionCreate } = useQuizQuestionActions();
-  const [stay, setStay] = useState(false);
+  const [stay, setStay] = useState(!params?.options.inline ? true : false);
   const { showNotification } = useNotification();
 
   const { form, submitted, handleSubmit } = useFormBase<Partial<QuestionGet>>(
     {
+      id: params?.defaultValues?.id || '',
       explanation: params?.defaultValues?.explanation || '',
       content: params?.defaultValues?.content || '',
     },
@@ -30,7 +31,7 @@ export const useFormQuestion = (params?: {
       ),
     },
     {
-      // resetOnSuccess: true,
+      resetOnSuccess: false,
       hideSuccessNotification: true,
       clientOnly: false,
 
@@ -79,16 +80,21 @@ export const useFormQuestion = (params?: {
               question_id: newQuestion.id,
             });
           }
+
+          if (params.options.inline) {
+            form.reset();
+          } else {
+            form.setValues({ id: newQuestion?.id });
+          }
         } else {
           // --- 2. Updating an Existing Question ---
           questionUpdate({
             ...params?.defaultValues,
             ...rawValues,
           } as QuestionGet);
-        }
 
-        form.reset();
-        setStay(false);
+          form.reset();
+        }
       },
     }
   );

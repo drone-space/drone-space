@@ -17,7 +17,6 @@ export const useFormQuestion = (params?: {
   const { quizQuestionCreate } = useQuizQuestionActions();
   const [stay, setStay] = useState(false);
   const { showNotification } = useNotification();
-  const questions = useStoreQuestion((s) => s.questions);
 
   const { form, submitted, handleSubmit } = useFormBase<Partial<QuestionGet>>(
     {
@@ -40,11 +39,13 @@ export const useFormQuestion = (params?: {
 
         // 🔥 OPTIMIZED GLOBAL SIMILARITY CHECK
         // Since content is unique across the entire app, check the entire pool directly.
-        const isDuplicate = questions?.some(
-          (qi) =>
-            qi.content.toLowerCase() === trimmedContent &&
-            qi.id !== params?.defaultValues?.id
-        );
+        const isDuplicate = useStoreQuestion
+          .getState()
+          .questions?.some(
+            (qi) =>
+              qi.content.toLowerCase() === trimmedContent &&
+              qi.id !== params?.defaultValues?.id
+          );
 
         if (rawValues.content && isDuplicate) {
           showNotification({

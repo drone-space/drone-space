@@ -19,17 +19,14 @@ export default function Question({
 }: {
   props?: {
     quizId?: string;
-    questionId?: string;
+    question?: QuestionGet;
     onSubmit?: () => void;
     onCancel?: () => void;
     setAddFromExisting?: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }) {
-  const questions = useStoreQuestion((s) => s.questions);
-  const question = questions?.find((qi) => qi.id == props?.questionId);
-
   const { form, handleSubmit, submitted } = useFormQuestion({
-    defaultValues: { ...question },
+    defaultValues: { ...props?.question },
     options: { quizId: props?.quizId },
   });
 
@@ -86,7 +83,7 @@ export default function Question({
             </Button>
 
             <Button size="xs" type="submit" loading={submitted}>
-              {!!question?.updated_at ? 'Update' : 'Create'}
+              {!!props?.question?.updated_at ? 'Update' : 'Create'}
             </Button>
           </Group>
         </GridCol>

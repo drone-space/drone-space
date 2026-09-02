@@ -601,7 +601,7 @@ const CardQuestion = memo(function CardQuestion({
         {active.content && (
           <FormQuestion
             props={{
-              questionId: question.id,
+              question: question,
               quizId: quizId,
               onCancel: () => setEdit && setEdit({ content: '', options: '' }),
               onSubmit: () => setEdit && setEdit({ content: '', options: '' }),

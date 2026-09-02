@@ -21,6 +21,7 @@ import {
   Paper,
   ScrollArea,
   ScrollAreaAutosize,
+  Skeleton,
   Stack,
   Text,
   ThemeIcon,
@@ -48,7 +49,10 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import { QuestionGet } from '@repo/types/models/question';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
+import {
+  OptionsValue,
+  useStoreOption,
+} from '@repo/libraries/zustand/stores/option';
 import { OptionGet } from '@repo/types/models/option';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
@@ -270,9 +274,9 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                                 <div key={question.id}>
                                   <CardQuestion
                                     question={question}
-                                    questionOptions={
-                                      optionsMap.get(question.id) ?? []
-                                    }
+                                    questionOptions={optionsMap.get(
+                                      question.id
+                                    )}
                                     options={{ select: true }}
                                     edit={edit}
                                     setEdit={setEdit}
@@ -364,9 +368,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                               setEdit={setEdit}
                               quizId={props.quizId}
                               question={question}
-                              questionOptions={
-                                optionsMap.get(question.id) ?? []
-                              }
+                              questionOptions={optionsMap.get(question.id)}
                             />
                           </div>
                         );
@@ -391,7 +393,7 @@ type CardQuestionProps = {
   onToggle?: (i: any) => void;
   quizId?: string;
   question: QuestionGet;
-  questionOptions: OptionGet[];
+  questionOptions: OptionsValue;
   options?: { select?: boolean };
 };
 
@@ -521,25 +523,29 @@ const CardQuestion = memo(function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {questionOptions.length < 4 && !question.explanation && (
+              {(questionOptions || []).length < 4 && !question.explanation && (
                 <Divider orientation="vertical" mx={'xs'} />
               )}
 
-              {questionOptions.length < 4 && (
-                <Tooltip label={'4 question options are required.'}>
-                  <Group>
-                    <ThemeIcon
-                      color="yellow.6"
-                      size={ICON_WRAPPER_SIZE - 4}
-                      variant={'subtle'}
-                    >
-                      <IconAlertTriangle
-                        size={ICON_SIZE - 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    </ThemeIcon>
-                  </Group>
-                </Tooltip>
+              {questionOptions === undefined ? (
+                <Skeleton h={ICON_WRAPPER_SIZE - 4} w={ICON_WRAPPER_SIZE - 4} />
+              ) : (
+                (questionOptions || []).length < 4 && (
+                  <Tooltip label={'4 question options are required.'}>
+                    <Group>
+                      <ThemeIcon
+                        color="yellow.6"
+                        size={ICON_WRAPPER_SIZE - 4}
+                        variant={'subtle'}
+                      >
+                        <IconAlertTriangle
+                          size={ICON_SIZE - 4}
+                          stroke={ICON_STROKE_WIDTH}
+                        />
+                      </ThemeIcon>
+                    </Group>
+                  </Tooltip>
+                )
               )}
 
               {!question.explanation && (
@@ -616,7 +622,7 @@ const CardQuestion = memo(function CardQuestion({
           <SectionOptions
             props={{
               questionId: question.id,
-              questionOptions: questionOptions,
+              questionOptions: questionOptions || [],
             }}
           />
         </Box>

@@ -7,6 +7,7 @@ import {
   Center,
   Group,
   Loader,
+  NumberFormatter,
   Stack,
   Table,
   TableTbody,
@@ -29,9 +30,11 @@ import NextLink from '../anchor/next-link';
 import BadgeStatus from '../badges/status';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
+import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 
 export default function Quizzes() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
+  const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
 
   const rows = sortArray(
     quizzes || [],
@@ -47,6 +50,10 @@ export default function Quizzes() {
       // format: 'numeric',
     });
 
+    const quizQuestionsQuiz = quizQuestions?.filter(
+      (qq) => qq.quiz_id == qi.id
+    );
+
     return (
       <TableTr key={qi.id}>
         <TableTd w={WIDTHS.TITLE}>{qi.title}</TableTd>
@@ -61,9 +68,9 @@ export default function Quizzes() {
           </Text>
         </TableTd>
 
-        <TableTd w={WIDTHS.UPDATED}>
+        <TableTd w={WIDTHS.QUESTIONS}>
           <Text component="span" inherit fz={'sm'}>
-            {updated.date}, {`${updated.time}`.toUpperCase()}
+            <NumberFormatter value={quizQuestionsQuiz?.length} />
           </Text>
         </TableTd>
 
@@ -87,7 +94,7 @@ export default function Quizzes() {
           <TableTh w={WIDTHS.TITLE}>Title</TableTh>
           <TableTh w={WIDTHS.STATUS}>Status</TableTh>
           <TableTh w={WIDTHS.CREATED}>Date Created</TableTh>
-          <TableTh w={WIDTHS.UPDATED}>Last Update</TableTh>
+          <TableTh w={WIDTHS.QUESTIONS}>No. of Questions</TableTh>
           <TableTh w={WIDTHS.ACTIONS} />
         </TableTr>
       </TableThead>
@@ -126,6 +133,6 @@ const WIDTHS = {
   TITLE: '25%',
   STATUS: '20%',
   CREATED: '22.5%',
-  UPDATED: '22.5%',
+  QUESTIONS: '22.5%',
   ACTIONS: '10%',
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import FormQuiz from '@repo/components/form/quiz';
 import {
   ActionIcon,
@@ -144,6 +144,30 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
   const [addFromExisting, setAddFromExisting] = useState(false);
 
+  const options = useStoreOption((s) => s.options);
+
+  const optionsMap = useMemo(() => {
+    const map = new Map<string, OptionGet[]>();
+
+    for (const option of options ?? []) {
+      const list = map.get(option.question_id);
+
+      if (list) {
+        list.push(option);
+      } else {
+        map.set(option.question_id, [option]);
+      }
+    }
+
+    return map;
+  }, [options]);
+
+  const handleToggleQuestion = useCallback((id: string) => {
+    setQuestionIds((current) =>
+      current.includes(id) ? current.filter((x) => x !== id) : [...current, id]
+    );
+  }, []);
+
   return (
     <Box mb={SECTION_SPACING}>
       <HeaderAppContent
@@ -244,29 +268,15 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                               questionsAvailableToAdd.map((question) => (
                                 <div key={question.id}>
                                   <CardQuestion
-                                    props={{
-                                      question: question,
-                                      options: { select: true },
-                                      edit,
-                                      setEdit,
-                                      checked: questionIds.includes(
-                                        question.id
-                                      ),
-                                      setChecked: () => {
-                                        if (questionIds.includes(question.id)) {
-                                          setQuestionIds(
-                                            questionIds.filter(
-                                              (id) => id !== question.id
-                                            )
-                                          );
-                                        } else {
-                                          setQuestionIds([
-                                            ...questionIds,
-                                            question.id,
-                                          ]);
-                                        }
-                                      },
-                                    }}
+                                    question={question}
+                                    questionOptions={
+                                      optionsMap.get(question.id) ?? []
+                                    }
+                                    options={{ select: true }}
+                                    edit={edit}
+                                    setEdit={setEdit}
+                                    checked={questionIds.includes(question.id)}
+                                    onToggle={handleToggleQuestion}
                                   />
                                 </div>
                               ))
@@ -338,11 +348,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                     </Stack>
                   ) : (
                     <Stack gap={'xs'}>
-                      {sortArray(
-                        quizQuestionsQuiz,
-                        (i) => i.created_at,
-                        Order.DESCENDING
-                      )?.map((qqqi, i) => {
+                      {quizQuestionsQuiz.map((qqqi, i) => {
                         // O(1) Instant map lookup replaces old .find() loop
                         const question = questionsMap.get(qqqi.question_id);
 
@@ -351,13 +357,14 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                         return (
                           <div key={qqqi.id}>
                             <CardQuestion
-                              props={{
-                                index: i + 1,
-                                edit,
-                                setEdit,
-                                quizId: props.quizId,
-                                question: question,
-                              }}
+                              index={i + 1}
+                              edit={edit}
+                              setEdit={setEdit}
+                              quizId={props.quizId}
+                              question={question}
+                              questionOptions={
+                                optionsMap.get(question.id) ?? []
+                              }
                             />
                           </div>
                         );
@@ -374,28 +381,32 @@ export default function Edit({ props }: { props: { quizId: string } }) {
   );
 }
 
-function CardQuestion({
-  props,
-}: {
-  props: {
-    index?: number;
-    edit?: EditProps;
-    setEdit?: (i: EditProps) => any;
-    checked?: boolean;
-    setChecked?: (i: any) => void;
-    quizId?: string;
-    question: QuestionGet;
-    options?: { select?: boolean };
-  };
-}) {
-  const options = useStoreOption((s) => s.options);
-  const questionOptions = options?.filter(
-    (oi) => oi.question_id == props.question.id
-  );
+type CardQuestionProps = {
+  index?: number;
+  edit?: EditProps;
+  setEdit?: (i: EditProps) => any;
+  checked?: boolean;
+  onToggle?: (i: any) => void;
+  quizId?: string;
+  question: QuestionGet;
+  questionOptions: OptionGet[];
+  options?: { select?: boolean };
+};
 
+const CardQuestion = memo(function CardQuestion({
+  index,
+  edit,
+  setEdit,
+  checked,
+  onToggle,
+  quizId,
+  question,
+  questionOptions,
+  options,
+}: CardQuestionProps) {
   const active = {
-    content: props.edit?.content == props.question.id,
-    options: props.edit?.options == props.question.id,
+    content: edit?.content == question.id,
+    options: edit?.options == question.id,
   };
 
   const displayProps = {
@@ -409,8 +420,7 @@ function CardQuestion({
 
   const handleRemoveQuestionFromQuiz = () => {
     const quizQuestion = quizQuestions?.find(
-      (qqi) =>
-        qqi.question_id == props.question.id && qqi.quiz_id == props.quizId
+      (qqi) => qqi.question_id == question.id && qqi.quiz_id == quizId
     );
 
     if (quizQuestion) quizQuestionDelete(quizQuestion);
@@ -419,7 +429,7 @@ function CardQuestion({
   return (
     <Fieldset
       p={'md'}
-      legend={props.options?.select ? '' : `Question ${props.index || ''}`}
+      legend={options?.select ? '' : `Question ${index || ''}`}
       styles={{ legend: { color: 'var(--mantine-color-gray-6)' } }}
     >
       <Stack>
@@ -427,26 +437,22 @@ function CardQuestion({
           <Group justify="space-between" wrap="nowrap">
             <div>
               <Text inherit mih={49.6}>
-                {props.question.content}
+                {question.content}
               </Text>
             </div>
 
-            <Group
-              justify="end"
-              display={props.options?.select ? undefined : 'none'}
-            >
+            <Group justify="end" display={options?.select ? undefined : 'none'}>
               <Checkbox
-                checked={props.checked}
-                onChange={(event) => {
-                  if (props.setChecked)
-                    props.setChecked(event.currentTarget.checked);
+                checked={checked}
+                onChange={() => {
+                  if (onToggle) onToggle(question.id);
                 }}
               />
             </Group>
           </Group>
 
           <Group
-            display={props.options?.select ? 'none' : undefined}
+            display={options?.select ? 'none' : undefined}
             justify="space-between"
           >
             <Group gap={5}>
@@ -455,10 +461,10 @@ function CardQuestion({
                   size={ICON_WRAPPER_SIZE - 4}
                   variant={active.content ? 'light' : 'subtle'}
                   onClick={() =>
-                    props.setEdit &&
-                    props.setEdit({
+                    setEdit &&
+                    setEdit({
                       options: '',
-                      content: !active.content ? props.question.id : '',
+                      content: !active.content ? question.id : '',
                     })
                   }
                 >
@@ -474,10 +480,10 @@ function CardQuestion({
                   size={ICON_WRAPPER_SIZE - 4}
                   variant={active.options ? 'light' : 'subtle'}
                   onClick={() =>
-                    props.setEdit &&
-                    props.setEdit({
+                    setEdit &&
+                    setEdit({
                       content: '',
-                      options: !active.options ? props.question.id : '',
+                      options: !active.options ? question.id : '',
                     })
                   }
                 >
@@ -497,8 +503,8 @@ function CardQuestion({
                     onClick={() => {
                       handleRemoveQuestionFromQuiz();
 
-                      if (props.setEdit) {
-                        props.setEdit({
+                      if (setEdit) {
+                        setEdit({
                           content: '',
                           options: '',
                         });
@@ -513,12 +519,11 @@ function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {(questionOptions || []).length < 4 &&
-                !props.question.explanation && (
-                  <Divider orientation="vertical" mx={'xs'} />
-                )}
+              {questionOptions.length < 4 && !question.explanation && (
+                <Divider orientation="vertical" mx={'xs'} />
+              )}
 
-              {(questionOptions || []).length < 4 && (
+              {questionOptions.length < 4 && (
                 <Tooltip label={'4 question options are required.'}>
                   <Group>
                     <ThemeIcon
@@ -535,7 +540,7 @@ function CardQuestion({
                 </Tooltip>
               )}
 
-              {!props.question.explanation && (
+              {!question.explanation && (
                 <Tooltip label={'Missing answer explanation.'}>
                   <Group>
                     <ThemeIcon
@@ -559,10 +564,9 @@ function CardQuestion({
                   <ModalConfirm
                     props={{
                       onConfirm: () => {
-                        if (props.setEdit)
-                          props.setEdit({ content: '', options: '' });
+                        if (setEdit) setEdit({ content: '', options: '' });
 
-                        questionDelete(props.question);
+                        questionDelete(question);
                       },
                       title: 'Delete question',
                       desc: 'Deleting a question will also delete it in all other quizzes. This action is irreversible. Proceed?',
@@ -574,8 +578,8 @@ function CardQuestion({
                         size={ICON_WRAPPER_SIZE - 4}
                         variant={'subtle'}
                         onClick={() =>
-                          props.setEdit &&
-                          props.setEdit({
+                          setEdit &&
+                          setEdit({
                             content: '',
                             options: '',
                           })
@@ -597,12 +601,10 @@ function CardQuestion({
         {active.content && (
           <FormQuestion
             props={{
-              questionId: props.question.id,
-              quizId: props.quizId,
-              onCancel: () =>
-                props?.setEdit && props?.setEdit({ content: '', options: '' }),
-              onSubmit: () =>
-                props?.setEdit && props?.setEdit({ content: '', options: '' }),
+              questionId: question.id,
+              quizId: quizId,
+              onCancel: () => setEdit && setEdit({ content: '', options: '' }),
+              onSubmit: () => setEdit && setEdit({ content: '', options: '' }),
             }}
           />
         )}
@@ -610,38 +612,33 @@ function CardQuestion({
         <Box display={active.options ? undefined : 'none'}>
           <SectionOptions
             props={{
-              question: props.question,
+              question: question,
+              questionOptions: questionOptions,
             }}
           />
         </Box>
       </Stack>
     </Fieldset>
   );
-}
+});
 
-function SectionOptions({ props }: { props: { question: QuestionGet } }) {
+function SectionOptions({
+  props,
+}: {
+  props: { question: QuestionGet; questionOptions: OptionGet[] };
+}) {
   const [add, setAdd] = useState(false);
   const [edit, setEdit] = useState('');
-  const options = useStoreOption((s) => s.options);
-  const questionOptions = options?.filter(
-    (oi) => oi.question_id == props.question.id
-  );
+
   const maxOptions = 4;
-  const optionLimitReached = (questionOptions || []).length >= maxOptions;
-  const hasCorrectOption = !!questionOptions?.find((qo) => !!qo.correct);
-  const allCorrect = !questionOptions?.find((qo) => !qo.correct);
+  const optionLimitReached = (props.questionOptions || []).length >= maxOptions;
+  const hasCorrectOption = !!props.questionOptions?.find((qo) => !!qo.correct);
+  const allCorrect = !props.questionOptions?.find((qo) => !qo.correct);
 
   return (
     <Stack gap={'md'}>
       <Box mih={140}>
-        {options == undefined ? (
-          <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
-            <Loader />
-            <Text inherit c={'dimmed'}>
-              Fetching options
-            </Text>
-          </Stack>
-        ) : !questionOptions?.length ? (
+        {!props.questionOptions?.length ? (
           <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
             <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
               <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -653,7 +650,7 @@ function SectionOptions({ props }: { props: { question: QuestionGet } }) {
         ) : (
           <Stack gap={'xs'}>
             {sortArray(
-              questionOptions,
+              props.questionOptions,
               (i) => i.created_at,
               Order.ASCENDING
             )?.map((oi, i) => (
@@ -753,7 +750,7 @@ function SectionOptions({ props }: { props: { question: QuestionGet } }) {
   );
 }
 
-function CardOption({
+const CardOption = memo(function CardOption({
   props,
 }: {
   props: {
@@ -857,4 +854,4 @@ function CardOption({
       </Stack>
     </Fieldset>
   );
-}
+});

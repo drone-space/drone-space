@@ -93,7 +93,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     return sortArray(
       quizQuestions?.filter((qqqi) => qqqi.quiz_id === props.quizId) || [],
       (i) => i.created_at,
-      Order.ASCENDING
+      Order.DESCENDING
     );
   }, [quizQuestions, props.quizId]);
 

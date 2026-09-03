@@ -194,7 +194,13 @@ export const useMergedSync = (params: {
   syncStatus: SyncStatusValue;
 }) => {
   const { online } = params;
-  const idle = useIdle(2000, { events: ['keypress', 'click', 'pointermove'] });
+  const idle = useIdle(2000, {
+    events: [
+      'keypress',
+      'click',
+      // 'pointermove'
+    ],
+  });
   const { noSession } = useSessionCheck();
 
   // Store params in a ref so sync always reads fresh state without re-triggering useEffect

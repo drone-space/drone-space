@@ -53,7 +53,7 @@ export default function WithAnswer({
               };
 
               return (
-                <Group gap={'xs'} key={qo.id}>
+                <Group gap={'xs'} key={qo.id} wrap="nowrap" align="start">
                   <ThemeIcon
                     size={ICON_WRAPPER_SIZE - 4}
                     variant="outline"
@@ -74,6 +74,16 @@ export default function WithAnswer({
                 </Group>
               );
             })}
+          </Stack>
+        </CardSection>
+
+        <CardSection mt={'md'}>
+          <Stack gap={'xs'}>
+            <Text inherit fw={'bold'}>
+              Explanation:
+            </Text>
+
+            <Text inherit>{question?.explanation}</Text>
           </Stack>
         </CardSection>
       </Stack>

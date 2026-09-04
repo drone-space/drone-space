@@ -15,6 +15,7 @@ import {
   NumberFormatter,
   ThemeIcon,
   Loader,
+  Flex,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
 import {
@@ -23,7 +24,13 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import { IconCheck, IconSchool } from '@tabler/icons-react';
+import {
+  IconCheck,
+  IconInfoCircle,
+  IconListCheck,
+  IconSchool,
+  IconStopwatch,
+} from '@tabler/icons-react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
@@ -31,6 +38,7 @@ import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { Status } from '@repo/types/models/enums';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
+import { useMediaQuery } from '@mantine/hooks';
 
 export default function Intro({
   props,
@@ -41,6 +49,7 @@ export default function Intro({
     setIntro: Dispatch<SetStateAction<boolean>>;
   };
 }) {
+  const desktop = useMediaQuery('(min-width: 62em)');
   const router = useRouter();
 
   const [active, setActive] = useState(0);
@@ -74,29 +83,38 @@ export default function Intro({
 
   const steps = [
     {
-      icon: IconSchool,
+      icon: IconInfoCircle,
       title: 'Quiz Info',
       desc: 'Confirm quiz identification',
       content: (
-        <Stack maw={{ md: '70%' }}>
+        <Stack maw={{ md: '70%' }} mt={'xl'}>
           <Title order={3}>You&apos;re Attempting {quiz?.title}</Title>
           <Text inherit>{quiz?.description}</Text>
 
-          <Group justify="center">
+          <Flex
+            align={'center'}
+            gap={'md'}
+            justify="center"
+            direction={{ base: 'column', sm: 'row' }}
+          >
             <Text inherit>
               Total Questions:{' '}
               <Text component="span" inherit fw={500} c={'primary'}>
                 <NumberFormatter value={quizQuestionsQuiz?.length} />
               </Text>
             </Text>
-            |
+
+            <Text component="span" inherit visibleFrom="sm">
+              |
+            </Text>
+
             <Text inherit>
               Times attempted (By You):{' '}
               <Text component="span" inherit fw={500} c={'primary'}>
                 <NumberFormatter value={attemptsQuiz?.length} />
               </Text>
             </Text>
-          </Group>
+          </Flex>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>
             Click next to see quiz instructions.
@@ -105,11 +123,11 @@ export default function Intro({
       ),
     },
     {
-      icon: IconSchool,
+      icon: IconListCheck,
       title: 'Quiz Instructions',
       desc: 'How to take the quiz',
       content: (
-        <Stack maw={{ md: '80%' }}>
+        <Stack maw={{ md: '80%' }} mt={'xl'}>
           <Text inherit>
             This quiz contains multiple choice questions only. Each question has
             exactly 4 options. Only one option can be selected per question.
@@ -126,11 +144,11 @@ export default function Intro({
       ),
     },
     {
-      icon: IconSchool,
+      icon: IconStopwatch,
       title: 'Quiz Constraints',
       desc: 'The rules of the quiz',
       content: (
-        <Stack maw={{ md: '80%' }}>
+        <Stack maw={{ md: '80%' }} mt={'xl'}>
           <Text inherit>
             Once the quiz begins, do not try to: leave ths tab, disconnect from
             the network, remain idle for more than a few minutes. As any of
@@ -159,13 +177,21 @@ export default function Intro({
     </Stack>
   ) : (
     <>
-      <Stepper active={active} onStepClick={setActive}>
+      <Stepper
+        active={active}
+        onStepClick={setActive}
+        // orientation={!desktop ? 'vertical' : 'horizontal'}
+      >
         {steps.map((si) => (
           <StepperStep
             key={si.title}
             label={si.title}
             description={si.desc}
             icon={<si.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+            styles={{
+              stepLabel: { display: desktop ? undefined : 'none' },
+              stepDescription: { display: desktop ? undefined : 'none' },
+            }}
           >
             <Stack mih={'50vh'} justify="center" align="center" ta={'center'}>
               {si.content}

@@ -36,6 +36,7 @@ import CardQuestionWithAnswer from '@repo/components/common/cards/question/with-
 import IntroSection from '@repo/components/layout/intros/section';
 import { APPSHELL } from '@/components/layout/appshell/student';
 import { useQuizStats } from '@repo/hooks/quiz';
+import { useMediaQuery } from '@mantine/hooks';
 
 export default function AttemptComplete({
   props,
@@ -56,6 +57,7 @@ export default function AttemptComplete({
     attemptId: props.attemptId,
   });
 
+  const desktop = useMediaQuery('(min-width: 62em)');
   const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
   const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
@@ -76,7 +78,9 @@ export default function AttemptComplete({
             <IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
           }
           onClick={() => {
-            if (!navbarChild) toggleNavbarChild();
+            if (desktop) {
+              if (!navbarChild) toggleNavbarChild();
+            }
           }}
         >
           Back to Dashboard

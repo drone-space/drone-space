@@ -156,7 +156,7 @@ export default function Student() {
 
       <Grid gutter={'xl'}>
         <GridCol span={{ base: 12, md: 7.5 }}>
-          <Card bg={'transparent'} withBorder>
+          <Card bg={'var(--mantine-color-body)'} withBorder>
             {loading ? (
               <Stack mih={500} p={'md'}>
                 <Loader />
@@ -177,7 +177,7 @@ export default function Student() {
         </GridCol>
 
         <GridCol span={{ base: 12, md: 4.5 }}>
-          <Card bg={'transparent'} withBorder>
+          <Card bg={'var(--mantine-color-body)'} withBorder>
             {loading ? (
               <Stack mih={500} p={'md'}>
                 <Loader />
@@ -198,7 +198,7 @@ export default function Student() {
         </GridCol>
 
         <GridCol span={{ base: 12, md: 6 }}>
-          <Card bg={'transparent'} withBorder>
+          <Card bg={'var(--mantine-color-body)'} withBorder>
             <Stack>
               <Title order={2} fz={'xl'}>
                 Recent Attemtps

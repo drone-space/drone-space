@@ -33,9 +33,7 @@ export default function View({ props }: { props: { attempt: AttemptGet } }) {
 
   return (
     <Card
-      bg={
-        'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-      }
+      bg={'var(--mantine-color-body)'}
       withBorder
       p={{ base: 'md', md: 'lg' }}
     >

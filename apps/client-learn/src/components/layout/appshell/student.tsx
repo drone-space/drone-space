@@ -19,7 +19,7 @@ import {
   Title,
   Transition,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { useStoreSyncStatus } from '@repo/libraries/zustand/stores/sync-status';
 import ButtonAppshellNavbar from '@repo/components/common/buttons/appshell/navbar';
@@ -49,33 +49,34 @@ import LayoutSection from '@repo/components/layout/section';
 import IndicatorTheme from '@repo/components/common/indicators/theme';
 
 export default function Student({ children }: { children: React.ReactNode }) {
+  const desktop = useMediaQuery('(min-width: 62em)');
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
 
   return (
     <AppShell
       // layout="alt"
       // withBorder={false}
-      // header={{ height: APPSHELL.HEADER.HEIGHT }}
-      footer={{ height: APPSHELL.FOOTER.HEIGHT }}
+      header={desktop ? undefined : { height: APPSHELL.HEADER.HEIGHT }}
+      footer={!desktop ? undefined : { height: APPSHELL.FOOTER.HEIGHT }}
       navbar={{
         width: APPSHELL.NAVBAR.WIDTH,
-        breakpoint: 'sm',
-        collapsed: { mobile: true, desktop: !navbarActive },
+        breakpoint: 'md',
+        collapsed: { mobile: !navbarActive, desktop: !navbarActive },
       }}
     >
-      {/* <AppShellHeader bg={'gray.0'}>
-        <Header />
-      </AppShellHeader> */}
+      <AppShellHeader hiddenFrom="md">
+        <Footer />
+      </AppShellHeader>
 
-      <AppShellNavbar
+      <AppShellNavbar>
+        <Navbar />
+      </AppShellNavbar>
+
+      <AppShellMain
         bg={
           'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
         }
       >
-        <Navbar />
-      </AppShellNavbar>
-
-      <AppShellMain>
         <ScrollArea
           h={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT}px)`}
           scrollbars={'y'}
@@ -88,11 +89,7 @@ export default function Student({ children }: { children: React.ReactNode }) {
         </ScrollArea>
       </AppShellMain>
 
-      <AppShellFooter
-        bg={
-          'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-        }
-      >
+      <AppShellFooter visibleFrom="md">
         <Footer />
       </AppShellFooter>
     </AppShell>
@@ -100,7 +97,7 @@ export default function Student({ children }: { children: React.ReactNode }) {
 }
 
 export const APPSHELL = {
-  HEADER: { HEIGHT: 60 },
+  HEADER: { HEIGHT: ICON_WRAPPER_SIZE + 16 },
   FOOTER: { HEIGHT: ICON_WRAPPER_SIZE + 16 },
   NAVBAR: { WIDTH: 260 },
 };
@@ -139,6 +136,9 @@ const navlinksStudent = [
 function Navbar() {
   const pathname = usePathname();
   const session = useStoreSession((s) => s.session);
+  const mobile = useMediaQuery('(max-width: 36em)');
+  const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
+  const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
   return (
     <Box p={'sm'}>
@@ -214,6 +214,11 @@ function Navbar() {
                   borderRadius: 'var(--mantine-radius-xl)',
                 },
               }}
+              onClick={() => {
+                if (mobile) {
+                  if (navbarActive) toggleNavbarChild();
+                }
+              }}
             />
           );
         })}
@@ -226,20 +231,12 @@ function Footer() {
   const syncStatus = useStoreSyncStatus((s) => s.syncStatus);
 
   return (
-    <SimpleGrid cols={{ md: 2 }} px={'sm'} h={'100%'}>
-      <Group gap={'xs'}>
-        <ButtonAppshellNavbar />
+    <Group gap={'xs'} px={'sm'} h={'100%'}>
+      <ButtonAppshellNavbar />
 
-        <IndicatorTheme />
+      <IndicatorTheme />
 
-        <IndicatorNetworkStatus props={{ syncStatus }} />
-      </Group>
-
-      {/* <Group justify={'center'}>
-        <div>{brandImage}</div>
-      </Group> */}
-
-      <Group justify="end"></Group>
-    </SimpleGrid>
+      <IndicatorNetworkStatus props={{ syncStatus }} />
+    </Group>
   );
 }

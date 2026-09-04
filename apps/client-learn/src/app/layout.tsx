@@ -88,29 +88,9 @@ export default async function RootLayout({
           appThemeProps={{ styleSheets: { ...mantine } }}
           colorScheme={resolvedTheme}
         >
-          <Box hiddenFrom="md">
-            <Stack
-              py={SECTION_SPACING}
-              align="center"
-              justify="center"
-              ta={'center'}
-              mih={'100vh'}
-            >
-              <Title order={1}>Coming Soon</Title>
-              <Text>
-                Only the desktop version is currenly available. The mobile
-                version will be rolled out soon.
-              </Text>
-            </Stack>
-          </Box>
-
-          <Box visibleFrom="md">
-            <ProviderStore
-              props={{ apiUrl: API_URL, sessionUser: session.user }}
-            >
-              <ProviderSync>{children}</ProviderSync>
-            </ProviderStore>
-          </Box>
+          <ProviderStore props={{ apiUrl: API_URL, sessionUser: session.user }}>
+            <ProviderSync>{children}</ProviderSync>
+          </ProviderStore>
         </ProviderMantine>
 
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

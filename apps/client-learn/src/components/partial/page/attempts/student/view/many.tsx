@@ -49,7 +49,7 @@ export default function Many() {
         ) : (
           <Grid gutter={'xl'}>
             {userAttempts.map((ai) => (
-              <GridCol key={ai.id} span={{ base: 12 }}>
+              <GridCol key={ai.id} span={{ base: 12, sm: 6 }}>
                 <CardAttemptStudentView props={{ attempt: ai }} />
               </GridCol>
             ))}

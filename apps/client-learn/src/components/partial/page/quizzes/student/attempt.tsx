@@ -53,12 +53,15 @@ import IntroSection from '@repo/components/layout/intros/section';
 import { shuffleArray } from '@repo/utilities/array';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
+import { useMediaQuery } from '@mantine/hooks';
 
 export default function Attempt({
   props,
 }: {
   props: { quizId: string; attemptId: string };
 }) {
+  const desktop = useMediaQuery('(min-width: 62em)');
+
   const router = useRouter();
   const [intro, setIntro] = useState(true);
 
@@ -108,8 +111,10 @@ export default function Attempt({
 
     attemptUpdate({ ...attempt, status: Status.ABANDONED });
 
-    if (!navbarChild) {
-      toggleNavbarChild();
+    if (desktop) {
+      if (!navbarChild) {
+        toggleNavbarChild();
+      }
     }
 
     router.replace(`/dashboard`);
@@ -146,7 +151,7 @@ export default function Attempt({
     />
   ) : (
     <Grid gutter={'xl'}>
-      <GridCol span={{ base: 12, md: 8 }}>
+      <GridCol span={{ base: 12, md: 8 }} order={{ base: 2, md: 1 }}>
         <Stack gap={'xl'}>
           <Group justify="space-between" align="end">
             <IntroSection
@@ -207,8 +212,8 @@ export default function Attempt({
         </Stack>
       </GridCol>
 
-      <GridCol span={{ base: 12, md: 4 }}>
-        <Box pos={'sticky'} top={SECTION_SPACING}>
+      <GridCol span={{ base: 12, md: 4 }} order={{ base: 1, md: 2 }}>
+        <Box pos={!desktop ? undefined : 'sticky'} top={SECTION_SPACING}>
           <Stack>
             <Alert
               title="Rules Reminder"
@@ -232,12 +237,7 @@ export default function Attempt({
               </Stack>
             </Alert>
 
-            <Card
-              withBorder
-              bg={
-                'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-              }
-            >
+            <Card withBorder bg={'var(--mantine-color-body)'}>
               <Stack gap={'xs'}>
                 <Group justify="space-between">
                   <Text inherit fz={'sm'}>
@@ -320,6 +320,12 @@ export default function Attempt({
             </Group>
           </Stack>
         </Box>
+
+        <Divider
+          hiddenFrom="md"
+          mt={SECTION_SPACING}
+          mb={SECTION_SPACING / 2}
+        />
       </GridCol>
     </Grid>
   );
@@ -376,7 +382,7 @@ function CardQuestion({
   };
 
   return (
-    <Card bg="transparent" p={{ base: 'md', md: 'xl' }}>
+    <Card bg="transparent" p={{ base: 0, xs: 'md', md: 'xl' }} radius={0}>
       <Stack>
         <Group>
           <Title

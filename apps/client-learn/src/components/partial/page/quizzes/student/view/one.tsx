@@ -94,12 +94,7 @@ export default function One({ props }: { props: { quizId: string } }) {
 
         <GridCol span={{ base: 12, md: 4 }}>
           <Stack pos={'sticky'} top={SECTION_SPACING}>
-            <Card
-              bg={
-                'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-              }
-              withBorder
-            >
+            <Card bg={'var(--mantine-color-body)'} withBorder>
               <CardSection
                 p={'md'}
                 bg={
@@ -111,6 +106,10 @@ export default function One({ props }: { props: { quizId: string } }) {
                     Quiz Details
                   </Title>
                 </Group>
+              </CardSection>
+
+              <CardSection>
+                <Divider />
               </CardSection>
 
               <CardSection p={'md'}>

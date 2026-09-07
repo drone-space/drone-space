@@ -69,6 +69,7 @@ model Profile {
   customized Boolean @default(false)
   role       Role    @default(USER)
 
+  srpl     Srpl?
   posts    Post[]
   comments Comment[]
   replies  Reply[]
@@ -82,6 +83,23 @@ model Profile {
 
   @@unique([email])
   @@map("profiles")
+}
+
+model Srpl {
+  id         String @id @default(uuid())
+  srplNumber String @map("srpl_number")
+
+  status      Status     @default(ACTIVE)
+  sync_status SyncStatus @default(SYNCED)
+
+  profile    Profile? @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+  profile_id String?  @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([srplNumber])
+  @@map(name: "srpls")
 }
 
 model Post {

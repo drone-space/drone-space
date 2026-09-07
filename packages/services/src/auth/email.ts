@@ -3,7 +3,7 @@ import { createClient } from '@repo/libraries/supabase/server';
 import { profileCreate } from '../database/profile';
 import { getEmailLocalPart } from '@repo/utilities/string';
 import { linkify } from '@repo/utilities/url';
-import { sharedUserHandle } from './shared';
+import { linkSrplToProfile, sharedUserHandle } from './shared';
 
 export const authEmail = async (params: {
   searchParams: URLSearchParams;
@@ -14,6 +14,7 @@ export const authEmail = async (params: {
   const redirectUrl = searchParams.get('redirectUrl');
   const email = searchParams.get('email');
   const otp = searchParams.get('otp');
+  const srpl = searchParams.get('srpl');
 
   if (!email) throw new Error('Email is required');
   if (!otp) throw new Error('OTP is required');
@@ -29,11 +30,11 @@ export const authEmail = async (params: {
 
   if (verifyError) {
     if (verifyError.code == 'validation_failed') {
-      return `${baseUrl + AUTH_URLS.ERROR}?error=${'Validation Failed'}&message=${verifyError.message}`;
+      return `${baseUrl + AUTH_URLS.ERROR}?error=${'Validation Failed'}&message=${encodeURIComponent(verifyError.message)}`;
     } else if (verifyError.code == 'otp_expired') {
-      return `${baseUrl + AUTH_URLS.ERROR}?error=${'Invalid OTP'}&message=${verifyError.message}`;
+      return `${baseUrl + AUTH_URLS.ERROR}?error=${'Invalid OTP'}&message=${encodeURIComponent(verifyError.message)}`;
     } else {
-      throw `${baseUrl + AUTH_URLS.ERROR}?error=${'An Unexpected Error Occured'}&message=${verifyError.message}`;
+      return `${baseUrl + AUTH_URLS.ERROR}?error=${'An Unexpected Error Occured'}&message=${encodeURIComponent(verifyError.message)}`;
     }
   }
 
@@ -47,7 +48,16 @@ export const authEmail = async (params: {
     user_name: linkify(session.user?.email || ''),
   });
 
-  sharedUserHandle({ supabase, profile, existed });
+  if (srpl) {
+    const result = await linkSrplToProfile(srpl, profile);
+    if (result) {
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) throw signOutError;
+      throw new Error(result);
+    }
+  }
+
+  await sharedUserHandle({ supabase, profile, existed });
 
   return `${baseUrl + `${redirectUrl || AUTH_URLS.REDIRECT}`}`;
 };

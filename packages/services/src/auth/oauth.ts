@@ -3,12 +3,13 @@ import { profileCreate } from '@repo/services/database/profile';
 import { segmentFullName } from '@repo/utilities/string';
 import { AUTH_URLS } from '@repo/constants/paths';
 import { linkify } from '@repo/utilities/url';
-import { sharedUserHandle } from './shared';
+import { linkSrplToProfile, sharedUserHandle } from './shared';
 
 export const authOauth = async (params: { searchParams: URLSearchParams }) => {
   const { searchParams } = params;
 
   const code = searchParams.get('code');
+  const srpl = searchParams.get('srpl');
 
   if (!code) {
     throw new Error('The link is broken');
@@ -34,7 +35,16 @@ export const authOauth = async (params: { searchParams: URLSearchParams }) => {
     avatar: data.user.user_metadata.avatar_url || '',
   });
 
-  sharedUserHandle({ supabase, profile, existed });
+  if (srpl) {
+    const result = await linkSrplToProfile(srpl, profile);
+    if (result) {
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) throw signOutError;
+      throw new Error(result);
+    }
+  }
+
+  await sharedUserHandle({ supabase, profile, existed });
 
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get('next') ?? AUTH_URLS.REDIRECT.DEFAULT;

@@ -26,6 +26,7 @@ import NextLink from '@repo/components/common/anchor/next-link';
 import { AUTH_URLS } from '@repo/constants/paths';
 import {
   IconBackspace,
+  IconCursorText,
   IconExclamationCircle,
   IconInfoCircle,
   IconMail,
@@ -38,8 +39,13 @@ import {
   ICON_WRAPPER_SIZE,
 } from '@repo/constants/sizes';
 import { setCookieClient } from '@repo/utilities/cookie-client';
-import { COOKIE_NAME, PARAM_NAME } from '@repo/constants/names';
+import {
+  COOKIE_NAME,
+  LOCAL_STORAGE_NAME,
+  PARAM_NAME,
+} from '@repo/constants/names';
 import { getUrlParam } from '@repo/utilities/url';
+import { getFromLocalStorage } from '@repo/utilities/storage';
 
 export default function Auth({
   action,
@@ -123,9 +129,6 @@ export default function Auth({
                       variant="subtle"
                       size={ICON_WRAPPER_SIZE}
                       onClick={() => {
-                        setCookieClient(COOKIE_NAME.AUTH.EMAIL, '', {
-                          expiryInSeconds: 10,
-                        });
                         setMessageAuth(undefined);
                         setErrorAuth(undefined);
                         formAuth.reset();
@@ -143,6 +146,38 @@ export default function Auth({
                   </Tooltip>
                 }
                 {...formAuth.getInputProps('email')}
+              />
+            </GridCol>
+
+            <GridCol span={{ base: 12, sm: 12 }}>
+              <TextInput
+                required
+                aria-label="SRPL"
+                placeholder="SRPL Number"
+                variant="filled"
+                styles={{
+                  input: {
+                    textAlign: 'center',
+                    backgroundColor:
+                      'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
+                  },
+                  error: { textAlign: 'center' },
+                }}
+                disabled={!!messageAuth}
+                leftSection={
+                  <ThemeIcon
+                    color="dark"
+                    variant="transparent"
+                    size={ICON_WRAPPER_SIZE}
+                  >
+                    <IconCursorText
+                      size={ICON_SIZE}
+                      stroke={ICON_STROKE_WIDTH}
+                    />
+                  </ThemeIcon>
+                }
+                rightSection={<></>}
+                {...formAuth.getInputProps('srpl')}
               />
             </GridCol>
 
@@ -241,7 +276,7 @@ export default function Auth({
                               (getUrlParam(PARAM_NAME.REDIRECT) as string) ||
                               AUTH_URLS.REDIRECT.DEFAULT;
                             const redirectUrl = encodeURIComponent(redirect);
-                            const callbackUrl = `${baseUrl}/api/auth/callback/email?email=${formValues.email}&otp=${formValues.otp}&redirectUrl=${redirectUrl}&baseUrl=${baseUrl}`;
+                            const callbackUrl = `${baseUrl}/api/auth/callback/email?email=${formValues.email.trim()}&otp=${formValues.otp.trim()}&redirectUrl=${redirectUrl}&baseUrl=${baseUrl}&srpl=${formAuth.values.srpl?.trim()}`;
                             window.location.href = callbackUrl;
                           }
                         }}

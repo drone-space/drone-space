@@ -10,6 +10,7 @@
 import { createClient } from '@repo/libraries/supabase/server';
 import { AuthAction } from '@repo/types/enums';
 import { SignIn } from '@repo/types/auth';
+import { findSrplRecord } from '../auth/shared';
 
 type SignInReturn = {
   error?: string;
@@ -18,6 +19,15 @@ type SignInReturn = {
 
 export const signIn = async (params: SignIn): Promise<SignInReturn> => {
   try {
+    if (params.formData.srpl) {
+      const result = await findSrplRecord(
+        params.formData.srpl,
+        params.formData.email
+      );
+
+      if (result) return { error: result };
+    }
+
     const supabase = await createClient();
 
     const { error: signInError } = await supabase.auth.signInWithOtp({

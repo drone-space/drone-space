@@ -7,7 +7,7 @@
 
 export const authRoutes = [
   '/auth/sign-in',
-  '/auth/error',
+  // '/auth/error',
   '/api/auth',
   '/auth/signed-out',
   // Add other auth routes
@@ -22,6 +22,7 @@ export const protectedRoutes = [
 
 export const ignoredRoutes = [
   '/manifest.webmanifest',
+  '/auth/error',
   // Add other ignored routes
 ];
 

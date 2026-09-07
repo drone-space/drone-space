@@ -10,19 +10,12 @@
 import { validators } from '@repo/utilities/validation';
 import { signIn } from '@repo/handlers/requests/auth';
 import { AuthAction } from '@repo/types/enums';
-import { getUrlParam } from '@repo/utilities/url';
-import { AUTH_URLS } from '@repo/constants/paths';
-import { COOKIE_NAME, PARAM_NAME } from '@repo/constants/names';
 import { useFormBase } from '../form';
-import { useEffect, useState } from 'react';
-import {
-  getCookieClient,
-  setCookieClient,
-} from '@repo/utilities/cookie-client';
-import { WEEK } from '@repo/constants/sizes';
+import { useState } from 'react';
 
 type FormValuesAuth = {
   email: string;
+  srpl?: string;
   remember: boolean;
   otp?: string;
 };
@@ -36,21 +29,25 @@ export const useFormAuth = (params: {
   const [resent, setResent] = useState(false);
 
   const { form, submitted, handleSubmit } = useFormBase<FormValuesAuth>(
-    { email: '', otp: '', remember: false },
-    { email: (value) => validators.email(value.trim()) },
+    { email: '', srpl: '', otp: '', remember: false },
+    {
+      email: (value) => validators.email(value.trim()),
+      srpl: (value) => !((value || '').trim().length > 0),
+    },
     {
       resetOnSuccess: false,
       hideSuccessNotification: true,
 
       onSubmit: async (rawValues, options) => {
         const email = rawValues.email.trim().toLowerCase();
+        const srpl = rawValues.srpl?.trim();
         const otp = rawValues.otp?.trim();
 
         if (!otp || options?.resent) {
           setError(undefined);
 
           const response = await signIn({
-            formData: { email },
+            formData: { email, srpl },
             options: { action: params.action },
             apiUrl: `${params.baseUrl}/api`,
           });
@@ -59,24 +56,12 @@ export const useFormAuth = (params: {
             setError(result.data.error);
           } else {
             setMessage(result.data.message);
-            setCookieClient(COOKIE_NAME.AUTH.EMAIL, email, {
-              expiryInSeconds: WEEK,
-            });
           }
           if (options?.resent) setResent(false);
         }
       },
     }
   );
-
-  useEffect(() => {
-    const savedEmail = getCookieClient(COOKIE_NAME.AUTH.EMAIL);
-
-    if (savedEmail) {
-      form.setFieldValue('email', savedEmail);
-      setMessage('Check your email for an OTP');
-    }
-  }, []);
 
   return {
     form,

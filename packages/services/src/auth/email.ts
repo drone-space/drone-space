@@ -57,7 +57,7 @@ export const authEmail = async (params: {
     }
   }
 
-  sharedUserHandle({ supabase, profile, existed });
+  await sharedUserHandle({ supabase, profile, existed });
 
   return `${baseUrl + `${redirectUrl || AUTH_URLS.REDIRECT}`}`;
 };

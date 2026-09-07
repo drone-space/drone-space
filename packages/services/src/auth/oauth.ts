@@ -44,7 +44,7 @@ export const authOauth = async (params: { searchParams: URLSearchParams }) => {
     }
   }
 
-  sharedUserHandle({ supabase, profile, existed });
+  await sharedUserHandle({ supabase, profile, existed });
 
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get('next') ?? AUTH_URLS.REDIRECT.DEFAULT;

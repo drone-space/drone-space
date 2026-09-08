@@ -11,11 +11,6 @@ import AppshellStudent from '@/components/layout/appshell/student';
 import { Metadata } from 'next';
 import { APP_NAME } from '@repo/constants/app';
 
-export type typeParams = Promise<{
-  quizId: string;
-  attemptId: string;
-}>;
-
 export const metadata: Metadata = {
   title: {
     default: 'Student Portal',

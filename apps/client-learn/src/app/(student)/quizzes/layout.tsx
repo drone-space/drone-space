@@ -12,6 +12,7 @@ import { APP_NAME } from '@repo/constants/app';
 
 export type typeParams = Promise<{
   quizId: string;
+  attemptId: string;
 }>;
 
 export const metadata: Metadata = {

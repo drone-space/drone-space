@@ -1,7 +1,7 @@
 import React from 'react';
 import LayoutPage from '@repo/components/layout/page';
 import PartialPageQuizzesStudentAttempt from '@/components/partial/page/quizzes/student/attempt';
-import { typeParams } from '@/app/(student)/layout';
+import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
 
 export default async function Quizzes({

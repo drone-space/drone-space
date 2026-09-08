@@ -26,6 +26,7 @@ import {
   IconClockEdit,
   IconDashboard,
   IconHome,
+  IconIdBadge,
   IconQuestionMark,
   IconReportAnalytics,
 } from '@tabler/icons-react';
@@ -150,6 +151,11 @@ const navlinksAdmin = [
     link: '/admin/attempts',
     label: 'Attempts',
     icon: IconReportAnalytics,
+  },
+  {
+    link: '/admin/srpls',
+    label: 'SRPLs',
+    icon: IconIdBadge,
   },
 ];
 

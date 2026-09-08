@@ -14,10 +14,6 @@ import { Box, Stack, Text, Title } from '@mantine/core';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import LayoutSection from '@repo/components/layout/section';
 
-export type typeParams = Promise<{
-  quizId: string;
-}>;
-
 export const metadata: Metadata = {
   title: {
     default: 'Dashboard',

@@ -23,9 +23,8 @@ import { images } from '@repo/constants/images';
 import { COMPANY_NAME } from '@repo/constants/app';
 import NextLink from '@repo/components/common/anchor/next-link';
 import {
-  IconClockEdit,
   IconDashboard,
-  IconHome,
+  IconFileAnalytics,
   IconIdBadge,
   IconQuestionMark,
   IconReportAnalytics,
@@ -140,7 +139,7 @@ const navlinksAdmin = [
   {
     link: '/admin/quizzes',
     label: 'Quizzes',
-    icon: IconClockEdit,
+    icon: IconFileAnalytics,
   },
   {
     link: '/admin/questions',

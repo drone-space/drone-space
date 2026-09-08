@@ -1,6 +1,6 @@
 import React from 'react';
 import LayoutMain from '@repo/components/layout/main';
-import { typeParams } from '@/app/(admin)/layout';
+import { typeParams } from '../layout';
 import { Metadata } from 'next';
 import { QuizGet } from '@repo/types/models/quiz';
 import { quizzesGet } from '@repo/handlers/requests/database/quizzes';

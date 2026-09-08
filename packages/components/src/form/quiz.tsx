@@ -61,7 +61,6 @@ export default function Quiz({ props }: { props?: { quizId?: string } }) {
         <GridCol span={{ base: 12 }}>
           <Checkbox
             label={`Stay on this page after ${!!quiz?.updated_at ? 'updating' : 'creating'} quiz.`}
-            key={form.key('stay')}
             checked={stay}
             onChange={(event) => setStay(event.currentTarget.checked)}
           />

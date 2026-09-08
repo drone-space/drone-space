@@ -124,7 +124,6 @@ export default function Question({
               <Checkbox
                 mt={'xs'}
                 label={`Stay on this page after ${!!props?.question?.updated_at ? 'updating' : 'creating'} quiz.`}
-                key={form.key('stay')}
                 checked={stay}
                 onChange={(event) => setStay(event.currentTarget.checked)}
               />

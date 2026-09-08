@@ -34,5 +34,5 @@ export const ignoredRoutes = [
 export const ignoredAuthRoutes = [
   '/auth/sign-out',
 
-  // Add other protected dead-end routes
+  // Add other ignored auth routes
 ];

@@ -6,10 +6,11 @@
  */
 
 export const authRoutes = [
+  '/api/auth',
   '/auth/sign-in',
   // '/auth/error',
-  '/api/auth',
-  '/auth/signed-out',
+  // '/auth/signed-out',
+
   // Add other auth routes
 ];
 
@@ -17,16 +18,20 @@ export const protectedRoutes = [
   '/',
   '/admin',
   '/quizzes',
+
   // Add other protected routes
 ];
 
 export const ignoredRoutes = [
   '/manifest.webmanifest',
   '/auth/error',
+  '/auth/signed-out',
+
   // Add other ignored routes
 ];
 
 export const protectedDeadEndRoutes = [
   '/auth/sign-out',
+
   // Add other protected dead-end routes
 ];

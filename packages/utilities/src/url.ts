@@ -9,8 +9,8 @@ import { PARAM_NAME } from '@repo/constants/names';
 import { capitalizeWords } from './string';
 import {
   authRoutes,
+  ignoredAuthRoutes,
   ignoredRoutes,
-  protectedDeadEndRoutes,
   protectedRoutes,
 } from '@repo/constants/routes';
 
@@ -246,21 +246,19 @@ export const validateRoute = (params: {
   };
 
   if (!user) {
-    const protectedDeadEnd = protectedDeadEndRoutes.some((r) =>
-      pathname.startsWith(r)
-    );
+    const isProtectedRoute = protectedRoutes.some((r) => {
+      if (r === '/') {
+        return pathname === '/';
+      }
 
-    if (protectedDeadEnd) actions.redirectToHome = true;
-
-    const isProtectedRoute = protectedRoutes.some((r) =>
-      pathname.startsWith(r)
-    );
+      return pathname === r || pathname.startsWith(r);
+    });
 
     if (isProtectedRoute) {
-      const isIgnoredRoute = ignoredRoutes.some((r) => pathname.startsWith(r));
+      const isIgnoredRoute = ignoredRoutes.some((r) => pathname === r);
 
       if (!isIgnoredRoute) {
-        const isAuthRoute = authRoutes.some((r) => pathname.startsWith(r));
+        const isAuthRoute = authRoutes.some((r) => pathname === r);
 
         if (!isAuthRoute) {
           actions.redirectToAuth = true;
@@ -268,8 +266,12 @@ export const validateRoute = (params: {
       }
     }
   } else {
-    const isAuthRoute = authRoutes.some((r) => pathname.startsWith(r));
-    if (isAuthRoute) actions.redirectFromAuth = true;
+    const isIgnoredAuthRoute = ignoredAuthRoutes.some((r) => pathname === r);
+
+    if (!isIgnoredAuthRoute) {
+      const isAuthRoute = authRoutes.some((r) => pathname === r);
+      if (isAuthRoute) actions.redirectFromAuth = true;
+    }
   }
 
   return actions;

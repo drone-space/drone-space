@@ -30,8 +30,11 @@ export default function Store({
     sessionUser: props?.sessionUser || null,
     options: { clientOnly: false },
   });
+
   // useUserRoleStore();
+
   useAppshellStore();
+
   useLoadAppData({
     apiUrl: props.apiUrl,
     clientOnly: false,
@@ -48,4 +51,5 @@ const STORES_TO_LOAD = {
   [STORE_NAME.OPTIONS]: true,
   [STORE_NAME.ATTEMPTS]: true,
   [STORE_NAME.ANSWERS]: true,
+  [STORE_NAME.SRPLS]: true,
 };

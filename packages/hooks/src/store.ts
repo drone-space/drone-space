@@ -53,6 +53,7 @@ import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-questi
 import { FileSyncAdapter } from '@repo/types/fsa';
 import { openDatabase } from '@repo/libraries/indexed-db/actions';
 import { config } from '@repo/libraries/indexed-db/config';
+import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
 
 export const useSessionStore = (params?: {
   sessionUser: User | null;
@@ -270,6 +271,11 @@ export const LOAD_STORES: Record<string, LoadStoreConfig> = {
     useStoreHook: useStoreAnswer,
     setState: (store, items) => store.setAnswers(items),
   },
+  [STORE_NAME.SRPLS]: {
+    dataStore: STORE_NAME.SRPLS,
+    useStoreHook: useStoreSrpl,
+    setState: (store, items) => store.setSrpls(items),
+  },
 } as const;
 
 type LoadStoreKey = keyof typeof LOAD_STORES;
@@ -290,6 +296,7 @@ export const useLoadAppData = (options: {
     [STORE_NAME.OPTIONS]: useStoreOption(),
     [STORE_NAME.ATTEMPTS]: useStoreAttempt(),
     [STORE_NAME.ANSWERS]: useStoreAnswer(),
+    [STORE_NAME.SRPLS]: useStoreSrpl(),
   };
 
   useEffect(() => {

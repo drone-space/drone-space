@@ -14,6 +14,7 @@ import { quizQuestionsUpdate } from '@repo/handlers/requests/database/quiz-quest
 import { optionsUpdate } from '@repo/handlers/requests/database/options';
 import { attemptsUpdate } from '@repo/handlers/requests/database/attempts';
 import { answersUpdate } from '@repo/handlers/requests/database/answers';
+import { srplsUpdate } from '@repo/handlers/requests/database/srpls';
 import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
 import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
@@ -40,6 +41,7 @@ import {
   DatabaseError,
 } from '@repo/libraries/indexed-db/transactions';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
 
 const useSessionCheck = () => {
   const session = useStoreSession((s) => s.session);
@@ -128,6 +130,15 @@ export const SYNC_STORES: Record<string, SyncStoreConfig> = {
     setItems: (store, items) => store.setAnswer(items),
     clearDeleted: (store) => store.clearDeletedAnswer(),
   },
+  [STORE_NAME.SRPLS]: {
+    dataStore: STORE_NAME.SRPLS,
+    useStoreHook: useStoreSrpl,
+    serverUpdate: srplsUpdate,
+    getItems: (store) => store.srpls,
+    getDeleted: (store) => store.deleted,
+    setItems: (store, items) => store.setSrpl(items),
+    clearDeleted: (store) => store.clearDeletedSrpl(),
+  },
 } as const;
 
 type SyncStoreKey = keyof typeof SYNC_STORES;
@@ -167,6 +178,11 @@ const SYNC_REGISTRY: Record<SyncStoreKey, any> = {
     updateState: (items: any) => useStoreAnswer.getState().mergeAnswers(items),
     clearDeleted: () => useStoreAnswer.getState().clearDeletedAnswers(),
   },
+  [STORE_NAME.SRPLS]: {
+    store: useStoreSrpl,
+    updateState: (items: any) => useStoreSrpl.getState().mergeSrpls(items),
+    clearDeleted: () => useStoreSrpl.getState().clearDeletedSrpls(),
+  },
 };
 
 // Define a shape for the payload
@@ -177,6 +193,7 @@ export interface MergedSyncPayload {
   [STORE_NAME.OPTIONS]?: { items: any[]; deleted: any[] };
   [STORE_NAME.ATTEMPTS]?: { items: any[]; deleted: any[] };
   [STORE_NAME.ANSWERS]?: { items: any[]; deleted: any[] };
+  [STORE_NAME.SRPLS]?: { items: any[]; deleted: any[] };
 }
 
 // Update the MergedSyncParams to handle multiple datasets
@@ -226,6 +243,7 @@ export const useMergedSync = (params: {
       [STORE_NAME.OPTIONS]: useStoreOption.getState(),
       [STORE_NAME.ATTEMPTS]: useStoreAttempt.getState(),
       [STORE_NAME.ANSWERS]: useStoreAnswer.getState(),
+      [STORE_NAME.SRPLS]: useStoreSrpl.getState(),
     };
 
     const payload: MergedSyncPayload = {};

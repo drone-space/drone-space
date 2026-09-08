@@ -36,10 +36,8 @@ export const generateMetadata = async ({
 
 export default function LayoutQuiz({
   children, // will be a page or nested layout
-  // params,
 }: {
   children: React.ReactNode;
-  params: typeParams;
 }) {
   return <LayoutMain>{children}</LayoutMain>;
 }

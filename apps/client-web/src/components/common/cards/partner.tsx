@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Stack } from '@mantine/core';
-import classes from './partner.module.scss';
+import classes from './partner.module.css';
 import ImageDefault from '@repo/ui/common/images/default';
 
 export default function Partner({

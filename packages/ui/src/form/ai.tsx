@@ -4,16 +4,12 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { ActionIcon, Button, Group, Stack, Textarea } from '@mantine/core';
 import { IconArrowUp, IconBrandTelegram } from '@tabler/icons-react';
 import { getHotkeyHandler } from '@mantine/hooks';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { FormAIType } from '@repo/hooks/form/ai';
-import classes from './ai.module.scss';
+import classes from './ai.module.css';
 import { COMPANY_NAME } from '@repo/constants/app';
 
-export default function Ai({
+export function FormAi({
   props,
 }: {
   props: {
@@ -52,11 +48,7 @@ export default function Ai({
           onKeyDown={getHotkeyHandler([
             [
               'shift + Enter',
-              () =>
-                props.form.setFieldValue(
-                  'content',
-                  props.form.values.content + '\n'
-                ),
+              () => props.form.setFieldValue('content', props.form.values.content + '\n'),
             ],
             ['Enter', props.form.onSubmit(props.handleSubmit)],
           ])}

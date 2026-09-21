@@ -3,7 +3,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 
 // custom styles
-import '../styles/globals.scss';
+import '../styles/globals.css';
 
 import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';

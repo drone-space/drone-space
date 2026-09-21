@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@mantine/core';
 
-export default function Html({ props }: { props: { html: string } }) {
+export function ParserHtml({ props }: { props: { html: string } }) {
   const { html } = props;
 
   return (

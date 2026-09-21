@@ -12,7 +12,7 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { PostGet } from '@repo/types/models/post';
 import { linkify, processUrl } from '@repo/utilities/url';
 import { getRegionalDate } from '@repo/utilities/date-time';

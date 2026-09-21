@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Image, Button, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import classes from './advertisment.module.scss';
+import classes from './advertisment.module.css';
 import { images } from '@repo/constants/images';
 import { IconSchool } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
@@ -14,9 +14,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
   const [opened, { open, close }] = useDisclosure(active ? true : false);
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
-  const [slideList, setSlideList] = useState<
-    { title: string; image: string }[] | null
-  >(null);
+  const [slideList, setSlideList] = useState<{ title: string; image: string }[] | null>(null);
 
   useEffect(() => {
     const getImageUrls = async () => {
@@ -27,7 +25,7 @@ export default function Advertisment({ active }: { active?: boolean }) {
               ...item,
               image: `${item.image}?fileSize=${new Date().getTime()}`,
             };
-          })
+          }),
         );
 
         setSlideList(newList);

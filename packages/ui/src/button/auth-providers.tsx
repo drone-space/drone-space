@@ -10,7 +10,7 @@ import { getUrlParam } from '@repo/utilities/url';
 import { icons } from '@repo/constants/icons';
 import { createClient } from '@repo/libraries/supabase/client';
 
-export default function Providers({ props }: { props: { baseUrl: string } }) {
+export function ButtonAuthProviders({ props }: { props: { baseUrl: string } }) {
   const supabase = createClient();
 
   const [loading, setLoading] = useState('');

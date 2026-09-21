@@ -16,7 +16,7 @@ export type ConfirmProps = {
   variant?: Alert;
 };
 
-export default function Confirm({
+export function ModalConfirm({
   props,
   options,
   children,
@@ -29,9 +29,7 @@ export default function Confirm({
 
   const { showNotification } = useNotification();
 
-  const activeConfirm: ConfirmProps | null = useStoreActiveItems(
-    (s) => s.activeItems?.confirm
-  );
+  const activeConfirm: ConfirmProps | null = useStoreActiveItems((s) => s.activeItems?.confirm);
   const removeActiveConfirm = useStoreActiveItems((s) => s.removeActiveConfirm);
 
   const handleClose = () => {
@@ -42,8 +40,7 @@ export default function Confirm({
     }
   };
 
-  const workingConfirm =
-    options?.global && activeConfirm ? activeConfirm : props;
+  const workingConfirm = options?.global && activeConfirm ? activeConfirm : props;
 
   return (
     <>
@@ -61,9 +58,7 @@ export default function Confirm({
           variant={workingConfirm?.variant || Alert.WARNING}
         >
           <div>
-            <Text>
-              {workingConfirm?.desc || 'Are you sure you want to proceed?'}
-            </Text>
+            <Text>{workingConfirm?.desc || 'Are you sure you want to proceed?'}</Text>
           </div>
 
           <Group justify="end" mt={'md'}>

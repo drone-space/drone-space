@@ -10,7 +10,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
 import ModalContactShop from '@repo/ui/common/modals/contact/shop';

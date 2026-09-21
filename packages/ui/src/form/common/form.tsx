@@ -3,7 +3,7 @@ import { Grid, GridCol, TextInput } from '@mantine/core';
 import TooltipInputInfo from '@repo/ui/common/tooltips/input/info';
 import { FormEmailInquiry } from '@repo/hooks/form/inquiry';
 
-export default function Common({ props }: { props: { form: FormEmailInquiry } }) {
+export function FormCommonForm({ props }: { props: { form: FormEmailInquiry } }) {
   return (
     <GridCol span={12} pt={'xs'}>
       <Grid gutter={'xs'}>

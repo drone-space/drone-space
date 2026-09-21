@@ -3,7 +3,7 @@
 import React from 'react';
 import { Burger, Button, Drawer, Group, NavLink, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { typeMenuNavbar } from '@repo/types/link';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,7 @@ import ModalContactCallback from '../../modal/contact/callback';
 import NextLink from '@repo/ui/common/anchor/next-link';
 import Link from 'next/link';
 
-export default function Main({
+export function DrawerNavbarMain({
   props,
   options,
   ...restProps

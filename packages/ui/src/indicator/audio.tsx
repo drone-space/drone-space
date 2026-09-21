@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './audio.module.scss';
+import styles from './audio.module.css';
 import { useVisualizer } from '@repo/hooks/visualizer';
 
-export default function Audio({
+export function IndicatorAudio({
   props,
 }: {
   props: {

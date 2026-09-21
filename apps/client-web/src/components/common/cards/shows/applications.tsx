@@ -1,12 +1,8 @@
 import React from 'react';
-import classes from './applications.module.scss';
+import classes from './applications.module.css';
 import { Card, Text, ThemeIcon, Title } from '@mantine/core';
 import { Icon } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 
 export default function Applications({
   data,
@@ -15,12 +11,7 @@ export default function Applications({
 }) {
   return (
     <Card className={classes.card} withBorder>
-      <ThemeIcon
-        size={ICON_WRAPPER_SIZE * 2}
-        color="sec.3"
-        c={'pri.9'}
-        className={classes.icon}
-      >
+      <ThemeIcon size={ICON_WRAPPER_SIZE * 2} color="sec.3" c={'pri.9'} className={classes.icon}>
         <data.icon size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
       </ThemeIcon>
 

@@ -21,7 +21,7 @@ enum Context {
   SYNC = 'sync',
 }
 
-export default function NetworkStatus({
+export function IndicatorNetworkStatus({
   props,
 }: {
   props: { itemSyncStatus?: SyncStatus; syncStatus: SyncStatus };

@@ -2,20 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { useFormOption } from '@repo/hooks/form/option';
-import {
-  Button,
-  Checkbox,
-  Grid,
-  GridCol,
-  Group,
-  Switch,
-  Textarea,
-  TextInput,
-} from '@mantine/core';
+import { Button, Checkbox, Grid, GridCol, Group, Switch, Textarea, TextInput } from '@mantine/core';
 import { OptionGet } from '@repo/types/models/option';
 import { useStoreOption } from '@repo/libraries/zustand/stores/option';
 
-export default function Option({
+export function FormOption({
   props,
 }: {
   props?: {

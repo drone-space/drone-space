@@ -5,7 +5,7 @@ import { Group, Divider, Button, Box, Text } from '@mantine/core';
 import LayoutSection from '@repo/ui/layout/section';
 import DrawerNavbarMain from '@repo/ui/common/drawers/navbar/main';
 import MenuNavbar from '@repo/ui/common/menus/navbar';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { usePathname } from 'next/navigation';
 import { links } from '@/data/links';
 import ImageDefault from '@repo/ui/common/images/default';

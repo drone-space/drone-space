@@ -40,7 +40,7 @@ import { Status } from '@repo/types/models/enums';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 import { useMediaQuery } from '@mantine/hooks';
 
-export default function Intro({
+export function StepperQuizIntro({
   props,
 }: {
   props: {
@@ -54,29 +54,23 @@ export default function Intro({
 
   const [active, setActive] = useState(0);
 
-  const nextStep = () =>
-    setActive((current) => (current < steps.length ? current + 1 : current));
-  const prevStep = () =>
-    setActive((current) => (current > 0 ? current - 1 : current));
+  const nextStep = () => setActive((current) => (current < steps.length ? current + 1 : current));
+  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
-  const quizQuestionsQuiz = quizQuestions?.filter(
-    (qqqi) => qqqi.quiz_id == quiz?.id
-  );
+  const quizQuestionsQuiz = quizQuestions?.filter((qqqi) => qqqi.quiz_id == quiz?.id);
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
   const userAttempts = attempts?.filter(
-    (ai) => ai.profile_id == session?.id && ai.status == Status.COMPLETE
+    (ai) => ai.profile_id == session?.id && ai.status == Status.COMPLETE,
   );
   const attempt = userAttempts?.find((ai) => ai.id == props.attemptId);
   const attemptsQuiz = attempts?.filter(
     (aqi) =>
-      aqi.profile_id == session?.id &&
-      aqi.status == Status.COMPLETE &&
-      aqi.quiz_id == quiz?.id
+      aqi.profile_id == session?.id && aqi.status == Status.COMPLETE && aqi.quiz_id == quiz?.id,
   );
 
   const { attemptUpdate } = useAttemptActions();
@@ -129,16 +123,14 @@ export default function Intro({
       content: (
         <Stack maw={{ md: '80%' }} mt={'xl'}>
           <Text inherit>
-            This quiz contains multiple choice questions only. Each question has
-            exactly 4 options. Only one option can be selected per question.
-            There is a limited amount of time to complete the quiz. Time
-            alocated depends on total number of questions in the quiz, and their
-            difficulty.
+            This quiz contains multiple choice questions only. Each question has exactly 4 options.
+            Only one option can be selected per question. There is a limited amount of time to
+            complete the quiz. Time alocated depends on total number of questions in the quiz, and
+            their difficulty.
           </Text>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>
-            If you&apos;ve read and understand these instructions, you can
-            proceed.
+            If you&apos;ve read and understand these instructions, you can proceed.
           </Text>
         </Stack>
       ),
@@ -150,15 +142,13 @@ export default function Intro({
       content: (
         <Stack maw={{ md: '80%' }} mt={'xl'}>
           <Text inherit>
-            Once the quiz begins, do not try to: leave ths tab, disconnect from
-            the network, remain idle for more than a few minutes. As any of
-            these actions will be watched for and, if detected, will be recorded
-            alongside your results.
+            Once the quiz begins, do not try to: leave ths tab, disconnect from the network, remain
+            idle for more than a few minutes. As any of these actions will be watched for and, if
+            detected, will be recorded alongside your results.
           </Text>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>
-            If you&apos;ve read and understand these constraints, you can
-            proceed.
+            If you&apos;ve read and understand these constraints, you can proceed.
           </Text>
         </Stack>
       ),
@@ -200,27 +190,15 @@ export default function Intro({
         ))}
 
         <StepperCompleted>
-          <Stack
-            mih={'50vh'}
-            justify="center"
-            align="center"
-            ta={'center'}
-            gap={SECTION_SPACING}
-          >
-            <ThemeIcon
-              size={ICON_WRAPPER_SIZE * 3}
-              variant="light"
-              radius={999}
-            >
+          <Stack mih={'50vh'} justify="center" align="center" ta={'center'} gap={SECTION_SPACING}>
+            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} variant="light" radius={999}>
               <IconCheck size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
 
             <Stack maw={{ md: '80%' }}>
               <Title order={3}>Introduction Complete</Title>
 
-              <Text inherit>
-                Click the start button to begin whenever you&apos;re ready.
-              </Text>
+              <Text inherit>Click the start button to begin whenever you&apos;re ready.</Text>
             </Stack>
           </Stack>
         </StepperCompleted>
@@ -248,8 +226,7 @@ export default function Intro({
             if (active < steps.length) {
               nextStep();
             } else {
-              if (attempt)
-                attemptUpdate({ ...attempt, status: Status.IN_PROGRESS });
+              if (attempt) attemptUpdate({ ...attempt, status: Status.IN_PROGRESS });
               props.setIntro(false);
             }
           }}

@@ -9,15 +9,15 @@ import CommonFooter from '../common/footer';
 import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { FormValuesInquiry } from '@repo/types/form';
 
-export default function Service({
+export function FormInquiryService({
   props,
 }: {
   props: { initialValues: Partial<FormValuesInquiry>; close?: () => void };
 }) {
-  const { form, handleSubmit, submitted } = useFormEmailInquiry(
-    props.initialValues,
-    { type: 'service', close: props.close }
-  );
+  const { form, handleSubmit, submitted } = useFormEmailInquiry(props.initialValues, {
+    type: 'service',
+    close: props.close,
+  });
 
   return (
     <form onSubmit={form.onSubmit(() => handleSubmit())} noValidate>

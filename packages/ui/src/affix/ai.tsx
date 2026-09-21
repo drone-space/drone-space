@@ -19,7 +19,7 @@ import {
 } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
 import { images } from '@repo/constants/images';
-import classes from './ai.module.scss';
+import classes from './ai.module.css';
 import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@repo/constants/names';
 import { getFromLocalStorage } from '@repo/utilities/storage';
 import ImageDefault from '@repo/ui/common/images/default';
@@ -29,7 +29,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants
 import { IconX } from '@tabler/icons-react';
 import { COMPANY_NAME } from '@repo/constants/app';
 
-export default function Ai() {
+export function AffixAi() {
   const pathname = usePathname();
   const { setConversation } = useStoreConversation();
 

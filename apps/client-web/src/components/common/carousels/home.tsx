@@ -18,7 +18,7 @@ import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { images } from '@repo/constants/images';
 import LayoutSection from '@repo/ui/layout/section';
-import classes from './home.module.scss';
+import classes from './home.module.css';
 import { LOCATIONS } from '@repo/constants/app';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import ModalContactTraining from '@repo/ui/common/modals/contact/training';

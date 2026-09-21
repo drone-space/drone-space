@@ -17,7 +17,7 @@ interface SectionHeaderProps {
   };
 }
 
-export default function Section({ props, options }: SectionHeaderProps) {
+export function LayoutIntroSection({ props, options }: SectionHeaderProps) {
   const alignment = options?.alignment ?? 'center';
 
   return (

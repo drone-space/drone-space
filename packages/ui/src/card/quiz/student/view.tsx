@@ -1,35 +1,18 @@
 'use client';
 
-import {
-  Anchor,
-  Box,
-  Card,
-  Group,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
-} from '@mantine/core';
+import { Anchor, Box, Card, Group, Stack, Text, Title, Tooltip } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { QuizGet } from '@repo/types/models/quiz';
 import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
-export default function View({ props }: { props: { quiz: QuizGet } }) {
+export function CardQuizStudentView({ props }: { props: { quiz: QuizGet } }) {
   return (
-    <Card
-      bg={'var(--mantine-color-body)'}
-      withBorder
-      p={{ base: 'md', md: 'lg' }}
-    >
+    <Card bg={'var(--mantine-color-body)'} withBorder p={{ base: 'md', md: 'lg' }}>
       <Stack>
         <Group>
-          <Tooltip
-            label={props.quiz.title}
-            position="top-start"
-            arrowOffset={16}
-          >
+          <Tooltip label={props.quiz.title} position="top-start" arrowOffset={16}>
             <Title order={2} fz={'md'} lineClamp={1}>
               {props.quiz.title}
             </Title>
@@ -49,9 +32,7 @@ export default function View({ props }: { props: { quiz: QuizGet } }) {
             component={Link}
             href={`/quizzes/${props.quiz.id}`}
             underline="hover"
-            c={
-              'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'
-            }
+            c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}
           >
             <Group gap={5}>
               <Text inherit fz={'sm'} lineClamp={3}>

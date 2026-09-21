@@ -1,6 +1,6 @@
 import { Container, Stack, Text, Title } from '@mantine/core';
 
-export default function Auth({ title, desc }: { title: string; desc: string }) {
+export function LayoutAuth({ title, desc }: { title: string; desc: string }) {
   return (
     <>
       <Container>

@@ -4,13 +4,9 @@ import React from 'react';
 import { useFullscreen } from '@mantine/hooks';
 import { ActionIcon, Group, Tooltip } from '@mantine/core';
 import { IconArrowsMaximize, IconArrowsMinimize } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 
-export default function Fullscreen() {
+export function ButtonFullscreen() {
   const { toggle, fullscreen } = useFullscreen();
 
   const buttonProps = {
@@ -21,12 +17,7 @@ export default function Fullscreen() {
   return (
     <Group>
       <Tooltip label={buttonProps.label} position="right">
-        <ActionIcon
-          size={ICON_WRAPPER_SIZE}
-          onClick={toggle}
-          variant="subtle"
-          color="dark"
-        >
+        <ActionIcon size={ICON_WRAPPER_SIZE} onClick={toggle} variant="subtle" color="dark">
           <buttonProps.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
         </ActionIcon>
       </Tooltip>

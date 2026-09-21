@@ -20,7 +20,7 @@ import {
   Title,
 } from '@mantine/core';
 import { typeMenuNavbar } from '@repo/types/link';
-import classes from './navbar.module.scss';
+import classes from './navbar.module.css';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import CardMenu from '../card/menu';
 import { IconFileDownload } from '@tabler/icons-react';
@@ -29,7 +29,7 @@ import NextLink from '@repo/ui/common/anchor/next-link';
 import LayoutSection from '../../layout/section';
 import { COMPANY_NAME } from '@repo/constants/app';
 
-export default function Navbar({
+export function MenuNavbar({
   children,
   link,
   subLinks,

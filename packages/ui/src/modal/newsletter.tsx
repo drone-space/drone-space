@@ -4,14 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
 import { getFromLocalStorage } from '@repo/utilities/storage';
 import { COOKIE_NAME, LOCAL_STORAGE_NAME } from '@repo/constants/names';
-import {
-  getCookieClient,
-  setCookieClient,
-} from '@repo/utilities/cookie-client';
+import { getCookieClient, setCookieClient } from '@repo/utilities/cookie-client';
 import CtaNewsletter from '../../partial/cta/newsletter';
 // import { useStoreModal } from '@repo/libraries/zustand/stores/modals';
 
-export default function Newsletter({
+export function ModalNewsletter({
   options,
   children,
 }: {

@@ -1,9 +1,5 @@
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
-import { Alert } from '@repo/types/enums';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { Alert } from '@repo/types';
 import { ActionIcon, Group, Stack, ThemeIcon, Title } from '@mantine/core';
 import {
   Icon,
@@ -14,17 +10,18 @@ import {
 } from '@tabler/icons-react';
 import React from 'react';
 
-export default function Modal({
+export function LayoutModal({
   children,
   props,
-  variant,
-  withoutPadding,
 }: {
   children: React.ReactNode;
-  props?: { title?: string; close?: () => void };
-  variant?: Alert;
-  size?: string;
-  withoutPadding?: boolean;
+  props?: {
+    title?: string;
+    close?: () => void;
+    variant?: Alert;
+    size?: string;
+    withoutPadding?: boolean;
+  };
 }) {
   let options: {
     icon: Icon | null;
@@ -34,15 +31,15 @@ export default function Modal({
     color: null,
   };
 
-  switch (variant) {
+  switch (props?.variant) {
     case Alert.INFO:
-      options = { icon: IconInfoCircle, color: 'blue.6' };
+      options = { icon: IconInfoCircle, color: 'blue' };
       break;
     case Alert.WARNING:
-      options = { icon: IconAlertTriangle, color: 'yellow.6' };
+      options = { icon: IconAlertTriangle, color: 'yellow' };
       break;
     case Alert.DANGER:
-      options = { icon: IconAlertCircle, color: 'red.6' };
+      options = { icon: IconAlertCircle, color: 'red' };
       break;
     default:
       break;
@@ -51,8 +48,8 @@ export default function Modal({
   return (
     <Stack
       pos={'relative'}
-      gap={!variant ? 'md' : 'xl'}
-      p={withoutPadding ? 0 : 'md'}
+      gap={!props?.variant ? 'md' : 'xl'}
+      p={props?.withoutPadding ? 0 : 'md'}
     >
       {(options.icon || props?.close) && (
         <Group justify={!options.icon ? 'end' : 'space-between'} align="start">
@@ -69,12 +66,7 @@ export default function Modal({
           )}
 
           {props?.close && (
-            <ActionIcon
-              size={ICON_WRAPPER_SIZE}
-              onClick={props.close}
-              variant="light"
-              color="dark"
-            >
+            <ActionIcon size={ICON_WRAPPER_SIZE} onClick={props.close} variant="default">
               <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ActionIcon>
           )}
@@ -84,12 +76,7 @@ export default function Modal({
       <Stack>
         {props?.title && (
           <Group>
-            <Title
-              order={1}
-              fz={'xl'}
-              lh={1}
-              ta={{ base: 'center', xs: 'start' }}
-            >
+            <Title order={1} fz={'xl'} lh={1} ta={{ base: 'center', xs: 'start' }}>
               {props.title}
             </Title>
           </Group>

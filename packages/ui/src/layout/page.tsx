@@ -4,7 +4,7 @@ import { Box, Stack } from '@mantine/core';
 import { PageProps } from '@repo/types/layout';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 
-export default function Page({ children, padded, stacked, ...rest }: PageProps) {
+export function LayoutPage({ children, padded, stacked, ...rest }: PageProps) {
   const py =
     typeof padded === 'boolean'
       ? SECTION_SPACING

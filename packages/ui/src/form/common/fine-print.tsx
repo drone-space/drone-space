@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from '@mantine/core';
 import NextLink from '@repo/ui/common/anchor/next-link';
 
-export default function FinePrint() {
+export function FormCommonFinePrint() {
   return (
     <Text fz={'xs'} c={'dimmed'}>
       By submitting this form, I agree to the{' '}

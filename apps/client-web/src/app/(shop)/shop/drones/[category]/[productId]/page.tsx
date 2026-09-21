@@ -37,7 +37,7 @@ import {
   IconInfoCircle,
   IconTruckDelivery,
 } from '@tabler/icons-react';
-import classes from './drone.module.scss';
+import classes from './drone.module.css';
 import { linkify } from '@repo/utilities/url';
 import {
   ICON_SIZE,
@@ -48,7 +48,7 @@ import {
 import ImageDefault from '@repo/ui/common/images/default';
 import IntroPage from '@repo/ui/layout/intros/page';
 import { images } from '@repo/constants/images';
-import classesBadge from './page.module.scss';
+import classesBadge from './page.module.css';
 import { products } from '@repo/constants/products';
 
 export const dynamic = 'force-static';

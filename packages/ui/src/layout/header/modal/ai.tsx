@@ -4,7 +4,7 @@ import LayoutSection from '@repo/ui/layout/section';
 import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 
-export default function AI({ onClose }: { onClose: () => void }) {
+export function LayoutHeaderModalAi({ onClose }: { onClose: () => void }) {
   return (
     <LayoutSection id="ai-header" containerized={false} px={'md'} padded={'md'} bordered>
       <Group justify="space-between" align="start">

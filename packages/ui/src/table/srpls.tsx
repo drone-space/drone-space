@@ -29,7 +29,7 @@ import BadgeStatus from '../badge/status';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 
-export default function Srpls() {
+export function TableSrpls() {
   const srpls = useStoreSrpl((s) => s.srpls);
 
   const rows = sortArray(srpls || [], (i) => i.created_at, Order.DESCENDING).map((qi) => {

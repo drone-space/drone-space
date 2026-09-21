@@ -61,7 +61,7 @@ import { Status, SyncStatus } from '@repo/types/models/enums';
 import { generateUUID } from '@repo/utilities/generators';
 import { useQuizQuestionActions } from '@repo/hooks/actions/quiz-question';
 
-export default function SectionOptions({
+export function PartialSectionOptions({
   props,
 }: {
   props: { questionId: string; questionOptions: OptionGet[] };

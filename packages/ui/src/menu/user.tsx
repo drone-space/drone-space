@@ -16,14 +16,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import { navLinkItems } from '@repo/constants/links';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import PartialUser from '../../partial/user';
-import classes from './user.module.scss';
+import classes from './user.module.css';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 import NextLink from '@repo/ui/common/anchor/next-link';
 
-export default function User({
-  children,
-  ...restProps
-}: { children: React.ReactNode } & MenuProps) {
+export function MenuUser({ children, ...restProps }: { children: React.ReactNode } & MenuProps) {
   const { session } = useStoreSession();
 
   const mobile = useMediaQuery('(max-width: 48em)');

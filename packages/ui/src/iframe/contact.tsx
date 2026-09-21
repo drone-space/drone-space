@@ -2,11 +2,7 @@ import React from 'react';
 import { LOCATIONS } from '@repo/constants/app';
 import { Box } from '@mantine/core';
 
-export default function Contact({
-  props,
-}: {
-  props?: { src?: string; height?: any };
-}) {
+export function IFrameContact({ props }: { props?: { src?: string; height?: any } }) {
   return (
     <Box
       component="iframe"

@@ -2,16 +2,9 @@ import React from 'react';
 import { Card, Text, Title } from '@mantine/core';
 import { typeMenuNavbar } from '@repo/types/link';
 
-export default function Menu({ props }: { props: typeMenuNavbar }) {
+export function CardMenu({ props }: { props: typeMenuNavbar }) {
   return (
-    <Card
-      bg={'transparent'}
-      h={'100%'}
-      padding={0}
-      py={'xs'}
-      px={'sm'}
-      radius={0}
-    >
+    <Card bg={'transparent'} h={'100%'} padding={0} py={'xs'} px={'sm'} radius={0}>
       <Title
         order={2}
         fz={{ sm: 'sm', xl: 'md' }}

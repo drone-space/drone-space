@@ -21,9 +21,9 @@ import { usePathname } from 'next/navigation';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { Platform } from '@repo/types/enums';
 import { capitalizeWord } from '@repo/utilities/string';
-import classes from './share.module.scss';
+import classes from './share.module.css';
 
-export default function Share({
+export function MenuShare({
   props,
 }: { props: { baseUrl: string; postTitle: string } } & ActionIconProps) {
   const pathname = usePathname();
@@ -49,16 +49,9 @@ export default function Share({
         {shareLinks.map((link, index) => (
           <MenuItem
             key={index}
-            leftSection={
-              <link.icon size={ICON_SIZE - 6} stroke={ICON_STROKE_WIDTH} />
-            }
+            leftSection={<link.icon size={ICON_SIZE - 6} stroke={ICON_STROKE_WIDTH} />}
             component={'a'}
-            href={getShareLink(
-              link.title,
-              pathname,
-              props.postTitle,
-              props.baseUrl
-            )}
+            href={getShareLink(link.title, pathname, props.postTitle, props.baseUrl)}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -93,20 +86,20 @@ export const getShareLink = (
   platform: Platform,
   pathname: string,
   title: string,
-  baseUrl: string
+  baseUrl: string,
 ) => {
   const currentUrl = `${baseUrl}${pathname}`;
 
   switch (platform) {
     case Platform.TWITTER:
       return `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(
-        title
+        title,
       )}`;
     case Platform.FACEBOOK:
       return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
     case Platform.LINKEDIN:
       return `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
-        currentUrl
+        currentUrl,
       )}&title=${encodeURIComponent(title)}`;
     case Platform.WHATSAPP:
       return `https://wa.me/?text=${encodeURIComponent(`${title} - ${currentUrl}`)}`;

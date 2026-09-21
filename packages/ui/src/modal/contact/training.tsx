@@ -7,7 +7,7 @@ import LayoutModal from '../../../layout/modal';
 import FormInquiryTraining from '../../../form/inquiry/training';
 import { FormValuesInquiry } from '@repo/types/form';
 
-export default function Training({
+export function ModalContactTraining({
   props,
   children,
 }: {
@@ -25,8 +25,7 @@ export default function Training({
               close,
               initialValues: {
                 ...props?.initialValues,
-                subject:
-                  props?.initialValues?.subject || 'Drone Training Inquiry',
+                subject: props?.initialValues?.subject || 'Drone Training Inquiry',
               },
             }}
           />

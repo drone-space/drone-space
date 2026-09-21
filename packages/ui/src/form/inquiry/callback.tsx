@@ -7,13 +7,13 @@ import FinePrint from '../common/fine-print';
 import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
 import CommonFooter from '../common/footer';
 
-export default function Callback({ props }: { props: { close?: () => void } }) {
+export function FormInquiryCallback({ props }: { props: { close?: () => void } }) {
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
     {
       subject: 'Callback Request',
       message: 'Please call me back as soon as convenitently possible.',
     },
-    { type: 'general', close: props.close, noMessage: true }
+    { type: 'general', close: props.close, noMessage: true },
   );
 
   return (

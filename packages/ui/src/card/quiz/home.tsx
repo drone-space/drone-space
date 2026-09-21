@@ -1,37 +1,23 @@
 'use client';
 
-import {
-  Anchor,
-  Card,
-  Group,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
-} from '@mantine/core';
+import { Anchor, Card, Group, Stack, Text, Title, Tooltip } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { QuizGet } from '@repo/types/models/quiz';
 import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 
-export default function Home({ props }: { props: { quiz: QuizGet } }) {
+export function CardQuizHome({ props }: { props: { quiz: QuizGet } }) {
   return (
     <Card
-      bg={
-        'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-      }
+      bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
       withBorder
       p={{ base: 'md', md: 'lg' }}
       h={'100%'}
     >
       <Stack>
         <Group>
-          <Tooltip
-            label={props.quiz.title}
-            position="top-start"
-            arrowOffset={16}
-          >
+          <Tooltip label={props.quiz.title} position="top-start" arrowOffset={16}>
             <Title order={2} fw={500} fz={'md'} lineClamp={1}>
               {props.quiz.title}
             </Title>
@@ -45,11 +31,7 @@ export default function Home({ props }: { props: { quiz: QuizGet } }) {
         </Group>
 
         <Group mt={'md'}>
-          <Anchor
-            component={Link}
-            href={`/quizzes/${props.quiz.id}`}
-            underline="hover"
-          >
+          <Anchor component={Link} href={`/quizzes/${props.quiz.id}`} underline="hover">
             <Group gap={5}>
               <Text inherit fz={'sm'} lineClamp={3}>
                 Learn more

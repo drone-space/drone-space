@@ -3,7 +3,7 @@ import { Badge, Group, Indicator, Text } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 
-export default function Offer() {
+export function IndicatorOffer() {
   return (
     <Group>
       <Indicator
@@ -20,9 +20,7 @@ export default function Offer() {
           size={'md'}
           variant="gradient"
           gradient={{ from: 'pri', to: 'sec', deg: 165 }}
-          leftSection={
-            <IconInfoCircle size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
-          }
+          leftSection={<IconInfoCircle size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />}
           fz={{ base: 8, lg: 10 }}
         >
           RPL Course Discount (

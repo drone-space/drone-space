@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function AI({
+export function AvatarAI({
   props,
 }: {
   props?: { size?: number; volumeRef: React.MutableRefObject<number> };
 }) {
   const [angle, setAngle] = useState(0);
-  const [colors, setColors] = useState<{ h: number; s: number; l: number }[]>(
-    []
-  );
+  const [colors, setColors] = useState<{ h: number; s: number; l: number }[]>([]);
   const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ export default function AI({
         prev.map((color) => ({
           ...color,
           h: (color.h + 0.15 + volume * 0.8) % 360,
-        }))
+        })),
       );
 
       frameRef.current = requestAnimationFrame(animate);
@@ -67,8 +65,7 @@ function hslToRgb(h: number, s: number, l: number) {
 
   const k = (n: number) => (n + h / 30) % 12;
   const a = s * Math.min(l, 1 - l);
-  const f = (n: number) =>
-    l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+  const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
 
   return [f(0), f(8), f(4)].map((x) => Math.round(x * 255));
 }
@@ -106,8 +103,7 @@ function generateSafeColors({
   let tries = 0;
 
   while (colors.length < count && tries < 1000) {
-    const lightness =
-      lightnessMin + Math.random() * (lightnessMax - lightnessMin);
+    const lightness = lightnessMin + Math.random() * (lightnessMax - lightnessMin);
     const [r, g, b] = hslToRgb(hue, saturation, lightness);
     const lum = getLuminance(r, g, b);
 

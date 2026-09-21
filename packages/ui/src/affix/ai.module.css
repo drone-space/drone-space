@@ -1,0 +1,27 @@
+@keyframes colorChange {
+  0% {
+    border-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+    color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
+  }
+  50% {
+    border-color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
+  }
+  100% {
+    border-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9));
+    color: light-dark(var(--mantine-color-white), var(--mantine-color-white));
+  }
+}
+
+.child {
+  animation: colorChange 5s infinite;
+  border-radius: 99px;
+  border: 4px solid light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3));
+  background-color: var(--mantine-color-white);
+  box-shadow: var(--mantine-shadow-xs);
+}
+
+@media (hover: hover) {
+  .child:hover {
+    cursor: pointer;
+  }
+}

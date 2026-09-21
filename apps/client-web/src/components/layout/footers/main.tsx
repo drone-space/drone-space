@@ -15,7 +15,7 @@ import {
   SimpleGrid,
 } from '@mantine/core';
 import { images } from '@repo/constants/images';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { links, serviceLinks, shopLinks, socialLinks, trainingLinks } from '@/data/links';
 import NextImage from 'next/image';
 import LayoutSection from '@repo/ui/layout/section';

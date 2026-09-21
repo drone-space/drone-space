@@ -6,11 +6,7 @@ import { COOKIE_NAME } from '@repo/constants/names';
 import { setCookieClient } from '@repo/utilities/cookie-client';
 import CtaConference from '../../partial/cta/conference';
 
-export default function Conference({
-  children,
-}: {
-  children?: React.ReactNode;
-}) {
+export function ModalConference({ children }: { children?: React.ReactNode }) {
   const [opened, setOpened] = useState(false);
 
   const close = () => {
@@ -41,10 +37,7 @@ export default function Conference({
       </Modal>
 
       {children && (
-        <span
-          style={{ display: 'inline', cursor: 'pointer' }}
-          onClick={() => setOpened(true)}
-        >
+        <span style={{ display: 'inline', cursor: 'pointer' }} onClick={() => setOpened(true)}>
           {children}
         </span>
       )}

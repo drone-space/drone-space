@@ -21,7 +21,7 @@ import { OptionGet } from '@repo/types/models/option';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useRouter } from 'next/navigation';
 
-export default function Question({
+export function FormQuestion({
   props,
   options,
 }: {
@@ -46,9 +46,7 @@ export default function Question({
   });
 
   const optionsStore = useStoreOption((s) => s.options);
-  const optionsQuestion = optionsStore?.filter(
-    (oi) => oi.question_id == form.values.id
-  );
+  const optionsQuestion = optionsStore?.filter((oi) => oi.question_id == form.values.id);
 
   const handleComplete = () => {
     if (!stay) {
@@ -137,13 +135,10 @@ export default function Question({
                 size="xs"
                 color="gray"
                 variant="light"
-                display={
-                  !options?.inline && form.values.id ? 'none' : undefined
-                }
+                display={!options?.inline && form.values.id ? 'none' : undefined}
                 onClick={() => {
                   if (props?.onSubmit) props.onSubmit();
-                  if (props?.setAddFromExisting)
-                    props.setAddFromExisting(false);
+                  if (props?.setAddFromExisting) props.setAddFromExisting(false);
                 }}
               >
                 Cancel
@@ -153,9 +148,7 @@ export default function Question({
                 size="xs"
                 type="submit"
                 loading={submitted}
-                display={
-                  !options?.inline && form.values.id ? 'none' : undefined
-                }
+                display={!options?.inline && form.values.id ? 'none' : undefined}
               >
                 {!!props?.question?.updated_at ? 'Update' : 'Create'}
               </Button>
@@ -177,15 +170,13 @@ export default function Question({
         </GridCol>
       )}
 
-      {!options?.inline &&
-        form.values.id &&
-        (optionsQuestion || []).length == 4 && (
-          <Group mt={'xs'}>
-            <Button size="xs" onClick={handleComplete}>
-              Done
-            </Button>
-          </Group>
-        )}
+      {!options?.inline && form.values.id && (optionsQuestion || []).length == 4 && (
+        <Group mt={'xs'}>
+          <Button size="xs" onClick={handleComplete}>
+            Done
+          </Button>
+        </Group>
+      )}
     </>
   );
 }

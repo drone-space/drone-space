@@ -2,22 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { useFormQuiz } from '@repo/hooks/form/quiz';
-import {
-  Button,
-  Checkbox,
-  Grid,
-  GridCol,
-  Group,
-  Select,
-  Textarea,
-  TextInput,
-} from '@mantine/core';
+import { Button, Checkbox, Grid, GridCol, Group, Select, Textarea, TextInput } from '@mantine/core';
 import { QuizGet } from '@repo/types/models/quiz';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { capitalizeWords } from '@repo/utilities/string';
 import { Status } from '@repo/types/models/enums';
 
-export default function Quiz({ props }: { props?: { quizId?: string } }) {
+export function FormQuiz({ props }: { props?: { quizId?: string } }) {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quiz = quizzes?.find((qi) => qi.id == props?.quizId);
 

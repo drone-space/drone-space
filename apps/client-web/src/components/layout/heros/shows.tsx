@@ -2,7 +2,7 @@
 
 import React from 'react';
 import LayoutSection from '@repo/ui/layout/section';
-import classes from './shows.module.scss';
+import classes from './shows.module.css';
 import { AspectRatio, Button, Card, Grid, GridCol, Group, Stack, Text, Title } from '@mantine/core';
 import videos from '@repo/constants/videos';
 import shows from '@/data/shows';

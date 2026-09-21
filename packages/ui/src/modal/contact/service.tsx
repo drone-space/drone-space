@@ -7,7 +7,7 @@ import LayoutModal from '../../../layout/modal';
 import FormInquiryService from '../../../form/inquiry/service';
 import { FormValuesInquiry } from '@repo/types/form';
 
-export default function Service({
+export function ModalContactService({
   props,
   children,
 }: {
@@ -25,8 +25,7 @@ export default function Service({
               close,
               initialValues: {
                 ...props?.initialValues,
-                subject:
-                  props?.initialValues?.subject || 'Drone Services Inquiry',
+                subject: props?.initialValues?.subject || 'Drone Services Inquiry',
               },
             }}
           />

@@ -4,7 +4,7 @@ import { Flex, Skeleton, Stack, Text, Title } from '@mantine/core';
 import AvatarMain from '@repo/ui/common/avatars/main';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
 
-export default function User({ options }: { options?: { withoutAvatar?: boolean } }) {
+export function PartialUser({ options }: { options?: { withoutAvatar?: boolean } }) {
   const session = useStoreSession((s) => s.session);
 
   return (

@@ -14,7 +14,7 @@ import {
   Text,
   ThemeIcon,
 } from '@mantine/core';
-import classes from './spaces-hub.module.scss';
+import classes from './spaces-hub.module.css';
 import { IconArrowRightDashed, IconChevronRight } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';

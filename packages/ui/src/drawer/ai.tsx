@@ -11,7 +11,7 @@ import { useTTS } from '@repo/hooks/tts';
 import { useSTT } from '@repo/hooks/stt';
 import OverlayAIVoice from '../../overlays/ai-voice';
 
-export default function Ai({ children }: { children: React.ReactNode }) {
+export function DrawerAi({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [updated, setUpdated] = useState(false);
   const [voiceMode, setVoiceMode] = useState(false);

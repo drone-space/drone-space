@@ -23,7 +23,7 @@ interface PageHeaderProps {
   };
 }
 
-export default function Page({ props, options }: PageHeaderProps) {
+export function LayoutIntroPage({ props, options }: PageHeaderProps) {
   const alignment = options?.alignment ?? 'center';
 
   const pathname = usePathname();

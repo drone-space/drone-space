@@ -16,7 +16,7 @@ type DefaultImageProps = {
   customSizes?: string;
 };
 
-export default function Default({
+export function ImageDefault({
   src,
   alt,
   fallback,

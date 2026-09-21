@@ -2,10 +2,10 @@ import { Button, Card, Group, Stack, Text } from '@mantine/core';
 import { setCookieClient } from '@repo/utilities/cookie-client';
 import { WEEK } from '@repo/constants/sizes';
 import { COOKIE_NAME } from '@repo/constants/names';
-import classes from './cookies.module.scss';
+import classes from './cookies.module.css';
 import AnchorNextLink from '@repo/ui/common/anchor/next-link';
 
-export default function Cookies({ close }: { close: () => void }) {
+export function CardCookies({ close }: { close: () => void }) {
   const handleConsentCookie = () => {
     setCookieClient(COOKIE_NAME.CONSENT_COOKIES, true, {
       expiryInSeconds: WEEK,

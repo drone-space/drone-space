@@ -1,20 +1,11 @@
 import React from 'react';
 import { Card, Text, Title } from '@mantine/core';
-import classes from './feature.module.scss';
+import classes from './feature.module.css';
 
-export default function Feature({
-  data,
-}: {
-  data: { title: string; desc: string | null };
-}) {
+export default function Feature({ data }: { data: { title: string; desc: string | null } }) {
   return (
     <Card h={'100%'} className={classes.card} padding={'md'}>
-      <Title
-        order={3}
-        fz={{ md: 'lg' }}
-        w={{ md: '90%' }}
-        className={classes.title}
-      >
+      <Title order={3} fz={{ md: 'lg' }} w={{ md: '90%' }} className={classes.title}>
         {data.title}
       </Title>
 

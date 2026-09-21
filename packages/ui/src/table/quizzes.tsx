@@ -32,7 +32,7 @@ import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 
-export default function Quizzes() {
+export function TableQuizzes() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
 

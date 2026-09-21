@@ -10,7 +10,7 @@ import {
 } from '@repo/constants/sizes';
 import AvatarAI from '../common/avatars/ai';
 
-export default function AIVoice({
+export function OverlayAiVoice({
   props,
 }: {
   props: {

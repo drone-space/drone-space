@@ -4,7 +4,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/s
 import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
 import LayoutSection from '@repo/ui/layout/section';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { images } from '@repo/constants/images';
 import { IconFileDownload, IconPhoneCall, IconSchool } from '@tabler/icons-react';
 import ModalContactCallback from '@repo/ui/common/modals/contact/callback';

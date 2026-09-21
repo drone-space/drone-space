@@ -1,14 +1,11 @@
-'use client';
-
 import React, { useMemo } from 'react';
 import { Box, Divider, Flex } from '@mantine/core';
-import { MainProps, Widths } from '@repo/types/layout';
-import LayoutSection from './section';
-import { usePathname } from 'next/navigation';
+import { MainProps, Widths } from '@repo/types';
+import { LayoutSection } from './section';
 
 export const DEFAULT_ASIDE_WIDTH = { md: 33, lg: 25 };
 
-export default function Main({ children, bar, header, nav, hero, aside, footer }: MainProps) {
+export function LayoutMain({ children, bar, header, nav, hero, aside, footer }: MainProps) {
   const renderAside = (side: React.ReactNode, width?: Widths): React.ReactNode => (
     <Box
       component="aside"
@@ -21,8 +18,6 @@ export default function Main({ children, bar, header, nav, hero, aside, footer }
       {side}
     </Box>
   );
-
-  const pathname = usePathname();
 
   const widthMain = useMemo(() => {
     const leftMd = aside?.left?.width?.md ?? 0;
@@ -41,7 +36,7 @@ export default function Main({ children, bar, header, nav, hero, aside, footer }
       {bar}
       {header}
       {nav}
-      {!pathname.startsWith('/blog') ? hero : pathname == '/blog' ? hero : undefined}
+      {hero}
 
       {aside ? (
         <LayoutSection

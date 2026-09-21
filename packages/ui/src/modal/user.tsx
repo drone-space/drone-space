@@ -3,9 +3,9 @@
 import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Box, Modal } from '@mantine/core';
-import TabsUser from '../tab/user';
+import TabsUser from '../tabs/user';
 
-export default function User({ children }: { children: React.ReactNode }) {
+export function ModalUser({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (

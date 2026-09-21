@@ -18,7 +18,7 @@ import CarouselImage from '@/components/common/carousels/image';
 import IntroPage from '@repo/ui/layout/intros/page';
 import { typeParams } from './layout';
 import { IconArrowRightDashed } from '@tabler/icons-react';
-import classes from './drone.module.scss';
+import classes from './drone.module.css';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { images } from '@repo/constants/images';
 

@@ -16,7 +16,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import classes from './list.module.scss';
+import classes from './list.module.css';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
 import ImageDefault from '@repo/ui/common/images/default';

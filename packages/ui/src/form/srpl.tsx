@@ -2,21 +2,12 @@
 
 import React, { useEffect } from 'react';
 import { useFormSrpl } from '@repo/hooks/form/srpl';
-import {
-  Button,
-  Checkbox,
-  Grid,
-  GridCol,
-  Group,
-  Select,
-  Textarea,
-  TextInput,
-} from '@mantine/core';
+import { Button, Checkbox, Grid, GridCol, Group, Select, Textarea, TextInput } from '@mantine/core';
 import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
 import { capitalizeWords } from '@repo/utilities/string';
 import { Status } from '@repo/types/models/enums';
 
-export default function Srpl({ props }: { props?: { srplId?: string } }) {
+export function FormSrpl({ props }: { props?: { srplId?: string } }) {
   const srpls = useStoreSrpl((s) => s.srpls);
   const srpl = srpls?.find((qi) => qi.id == props?.srplId);
 

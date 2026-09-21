@@ -2,7 +2,7 @@ import { Button, Center, Stack, Text, Title } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
 
-export default function Empty({
+export function PlaceholderEmpty({
   props,
   children,
 }: {

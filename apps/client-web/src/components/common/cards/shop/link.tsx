@@ -1,21 +1,12 @@
 import React from 'react';
 import NextImage from 'next/image';
 import { Card, Center, Flex, Image, Title } from '@mantine/core';
-import classes from './link.module.scss';
+import classes from './link.module.css';
 
-export default function Link({
-  data,
-}: {
-  data: { title: string; image: string };
-}) {
+export default function Link({ data }: { data: { title: string; image: string } }) {
   return (
     <Card className={classes.card}>
-      <Flex
-        direction={'column'}
-        justify={'center'}
-        className={classes.imageContainer}
-        h={96}
-      >
+      <Flex direction={'column'} justify={'center'} className={classes.imageContainer} h={96}>
         <Image
           src={data.image}
           alt={data.title}

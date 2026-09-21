@@ -2,9 +2,9 @@
 
 import { Stack, Text, Transition } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import SpinnerApp from '../common/spinners/app';
+import SpinnerApp from '../spinner/app';
 
-export default function Main() {
+export function LoaderMain() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

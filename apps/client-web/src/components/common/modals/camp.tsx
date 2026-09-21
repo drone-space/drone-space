@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import NextImage from 'next/image';
 import { Modal, Image, Stack, Button } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import classes from './camp.module.scss';
+import classes from './camp.module.css';
 import { images } from '@repo/constants/images';
 import { IconCertificate } from '@tabler/icons-react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
@@ -78,9 +78,7 @@ export default function Camp({ active }: { active?: boolean }) {
         size="xs"
         variant="outline"
         color="white"
-        leftSection={
-          <IconCertificate size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
-        }
+        leftSection={<IconCertificate size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />}
       >
         Holiday Camp
       </Button>

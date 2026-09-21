@@ -39,7 +39,7 @@ import { COOKIE_NAME, LOCAL_STORAGE_NAME, PARAM_NAME } from '@repo/constants/nam
 import { getUrlParam } from '@repo/utilities/url';
 import { getFromLocalStorage } from '@repo/utilities/storage';
 
-export default function Auth({
+export function FormAuth({
   action,
   baseUrl,
   header,

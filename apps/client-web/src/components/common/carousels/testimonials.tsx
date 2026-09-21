@@ -4,7 +4,7 @@ import React from 'react';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import { useRef } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
-import classes from './testimonials.module.scss';
+import classes from './testimonials.module.css';
 import CardTestimonial from '@/components/common/cards/testimonial';
 import { useMediaQuery } from '@mantine/hooks';
 import { StudentGet } from '@repo/types/models/student';

@@ -9,7 +9,7 @@ import { APP_NAME } from '@repo/constants/app';
 import { getCookieClient, setCookieClient } from '@repo/utilities/cookie-client';
 import ModalConference from '../modal/conference';
 
-export default function Conference() {
+export function AlertConference() {
   const [opened, setOpened] = useState(false);
 
   const close = () => {

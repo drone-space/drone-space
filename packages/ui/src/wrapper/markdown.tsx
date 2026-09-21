@@ -6,9 +6,7 @@ interface MarkdownComponentProps {
   markdown: string;
 }
 
-export const MarkdownComponent: React.FC<MarkdownComponentProps> = ({
-  markdown,
-}) => {
+export const WrapperMarkdown: React.FC<MarkdownComponentProps> = ({ markdown }) => {
   return (
     <Typography>
       <div className="markdown-wrapper">

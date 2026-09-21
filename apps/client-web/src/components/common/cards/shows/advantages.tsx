@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './advantages.module.scss';
+import classes from './advantages.module.css';
 import { Card, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import { Icon } from '@tabler/icons-react';
 

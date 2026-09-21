@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { Stack } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import classes from './image.module.scss';
+import classes from './image.module.css';
 import ImageDefault from '@repo/ui/common/images/default';
 
 export default function Image({ data }: { data: string[] }) {

@@ -6,7 +6,7 @@ import { Group, Stack, Title } from '@mantine/core';
 import LayoutSection from '@repo/ui/layout/section';
 import BreadcrumbMain from '@repo/ui/common/breadcrumbs/main';
 import { links } from '@/data/links';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 import { crumbify } from '@repo/utilities/url';
 
 export default function Main({ title }: { title?: string }) {

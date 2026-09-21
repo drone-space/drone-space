@@ -13,7 +13,7 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import classes from './basic.module.scss';
+import classes from './basic.module.css';
 import { typeUnit } from '@/types/course';
 import { IconCheck } from '@tabler/icons-react';
 import {

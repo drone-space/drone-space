@@ -1,12 +1,8 @@
 import React from 'react';
 import { ThemeIcon, Text, Title, Card, Group } from '@mantine/core';
 import { Icon } from '@tabler/icons-react';
-import classes from './why.module.scss';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import classes from './why.module.css';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 
 interface typeCardFeatureWhy {
   icon: Icon;

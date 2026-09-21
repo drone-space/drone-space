@@ -10,7 +10,7 @@ import { products } from '@repo/constants/products';
 import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
 import { FormValuesInquiry } from '@repo/types/form';
 
-export default function Product({
+export function FormInquiryProduct({
   props,
 }: {
   props: { initialValues?: Partial<FormValuesInquiry>; close?: () => void };
@@ -18,7 +18,7 @@ export default function Product({
   const currentProduct = products.find(
     (p) =>
       props.initialValues?.subject?.includes(p.title.long) ||
-      props.initialValues?.subject?.includes(p.title.short)
+      props.initialValues?.subject?.includes(p.title.short),
   );
 
   const kit = {
@@ -26,14 +26,11 @@ export default function Product({
     flyMore: currentProduct?.kit.flyMore?.price.former,
   };
 
-  const { form, handleSubmit, submitted } = useFormEmailInquiry(
-    props.initialValues,
-    {
-      type: 'shop',
-      withKit: !!currentProduct?.kit.flyMore,
-      close: props.close,
-    }
-  );
+  const { form, handleSubmit, submitted } = useFormEmailInquiry(props.initialValues, {
+    type: 'shop',
+    withKit: !!currentProduct?.kit.flyMore,
+    close: props.close,
+  });
 
   return (
     <form onSubmit={form.onSubmit(() => handleSubmit())} noValidate>

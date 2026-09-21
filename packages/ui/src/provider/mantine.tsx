@@ -1,42 +1,44 @@
 'use client';
 
 import React from 'react';
-import { MantineProvider, MantineColorScheme, ConvertCSSVariablesInput } from '@mantine/core';
-import { linkify } from '@repo/utilities/url';
+import {
+  MantineProvider,
+  MantineColorScheme,
+  MantineThemeOverride,
+  CSSVariablesResolver,
+} from '@mantine/core';
+import { linkify } from '@repo/utils';
 import { Notifications } from '@mantine/notifications';
-import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
-import { getAppTheme, AppThemeProps } from '@repo/constants/theme';
-import { getAppResolver } from '@repo/constants/resolver';
-import { COOKIE_NAME } from '@repo/constants/names';
-import { WEEK } from '@repo/constants/sizes';
-import { setCookieClient, getCookieClient } from '@repo/utilities/cookie-client';
-import { getOSTheme } from '@repo/utilities/misc';
-
+import { DEFAULT_COLOR_SCHEME } from '@repo/constants';
+import { COOKIE_NAME } from '@repo/constants';
+import { WEEK } from '@repo/constants';
+import { setCookieClient, getCookieClient } from '@repo/utils';
+import { getOSTheme } from '@repo/utils';
 import { MantineColorSchemeManager } from '@mantine/core';
-import { ColorScheme } from '@repo/types/enums';
+import { ColorScheme } from '@repo/types';
 
-export default function Mantine({
-  APP_NAME,
+export function ProviderMantine({
+  appName,
   colorScheme,
   options,
-  appThemeProps,
-  appResolverProps,
+  theme,
+  cssVariablesResolver,
   children,
 }: {
-  APP_NAME?: string;
+  appName?: string;
   colorScheme?: MantineColorScheme;
   options?: { withNotifications?: boolean };
-  appThemeProps?: AppThemeProps;
-  appResolverProps?: ConvertCSSVariablesInput;
+  theme?: () => MantineThemeOverride;
+  cssVariablesResolver?: () => CSSVariablesResolver;
   children: React.ReactNode;
 }) {
   const colorSchemeManager = customColorSchemeManager();
 
   return (
     <MantineProvider
-      theme={getAppTheme(appThemeProps)}
-      cssVariablesResolver={getAppResolver({ cssVars: appResolverProps })}
-      classNamesPrefix={linkify(APP_NAME || 'template-next')}
+      theme={theme ? theme() : undefined}
+      cssVariablesResolver={cssVariablesResolver ? cssVariablesResolver() : undefined}
+      classNamesPrefix={linkify(appName || 'template-next')}
       defaultColorScheme={colorScheme || DEFAULT_COLOR_SCHEME}
       colorSchemeManager={colorSchemeManager}
     >

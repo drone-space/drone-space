@@ -3,7 +3,7 @@
 import React from 'react';
 import { Modal, Group, ActionIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import classes from './gallery.module.scss';
+import classes from './gallery.module.css';
 import ImageDefault from '@repo/ui/common/images/default';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { IconX } from '@tabler/icons-react';

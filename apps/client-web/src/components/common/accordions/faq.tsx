@@ -1,20 +1,11 @@
 import React from 'react';
 
-import {
-  Accordion,
-  AccordionControl,
-  AccordionItem,
-  AccordionPanel,
-} from '@mantine/core';
+import { Accordion, AccordionControl, AccordionItem, AccordionPanel } from '@mantine/core';
 
-import classes from './faq.module.scss';
+import classes from './faq.module.css';
 import { isFirstItem } from '@repo/utilities/array';
 
-export default function Faq({
-  section,
-}: {
-  section?: 'training' | 'shop' | 'considerations';
-}) {
+export default function Faq({ section }: { section?: 'training' | 'shop' | 'considerations' }) {
   const selection = () => {
     switch (section) {
       case 'training':
@@ -40,11 +31,7 @@ export default function Faq({
   ));
 
   return (
-    <Accordion
-      defaultValue={selection()[0].q}
-      classNames={classes}
-      variant="contained"
-    >
+    <Accordion defaultValue={selection()[0].q} classNames={classes} variant="contained">
       {items}
     </Accordion>
   );

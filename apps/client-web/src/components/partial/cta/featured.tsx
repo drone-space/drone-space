@@ -15,7 +15,7 @@ import {
 } from '@mantine/core';
 import ModalContactShop from '@repo/ui/common/modals/contact/shop';
 import { linkify } from '@repo/utilities/url';
-import classes from './featured.module.scss';
+import classes from './featured.module.css';
 import { products } from '@repo/constants/products';
 import { images } from '@repo/constants/images';
 import { IconX } from '@tabler/icons-react';

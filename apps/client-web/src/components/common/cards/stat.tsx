@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text, Title } from '@mantine/core';
-import classes from './stat.module.scss';
+import classes from './stat.module.css';
 
 export interface typeCardStats {
   stat: string;

@@ -20,7 +20,7 @@ import Link from 'next/link';
 import { IconSend } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 
-export default function Contact({
+export function FormContact({
   props,
   options,
 }: {

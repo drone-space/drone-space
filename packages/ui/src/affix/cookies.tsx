@@ -6,7 +6,7 @@ import CardCookies from '../card/cookies';
 import { getCookieClient } from '@repo/utilities/cookie-client';
 import { COOKIE_NAME } from '@repo/constants/names';
 
-export default function Cookies({
+export function AffixCookies({
   position = {
     bottom: 'var(--mantine-spacing-xl)',
     left: 'var(--mantine-spacing-xl)',

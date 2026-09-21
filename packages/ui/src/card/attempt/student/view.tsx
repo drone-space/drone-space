@@ -26,7 +26,7 @@ import BadgeStatus from '../../../badge/status';
 import BadgeResult from '../../../badge/result';
 import { Status } from '@repo/types/models/enums';
 
-export default function View({ props }: { props: { attempt: AttemptGet } }) {
+export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet } }) {
   const { completeStats, quizzes, metaStats, quiz } = useQuizStats({
     attemptId: props.attempt.id,
   });

@@ -7,7 +7,7 @@ import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import NextLink from '@repo/ui/common/anchor/next-link';
 import { socialLinks } from '@/data/links';
 import ImageDefault from '@repo/ui/common/images/default';
-import classes from './main.module.scss';
+import classes from './main.module.css';
 
 export default function Main() {
   return (

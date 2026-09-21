@@ -5,7 +5,7 @@ import { Link as typeLink } from '@repo/types/link';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import NextLink from '@repo/ui/common/anchor/next-link';
 
-export default function Main({ props }: { props: typeLink[] }) {
+export function BreadcrumbMain({ props }: { props: typeLink[] }) {
   const active = (breadcrumb: typeLink) => props.indexOf(breadcrumb) == props.length - 1;
 
   return (

@@ -7,7 +7,7 @@ import FormInquiryProduct from '../../../form/inquiry/product';
 import LayoutModal from '../../../layout/modal';
 import { FormValuesInquiry } from '@repo/types/form';
 
-export default function Shop({
+export function ModalContactShop({
   props,
   children,
 }: {
@@ -25,8 +25,7 @@ export default function Shop({
               close,
               initialValues: {
                 ...props?.initialValues,
-                subject:
-                  props?.initialValues?.subject || 'Drone Purchase Inquiry',
+                subject: props?.initialValues?.subject || 'Drone Purchase Inquiry',
               },
             }}
           />

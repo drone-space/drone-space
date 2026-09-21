@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Anchor, AnchorProps } from '@mantine/core';
 
-export default function NextLink({
+export function AnchorNextLink({
   href,
   onClick,
   children,

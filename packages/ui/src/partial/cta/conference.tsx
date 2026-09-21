@@ -4,12 +4,12 @@ import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/s
 import { ActionIcon, Button, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
 import LayoutSection from '@repo/ui/layout/section';
-import classes from './conference.module.scss';
+import classes from './conference.module.css';
 import { images } from '@repo/constants/images';
 import { IconExternalLink, IconX } from '@tabler/icons-react';
 import ImageDefault from '@repo/ui/common/images/default';
 
-export default function Conference({ close }: { close?: () => void }) {
+export function PartialCtaConference({ close }: { close?: () => void }) {
   return (
     <LayoutSection
       id={'partial-cta-conference'}

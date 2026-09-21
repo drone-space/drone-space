@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
-import classes from './hub.module.scss';
+import classes from './hub.module.css';
 
 export interface typeCardHub {
   title: string;

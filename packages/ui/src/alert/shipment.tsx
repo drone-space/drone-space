@@ -5,13 +5,10 @@ import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 import { COOKIE_NAME } from '@repo/constants/names';
 import { Alert, Text, Transition } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
-import {
-  getCookieClient,
-  setCookieClient,
-} from '@repo/utilities/cookie-client';
+import { getCookieClient, setCookieClient } from '@repo/utilities/cookie-client';
 import { APP_NAME } from '@repo/constants/app';
 
-export default function Shipment() {
+export function AlertShipment() {
   const [opened, setOpened] = useState(false);
 
   const close = () => {
@@ -32,12 +29,7 @@ export default function Shipment() {
   }, []);
 
   return (
-    <Transition
-      mounted={opened}
-      transition="fade-down"
-      duration={250}
-      timingFunction="ease"
-    >
+    <Transition mounted={opened} transition="fade-down" duration={250} timingFunction="ease">
       {(styles) => (
         <div style={styles}>
           <Alert
@@ -49,9 +41,7 @@ export default function Shipment() {
             onClose={close}
             closeButtonLabel={'Close Drone Aquisition alert'}
             aria-labelledby="Drone Aquisition"
-            icon={
-              <IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
+            icon={<IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             styles={{
               root: {
                 paddingTop: 'var(--mantine-spacing-xs)',
@@ -62,18 +52,13 @@ export default function Shipment() {
               },
             }}
           >
-            <Text
-              component="span"
-              inherit
-              fz={'xs'}
-              c={'var(--mantine-color-text)'}
-            >
+            <Text component="span" inherit fz={'xs'} c={'var(--mantine-color-text)'}>
               {APP_NAME.WEB} currently does{' '}
               <Text component="span" inherit fw={500}>
                 NOT
               </Text>{' '}
-              keep stock. Any drone you wish to purchase will be imported when
-              you place an order with us.
+              keep stock. Any drone you wish to purchase will be imported when you place an order
+              with us.
             </Text>
           </Alert>
         </div>

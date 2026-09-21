@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import NextImage from 'next/image';
 import { Modal, Image, Stack, Button } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import classes from './poster.module.scss';
+import classes from './poster.module.css';
 import { images } from '@repo/constants/images';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';

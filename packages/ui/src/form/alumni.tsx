@@ -5,7 +5,7 @@ import { Box, Button, Grid, GridCol, TextInput } from '@mantine/core';
 import { useFormAlumni } from '@repo/hooks/form/alumni';
 import TooltipInputInfo from '@repo/ui/common/tooltips/input/info';
 
-export default function Alumni(params: {
+export function FormAlumni(params: {
   answerOption: string;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
   setSubmitted: React.Dispatch<React.SetStateAction<boolean>>;

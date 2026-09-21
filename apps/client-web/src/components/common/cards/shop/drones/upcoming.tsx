@@ -1,15 +1,6 @@
-import {
-  BackgroundImage,
-  Badge,
-  Card,
-  Group,
-  Overlay,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { BackgroundImage, Badge, Card, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
-import classes from './upcoming.module.scss';
+import classes from './upcoming.module.css';
 
 export default function Upcoming({ data }: { data: any }) {
   return (
@@ -22,11 +13,7 @@ export default function Upcoming({ data }: { data: any }) {
           pos={'relative'}
           style={{ zIndex: 1 }}
           mih={600}
-          c={
-            data.inverted
-              ? 'var(--mantine-color-white)'
-              : 'var(--mantine-color-text)'
-          }
+          c={data.inverted ? 'var(--mantine-color-white)' : 'var(--mantine-color-text)'}
           ta={'center'}
           justify="space-between"
         >
@@ -35,11 +22,7 @@ export default function Upcoming({ data }: { data: any }) {
               order={3}
               fz={{ lg: '2.5rem' }}
               tt={'uppercase'}
-              c={
-                data.inverted
-                  ? 'var(--mantine-color-white)'
-                  : 'var(--mantine-color-black)'
-              }
+              c={data.inverted ? 'var(--mantine-color-white)' : 'var(--mantine-color-black)'}
             >
               {data.title.short ? data.title.short : data.title.long}
             </Title>

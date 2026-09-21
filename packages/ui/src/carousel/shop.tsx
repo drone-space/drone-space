@@ -8,10 +8,10 @@ import Autoplay from 'embla-carousel-autoplay';
 import LayoutSection from '@repo/ui/layout/section';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import MoadlContactShop from '../modal/contact/shop';
-import classes from './shop.module.scss';
+import classes from './shop.module.css';
 import NextLink from '@repo/ui/common/anchor/next-link';
 
-export default function Shop({ props }: { props: { shopLinks: any[] } }) {
+export function CarouselShop({ props }: { props: { shopLinks: any[] } }) {
   const autoplay = useRef(Autoplay({ delay: 4000 }));
 
   const slides = props.shopLinks.slice(0, props.shopLinks.length - 1).map((slide, index) => {

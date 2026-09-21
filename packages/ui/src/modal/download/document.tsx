@@ -6,7 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import LayoutModal from '../../../layout/modal';
 import FormDownloadDocument from '../../../form/download/download';
 
-export default function Document({
+export function ModalDownloadDocument({
   props,
   children,
 }: {

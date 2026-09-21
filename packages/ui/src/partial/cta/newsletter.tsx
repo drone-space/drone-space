@@ -5,13 +5,13 @@ import { ActionIcon, Button, Group, Overlay, Stack, Text, Title } from '@mantine
 import React from 'react';
 import FormNewsletter from '../../form/newsletter';
 import LayoutSection from '@repo/ui/layout/section';
-import classes from './newsletter.module.scss';
+import classes from './newsletter.module.css';
 import { images } from '@repo/constants/images';
 import { IconFileDownload, IconX } from '@tabler/icons-react';
 import ModalDownloadDocument from '../../common/modals/download/document';
 import { useCloseAllModals } from '@repo/hooks/buses/modal';
 
-export default function Newsletter({ close }: { close?: () => void }) {
+export function PartialCtaNewsletter({ close }: { close?: () => void }) {
   const handleClose = () => {
     if (close) close();
   };

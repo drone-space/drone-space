@@ -6,16 +6,13 @@ import { IconWifi, IconWifiOff } from '@tabler/icons-react';
 import { useNetwork } from '@mantine/hooks';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
 
-export default function Offline({
+export function AffixOffline({
   position = {
     bottom: 'var(--mantine-spacing-xl)',
     left: 0,
   },
   ...restProps
-}: { position?: AffixBaseProps['position'] } & Omit<
-  AffixBaseProps,
-  'position' | 'children'
->) {
+}: { position?: AffixBaseProps['position'] } & Omit<AffixBaseProps, 'position' | 'children'>) {
   const networkStatus = useNetwork();
 
   return (

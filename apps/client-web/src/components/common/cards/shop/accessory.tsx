@@ -14,7 +14,7 @@ import {
   Title,
 } from '@mantine/core';
 import NextImage from 'next/image';
-import classes from './accessory.module.scss';
+import classes from './accessory.module.css';
 import { typeAccessory } from '@/types/product';
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';

@@ -1,12 +1,8 @@
 import React from 'react';
-import classes from './understand.module.scss';
+import classes from './understand.module.css';
 import { Card, Group, Text, Title } from '@mantine/core';
 
-export default function Understand({
-  data,
-}: {
-  data: { label: string; item: string };
-}) {
+export default function Understand({ data }: { data: { label: string; item: string } }) {
   return (
     <Card className={classes.card} padding={'md'}>
       <Group>

@@ -1,0 +1,43 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --port 3000",
+    "prebuild": "pnpm --filter @repo/db generate",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mantine/core": "^9.4.2",
+    "@mantine/notifications": "^9.4.2",
+    "@repo/components": "workspace:*",
+    "@repo/constants": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/handlers": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/utilities": "workspace:*",
+    "@tabler/icons-react": "^3.44.0",
+    "@anthropic-ai/sdk": "^0.78.0",
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@repo/config": "workspace:*",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-plugin-prettier": "^5.4.0",
+    "postcss": "^8.5.3",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
+    "prisma": "6.17.1",
+    "sass-embedded": "^1.89.0",
+    "typescript": "^5"
+  }
+}

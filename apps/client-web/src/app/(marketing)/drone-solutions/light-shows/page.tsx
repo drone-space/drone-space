@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import HeroShows from '@/components/layout/heros/shows';
 import {
   AspectRatio,
@@ -25,20 +25,16 @@ import CardShowsApplications from '@/components/common/cards/shows/applications'
 import AccordionShows from '@/components/common/accordions/shows';
 import CardShowsPrice from '@/components/common/cards/shows/price';
 import TableShows from '@/components/common/tables/shows';
-import ModalContactService from '@repo/components/common/modals/contact/service';
+import ModalContactService from '@repo/ui/common/modals/contact/service';
 import CardShowsUnderstand from '@/components/common/cards/shows/understand';
-import {
-  IconCalendarPlus,
-  IconChevronsRight,
-  IconPhone,
-} from '@tabler/icons-react';
+import { IconCalendarPlus, IconChevronsRight, IconPhone } from '@tabler/icons-react';
 import { images } from '@repo/constants/images';
 import videos from '@repo/constants/videos';
 import shows from '@/data/shows';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ImageDefault from '@repo/components/common/images/default';
-import IntroSection from '@repo/components/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { COMPANY_NAME, PHONES } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
@@ -86,12 +82,7 @@ export default async function LighShow() {
 
           <GridCol span={{ base: 12, md: 6 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
-              <Title
-                order={2}
-                fw={'bold'}
-                ta={{ base: 'center', md: 'start' }}
-                fz={{ md: 24 }}
-              >
+              <Title order={2} fw={'bold'} ta={{ base: 'center', md: 'start' }} fz={{ md: 24 }}>
                 Let&apos;s Talk Drone Light Shows
               </Title>
 
@@ -124,11 +115,7 @@ export default async function LighShow() {
         padded
       >
         <Grid gutter={0}>
-          <GridCol
-            span={{ base: 12, md: 6 }}
-            order={{ base: 1, md: 2 }}
-            p={'xs'}
-          >
+          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }} p={'xs'}>
             <ImageDefault
               src={images.shows.understanding}
               alt={'Understanding Drone Light Shows'}
@@ -139,12 +126,7 @@ export default async function LighShow() {
 
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>
             <Container size={'sm'} py={64} px={{ md: 'xl' }}>
-              <Title
-                order={2}
-                fw={'bold'}
-                ta={{ base: 'center', sm: 'start' }}
-                fz={{ md: 24 }}
-              >
+              <Title order={2} fw={'bold'} ta={{ base: 'center', sm: 'start' }} fz={{ md: 24 }}>
                 Understanding Drone Light Shows
               </Title>
 
@@ -223,11 +205,7 @@ export default async function LighShow() {
         padded
       >
         <Grid gutter={0}>
-          <GridCol
-            span={{ base: 12, md: 6 }}
-            order={{ base: 1, md: 2 }}
-            p={'xs'}
-          >
+          <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }} p={'xs'}>
             <ImageDefault
               src={images.shows.hny}
               alt={'Why Choose Drone Light Shows?'}
@@ -252,12 +230,7 @@ export default async function LighShow() {
                 {data.why.map((item) => (
                   <React.Fragment key={item.label}>
                     {data.why.indexOf(item) > 0 && (
-                      <Divider
-                        size={3}
-                        color="sec.3"
-                        variant="dotted"
-                        my={'md'}
-                      />
+                      <Divider size={3} color="sec.3" variant="dotted" my={'md'} />
                     )}
 
                     <ListItem mt={'md'}>
@@ -274,12 +247,7 @@ export default async function LighShow() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="page-lightshow-applications"
-        shadowed
-        containerized={'responsive'}
-        padded
-      >
+      <LayoutSection id="page-lightshow-applications" shadowed containerized={'responsive'} padded>
         <IntroSection
           props={{
             subTitle: 'Use Cases',
@@ -327,24 +295,17 @@ export default async function LighShow() {
                 fw={'bold'}
                 ta={{ base: 'center', md: 'start' }}
                 fz={{ base: 'lg', sm: 'xl', md: 28 }}
-                c={
-                  'light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))'
-                }
+                c={'light-dark(var(--mantine-color-sec-3),var(--mantine-color-sec-3))'}
               >
                 Your Brand, Your Story, Our Drones:
                 <br />
                 Be the First to Make a Statement in Kenya!
               </Title>
 
-              <Text
-                ta={{ base: 'center', md: 'start' }}
-                fz={{ base: 'xs', md: 'sm' }}
-                mt={'xs'}
-              >
-                As one of the leading providers of drone light shows in Kenya,
-                Drone Space is at the forefront of this innovative technology.
-                Join the ranks of innovative brands by booking your exclusive
-                drone light show with us.
+              <Text ta={{ base: 'center', md: 'start' }} fz={{ base: 'xs', md: 'sm' }} mt={'xs'}>
+                As one of the leading providers of drone light shows in Kenya, Drone Space is at the
+                forefront of this innovative technology. Join the ranks of innovative brands by
+                booking your exclusive drone light show with us.
               </Text>
             </GridCol>
 
@@ -364,12 +325,7 @@ export default async function LighShow() {
                     miw={200}
                     color="sec.3"
                     c={'pri'}
-                    leftSection={
-                      <IconCalendarPlus
-                        size={ICON_SIZE}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
-                    }
+                    leftSection={<IconCalendarPlus size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                   >
                     Book Show
                   </Button>
@@ -380,9 +336,7 @@ export default async function LighShow() {
                   miw={200}
                   color="sec.3"
                   c={'pri'}
-                  leftSection={
-                    <IconPhone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                  }
+                  leftSection={<IconPhone size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                 >
                   {PHONES.MAIN}
                 </Button>
@@ -392,11 +346,7 @@ export default async function LighShow() {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection
-        id="page-lightshow-faq"
-        containerized={'responsive'}
-        padded
-      >
+      <LayoutSection id="page-lightshow-faq" containerized={'responsive'} padded>
         <Grid gutter={{ base: 'xl', md: 'md' }}>
           <GridCol span={{ base: 12, md: 5.5 }}>
             <IntroSection
@@ -453,7 +403,7 @@ export default async function LighShow() {
                 <GridCol key={price.title} span={{ base: 12, xs: 6, md: 4 }}>
                   <CardShowsPrice data={price} />
                 </GridCol>
-              )
+              ),
           )}
 
           {data.pricing.map(
@@ -462,7 +412,7 @@ export default async function LighShow() {
                 <GridCol key={price.title} span={{ base: 12, xs: 6, md: 5 }}>
                   <CardShowsPrice data={price} />
                 </GridCol>
-              )
+              ),
           )}
         </Grid>
 
@@ -474,11 +424,7 @@ export default async function LighShow() {
         </Text>
       </LayoutSection>
 
-      <LayoutSection
-        id="page-lightshow-timeline"
-        containerized={'responsive'}
-        padded
-      >
+      <LayoutSection id="page-lightshow-timeline" containerized={'responsive'} padded>
         <IntroSection
           props={{
             subTitle: `Logistics`,
@@ -491,13 +437,7 @@ export default async function LighShow() {
           {data.timeline.map((item) => (
             <GridCol key={item.title} span={{ base: 12, md: 6 }}>
               <Card withBorder h={'100%'} pt={'xl'} pb={0}>
-                <Title
-                  order={3}
-                  fw={'bold'}
-                  ta={'center'}
-                  fz={{ md: 'lg' }}
-                  mb={'md'}
-                >
+                <Title order={3} fw={'bold'} ta={'center'} fz={{ md: 'lg' }} mb={'md'}>
                   <Text component="span" inherit visibleFrom="md">
                     {data.timeline.indexOf(item) + 1}.{' '}
                   </Text>

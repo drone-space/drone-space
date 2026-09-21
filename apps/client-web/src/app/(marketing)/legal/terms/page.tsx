@@ -1,12 +1,12 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
 import legal from '@/data/legal';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
@@ -48,14 +48,7 @@ export default async function TermsConditions() {
       <LayoutSection id="children" padded bg={'var(--mantine-color-gray-1)'}>
         <>
           <LayoutSection id="page-legal-privacy-header" containerized={'md'}>
-            <Text
-              inherit
-              c={'dimmed'}
-              fz={'xs'}
-              fw={500}
-              mt={'xs'}
-              ta={'center'}
-            >
+            <Text inherit c={'dimmed'} fz={'xs'} fw={500} mt={'xs'} ta={'center'}>
               Last Updated:{' '}
               <Text component="span" inherit>
                 Sep 26, 2024

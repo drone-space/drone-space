@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
@@ -24,7 +17,7 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import ProviderMantine from '@repo/components/provider/mantine';
+import ProviderMantine from '@repo/ui/provider/mantine';
 import { mantine } from '@/assets/styles';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
 import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
@@ -65,16 +58,11 @@ export default async function RootLayout({
   const { data: session } = await supabase.auth.getUser();
 
   // 1. Get the CALCULATED theme from middleware (not the 'auto' state)
-  const theme =
-    (await getCookieServer(COOKIE_NAME.COLOR_SCHEME)) || DEFAULT_COLOR_SCHEME;
+  const theme = (await getCookieServer(COOKIE_NAME.COLOR_SCHEME)) || DEFAULT_COLOR_SCHEME;
   const resolvedTheme = (theme || DEFAULT_COLOR_SCHEME) as MantineColorScheme;
 
   return (
-    <html
-      lang="en"
-      {...mantineHtmlProps}
-      data-mantine-color-scheme={resolvedTheme}
-    >
+    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme={resolvedTheme}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

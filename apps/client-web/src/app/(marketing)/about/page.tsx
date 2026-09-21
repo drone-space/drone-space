@@ -1,16 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
-import {
-  Anchor,
-  AspectRatio,
-  Divider,
-  Flex,
-  Grid,
-  GridCol,
-  Text,
-} from '@mantine/core';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
+import { Anchor, AspectRatio, Divider, Flex, Grid, GridCol, Text } from '@mantine/core';
 import { images } from '@repo/constants/images';
 import videos from '@repo/constants/videos';
 import CardStat from '@/components/common/cards/stat';
@@ -19,12 +11,12 @@ import { SECTION_SPACING } from '@repo/constants/sizes';
 import { API_URL, PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import CarouselTestimonials from '@/components/common/carousels/testimonials';
 import { shuffleArray } from '@repo/utilities/array';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import TabSpacesHub from '@/components/common/tabs/spaces-hub';
 // import CardTeamMain from '@/components/common/cards/team/main';
 // import { team } from '@/data/team';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { StudentGet } from '@repo/types/models/student';
 import { studentsGet } from '@repo/handlers/requests/database/students';
@@ -57,9 +49,9 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const { items: students }: { items: StudentGet[] | null } = await studentsGet(
-    { apiUrl: API_URL }
-  );
+  const { items: students }: { items: StudentGet[] | null } = await studentsGet({
+    apiUrl: API_URL,
+  });
 
   return (
     <LayoutPage>
@@ -114,45 +106,35 @@ export default async function About() {
             <IntroSection
               props={{
                 subTitle: 'Legitimacy',
-                title:
-                  'Approved Unmanned Aircraft Systems Training Organization',
+                title: 'Approved Unmanned Aircraft Systems Training Organization',
               }}
               options={{ alignment: 'start' }}
             />
 
             <Text mt={'xl'}>
-              {APP_NAME.WEB} is one of the first certified UTO, ROC and Drone
-              distributors in Kenya. Established in 2018, {APP_NAME.WEB} is
-              approved and certified by{' '}
-              <Anchor
-                inherit
-                underline="hover"
-                href="https://kcaa.or.ke/"
-                target="_blank"
-              >
+              {APP_NAME.WEB} is one of the first certified UTO, ROC and Drone distributors in Kenya.
+              Established in 2018, {APP_NAME.WEB} is approved and certified by{' '}
+              <Anchor inherit underline="hover" href="https://kcaa.or.ke/" target="_blank">
                 Kenya Civil Aviation Authority (KCAA)
               </Anchor>{' '}
-              to offer Remote Pilot License (RPL) course in multi-rotor and
-              fixed wing, RPL instructor rating and soon Beyond Visual Line of
-              Sight (BVLOS) rating. The Academy provides Kenya&apos;s highest
-              quality drone training with a simple yet comprehensive model for
-              corporate clients, government agencies, public safety departments,
-              and individuals.
+              to offer Remote Pilot License (RPL) course in multi-rotor and fixed wing, RPL
+              instructor rating and soon Beyond Visual Line of Sight (BVLOS) rating. The Academy
+              provides Kenya&apos;s highest quality drone training with a simple yet comprehensive
+              model for corporate clients, government agencies, public safety departments, and
+              individuals.
             </Text>
 
             <Text mt={'xs'}>
-              {APP_NAME.WEB} is a holder of Remote Operator&apos;s Certificate
-              (ROC) approved by KCAA to conduct drone operations in search and
-              rescue, power lines inspection, agricultural spraying, photography
-              and cinematography, solar inspection, runway calibration among
-              other operations.
+              {APP_NAME.WEB} is a holder of Remote Operator&apos;s Certificate (ROC) approved by
+              KCAA to conduct drone operations in search and rescue, power lines inspection,
+              agricultural spraying, photography and cinematography, solar inspection, runway
+              calibration among other operations.
             </Text>
 
             <Text mt={'xs'}>
-              {APP_NAME.WEB} is also a certified distributor and a reseller of
-              Unmanned Aircraft Vehicles/drones. {APP_NAME.WEB} is one of the
-              few approved importers of UAS into Kenya having supplied the
-              United Nations-WFP, Museums of Kenya and Ericson&apos;s
+              {APP_NAME.WEB} is also a certified distributor and a reseller of Unmanned Aircraft
+              Vehicles/drones. {APP_NAME.WEB} is one of the few approved importers of UAS into Kenya
+              having supplied the United Nations-WFP, Museums of Kenya and Ericson&apos;s
             </Text>
           </GridCol>
         </Grid>
@@ -193,17 +175,14 @@ export default async function About() {
             />
 
             <Text mt={{ base: 'xs', md: 'xl' }}>
-              Our mission is to be the preferred drone training and commercial
-              operations organization for Government, corporates, and industry
-              sector by providing quality, high standards, and reliable
-              services.
+              Our mission is to be the preferred drone training and commercial operations
+              organization for Government, corporates, and industry sector by providing quality,
+              high standards, and reliable services.
             </Text>
           </GridCol>
           <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1, sm: 2 }}>
             <ImageDefault
-              src={
-                'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'
-              }
+              src={'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'}
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
@@ -230,23 +209,17 @@ export default async function About() {
                 visibleFrom="sm"
               />
 
-              <Text
-                mt={{ base: 'xs', md: 'xl' }}
-                ta={{ base: 'start', md: 'end' }}
-              >
-                Our long-term vision is to contribute and empower to the
-                ever-growing youth in Kenya by equipping them with the drone
-                technology skill and realization of economic prosperity for
-                young entrepreneurs who in turn would be able to make a living
+              <Text mt={{ base: 'xs', md: 'xl' }} ta={{ base: 'start', md: 'end' }}>
+                Our long-term vision is to contribute and empower to the ever-growing youth in Kenya
+                by equipping them with the drone technology skill and realization of economic
+                prosperity for young entrepreneurs who in turn would be able to make a living
                 through entrepreneurship.
               </Text>
             </Flex>
           </GridCol>
           <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1 }}>
             <ImageDefault
-              src={
-                'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'
-              }
+              src={'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'}
               alt={'Mission'}
               height={{ base: 240, xs: 320, md: 280 }}
               mode="grid"
@@ -290,11 +263,7 @@ export default async function About() {
         </Grid>
       </LayoutSection> */}
 
-      <LayoutSection
-        id="spaces-and-hub"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="spaces-and-hub" padded bg={'var(--mantine-color-gray-1)'}>
         <IntroSection
           props={{
             subTitle: 'Spaces & Hub',

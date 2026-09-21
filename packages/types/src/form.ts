@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { UseFormReturnType } from '@mantine/form';
 
 export type InquiryType = 'training' | 'service' | 'shop' | 'general';
@@ -23,6 +16,7 @@ export const formValuesInitialInquiry = {
   message: '',
   APP_NAME: '',
   type: '' as InquiryType,
+  appName: '',
 };
 
 export type FormValuesInquiry = typeof formValuesInitialInquiry;

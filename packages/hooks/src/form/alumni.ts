@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { Variant } from '@repo/types/enums';
 import { validators } from '@repo/utilities/validation';
 import { contactAdd } from '@repo/handlers/requests/contact';
@@ -34,9 +27,7 @@ export const useFormAlumni = (params: {
 
   const router = useRouter();
 
-  const { form, submitted, handleSubmit } = useFormBase<
-    Partial<AlumniChallengerGet>
-  >(
+  const { form, submitted, handleSubmit } = useFormBase<Partial<AlumniChallengerGet>>(
     { srpl: '', fname: '', lname: '', email: '', phone: '' },
     {
       srpl: (value) =>
@@ -99,7 +90,7 @@ export const useFormAlumni = (params: {
       onError: (error) => {
         console.error('Submission error:', error);
       },
-    }
+    },
   );
 
   return { form, submitted, handleSubmit };

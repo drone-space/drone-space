@@ -1,13 +1,6 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import React from 'react';
-import LoadingMain from '@repo/components/partial/loading/main';
-import ProviderMantine from '@repo/components/provider/mantine';
+import LoadingMain from '@repo/ui/partial/loading/main';
+import ProviderMantine from '@repo/ui/provider/mantine';
 import { mantine } from '@/data/styles';
 
 export default function Loading() {

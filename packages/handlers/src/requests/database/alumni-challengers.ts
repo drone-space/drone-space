@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { API_URL } from '@repo/constants/paths';
 import { HEADERS } from '@repo/constants/other';
 import {
@@ -17,13 +10,10 @@ const baseRequestUrl = `${API_URL}/alumni-challengers`;
 
 export const alumniChallengersGet = async (params?: { userId?: string }) => {
   try {
-    const request = new Request(
-      `${baseRequestUrl}?userId=${params?.userId || ''}`,
-      {
-        method: 'GET',
-        headers: HEADERS.WITHOUT_BODY,
-      }
-    );
+    const request = new Request(`${baseRequestUrl}?userId=${params?.userId || ''}`, {
+      method: 'GET',
+      headers: HEADERS.WITHOUT_BODY,
+    });
 
     const response = await fetch(request);
 
@@ -40,7 +30,7 @@ let currentController: AbortController | null = null;
 
 export const alumniChallengersUpdate = async (
   alumniChallengers: AlumniChallengerGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   // Cancel previous request if still in-flight
   if (currentController) currentController.abort();
@@ -73,17 +63,12 @@ export const alumniChallengersUpdate = async (
   }
 };
 
-export const alumniChallengerGet = async (params: {
-  alumniChallengerId: string;
-}) => {
+export const alumniChallengerGet = async (params: { alumniChallengerId: string }) => {
   try {
-    const request = new Request(
-      `${baseRequestUrl}/${params.alumniChallengerId}`,
-      {
-        method: 'GET',
-        headers: HEADERS.WITHOUT_BODY,
-      }
-    );
+    const request = new Request(`${baseRequestUrl}/${params.alumniChallengerId}`, {
+      method: 'GET',
+      headers: HEADERS.WITHOUT_BODY,
+    });
 
     const response = await fetch(request);
 
@@ -96,9 +81,7 @@ export const alumniChallengerGet = async (params: {
   }
 };
 
-export const alumniChallengerCreate = async (
-  alumniChallenger: AlumniChallengerCreate
-) => {
+export const alumniChallengerCreate = async (alumniChallenger: AlumniChallengerCreate) => {
   try {
     const request = new Request(`${baseRequestUrl}/create`, {
       method: 'POST',
@@ -115,9 +98,7 @@ export const alumniChallengerCreate = async (
   }
 };
 
-export const alumniChallengerUpdate = async (
-  alumniChallenger: AlumniChallengerUpdate
-) => {
+export const alumniChallengerUpdate = async (alumniChallenger: AlumniChallengerUpdate) => {
   try {
     const request = new Request(`${baseRequestUrl}/${alumniChallenger.id}`, {
       method: 'PUT',

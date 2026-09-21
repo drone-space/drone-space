@@ -1,12 +1,5 @@
 'use client';
 
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import React from 'react';
 import { useDebouncedCallback, useNetwork } from '@mantine/hooks';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
@@ -28,10 +21,7 @@ export default function Sync({ children }: { children: React.ReactNode }) {
   const setSyncStatus = useStoreSyncStatus((s) => s.setSyncStatus);
 
   // This now handles a MergedSyncPayload rather than one store's SyncParams
-  const debounceMergedSyncToServer = useDebouncedCallback(
-    syncToServerAfterDelay,
-    500
-  );
+  const debounceMergedSyncToServer = useDebouncedCallback(syncToServerAfterDelay, 500);
 
   const restProps = {
     setSyncStatus,

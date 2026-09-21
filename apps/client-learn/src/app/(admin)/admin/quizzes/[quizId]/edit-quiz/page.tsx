@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
+import LayoutPage from '@repo/ui/layout/page';
 import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
 import PartialPageQuizzesAdminEdit from '@/components/partial/page/quizzes/admin/edit';
@@ -11,11 +11,7 @@ export const metadata: Metadata = {
   title: metaTitle,
 };
 
-export default async function Quiz({
-  params,
-}: {
-  params: Promise<typeParams>;
-}) {
+export default async function Quiz({ params }: { params: Promise<typeParams> }) {
   const quizId = (await params).quizId;
 
   if (!quizId) redirect('/not-found');

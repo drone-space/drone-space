@@ -1,7 +1,7 @@
 'use client';
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import FormQuiz from '@repo/components/form/quiz';
+import FormQuiz from '@repo/ui/form/quiz';
 import {
   ActionIcon,
   Alert,
@@ -29,8 +29,8 @@ import {
 } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import FormQuestion from '@repo/components/form/question';
-import FormOption from '@repo/components/form/option';
+import FormQuestion from '@repo/ui/form/question';
+import FormOption from '@repo/ui/form/option';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
 import {
   ICON_SIZE,
@@ -49,16 +49,13 @@ import {
   IconX,
 } from '@tabler/icons-react';
 import { QuestionGet } from '@repo/types/models/question';
-import {
-  OptionsValue,
-  useStoreOption,
-} from '@repo/libraries/zustand/stores/option';
+import { OptionsValue, useStoreOption } from '@repo/libraries/zustand/stores/option';
 import { OptionGet } from '@repo/types/models/option';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 import { useQuestionActions } from '@repo/hooks/actions/question';
-import ModalConfirm from '@repo/components/common/modals/confirm';
-import SectionOptions from '@repo/components/partial/section/options';
+import ModalConfirm from '@repo/ui/common/modals/confirm';
+import SectionOptions from '@repo/ui/partial/section/options';
 import { useOptionActions } from '@repo/hooks/actions/option';
 import { useRouter } from 'next/navigation';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
@@ -98,7 +95,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     return sortArray(
       quizQuestions?.filter((qqqi) => qqqi.quiz_id === props.quizId) || [],
       (i) => i.created_at,
-      Order.DESCENDING
+      Order.DESCENDING,
     );
   }, [quizQuestions, props.quizId]);
 
@@ -116,14 +113,10 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
   // 🔥 THE FIX: Filter the GLOBAL questions store for items NOT in the active quiz set
   const questionsAvailableToAdd = useMemo(() => {
-    const availableQuestions =
-      questions?.filter((q) => !activeQuizQuestionIds.has(q.id)) || [];
+    const availableQuestions = questions?.filter((q) => !activeQuizQuestionIds.has(q.id)) || [];
 
     const availableQuestionsSearch = availableQuestions.filter((aqs) =>
-      aqs.content
-        .trim()
-        .toLowerCase()
-        .includes(search.trim().toLocaleLowerCase())
+      aqs.content.trim().toLowerCase().includes(search.trim().toLocaleLowerCase()),
     );
 
     return availableQuestionsSearch;
@@ -169,15 +162,13 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
   const handleToggleQuestion = useCallback((id: string) => {
     setQuestionIds((current) =>
-      current.includes(id) ? current.filter((x) => x !== id) : [...current, id]
+      current.includes(id) ? current.filter((x) => x !== id) : [...current, id],
     );
   }, []);
 
   return (
     <Box mb={SECTION_SPACING}>
-      <HeaderAppContent
-        props={{ title: !quiz ? undefined : `Edit ${quiz.title}` }}
-      />
+      <HeaderAppContent props={{ title: !quiz ? undefined : `Edit ${quiz.title}` }} />
 
       <Grid>
         <GridCol span={{ base: 12, xl: 5 }} order={{ xl: 2 }}>
@@ -217,10 +208,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                 >
                   <Stack>
                     <Box display={!addFromExisting ? undefined : 'none'}>
-                      <Button
-                        fullWidth
-                        onClick={() => setAddFromExisting(true)}
-                      >
+                      <Button fullWidth onClick={() => setAddFromExisting(true)}>
                         Add from existing questions
                       </Button>
                     </Box>
@@ -250,20 +238,9 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                           <Stack pr={'md'} pb={'md'} gap={5}>
                             {/* Changed conditional check to look at available items */}
                             {!questionsAvailableToAdd.length ? (
-                              <Stack
-                                align="center"
-                                ta={'center'}
-                                py={'xl'}
-                                fz={'sm'}
-                              >
-                                <ThemeIcon
-                                  size={ICON_WRAPPER_SIZE}
-                                  variant="light"
-                                >
-                                  <IconX
-                                    size={ICON_SIZE}
-                                    stroke={ICON_STROKE_WIDTH}
-                                  />
+                              <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
+                                <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
+                                  <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                                 </ThemeIcon>
                                 <Text inherit c={'dimmed'}>
                                   No questions found
@@ -274,9 +251,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                                 <div key={question.id}>
                                   <CardQuestion
                                     question={question}
-                                    questionOptions={optionsMap.get(
-                                      question.id
-                                    )}
+                                    questionOptions={optionsMap.get(question.id)}
                                     options={{ select: true }}
                                     edit={edit}
                                     setEdit={setEdit}
@@ -424,7 +399,7 @@ const CardQuestion = memo(function CardQuestion({
 
   const handleRemoveQuestionFromQuiz = () => {
     const quizQuestion = quizQuestions?.find(
-      (qqi) => qqi.question_id == question.id && qqi.quiz_id == quizId
+      (qqi) => qqi.question_id == question.id && qqi.quiz_id == quizId,
     );
 
     if (quizQuestion) quizQuestionDelete(quizQuestion);
@@ -455,10 +430,7 @@ const CardQuestion = memo(function CardQuestion({
             </Group>
           </Group>
 
-          <Group
-            display={options?.select ? 'none' : undefined}
-            justify="space-between"
-          >
+          <Group display={options?.select ? 'none' : undefined} justify="space-between">
             <Group gap={5}>
               <Tooltip label={'Edit question content.'}>
                 <ActionIcon
@@ -472,10 +444,7 @@ const CardQuestion = memo(function CardQuestion({
                     })
                   }
                 >
-                  <displayProps.iconEdit
-                    size={ICON_SIZE - 4}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
+                  <displayProps.iconEdit size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                 </ActionIcon>
               </Tooltip>
 
@@ -491,10 +460,7 @@ const CardQuestion = memo(function CardQuestion({
                     })
                   }
                 >
-                  <displayProps.iconOptions
-                    size={ICON_SIZE - 4}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
+                  <displayProps.iconOptions size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                 </ActionIcon>
               </Tooltip>
 
@@ -515,10 +481,7 @@ const CardQuestion = memo(function CardQuestion({
                       }
                     }}
                   >
-                    <IconCircleMinus
-                      size={ICON_SIZE - 4}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
+                    <IconCircleMinus size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                   </ActionIcon>
                 </Group>
               </Tooltip>
@@ -533,15 +496,8 @@ const CardQuestion = memo(function CardQuestion({
                 (questionOptions || []).length < 4 && (
                   <Tooltip label={'4 question options are required.'}>
                     <Group>
-                      <ThemeIcon
-                        color="yellow.6"
-                        size={ICON_WRAPPER_SIZE - 4}
-                        variant={'subtle'}
-                      >
-                        <IconAlertTriangle
-                          size={ICON_SIZE - 4}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
+                      <ThemeIcon color="yellow.6" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
+                        <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
                     </Group>
                   </Tooltip>
@@ -551,15 +507,8 @@ const CardQuestion = memo(function CardQuestion({
               {!question.explanation && (
                 <Tooltip label={'Missing answer explanation.'}>
                   <Group>
-                    <ThemeIcon
-                      color="yellow.6"
-                      size={ICON_WRAPPER_SIZE - 4}
-                      variant={'subtle'}
-                    >
-                      <IconAlertTriangle
-                        size={ICON_SIZE - 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
+                    <ThemeIcon color="yellow.6" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
+                      <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
                   </Group>
                 </Tooltip>
@@ -593,10 +542,7 @@ const CardQuestion = memo(function CardQuestion({
                           })
                         }
                       >
-                        <IconTrash
-                          size={ICON_SIZE - 4}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
+                        <IconTrash size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                       </ActionIcon>
                     </Group>
                   </ModalConfirm>

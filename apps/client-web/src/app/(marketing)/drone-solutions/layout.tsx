@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutMain from '@repo/components/layout/main';
+import LayoutMain from '@repo/ui/layout/main';
 import { APP_NAME } from '@repo/constants/app';
 
 export type typeParams = Promise<{

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Grid,
   GridCol,
@@ -14,24 +14,16 @@ import {
   Button,
   Stack,
 } from '@mantine/core';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import {
-  IconArrowRightDashed,
-  IconMessage,
-  IconSchool,
-} from '@tabler/icons-react';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import { IconArrowRightDashed, IconMessage, IconSchool } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
 import { courseList } from '@repo/constants/courses';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
@@ -76,10 +68,7 @@ export default async function Course() {
         <Grid gutter={'xl'}>
           <GridCol span={12}>
             <Grid>
-              <GridCol
-                span={{ base: 12, md: 6, lg: 6.5 }}
-                order={{ base: 2, md: 1 }}
-              >
+              <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
                 <IntroSection
                   props={{
                     subTitle: 'Who Is This For?',
@@ -90,36 +79,20 @@ export default async function Course() {
 
                 <Stack gap={'xl'}>
                   <Text mt={'md'}>
-                    Drone Space Kenya’s Beyond Visual Line of Sight (BVLOS)
-                    Training Program is designed for certified Remote Pilots
-                    seeking to safely and effectively operate drones beyond
-                    visual range. The program complies with the KCAA Civil
-                    Aviation (Unmanned Aircraft Systems) Regulations, 2020 and
-                    prepares pilots for high-risk, complex BVLOS missions across
-                    diverse sectors.
+                    Drone Space Kenya’s Beyond Visual Line of Sight (BVLOS) Training Program is
+                    designed for certified Remote Pilots seeking to safely and effectively operate
+                    drones beyond visual range. The program complies with the KCAA Civil Aviation
+                    (Unmanned Aircraft Systems) Regulations, 2020 and prepares pilots for high-risk,
+                    complex BVLOS missions across diverse sectors.
                   </Text>
 
                   <div>
                     <Text>Key program components:</Text>
 
                     {bvlosComponents.map((item, index) => (
-                      <Group
-                        key={index}
-                        gap={'xs'}
-                        wrap="nowrap"
-                        align="start"
-                        mt={'md'}
-                      >
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          mt={2}
-                          color="sec.3"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
+                      <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
 
                         <Text fz={'sm'}>{item.title}</Text>
@@ -129,10 +102,7 @@ export default async function Course() {
                 </Stack>
               </GridCol>
 
-              <GridCol
-                span={{ base: 12, md: 6, lg: 5.5 }}
-                order={{ base: 1, md: 2 }}
-              >
+              <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={{ base: 1, md: 2 }}>
                 <ImageDefault
                   src={images.training.bvlos}
                   alt={'Holiday Camp'}
@@ -163,23 +133,9 @@ export default async function Course() {
 
                 <div>
                   {bvlosBenefits.map((item, index) => (
-                    <Group
-                      key={index}
-                      gap={'xs'}
-                      wrap="nowrap"
-                      align="start"
-                      mt={'md'}
-                    >
-                      <ThemeIcon
-                        size={ICON_WRAPPER_SIZE / 1.5}
-                        mt={2}
-                        color="sec.3"
-                        c={'pri.9'}
-                      >
-                        <IconArrowRightDashed
-                          size={ICON_SIZE / 1.5}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
+                    <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                      <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                        <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
 
                       <Text fz={'sm'}>{item}</Text>
@@ -188,11 +144,7 @@ export default async function Course() {
                 </div>
               </Stack>
 
-              <Card
-                bg={'var(--mantine-color-sec-0)'}
-                shadow="xs"
-                padding={'xl'}
-              >
+              <Card bg={'var(--mantine-color-sec-0)'} shadow="xs" padding={'xl'}>
                 <Stack>
                   <Title order={3} fz={'lg'}>
                     Drones Used
@@ -200,22 +152,12 @@ export default async function Course() {
 
                   <Stack>
                     <div>
-                      <Title
-                        order={4}
-                        fz={'md'}
-                        c={'var(--mantine-color-sec-3)'}
-                      >
+                      <Title order={4} fz={'md'} c={'var(--mantine-color-sec-3)'}>
                         Baby Shark VTOL 260:
                       </Title>
 
                       {bvlosDrones.bsVtol.map((item, index) => (
-                        <Group
-                          key={index}
-                          gap={'xs'}
-                          wrap="nowrap"
-                          align="start"
-                          mt={'md'}
-                        >
+                        <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
                           <ThemeIcon
                             size={ICON_WRAPPER_SIZE / 1.5}
                             mt={2}
@@ -234,22 +176,12 @@ export default async function Course() {
                     </div>
 
                     <div>
-                      <Title
-                        order={4}
-                        fz={'md'}
-                        c={'var(--mantine-color-sec-3)'}
-                      >
+                      <Title order={4} fz={'md'} c={'var(--mantine-color-sec-3)'}>
                         PW One:
                       </Title>
 
                       {bvlosDrones.pwOne.map((item, index) => (
-                        <Group
-                          key={index}
-                          gap={'xs'}
-                          wrap="nowrap"
-                          align="start"
-                          mt={'md'}
-                        >
+                        <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
                           <ThemeIcon
                             size={ICON_WRAPPER_SIZE / 1.5}
                             mt={2}
@@ -279,23 +211,9 @@ export default async function Course() {
 
                 <div>
                   {bvlosWhy.map((item, index) => (
-                    <Group
-                      key={index}
-                      gap={'xs'}
-                      wrap="nowrap"
-                      align="start"
-                      mt={'md'}
-                    >
-                      <ThemeIcon
-                        size={ICON_WRAPPER_SIZE / 1.5}
-                        mt={2}
-                        color="sec.3"
-                        c={'pri.9'}
-                      >
-                        <IconArrowRightDashed
-                          size={ICON_SIZE / 1.5}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
+                    <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                      <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                        <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
 
                       <Text fz={'sm'}>{item}</Text>
@@ -313,23 +231,9 @@ export default async function Course() {
 
                 <div>
                   {bvlosExperience.map((item, index) => (
-                    <Group
-                      key={index}
-                      gap={'xs'}
-                      wrap="nowrap"
-                      align="start"
-                      mt={'md'}
-                    >
-                      <ThemeIcon
-                        size={ICON_WRAPPER_SIZE / 1.5}
-                        mt={2}
-                        color="sec.3"
-                        c={'pri.9'}
-                      >
-                        <IconArrowRightDashed
-                          size={ICON_SIZE / 1.5}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
+                    <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                      <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                        <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
 
                       <Text fz={'sm'}>{item}</Text>
@@ -361,23 +265,9 @@ export default async function Course() {
 
                   <div>
                     {bvlosComponents[0].subModules.map((item, index) => (
-                      <Group
-                        key={index}
-                        gap={'xs'}
-                        wrap="nowrap"
-                        align="start"
-                        mt={'md'}
-                      >
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          mt={2}
-                          color="sec.3"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
+                      <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
 
                         <Text fz={'sm'}>{item}</Text>
@@ -393,23 +283,9 @@ export default async function Course() {
 
                   <div>
                     {bvlosComponents[1].subModules.map((item, index) => (
-                      <Group
-                        key={index}
-                        gap={'xs'}
-                        wrap="nowrap"
-                        align="start"
-                        mt={'md'}
-                      >
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          mt={2}
-                          color="sec.3"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
+                      <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
 
                         <Text fz={'sm'}>{item}</Text>
@@ -425,23 +301,9 @@ export default async function Course() {
 
                   <div>
                     {bvlosComponents[2].subModules.map((item, index) => (
-                      <Group
-                        key={index}
-                        gap={'xs'}
-                        wrap="nowrap"
-                        align="start"
-                        mt={'md'}
-                      >
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          mt={2}
-                          color="sec.3"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
+                      <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
 
                         <Text fz={'sm'}>{item}</Text>
@@ -457,23 +319,9 @@ export default async function Course() {
 
                   <div>
                     {bvlosComponents[3].subModules.map((item, index) => (
-                      <Group
-                        key={index}
-                        gap={'xs'}
-                        wrap="nowrap"
-                        align="start"
-                        mt={'md'}
-                      >
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          mt={2}
-                          color="sec.3"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
+                      <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
 
                         <Text fz={'sm'}>{item}</Text>
@@ -498,9 +346,7 @@ export default async function Course() {
             <Button
               mt={'xl'}
               variant="gradient"
-              leftSection={
-                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               Enroll For BVLOS
             </Button>
@@ -508,11 +354,7 @@ export default async function Course() {
         </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (
@@ -599,9 +441,6 @@ const bvlosComponents = [
 ];
 
 const bvlosDrones = {
-  bsVtol: [
-    'Long-endurance',
-    'swappable payload drone for mapping and surveillance',
-  ],
+  bsVtol: ['Long-endurance', 'swappable payload drone for mapping and surveillance'],
   pwOne: ['Agile, efficient VTOL', 'Extended-range'],
 };

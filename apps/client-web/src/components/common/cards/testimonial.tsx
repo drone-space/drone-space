@@ -1,14 +1,6 @@
-import {
-  ActionIcon,
-  Card,
-  Flex,
-  Group,
-  Rating,
-  Text,
-  Title,
-} from '@mantine/core';
+import { ActionIcon, Card, Flex, Group, Rating, Text, Title } from '@mantine/core';
 import React from 'react';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { StudentGet } from '@repo/types/models/student';
 import { IconQuote } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
@@ -24,13 +16,7 @@ export default function Testimonial({ props }: { props: StudentGet }) {
         </ActionIcon>
       </Group>
 
-      <Flex
-        direction={'column'}
-        gap={'xs'}
-        justify={'space-between'}
-        h={'100%'}
-        mt={'md'}
-      >
+      <Flex direction={'column'} gap={'xs'} justify={'space-between'} h={'100%'} mt={'md'}>
         <Text fz={'sm'}>{props.quote}</Text>
 
         <Group mt={'md'} wrap="nowrap" align="start">
@@ -43,10 +29,7 @@ export default function Testimonial({ props }: { props: StudentGet }) {
             miw={64}
           >
             <ImageDefault
-              src={processUrl(
-                props.image,
-                PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT
-              )}
+              src={processUrl(props.image, PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT)}
               alt={props.name}
               height={64}
               width={64}

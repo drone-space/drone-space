@@ -6,7 +6,7 @@ import { Center, Stack } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import classes from './partners.module.scss';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 
 export default function Partners({
   data,

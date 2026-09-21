@@ -1,14 +1,7 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import React from 'react';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { Metadata } from 'next';
-import LayoutAuthDefault from '@repo/components/layout/auth/default';
+import LayoutAuthDefault from '@repo/ui/layout/auth/default';
 
 export const metadata: Metadata = {
   title: {
@@ -17,11 +10,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LayoutDefault({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function LayoutDefault({ children }: { children: React.ReactNode }) {
   return (
     <>
       <LayoutAuthDefault>{children}</LayoutAuthDefault>

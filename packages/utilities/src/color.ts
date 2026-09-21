@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { generateSeededPrime, generateRandomPrime } from './generators';
 
 /**
@@ -41,7 +34,7 @@ export const generateRandomHexColor = ({
     minBrightness > maxBrightness
   ) {
     throw new Error(
-      'Brightness values must be between 0 and 1, and minBrightness must be less than or equal to maxBrightness'
+      'Brightness values must be between 0 and 1, and minBrightness must be less than or equal to maxBrightness',
     );
   }
 
@@ -58,9 +51,7 @@ export const generateRandomHexColor = ({
 
   // Get deterministic or random value in range
   const getValueInRange = (index: number, min: number, max: number): number => {
-    const prime = seed
-      ? generateSeededPrime(seed, index)
-      : generateRandomPrime(9);
+    const prime = seed ? generateSeededPrime(seed, index) : generateRandomPrime(9);
 
     if (seed) {
       const hash = hashString(seed + index.toString(), prime);

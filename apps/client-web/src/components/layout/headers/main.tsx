@@ -1,12 +1,12 @@
 import React from 'react';
 import { Anchor, Flex, Group, Stack, Text } from '@mantine/core';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import { IconCircleFilled, IconMail, IconPhone } from '@tabler/icons-react';
 import { EMAILS, LOCATIONS, PHONES } from '@repo/constants/app';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { socialLinks } from '@/data/links';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import classes from './main.module.scss';
 
 export default function Main() {

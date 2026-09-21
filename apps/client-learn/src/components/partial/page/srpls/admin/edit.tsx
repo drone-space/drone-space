@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import FormSrpl from '@repo/components/form/srpl';
+import FormSrpl from '@repo/ui/form/srpl';
 import { Box, Fieldset, Grid, GridCol } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
@@ -21,9 +21,7 @@ export default function Edit({ props }: { props: { srplId: string } }) {
 
   return (
     <Box mb={SECTION_SPACING}>
-      <HeaderAppContent
-        props={{ title: !srpl ? undefined : `Edit ${srpl.srplNumber}` }}
-      />
+      <HeaderAppContent props={{ title: !srpl ? undefined : `Edit ${srpl.srplNumber}` }} />
 
       <Grid>
         <GridCol span={{ base: 12, xl: 5 }}>

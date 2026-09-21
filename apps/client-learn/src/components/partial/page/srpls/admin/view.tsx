@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Box, Button, Group } from '@mantine/core';
-import TablesSrpls from '@repo/components/common/tables/srpls';
-import NextLink from '@repo/components/common/anchor/next-link';
+import TablesSrpls from '@repo/ui/common/tables/srpls';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 
 export default function View() {

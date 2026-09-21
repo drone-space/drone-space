@@ -1,23 +1,13 @@
 'use client';
 
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import classes from './shows.module.scss';
-import {
-  AspectRatio,
-  Button,
-  Card,
-  Grid,
-  GridCol,
-  Group,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { AspectRatio, Button, Card, Grid, GridCol, Group, Stack, Text, Title } from '@mantine/core';
 import videos from '@repo/constants/videos';
 import shows from '@/data/shows';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { alumniChallenge } from '@repo/constants/dates';
 import { useTimer } from '@repo/hooks/timer';
 import { TimerDirection } from '@repo/types/enums';
@@ -25,13 +15,9 @@ import { TimerDirection } from '@repo/types/enums';
 export default function Shows() {
   const data = shows;
 
-  const { complete } = useTimer(
-    alumniChallenge.eventStartDate,
-    TimerDirection.DOWN,
-    {
-      active: true,
-    }
-  );
+  const { complete } = useTimer(alumniChallenge.eventStartDate, TimerDirection.DOWN, {
+    active: true,
+  });
 
   return (
     <div className={classes.hero}>
@@ -68,13 +54,11 @@ export default function Shows() {
             </Title>
 
             <Text ta={'center'} w={{ base: '100%', md: '90%', lg: '75%' }}>
-              Drone Space, an approved drone operator in Kenya, proudly stands
-              as the leader and pioneer in drone technology. With a reputation
-              for innovation and excellence, Drone Space is thrilled to announce
-              the launch of its new division: Drone Light Shows. This exciting
-              venture is set to captivate audiences across the nation in the
-              coming months with breathtaking displays of synchronized drone
-              lighting.
+              Drone Space, an approved drone operator in Kenya, proudly stands as the leader and
+              pioneer in drone technology. With a reputation for innovation and excellence, Drone
+              Space is thrilled to announce the launch of its new division: Drone Light Shows. This
+              exciting venture is set to captivate audiences across the nation in the coming months
+              with breathtaking displays of synchronized drone lighting.
             </Text>
           </Stack>
 
@@ -96,8 +80,8 @@ export default function Shows() {
           {!complete && (
             <>
               <Text ta={'center'}>
-                Attempt a drone light show challenge and get a chance to win a
-                free ticket (exclusive to Drone Space Alumni).
+                Attempt a drone light show challenge and get a chance to win a free ticket
+                (exclusive to Drone Space Alumni).
               </Text>
 
               <Group justify="center">

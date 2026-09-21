@@ -2,25 +2,21 @@
 
 import React from 'react';
 import { Group, Divider, Button, Box, Text } from '@mantine/core';
-import LayoutSection from '@repo/components/layout/section';
-import DrawerNavbarMain from '@repo/components/common/drawers/navbar/main';
-import MenuNavbar from '@repo/components/common/menus/navbar';
+import LayoutSection from '@repo/ui/layout/section';
+import DrawerNavbarMain from '@repo/ui/common/drawers/navbar/main';
+import MenuNavbar from '@repo/ui/common/menus/navbar';
 import classes from './main.module.scss';
 import { usePathname } from 'next/navigation';
 import { links } from '@/data/links';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
-import ModalDownloadDocument from '@repo/components/common/modals/download/document';
-import ModalContactCallback from '@repo/components/common/modals/contact/callback';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
+import ModalDownloadDocument from '@repo/ui/common/modals/download/document';
+import ModalContactCallback from '@repo/ui/common/modals/contact/callback';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
 import { APP_NAME } from '@repo/constants/app';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
-export default function Main({
-  options,
-}: {
-  options?: { absolute?: boolean; border?: boolean };
-}) {
+export default function Main({ options }: { options?: { absolute?: boolean; border?: boolean } }) {
   const pathname = usePathname();
 
   const matchesPath = (link: string) => {
@@ -29,12 +25,7 @@ export default function Main({
 
   const navLinks = links.navbar.map((link, index) => {
     return (
-      <MenuNavbar
-        key={index}
-        link={link}
-        subLinks={link.subLinks}
-        cta={link.cta}
-      >
+      <MenuNavbar key={index} link={link} subLinks={link.subLinks} cta={link.cta}>
         {!link.subLinks ? (
           <NextLink
             inherit
@@ -109,10 +100,7 @@ export default function Main({
             </Group>
           </Group>
 
-          <DrawerNavbarMain
-            props={links.navbar}
-            options={{ absolute: options?.absolute }}
-          />
+          <DrawerNavbarMain props={links.navbar} options={{ absolute: options?.absolute }} />
         </Group>
       </LayoutSection>
 

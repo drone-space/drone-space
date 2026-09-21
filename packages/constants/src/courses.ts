@@ -1,13 +1,4 @@
 import { images } from './images';
-import {
-  IconAntenna,
-  IconDrone,
-  IconLeaf2,
-  IconMapQuestion,
-  IconPlaneTilt,
-  IconStar,
-  IconTemperatureCelsius,
-} from '@tabler/icons-react';
 
 export const courses = {
   basic: {
@@ -92,10 +83,7 @@ export const courses = {
           'Planning & Loading',
           'Radiotelephony',
         ],
-        qualifications: [
-          'Multi-Rotor Rating',
-          'Drone Space course completion certificate',
-        ],
+        qualifications: ['Multi-Rotor Rating', 'Drone Space course completion certificate'],
       },
 
       {

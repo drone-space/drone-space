@@ -1,18 +1,6 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import { PARAM_NAME } from '@repo/constants/names';
+import { PARAM_NAME } from '@repo/constants';
 import { capitalizeWords } from './string';
-import {
-  authRoutes,
-  ignoredAuthRoutes,
-  ignoredRoutes,
-  protectedRoutes,
-} from '@repo/constants/routes';
+import { authRoutes, ignoredAuthRoutes, ignoredRoutes, protectedRoutes } from '@repo/constants';
 
 /**
  * Appends a redirect query parameter to a target URL
@@ -36,7 +24,7 @@ export const setRedirectUrl = (params: {
  * - If an array is provided, returns an object with those parameters.
  */
 export const getUrlParam = (
-  paramNames?: string | string[]
+  paramNames?: string | string[],
 ): string | Record<string, string | null> | null => {
   if (typeof window === 'undefined') return null;
 
@@ -84,9 +72,7 @@ export const removeUrlParam = (paramNames: string | string[]): void => {
  * If a value is null, undefined, or an empty string, that parameter will be removed.
  * @param params - Object of parameters to set or remove
  */
-export const setUrlParam = (
-  params: Record<string, string | null | undefined>
-): void => {
+export const setUrlParam = (params: Record<string, string | null | undefined>): void => {
   if (typeof window === 'undefined') return;
 
   const url = new URL(window.location.href);
@@ -125,11 +111,7 @@ export const processUrl = (link: string, host: string): string => {
  * Safely resolves a redirect URL from a request's query parameters
  * Ensures same-origin or relative redirects, otherwise falls back
  */
-export function getSafeRedirectUrl(
-  request: any,
-  paramName: string,
-  fallbackPath: string
-): string {
+export function getSafeRedirectUrl(request: any, paramName: string, fallbackPath: string): string {
   const { searchParams } = new URL(request.url);
   const paramValue = searchParams.get(paramName);
   const fallbackUrl = new URL(fallbackPath, request.url);
@@ -191,8 +173,7 @@ export const linkify = (str: string): string =>
  * Extract a UUID from the end of a string, if present
  */
 export function extractUuidFromParam(param: string): string | null {
-  const uuidPattern =
-    /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
+  const uuidPattern = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
   const match = param.match(uuidPattern);
   return match ? match[0] : null;
 }
@@ -201,8 +182,7 @@ export function extractUuidFromParam(param: string): string | null {
  * Extract the slug/title part from a param, removing the trailing UUID
  */
 export function extractSlugFromParam(param: string): string | null {
-  const uuidPattern =
-    /-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
+  const uuidPattern = /-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
   const title = param.replace(uuidPattern, '');
   return title || null;
 }
@@ -224,7 +204,7 @@ export const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
   const bytes = new Uint8Array(buffer);
   let binary = '';
   for (let i = 0; i < bytes.byteLength; i++) {
-    binary += String.fromCharCode(bytes[i]);
+    binary += String.fromCharCode(bytes[i] ?? 0);
   }
   return btoa(binary);
 };
@@ -232,11 +212,7 @@ export const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
 /**
  * Validates access for a given route based on user authentication state
  */
-export const validateRoute = (params: {
-  request: Request;
-  user: any | null;
-  pathname: string;
-}) => {
+export const validateRoute = (params: { request: Request; user: any | null; pathname: string }) => {
   const { user, pathname } = params;
 
   const actions = {

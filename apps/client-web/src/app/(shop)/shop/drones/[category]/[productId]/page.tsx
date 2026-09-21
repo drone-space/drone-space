@@ -23,9 +23,9 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
-import ModalContactShop from '@repo/components/common/modals/contact/shop';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
+import ModalContactShop from '@repo/ui/common/modals/contact/shop';
 import CardShopAccessory from '@/components/common/cards/shop/accessory';
 import CarouselImage from '@/components/common/carousels/image';
 import { typeParams } from '../layout';
@@ -45,8 +45,8 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import ImageDefault from '@repo/components/common/images/default';
-import IntroPage from '@repo/components/layout/intros/page';
+import ImageDefault from '@repo/ui/common/images/default';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { images } from '@repo/constants/images';
 import classesBadge from './page.module.scss';
 import { products } from '@repo/constants/products';
@@ -68,16 +68,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function DroneDetail({
-  params,
-}: {
-  params: Promise<typeParams>;
-}) {
+export default async function DroneDetail({ params }: { params: Promise<typeParams> }) {
   const id = (await params).productId;
   const product = products.find((p) => linkify(p.title.long) == id);
   const kitContents = mergeKitContents(
     product?.kit?.basic.contents || [],
-    product?.kit?.flyMore?.contents || []
+    product?.kit?.flyMore?.contents || [],
   );
 
   return (
@@ -90,11 +86,7 @@ export default async function DroneDetail({
         }}
       />
 
-      <LayoutSection
-        id="drone-category-intro"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="drone-category-intro" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid gutter={{ base: 32, lg: 64 }}>
           <GridCol span={{ base: 12, sm: 5.5 }} className={classes.card}>
             <Box pos={'sticky'} top={64}>
@@ -104,13 +96,9 @@ export default async function DroneDetail({
 
           <GridCol span={{ sm: 6.5 }}>
             <Group gap={'xs'} mt={'md'}>
-              {product?.new && (
-                <Badge className={classesBadge.badge}>New Arrival</Badge>
-              )}
+              {product?.new && <Badge className={classesBadge.badge}>New Arrival</Badge>}
 
-              {product?.available == false && (
-                <Badge color="yellow">Currently Unavailable</Badge>
-              )}
+              {product?.available == false && <Badge color="yellow">Currently Unavailable</Badge>}
 
               {product?.kit?.flyMore?.price?.latter && (
                 <Badge size={'md'} color={'red'}>
@@ -133,16 +121,11 @@ export default async function DroneDetail({
                       component="span"
                       inherit
                       fw={500}
-                      c={
-                        'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                      }
+                      c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
                       fz={{ md: 'xl' }}
                     >
                       {product?.price ? (
-                        <NumberFormatter
-                          value={product?.price.former}
-                          thousandSeparator
-                        />
+                        <NumberFormatter value={product?.price.former} thousandSeparator />
                       ) : (
                         'TBD'
                       )}
@@ -155,11 +138,7 @@ export default async function DroneDetail({
                   </Text>
                   {product?.price && product?.kit?.flyMore && (
                     <>
-                      <Divider
-                        orientation="vertical"
-                        visibleFrom="xs"
-                        color="sec.3"
-                      />
+                      <Divider orientation="vertical" visibleFrom="xs" color="sec.3" />
 
                       <Text>
                         Kes.{' '}
@@ -167,16 +146,11 @@ export default async function DroneDetail({
                           component="span"
                           inherit
                           fw={500}
-                          c={
-                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                          }
+                          c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
                           fz={{ md: 'xl' }}
                         >
                           <NumberFormatter
-                            value={
-                              product.price.former +
-                              product.kit.flyMore.price.former
-                            }
+                            value={product.price.former + product.kit.flyMore.price.former}
                             thousandSeparator
                           />
                         </Text>{' '}
@@ -189,18 +163,9 @@ export default async function DroneDetail({
                 </Flex>
 
                 {product?.additionalCosts && (
-                  <Group
-                    gap={5}
-                    mt={5}
-                    c={'dimmed'}
-                    align="start"
-                    wrap="nowrap"
-                  >
+                  <Group gap={5} mt={5} c={'dimmed'} align="start" wrap="nowrap">
                     <Group mt={4}>
-                      <IconInfoCircle
-                        size={ICON_SIZE - 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
+                      <IconInfoCircle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                     </Group>
 
                     <Spoiler
@@ -323,9 +288,7 @@ export default async function DroneDetail({
                 <Text
                   component="span"
                   inherit
-                  c={
-                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                  }
+                  c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
                 >
                   Specification Overview
                 </Text>
@@ -342,15 +305,8 @@ export default async function DroneDetail({
                   product?.specs.intro.map((spec, index) => (
                     <GridCol key={index} span={{ base: 12 }}>
                       <Group gap={'xs'}>
-                        <ThemeIcon
-                          size={ICON_WRAPPER_SIZE / 1.5}
-                          color="sec.3"
-                          c={'pri.9'}
-                        >
-                          <IconArrowRightDashed
-                            size={ICON_SIZE / 1.5}
-                            stroke={ICON_STROKE_WIDTH}
-                          />
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
 
                         <Text fz={{ base: 'xs', lg: 'sm' }}>{spec}</Text>
@@ -375,15 +331,9 @@ export default async function DroneDetail({
               miw={{ base: 240, sm: 480 }}
               variant="light"
               color="gray"
-              leftSection={
-                <IconTruckDelivery
-                  size={ICON_SIZE}
-                  stroke={ICON_STROKE_WIDTH}
-                />
-              }
+              leftSection={<IconTruckDelivery size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
-              Order the{' '}
-              {product?.title.short ? product.title.short : product?.title.long}
+              Order the {product?.title.short ? product.title.short : product?.title.long}
             </Button>
           </ModalContactShop>
         </Group>
@@ -397,10 +347,7 @@ export default async function DroneDetail({
                 <GridCol
                   span={{
                     base: 6,
-                    xs:
-                      product?.kit?.flyMore || product?.accessories?.other
-                        ? 6
-                        : 12,
+                    xs: product?.kit?.flyMore || product?.accessories?.other ? 6 : 12,
                   }}
                 >
                   <TabsTab w={'100%'} value="basic">
@@ -485,18 +432,11 @@ export default async function DroneDetail({
                 containerized={false}
               >
                 <Grid>
-                  <GridCol
-                    span={{ base: 12, md: 6 }}
-                    order={{ base: 3, md: 1 }}
-                  >
+                  <GridCol span={{ base: 12, md: 6 }} order={{ base: 3, md: 1 }}>
                     <Grid>
                       {product?.kit.basic.contents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
-                          <Card
-                            withBorder
-                            bg={'var(--mantine-color-body)'}
-                            padding={0}
-                          >
+                          <Card withBorder bg={'var(--mantine-color-body)'} padding={0}>
                             <ImageDefault
                               src={item.image}
                               alt={item.item}
@@ -510,11 +450,7 @@ export default async function DroneDetail({
                             />
                           </Card>
 
-                          <Text
-                            fz={{ md: 'xs', lg: 'sm' }}
-                            ta={'center'}
-                            mt={'md'}
-                          >
+                          <Text fz={{ md: 'xs', lg: 'sm' }} ta={'center'} mt={'md'}>
                             <Text component="span" inherit fw={500}>
                               x{item.qty}
                             </Text>{' '}
@@ -535,10 +471,7 @@ export default async function DroneDetail({
                     <Divider my={'xl'} />
                   </GridCol>
 
-                  <GridCol
-                    span={{ base: 12, md: 5 }}
-                    order={{ base: 1, md: 3 }}
-                  >
+                  <GridCol span={{ base: 12, md: 5 }} order={{ base: 1, md: 3 }}>
                     {product?.kit?.basic.image === null ? null : (
                       <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
                         <ImageDefault
@@ -587,16 +520,11 @@ export default async function DroneDetail({
                           component="span"
                           inherit
                           fw={500}
-                          c={
-                            'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                          }
+                          c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
                           fz={{ md: 'xl' }}
                         >
                           {product.price ? (
-                            <NumberFormatter
-                              value={product.price.former}
-                              thousandSeparator
-                            />
+                            <NumberFormatter value={product.price.former} thousandSeparator />
                           ) : (
                             'TBD'
                           )}
@@ -604,18 +532,9 @@ export default async function DroneDetail({
                       </Text>
 
                       {product?.additionalCosts && (
-                        <Group
-                          gap={5}
-                          mt={5}
-                          c={'dimmed'}
-                          align="start"
-                          wrap="nowrap"
-                        >
+                        <Group gap={5} mt={5} c={'dimmed'} align="start" wrap="nowrap">
                           <Group mt={2}>
-                            <IconInfoCircle
-                              size={ICON_SIZE - 4}
-                              stroke={ICON_STROKE_WIDTH}
-                            />
+                            <IconInfoCircle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                           </Group>
 
                           <Text inherit fz={'sm'}>
@@ -651,10 +570,7 @@ export default async function DroneDetail({
                 containerized={false}
               >
                 <Grid>
-                  <GridCol
-                    span={{ base: 12, md: 6 }}
-                    order={{ base: 3, md: 1 }}
-                  >
+                  <GridCol span={{ base: 12, md: 6 }} order={{ base: 3, md: 1 }}>
                     <Grid>
                       {kitContents.map((item, index) => (
                         <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
@@ -673,11 +589,7 @@ export default async function DroneDetail({
                             />
                           </Card>
 
-                          <Text
-                            fz={{ md: 'xs', lg: 'sm' }}
-                            ta={'center'}
-                            mt={'xl'}
-                          >
+                          <Text fz={{ md: 'xs', lg: 'sm' }} ta={'center'} mt={'xl'}>
                             <Text component="span" inherit fw={500}>
                               x{item.qty}
                             </Text>{' '}
@@ -698,10 +610,7 @@ export default async function DroneDetail({
                     <Divider my={'xl'} />
                   </GridCol>
 
-                  <GridCol
-                    span={{ base: 12, md: 5 }}
-                    order={{ base: 1, md: 3 }}
-                  >
+                  <GridCol span={{ base: 12, md: 5 }} order={{ base: 1, md: 3 }}>
                     <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
                       <ImageDefault
                         src={
@@ -740,9 +649,7 @@ export default async function DroneDetail({
                             component="span"
                             inherit
                             fw={500}
-                            c={
-                              'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                            }
+                            c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
                             fz={{ md: 'xl' }}
                           >
                             <NumberFormatter
@@ -756,36 +663,20 @@ export default async function DroneDetail({
                           </Text>{' '}
                           {product.kit.flyMore.price.latter && (
                             <>
-                              <Text
-                                component="sup"
-                                inherit
-                                fz={'sm'}
-                                td={'line-through'}
-                              >
+                              <Text component="sup" inherit fz={'sm'} td={'line-through'}>
                                 <NumberFormatter
-                                  value={
-                                    product.price.former +
-                                    product.kit.flyMore.price.former
-                                  }
+                                  value={product.price.former + product.kit.flyMore.price.former}
                                   thousandSeparator
                                 />{' '}
                               </Text>{' '}
-                              <Text
-                                component="span"
-                                inherit
-                                fz={'sm'}
-                                c={'green'}
-                                fw={500}
-                              >
+                              <Text component="span" inherit fz={'sm'} c={'green'} fw={500}>
                                 (
                                 {
                                   // calculate % discount
                                   (
                                     (1 -
-                                      (product.price.former +
-                                        product.kit.flyMore.price.latter) /
-                                        (product.price.former +
-                                          product.kit.flyMore.price.former)) *
+                                      (product.price.former + product.kit.flyMore.price.latter) /
+                                        (product.price.former + product.kit.flyMore.price.former)) *
                                     100
                                   ).toFixed(1)
                                 }
@@ -892,16 +783,10 @@ export default async function DroneDetail({
                   variant="light"
                   color="blue"
                   title="Note"
-                  icon={
-                    <IconInfoCircle
-                      size={ICON_SIZE}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  }
+                  icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                 >
-                  The following accessories/extras are not included in the{' '}
-                  {product.title.short} box by default. They come separately and
-                  are therefore{' '}
+                  The following accessories/extras are not included in the {product.title.short} box
+                  by default. They come separately and are therefore{' '}
                   <Text component={'span'} inherit fw={500}>
                     charged separately
                   </Text>
@@ -910,10 +795,7 @@ export default async function DroneDetail({
 
                 <Grid mt={'xl'}>
                   {product.accessories.other.map((accessory, index) => (
-                    <GridCol
-                      key={index}
-                      span={{ base: 12, sm: 6, md: 4, lg: 3 }}
-                    >
+                    <GridCol key={index} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
                       {accessory && <CardShopAccessory data={accessory} />}
                     </GridCol>
                   ))}

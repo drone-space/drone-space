@@ -1,17 +1,7 @@
 'use client';
 
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { config } from '@repo/libraries/indexed-db/config';
-import {
-  deleteDatabase,
-  openDatabase,
-} from '@repo/libraries/indexed-db/actions';
+import { deleteDatabase, openDatabase } from '@repo/libraries/indexed-db/actions';
 import { Database } from '@repo/libraries/indexed-db/transactions';
 import { useEffect, useState, useCallback } from 'react';
 

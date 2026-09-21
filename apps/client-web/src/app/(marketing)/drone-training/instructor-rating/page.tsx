@@ -1,32 +1,18 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
-import {
-  Grid,
-  GridCol,
-  Text,
-  Group,
-  Card,
-  Divider,
-  Title,
-  Paper,
-  Button,
-} from '@mantine/core';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
+import { Grid, GridCol, Text, Group, Card, Divider, Title, Paper, Button } from '@mantine/core';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
 import { IconMessage, IconSchool } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
 import { courseList } from '@repo/constants/courses';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
@@ -69,10 +55,7 @@ export default async function Course() {
 
       <LayoutSection id={linkify(course.title)} padded>
         <Grid gutter={'xl'}>
-          <GridCol
-            span={{ base: 12, md: 6, lg: 6.5 }}
-            order={{ base: 2, md: 1 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
             <IntroSection
               props={{
                 subTitle: 'Who Is This For?',
@@ -82,25 +65,19 @@ export default async function Course() {
             />
 
             <Text mt={'md'}>
-              The Instructor Rating course is designed for individuals who
-              already hold an RPL and are interested in becoming certified drone
-              instructors. This course is ideal for RPL holders who have a
-              passion for teaching and want to share their knowledge and
+              The Instructor Rating course is designed for individuals who already hold an RPL and
+              are interested in becoming certified drone instructors. This course is ideal for RPL
+              holders who have a passion for teaching and want to share their knowledge and
               experience with others.
             </Text>
 
             <Text mt={'md'}>
-              By completing this course, students will learn how to effectively
-              instruct RPL students, create course materials, and design
-              training programs.
+              By completing this course, students will learn how to effectively instruct RPL
+              students, create course materials, and design training programs.
             </Text>
           </GridCol>
 
-          <GridCol
-            span={{ base: 12, md: 6, lg: 5.5 }}
-            order={{ base: 1, md: 2 }}
-            mih={320}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={{ base: 1, md: 2 }} mih={320}>
             <ImageDefault
               src={images.training.insRat}
               alt={'Instructor Rating'}
@@ -117,9 +94,8 @@ export default async function Course() {
           px={{ md: SECTION_SPACING }}
           mt={SECTION_SPACING / 2}
         >
-          Upon completion, students will receive an instructor rating from the
-          Kenya Civil Aviation Authority (KCAA), which will enable them to train
-          and certify future RPL holders.
+          Upon completion, students will receive an instructor rating from the Kenya Civil Aviation
+          Authority (KCAA), which will enable them to train and certify future RPL holders.
         </Text>
 
         <Grid mt={SECTION_SPACING / 2}>
@@ -174,9 +150,7 @@ export default async function Course() {
             <Button
               mt={'xl'}
               variant="gradient"
-              leftSection={
-                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               Enroll For Instructor Rating
             </Button>
@@ -184,11 +158,7 @@ export default async function Course() {
         </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

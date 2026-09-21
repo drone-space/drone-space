@@ -1,24 +1,16 @@
 'use client';
 
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
 import { Button, Flex, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import classes from './main.module.scss';
 import { images } from '@repo/constants/images';
-import {
-  IconFileDownload,
-  IconPhoneCall,
-  IconSchool,
-} from '@tabler/icons-react';
-import ModalContactCallback from '@repo/components/common/modals/contact/callback';
-import ModalDownloadDocument from '@repo/components/common/modals/download/document';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import ModalContactService from '@repo/components/common/modals/contact/service';
+import { IconFileDownload, IconPhoneCall, IconSchool } from '@tabler/icons-react';
+import ModalContactCallback from '@repo/ui/common/modals/contact/callback';
+import ModalDownloadDocument from '@repo/ui/common/modals/download/document';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import ModalContactService from '@repo/ui/common/modals/contact/service';
 
 export default function Main({
   props,
@@ -40,13 +32,7 @@ export default function Main({
     >
       <div className={classes.overlay}></div>
 
-      <Grid
-        py={SECTION_SPACING * 1.5}
-        pos={'relative'}
-        align="center"
-        fz={'lg'}
-        gutter={'xl'}
-      >
+      <Grid py={SECTION_SPACING * 1.5} pos={'relative'} align="center" fz={'lg'} gutter={'xl'}>
         <GridCol span={{ base: 12, md: 7 }}>
           <Stack ta={{ base: 'center', md: 'start' }} gap={SECTION_SPACING / 2}>
             <Title order={2} c={'inherit'}>
@@ -70,12 +56,7 @@ export default function Main({
             {!props?.options?.service && (
               <ModalDownloadDocument props={{ type: 'brochure' }}>
                 <Button
-                  leftSection={
-                    <IconFileDownload
-                      size={ICON_SIZE + 6}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  }
+                  leftSection={<IconFileDownload size={ICON_SIZE + 6} stroke={ICON_STROKE_WIDTH} />}
                   variant="white"
                   size="xl"
                 >
@@ -87,12 +68,7 @@ export default function Main({
             {props?.options?.service && (
               <ModalDownloadDocument props={{ type: 'profile' }}>
                 <Button
-                  leftSection={
-                    <IconFileDownload
-                      size={ICON_SIZE + 6}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  }
+                  leftSection={<IconFileDownload size={ICON_SIZE + 6} stroke={ICON_STROKE_WIDTH} />}
                   variant="white"
                   size="xl"
                 >
@@ -104,12 +80,7 @@ export default function Main({
             {props?.options?.callback && (
               <ModalContactCallback>
                 <Button
-                  leftSection={
-                    <IconPhoneCall
-                      size={ICON_SIZE + 6}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  }
+                  leftSection={<IconPhoneCall size={ICON_SIZE + 6} stroke={ICON_STROKE_WIDTH} />}
                   variant="gradient"
                   size="xl"
                 >
@@ -128,12 +99,7 @@ export default function Main({
                 }}
               >
                 <Button
-                  leftSection={
-                    <IconSchool
-                      size={ICON_SIZE + 6}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
-                  }
+                  leftSection={<IconSchool size={ICON_SIZE + 6} stroke={ICON_STROKE_WIDTH} />}
                   variant="gradient"
                   size="xl"
                 >

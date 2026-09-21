@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { products } from '@repo/constants/products';
 import { capitalizeWords } from '@repo/utilities/string';
 import {
@@ -46,7 +42,7 @@ import { Order } from '@repo/types/enums';
 import { useDebouncedCallback, useMediaQuery } from '@mantine/hooks';
 import CardShopFeatured from '../common/cards/shop/featured';
 import { Layout, Sort, useShopListing } from '@repo/hooks/shop';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function DroneListing() {
   const catList = getCategoriesWithCounts();
@@ -114,10 +110,7 @@ export default function DroneListing() {
   ]);
 
   useEffect(() => {
-    setLocalRange([
-      Number(params.minPrice) || prices.min,
-      Number(params.maxPrice) || prices.max,
-    ]);
+    setLocalRange([Number(params.minPrice) || prices.min, Number(params.maxPrice) || prices.max]);
   }, [params.minPrice, params.maxPrice, prices.min, prices.max]);
 
   return (
@@ -188,9 +181,7 @@ export default function DroneListing() {
                     fz={{ base: 'xs', lg: 'sm' }}
                     underline="hover"
                     onClick={() => {
-                      const current = new URLSearchParams(
-                        searchParams.toString()
-                      );
+                      const current = new URLSearchParams(searchParams.toString());
                       current.set('category', cl.category);
 
                       router.push(`${pathname}?${current.toString()}#listing`, {
@@ -266,19 +257,9 @@ export default function DroneListing() {
           <Group>
             <ActionIcon
               size={ICON_WRAPPER_SIZE}
-              color={
-                !params.layout
-                  ? 'pri'
-                  : params.layout === Layout.GRID
-                    ? 'pri'
-                    : 'gray'
-              } // highlight active
+              color={!params.layout ? 'pri' : params.layout === Layout.GRID ? 'pri' : 'gray'} // highlight active
               variant={
-                !params.layout
-                  ? 'light'
-                  : params.layout === Layout.GRID
-                    ? 'light'
-                    : 'subtle'
+                !params.layout ? 'light' : params.layout === Layout.GRID ? 'light' : 'subtle'
               }
               onClick={() => updateParams({ layout: Layout.GRID })}
               visibleFrom="sm"
@@ -331,27 +312,15 @@ export default function DroneListing() {
               value={params?.sort}
               onChange={(v) => {
                 if (v == Sort.NAME) {
-                  sortBy(
-                    Sort.NAME,
-                    (item) => item.title.short,
-                    Order.ASCENDING
-                  );
+                  sortBy(Sort.NAME, (item) => item.title.short, Order.ASCENDING);
                 }
 
                 if (v == Sort.HIGHLOW) {
-                  sortBy(
-                    Sort.HIGHLOW,
-                    (item) => item.price.former,
-                    Order.DESCENDING
-                  );
+                  sortBy(Sort.HIGHLOW, (item) => item.price.former, Order.DESCENDING);
                 }
 
                 if (v == Sort.LOWHIGH) {
-                  sortBy(
-                    Sort.LOWHIGH,
-                    (item) => item.price.former,
-                    Order.ASCENDING
-                  );
+                  sortBy(Sort.LOWHIGH, (item) => item.price.former, Order.ASCENDING);
                 }
 
                 updateParams({ ...params, sort: v as Sort });
@@ -483,9 +452,7 @@ const getCategoriesWithCounts = () => {
   }[] = [];
 
   for (const product of products) {
-    const existingCategory = categoriesWithCounts.find(
-      (item) => item.category == product.category
-    );
+    const existingCategory = categoriesWithCounts.find((item) => item.category == product.category);
 
     if (existingCategory) {
       existingCategory.count++;

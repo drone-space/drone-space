@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutMain from '@repo/components/layout/main';
+import LayoutMain from '@repo/ui/layout/main';
 import { linkify } from '@repo/utilities/url';
 import { capitalizeWords } from '@repo/utilities/string';
 import { products } from '@repo/constants/products';

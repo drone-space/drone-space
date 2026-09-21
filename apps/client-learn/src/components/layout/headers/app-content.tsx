@@ -1,18 +1,14 @@
 'use client';
 
 import React from 'react';
-import IntroPageSection from '@repo/components/layout/intros/section';
-import BreadcrumbsMain from '@repo/components/common/breadcrumbs/main';
+import IntroPageSection from '@repo/ui/layout/intros/section';
+import BreadcrumbsMain from '@repo/ui/common/breadcrumbs/main';
 import { Group } from '@mantine/core';
 import { crumbify } from '@repo/utilities/url';
 import { usePathname } from 'next/navigation';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 
-export default function AppContent({
-  props,
-}: {
-  props?: { title?: string; subTitle?: string };
-}) {
+export default function AppContent({ props }: { props?: { title?: string; subTitle?: string } }) {
   const pathname = usePathname();
   const crumbs = crumbify(pathname);
 

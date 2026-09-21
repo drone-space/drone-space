@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { ProfileGet } from '@repo/types/models/profile';
 import { NextRequest, NextResponse } from 'next/server';
@@ -18,23 +11,18 @@ export async function GET() {
 
     return NextResponse.json(
       { items: profileRecords },
-      { status: 200, statusText: 'Profiles Retrieved' }
+      { status: 200, statusText: 'Profiles Retrieved' },
     );
   } catch (error) {
     console.error('---> route handler error (get profiles):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function PUT(request: NextRequest) {
   try {
-    const {
-      profiles,
-      deletedIds,
-    }: { profiles: ProfileGet[]; deletedIds?: string[] } = await request.json();
+    const { profiles, deletedIds }: { profiles: ProfileGet[]; deletedIds?: string[] } =
+      await request.json();
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
@@ -56,7 +44,7 @@ export async function PUT(request: NextRequest) {
           created_at: new Date(profile.created_at),
           updated_at: new Date(profile.updated_at),
         },
-      })
+      }),
     );
 
     // Run all operations in one transaction
@@ -64,13 +52,10 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(
       { items: updateProfiles },
-      { status: 200, statusText: 'Profiles Updated' }
+      { status: 200, statusText: 'Profiles Updated' },
     );
   } catch (error) {
     console.error('---> route handler error (update profiles):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

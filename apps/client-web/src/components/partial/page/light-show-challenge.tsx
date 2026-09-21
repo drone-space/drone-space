@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import { useTimer } from '@repo/hooks/timer';
 import { TimerDirection } from '@repo/types/enums';
 import {
@@ -31,15 +31,10 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { prependZeros } from '@repo/utilities/number';
-import IntroSection from '@repo/components/layout/intros/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { useStoreAlumniChallenger } from '@repo/libraries/zustand/stores/alumni-challenger';
-import {
-  IconCheck,
-  IconForms,
-  IconQuestionMark,
-  IconX,
-} from '@tabler/icons-react';
-import FormAlumni from '@repo/components/form/alumni';
+import { IconCheck, IconForms, IconQuestionMark, IconX } from '@tabler/icons-react';
+import FormAlumni from '@repo/ui/form/alumni';
 import { useRouter } from 'next/navigation';
 import { useMediaQuery } from '@mantine/hooks';
 import { alumniChallenge } from '@repo/constants/dates';
@@ -47,12 +42,10 @@ import { alumniChallenge } from '@repo/constants/dates';
 export default function LightShowChallenge() {
   const mobile = useMediaQuery('(max-width: 36em)');
 
-  const alumniChallengers = useStoreAlumniChallenger(
-    (s) => s.alumniChallengers
-  );
+  const alumniChallengers = useStoreAlumniChallenger((s) => s.alumniChallengers);
 
   const challengersWon = alumniChallengers?.filter(
-    (ac) => Number(ac.answer_option) == correctOption
+    (ac) => Number(ac.answer_option) == correctOption,
   );
 
   const availableTickets = totalTickets - (challengersWon?.length || 0);
@@ -63,20 +56,16 @@ export default function LightShowChallenge() {
 
   const router = useRouter();
 
-  const { time, complete } = useTimer(
-    alumniChallenge.eventStartDate,
-    TimerDirection.DOWN,
-    {
-      active: true,
-    }
-  );
+  const { time, complete } = useTimer(alumniChallenge.eventStartDate, TimerDirection.DOWN, {
+    active: true,
+  });
 
   const { time: timeChallenge, complete: completeChalenge } = useTimer(
     alumniChallenge.challengeStartDate,
     TimerDirection.DOWN,
     {
       active: true,
-    }
+    },
   );
 
   const { complete: completeEventEnd } = useTimer(
@@ -84,7 +73,7 @@ export default function LightShowChallenge() {
     TimerDirection.DOWN,
     {
       active: true,
-    }
+    },
   );
 
   const bgImg =
@@ -123,8 +112,7 @@ export default function LightShowChallenge() {
               </Title>
 
               <Text inherit fz={'xl'}>
-                Join us for our first ever light show event featuring 250+
-                drones in the sky.
+                Join us for our first ever light show event featuring 250+ drones in the sky.
               </Text>
 
               <Text inherit fz={'xl'} fw={'bold'}>
@@ -147,19 +135,11 @@ export default function LightShowChallenge() {
 
               <Box mih={106.4}>
                 {completeEventEnd ? (
-                  <Text
-                    ta={'center'}
-                    fw={'bold'}
-                    fz={{ base: '2rem', lg: '3rem' }}
-                  >
+                  <Text ta={'center'} fw={'bold'} fz={{ base: '2rem', lg: '3rem' }}>
                     EVENT CLOSED
                   </Text>
                 ) : complete ? (
-                  <Text
-                    ta={'center'}
-                    fw={'bold'}
-                    fz={{ base: '2rem', lg: '3rem' }}
-                  >
+                  <Text ta={'center'} fw={'bold'} fz={{ base: '2rem', lg: '3rem' }}>
                     EVENT LIVE
                   </Text>
                 ) : (
@@ -202,9 +182,7 @@ export default function LightShowChallenge() {
 
                 {!completeChalenge ? (
                   <>
-                    <Text>
-                      The question will be displayed when the challenge begins.
-                    </Text>
+                    <Text>The question will be displayed when the challenge begins.</Text>
 
                     <Stack gap={'xs'}>
                       <Skeleton animate={false} h={12} w={'100%'} />
@@ -288,11 +266,7 @@ export default function LightShowChallenge() {
 function Countdown({ time }: { time: any }) {
   return (
     <Group justify="center" fz={'1.5rem'} fw={'bold'} py={'md'}>
-      <Stack
-        gap={0}
-        w={{ base: 'inherit', xs: 100 }}
-        display={time?.days ? undefined : 'none'}
-      >
+      <Stack gap={0} w={{ base: 'inherit', xs: 100 }} display={time?.days ? undefined : 'none'}>
         <Text inherit>{prependZeros(time?.days || 0, 2)}</Text>
 
         <Text inherit component="span" fz={'md'}>
@@ -340,9 +314,7 @@ function SelectionDisplay({
   availableTickets: number;
   soldOut: boolean;
 }) {
-  const alumniChallengers = useStoreAlumniChallenger(
-    (s) => s.alumniChallengers
-  );
+  const alumniChallengers = useStoreAlumniChallenger((s) => s.alumniChallengers);
 
   const [showForm, setShowForm] = useState(!!value);
   const [submitted, setSubmitted] = useState(false);
@@ -351,13 +323,7 @@ function SelectionDisplay({
 
   const displayProps = {
     cardBg: `var(--mantine-color-${!submitted ? 'gray-2' : isCorrect ? 'green-light' : 'red-light'})`,
-    icon: !submitted
-      ? !value
-        ? IconQuestionMark
-        : IconForms
-      : isCorrect
-        ? IconCheck
-        : IconX,
+    icon: !submitted ? (!value ? IconQuestionMark : IconForms) : isCorrect ? IconCheck : IconX,
     iconColor: !submitted ? 'pri' : isCorrect ? 'green.6' : 'red.6',
     iconC: !submitted ? 'sec.3' : 'white',
     title: !submitted
@@ -379,17 +345,8 @@ function SelectionDisplay({
   };
 
   return (
-    <Card
-      bg={displayProps.cardBg}
-      px={{ base: 'sm', xs: 'xl' }}
-      py={{ base: 'xl' }}
-    >
-      <Stack
-        justify="center"
-        ta={'center'}
-        gap={'xl'}
-        mih={{ lg: 600, xl: 500 }}
-      >
+    <Card bg={displayProps.cardBg} px={{ base: 'sm', xs: 'xl' }} py={{ base: 'xl' }}>
+      <Stack justify="center" ta={'center'} gap={'xl'} mih={{ lg: 600, xl: 500 }}>
         {complete && (
           <>
             <Group justify="center">
@@ -399,10 +356,7 @@ function SelectionDisplay({
                 c={displayProps.iconC}
                 radius={99}
               >
-                <displayProps.icon
-                  size={ICON_SIZE * 3}
-                  stroke={ICON_STROKE_WIDTH}
-                />
+                <displayProps.icon size={ICON_SIZE * 3} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>
             </Group>
 
@@ -410,9 +364,7 @@ function SelectionDisplay({
               {showForm ? 'Enter Your Details' : displayProps.title}
             </Title>
 
-            <Text display={!value || submitted ? undefined : 'none'}>
-              {displayProps.desc}
-            </Text>
+            <Text display={!value || submitted ? undefined : 'none'}>{displayProps.desc}</Text>
 
             <Group
               justify="center"

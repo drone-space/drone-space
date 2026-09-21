@@ -1,13 +1,5 @@
 'use server';
 
-import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { cookies } from 'next/headers';
 
 type CookieServerOptions = {
@@ -22,9 +14,7 @@ type CookieServerOptions = {
  * Retrieves a cookie from server-side context.
  * Automatically decodes value.
  */
-export const getCookieServer = async <T = string>(
-  cookieName: string
-): Promise<T | null> => {
+export const getCookieServer = async <T = string>(cookieName: string): Promise<T | null> => {
   try {
     const cookieStore = await cookies();
     const cookie = cookieStore.get(cookieName);
@@ -52,7 +42,7 @@ export const setCookieServer = async (
   name: string,
   value: any,
   options: CookieServerOptions,
-  cookieStoreProp?: ReadonlyRequestCookies
+  cookieStoreProp?: any,
 ): Promise<void> => {
   try {
     const cookieValue =
@@ -83,7 +73,7 @@ export const setCookieServer = async (
 export const deleteCookieServer = async (
   name: string,
   path: string = '/',
-  cookieStoreProp?: ReadonlyRequestCookies
+  cookieStoreProp?: any,
 ) => {
   const cookieStore = cookieStoreProp || (await cookies());
   cookieStore.set({

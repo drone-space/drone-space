@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { v4 as uuidv4 } from 'uuid';
 
 export function generateUUID(): string {
@@ -19,7 +12,8 @@ export const generateRandomPrime = (max: number): number => {
   if (max <= 2) return 2;
   const validPrimes = primes.filter((p) => p <= max);
   const list = validPrimes.length ? validPrimes : [2];
-  return list[Math.floor(Math.random() * list.length)];
+
+  return list[Math.floor(Math.random() * list.length)] ?? 2;
 };
 
 /**
@@ -27,7 +21,7 @@ export const generateRandomPrime = (max: number): number => {
  */
 export const generateSeededPrime = (seed: string, index = 0): number => {
   const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
-  if (!seed) return primes[index % primes.length];
+  if (!seed) return primes[index % primes.length] ?? 2;
 
   // FNV-1a inspired string hash
   let hash = 2166136261 >>> 0;
@@ -37,7 +31,8 @@ export const generateSeededPrime = (seed: string, index = 0): number => {
   }
 
   const value = (hash + index * 31) >>> 0;
-  return primes[value % primes.length];
+
+  return primes[value % primes.length] ?? 2;
 };
 
 /**
@@ -123,10 +118,7 @@ export const generateRandomKey = ({
   const rng = seed ? seededRandom(seed) : Math.random;
 
   const createChunk = (): string =>
-    Array.from(
-      { length: chunkLength },
-      () => source[Math.floor(rng() * source.length)]
-    ).join('');
+    Array.from({ length: chunkLength }, () => source[Math.floor(rng() * source.length)]).join('');
 
   let key = Array.from({ length: chunks }, createChunk).join(separator);
 
@@ -149,7 +141,9 @@ export const generateChecksum = (key: string): string => {
     sum += cleanKey.charCodeAt(i) * (i + 1);
   }
   const checksumChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  return checksumChars[sum % checksumChars.length];
+
+  // Adding '?? 'A'' ensures a string is always returned
+  return checksumChars[sum % checksumChars.length] ?? 'A';
 };
 
 /**

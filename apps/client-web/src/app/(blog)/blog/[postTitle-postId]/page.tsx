@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutPage from '@repo/components/layout/page';
+import LayoutPage from '@repo/ui/layout/page';
 import { typeParams } from '../layout';
 import { PostRelations } from '@repo/types/models/post';
 import { extractUuidFromParam } from '@repo/utilities/url';
@@ -24,11 +24,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Post({
-  params,
-}: {
-  params: Promise<typeParams>;
-}) {
+export default async function Post({ params }: { params: Promise<typeParams> }) {
   const postId = extractUuidFromParam((await params)['postTitle-postId']);
 
   if (!postId) redirect('/not-found');

@@ -1,19 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  Box,
-  Button,
-  Grid,
-  GridCol,
-  Group,
-  Loader,
-  Stack,
-  Text,
-  ThemeIcon,
-} from '@mantine/core';
+import { Box, Button, Grid, GridCol, Group, Loader, Stack, Text, ThemeIcon } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
-import CardQuizStudentView from '@repo/components/common/cards/quiz/student/view';
+import CardQuizStudentView from '@repo/ui/common/cards/quiz/student/view';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import {
   ICON_SIZE,

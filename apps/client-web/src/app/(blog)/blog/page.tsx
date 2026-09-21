@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutPage from '@repo/components/layout/page';
+import LayoutPage from '@repo/ui/layout/page';
 import { Metadata } from 'next';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';

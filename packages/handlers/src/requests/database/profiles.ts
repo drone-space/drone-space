@@ -1,15 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import {
-  ProfileCreate,
-  ProfileGet,
-  ProfileUpdate,
-} from '@repo/types/models/profile';
+import { ProfileCreate, ProfileGet, ProfileUpdate } from '@repo/types/models/profile';
 import { apiCall } from './fetch';
 
 const segment = 'profiles';
@@ -24,7 +13,7 @@ let currentController: AbortController | null = null;
 export const profilesUpdate = async (
   apiUrl: string,
   profiles: ProfileGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
@@ -35,7 +24,7 @@ export const profilesUpdate = async (
       'PUT',
       apiUrl,
       { profiles, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

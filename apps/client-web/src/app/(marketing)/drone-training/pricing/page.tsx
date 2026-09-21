@@ -1,12 +1,12 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Grid, GridCol } from '@mantine/core';
-import IntroSection from '@repo/components/layout/intros/section';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import IntroSection from '@repo/ui/layout/intros/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import CardPricingBasic from '@/components/common/cards/pricing/basic';
 import AccordionFaq from '@/components/common/accordions/faq';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { courseList, courses } from '@repo/constants/courses';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
@@ -51,11 +51,7 @@ export default async function Pricing() {
         }}
       />
 
-      <LayoutSection
-        id="pricing-training-basic"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-basic" padded bg={'var(--mantine-color-gray-1)'}>
         <Grid>
           {courses.basic.units.map(
             (course, index) =>
@@ -63,7 +59,7 @@ export default async function Pricing() {
                 <GridCol key={index} span={{ sm: 6 }}>
                   <CardPricingBasic data={course} />
                 </GridCol>
-              )
+              ),
           )}
         </Grid>
       </LayoutSection>
@@ -72,20 +68,13 @@ export default async function Pricing() {
         <Grid>
           {courses.advanced.units.map((course, index) => (
             <GridCol key={index} span={{ sm: 6 }}>
-              <CardPricingBasic
-                data={course}
-                offset={course.title.short == 'RadTel'}
-              />
+              <CardPricingBasic data={course} offset={course.title.short == 'RadTel'} />
             </GridCol>
           ))}
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

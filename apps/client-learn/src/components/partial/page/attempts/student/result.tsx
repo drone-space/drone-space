@@ -2,19 +2,11 @@
 
 import React from 'react';
 import { useQuizStats } from '@repo/hooks/quiz';
-import LayoutSection from '@repo/components/layout/section';
-import IntroSection from '@repo/components/layout/intros/section';
-import {
-  Box,
-  Divider,
-  Group,
-  Loader,
-  NumberFormatter,
-  Stack,
-  Text,
-} from '@mantine/core';
+import LayoutSection from '@repo/ui/layout/section';
+import IntroSection from '@repo/ui/layout/intros/section';
+import { Box, Divider, Group, Loader, NumberFormatter, Stack, Text } from '@mantine/core';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import CardQuestionWithAnswer from '@repo/components/common/cards/question/with-answer';
+import CardQuestionWithAnswer from '@repo/ui/common/cards/question/with-answer';
 import { capitalizeWords } from '@repo/utilities/string';
 
 export default function Result({ props }: { props: { attemptId: string } }) {

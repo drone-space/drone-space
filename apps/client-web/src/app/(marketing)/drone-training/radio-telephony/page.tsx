@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Grid,
   GridCol,
@@ -16,13 +16,8 @@ import {
   Alert,
   Box,
 } from '@mantine/core';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import {
-  IconArrowRightDashed,
-  IconInfoCircle,
-  IconMessage,
-  IconSchool,
-} from '@tabler/icons-react';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import { IconArrowRightDashed, IconInfoCircle, IconMessage, IconSchool } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
@@ -30,12 +25,12 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
 import { courseList, outcomes } from '@repo/constants/courses';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
@@ -78,10 +73,7 @@ export default async function Course() {
 
       <LayoutSection id={linkify(course.title)} padded>
         <Grid gutter={'xl'}>
-          <GridCol
-            span={{ base: 12, md: 6, lg: 6.5 }}
-            order={{ base: 2, md: 1 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
             <IntroSection
               props={{
                 subTitle: 'Who Is This For?',
@@ -95,49 +87,40 @@ export default async function Course() {
                 variant="light"
                 color="blue"
                 title="KCAA Updates"
-                icon={
-                  <IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
-                The Radiotelephony course is now part of the RPL course and is
-                therefore <strong>no longer offered separately</strong>.
+                The Radiotelephony course is now part of the RPL course and is therefore{' '}
+                <strong>no longer offered separately</strong>.
               </Alert>
             </Box>
 
             <Text mt={'md'}>
-              The Radio Telephony License course, offered in partnership with
-              the Nairobi Flight Academy, is designed for Remote Pilot License
-              (RPL) holders seeking to operate drones in controlled airspace and
-              conduct Beyond Visual Line of Sight (BVLOS) operations. This
-              comprehensive training equips participants with the necessary
-              skills in radio telephony procedures and communication protocols.
+              The Radio Telephony License course, offered in partnership with the Nairobi Flight
+              Academy, is designed for Remote Pilot License (RPL) holders seeking to operate drones
+              in controlled airspace and conduct Beyond Visual Line of Sight (BVLOS) operations.
+              This comprehensive training equips participants with the necessary skills in radio
+              telephony procedures and communication protocols.
             </Text>
 
             <Text mt={'md'}>
-              Upon passing the exam administered by the Kenya Civil Aviation
-              Authority (KCAA), successful participants are granted a Radio
-              Telephony Operator License valid for two years, renewable upon
-              expiration. The course spans five days and covers essential topics
-              such as radio phraseology, air traffic control communication and
-              emergency procedures.
+              Upon passing the exam administered by the Kenya Civil Aviation Authority (KCAA),
+              successful participants are granted a Radio Telephony Operator License valid for two
+              years, renewable upon expiration. The course spans five days and covers essential
+              topics such as radio phraseology, air traffic control communication and emergency
+              procedures.
             </Text>
 
             <Text mt={'md'}>
-              The Radio Telephony License course is an essential requirement for
-              drone pilots operating in areas that require communication with
-              air traffic control or for those planning BVLOS operations. With
-              this license, participants gain the readiness to conduct missions
-              in controlled airspace, ensuring safe and compliant drone
-              operations. By partnering with the Nairobi Flight Academy, we
-              deliver top-quality training that prepares RPL holders for the
-              KCAA exam.
+              The Radio Telephony License course is an essential requirement for drone pilots
+              operating in areas that require communication with air traffic control or for those
+              planning BVLOS operations. With this license, participants gain the readiness to
+              conduct missions in controlled airspace, ensuring safe and compliant drone operations.
+              By partnering with the Nairobi Flight Academy, we deliver top-quality training that
+              prepares RPL holders for the KCAA exam.
             </Text>
           </GridCol>
 
-          <GridCol
-            span={{ base: 12, md: 6, lg: 5.5 }}
-            order={{ base: 1, md: 2 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={{ base: 1, md: 2 }}>
             <ImageDefault
               src={images.training.radTel}
               alt={'Radio Telephony'}
@@ -158,35 +141,15 @@ export default async function Course() {
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING / 2}>
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <Card
-              bg={'pri.9'}
-              c={'white'}
-              withBorder
-              shadow="xs"
-              padding={'xl'}
-            >
+            <Card bg={'pri.9'} c={'white'} withBorder shadow="xs" padding={'xl'}>
               <Text>Subjects Covered</Text>
 
               <Divider color="sec.3" w={'33%'} mt={'md'} />
 
               {radioModules.map((item, index) => (
-                <Group
-                  key={index}
-                  gap={'xs'}
-                  wrap="nowrap"
-                  align="start"
-                  mt={'md'}
-                >
-                  <ThemeIcon
-                    size={ICON_WRAPPER_SIZE / 1.5}
-                    mt={2}
-                    color="sec.3"
-                    c={'pri.9'}
-                  >
-                    <IconArrowRightDashed
-                      size={ICON_SIZE / 1.5}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
+                <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                  <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                    <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                   </ThemeIcon>
 
                   <Text fz={'sm'}>{item}</Text>
@@ -194,8 +157,8 @@ export default async function Course() {
               ))}
 
               <Text c={'sec.3'} mt={'md'}>
-                An exam for each subject covered is offered at the training in
-                readiness for the licensing exam.
+                An exam for each subject covered is offered at the training in readiness for the
+                licensing exam.
               </Text>
             </Card>
           </GridCol>
@@ -206,23 +169,9 @@ export default async function Course() {
             </Title>
 
             {outcomes.radio.map((item, index) => (
-              <Group
-                key={index}
-                gap={'xs'}
-                wrap="nowrap"
-                align="start"
-                mt={'xl'}
-              >
-                <ThemeIcon
-                  size={ICON_WRAPPER_SIZE / 1.5}
-                  mt={2}
-                  color="sec.3"
-                  c={'pri.9'}
-                >
-                  <IconArrowRightDashed
-                    size={ICON_SIZE / 1.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
+              <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'xl'}>
+                <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                  <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                 </ThemeIcon>
 
                 <Text fz={'sm'}>{item}</Text>
@@ -233,8 +182,8 @@ export default async function Course() {
 
         <Stack ta={'center'} mt={'xl'}>
           <Text inherit c={'dimmed'} fz={'sm'}>
-            The Radiotelephony course is now part of the RPL course and is
-            therefore <strong>no longer offered separately</strong>.
+            The Radiotelephony course is now part of the RPL course and is therefore{' '}
+            <strong>no longer offered separately</strong>.
           </Text>
 
           <Group justify="center">
@@ -248,9 +197,7 @@ export default async function Course() {
             >
               <Button
                 variant="gradient"
-                leftSection={
-                  <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
                 Enroll For RPL
               </Button>
@@ -259,11 +206,7 @@ export default async function Course() {
         </Stack>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

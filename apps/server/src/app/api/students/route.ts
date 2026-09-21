@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { StudentGet } from '@repo/types/models/student';
@@ -20,14 +13,11 @@ export async function GET() {
 
     return NextResponse.json(
       { items: studentRecords },
-      { status: 200, statusText: 'Students Retrieved' }
+      { status: 200, statusText: 'Students Retrieved' },
     );
   } catch (error) {
     console.error('---> route handler error (get students):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -61,7 +51,7 @@ export async function PUT(request: NextRequest) {
           created_at: new Date(student.created_at),
           updated_at: new Date(student.updated_at),
         },
-      })
+      }),
     );
 
     // Run all operations in one transaction
@@ -69,13 +59,10 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(
       { items: updateStudents },
-      { status: 200, statusText: 'Students Updated' }
+      { status: 200, statusText: 'Students Updated' },
     );
   } catch (error) {
     console.error('---> route handler error (update students):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

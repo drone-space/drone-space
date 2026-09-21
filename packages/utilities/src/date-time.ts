@@ -1,19 +1,12 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import { HourSystem } from '@repo/types/enums';
-import { FormatOptions, Timer } from '@repo/types/date-time';
+import { HourSystem } from '@repo/types';
+import { FormatOptions, Timer } from '@repo/types';
 
 /**
  * Format a date into a localized date and time string
  */
 export const getRegionalDate = (
   input: Date | string,
-  options: FormatOptions = { locale: 'en-GB', format: 'short' }
+  options: FormatOptions = { locale: 'en-GB', format: 'short' },
 ) => {
   const date = typeof input === 'string' ? new Date(input) : input;
 
@@ -71,9 +64,10 @@ export const getRelativeTime = (
   options?: {
     hideSeconds?: boolean;
     format?: 'long' | 'short' | 'narrow';
-  }
+    allowFuture?: boolean; // New option, defaults to true to preserve backward compatibility
+  },
 ): string => {
-  const { hideSeconds = false, format = 'long' } = options ?? {};
+  const { hideSeconds = false, format = 'long', allowFuture = true } = options ?? {};
 
   const date = typeof input === 'string' ? new Date(input) : input;
 
@@ -82,61 +76,53 @@ export const getRelativeTime = (
   }
 
   const now = new Date();
-  const diffMs = date.getTime() - now.getTime();
+  let diffMs = date.getTime() - now.getTime();
+
+  // Clamp future timestamps to current time if future dates are disabled
+  if (!allowFuture && diffMs > 0) {
+    diffMs = 0;
+  }
+
   const diffSec = Math.round(diffMs / 1000);
+
+  // Return "just now" for immediate changes or when hideSeconds is enabled within 60s
+  if (Math.abs(diffSec) < (hideSeconds ? 60 : 5)) {
+    return 'just now';
+  }
 
   const rtf = new Intl.RelativeTimeFormat(locale, {
     numeric: 'auto',
     style: format,
   });
 
-  // Collapse < 60 seconds
-  if (hideSeconds && Math.abs(diffSec) < 60) {
-    // Important: this won't be perfectly localized.
-    // If you need full i18n correctness, use a translation map.
-    return diffSec < 0
-      ? format === 'narrow'
-        ? 'less than 1m ago'
-        : 'less than a minute ago'
-      : format === 'narrow'
-        ? 'in less than 1m'
-        : 'in less than a minute';
+  const minutes = Math.round(diffSec / 60);
+  if (Math.abs(minutes) < 60) {
+    return rtf.format(minutes, 'minute');
   }
 
-  const divisions = [
-    { amount: 60, unit: 'seconds' },
-    { amount: 60, unit: 'minutes' },
-    { amount: 24, unit: 'hours' },
-    { amount: 7, unit: 'days' },
-    { amount: 4.34524, unit: 'weeks' },
-    { amount: 12, unit: 'months' },
-    { amount: Number.POSITIVE_INFINITY, unit: 'years' },
-  ] as const;
-
-  let duration = diffSec;
-
-  for (const division of divisions) {
-    if (Math.abs(duration) < division.amount) {
-      const unit = division.unit.replace(
-        /s$/,
-        ''
-      ) as Intl.RelativeTimeFormatUnit;
-
-      return rtf.format(Math.round(duration), unit);
-    }
-    duration /= division.amount;
+  const hours = Math.round(diffSec / 3600);
+  if (Math.abs(hours) < 24) {
+    return rtf.format(hours, 'hour');
   }
 
-  return rtf.format(0, 'second');
+  const days = Math.round(diffSec / 86400);
+  if (Math.abs(days) < 30) {
+    return rtf.format(days, 'day');
+  }
+
+  const months = Math.round(diffSec / 2592000);
+  if (Math.abs(months) < 12) {
+    return rtf.format(months, 'month');
+  }
+
+  const years = Math.round(diffSec / 31536000);
+  return rtf.format(years, 'year');
 };
 
 /**
  * Small wrapper that returns both 'getRegionalDate' and 'getRelativeTime'
  */
-export const getDateMetadata = (
-  input: Date | string,
-  options?: FormatOptions
-) => ({
+export const getDateMetadata = (input: Date | string, options?: FormatOptions) => ({
   ...getRegionalDate(input, options),
   relative: getRelativeTime(input, options?.locale),
 });
@@ -254,9 +240,7 @@ type TimeUnit = {
 /**
  * Returns the most appropriate unit (month/day/hour/minute/second) for elapsed time.
  */
-export const getAppropriateDuration = (
-  targetDate: Date | string
-): TimeUnit | null => {
+export const getAppropriateDuration = (targetDate: Date | string): TimeUnit | null => {
   const elapsed = getTimeElapsed(targetDate);
   if (!elapsed) return null;
 
@@ -265,8 +249,7 @@ export const getAppropriateDuration = (
       value: elapsed.months,
       unit: `month${elapsed.months > 1 ? 's' : ''}`,
     };
-  if (elapsed.days > 0)
-    return { value: elapsed.days, unit: `day${elapsed.days > 1 ? 's' : ''}` };
+  if (elapsed.days > 0) return { value: elapsed.days, unit: `day${elapsed.days > 1 ? 's' : ''}` };
   if (elapsed.hours > 0)
     return {
       value: elapsed.hours,
@@ -309,46 +292,6 @@ export const isYesterday = (date: Date | string): boolean => {
   yesterday.setDate(today.getDate() - 1);
   date.setHours(0, 0, 0, 0);
   return date.getTime() === yesterday.getTime();
-};
-
-/**
- * Returns true if a date is within the current calendar week
- * @param startOnMonday - If true, week starts on Monday. If false, starts on Sunday.
- */
-export const isThisWeek = (
-  date: Date | string,
-  startOnMonday = false
-): boolean => {
-  if (typeof date === 'string') date = new Date(date);
-
-  // Clone the date to avoid mutating the original input
-  const targetDate = new Date(date);
-  targetDate.setHours(0, 0, 0, 0);
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  // Calculate days to subtract to get to the start of the week
-  const currentDayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  const distanceToStart = startOnMonday
-    ? currentDayOfWeek === 0
-      ? 6
-      : currentDayOfWeek - 1
-    : currentDayOfWeek;
-
-  // Get the start of the current week (midnight)
-  const startOfWeek = new Date(today);
-  startOfWeek.setDate(today.getDate() - distanceToStart);
-
-  // Get the end of the current week (11:59:59.999 PM on the last day)
-  const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 6);
-  endOfWeek.setHours(23, 59, 59, 999);
-
-  return (
-    targetDate.getTime() >= startOfWeek.getTime() &&
-    targetDate.getTime() <= endOfWeek.getTime()
-  );
 };
 
 /**
@@ -416,24 +359,38 @@ export const groupDatesByWeek = (dates: Date[]): { min: Date; max: Date }[] => {
 /**
  * Checks if a date is within a given range
  */
-export const isDateInRange = (
-  date: Date,
-  range: { min: Date; max: Date }
-): boolean => {
+export const isDateInRange = (date: Date, range: { min: Date; max: Date }): boolean => {
   return date >= range.min && date <= range.max;
 };
 
 /**
  * Checks if a date is within the next 7 days
  */
-export const isWithinNext7Days = (date: Date | string | null): boolean => {
+interface IsWithinNext7DaysOptions {
+  excludeToday?: boolean;
+}
+
+export const isWithinNext7Days = (
+  date: Date | string | null,
+  options: IsWithinNext7DaysOptions = {},
+): boolean => {
   if (!date) return false;
+
   const inputDate = new Date(date);
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
-  const end = new Date(now);
-  end.setDate(now.getDate() + 7);
-  return inputDate >= now && inputDate <= end;
+  if (isNaN(inputDate.getTime())) return false; // Guard against invalid date strings
+
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+
+  if (options.excludeToday) {
+    start.setDate(start.getDate() + 1);
+  }
+
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  end.setDate(end.getDate() + 7);
+
+  return inputDate >= start && inputDate <= end;
 };
 
 /**
@@ -452,10 +409,7 @@ export const deduplicateDates = (dates: (Date | string)[]): Date[] => {
 /**
  * Checks if two dates are on the same day
  */
-export const areSameDay = (
-  dateA: Date | string,
-  dateB: Date | string
-): boolean => {
+export const areSameDay = (dateA: Date | string, dateB: Date | string): boolean => {
   const a = new Date(dateA);
   const b = new Date(dateB);
   if (isNaN(a.getTime()) || isNaN(b.getTime())) return false;
@@ -469,14 +423,106 @@ export const areSameDay = (
 /**
  * Returns the part of the day: morning, afternoon, evening, night
  */
-export const getTimeOfDay = ():
-  | 'morning'
-  | 'afternoon'
-  | 'evening'
-  | 'night' => {
+export const getTimeOfDay = (): 'morning' | 'afternoon' | 'evening' | 'night' => {
   const hours = new Date().getHours();
   if (hours >= 6 && hours < 12) return 'morning';
   if (hours >= 12 && hours < 18) return 'afternoon';
   if (hours >= 18 && hours < 21) return 'evening';
   return 'night';
+};
+
+/**
+ * Returns tomorrow's date.
+ * Options allow setting to midnight (start of day) or maintaining current time.
+ */
+export const getTomorrow = (from: Date | string = new Date(), startOfDay = true): Date => {
+  const date = typeof from === 'string' ? new Date(from) : new Date(from);
+  date.setDate(date.getDate() + 1);
+  if (startOfDay) {
+    date.setHours(0, 0, 0, 0);
+  }
+  return date;
+};
+
+/**
+ * Returns yesterday's date.
+ * Options allow setting to midnight (start of day) or maintaining current time.
+ */
+export const getYesterday = (from: Date | string = new Date(), startOfDay = true): Date => {
+  const date = typeof from === 'string' ? new Date(from) : new Date(from);
+  date.setDate(date.getDate() - 1);
+  if (startOfDay) {
+    date.setHours(0, 0, 0, 0);
+  }
+  return date;
+};
+
+/**
+ * Calculates a date 1 week out.
+ * - 'offset': Exactly 7 days (168 hours) from the given date.
+ * - 'monday': The upcoming Monday at 00:00:00 (if today is Monday, returns next Monday).
+ */
+export const getNextWeek = (
+  from: Date | string = new Date(),
+  mode: 'offset' | 'monday' = 'offset',
+): Date => {
+  const date = typeof from === 'string' ? new Date(from) : new Date(from);
+
+  if (mode === 'offset') {
+    date.setDate(date.getDate() + 7);
+    return date;
+  }
+
+  const day = date.getDay();
+  // If today is Sunday (0), Monday is +1 day. Otherwise, count days remaining to next Monday.
+  const daysUntilMonday = day === 0 ? 1 : 8 - day;
+
+  date.setDate(date.getDate() + daysUntilMonday);
+  date.setHours(0, 0, 0, 0);
+  return date;
+};
+
+/**
+ * Adds a specified number of hours to a date.
+ */
+export const addHours = (hours: number, from: Date | string = new Date()): Date => {
+  const date = typeof from === 'string' ? new Date(from) : new Date(from);
+  date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+  return date;
+};
+
+/**
+ * Convenience helper to get exactly 3 hours from now (or a base date).
+ */
+export const getThreeHoursFromNow = (): Date => {
+  return addHours(3, new Date());
+};
+
+/**
+ * Returns the upcoming Saturday at midnight (00:00:00).
+ * If today is Saturday, returns the Saturday of the next week (+7 days).
+ */
+export const getNextSaturday = (from: Date | string = new Date()): Date => {
+  const date = typeof from === 'string' ? new Date(from) : new Date(from);
+  const day = date.getDay();
+
+  // If Saturday (6), jump 7 days; otherwise compute remaining days to Saturday
+  const daysUntilSaturday = day === 6 ? 7 : (6 - day + 7) % 7;
+
+  date.setDate(date.getDate() + daysUntilSaturday);
+  date.setHours(0, 0, 0, 0);
+  return date;
+};
+
+/**
+ * Returns the 1st day of the next month at midnight (00:00:00).
+ * Handles year boundaries automatically (e.g., Dec -> Jan next year).
+ */
+export const getNextMonth = (from: Date | string = new Date()): Date => {
+  const date = typeof from === 'string' ? new Date(from) : new Date(from);
+  // Setting day to 1 before modifying month prevents calendar roll-over bugs (e.g. Jan 31 -> Feb 28/29)
+  date.setDate(1);
+  date.setMonth(date.getMonth() + 1);
+  date.setHours(0, 0, 0, 0);
+  return date;
 };

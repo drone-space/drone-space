@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { SyncStatus } from '@repo/types/models/enums';
@@ -19,10 +12,7 @@ export async function GET(request: NextRequest) {
     const stores = request.nextUrl.searchParams.get('stores');
 
     if (!userId) {
-      return NextResponse.json(
-        { error: 'User ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
     }
 
     // 1. Parse the requested stores into an array
@@ -98,7 +88,7 @@ export async function GET(request: NextRequest) {
         acc[key] = results[index];
         return acc;
       },
-      {} as Record<string, any>
+      {} as Record<string, any>,
     );
 
     return NextResponse.json(responsePayload, {
@@ -107,10 +97,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('---> route handler error (get app data):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -179,7 +166,7 @@ export async function POST(request: NextRequest) {
               sync_status: SyncStatus.DELETED, // Ensure this matches your SyncStatus enum string
               updated_at: new Date(), // Critical: must be "now" to override other devices
             },
-          })
+          }),
         );
       }
 
@@ -196,7 +183,7 @@ export async function POST(request: NextRequest) {
             created_at: new Date(item.created_at),
             updated_at: new Date(item.updated_at),
           },
-        })
+        }),
       );
 
       allOperations.push(...upserts);
@@ -215,13 +202,12 @@ export async function POST(request: NextRequest) {
           // Filter out the 'updateMany' result (which is usually { count: x })
           // and keep the upsert results
           acc[key] = rawResults.filter(
-            (res) =>
-              res && typeof res === 'object' && !res.hasOwnProperty('count')
+            (res) => res && typeof res === 'object' && !res.hasOwnProperty('count'),
           );
         }
         return acc;
       },
-      {} as Record<string, any>
+      {} as Record<string, any>,
     );
 
     return NextResponse.json(
@@ -229,13 +215,10 @@ export async function POST(request: NextRequest) {
       {
         status: 200,
         statusText: 'App Data Updated',
-      }
+      },
     );
   } catch (error) {
     console.error('---> route handler error (update app data):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

@@ -2,11 +2,11 @@
 
 import { Card, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { PostGet } from '@repo/types/models/post';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import { linkify } from '@repo/utilities/url';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Side({ props }: { props: PostGet }) {
   const path = `/blog/${linkify(props.title)}-${props.id}`;
@@ -16,12 +16,7 @@ export default function Side({ props }: { props: PostGet }) {
       <Grid gutter={'xs'}>
         <GridCol span={{ md: 4, xl: 3 }}>
           <NextLink inherit href={path}>
-            <ImageDefault
-              src={props.image}
-              alt={props.title}
-              height={80}
-              width={'100%'}
-            />
+            <ImageDefault src={props.image} alt={props.title} height={80} width={'100%'} />
           </NextLink>
         </GridCol>
 

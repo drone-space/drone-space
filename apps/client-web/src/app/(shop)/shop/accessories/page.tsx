@@ -1,13 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import CardShopDroneAccessory from '@/components/common/cards/shop/accessory';
 import { Grid, GridCol } from '@mantine/core';
 import accessories from '@repo/constants/accessories';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';

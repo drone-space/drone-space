@@ -10,20 +10,16 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import accessories from '@repo/constants/accessories';
 import { linkify } from '@repo/utilities/url';
 import CarouselImage from '@/components/common/carousels/image';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { typeParams } from './layout';
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import classes from './drone.module.scss';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { images } from '@repo/constants/images';
 
 export const dynamic = 'force-static';
@@ -42,11 +38,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function AccessoryDetails({
-  params,
-}: {
-  params: Promise<typeParams>;
-}) {
+export default async function AccessoryDetails({ params }: { params: Promise<typeParams> }) {
   const id = (await params).accessoryId;
 
   const product = accessories.find((a) => linkify(a.title.long) == id);
@@ -56,18 +48,12 @@ export default async function AccessoryDetails({
       <IntroPage
         props={{
           path: `Accessories`,
-          title:
-            product?.title.long || product?.title.short || 'Drone Accessories',
+          title: product?.title.long || product?.title.short || 'Drone Accessories',
           bg: images.web.hero.light,
         }}
       />
 
-      <LayoutSection
-        id="accessories-intro"
-        padded
-        shadowed
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="accessories-intro" padded shadowed bg={'var(--mantine-color-gray-1)'}>
         <Grid>
           <GridCol span={{ md: 4, lg: 5 }} className={classes.card}>
             {product?.images && <CarouselImage data={product.images} />}
@@ -89,15 +75,10 @@ export default async function AccessoryDetails({
                   component="span"
                   inherit
                   fw={500}
-                  c={
-                    'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
-                  }
+                  c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
                   fz={{ md: 'xl' }}
                 >
-                  <NumberFormatter
-                    value={product.price.former}
-                    thousandSeparator
-                  />
+                  <NumberFormatter value={product.price.former} thousandSeparator />
                 </Text>
               </Text>
             )}
@@ -109,16 +90,8 @@ export default async function AccessoryDetails({
                 {product?.specs.map((spec, index) => (
                   <GridCol key={index} span={12}>
                     <Group gap={'xs'} wrap="nowrap" align="start">
-                      <ThemeIcon
-                        size={ICON_WRAPPER_SIZE / 1.5}
-                        color="sec.3"
-                        c={'pri.9'}
-                        mt={4}
-                      >
-                        <IconArrowRightDashed
-                          size={ICON_SIZE / 1.5}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
+                      <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} color="sec.3" c={'pri.9'} mt={4}>
+                        <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
 
                       <Text>

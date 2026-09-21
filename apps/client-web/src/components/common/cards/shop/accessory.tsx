@@ -18,12 +18,8 @@ import classes from './accessory.module.scss';
 import { typeAccessory } from '@/types/product';
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import { linkify } from '@repo/utilities/url';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
-import NextLink from '@repo/components/common/anchor/next-link';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Accessory({ data }: { data: typeAccessory }) {
   return (
@@ -31,10 +27,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
       <Stack justify="space-between" h={'100%'}>
         <div>
           <div className={classes.imageSection}>
-            <NextLink
-              inherit
-              href={`/shop/accessories/${linkify(data.title.long)}`}
-            >
+            <NextLink inherit href={`/shop/accessories/${linkify(data.title.long)}`}>
               <Flex
                 direction={'column'}
                 justify={'center'}
@@ -42,10 +35,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                 h={{ base: 280 }}
               >
                 <Image
-                  src={
-                    data.images.find((i) => i.includes('front')) ||
-                    data.images[0]
-                  }
+                  src={data.images.find((i) => i.includes('front')) || data.images[0]}
                   alt={data.title.long}
                   loading="lazy"
                   component={NextImage}
@@ -62,16 +52,8 @@ export default function Accessory({ data }: { data: typeAccessory }) {
           <Divider />
 
           <Stack p={'md'}>
-            <Title
-              order={3}
-              className={classes.title}
-              fz={{ md: 'md' }}
-              maw={{ md: '80%' }}
-            >
-              <NextLink
-                inherit
-                href={`/shop/accessories/${linkify(data.title.long)}`}
-              >
+            <Title order={3} className={classes.title} fz={{ md: 'md' }} maw={{ md: '80%' }}>
+              <NextLink inherit href={`/shop/accessories/${linkify(data.title.long)}`}>
                 {data.title.short ? data.title.short : data.title.long}
               </NextLink>
             </Title>
@@ -85,15 +67,8 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                 <List
                   listStyleType="none"
                   icon={
-                    <ThemeIcon
-                      size={ICON_WRAPPER_SIZE / 1.5}
-                      color="sec.3"
-                      c={'pri.9'}
-                    >
-                      <IconArrowRightDashed
-                        size={ICON_SIZE / 1.5}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
+                    <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} color="sec.3" c={'pri.9'}>
+                      <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
                   }
                 >
@@ -101,19 +76,14 @@ export default function Accessory({ data }: { data: typeAccessory }) {
                     (spec, index) =>
                       data.specs.indexOf(spec) < 5 && (
                         <ListItem key={index}>
-                          <Text
-                            component="span"
-                            inherit
-                            fz={{ md: 'sm' }}
-                            lineClamp={1}
-                          >
+                          <Text component="span" inherit fz={{ md: 'sm' }} lineClamp={1}>
                             <Text component="span" inherit fw={500}>
                               {spec.label}
                             </Text>
                             : {spec.desc}
                           </Text>
                         </ListItem>
-                      )
+                      ),
                   )}
                 </List>
                 {!!data.specs.length && (
@@ -133,16 +103,8 @@ export default function Accessory({ data }: { data: typeAccessory }) {
             ) : (
               <>
                 Kes.{' '}
-                <Text
-                  component="span"
-                  inherit
-                  fw={500}
-                  c={'var(--mantine-color-sec-3)'}
-                >
-                  <NumberFormatter
-                    value={data.price.former}
-                    thousandSeparator
-                  />
+                <Text component="span" inherit fw={500} c={'var(--mantine-color-sec-3)'}>
+                  <NumberFormatter value={data.price.former} thousandSeparator />
                 </Text>
               </>
             )}

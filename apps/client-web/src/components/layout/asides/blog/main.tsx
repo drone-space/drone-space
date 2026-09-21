@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Anchor,
   Button,
@@ -66,11 +66,7 @@ export default function Main() {
             </Stack>
           ) : !posts?.length ? (
             <Stack mih={304} align="center" ta={'center'} py={'xl'}>
-              <ThemeIcon
-                size={ICON_WRAPPER_SIZE * 1.5}
-                variant="light"
-                radius={999}
-              >
+              <ThemeIcon size={ICON_WRAPPER_SIZE * 1.5} variant="light" radius={999}>
                 <IconCircleX size={ICON_SIZE * 1.5} />
               </ThemeIcon>
 
@@ -80,12 +76,8 @@ export default function Main() {
             </Stack>
           ) : (
             <Stack gap={'xl'}>
-              {sortArray(
-                filteredPosts,
-                (i) => i.created_at,
-                Order.DESCENDING
-              ).map(
-                (pi, i) => i < 3 && <CardBlogSide key={pi.id} props={pi} />
+              {sortArray(filteredPosts, (i) => i.created_at, Order.DESCENDING).map(
+                (pi, i) => i < 3 && <CardBlogSide key={pi.id} props={pi} />,
               )}
             </Stack>
           )}

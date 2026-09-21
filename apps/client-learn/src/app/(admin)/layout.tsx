@@ -1,18 +1,11 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import React from 'react';
-import LayoutMain from '@repo/components/layout/main';
+import LayoutMain from '@repo/ui/layout/main';
 import AppshellAdmin from '@/components/layout/appshell/admin';
 import { Metadata } from 'next';
 import { APP_NAME } from '@repo/constants/app';
 import { Box, Stack, Text, Title } from '@mantine/core';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 
 export const metadata: Metadata = {
   title: {
@@ -30,17 +23,11 @@ export default async function LayoutAdmin({
     <LayoutMain>
       <Box hiddenFrom="md">
         <LayoutSection id={'layout-admin'} containerized>
-          <Stack
-            py={SECTION_SPACING}
-            align="center"
-            justify="center"
-            ta={'center'}
-            mih={'100vh'}
-          >
+          <Stack py={SECTION_SPACING} align="center" justify="center" ta={'center'} mih={'100vh'}>
             <Title order={1}>Coming Soon</Title>
             <Text>
-              Only the desktop version is currenly available. The mobile version
-              will be rolled out soon.
+              Only the desktop version is currenly available. The mobile version will be rolled out
+              soon.
             </Text>
           </Stack>
         </LayoutSection>

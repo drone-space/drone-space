@@ -1,7 +1,7 @@
 import { notifications } from '@mantine/notifications';
-import { Variant } from '@repo/types/enums';
-import { capitalizeWord } from '@repo/utilities/string';
-import { linkify } from '@repo/utilities/url';
+import { Variant } from '@repo/types';
+import { capitalizeWord } from '@repo/utils';
+import { linkify } from '@repo/utils';
 import React from 'react';
 
 export const useNotification = () => {
@@ -18,20 +18,15 @@ export const useNotification = () => {
       icon?: React.ReactNode;
     },
     response?: Response,
-    result?: any
+    result?: any,
   ) => {
     try {
-      const notificationTitle =
-        title || response?.statusText || capitalizeWord(variant);
+      const notificationTitle = title || response?.statusText || capitalizeWord(variant);
       const notificationMessage =
-        desc ||
-        (variant === Variant.SUCCESS ? result?.message : result?.error) ||
-        null;
+        desc || (variant === Variant.SUCCESS ? result?.message : result?.error) || null;
 
       notifications.show({
-        id: linkify(
-          `${variant}-${response?.status || '500'}-${notificationMessage}`
-        ),
+        id: linkify(`${variant}-${response?.status || '500'}-${notificationMessage}`),
         icon: icon,
         title: notificationTitle,
         message: notificationMessage,

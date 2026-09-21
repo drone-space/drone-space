@@ -17,11 +17,11 @@ import {
 } from '@mantine/core';
 import { useAppshellStore } from '@repo/hooks/store';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
-import ButtonAppshellNavbar from '@repo/components/common/buttons/appshell/navbar';
-import ImageDefault from '@repo/components/common/images/default';
+import ButtonAppshellNavbar from '@repo/ui/common/buttons/appshell/navbar';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { COMPANY_NAME } from '@repo/constants/app';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import {
   IconDashboard,
   IconFileAnalytics,
@@ -30,17 +30,13 @@ import {
   IconReportAnalytics,
 } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import Link from 'next/link';
 import FooterMain from '@/components/layout/footer/admin';
 import { useStoreSyncStatus } from '@repo/libraries/zustand/stores/sync-status';
-import IndicatorNetworkStatus from '@repo/components/common/indicators/network-status';
-import AvatarMain from '@repo/components/common/avatars/main';
-import MenuUser from '@repo/components/common/menus/user';
+import IndicatorNetworkStatus from '@repo/ui/common/indicators/network-status';
+import AvatarMain from '@repo/ui/common/avatars/main';
+import MenuUser from '@repo/ui/common/menus/user';
 
 export default function Admin({ children }: { children: React.ReactNode }) {
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
@@ -65,10 +61,7 @@ export default function Admin({ children }: { children: React.ReactNode }) {
       </AppShellNavbar>
 
       <AppShellMain>
-        <ScrollArea
-          h={`calc(100vh - ${APPSHELL.HEADER.HEIGHT}px)`}
-          scrollbars={'y'}
-        >
+        <ScrollArea h={`calc(100vh - ${APPSHELL.HEADER.HEIGHT}px)`} scrollbars={'y'}>
           <Box
             mih={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + 61.7 + 1}px)`}
             p={{ base: 'sm', md: 'xl' }}
@@ -173,10 +166,7 @@ function Navbar() {
 
       <Stack gap={2} p={'sm'}>
         {navlinksAdmin.map((nli) => {
-          const active =
-            nli.link == '/admin'
-              ? pathname == nli.link
-              : pathname.includes(nli.link);
+          const active = nli.link == '/admin' ? pathname == nli.link : pathname.includes(nli.link);
 
           return (
             <NavLink
@@ -185,9 +175,7 @@ function Navbar() {
               href={nli.link}
               label={nli.label}
               active={active}
-              leftSection={
-                <nli.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<nli.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               styles={{
                 root: {
                   borderRadius: 'var(--mantine-radius-xl)',

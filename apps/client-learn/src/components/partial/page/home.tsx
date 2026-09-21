@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Anchor,
   Button,
@@ -24,12 +24,12 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { COMPANY_NAME } from '@repo/constants/app';
-import ImageDefault from '@repo/components/common/images/default';
-import NextLink from '@repo/components/common/anchor/next-link';
+import ImageDefault from '@repo/ui/common/images/default';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { images } from '@repo/constants/images';
 import { IconArrowRight, IconDashboard, IconPlus } from '@tabler/icons-react';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import CardQuizHome from '@repo/components/common/cards/quiz/home';
+import CardQuizHome from '@repo/ui/common/cards/quiz/home';
 import { Status } from '@repo/types/models/enums';
 
 export default function Home() {
@@ -38,12 +38,7 @@ export default function Home() {
 
   return (
     <LayoutSection id={'section-home'} containerized={'md'}>
-      <Stack
-        gap={SECTION_SPACING}
-        mih={'100vh'}
-        py={SECTION_SPACING}
-        justify="center"
-      >
+      <Stack gap={SECTION_SPACING} mih={'100vh'} py={SECTION_SPACING} justify="center">
         <Group justify="center" ta={'center'}>
           <NextLink href={'/admin'}>
             <ImageDefault
@@ -87,9 +82,7 @@ export default function Home() {
           ) : !quizzesActive?.length ? (
             <GridCol span={{ md: 4 }}>
               <Paper
-                bg={
-                  'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-                }
+                bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
                 p={'md'}
               >
                 <Group justify="center" ta={'center'} fz={'sm'} c={'dimmed'}>
@@ -104,36 +97,22 @@ export default function Home() {
                   <GridCol key={qi.id} span={{ md: 4 }}>
                     <CardQuizHome props={{ quiz: qi }} />
                   </GridCol>
-                )
+                ),
             )
           )}
 
-          <GridCol
-            span={{ md: 4 }}
-            display={quizzes?.length ? undefined : 'none'}
-          >
+          <GridCol span={{ md: 4 }} display={quizzes?.length ? undefined : 'none'}>
             <Stack>
               <NextLink href="/quizzes">
                 <Card
-                  bg={
-                    'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-                  }
+                  bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
                   withBorder
                   p={{ base: 'md', md: 'lg' }}
                   // mih={198 / 2}
                 >
-                  <Stack
-                    align="center"
-                    ta={'center'}
-                    fz={'sm'}
-                    justify="center"
-                    h={'100%'}
-                  >
+                  <Stack align="center" ta={'center'} fz={'sm'} justify="center" h={'100%'}>
                     <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
-                      <IconArrowRight
-                        size={ICON_SIZE + 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
+                      <IconArrowRight size={ICON_SIZE + 4} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
 
                     <Text inherit>Browse more quizzes</Text>
@@ -143,25 +122,14 @@ export default function Home() {
 
               <NextLink href="/dashboard">
                 <Card
-                  bg={
-                    'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-                  }
+                  bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
                   withBorder
                   p={{ base: 'md', md: 'lg' }}
                   // mih={198 / 2}
                 >
-                  <Stack
-                    align="center"
-                    ta={'center'}
-                    fz={'sm'}
-                    justify="center"
-                    h={'100%'}
-                  >
+                  <Stack align="center" ta={'center'} fz={'sm'} justify="center" h={'100%'}>
                     <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
-                      <IconDashboard
-                        size={ICON_SIZE + 4}
-                        stroke={ICON_STROKE_WIDTH}
-                      />
+                      <IconDashboard size={ICON_SIZE + 4} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
 
                     <Text inherit>Go to dashboard</Text>
@@ -187,12 +155,7 @@ export default function Home() {
         <Group justify="center" ta={'center'}>
           <Text inherit c={'dimmed'}>
             Back to main site:{' '}
-            <Anchor
-              inherit
-              href="https://dronespace.co.ke"
-              target="_blank"
-              underline="hover"
-            >
+            <Anchor inherit href="https://dronespace.co.ke" target="_blank" underline="hover">
               dronespace.co.ke
             </Anchor>
           </Text>

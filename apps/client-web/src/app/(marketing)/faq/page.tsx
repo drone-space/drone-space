@@ -1,13 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
-import IntroPage from '@repo/components/layout/intros/page';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
+import IntroPage from '@repo/ui/layout/intros/page';
 import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { images } from '@repo/constants/images';
-import IntroSection from '@repo/components/layout/intros/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { Grid, GridCol } from '@mantine/core';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
@@ -138,9 +138,7 @@ export function GetLayout({
   return (
     <Grid gutter={'xl'}>
       <GridCol span={{ md: 4.5 }}>
-        <div style={{ position: 'sticky', top: SECTION_SPACING * 1.5 }}>
-          {props.header}
-        </div>
+        <div style={{ position: 'sticky', top: SECTION_SPACING * 1.5 }}>{props.header}</div>
       </GridCol>
 
       <GridCol span={{ md: 7.5 }}>{children}</GridCol>

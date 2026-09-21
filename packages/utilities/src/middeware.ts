@@ -1,12 +1,5 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import { COOKIE_NAME } from '@repo/constants/names';
-import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
+import { COOKIE_NAME, SHARED_VERCEL_SUBSTRING } from '@repo/constants';
+import { DEFAULT_COLOR_SCHEME } from '@repo/constants';
 import { NextRequest, NextResponse } from 'next/server';
 
 type DynamicRedirectMap = {
@@ -33,13 +26,9 @@ type RedirectOptions = {
 export const createRedirectHandler = (
   staticRedirects: StaticRedirectMap = {},
   dynamicRedirects: DynamicRedirectMap = [],
-  options: RedirectOptions = {}
+  options: RedirectOptions = {},
 ) => {
-  const {
-    permanent = true,
-    preserveQuery = true,
-    preserveHash = true,
-  } = options;
+  const { permanent = true, preserveQuery = true, preserveHash = true } = options;
 
   return function handleRedirect(request: NextRequest): NextResponse | null {
     const url = new URL(request.url);
@@ -57,8 +46,10 @@ export const createRedirectHandler = (
     };
 
     // 1️⃣ Check static redirects
-    if (path in staticRedirects) {
-      const newUrl = new URL(staticRedirects[path], url.origin);
+    const redirectTarget = staticRedirects[path];
+
+    if (path in staticRedirects && redirectTarget) {
+      const newUrl = new URL(redirectTarget, url.origin);
       appendQueryAndHash(newUrl);
 
       return NextResponse.redirect(newUrl, {
@@ -89,22 +80,54 @@ export const createRedirectHandler = (
  * -------------------------------
  * Sets CORS headers for allowed origins.
  */
-export const setCorsHeaders = (params: {
-  crossOrigins: string[];
-  request: NextRequest;
-  response: NextResponse;
-}) => {
+export const isAllowedOrigin = (origin: string): boolean => {
+  if (!origin) return false;
+
+  try {
+    const { hostname, protocol } = new URL(origin);
+
+    // 1. Allow local development
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return true;
+    }
+
+    // 2. Allow HTTPS requests to production domain or its subdomains
+    const productionDomain = process.env.NEXT_PUBLIC_HOST_WEB_PROD;
+
+    if (!productionDomain) {
+      console.error('x--> (CORS error) Production domain required.');
+      return false;
+    }
+
+    if (
+      protocol === 'https:' &&
+      (hostname === productionDomain || hostname.endsWith(`.${productionDomain}`))
+    ) {
+      return true;
+    }
+
+    // 3. Vercel Preview Deployments Check
+    // Safely verify it ends with .vercel.app and starts with your project prefix
+    const prefix = `${SHARED_VERCEL_SUBSTRING}-`;
+    if (hostname.endsWith('.vercel.app') && hostname.startsWith(prefix)) {
+      return true;
+    }
+
+    return false;
+  } catch {
+    return false; // Invalid URL structure
+  }
+};
+
+export const setCorsHeaders = (params: { request: NextRequest; response: NextResponse }) => {
   const origin = params.request.headers.get('origin') || '';
 
-  if (params.crossOrigins.some((allowed) => origin.includes(allowed))) {
+  if (isAllowedOrigin(origin)) {
     const { response } = params;
 
     response.headers.set('Access-Control-Allow-Credentials', 'true');
     response.headers.set('Access-Control-Allow-Origin', origin);
-    response.headers.set(
-      'Access-Control-Allow-Methods',
-      'GET,DELETE,PATCH,POST,PUT,OPTIONS'
-    );
+    response.headers.set('Access-Control-Allow-Methods', 'GET,DELETE,PATCH,POST,PUT,OPTIONS');
     response.headers.set(
       'Access-Control-Allow-Headers',
       [
@@ -119,7 +142,7 @@ export const setCorsHeaders = (params: {
         'Date',
         'X-Api-Version',
         'Access-Control-Allow-Origin',
-      ].join(', ')
+      ].join(', '),
     );
   }
 };
@@ -133,15 +156,9 @@ export const setCorsHeaders = (params: {
 /**
  * Generate a NextResponse JSON with optional CORS headers
  */
-export const jsonResponse = (
-  data: any,
-  request: NextRequest,
-  options?: { status?: number; crossOrigins?: string[] }
-) => {
+export const jsonResponse = (data: any, request: NextRequest, options?: { status?: number }) => {
   const response = NextResponse.json(data, { status: options?.status ?? 200 });
-  if (options?.crossOrigins) {
-    setCorsHeaders({ crossOrigins: options.crossOrigins, request, response });
-  }
+  setCorsHeaders({ request, response });
   return response;
 };
 
@@ -152,7 +169,7 @@ export const conditionalRedirect = (
   condition: boolean,
   target: string,
   request: NextRequest,
-  options?: RedirectOptions
+  options?: RedirectOptions,
 ): NextResponse | null => {
   if (!condition) return null;
 
@@ -162,13 +179,8 @@ export const conditionalRedirect = (
   });
 };
 
-export const getColorScheme = (
-  request: NextRequest,
-  response: NextResponse
-) => {
-  const themeState =
-    request.cookies.get(COOKIE_NAME.COLOR_SCHEME)?.value ||
-    DEFAULT_COLOR_SCHEME;
+export const getColorScheme = (request: NextRequest, response: NextResponse) => {
+  const themeState = request.cookies.get(COOKIE_NAME.COLOR_SCHEME)?.value || DEFAULT_COLOR_SCHEME;
 
   // 1. Check if we already have a calculated theme cookie
   const existingTheme = request.cookies.get(COOKIE_NAME.COLOR_SCHEME)?.value;

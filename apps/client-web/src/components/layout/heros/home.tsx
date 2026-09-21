@@ -1,15 +1,11 @@
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import CarouselHome from '@/components/common/carousels/home';
 import classes from './home.module.scss';
 
 export default function Home() {
   return (
-    <LayoutSection
-      id="layout-hero-home"
-      containerized={false}
-      className={classes.hero}
-    >
+    <LayoutSection id="layout-hero-home" containerized={false} className={classes.hero}>
       <CarouselHome />
     </LayoutSection>
   );

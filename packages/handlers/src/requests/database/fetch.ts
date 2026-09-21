@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { HEADERS } from '@repo/constants/other';
 
 export const apiCall = async (
@@ -12,7 +5,7 @@ export const apiCall = async (
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
   baseRequestUrl: string,
   body?: any,
-  signal?: AbortSignal
+  signal?: AbortSignal,
 ) => {
   const url = `${baseRequestUrl}/${endpoint}`;
   const hasBody = !!body;

@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 const urlSizeCache = new Map<string, number>();
 
 /**
@@ -16,7 +9,7 @@ const urlSizeCache = new Map<string, number>();
  */
 export const getFileSize = async (
   fileOrUrl: File | string,
-  useCache: boolean = true
+  useCache: boolean = true,
 ): Promise<number> => {
   try {
     if (typeof fileOrUrl === 'string') {
@@ -27,9 +20,7 @@ export const getFileSize = async (
 
       const response = await fetch(fileOrUrl, { method: 'HEAD' });
       if (!response.ok) {
-        console.warn(
-          `Unable to fetch headers for ${fileOrUrl}: ${response.status}`
-        );
+        console.warn(`Unable to fetch headers for ${fileOrUrl}: ${response.status}`);
         return 0;
       }
 
@@ -74,8 +65,7 @@ export const isImageFile = (file: File) => file.type.startsWith('image/');
 export const isPdfFile = (file: File) => file.type === 'application/pdf';
 
 /** Sanitize file name for safe storage/download */
-export const sanitizeFileName = (name: string) =>
-  name.replace(/[^a-z0-9_.-]/gi, '_');
+export const sanitizeFileName = (name: string) => name.replace(/[^a-z0-9_.-]/gi, '_');
 
 /** Convert a File or Blob to Base64 string */
 export const fileToBase64 = (file: File | Blob): Promise<string> =>
@@ -136,11 +126,10 @@ export const getFileInfo = (file: File) => ({
 /** Validate file by size and allowed MIME types */
 export const validateFile = (
   file: File,
-  options: { maxSize?: number; allowedTypes?: string[] }
+  options: { maxSize?: number; allowedTypes?: string[] },
 ): boolean => {
   if (options.maxSize && file.size > options.maxSize) return false;
-  if (options.allowedTypes && !options.allowedTypes.includes(file.type))
-    return false;
+  if (options.allowedTypes && !options.allowedTypes.includes(file.type)) return false;
   return true;
 };
 

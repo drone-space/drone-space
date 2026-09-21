@@ -17,13 +17,9 @@ import {
   Title,
 } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
 import { useRouter } from 'next/navigation';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { QuestionGet } from '@repo/types/models/question';
@@ -33,13 +29,7 @@ import { IconSchool } from '@tabler/icons-react';
 export default function One({ props }: { props: { quizId: string } }) {
   const router = useRouter();
 
-  const {
-    metaStats,
-    quizzes,
-    quiz,
-    quizQuestions,
-    quizQuestionsQuizQuestions,
-  } = useQuizStats({
+  const { metaStats, quizzes, quiz, quizQuestions, quizQuestionsQuizQuestions } = useQuizStats({
     quizId: props.quizId,
   });
 
@@ -84,9 +74,7 @@ export default function One({ props }: { props: { quizId: string } }) {
               ) : (
                 quizQuestionsQuizQuestions
                   .slice(0, 4)
-                  .map((qqqqi) => (
-                    <CardQuestion key={qqqqi.id} props={{ question: qqqqi }} />
-                  ))
+                  .map((qqqqi) => <CardQuestion key={qqqqi.id} props={{ question: qqqqi }} />)
               )}
             </Stack>
           </Stack>
@@ -97,9 +85,7 @@ export default function One({ props }: { props: { quizId: string } }) {
             <Card bg={'var(--mantine-color-body)'} withBorder>
               <CardSection
                 p={'md'}
-                bg={
-                  'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'
-                }
+                bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'}
               >
                 <Group>
                   <Title order={2} fz={'lg'}>
@@ -181,9 +167,7 @@ export default function One({ props }: { props: { quizId: string } }) {
             <Group grow>
               <Button
                 fullWidth
-                leftSection={
-                  <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                 onClick={() => {
                   const newAttempt = attemptCreate({ quiz_id: props.quizId });
 

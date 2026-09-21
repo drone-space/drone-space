@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import StepperQuizIntro from '@repo/components/common/stepper/quiz/intro';
+import StepperQuizIntro from '@repo/ui/common/stepper/quiz/intro';
 import {
   Alert,
   Box,
@@ -25,11 +25,7 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useTimer } from '@repo/hooks/timer';
 import { TimerDirection, Variant } from '@repo/types/enums';
@@ -46,20 +42,16 @@ import { useAttemptActions } from '@repo/hooks/actions/attempt';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { Status } from '@repo/types/models/enums';
 import { useNotification } from '@repo/hooks/notification';
-import ModalConfirm from '@repo/components/common/modals/confirm';
+import ModalConfirm from '@repo/ui/common/modals/confirm';
 import { useQuizActions } from '@repo/hooks/actions/quiz';
 import { useRouter } from 'next/navigation';
-import IntroSection from '@repo/components/layout/intros/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { shuffleArray } from '@repo/utilities/array';
 import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { useMediaQuery } from '@mantine/hooks';
 
-export default function Attempt({
-  props,
-}: {
-  props: { quizId: string; attemptId: string };
-}) {
+export default function Attempt({ props }: { props: { quizId: string; attemptId: string } }) {
   const desktop = useMediaQuery('(min-width: 62em)');
 
   const router = useRouter();
@@ -76,16 +68,12 @@ export default function Attempt({
   const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
 
   // 1. Filter out the bridge records for this quiz
-  const quizQuestionsQuiz = quizQuestions?.filter(
-    (qqqi) => qqqi.quiz_id == quiz?.id
-  );
+  const quizQuestionsQuiz = quizQuestions?.filter((qqqi) => qqqi.quiz_id == quiz?.id);
 
   const attempts = useStoreAttempt((s) => s.attempts);
   const attempt = attempts?.find((ai) => ai.id == props.attemptId);
   const answers = useStoreAnswer((s) => s.answers);
-  const attemptAnswers = answers?.filter(
-    (ai) => ai.attempt_id == props.attemptId
-  );
+  const attemptAnswers = answers?.filter((ai) => ai.attempt_id == props.attemptId);
   const { attemptUpdate } = useAttemptActions();
 
   const handleSubmit = () => {
@@ -120,16 +108,12 @@ export default function Attempt({
     router.replace(`/dashboard`);
   };
 
-  const loading =
-    quizzes === undefined ||
-    questions === undefined ||
-    quizQuestions === undefined;
+  const loading = quizzes === undefined || questions === undefined || quizQuestions === undefined;
 
   const [shuffledQuestions, setShuffledQuestions] = useState<QuestionGet[]>([]);
 
   useEffect(() => {
-    if (quizzes === undefined || questions === undefined || !quizQuestionsQuiz)
-      return;
+    if (quizzes === undefined || questions === undefined || !quizQuestionsQuiz) return;
 
     if (!shuffledQuestions.length) {
       // 🔥 PERFORMANCE FIX: Create a lightning-fast key-value lookup map
@@ -146,9 +130,7 @@ export default function Attempt({
   }, [quizzes, questions, quizQuestionsQuiz]); // Added proper dependencies
 
   return attempt?.status == Status.INTRO && intro ? (
-    <StepperQuizIntro
-      props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }}
-    />
+    <StepperQuizIntro props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }} />
   ) : (
     <Grid gutter={'xl'}>
       <GridCol span={{ base: 12, md: 8 }} order={{ base: 2, md: 1 }}>
@@ -178,9 +160,7 @@ export default function Attempt({
               shuffledQuestions.map((qqi, i) => (
                 <div key={`${qqi.id}-${i}`}>
                   {i > 0 && <Divider my={'xl'} />}
-                  <CardQuestion
-                    props={{ question: qqi, attemptId: props.attemptId }}
-                  />
+                  <CardQuestion props={{ question: qqi, attemptId: props.attemptId }} />
                 </div>
               ))
             )}
@@ -190,11 +170,7 @@ export default function Attempt({
 
           <Group>
             <Tooltip
-              label={
-                !attemptAnswers?.length
-                  ? 'No questions answered yet.'
-                  : 'Submit answers.'
-              }
+              label={!attemptAnswers?.length ? 'No questions answered yet.' : 'Submit answers.'}
             >
               <div>
                 <ModalConfirm
@@ -219,20 +195,17 @@ export default function Attempt({
               title="Rules Reminder"
               color="blue.6"
               variant="light"
-              icon={
-                <IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               <Stack gap={5} fz={'sm'}>
                 <Text inherit>
-                  Do <strong>not</strong> try to: leave ths tab, disconnect from
-                  the network, remain idle for more than a few minutes.
+                  Do <strong>not</strong> try to: leave ths tab, disconnect from the network, remain
+                  idle for more than a few minutes.
                 </Text>
 
                 <Text inherit>
-                  As any of these actions will be <strong>watched for</strong>{' '}
-                  and, if detected, will be{' '}
-                  <strong>recorded alongside your results</strong>.
+                  As any of these actions will be <strong>watched for</strong> and, if detected,
+                  will be <strong>recorded alongside your results</strong>.
                 </Text>
               </Stack>
             </Alert>
@@ -273,15 +246,10 @@ export default function Attempt({
                   ) : (
                     <Text inherit ta={'end'} fw={500}>
                       <NumberFormatter value={attemptAnswers?.length || 0} />/
-                      <NumberFormatter
-                        value={quizQuestionsQuiz?.length || 0}
-                      />{' '}
-                      (
+                      <NumberFormatter value={quizQuestionsQuiz?.length || 0} /> (
                       <NumberFormatter
                         value={Math.floor(
-                          ((attemptAnswers?.length || 0) /
-                            (quizQuestionsQuiz?.length || 0)) *
-                            100
+                          ((attemptAnswers?.length || 0) / (quizQuestionsQuiz?.length || 0)) * 100,
                         )}
                       />
                       %)
@@ -305,12 +273,7 @@ export default function Attempt({
                       fullWidth
                       color="red.6"
                       variant="light"
-                      leftSection={
-                        <IconDoorExit
-                          size={ICON_SIZE}
-                          stroke={ICON_STROKE_WIDTH}
-                        />
-                      }
+                      leftSection={<IconDoorExit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                     >
                       Quit
                     </Button>
@@ -321,25 +284,15 @@ export default function Attempt({
           </Stack>
         </Box>
 
-        <Divider
-          hiddenFrom="md"
-          mt={SECTION_SPACING}
-          mb={SECTION_SPACING / 2}
-        />
+        <Divider hiddenFrom="md" mt={SECTION_SPACING} mb={SECTION_SPACING / 2} />
       </GridCol>
     </Grid>
   );
 }
 
-function CardQuestion({
-  props,
-}: {
-  props: { question: QuestionGet; attemptId: string };
-}) {
+function CardQuestion({ props }: { props: { question: QuestionGet; attemptId: string } }) {
   const options = useStoreOption((s) => s.options);
-  const questionOptions = options?.filter(
-    (op) => op.question_id == props.question.id
-  );
+  const questionOptions = options?.filter((op) => op.question_id == props.question.id);
   const answers = useStoreAnswer((s) => s.answers);
   const { answerCreate, answerUpdate } = useAnswerActions();
   const attempts = useStoreAttempt((s) => s.attempts);
@@ -360,8 +313,7 @@ function CardQuestion({
 
   const handleOptionSelect = (option: OptionGet) => {
     const answer = answers?.find(
-      (ai) =>
-        ai.question_id == props.question.id && ai.attempt_id == props.attemptId
+      (ai) => ai.question_id == props.question.id && ai.attempt_id == props.attemptId,
     );
 
     if (!answer) {
@@ -385,12 +337,7 @@ function CardQuestion({
     <Card bg="transparent" p={{ base: 0, xs: 'md', md: 'xl' }} radius={0}>
       <Stack>
         <Group>
-          <Title
-            order={2}
-            fz={'md'}
-            fw={'normal'}
-            c={'var(--mantine-color-text)'}
-          >
+          <Title order={2} fz={'md'} fw={'normal'} c={'var(--mantine-color-text)'}>
             {props.question.content}
           </Title>
         </Group>
@@ -401,9 +348,7 @@ function CardQuestion({
             aria-label={props.question.content}
             value={
               answers?.find(
-                (ai) =>
-                  ai.question_id == props.question.id &&
-                  ai.attempt_id == props.attemptId
+                (ai) => ai.question_id == props.question.id && ai.attempt_id == props.attemptId,
               )?.option_id
             }
           >

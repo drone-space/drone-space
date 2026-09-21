@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { CategoryGet } from '@repo/types/models/category';
@@ -23,14 +16,11 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       { items: categoryRecords },
-      { status: 200, statusText: 'Categories Retrieved' }
+      { status: 200, statusText: 'Categories Retrieved' },
     );
   } catch (error) {
     console.error('---> route handler error (get categories):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -64,7 +54,7 @@ export async function PUT(request: NextRequest) {
           created_at: new Date(category.created_at),
           updated_at: new Date(category.updated_at),
         },
-      })
+      }),
     );
 
     // Run all operations in one transaction
@@ -72,13 +62,10 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(
       { items: updateCategories },
-      { status: 200, statusText: 'Categories Updated' }
+      { status: 200, statusText: 'Categories Updated' },
     );
   } catch (error) {
     console.error('---> route handler error (update categories):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

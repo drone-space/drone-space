@@ -1,19 +1,10 @@
 import React from 'react';
-import {
-  BackgroundImage,
-  Button,
-  Card,
-  Group,
-  Overlay,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { BackgroundImage, Button, Card, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import { IconArrowRight } from '@tabler/icons-react';
 import typeService from '@/types/service';
 import { linkify } from '@repo/utilities/url';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Service({ data }: { data: typeService }) {
   return (
@@ -30,11 +21,7 @@ export default function Service({ data }: { data: typeService }) {
           justify="space-between"
         >
           <div>
-            <Title
-              order={3}
-              fz={{ base: 'md', md: 'lg' }}
-              c={'var(--mantine-color-white)'}
-            >
+            <Title order={3} fz={{ base: 'md', md: 'lg' }} c={'var(--mantine-color-white)'}>
               {data.title}
             </Title>
 
@@ -47,9 +34,7 @@ export default function Service({ data }: { data: typeService }) {
             <Button
               color="white"
               variant={'outline'}
-              rightSection={
-                <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               More on {data.title.split(' ')[data.title.split(' ').length - 1]}
             </Button>

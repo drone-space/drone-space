@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
@@ -16,7 +9,7 @@ import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
-import ProviderMantine from '@repo/components/provider/mantine';
+import ProviderMantine from '@repo/ui/provider/mantine';
 import ProviderStore from '@/components/provider/store';
 import { mantine } from '@/assets/styles';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
@@ -49,11 +42,7 @@ export default async function RootLayout({
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
   return (
-    <html
-      lang="en"
-      {...mantineHtmlProps}
-      data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}
-    >
+    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

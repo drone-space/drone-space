@@ -13,8 +13,8 @@ import {
 import classes from './main.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
-import ModalContactShop from '@repo/components/common/modals/contact/shop';
-import NextLink from '@repo/components/common/anchor/next-link';
+import ModalContactShop from '@repo/ui/common/modals/contact/shop';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Main({ data }: { data: typeDrone }) {
   return (
@@ -81,9 +81,7 @@ export default function Main({ data }: { data: typeDrone }) {
                 <Button>Order Now</Button>
               </ModalContactShop>
 
-              <NextLink
-                href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
-              >
+              <NextLink href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}>
                 <Button variant="outline" color="black">
                   Learn More
                 </Button>

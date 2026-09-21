@@ -1,4 +1,4 @@
-import { Prisma, Attempt } from '@repo/db/generated/prisma/client.js';
+import { Prisma, Attempt } from '@repo/db';
 
 // Type for creating a item (without id and relations)
 export type AttemptCreate = Prisma.AttemptCreateInput;

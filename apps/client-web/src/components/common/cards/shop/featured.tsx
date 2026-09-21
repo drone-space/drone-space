@@ -1,19 +1,10 @@
 import React from 'react';
 import { images } from '@repo/constants/images';
-import {
-  BackgroundImage,
-  Badge,
-  Button,
-  Card,
-  Group,
-  Overlay,
-  Stack,
-  Title,
-} from '@mantine/core';
+import { BackgroundImage, Badge, Button, Card, Group, Overlay, Stack, Title } from '@mantine/core';
 import { linkify } from '@repo/utilities/url';
 import { products } from '@repo/constants/products';
-import ModalContactShop from '@repo/components/common/modals/contact/shop';
-import NextLink from '@repo/components/common/anchor/next-link';
+import ModalContactShop from '@repo/ui/common/modals/contact/shop';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Featured() {
   const productFeatured = products.find((p: any) => p.featured);
@@ -25,27 +16,12 @@ export default function Featured() {
       <BackgroundImage src={images.web.drone} p={'md'}>
         <Overlay opacity={0.3} style={{ zIndex: 0 }} />
 
-        <Stack
-          c={'var(--mantine-color-body)'}
-          pos={'relative'}
-          style={{ zIndex: 1 }}
-        >
-          <Badge
-            color="var(--mantine-color-white)"
-            variant={'light'}
-            size="xs"
-            lts={2}
-          >
+        <Stack c={'var(--mantine-color-body)'} pos={'relative'} style={{ zIndex: 1 }}>
+          <Badge color="var(--mantine-color-white)" variant={'light'} size="xs" lts={2}>
             Featured
           </Badge>
 
-          <Title
-            order={3}
-            fz={'md'}
-            fw={500}
-            tt={'uppercase'}
-            c={'var(--mantine-color-body)'}
-          >
+          <Title order={3} fz={'md'} fw={500} tt={'uppercase'} c={'var(--mantine-color-body)'}>
             {productFeatured.title.long}
           </Title>
 

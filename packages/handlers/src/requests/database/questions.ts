@@ -1,15 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import {
-  QuestionCreate,
-  QuestionGet,
-  QuestionUpdate,
-} from '@repo/types/models/question';
+import { QuestionCreate, QuestionGet, QuestionUpdate } from '@repo/types/models/question';
 import { apiCall } from './fetch';
 
 const segment = 'questions';
@@ -24,7 +13,7 @@ let currentController: AbortController | null = null;
 export const questionsUpdate = async (
   apiUrl: string,
   questions: QuestionGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
@@ -35,7 +24,7 @@ export const questionsUpdate = async (
       'PUT',
       apiUrl,
       { questions, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

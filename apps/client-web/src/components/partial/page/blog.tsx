@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useStorePost } from '@repo/libraries/zustand/stores/post';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Center,
   Divider,
@@ -19,11 +19,7 @@ import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
 import CardBlogMain from '@/components/common/cards/blog/main';
 import { IconCircleX } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants/sizes';
 import { usePaginate } from '@repo/hooks/paginate';
 import { prependZeros } from '@repo/utilities/number';
 import { useRouter } from 'next/navigation';
@@ -32,11 +28,10 @@ export default function Blog() {
   const router = useRouter();
   const { posts } = useStorePost();
 
-  const { items, activePage, setActivePage, totalPages, pageRange } =
-    usePaginate(
-      sortArray(posts || [], (i) => i.created_at, Order.DESCENDING),
-      Number(3)
-    );
+  const { items, activePage, setActivePage, totalPages, pageRange } = usePaginate(
+    sortArray(posts || [], (i) => i.created_at, Order.DESCENDING),
+    Number(3),
+  );
 
   return (
     <LayoutSection id={'listing'} padded containerized={false} mih={'100vh'}>

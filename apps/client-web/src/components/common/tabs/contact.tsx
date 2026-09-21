@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import IntroSection from '@repo/components/layout/intros/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import {
   Anchor,
   BackgroundImage,
@@ -19,18 +19,14 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import {
-  ICON_SIZE,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import FormContact from '@repo/components/form/contact';
-import NextLink from '@repo/components/common/anchor/next-link';
-import ImageDefault from '@repo/components/common/images/default';
+import { ICON_SIZE, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants/sizes';
+import FormContact from '@repo/ui/form/contact';
+import NextLink from '@repo/ui/common/anchor/next-link';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { EMAILS, LOCATIONS, PHONES } from '@repo/constants/app';
 import { socialLinks } from '@/data/links';
-import IframeContact from '@repo/components/common/iframes/contact';
+import IframeContact from '@repo/ui/common/iframes/contact';
 
 export type TabContact = {
   image: string;
@@ -43,8 +39,7 @@ export type TabContact = {
 };
 
 export default function Contact() {
-  const [activeTab, setActiveTab] =
-    useState<TabContact['activeTab']>('General');
+  const [activeTab, setActiveTab] = useState<TabContact['activeTab']>('General');
 
   let tabProps: TabContact = {
     image: '',
@@ -251,11 +246,7 @@ function PartialContact({ props }: { props: TabContact }) {
 
                       <Group gap={5}>
                         {socialLinks.map((social, index) => (
-                          <Anchor
-                            key={index}
-                            href={social.link}
-                            target="_blank"
-                          >
+                          <Anchor key={index} href={social.link} target="_blank">
                             <ImageDefault
                               src={social.image}
                               alt={social.title}

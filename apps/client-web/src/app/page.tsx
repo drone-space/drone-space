@@ -1,14 +1,7 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import LayoutPage from '@repo/components/layout/page';
-import LayoutMain from '@repo/components/layout/main';
-import AffixNavbar from '@repo/components/common/affixi/navbar';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutMain from '@repo/ui/layout/main';
+import AffixNavbar from '@repo/ui/common/affixi/navbar';
+import LayoutSection from '@repo/ui/layout/section';
 import React from 'react';
 import HeroHome from '@/components/layout/heros/home';
 import {
@@ -22,7 +15,7 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import ModalDownloadDocument from '@repo/components/common/modals/download/document';
+import ModalDownloadDocument from '@repo/ui/common/modals/download/document';
 import {
   IconArrowRight,
   IconCalendarEvent,
@@ -35,8 +28,8 @@ import {
   IconSchool,
   IconShoppingCart,
 } from '@tabler/icons-react';
-import ModalContactCallback from '@repo/components/common/modals/contact/callback';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
+import ModalContactCallback from '@repo/ui/common/modals/contact/callback';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
 import services from '@/data/services';
 import CardService from '@/components/common/cards/service';
 import { shuffleArray } from '@repo/utilities/array';
@@ -45,18 +38,14 @@ import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
 import partners from '@/data/partners';
 import CardPartner from '@/components/common/cards/partner';
 import CardWhy from '@/components/common/cards/why';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { ABOUT_STATS, COMPANY_NAME } from '@repo/constants/app';
-import AlertKCAAUpdate from '@repo/components/common/alerts/kcaa-update';
+import AlertKCAAUpdate from '@repo/ui/common/alerts/kcaa-update';
 import CtaMain from '@/components/partial/cta/main';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { Metadata } from 'next';
-import AffixAi from '@repo/components/common/affixi/ai';
+import AffixAi from '@repo/ui/common/affixi/ai';
 import { courseList } from '@repo/constants/courses';
 import CardCourse from '@/components/common/cards/training/course';
 import CarouselPartners from '@/components/common/carousels/partners';
@@ -75,27 +64,14 @@ export default function Home() {
 
       <CarouselPartners data={partners} />
 
-      <LayoutSection
-        id="home-cta1"
-        padded={SECTION_SPACING / 2}
-        bg={'var(--mantine-color-pri-9)'}
-      >
+      <LayoutSection id="home-cta1" padded={SECTION_SPACING / 2} bg={'var(--mantine-color-pri-9)'}>
         <Grid gutter={{ base: 'md', md: 'xl' }} justify="center">
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
             <ModalDownloadDocument props={{ type: 'brochure' }}>
               <Button h={'100%'} fullWidth variant="gradient">
                 <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
-                  <IconFileDownload
-                    size={ICON_SIZE * 2.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                  <Text
-                    inherit
-                    component="span"
-                    ta={'center'}
-                    fz={'lg'}
-                    c={'white'}
-                  >
+                  <IconFileDownload size={ICON_SIZE * 2.5} stroke={ICON_STROKE_WIDTH} />
+                  <Text inherit component="span" ta={'center'} fz={'lg'} c={'white'}>
                     Download Brochure
                   </Text>
                 </Stack>
@@ -107,17 +83,8 @@ export default function Home() {
             <ModalContactCallback>
               <Button h={'100%'} fullWidth variant="gradient">
                 <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
-                  <IconPhoneCall
-                    size={ICON_SIZE * 2.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                  <Text
-                    inherit
-                    component="span"
-                    ta={'center'}
-                    fz={'lg'}
-                    c={'white'}
-                  >
+                  <IconPhoneCall size={ICON_SIZE * 2.5} stroke={ICON_STROKE_WIDTH} />
+                  <Text inherit component="span" ta={'center'} fz={'lg'} c={'white'}>
                     Request Callback
                   </Text>
                 </Stack>
@@ -136,17 +103,8 @@ export default function Home() {
             >
               <Button h={'100%'} fullWidth variant="gradient">
                 <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
-                  <IconSchool
-                    size={ICON_SIZE * 2.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                  <Text
-                    inherit
-                    component="span"
-                    ta={'center'}
-                    fz={'lg'}
-                    c={'white'}
-                  >
+                  <IconSchool size={ICON_SIZE * 2.5} stroke={ICON_STROKE_WIDTH} />
+                  <Text inherit component="span" ta={'center'} fz={'lg'} c={'white'}>
                     Register for RPL
                   </Text>
                 </Stack>
@@ -158,17 +116,8 @@ export default function Home() {
             <NextLink href={'/shop'}>
               <Button h={'100%'} fullWidth variant="gradient">
                 <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
-                  <IconShoppingCart
-                    size={ICON_SIZE * 2.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                  <Text
-                    inherit
-                    component="span"
-                    ta={'center'}
-                    fz={'lg'}
-                    c={'white'}
-                  >
+                  <IconShoppingCart size={ICON_SIZE * 2.5} stroke={ICON_STROKE_WIDTH} />
+                  <Text inherit component="span" ta={'center'} fz={'lg'} c={'white'}>
                     Shop for a Drone
                   </Text>
                 </Stack>
@@ -198,7 +147,7 @@ export default function Home() {
                     <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
                       <CardCourse data={item} />
                     </GridCol>
-                  )
+                  ),
               )}
           </Grid>
 
@@ -211,9 +160,7 @@ export default function Home() {
               <Button
                 color="pri"
                 variant={'light'}
-                rightSection={
-                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
                 See more courses
               </Button>
@@ -226,9 +173,7 @@ export default function Home() {
         id="home-solutions"
         padded
         containerized={'responsive'}
-        bg={
-          'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'
-        }
+        bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'}
       >
         <IntroSection
           props={{
@@ -247,7 +192,7 @@ export default function Home() {
                   <GridCol key={index} span={{ base: 12, sm: 6, md: 4 }}>
                     <CardService data={service} />
                   </GridCol>
-                )
+                ),
             )}
           </Grid>
 
@@ -289,7 +234,7 @@ export default function Home() {
                   <GridCol key={index} span={{ base: 12, xs: 6 }}>
                     <CardShopDroneMain data={product} />
                   </GridCol>
-                )
+                ),
             )}
 
             {drones.enterprise.map(
@@ -298,7 +243,7 @@ export default function Home() {
                   <GridCol key={index} span={{ base: 12, xs: 6 }}>
                     <CardShopDroneMain data={product} />
                   </GridCol>
-                )
+                ),
             )}
           </Grid>
 
@@ -311,9 +256,7 @@ export default function Home() {
               <Button
                 color="pri"
                 variant={'light'}
-                rightSection={
-                  <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
                 See more drones & categories
               </Button>
@@ -326,9 +269,7 @@ export default function Home() {
         id="home-why"
         padded
         containerized={'responsive'}
-        bg={
-          'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'
-        }
+        bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'}
       >
         <IntroSection
           props={{
@@ -386,9 +327,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
 const drones = {
   camera: shuffleArray(products.filter((p) => p.category == 'camera')),
   enterprise: shuffleArray(products.filter((p) => p.category == 'enterprise')),
-  agriculture: shuffleArray(
-    products.filter((p) => p.category == 'agriculture')
-  ),
+  agriculture: shuffleArray(products.filter((p) => p.category == 'agriculture')),
 };
 
 const whyUs = [

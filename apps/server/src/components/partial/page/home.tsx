@@ -1,23 +1,9 @@
 'use client';
 
-import {
-  Text,
-  Title,
-  Badge,
-  Stack,
-  ThemeIcon,
-  Anchor,
-  Card,
-  Box,
-  Center,
-} from '@mantine/core';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { Text, Title, Badge, Stack, ThemeIcon, Anchor, Card, Box, Center } from '@mantine/core';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { IconServerBolt } from '@tabler/icons-react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 
 export default function Home() {
   const apiStatus = 'online'; // could be dynamic in future
@@ -32,21 +18,11 @@ export default function Home() {
       <Center ta={'center'} mih={'100vh'}>
         <Card bg={'var(--mantine-color-body)'} padding={0}>
           <div>
-            <Title
-              order={1}
-              mb="xs"
-              fz={{ base: '1.5rem', sm: 'var(--mantine-h1-font-size)' }}
-            >
+            <Title order={1} mb="xs" fz={{ base: '1.5rem', sm: 'var(--mantine-h1-font-size)' }}>
               API.dronespace.co.ke
             </Title>
 
-            <Text
-              inherit
-              size="lg"
-              mb="xl"
-              c="dimmed"
-              fz={{ base: 'sm', sm: 'md' }}
-            >
+            <Text inherit size="lg" mb="xl" c="dimmed" fz={{ base: 'sm', sm: 'md' }}>
               Fast, reliable, always up
             </Text>
 
@@ -58,10 +34,7 @@ export default function Home() {
                 radius={99}
                 variant="filled"
               >
-                <IconServerBolt
-                  size={ICON_SIZE * 2}
-                  stroke={ICON_STROKE_WIDTH}
-                />
+                <IconServerBolt size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>
 
               <Text inherit fw={500} size="lg">

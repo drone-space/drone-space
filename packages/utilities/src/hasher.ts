@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { Hashing } from '@repo/types/enums';
 
 /**
@@ -20,7 +13,7 @@ const arrayBufferToHex = (buffer: ArrayBuffer): string =>
  */
 export const hashValue = async (
   rawValue: string | number,
-  algorithm: Hashing = Hashing.SHA256
+  algorithm: Hashing = Hashing.SHA256,
 ): Promise<string> => {
   try {
     const encoder = new TextEncoder();
@@ -39,7 +32,7 @@ export const hashValue = async (
 export const compareHashes = async (
   rawValue: string | number,
   hashedValue: string | null,
-  algorithm: Hashing = Hashing.SHA256
+  algorithm: Hashing = Hashing.SHA256,
 ): Promise<boolean> => {
   if (!hashedValue) return false;
 

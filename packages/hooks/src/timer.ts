@@ -1,12 +1,5 @@
 'use client';
 
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { TimerDirection } from '@repo/types/enums';
 import { Timer } from '@repo/types/date-time';
 import { getTimeElapsed, getTimeRemaining } from '@repo/utilities/date-time';
@@ -20,7 +13,7 @@ interface UseTimerOptions {
 export function useTimer(
   targetDate: Date,
   direction: TimerDirection = TimerDirection.DOWN,
-  options: UseTimerOptions = {}
+  options: UseTimerOptions = {},
 ) {
   const { active = true, autoSwitch = false } = options;
 
@@ -28,9 +21,7 @@ export function useTimer(
   const [currentDirection, setDirection] = useState(direction);
 
   const [time, setTime] = useState<Timer | null>(() =>
-    direction === TimerDirection.DOWN
-      ? getTimeRemaining(targetDate)
-      : getTimeElapsed(targetDate)
+    direction === TimerDirection.DOWN ? getTimeRemaining(targetDate) : getTimeElapsed(targetDate),
   );
 
   // A helper to determine if the target date has been reached or passed
@@ -71,8 +62,7 @@ export function useTimer(
       const isCompleteNow = checkIfComplete(tDate);
       setComplete(isCompleteNow);
 
-      const getLatestTime =
-        dir === TimerDirection.DOWN ? getTimeRemaining : getTimeElapsed;
+      const getLatestTime = dir === TimerDirection.DOWN ? getTimeRemaining : getTimeElapsed;
 
       const newTime = getLatestTime(tDate);
 
@@ -115,7 +105,7 @@ interface UseCountdownOptions {
 
 export function useCountdown(
   targetDate: Date | string | number,
-  options: UseCountdownOptions = {}
+  options: UseCountdownOptions = {},
 ) {
   const { onExpire } = options;
   const targetTimeRef = useRef(new Date(targetDate).getTime());
@@ -154,7 +144,7 @@ export function useCountdown(
       setTimeLeft(calculateTimeLeft());
       setIsRunning(true);
     },
-    [calculateTimeLeft]
+    [calculateTimeLeft],
   );
 
   useEffect(() => {

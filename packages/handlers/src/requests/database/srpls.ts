@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { SrplCreate, SrplGet, SrplUpdate } from '@repo/types/models/srpl';
 import { apiCall } from './fetch';
 
@@ -17,11 +10,7 @@ export const srplsGet = (params: { apiUrl: string; userId?: string }) => {
 
 let currentController: AbortController | null = null;
 
-export const srplsUpdate = async (
-  apiUrl: string,
-  srpls: SrplGet[],
-  deletedIds?: string[]
-) => {
+export const srplsUpdate = async (apiUrl: string, srpls: SrplGet[], deletedIds?: string[]) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
 
@@ -31,7 +20,7 @@ export const srplsUpdate = async (
       'PUT',
       apiUrl,
       { srpls, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

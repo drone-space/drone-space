@@ -1,26 +1,18 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import {
-  IconArrowRightDashed,
-  IconMessage,
-  IconSchool,
-} from '@tabler/icons-react';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import { IconArrowRightDashed, IconMessage, IconSchool } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
 import { courseList } from '@repo/constants/courses';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
@@ -63,10 +55,7 @@ export default async function Course() {
 
       <LayoutSection id={linkify(course.title)} padded>
         <Grid gutter={'xl'}>
-          <GridCol
-            span={{ base: 12, md: 6, lg: 6.5 }}
-            order={{ base: 2, md: 1 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
             <IntroSection
               props={{
                 subTitle: 'Who Is This For?',
@@ -76,32 +65,16 @@ export default async function Course() {
             />
 
             <Text mt={'md'}>
-              The Drone Mapping and Survey course is a 5-day course designed for
-              RPL holders who want to learn how to use drones for mapping and
-              surveying purposes. This course is suitable for engineers,
-              surveyors, environmental scientists, among others. It is also
-              ideal for individuals interested in starting a drone mapping and
-              surveying business.
+              The Drone Mapping and Survey course is a 5-day course designed for RPL holders who
+              want to learn how to use drones for mapping and surveying purposes. This course is
+              suitable for engineers, surveyors, environmental scientists, among others. It is also
+              ideal for individuals interested in starting a drone mapping and surveying business.
             </Text>
 
             {mappingModules.map((item, index) => (
-              <Group
-                key={index}
-                gap={'xs'}
-                wrap="nowrap"
-                align="start"
-                mt={'md'}
-              >
-                <ThemeIcon
-                  size={ICON_WRAPPER_SIZE / 1.5}
-                  mt={2}
-                  color="sec.3"
-                  c={'pri.9'}
-                >
-                  <IconArrowRightDashed
-                    size={ICON_SIZE / 1.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
+              <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                  <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                 </ThemeIcon>
 
                 <Text fz={'sm'}>{item}</Text>
@@ -109,17 +82,13 @@ export default async function Course() {
             ))}
 
             <Text mt={'md'}>
-              By completing this course, students will acquire practical skills
-              in drone operation, surveying techniques, and data analysis. They
-              will also learn how to process and interpret data obtained from
-              drone surveys to generate accurate maps and 3D models.
+              By completing this course, students will acquire practical skills in drone operation,
+              surveying techniques, and data analysis. They will also learn how to process and
+              interpret data obtained from drone surveys to generate accurate maps and 3D models.
             </Text>
           </GridCol>
 
-          <GridCol
-            span={{ base: 12, md: 6, lg: 5.5 }}
-            order={{ base: 1, md: 2 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={{ base: 1, md: 2 }}>
             <ImageDefault
               src={images.training.mapSur}
               alt={'Drone Mapping and Survey'}
@@ -141,9 +110,7 @@ export default async function Course() {
             <Button
               mt={'xl'}
               variant="gradient"
-              leftSection={
-                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               Enroll For Mapping and Survey
             </Button>
@@ -151,11 +118,7 @@ export default async function Course() {
         </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

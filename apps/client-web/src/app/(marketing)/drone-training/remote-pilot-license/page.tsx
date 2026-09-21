@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Grid,
   GridCol,
@@ -19,13 +19,8 @@ import {
   ListItem,
   Anchor,
 } from '@mantine/core';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
-import {
-  IconArrowRightDashed,
-  IconInfoCircle,
-  IconMessage,
-  IconSchool,
-} from '@tabler/icons-react';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import { IconArrowRightDashed, IconInfoCircle, IconMessage, IconSchool } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
   ICON_SIZE,
@@ -33,17 +28,17 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
 import { courseList, outcomes } from '@repo/constants/courses';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@/components/common/accordions/faq';
 import CtaMain from '@/components/partial/cta/main';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 const course = courseList.find((c) => c.title == courseList[0].title);
 
@@ -82,10 +77,7 @@ export default async function Course() {
 
       <LayoutSection id={linkify(course.title)} padded>
         <Grid gutter={'xl'}>
-          <GridCol
-            span={{ base: 12, md: 6, lg: 6.5 }}
-            order={{ base: 2, md: 1 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
             <IntroSection
               props={{
                 subTitle: 'Who Is This For?',
@@ -99,19 +91,16 @@ export default async function Course() {
                 variant="light"
                 color="blue"
                 title="KCAA Updates"
-                icon={
-                  <IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
                 <Stack gap={'xs'}>
                   <Text inherit component="span">
-                    Main exams are now{' '}
-                    <strong>issued by and conducted at KCAA</strong>.
+                    Main exams are now <strong>issued by and conducted at KCAA</strong>.
                   </Text>
 
                   <Text inherit component="span">
-                    The Radiotelephony course is now part of the RPL course and
-                    is therefore <strong>no longer offered separately</strong>.
+                    The Radiotelephony course is now part of the RPL course and is therefore{' '}
+                    <strong>no longer offered separately</strong>.
                   </Text>
 
                   <div>
@@ -129,8 +118,7 @@ export default async function Course() {
                   </div>
 
                   <Text inherit component="span">
-                    The RPL price is{' '}
-                    <strong>exclusive of medical and exam fees</strong>.
+                    The RPL price is <strong>exclusive of medical and exam fees</strong>.
                   </Text>
 
                   <Stack gap={'xs'} mt={'md'}>
@@ -149,11 +137,7 @@ export default async function Course() {
                     </Group>
 
                     <Group>
-                      <NextLink
-                        inherit
-                        href={'/drone-training/pricing'}
-                        underline="always"
-                      >
+                      <NextLink inherit href={'/drone-training/pricing'} underline="always">
                         <Text inherit component="span">
                           See the updated RPL price structure
                         </Text>
@@ -165,18 +149,16 @@ export default async function Course() {
             </Box>
 
             <Text mt={'md'}>
-              The RPL course is designed for individuals who are interested in
-              starting a career as a drone pilot or for unlicensed drone pilots
-              who want to fly legally. This course is also suitable for
-              individuals who are looking to add drone operation skills to their
+              The RPL course is designed for individuals who are interested in starting a career as
+              a drone pilot or for unlicensed drone pilots who want to fly legally. This course is
+              also suitable for individuals who are looking to add drone operation skills to their
               CVs.
             </Text>
 
             <Text mt={'md'}>
-              By obtaining an RPL, you will be able to legally operate drones in
-              Kenya and potentially pursue a career in various industries,
-              including cinematography, agriculture, and construction, survey
-              and mapping among others.
+              By obtaining an RPL, you will be able to legally operate drones in Kenya and
+              potentially pursue a career in various industries, including cinematography,
+              agriculture, and construction, survey and mapping among others.
             </Text>
 
             {outcomes.rpl.map((item, index) => (
@@ -189,16 +171,8 @@ export default async function Course() {
                 pl={{ md: 'md' }}
                 w={{ md: '80%', lg: '70%' }}
               >
-                <ThemeIcon
-                  size={ICON_WRAPPER_SIZE / 1.5}
-                  mt={2}
-                  color="sec.3"
-                  c={'pri.9'}
-                >
-                  <IconArrowRightDashed
-                    size={ICON_SIZE / 1.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
+                <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                  <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                 </ThemeIcon>
 
                 <Text fz={'sm'}>{item}</Text>
@@ -206,10 +180,7 @@ export default async function Course() {
             ))}
           </GridCol>
 
-          <GridCol
-            span={{ base: 12, md: 6, lg: 5.5 }}
-            order={{ base: 1, md: 2 }}
-          >
+          <GridCol span={{ base: 12, md: 6, lg: 5.5 }} order={{ base: 1, md: 2 }}>
             <ImageDefault
               src={images.training.rpl}
               alt={'RPL Training'}
@@ -230,35 +201,15 @@ export default async function Course() {
 
         <Grid align="center" gutter={'xl'} mt={SECTION_SPACING / 2}>
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <Card
-              bg={'pri.9'}
-              c={'white'}
-              withBorder
-              shadow="xs"
-              padding={'xl'}
-            >
+            <Card bg={'pri.9'} c={'white'} withBorder shadow="xs" padding={'xl'}>
               <Text>Part I: Theory</Text>
 
               <Divider color="sec.3" w={'33%'} mt={'md'} />
 
               {rplModules.map((item, index) => (
-                <Group
-                  key={index}
-                  gap={'xs'}
-                  wrap="nowrap"
-                  align="start"
-                  mt={'md'}
-                >
-                  <ThemeIcon
-                    size={ICON_WRAPPER_SIZE / 1.5}
-                    mt={2}
-                    color="sec.3"
-                    c={'pri.9'}
-                  >
-                    <IconArrowRightDashed
-                      size={ICON_SIZE / 1.5}
-                      stroke={ICON_STROKE_WIDTH}
-                    />
+                <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                  <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                    <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                   </ThemeIcon>
 
                   <Text fz={'sm'}>{item}</Text>
@@ -277,8 +228,8 @@ export default async function Course() {
             </Title>
 
             <Text>
-              One on One instruction with professional flight instructors with a
-              recommendation of 5 hours of flight time.
+              One on One instruction with professional flight instructors with a recommendation of 5
+              hours of flight time.
             </Text>
 
             <Title order={3} fz={'md'} mt={'xl'}>
@@ -286,10 +237,9 @@ export default async function Course() {
             </Title>
 
             <Text>
-              Students undergo a checkout flight by a qualified designated
-              flight examiner (DFE) where their knowledge of the rules of the
-              air, regulations, airmanship & flight ability will be tested and
-              evaluated in accordance with the KCAA&apos;s Manual of
+              Students undergo a checkout flight by a qualified designated flight examiner (DFE)
+              where their knowledge of the rules of the air, regulations, airmanship & flight
+              ability will be tested and evaluated in accordance with the KCAA&apos;s Manual of
               Implementing Standards.
             </Text>
 
@@ -298,8 +248,8 @@ export default async function Course() {
             </Title>
 
             <Text>
-              Passing this test will qualify our students to complete an
-              application for a Remote Pilot. License (RPL) at KCAA.
+              Passing this test will qualify our students to complete an application for a Remote
+              Pilot. License (RPL) at KCAA.
             </Text>
           </GridCol>
         </Grid>
@@ -316,9 +266,7 @@ export default async function Course() {
             <Button
               mt={'xl'}
               variant="gradient"
-              leftSection={
-                <IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               Enroll For RPL
             </Button>
@@ -326,11 +274,7 @@ export default async function Course() {
         </Group>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

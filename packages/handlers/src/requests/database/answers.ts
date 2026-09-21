@@ -1,15 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import {
-  AnswerCreate,
-  AnswerGet,
-  AnswerUpdate,
-} from '@repo/types/models/answer';
+import { AnswerCreate, AnswerGet, AnswerUpdate } from '@repo/types/models/answer';
 import { apiCall } from './fetch';
 
 const segment = 'answers';
@@ -24,7 +13,7 @@ let currentController: AbortController | null = null;
 export const answersUpdate = async (
   apiUrl: string,
   answers: AnswerGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
@@ -35,7 +24,7 @@ export const answersUpdate = async (
       'PUT',
       apiUrl,
       { answers, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

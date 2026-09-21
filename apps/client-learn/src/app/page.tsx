@@ -1,12 +1,5 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import LayoutPage from '@repo/components/layout/page';
-import LayoutMain from '@repo/components/layout/main';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutMain from '@repo/ui/layout/main';
 import React from 'react';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { Metadata } from 'next';

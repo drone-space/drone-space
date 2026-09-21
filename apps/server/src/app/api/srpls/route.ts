@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { SrplGet } from '@repo/types/models/srpl';
 import { NextRequest, NextResponse } from 'next/server';
@@ -18,21 +11,17 @@ export async function GET() {
 
     return NextResponse.json(
       { items: srplRecords },
-      { status: 200, statusText: 'Srpls Retrieved' }
+      { status: 200, statusText: 'Srpls Retrieved' },
     );
   } catch (error) {
     console.error('---> route handler error (get srpls):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function PUT(request: NextRequest) {
   try {
-    const { srpls, deletedIds }: { srpls: SrplGet[]; deletedIds?: string[] } =
-      await request.json();
+    const { srpls, deletedIds }: { srpls: SrplGet[]; deletedIds?: string[] } = await request.json();
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
@@ -54,21 +43,15 @@ export async function PUT(request: NextRequest) {
           created_at: new Date(srpl.created_at),
           updated_at: new Date(srpl.updated_at),
         },
-      })
+      }),
     );
 
     // Run all operations in one transaction
     const updateSrpls = await prisma.$transaction(operations);
 
-    return NextResponse.json(
-      { items: updateSrpls },
-      { status: 200, statusText: 'Srpls Updated' }
-    );
+    return NextResponse.json({ items: updateSrpls }, { status: 200, statusText: 'Srpls Updated' });
   } catch (error) {
     console.error('---> route handler error (update srpls):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

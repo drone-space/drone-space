@@ -1,17 +1,9 @@
 'use client';
 
 import React from 'react';
-import {
-  Box,
-  Grid,
-  GridCol,
-  Loader,
-  Stack,
-  Text,
-  ThemeIcon,
-} from '@mantine/core';
+import { Box, Grid, GridCol, Loader, Stack, Text, ThemeIcon } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
-import CardAttemptStudentView from '@repo/components/common/cards/attempt/student/view';
+import CardAttemptStudentView from '@repo/ui/common/cards/attempt/student/view';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -42,8 +34,7 @@ export default function Many() {
         ) : !userAttempts?.length ? (
           <Stack>
             <Text inherit c={'dimmed'} fz={'sm'}>
-              No attempts found. Attempts will appear here when you take
-              quizzes.
+              No attempts found. Attempts will appear here when you take quizzes.
             </Text>
           </Stack>
         ) : (

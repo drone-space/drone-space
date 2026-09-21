@@ -16,9 +16,9 @@ import classes from './main.module.scss';
 import { PostGet } from '@repo/types/models/post';
 import { linkify, processUrl } from '@repo/utilities/url';
 import { getRegionalDate } from '@repo/utilities/date-time';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
 import { COMPANY_NAME } from '@repo/constants/app';
@@ -31,13 +31,7 @@ export default function Main({ post }: { post: PostGet }) {
   const pathCategory = `/blog/categories/${linkify(categoryCurrent?.title || '')}-${categoryCurrent?.id}`;
 
   return (
-    <Card
-      className={classes.card}
-      h={'100%'}
-      padding={0}
-      radius={0}
-      pb={SECTION_SPACING / 2}
-    >
+    <Card className={classes.card} h={'100%'} padding={0} radius={0} pb={SECTION_SPACING / 2}>
       <div
         className={classes.image}
         style={{
@@ -66,12 +60,7 @@ export default function Main({ post }: { post: PostGet }) {
 
       <Box mt={'lg'}>
         <Stack>
-          <Title
-            order={3}
-            fz={{ base: 'xl' }}
-            lineClamp={2}
-            maw={{ md: '80%' }}
-          >
+          <Title order={3} fz={{ base: 'xl' }} lineClamp={2} maw={{ md: '80%' }}>
             <NextLink underline="hover" inherit href={pathPost} c={'inherit'}>
               {post.title}
             </NextLink>

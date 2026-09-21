@@ -43,9 +43,9 @@ import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
 import { cleanPaths } from '@repo/utilities/array';
 import { Button, Group, Text } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ModalDownloadDocument from '@repo/components/common/modals/download/document';
-import ModalContactService from '@repo/components/common/modals/contact/service';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
+import ModalDownloadDocument from '@repo/ui/common/modals/download/document';
+import ModalContactService from '@repo/ui/common/modals/contact/service';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
 
 export const shopLinks = [
   {
@@ -278,8 +278,8 @@ export const links = {
         <Group justify="space-between" wrap="nowrap" align="start">
           <div>
             <Text inherit fz={'sm'}>
-              Get a quick overview of our courses, pricing table, and enrollment
-              requirements in our brochure.
+              Get a quick overview of our courses, pricing table, and enrollment requirements in our
+              brochure.
             </Text>
           </div>
 
@@ -288,12 +288,7 @@ export const links = {
               <Button
                 variant="gradient"
                 size="xs"
-                leftSection={
-                  <IconDownload
-                    size={ICON_SIZE - 4}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
+                leftSection={<IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />}
               >
                 Get Brochure
               </Button>
@@ -310,8 +305,8 @@ export const links = {
         <Group justify="space-between" wrap="nowrap" align="start">
           <div>
             <Text inherit fz={'sm'}>
-              Discover in-depth details about our mission, expertise, and
-              accomplishments in our company profile.
+              Discover in-depth details about our mission, expertise, and accomplishments in our
+              company profile.
             </Text>
           </div>
 
@@ -320,12 +315,7 @@ export const links = {
               <Button
                 variant="gradient"
                 size="xs"
-                leftSection={
-                  <IconDownload
-                    size={ICON_SIZE - 4}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
-                }
+                leftSection={<IconDownload size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />}
               >
                 Get Company Profile
               </Button>
@@ -534,12 +524,9 @@ export const links = {
   ],
 };
 
-const mainLinks = [
-  ...links.navbar,
-  ...shopLinks,
-  ...trainingLinks,
-  ...serviceLinks,
-].map((l) => l.link);
+const mainLinks = [...links.navbar, ...shopLinks, ...trainingLinks, ...serviceLinks].map(
+  (l) => l.link,
+);
 
 const subLinks: string[] = [];
 
@@ -563,14 +550,9 @@ links.footer.map((li) => {
 
 export const unprotectedRoutes = [
   ...cleanPaths(
-    [
-      '/',
-      ...mainLinks,
-      ...subLinks,
-      ...footerLinks,
-      '/legal/terms',
-      '/legal/policy',
-    ].filter((l) => !l.startsWith('/#'))
+    ['/', ...mainLinks, ...subLinks, ...footerLinks, '/legal/terms', '/legal/policy'].filter(
+      (l) => !l.startsWith('/#'),
+    ),
   ),
 ];
 

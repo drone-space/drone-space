@@ -1,17 +1,17 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import { Grid, GridCol, Text, Button } from '@mantine/core';
-import ModalContactService from '@repo/components/common/modals/contact/service';
+import ModalContactService from '@repo/ui/common/modals/contact/service';
 import { IconMessage } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import services from '@/data/services';
 import { GetLayout } from '../../faq/page';
@@ -65,18 +65,16 @@ export default async function Service() {
             />
 
             <Text mt={'md'}>
-              By combining innovative technologies with extensive inspection
-              experience, our inspectors perform thorough examinations of solar
-              panels as well as associated wiring and hardware in a
-              professional, safe, and efficient manner.
+              By combining innovative technologies with extensive inspection experience, our
+              inspectors perform thorough examinations of solar panels as well as associated wiring
+              and hardware in a professional, safe, and efficient manner.
             </Text>
 
             <Text mt={'md'}>
-              Our field employees have access to FLIR (Infra-Red Cameras) as
-              well as Unmanned Aircraft Systems with Infra-red capabilities
-              solution that enables customers to watch inspections. This
-              facilitates real-time responses as opposed to long email chains
-              that take up valuable time and data.
+              Our field employees have access to FLIR (Infra-Red Cameras) as well as Unmanned
+              Aircraft Systems with Infra-red capabilities solution that enables customers to watch
+              inspections. This facilitates real-time responses as opposed to long email chains that
+              take up valuable time and data.
             </Text>
 
             <ModalContactService
@@ -90,9 +88,7 @@ export default async function Service() {
               <Button
                 mt={'xl'}
                 variant="outline"
-                leftSection={
-                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                leftSection={<IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
                 <Text component="span" inherit>
                   Inquire or Request a Quote
@@ -112,11 +108,7 @@ export default async function Service() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

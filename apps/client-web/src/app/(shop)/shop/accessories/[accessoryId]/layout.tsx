@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutMain from '@repo/components/layout/main';
+import LayoutMain from '@repo/ui/layout/main';
 import { linkify } from '@repo/utilities/url';
 import accessories from '@repo/constants/accessories';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';

@@ -6,7 +6,7 @@ import { Stack } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import classes from './image.module.scss';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 
 export default function Image({ data }: { data: string[] }) {
   const autoplay = useRef(Autoplay({ delay: 4000 }));

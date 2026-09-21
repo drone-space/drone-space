@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { QuizGet } from '@repo/types/models/quiz';
@@ -23,14 +16,11 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       { items: quizRecords },
-      { status: 200, statusText: 'Quizzes Retrieved' }
+      { status: 200, statusText: 'Quizzes Retrieved' },
     );
   } catch (error) {
     console.error('---> route handler error (get quizzes):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -64,7 +54,7 @@ export async function PUT(request: NextRequest) {
           created_at: new Date(quiz.created_at),
           updated_at: new Date(quiz.updated_at),
         },
-      })
+      }),
     );
 
     // Run all operations in one transaction
@@ -72,13 +62,10 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json(
       { items: updateQuizzes },
-      { status: 200, statusText: 'Quizzes Updated' }
+      { status: 200, statusText: 'Quizzes Updated' },
     );
   } catch (error) {
     console.error('---> route handler error (update quizzes):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

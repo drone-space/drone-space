@@ -22,17 +22,10 @@ import {
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
 } from '@repo/constants/sizes';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
 
-export default function Basic({
-  data,
-  offset,
-}: {
-  data: typeUnit;
-  offset?: boolean;
-}) {
-  const courseTitle =
-    data.title.full == 'Multi-Rotor' ? 'RPL' : data.title.full;
+export default function Basic({ data, offset }: { data: typeUnit; offset?: boolean }) {
+  const courseTitle = data.title.full == 'Multi-Rotor' ? 'RPL' : data.title.full;
 
   return (
     <Card
@@ -69,9 +62,7 @@ export default function Basic({
             Kes.{' '}
             <Text component="span" inherit fz={28} fw={'bold'}>
               <NumberFormatter
-                value={
-                  data.price?.discount ? data.price.discount : data.price?.full
-                }
+                value={data.price?.discount ? data.price.discount : data.price?.full}
                 thousandSeparator
               />
               /-
@@ -103,17 +94,14 @@ export default function Basic({
                 : 'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
             }
           >
-            {data.title.full == 'Multi-Rotor'
-              ? 'Remote Pilot License (RPL)'
-              : data.title.full}
+            {data.title.full == 'Multi-Rotor' ? 'Remote Pilot License (RPL)' : data.title.full}
           </Title>
 
           {data.featured && (
             <>
               <Stack gap={'xs'} fz={'sm'} c={'dimmed'} maw={{ md: '80%' }}>
                 <Text inherit component="span">
-                  Radiotelephony is now part of RPL and therefore no longer
-                  offered separately.
+                  Radiotelephony is now part of RPL and therefore no longer offered separately.
                 </Text>
 
                 <div>
@@ -134,21 +122,13 @@ export default function Basic({
                     <ListItem>
                       Medical fees:{' '}
                       <Text inherit component="span" fw={500} c={'sec.3'}>
-                        <NumberFormatter
-                          value={10600}
-                          thousandSeparator
-                          prefix="Kes. "
-                        />
+                        <NumberFormatter value={10600} thousandSeparator prefix="Kes. " />
                       </Text>
                     </ListItem>
                     <ListItem>
                       RPL exam fees:{' '}
                       <Text inherit component="span" fw={500} c={'sec.3'}>
-                        <NumberFormatter
-                          value={4000}
-                          thousandSeparator
-                          prefix="Kes. "
-                        />
+                        <NumberFormatter value={4000} thousandSeparator prefix="Kes. " />
                       </Text>{' '}
                       (paid to KCAA)
                     </ListItem>
@@ -158,11 +138,7 @@ export default function Basic({
                         <ListItem>
                           English Proficiency exam:{' '}
                           <Text inherit component="span" fw={500} c={'sec.3'}>
-                            <NumberFormatter
-                              value={3000}
-                              thousandSeparator
-                              prefix="Kes. "
-                            />
+                            <NumberFormatter value={3000} thousandSeparator prefix="Kes. " />
                           </Text>{' '}
                           (paid to KCAA)
                         </ListItem>
@@ -170,11 +146,7 @@ export default function Basic({
                         <ListItem>
                           Oral Radiotelephony exam:{' '}
                           <Text inherit component="span" fw={500} c={'sec.3'}>
-                            <NumberFormatter
-                              value={2000}
-                              thousandSeparator
-                              prefix="Kes. "
-                            />
+                            <NumberFormatter value={2000} thousandSeparator prefix="Kes. " />
                           </Text>{' '}
                           (paid to KCAA)
                         </ListItem>
@@ -200,8 +172,8 @@ export default function Basic({
           {data.advanced && (
             <>
               <Text w={{ md: '75%' }} fz={'sm'} mb={'md'} c={'dimmed'}>
-                For RPL hoders seeking to enhance their abilities and include{' '}
-                {data.title.full} to their skillset.
+                For RPL hoders seeking to enhance their abilities and include {data.title.full} to
+                their skillset.
               </Text>
             </>
           )}
@@ -217,11 +189,7 @@ export default function Basic({
                 : 'light-dark(var(--mantine-color-text),var(--mantine-color-text))'
             }
             icon={
-              <ThemeIcon
-                size={ICON_WRAPPER_SIZE / 1.5}
-                color="sec.3"
-                c={'pri.9'}
-              >
+              <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} color="sec.3" c={'pri.9'}>
                 <IconCheck size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
               </ThemeIcon>
             }

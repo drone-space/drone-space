@@ -13,7 +13,7 @@ import {
   Title,
 } from '@mantine/core';
 import React from 'react';
-import IntroSection from '@repo/components/layout/intros/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import {
   Icon,
   IconArrowDown,
@@ -25,18 +25,14 @@ import {
   IconClockDown,
   IconReportAnalytics,
 } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
 import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import CardAttemptStudentView from '@repo/components/common/cards/attempt/student/view';
+import CardAttemptStudentView from '@repo/ui/common/cards/attempt/student/view';
 import { sortArray } from '@repo/utilities/array';
 import { Order } from '@repo/types/enums';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { Status } from '@repo/types/models/enums';
 import { isThisWeek, isToday } from '@repo/utilities/date-time';
 import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
@@ -53,14 +49,11 @@ export default function Student() {
   const answers = useStoreAnswer((s) => s.answers);
 
   const userAttempts = attempts?.filter((ai) => ai.profile_id === session?.id);
-  const attemptsComplete = userAttempts?.filter(
-    (aci) => aci.status === Status.COMPLETE
-  );
+  const attemptsComplete = userAttempts?.filter((aci) => aci.status === Status.COMPLETE);
 
   // --- HELPER TO COMPUTE SCORE FOR A SPECIFIC ATTEMPT ---
   const getAttemptScore = (attemptId: string, quizId: string): number => {
-    const attemptAnswers =
-      answers?.filter((an) => an.attempt_id === attemptId) || [];
+    const attemptAnswers = answers?.filter((an) => an.attempt_id === attemptId) || [];
     if (attemptAnswers.length === 0) return 0;
 
     const correctCount = attemptAnswers.filter((aai) => {
@@ -68,8 +61,7 @@ export default function Student() {
       return answerOption?.correct;
     }).length;
 
-    const quizQuestionsQuiz =
-      quizQuestions?.filter((qqqi) => qqqi.quiz_id === quizId) || [];
+    const quizQuestionsQuiz = quizQuestions?.filter((qqqi) => qqqi.quiz_id === quizId) || [];
     const totalQuestions = quizQuestionsQuiz.length || 1;
 
     return Math.round((correctCount / totalQuestions) * 100);
@@ -141,8 +133,7 @@ export default function Student() {
     ],
   };
 
-  const loading =
-    quizzes === undefined || attempts === undefined || session === undefined;
+  const loading = quizzes === undefined || attempts === undefined || session === undefined;
 
   return (
     <div>
@@ -214,23 +205,18 @@ export default function Student() {
               ) : !attempts?.length ? (
                 <Stack mih={500}>
                   <Text c={'dimmed'} fz={'sm'}>
-                    No attempts found. Attempts will appear here when you take
-                    quizzes.
+                    No attempts found. Attempts will appear here when you take quizzes.
                   </Text>
                 </Stack>
               ) : (
                 <Grid>
-                  {sortArray(
-                    attemptsComplete || [],
-                    (i) => i.created_at,
-                    Order.DESCENDING
-                  )?.map(
+                  {sortArray(attemptsComplete || [], (i) => i.created_at, Order.DESCENDING)?.map(
                     (ai, i) =>
                       i < 3 && (
                         <GridCol key={ai.id} span={12}>
                           <CardAttemptStudentView props={{ attempt: ai }} />
                         </GridCol>
-                      )
+                      ),
                   )}
                 </Grid>
               )}
@@ -257,9 +243,7 @@ function CardStat({
     <Card
       withBorder
       p={{ base: 'md', md: 'lg' }}
-      bg={
-        'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-      }
+      bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
     >
       <Stack>
         <Stack gap={0}>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import FormQuestion from '@repo/components/form/question';
+import FormQuestion from '@repo/ui/form/question';
 import { Box, Fieldset, Grid, GridCol } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 

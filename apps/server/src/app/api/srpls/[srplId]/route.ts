@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { SrplGet } from '@repo/types/models/srpl';
 import { NextRequest, NextResponse } from 'next/server';
@@ -14,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ srplId: string }> }
+  { params }: { params: Promise<{ srplId: string }> },
 ) {
   try {
     const { srplId } = await params;
@@ -23,16 +16,10 @@ export async function GET(
       where: { id: srplId },
     });
 
-    return NextResponse.json(
-      { item: srplRecord },
-      { status: 200, statusText: 'Srpl Retrieved' }
-    );
+    return NextResponse.json({ item: srplRecord }, { status: 200, statusText: 'Srpl Retrieved' });
   } catch (error) {
     console.error('---> route handler error (get srpls):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -60,22 +47,16 @@ export async function POST(request: NextRequest) {
       return newSrpl;
     });
 
-    return NextResponse.json(
-      { item: resolvedSrpl },
-      { status: 200, statusText: 'Srpl Created' }
-    );
+    return NextResponse.json({ item: resolvedSrpl }, { status: 200, statusText: 'Srpl Created' });
   } catch (error) {
     console.error('---> route handler error (create srpls):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ srplId: string }> }
+  { params }: { params: Promise<{ srplId: string }> },
 ) {
   try {
     const { srplId } = await params;
@@ -87,15 +68,9 @@ export async function PUT(
       data: srpl,
     });
 
-    return NextResponse.json(
-      { item: updateSrpl },
-      { status: 200, statusText: 'Srpl Updated' }
-    );
+    return NextResponse.json({ item: updateSrpl }, { status: 200, statusText: 'Srpl Updated' });
   } catch (error) {
     console.error('---> route handler error (update srpls):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

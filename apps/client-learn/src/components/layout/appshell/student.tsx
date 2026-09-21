@@ -22,19 +22,15 @@ import {
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
 import { useStoreSyncStatus } from '@repo/libraries/zustand/stores/sync-status';
-import ButtonAppshellNavbar from '@repo/components/common/buttons/appshell/navbar';
-import MenuUser from '@repo/components/common/menus/user';
-import NextLink from '@repo/components/common/anchor/next-link';
+import ButtonAppshellNavbar from '@repo/ui/common/buttons/appshell/navbar';
+import MenuUser from '@repo/ui/common/menus/user';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { COMPANY_NAME } from '@repo/constants/app';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
-import IndicatorNetworkStatus from '@repo/components/common/indicators/network-status';
-import AvatarMain from '@repo/components/common/avatars/main';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
+import IndicatorNetworkStatus from '@repo/ui/common/indicators/network-status';
+import AvatarMain from '@repo/ui/common/avatars/main';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -45,8 +41,8 @@ import {
   IconReportAnalytics,
 } from '@tabler/icons-react';
 import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import LayoutSection from '@repo/components/layout/section';
-import IndicatorTheme from '@repo/components/common/indicators/theme';
+import LayoutSection from '@repo/ui/layout/section';
+import IndicatorTheme from '@repo/ui/common/indicators/theme';
 
 export default function Student({ children }: { children: React.ReactNode }) {
   const desktop = useMediaQuery('(min-width: 62em)');
@@ -72,15 +68,8 @@ export default function Student({ children }: { children: React.ReactNode }) {
         <Navbar />
       </AppShellNavbar>
 
-      <AppShellMain
-        bg={
-          'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'
-        }
-      >
-        <ScrollArea
-          h={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT}px)`}
-          scrollbars={'y'}
-        >
+      <AppShellMain bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}>
+        <ScrollArea h={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT}px)`} scrollbars={'y'}>
           <Box mih={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT + 61.7 + 1}px)`}>
             <LayoutSection id={'content-app-student'} padded>
               {children}
@@ -143,17 +132,12 @@ function Navbar() {
   return (
     <Box p={'sm'}>
       <Paper
-        bg={
-          'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))'
-        }
+        bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))'}
         p={5}
         withBorder
       >
         <Group>
-          <MenuUser
-            transitionProps={{ transition: 'pop-top-left' }}
-            position={'bottom-start'}
-          >
+          <MenuUser transitionProps={{ transition: 'pop-top-left' }} position={'bottom-start'}>
             <Group gap={'xs'}>
               <AvatarMain
                 size={
@@ -183,9 +167,7 @@ function Navbar() {
           component={Link}
           href={'/'}
           label={'Back Home'}
-          leftSection={
-            <IconChevronLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          }
+          leftSection={<IconChevronLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           styles={{
             root: {
               borderRadius: 'var(--mantine-radius-xl)',
@@ -194,10 +176,7 @@ function Navbar() {
         />
 
         {navlinksStudent.map((nli) => {
-          const active =
-            nli.link == '/admin'
-              ? pathname == nli.link
-              : pathname.includes(nli.link);
+          const active = nli.link == '/admin' ? pathname == nli.link : pathname.includes(nli.link);
 
           return (
             <NavLink
@@ -206,9 +185,7 @@ function Navbar() {
               href={nli.link}
               label={nli.label}
               active={active}
-              leftSection={
-                <nli.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<nli.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               styles={{
                 root: {
                   borderRadius: 'var(--mantine-radius-xl)',

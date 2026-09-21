@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { NextRequest, NextResponse } from 'next/server';
 import { emailSendInquiry } from '@repo/libraries/wrappers/email';
 import { emailContactAdd } from '@repo/services/api/email/contacts';
@@ -26,13 +19,10 @@ export async function POST(request: NextRequest) {
         addContact,
         message: 'Email sent successfully',
       },
-      { status: 200, statusText: 'Email Sent' }
+      { status: 200, statusText: 'Email Sent' },
     );
   } catch (error) {
     console.error('---> route handler error (send inquiry):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

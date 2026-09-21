@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { NextResponse, type NextRequest } from 'next/server';
 import { AUTH_URLS } from '@repo/constants/paths';
 import { authEmail } from '@repo/services/auth/email';
@@ -25,7 +18,7 @@ export async function GET(request: NextRequest) {
     console.error('---> route handler error (callback email):', error);
 
     return NextResponse.redirect(
-      `${baseUrl + AUTH_URLS.ERROR}?error=${'Authentication Error'}&message=${encodeURIComponent((error as Error).message)}`
+      `${baseUrl + AUTH_URLS.ERROR}?error=${'Authentication Error'}&message=${encodeURIComponent((error as Error).message)}`,
     );
   }
 }

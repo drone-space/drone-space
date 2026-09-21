@@ -1,20 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
-import {
-  Grid,
-  GridCol,
-  Tabs,
-  TabsList,
-  TabsPanel,
-  TabsTab,
-} from '@mantine/core';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import { Grid, GridCol, Tabs, TabsList, TabsPanel, TabsTab } from '@mantine/core';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import PartialGallery from '@/components/partial/gallery';
 import tabs from '@/data/tabs';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 
 export const dynamic = 'force-static';
@@ -66,13 +59,7 @@ export default async function Gallery() {
             tab: { border: `2px solid var(--mantine-color-gray-4)` },
           }}
         >
-          <Grid
-            component={TabsList}
-            grow
-            mb={'xl'}
-            justify="center"
-            gutter={'xs'}
-          >
+          <Grid component={TabsList} grow mb={'xl'} justify="center" gutter={'xs'}>
             <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
               <TabsTab w={'100%'} value="conference">
                 Conference

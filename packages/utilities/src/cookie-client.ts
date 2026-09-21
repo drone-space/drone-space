@@ -1,12 +1,5 @@
 'use client';
 
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 type CookieOptions = {
   expiryInSeconds: number;
   sameSite?: 'Strict' | 'Lax' | 'None';
@@ -18,11 +11,7 @@ type CookieOptions = {
  * Sets a cookie in the browser with optional secure flag.
  * Automatically JSON-stringifies objects and encodes values.
  */
-export const setCookieClient = (
-  name: string,
-  value: any,
-  options: CookieOptions
-): void => {
+export const setCookieClient = (name: string, value: any, options: CookieOptions): void => {
   if (typeof document === 'undefined') return;
 
   const cookieValue =
@@ -30,9 +19,7 @@ export const setCookieClient = (
       ? encodeURIComponent(JSON.stringify(value))
       : encodeURIComponent(value);
 
-  const expires = new Date(
-    Date.now() + options.expiryInSeconds * 1000
-  ).toUTCString();
+  const expires = new Date(Date.now() + options.expiryInSeconds * 1000).toUTCString();
   const sameSite = options.sameSite ?? 'Strict';
   const path = options.path ?? '/';
   const secure = options.secure ? '; Secure' : '';
@@ -47,8 +34,12 @@ export const setCookieClient = (
 export const getCookieClient = <T = string>(name: string): T | null => {
   if (typeof document === 'undefined') return null;
 
-  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  if (!match) return null;
+  // Escaping the name is safer in case it contains special regex characters
+  const escapedName = name.replace(/([.*+?^${}()|[\]\\])/g, '\\$1');
+  const match = document.cookie.match(new RegExp('(^| )' + escapedName + '=([^;]+)'));
+
+  // 1. Fix: Ensure match exists before accessing index 2
+  if (!match || !match[2]) return null;
 
   const value = decodeURIComponent(match[2]);
 

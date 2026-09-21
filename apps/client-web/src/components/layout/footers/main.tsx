@@ -16,15 +16,9 @@ import {
 } from '@mantine/core';
 import { images } from '@repo/constants/images';
 import classes from './main.module.scss';
-import {
-  links,
-  serviceLinks,
-  shopLinks,
-  socialLinks,
-  trainingLinks,
-} from '@/data/links';
+import { links, serviceLinks, shopLinks, socialLinks, trainingLinks } from '@/data/links';
 import NextImage from 'next/image';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -32,9 +26,9 @@ import {
   SECTION_SPACING,
 } from '@repo/constants/sizes';
 import { IconCircleFilled, IconTicket } from '@tabler/icons-react';
-import ImageDefault from '@repo/components/common/images/default';
-import ModalConference from '@repo/components/common/modals/conference';
-import NextLink from '@repo/components/common/anchor/next-link';
+import ImageDefault from '@repo/ui/common/images/default';
+import ModalConference from '@repo/ui/common/modals/conference';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { COMPANY_NAME } from '@repo/constants/app';
 
 export default function Main() {
@@ -75,11 +69,7 @@ export default function Main() {
             <List listStyleType="none" spacing={'xs'}>
               {linkSet.links.map((link, index) => (
                 <ListItem key={index} className={classes.listItem}>
-                  <NextLink
-                    href={link.link}
-                    className={classes.link}
-                    fz={{ base: 'sm', xs: 'md' }}
-                  >
+                  <NextLink href={link.link} className={classes.link} fz={{ base: 'sm', xs: 'md' }}>
                     {(link as any).labelShort || link.label}
                   </NextLink>
                 </ListItem>
@@ -103,9 +93,7 @@ export default function Main() {
               size={'xs'}
               color="yellow.4"
               c="var(--mantine-color-dark-6)"
-              leftSection={
-                <IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />
-              }
+              leftSection={<IconTicket size={ICON_SIZE - 2} stroke={ICON_STROKE_WIDTH} />}
             >
               AI Conference
             </Button>
@@ -126,12 +114,7 @@ export default function Main() {
         {socials}
       </Flex>
 
-      <Divider
-        mb={'xl'}
-        mt={'md'}
-        color="var(--mantine-color-gray-5)"
-        opacity={0.25}
-      />
+      <Divider mb={'xl'} mt={'md'} color="var(--mantine-color-gray-5)" opacity={0.25} />
 
       <Stack ta={{ base: 'center', md: 'start' }}>
         <Group justify={'center'} gap={'md'} fz={'sm'} fw={500}>

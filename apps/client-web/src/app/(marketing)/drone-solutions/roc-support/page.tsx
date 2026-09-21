@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   Grid,
   GridCol,
@@ -14,19 +14,15 @@ import {
   Button,
   Stack,
 } from '@mantine/core';
-import ModalContactService from '@repo/components/common/modals/contact/service';
+import ModalContactService from '@repo/ui/common/modals/contact/service';
 import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-} from '@repo/constants/sizes';
-import IntroSection from '@repo/components/layout/intros/section';
-import ImageDefault from '@repo/components/common/images/default';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import IntroSection from '@repo/ui/layout/intros/section';
+import ImageDefault from '@repo/ui/common/images/default';
 import { images } from '@repo/constants/images';
 import { linkify } from '@repo/utilities/url';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import { COMPANY_NAME } from '@repo/constants/app';
 import services from '@/data/services';
 import { GetLayout } from '../../faq/page';
@@ -80,32 +76,16 @@ export default async function Service() {
             />
 
             <Text mt={'xl'}>
-              We are the holders of ROC 002. We support our clients&apos;
-              commercial operations through our ROC at affordable rates to
-              ensure safety and legal compliance. Our ROC enables you carry out
-              missions in a legal and compliant manner with significant cost
+              We are the holders of ROC 002. We support our clients&apos; commercial operations
+              through our ROC at affordable rates to ensure safety and legal compliance. Our ROC
+              enables you carry out missions in a legal and compliant manner with significant cost
               savings on setup costs.
             </Text>
 
             {features.roc.map((item, index) => (
-              <Group
-                key={index}
-                gap={'xs'}
-                wrap="nowrap"
-                align="start"
-                pl={{ md: 'md' }}
-                mt={'xs'}
-              >
-                <ThemeIcon
-                  size={ICON_WRAPPER_SIZE / 1.5}
-                  mt={2}
-                  color="sec.3"
-                  c={'pri.9'}
-                >
-                  <IconArrowRightDashed
-                    size={ICON_SIZE / 1.5}
-                    stroke={ICON_STROKE_WIDTH}
-                  />
+              <Group key={index} gap={'xs'} wrap="nowrap" align="start" pl={{ md: 'md' }} mt={'xs'}>
+                <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                  <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                 </ThemeIcon>
 
                 <Text fz={'sm'}>{item}</Text>
@@ -123,9 +103,7 @@ export default async function Service() {
               <Button
                 mt={'xl'}
                 variant="outline"
-                leftSection={
-                  <IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-                }
+                leftSection={<IconMessage size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
                 <Text component="span" inherit>
                   Inquire or Request a Quote
@@ -145,11 +123,7 @@ export default async function Service() {
         </Grid>
       </LayoutSection>
 
-      <LayoutSection
-        id="pricing-training-faq"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>
         <GetLayout
           props={{
             header: (

@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 export interface MinSec {
   minutes: string;
   seconds: string;
@@ -69,7 +62,7 @@ export const formatDuration = (
   options: {
     compact?: boolean; // true → "01:01:01", false → "1h 1m 1s"
     includeMs?: boolean; // include milliseconds if < 1 second
-  } = {}
+  } = {},
 ): string => {
   if (milliseconds < 0 || !Number.isFinite(milliseconds)) return '0s';
 
@@ -111,7 +104,7 @@ export const formatAutoDuration = (
     decimals?: number; // how many decimals to include (default = 1)
     short?: boolean; // use abbreviated units (e.g., "2h" instead of "2 hours")
     maxUnit?: 'w' | 'd' | 'h' | 'm' | 's'; // limit the largest allowed unit
-  } = {}
+  } = {},
 ): string => {
   if (milliseconds < 0 || !Number.isFinite(milliseconds)) return '0s';
 
@@ -126,13 +119,10 @@ export const formatAutoDuration = (
   ];
 
   // Optionally restrict the upper bound
-  const filteredUnits = maxUnit
-    ? units.slice(units.findIndex((u) => u.label === maxUnit))
-    : units;
+  const filteredUnits = maxUnit ? units.slice(units.findIndex((u) => u.label === maxUnit)) : units;
 
   // Find the best fitting unit
-  const unit =
-    filteredUnits.find((u) => milliseconds >= u.value) ?? filteredUnits.at(-1)!;
+  const unit = filteredUnits.find((u) => milliseconds >= u.value) ?? filteredUnits.at(-1)!;
 
   const amount = milliseconds / unit.value;
   const formatted = amount.toFixed(decimals).replace(/\.0+$/, '');
@@ -146,19 +136,13 @@ export const formatAutoDuration = (
  * Splits a total sum into a weighted partition array.
  * Example: getPartitions(3, 2, 100) → [14.29, 28.57, 57.14]
  */
-export const getPartitions = (
-  count: number,
-  multiplier: number,
-  totalSum: number
-): number[] => {
+export const getPartitions = (count: number, multiplier: number, totalSum: number): number[] => {
   if (count <= 0 || multiplier <= 0 || totalSum <= 0) {
     throw new Error('All inputs must be positive numbers.');
   }
 
   // Generate weights (e.g., 1, multiplier, multiplier², ...)
-  const weights = Array.from({ length: count }, (_, i) =>
-    Math.pow(multiplier, i)
-  );
+  const weights = Array.from({ length: count }, (_, i) => Math.pow(multiplier, i));
 
   const totalWeight = weights.reduce((acc, w) => acc + w, 0);
   const scale = totalSum / totalWeight;
@@ -187,10 +171,7 @@ export const getPartitions = (
  * @param decimalPlaces - number of decimals to preserve
  * @returns number rounded and truncated
  */
-export const roundAndTruncate = (
-  value: number,
-  decimalPlaces: number
-): number => {
+export const roundAndTruncate = (value: number, decimalPlaces: number): number => {
   if (decimalPlaces < 0) {
     throw new Error('Decimal places must be a non-negative integer.');
   }
@@ -210,10 +191,7 @@ export const roundAndTruncate = (
  * @param decimalPlaces - number of decimals to preserve
  * @returns string with fixed decimals
  */
-export const roundAndFormat = (
-  value: number,
-  decimalPlaces: number
-): string => {
+export const roundAndFormat = (value: number, decimalPlaces: number): string => {
   if (decimalPlaces < 0) {
     throw new Error('Decimal places must be a non-negative integer.');
   }

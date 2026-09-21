@@ -1,16 +1,11 @@
 /**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-/**
  * Capitalize the first letter of a string
  */
 export const capitalizeWord = (value: string): string => {
   const trimmed = value.trim().toLowerCase();
-  return trimmed ? trimmed[0].toUpperCase() + trimmed.slice(1) : '';
+  // Use .charAt(0) because it safely returns an empty string '' if index 0 doesn't exist,
+  // instead of undefined.
+  return trimmed ? trimmed.charAt(0).toUpperCase() + trimmed.slice(1) : '';
 };
 
 /**
@@ -20,7 +15,7 @@ export const capitalizeWords = (words: string): string =>
   words
     .trim()
     .toLowerCase()
-    .replace(/\b\p{L}/gu, (char) => char.toUpperCase()); // Unicode-safe
+    .replace(/\b\p{L}/gu, (char) => char.toUpperCase()); // Unicode-safe (Already fine!)
 
 /**
  * Get initials from words (e.g. "John Doe" → "JD")
@@ -30,21 +25,23 @@ export const initialize = (words: string): string =>
     .trim()
     .split(/\s+/)
     .filter(Boolean)
-    .map((word) => word[0].toUpperCase())
+    // word.charAt(0) prevents the 'undefined' type error
+    .map((word) => word.charAt(0).toUpperCase())
     .join('');
 
 /**
  * Split full name into first and last parts
  */
-export const segmentFullName = (
-  fullName: string
-): { first: string; last: string } => {
+export const segmentFullName = (fullName: string): { first: string; last: string } => {
   const trimmed = fullName.trim();
   if (!trimmed) return { first: '', last: '' };
 
   const parts = trimmed.split(/\s+/);
+
+  // parts[0] triggers the error because TypeScript thinks it could be undefined.
+  // Since we already checked !trimmed, we know parts[0] exists, so we can use a fallback.
   return parts.length === 1
-    ? { first: parts[0], last: '' }
+    ? { first: parts[0] ?? '', last: '' }
     : { first: parts.slice(0, -1).join(' '), last: parts.at(-1) ?? '' };
 };
 
@@ -60,7 +57,7 @@ export const segmentFullName = (
 export const filterSearch = <T>(
   items: T[],
   searchString: string,
-  getField: (item: T) => string | undefined
+  getField: (item: T) => string | undefined,
 ): T[] => {
   if (!searchString.trim()) return items;
 
@@ -73,11 +70,7 @@ export const filterSearch = <T>(
     const normalizedField = fieldValue.toLowerCase().replace(/\s+/g, '');
     let searchIndex = 0;
 
-    for (
-      let i = 0;
-      i < normalizedField.length && searchIndex < normalizedSearch.length;
-      i++
-    ) {
+    for (let i = 0; i < normalizedField.length && searchIndex < normalizedSearch.length; i++) {
       if (normalizedField[i] === normalizedSearch[searchIndex]) searchIndex++;
     }
 
@@ -92,3 +85,38 @@ export const getEmailLocalPart = (email: string): string => {
   const atIndex = email.indexOf('@');
   return atIndex !== -1 ? email.slice(0, atIndex) : email;
 };
+
+/**
+ * Generates a unique title with an incremental suffix if duplicates exist.
+ * e.g., "New Note" -> "New Note 1", or "Project" -> "Project 1"
+ */
+export function generateCopyTitle(
+  targetTitle: string | undefined | null,
+  existingTitles: string[],
+  defaultTitle = 'New Note',
+): string {
+  const baseTitle = targetTitle?.trim() || defaultTitle;
+  const escapedBase = baseTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const titleRegex = new RegExp(`^${escapedBase}(?: (\\d+))?$`);
+
+  let maxNumber = -1; // -1 means baseTitle doesn't exist at all yet
+
+  for (const title of existingTitles) {
+    const match = title.match(titleRegex);
+    if (match) {
+      // If "Base Title 2", num is 2. If exact "Base Title", num is 0.
+      const num = match[1] ? parseInt(match[1], 10) : 0;
+      if (num > maxNumber) {
+        maxNumber = num;
+      }
+    }
+  }
+
+  // If the title doesn't exist yet, return it directly without suffix.
+  if (maxNumber === -1) {
+    return baseTitle;
+  }
+
+  // Otherwise, append the next numeric suffix
+  return `${baseTitle} ${maxNumber + 1}`;
+}

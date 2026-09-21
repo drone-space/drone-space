@@ -1,15 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import {
-  StudentCreate,
-  StudentGet,
-  StudentUpdate,
-} from '@repo/types/models/student';
+import { StudentCreate, StudentGet, StudentUpdate } from '@repo/types/models/student';
 import { apiCall } from './fetch';
 
 const segment = 'students';
@@ -24,7 +13,7 @@ let currentController: AbortController | null = null;
 export const studentsUpdate = async (
   apiUrl: string,
   students: StudentGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
@@ -35,7 +24,7 @@ export const studentsUpdate = async (
       'PUT',
       apiUrl,
       { students, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

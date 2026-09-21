@@ -17,28 +17,24 @@ import {
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { images } from '@repo/constants/images';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import classes from './home.module.scss';
 import { LOCATIONS } from '@repo/constants/app';
 import { getRegionalDate } from '@repo/utilities/date-time';
-import ModalContactTraining from '@repo/components/common/modals/contact/training';
+import ModalContactTraining from '@repo/ui/common/modals/contact/training';
 import { sortArray } from '@repo/utilities/array';
 import { Order, TimerDirection } from '@repo/types/enums';
 import ModalRequirements from '../modals/requirements';
-import WrapperUnderlayBlur from '@repo/components/wrappers/underlays/blur';
+import WrapperUnderlayBlur from '@repo/ui/wrappers/underlays/blur';
 import { SECTION_SPACING } from '@repo/constants/sizes';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import { useTimer } from '@repo/hooks/timer';
 import { alumniChallenge } from '@repo/constants/dates';
 
 export default function Home() {
-  const { complete } = useTimer(
-    alumniChallenge.eventStartDate,
-    TimerDirection.DOWN,
-    {
-      active: true,
-    }
-  );
+  const { complete } = useTimer(alumniChallenge.eventStartDate, TimerDirection.DOWN, {
+    active: true,
+  });
 
   const autoplay = useRef(Autoplay({ delay: 5000 }));
 
@@ -160,11 +156,7 @@ export default function Home() {
 
           <WrapperUnderlayBlur props={{ blur: 0, saturate: 100 }}>
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <LayoutSection
-                id={`carousel-home-slide-${index}`}
-                pt={'lg'}
-                pb={'md'}
-              >
+              <LayoutSection id={`carousel-home-slide-${index}`} pt={'lg'} pb={'md'}>
                 <Stack
                   gap={'xl'}
                   align={alignment}
@@ -173,8 +165,8 @@ export default function Home() {
                   pt={SECTION_SPACING}
                 >
                   <Badge color="sec.3" c={'pri.8'} size="lg">
-                    {now.toLocaleString('en-GB', { month: 'long' })}{' '}
-                    {now.getFullYear()} Intake Ongoing
+                    {now.toLocaleString('en-GB', { month: 'long' })} {now.getFullYear()} Intake
+                    Ongoing
                   </Badge>
 
                   <Stack gap={0} align={alignment}>
@@ -237,9 +229,7 @@ export default function Home() {
                           prefix="Ksh. "
                         />
                       </Text>{' '}
-                      {slide.badge == 'RPL'
-                        ? '(excl. medical & exam fees).'
-                        : undefined}
+                      {slide.badge == 'RPL' ? '(excl. medical & exam fees).' : undefined}
                     </Text>
                   </div>
 
@@ -402,7 +392,7 @@ function filterItems(params: { list: any[] }) {
 
 export const formatRplExamDates = (
   rplExamDates: Date[],
-  year = new Date().getFullYear()
+  year = new Date().getFullYear(),
 ): React.ReactNode => {
   if (!rplExamDates.length) return null;
 
@@ -410,7 +400,7 @@ export const formatRplExamDates = (
     getRegionalDate(rplExamDates[0], {
       locale: 'en-GB',
       format: 'numeric',
-    }).date
+    }).date,
   );
 
   return (
@@ -422,13 +412,9 @@ export const formatRplExamDates = (
             getRegionalDate(d, {
               locale: 'en-GB',
               format: 'numeric',
-            }).date
+            }).date,
           )}
-          {i === rplExamDates.length - 2
-            ? ' and '
-            : i === rplExamDates.length - 1
-              ? ''
-              : ', '}
+          {i === rplExamDates.length - 2 ? ' and ' : i === rplExamDates.length - 1 ? '' : ', '}
         </span>
       ))}
       {rplExamDates.length === 1 && `, ${year}`}

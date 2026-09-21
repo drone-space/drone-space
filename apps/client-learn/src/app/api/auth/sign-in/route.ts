@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import { NextResponse } from 'next/server';
 import { signIn } from '@repo/services/api/auth';
 import { SignIn } from '@repo/types/auth';
@@ -19,13 +12,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       { data: signInResult },
-      { status: 200, statusText: 'Sign In Request Accepted' }
+      { status: 200, statusText: 'Sign In Request Accepted' },
     );
   } catch (error) {
     console.error('---> route handler error (sign in):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

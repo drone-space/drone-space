@@ -1,26 +1,18 @@
 'use client';
 
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
-import IntroSection from '@repo/components/layout/intros/section';
+import LayoutSection from '@repo/ui/layout/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { linkify, processUrl } from '@repo/utilities/url';
-import {
-  Anchor,
-  Box,
-  Group,
-  Skeleton,
-  Stack,
-  Text,
-  Tooltip,
-} from '@mantine/core';
+import { Anchor, Box, Group, Skeleton, Stack, Text, Tooltip } from '@mantine/core';
 import { getRegionalDate } from '@repo/utilities/date-time';
 import { COMPANY_NAME } from '@repo/constants/app';
 import { useStorePost } from '@repo/libraries/zustand/stores/post';
 import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
-import ParserHtml from '@repo/components/parsers/html';
+import ParserHtml from '@repo/ui/parsers/html';
 
 export default function BlogDetail({ props }: { props: { postId: string } }) {
   const posts = useStorePost((s) => s.posts);
@@ -31,10 +23,7 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
 
   const pathCategory = `/blog/categories/${linkify(categoryCurrent?.title || '')}-${categoryCurrent?.id}`;
 
-  const processedImage = processUrl(
-    post?.image || '',
-    PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT
-  );
+  const processedImage = processUrl(post?.image || '', PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT);
 
   return (
     <LayoutSection id={'page-post-content'} containerized={false} padded>
@@ -85,12 +74,7 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
               <Text inherit>
                 Last Updated:{' '}
                 <Tooltip label={'Last Updated'}>
-                  <Text
-                    component="span"
-                    inherit
-                    fw={500}
-                    style={{ cursor: 'pointer' }}
-                  >
+                  <Text component="span" inherit fw={500} style={{ cursor: 'pointer' }}>
                     {
                       getRegionalDate(post?.updated_at, {
                         locale: 'en-GB',

@@ -1,6 +1,6 @@
 import React from 'react';
-import LayoutPage from '@repo/components/layout/page';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutPage from '@repo/ui/layout/page';
+import LayoutSection from '@repo/ui/layout/section';
 import CardShopFactor from '@/components/common/cards/shop/factor';
 import { Grid, GridCol } from '@mantine/core';
 import {
@@ -11,12 +11,12 @@ import {
   IconLayersIntersect,
   IconPhotoSensor3,
 } from '@tabler/icons-react';
-import IntroSection from '@repo/components/layout/intros/section';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
 import { Metadata } from 'next';
 import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import { images } from '@repo/constants/images';
-import IntroPage from '@repo/components/layout/intros/page';
+import IntroPage from '@repo/ui/layout/intros/page';
 import PartialDroneListing from '@/components/partial/drone-listing';
 import { SECTION_SPACING } from '@repo/constants/sizes';
 
@@ -60,11 +60,7 @@ export default async function Shop() {
         <PartialDroneListing />
       </LayoutSection>
 
-      <LayoutSection
-        id="page-shop-factors"
-        padded
-        bg={'var(--mantine-color-gray-1)'}
-      >
+      <LayoutSection id="page-shop-factors" padded bg={'var(--mantine-color-gray-1)'}>
         <IntroSection
           props={{
             subTitle: 'Factors',

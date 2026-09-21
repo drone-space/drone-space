@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import FormQuiz from '@repo/components/form/quiz';
+import FormQuiz from '@repo/ui/form/quiz';
 import { Fieldset, Grid, GridCol } from '@mantine/core';
 import HeaderAppContent from '@/components/layout/headers/app-content';
 

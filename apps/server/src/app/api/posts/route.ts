@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import prisma from '@repo/libraries/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { PostGet } from '@repo/types/models/post';
@@ -23,14 +16,11 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       { items: postRecords },
-      { status: 200, statusText: 'Posts Retrieved' }
+      { status: 200, statusText: 'Posts Retrieved' },
     );
   } catch (error) {
     console.error('---> route handler error (get posts):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -64,21 +54,15 @@ export async function PUT(request: NextRequest) {
           created_at: new Date(post.created_at),
           updated_at: new Date(post.updated_at),
         },
-      })
+      }),
     );
 
     // Run all operations in one transaction
     const updatePosts = await prisma.$transaction(operations);
 
-    return NextResponse.json(
-      { items: updatePosts },
-      { status: 200, statusText: 'Posts Updated' }
-    );
+    return NextResponse.json({ items: updatePosts }, { status: 200, statusText: 'Posts Updated' });
   } catch (error) {
     console.error('---> route handler error (update posts):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

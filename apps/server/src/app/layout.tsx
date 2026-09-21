@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
@@ -15,7 +8,7 @@ import '../styles/globals.scss';
 import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
-import ProviderMantine from '@repo/components/provider/mantine';
+import ProviderMantine from '@repo/ui/provider/mantine';
 import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
 import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
 import { mantine } from '@/data/styles';
@@ -42,11 +35,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      {...mantineHtmlProps}
-      data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}
-    >
+    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

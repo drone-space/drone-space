@@ -3,8 +3,8 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { Group, Stack, Title } from '@mantine/core';
-import LayoutSection from '@repo/components/layout/section';
-import BreadcrumbMain from '@repo/components/common/breadcrumbs/main';
+import LayoutSection from '@repo/ui/layout/section';
+import BreadcrumbMain from '@repo/ui/common/breadcrumbs/main';
 import { links } from '@/data/links';
 import classes from './main.module.scss';
 import { crumbify } from '@repo/utilities/url';
@@ -21,16 +21,10 @@ export default function Main({ title }: { title?: string }) {
     if (segments.length > 2) {
       return dynamic
         ? links.navbar
-            .find(
-              (l) =>
-                l.link == segments[segments.length - (segments.length - 1)].link
-            )
+            .find((l) => l.link == segments[segments.length - (segments.length - 1)].link)
             ?.subLinks?.find((sl) => pathname.includes(sl.link))?.label
         : links.navbar
-            .find(
-              (l) =>
-                l.link == segments[segments.length - (segments.length - 1)].link
-            )
+            .find((l) => l.link == segments[segments.length - (segments.length - 1)].link)
             ?.subLinks?.find((sl) => sl.link == pathname)?.label;
     } else {
       return links.navbar.find((l) => l.link == pathname)?.label;
@@ -38,12 +32,7 @@ export default function Main({ title }: { title?: string }) {
   };
 
   return (
-    <LayoutSection
-      id="layout-hero-main"
-      padded="xl"
-      shadowed
-      className={classes.hero}
-    >
+    <LayoutSection id="layout-hero-main" padded="xl" shadowed className={classes.hero}>
       <Group justify="space-between" align="center">
         <Stack gap={0}>
           {selectTitle() && (

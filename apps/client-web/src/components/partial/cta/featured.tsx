@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutSection from '@repo/components/layout/section';
+import LayoutSection from '@repo/ui/layout/section';
 import {
   ActionIcon,
   Badge,
@@ -13,20 +13,16 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import ModalContactShop from '@repo/components/common/modals/contact/shop';
+import ModalContactShop from '@repo/ui/common/modals/contact/shop';
 import { linkify } from '@repo/utilities/url';
 import classes from './featured.module.scss';
 import { products } from '@repo/constants/products';
 import { images } from '@repo/constants/images';
 import { IconX } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import ImageDefault from '@repo/components/common/images/default';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
+import ImageDefault from '@repo/ui/common/images/default';
 import { useCloseAllModals } from '@repo/hooks/buses/modal';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Featured({ close }: { close?: () => void }) {
   const productFeatured = products.find((p: any) => p.featured);
@@ -52,11 +48,7 @@ export default function Featured({ close }: { close?: () => void }) {
         <Overlay backgroundOpacity={0.3} style={{ zIndex: 0 }} />
 
         <Group justify="end" pt={'xl'}>
-          <ActionIcon
-            color="var(--mantine-color-white)"
-            variant={'subtle'}
-            onClick={handleClose}
-          >
+          <ActionIcon color="var(--mantine-color-white)" variant={'subtle'} onClick={handleClose}>
             <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
           </ActionIcon>
         </Group>
@@ -85,12 +77,7 @@ export default function Featured({ close }: { close?: () => void }) {
               <Stack gap={'xl'}>
                 <Stack ta={{ base: 'center' }}>
                   <Group justify={'center'}>
-                    <Badge
-                      color="var(--mantine-color-white)"
-                      variant={'light'}
-                      fw={500}
-                      lts={1.5}
-                    >
+                    <Badge color="var(--mantine-color-white)" variant={'light'} fw={500} lts={1.5}>
                       Featured Drone
                     </Badge>
                   </Group>
@@ -135,11 +122,7 @@ export default function Featured({ close }: { close?: () => void }) {
                   <NextLink
                     href={`/shop/drones/${productFeatured.category}/${linkify(productFeatured.title.long)}#drone-category-intro`}
                   >
-                    <Button
-                      variant="outline"
-                      color="white"
-                      onClick={handleClose}
-                    >
+                    <Button variant="outline" color="white" onClick={handleClose}>
                       Learn More
                     </Button>
                   </NextLink>

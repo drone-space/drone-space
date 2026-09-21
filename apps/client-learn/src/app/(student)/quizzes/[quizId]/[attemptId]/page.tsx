@@ -1,14 +1,10 @@
 import React from 'react';
-import LayoutPage from '@repo/components/layout/page';
+import LayoutPage from '@repo/ui/layout/page';
 import PartialPageQuizzesStudentAttempt from '@/components/partial/page/quizzes/student/attempt';
 import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
 
-export default async function Quizzes({
-  params,
-}: {
-  params: Promise<typeParams>;
-}) {
+export default async function Quizzes({ params }: { params: Promise<typeParams> }) {
   const resolvedParams = await params;
   const quizId = resolvedParams.quizId;
   const attemptId = resolvedParams.attemptId;

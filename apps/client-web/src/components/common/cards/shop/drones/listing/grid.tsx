@@ -15,10 +15,10 @@ import {
 import classes from './grid.module.scss';
 import { typeDrone } from '@/types/product';
 import { linkify } from '@repo/utilities/url';
-import ImageDefault from '@repo/components/common/images/default';
+import ImageDefault from '@repo/ui/common/images/default';
 import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ModalContactShop from '@repo/components/common/modals/contact/shop';
-import NextLink from '@repo/components/common/anchor/next-link';
+import ModalContactShop from '@repo/ui/common/modals/contact/shop';
+import NextLink from '@repo/ui/common/anchor/next-link';
 
 export default function Grid({ data }: { data: typeDrone }) {
   return (
@@ -48,11 +48,7 @@ export default function Grid({ data }: { data: typeDrone }) {
             <Overlay backgroundOpacity={0.05} p={'xs'} style={{ zIndex: 1 }}>
               <Stack justify="space-between" h={'100%'}>
                 {data.tag && (
-                  <Card
-                    bg={'var(--mantine-color-body)'}
-                    padding={'xs'}
-                    w={'fit-content'}
-                  >
+                  <Card bg={'var(--mantine-color-body)'} padding={'xs'} w={'fit-content'}>
                     <Text fw={500} fz={'xs'}>
                       {data.tag}
                     </Text>
@@ -88,13 +84,7 @@ export default function Grid({ data }: { data: typeDrone }) {
             </Overlay>
           </CardSection>
 
-          <Title
-            order={3}
-            fz={'sm'}
-            tt={'uppercase'}
-            c={'var(--mantine-color-text)'}
-            mt={'md'}
-          >
+          <Title order={3} fz={'sm'} tt={'uppercase'} c={'var(--mantine-color-text)'} mt={'md'}>
             {data.title.short ? data.title.short : data.title.long}
           </Title>
 
@@ -122,17 +112,8 @@ export default function Grid({ data }: { data: typeDrone }) {
                 <>
                   <Text component="span" inherit display={'block'}>
                     Kes.{' '}
-                    <Text
-                      component="span"
-                      inherit
-                      fz={'md'}
-                      fw={'bold'}
-                      c={'pri'}
-                    >
-                      <NumberFormatter
-                        thousandSeparator
-                        value={data.price.former}
-                      />
+                    <Text component="span" inherit fz={'md'} fw={'bold'} c={'pri'}>
+                      <NumberFormatter thousandSeparator value={data.price.former} />
                     </Text>
                     {data.kit?.flyMore && (
                       <Text component="sup" inherit>
@@ -147,13 +128,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                       <Text component="span" inherit>
                         Kes.
                       </Text>{' '}
-                      <Text
-                        component="span"
-                        inherit
-                        fz={'md'}
-                        fw={'bold'}
-                        c={'pri'}
-                      >
+                      <Text component="span" inherit fz={'md'} fw={'bold'} c={'pri'}>
                         <NumberFormatter
                           thousandSeparator
                           value={
@@ -187,9 +162,7 @@ export default function Grid({ data }: { data: typeDrone }) {
               <Button size="xs">Order Now</Button>
             </ModalContactShop>
 
-            <NextLink
-              href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}
-            >
+            <NextLink href={`/shop/drones/${data.category}/${linkify(data.title.long)}`}>
               <Button size="xs" variant="outline" color="black">
                 Learn More
               </Button>

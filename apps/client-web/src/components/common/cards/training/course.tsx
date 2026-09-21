@@ -15,8 +15,8 @@ import {
 import { linkify } from '@repo/utilities/url';
 import { IconArrowRight } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import NextLink from '@repo/components/common/anchor/next-link';
-import ImageDefault from '@repo/components/common/images/default';
+import NextLink from '@repo/ui/common/anchor/next-link';
+import ImageDefault from '@repo/ui/common/images/default';
 
 interface CourseProps {
   image: string;
@@ -59,14 +59,10 @@ export default function Course({ data }: { data: CourseProps }) {
           </Text>
         </Box>
 
-        <NextLink
-          href={`/drone-training/${linkify(data.title)}`}
-        >
+        <NextLink href={`/drone-training/${linkify(data.title)}`}>
           <Button
             color="sec.3"
-            rightSection={
-              <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
+            rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           >
             {data.title} Details
           </Button>

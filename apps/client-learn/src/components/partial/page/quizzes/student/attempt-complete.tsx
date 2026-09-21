@@ -15,7 +15,7 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import NextLink from '@repo/components/common/anchor/next-link';
+import NextLink from '@repo/ui/common/anchor/next-link';
 import {
   ICON_SIZE,
   ICON_STROKE_WIDTH,
@@ -31,18 +31,14 @@ import {
   IconReload,
 } from '@tabler/icons-react';
 import React, { useState } from 'react';
-import LayoutSection from '@repo/components/layout/section';
-import CardQuestionWithAnswer from '@repo/components/common/cards/question/with-answer';
-import IntroSection from '@repo/components/layout/intros/section';
+import LayoutSection from '@repo/ui/layout/section';
+import CardQuestionWithAnswer from '@repo/ui/common/cards/question/with-answer';
+import IntroSection from '@repo/ui/layout/intros/section';
 import { APPSHELL } from '@/components/layout/appshell/student';
 import { useQuizStats } from '@repo/hooks/quiz';
 import { useMediaQuery } from '@mantine/hooks';
 
-export default function AttemptComplete({
-  props,
-}: {
-  props: { attemptId: string };
-}) {
+export default function AttemptComplete({ props }: { props: { attemptId: string } }) {
   const [showCorrect, setShowCorrect] = useState(false);
 
   const {
@@ -74,9 +70,7 @@ export default function AttemptComplete({
           fullWidth
           color="dark"
           variant="light"
-          leftSection={
-            <IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          }
+          leftSection={<IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           onClick={() => {
             if (desktop) {
               if (!navbarChild) toggleNavbarChild();
@@ -87,15 +81,10 @@ export default function AttemptComplete({
         </Button>
       </NextLink>
 
-      <Anchor
-        href="#correct-answers"
-        display={!showCorrect ? undefined : 'none'}
-      >
+      <Anchor href="#correct-answers" display={!showCorrect ? undefined : 'none'}>
         <Button
           fullWidth
-          leftSection={
-            <IconListCheck size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-          }
+          leftSection={<IconListCheck size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           onClick={() => {
             setShowCorrect(true);
           }}
@@ -110,9 +99,7 @@ export default function AttemptComplete({
             fullWidth
             color="dark"
             variant="outline"
-            leftSection={
-              <IconReload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
-            }
+            leftSection={<IconReload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           >
             Re-Take Quiz
           </Button>
@@ -174,12 +161,7 @@ export default function AttemptComplete({
           </Stack>
 
           <Stack align="center" ta={'center'}>
-            <ThemeIcon
-              size={ICON_WRAPPER_SIZE * 3}
-              variant="light"
-              color={'dark'}
-              radius={999}
-            >
+            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} variant="light" color={'dark'} radius={999}>
               <IconPercentage size={ICON_SIZE * 2} stroke={1} />
             </ThemeIcon>
 
@@ -199,11 +181,7 @@ export default function AttemptComplete({
           {actionComponent}
         </Stack>
 
-        <LayoutSection
-          id={'correct-answers'}
-          padded
-          display={showCorrect ? undefined : 'none'}
-        >
+        <LayoutSection id={'correct-answers'} padded display={showCorrect ? undefined : 'none'}>
           <IntroSection
             props={{
               title: 'Correct Answers',

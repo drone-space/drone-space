@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutMain from '@repo/components/layout/main';
+import LayoutMain from '@repo/ui/layout/main';
 import { typeParams } from '../layout';
 import { Metadata } from 'next';
 import { QuizGet } from '@repo/types/models/quiz';

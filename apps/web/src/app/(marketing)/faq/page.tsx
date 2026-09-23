@@ -16,24 +16,28 @@ const metaTitle = `${APP_NAME.WEB} FAQ - Answers to Your Drone Training Question
 const metaDesc =
   'Get quick answers to common questions about drone training, services, and requirements in Kenya. Your guide to Drone Space resources.';
 
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: metaTitle,
     description: metaDesc,
-    url: `${(await getBaseUrl()).WEB}/faq`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/faq`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Faq() {
   return (

@@ -14,24 +14,28 @@ export const dynamic = 'force-static';
 const metaTitle = `Privacy Policy - How ${APP_NAME.WEB} Protects Your Data`;
 const metaDesc = `Learn how ${APP_NAME.WEB} collects, uses, and protects your personal information. Your privacy is our priority.`;
 
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: metaTitle,
     description: metaDesc,
-    url: `${(await getBaseUrl()).WEB}/legal/policy`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/legal/policy`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function PrivacyPolicy() {
   return (

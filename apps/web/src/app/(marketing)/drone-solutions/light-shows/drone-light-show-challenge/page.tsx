@@ -10,24 +10,28 @@ const metaTitle = 'Drone Light Show Challenge | Win an Event Ticket';
 const metaDesc =
   'Take our quick 1-question alumni challenge for a chance to win an exclusive ticket to a stunning Drone Space drone light show. Test your knowledge now!';
 
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: metaTitle,
     description: metaDesc,
-    url: `${(await getBaseUrl()).WEB}/drone-solutions/light-shows/drone-light-show-challenge`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/drone-solutions/light-shows/drone-light-show-challenge`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function LighShow() {
   return <PartialLightShowChallenge />;

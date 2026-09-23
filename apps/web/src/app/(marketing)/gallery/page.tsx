@@ -15,24 +15,28 @@ const metaTitle = `${APP_NAME.WEB} Gallery - Showcasing Our Training & Aerial Se
 const metaDesc =
   'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';
 
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: metaTitle,
     description: metaDesc,
-    url: `${(await getBaseUrl()).WEB}/gallery`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/gallery`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Gallery() {
   return (

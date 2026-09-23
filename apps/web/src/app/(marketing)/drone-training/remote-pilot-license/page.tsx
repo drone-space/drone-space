@@ -42,24 +42,28 @@ import { AnchorNextLink } from '@repo/ui';
 
 const course = courseList.find((c) => c.title == courseList[0].title);
 
-export const metadata: Metadata = {
-  title: course?.title,
-  description: course?.linkDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${(await getBaseUrl()).WEB}/drone-training/${course?.title}`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: course?.title,
+      description: course?.linkDesc,
+      url: `${baseUrl.WEB}/drone-training/${course?.title}`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Course() {
   if (!course) throw new Error('Course not foud');

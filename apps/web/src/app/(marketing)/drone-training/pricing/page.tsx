@@ -19,24 +19,28 @@ export const dynamic = 'force-static';
 const metaTitle = `Drone Training Pricing - Affordable Courses at ${APP_NAME.WEB} Kenya`;
 const metaDesc = `View pricing for our professional drone training programs. Flexible packages for beginners, enthusiasts, and professionals.`;
 
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: metaTitle,
     description: metaDesc,
-    url: `${(await getBaseUrl()).WEB}/drone-training/pricing`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/drone-training/pricing`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Pricing() {
   return (

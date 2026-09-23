@@ -30,24 +30,28 @@ import CtaMain from '@web/ui/partial/cta/main';
 
 const service = services.find((c) => c.title == services[6].title);
 
-export const metadata: Metadata = {
-  title: service?.metaTitle,
-  description: service?.linkDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: service?.metaTitle,
     description: service?.linkDesc,
-    url: `${(await getBaseUrl()).WEB}/drone-solutions/${service?.title}`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: service?.metaTitle,
+      description: service?.linkDesc,
+      url: `${baseUrl.WEB}/drone-solutions/${service?.title}`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Service() {
   if (!service) throw new Error('Service not foud');

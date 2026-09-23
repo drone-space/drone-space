@@ -17,7 +17,6 @@ import './globals.css';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/carousel/styles.css';
-import { createClientcloudbaseServer } from '@repo/cloudbase';
 // import '@mantine/dates/styles.css';
 // // ‼️ import schedule styles after core and dates package styles
 // import '@mantine/schedule/styles.css';

@@ -25,24 +25,28 @@ export const dynamic = 'force-static';
 const metaTitle = `Drone Shop - Top Drones & Accessories at ${APP_NAME.WEB} Kenya`;
 const metaDesc = `Discover the best DJI drones in Kenya for every need at ${APP_NAME.WEB}. Shop top-rated drones for beginners, professionals, and enthusiasts. Elevate your aerial experience today!`;
 
-export const metadata: Metadata = {
-  title: metaTitle,
-  description: metaDesc,
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
     title: metaTitle,
     description: metaDesc,
-    url: `${(await getBaseUrl()).WEB}/shop`,
-    type: 'website',
-    images: [
-      {
-        url: images.brand.droneSpace.logo.potrait.meta,
-        width: 1200,
-        height: 1200,
-        alt: COMPANY_NAME,
-      },
-    ],
-  },
-};
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/shop`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Shop() {
   return (

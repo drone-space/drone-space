@@ -96,8 +96,8 @@ export function FormAuth({
                 styles={{
                   input: {
                     textAlign: 'center',
-                    backgroundColor:
-                      'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
+                    // backgroundColor:
+                    //   'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
                   },
                   error: { textAlign: 'center' },
                 }}
@@ -140,8 +140,8 @@ export function FormAuth({
                 styles={{
                   input: {
                     textAlign: 'center',
-                    backgroundColor:
-                      'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
+                    // backgroundColor:
+                    //   'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
                   },
                   error: { textAlign: 'center' },
                 }}
@@ -175,8 +175,8 @@ export function FormAuth({
                       input: {
                         textAlign: 'center',
                         letterSpacing: 5,
-                        backgroundColor:
-                          'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
+                        // backgroundColor:
+                        //   'light-dark(var(--mantine-color-body), var(--mantine-color-dark-7))',
                       },
                       error: { textAlign: 'center' },
                     }}
@@ -211,6 +211,7 @@ export function FormAuth({
                   <Group grow>
                     <Button
                       variant="light"
+                      color="gray"
                       loading={resentAuth}
                       disabled={redirecting}
                       onClick={() => {
@@ -293,8 +294,8 @@ export function FormAuth({
       {!submittedAuth && (errorAuth || messageAuth) && (
         <>
           <Alert
-            variant="light"
-            color={errorAuth ? 'red.6' : 'blue.6'}
+            // variant="light"
+            color={errorAuth ? 'red' : 'blue'}
             title={errorAuth ? 'Error' : 'OTP Sent'}
             icon={
               errorAuth ? (

@@ -1,3 +1,5 @@
+'use client';
+
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { FormAIType } from './form/ai';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useEffect, useRef } from 'react';
 import { useIdle, UserNetworkReturnValue } from '@mantine/hooks';
 import { config } from './indexed-db/config';

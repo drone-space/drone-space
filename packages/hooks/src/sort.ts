@@ -1,3 +1,5 @@
+'use client';
+
 import { Order } from '@repo/types';
 import { useState } from 'react';
 import { sortArray } from '@repo/utils';

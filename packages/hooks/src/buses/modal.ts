@@ -1,3 +1,5 @@
+'use client';
+
 import { CLOSE_ALL, modalBus } from '@repo/utils';
 import { useEffect } from 'react';
 

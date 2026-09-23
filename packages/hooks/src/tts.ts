@@ -1,3 +1,5 @@
+'use client';
+
 import { Variant } from '@repo/types';
 import { textToSpeech } from '@repo/handlers';
 import { useRef, useState } from 'react';

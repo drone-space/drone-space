@@ -1,3 +1,5 @@
+'use client';
+
 import { useItemEdit } from '../edit';
 import { createContext, useContext } from 'react';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { hasLength } from '@mantine/form';
 import { useOptionActions } from '@repo/store';
 import { useFormBase } from '../form';

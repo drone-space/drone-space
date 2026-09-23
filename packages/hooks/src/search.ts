@@ -1,3 +1,5 @@
+"use client";
+
 import { Order } from '@repo/types';
 import { sortArray } from '@repo/utils';
 

@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const resolvedTheme = ColorScheme.DARK as MantineColorScheme;
+  const resolvedTheme = ColorScheme.LIGHT as MantineColorScheme;
 
   return (
     <html

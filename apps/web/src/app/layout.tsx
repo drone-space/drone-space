@@ -43,7 +43,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const resolvedTheme = ColorScheme.DARK as MantineColorScheme;
+  const resolvedTheme = ColorScheme.LIGHT as MantineColorScheme;
 
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
@@ -66,7 +66,7 @@ export default async function RootLayout({
         <ColorSchemeScript defaultColorScheme={resolvedTheme} />
       </head>
 
-      <body className="min-h-full flex flex-col">
+      <body className={`${montserrat.variable} ${novaMono.variable} min-h-full flex flex-col`}>
         <ProviderMantine
           options={{ withNotifications: true }}
           colorScheme={resolvedTheme}

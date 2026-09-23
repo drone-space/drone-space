@@ -1,3 +1,5 @@
+'use client';
+
 import { notifications } from '@mantine/notifications';
 import { Variant } from '@repo/types';
 import { capitalizeWord } from '@repo/utils';

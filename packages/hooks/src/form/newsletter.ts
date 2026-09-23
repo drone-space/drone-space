@@ -1,3 +1,5 @@
+"use client";
+
 import { Variant } from '@repo/types';
 import { validators } from '@repo/utils';
 import { contactAdd } from '@repo/handlers';

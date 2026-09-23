@@ -1,3 +1,5 @@
+'use client';
+
 import { useStoreAppShell } from '@repo/store';
 
 export const useAppshellChild = () => {

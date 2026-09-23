@@ -1,3 +1,5 @@
+'use client';
+
 import { useStoreAnswer } from '@repo/store';
 import { useStoreAttempt } from '@repo/store';
 import { useStoreOption } from '@repo/store';

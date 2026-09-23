@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { FormValidateInput, useForm } from '@mantine/form';
 import { useNetwork } from '@mantine/hooks';

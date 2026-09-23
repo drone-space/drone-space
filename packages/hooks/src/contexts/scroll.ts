@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, RefObject } from 'react';
 
 // RefObject<HTMLDivElement | null> is the correct type

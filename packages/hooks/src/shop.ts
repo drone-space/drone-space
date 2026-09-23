@@ -1,3 +1,5 @@
+'use client';
+
 import { getUrlParam, setUrlParam } from '@repo/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSortArray } from '@repo/hooks';

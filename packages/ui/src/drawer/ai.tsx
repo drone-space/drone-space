@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { Drawer, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';

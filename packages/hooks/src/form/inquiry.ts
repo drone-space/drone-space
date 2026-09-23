@@ -1,3 +1,5 @@
+'use client';
+
 import { capitalizeWords } from '@repo/utils';
 import { validators } from '@repo/utils';
 import { hasLength, UseFormReturnType } from '@mantine/form';

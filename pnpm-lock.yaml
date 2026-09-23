@@ -137,7 +137,7 @@ importers:
         version: 9.6.2(@mantine/core@9.6.2(@mantine/hooks@9.6.2(react@19.2.4))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@mantine/hooks@9.6.2(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@next/third-parties':
         specifier: ^16.3.6
-        version: 16.3.6(next@16.2.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1))(react@19.2.4)
+        version: 16.3.6(next@16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1))(react@19.2.4)
       '@repo/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -252,7 +252,7 @@ importers:
         version: 9.6.2(@mantine/core@9.6.2(@mantine/hooks@9.6.2(react@19.2.4))(@types/react@19.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@mantine/hooks@9.6.2(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@next/third-parties':
         specifier: ^16.3.6
-        version: 16.3.6(next@16.2.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1))(react@19.2.4)
+        version: 16.3.6(next@16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1))(react@19.2.4)
       '@repo/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -396,6 +396,9 @@ importers:
       '@repo/types':
         specifier: workspace:*
         version: link:../types
+      '@tabler/icons-react':
+        specifier: ^3.44.0
+        version: 3.47.0(react@19.2.4)
       next:
         specifier: 16.2.10
         version: 16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1)
@@ -4702,7 +4705,7 @@ snapshots:
   '@next/swc-win32-x64-msvc@16.2.10':
     optional: true
 
-  '@next/third-parties@16.3.6(next@16.2.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1))(react@19.2.4)':
+  '@next/third-parties@16.3.6(next@16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1))(react@19.2.4)':
     dependencies:
       next: 16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.104.1)
       react: 19.2.4

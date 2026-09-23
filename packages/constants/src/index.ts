@@ -9,6 +9,7 @@ export * from './dates';
 export * from './documents';
 export * from './icons';
 export * from './images';
+export * from './links';
 export * from './names';
 export * from './other';
 export * from './paths-client';

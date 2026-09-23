@@ -13,7 +13,7 @@ import {
   MenuProps,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { ICON_SIZE, ICON_STROKE_WIDTH, navLinkItems } from '@repo/constants';
 import { PartialUser } from '@repo/ui';
 import classes from './user.module.css';
 import { useStoreSession } from '@repo/store';
@@ -104,18 +104,20 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
           </AnchorNextLink>
         ))} */}
 
-        {/* <MenuDivider mb={0} />
+        <MenuDivider mb={0} />
 
         {navLinkItems.user.danger.map((item) => (
           <AnchorNextLink key={item.label} href={item.link}>
             <MenuItem
               leftSection={<item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               className={classes.itemDanger}
+              color="red"
+              style={{ borderRadius: 0 }}
             >
               {item.label}
             </MenuItem>
           </AnchorNextLink>
-        ))} */}
+        ))}
       </MenuDropdown>
     </Menu>
   );

@@ -132,7 +132,13 @@ export function FormContact({
 
         <GridCol span={12}>
           <Group>
-            <Button disabled={submitted} component={Link} href={'/faq'} variant="light">
+            <Button
+              disabled={submitted}
+              component={Link}
+              href={'/faq'}
+              color="gray"
+              variant="light"
+            >
               See FAQ&apos;s
             </Button>
 

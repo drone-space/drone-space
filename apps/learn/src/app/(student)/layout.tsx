@@ -3,6 +3,8 @@ import { LayoutMain } from '@repo/ui';
 import AppshellStudent from '@learn/ui/layout/appshell/student';
 import { Metadata } from 'next';
 import { APP_NAME } from '@repo/constants';
+import { isProduction } from '@repo/utils';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: {
@@ -16,9 +18,13 @@ export default async function LayoutStudent({
 }: {
   children: React.ReactNode;
 }) {
+  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+
   return (
     <LayoutMain>
       <AppshellStudent>{children}</AppshellStudent>
+
+      {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
     </LayoutMain>
   );
 }

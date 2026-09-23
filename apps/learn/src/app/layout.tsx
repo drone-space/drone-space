@@ -46,8 +46,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
-
   const supabase = await createClientcloudbaseServer();
   const { data: session } = await supabase.auth.getUser();
 
@@ -93,8 +91,6 @@ export default async function RootLayout({
             <ProviderSync>{children}</ProviderSync>
           </ProviderInitialize>
         </ProviderMantine>
-
-        {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
       </body>
     </html>
   );

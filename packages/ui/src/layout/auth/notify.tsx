@@ -17,15 +17,15 @@ export async function LayoutAuthNotify({ children }: { children: React.ReactNode
     <>
       <Grid gap={0} px={{ base: 'md', xs: 0 }}>
         {logo && (
-          <GridCol span={5.5} visibleFrom="md" bg={'var(--mantine-color-pri-light)'}>
+          <GridCol span={5.5} visibleFrom="md" bg={'var(--mantine-color-pri-0)'}>
             <Container size="xs" pos={'sticky'} top={0}>
               <Center h={'100vh'} px={{ xs: 32 }}>
                 <AnchorNextLink href={'/'}>
                   <ImageDefault
                     src={logo}
                     alt={COMPANY_NAME}
-                    height={96}
-                    width={96}
+                    height={60}
+                    width={300}
                     fit="contain"
                   />
                 </AnchorNextLink>

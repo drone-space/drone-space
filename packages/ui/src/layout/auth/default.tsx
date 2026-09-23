@@ -25,8 +25,8 @@ export async function LayoutAuthDefault({ children }: { children: React.ReactNod
                     <ImageDefault
                       src={logo}
                       alt={COMPANY_NAME}
-                      height={48}
-                      width={48}
+                      height={40}
+                      width={240}
                       fit="contain"
                     />
                   </AnchorNextLink>

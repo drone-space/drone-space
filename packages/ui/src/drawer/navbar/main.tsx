@@ -104,6 +104,7 @@ export function DrawerNavbarMain({
           header: classes.header,
         }}
         hiddenFrom="md"
+        padding={0}
       >
         <Stack pb={'sm'}>
           <Stack gap={0}>{navMobile}</Stack>

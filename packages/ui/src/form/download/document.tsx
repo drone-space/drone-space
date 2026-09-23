@@ -27,7 +27,7 @@ export function FormDownloadDocument({
         <FormCommonForm props={{ form: form as any }} />
 
         <GridCol span={12}>
-          <FormCommonFinePrint />
+          <FormCommonFinePrint props={{ close: props.close }} />
         </GridCol>
 
         <GridCol span={12}>

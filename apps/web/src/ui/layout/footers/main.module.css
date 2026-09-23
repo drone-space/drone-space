@@ -7,7 +7,7 @@
 }
 
 .link {
-  color: var(--mantine-color-gray-5);
+  color: var(--mantine-color-gray-5) !important;
   font-weight: 500;
   transition: 0.25s all ease;
 }
@@ -15,6 +15,6 @@
 /* Replicates Mantine's hover mixin */
 @media (hover: hover) {
   .link:hover {
-    color: var(--mantine-color-sec-3);
+    color: var(--mantine-color-sec-3) !important;
   }
 }

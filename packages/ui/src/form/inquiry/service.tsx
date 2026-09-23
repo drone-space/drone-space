@@ -40,7 +40,7 @@ export function FormInquiryService({
         </GridCol>
 
         <GridCol span={12}>
-          <FormCommonFinePrint />
+          <FormCommonFinePrint props={{ close: props.close }} />
         </GridCol>
 
         <GridCol span={12}>

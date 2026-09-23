@@ -19,7 +19,7 @@ export function ModalContactShop({
 
   return (
     <>
-      <Modal opened={opened} onClose={close} centered withCloseButton={false}>
+      <Modal opened={opened} onClose={close} centered withCloseButton={false} padding={0}>
         <LayoutModal props={{ close: close, title: 'Drone Purchase Inquiry' }}>
           <FormInquiryProduct
             props={{

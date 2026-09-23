@@ -1,8 +1,8 @@
-import { Variant } from '@repo/types/enums';
-import { validators } from '@repo/utilities/validation';
-import { contactAdd } from '@repo/handlers/requests/contact';
+import { Variant } from '@repo/types';
+import { validators } from '@repo/utils';
+import { contactAdd } from '@repo/handlers';
 import { useFormBase } from '../form';
-import { useNotification } from '@repo/hooks/notification';
+import { useNotification } from '@repo/hooks';
 
 export const useFormNewsletter = () => {
   const { showNotification } = useNotification();

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { getCookieClient, getFromSessionStorage, setCookieClient } from '@repo/utils';
 import { WEEK, COOKIE_NAME, SESSION_STORAGE_NAME } from '@repo/constants';
 import { AppShellValue, useStoreAppShell } from '../../state/appshell';
-import { useStoreView } from '../view';
 import { useMediaQuery } from '@mantine/hooks';
 
 export const useAppshellInitialize = (params?: { cookie?: AppShellValue }) => {
@@ -14,9 +13,6 @@ export const useAppshellInitialize = (params?: { cookie?: AppShellValue }) => {
   const setAppShell = useStoreAppShell((s) => s.setAppShell);
 
   const cookie: AppShellValue = getCookieClient(COOKIE_NAME.APP_SHELL);
-
-  // Track the actual view state reactively
-  const view = useStoreView((s) => s.view);
 
   useEffect(() => {
     // 1. Establish base defaults
@@ -51,29 +47,6 @@ export const useAppshellInitialize = (params?: { cookie?: AppShellValue }) => {
 
     setAppShell(resolvedShell);
   }, [desktop, setAppShell]);
-
-  // Runtime View Observer Effect
-  useEffect(() => {
-    if (view === undefined) return;
-
-    const hasAsideView = !!view?.asideView;
-
-    if (desktop && hasAsideView) {
-      // Pull the absolute freshest state directly from the store bypasses stale closures
-      const currentShell = useStoreAppShell.getState().appshell;
-
-      // Only update if the store is ready and the aside is currently closed
-      if (currentShell && currentShell.child.aside === false) {
-        useStoreAppShell.getState().setAppShell({
-          ...currentShell, // Safely preserves navbar and all other shell properties
-          child: {
-            ...currentShell.child,
-            aside: true,
-          },
-        });
-      }
-    }
-  }, [view, desktop]);
 
   useEffect(() => {
     if (appshell === undefined) return;

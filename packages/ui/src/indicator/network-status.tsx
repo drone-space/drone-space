@@ -1,10 +1,10 @@
 'use client';
 
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import { useDebouncedCallback } from '@repo/hooks/utility';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { useDebouncedCallback } from '@repo/utils';
 import { Group, ThemeIcon, Tooltip, Transition } from '@mantine/core';
 import { useMediaQuery, useNetwork } from '@mantine/hooks';
-import { SyncStatus } from '@repo/types/models/enums';
+import { SyncStatus } from '@repo/types';
 import {
   IconCheck,
   IconCloudX,
@@ -14,7 +14,7 @@ import {
   IconWifiOff,
 } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
-import SpinnerApp from '@repo/ui/common/spinners/app';
+import {SpinnerApp} from '@repo/ui';
 
 enum Context {
   NETWORK = 'network',

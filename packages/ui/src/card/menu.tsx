@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Text, Title } from '@mantine/core';
-import { typeMenuNavbar } from '@repo/types/link';
+import { typeMenuNavbar } from '@repo/types';
 
 export function CardMenu({ props }: { props: typeMenuNavbar }) {
   return (

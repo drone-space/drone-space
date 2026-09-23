@@ -18,9 +18,9 @@ import {
   IconShare,
 } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { Platform } from '@repo/types/enums';
-import { capitalizeWord } from '@repo/utilities/string';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { Platform } from '@repo/types';
+import { capitalizeWord } from '@repo/utils';
 import classes from './share.module.css';
 
 export function MenuShare({

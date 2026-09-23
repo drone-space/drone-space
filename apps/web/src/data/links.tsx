@@ -34,18 +34,18 @@ import {
   IconSun,
   IconUser,
 } from '@tabler/icons-react';
-import { linkify } from '@repo/utilities/url';
+import { linkify } from '@repo/utils';
 import services from './services';
-import { courseList } from '@repo/constants/courses';
-import { images } from '@repo/constants/images';
-import { AUTH_URLS } from '@repo/constants/paths';
-import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
-import { cleanPaths } from '@repo/utilities/array';
+import { courseList } from '@repo/constants';
+import { images } from '@repo/constants';
+import { AUTH_URLS } from '@repo/constants';
+import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants';
+import { cleanPaths } from '@repo/utils';
 import { Button, Group, Text } from '@mantine/core';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ModalDownloadDocument from '@repo/ui/common/modals/download/document';
-import ModalContactService from '@repo/ui/common/modals/contact/service';
-import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { ModalDownloadDocument } from '@repo/ui';
+import { ModalContactService } from '@repo/ui';
+import { ModalContactTraining } from '@repo/ui';
 
 export const shopLinks = [
   {

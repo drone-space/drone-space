@@ -1,15 +1,18 @@
 import { db } from './client';
 
 async function main() {
-  const user = await db.profile.create({
-    data: {
-      email: 'test@atlas.dev',
-      firstName: 'Test',
-      lastName: 'User',
-    },
-  });
+  // const user = await db.profile.create({
+  //   data: {
+  //     email: 'test@learn.dev',
+  //     firstName: 'Test',
+  //     lastName: 'User',
+  //   },
+  // });
 
-  console.log('Seeded:', user.email);
+  console.log(
+    'Seeded:',
+    // user.email
+  );
 }
 
 main()

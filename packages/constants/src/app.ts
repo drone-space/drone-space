@@ -72,13 +72,15 @@ export const ABOUT_STATS = {
 };
 
 export const APP_NAME = {
+  API: `${COMPANY_NAME} API`,
   SHOP: `${COMPANY_NAME} Shop`,
-  LMS: `${COMPANY_NAME} Learn`,
+  LEARN: `${COMPANY_NAME} Learn`,
   WEB: COMPANY_NAME,
 };
 
 export const APP_DESC = {
-  LMS: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
+  API: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
+  LEARN: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
   SHOP: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
   WEB: COMPANY_DESCRIPTION,
 };

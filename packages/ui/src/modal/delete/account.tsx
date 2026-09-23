@@ -2,8 +2,8 @@
 
 import { Modal, Button, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import LayoutModal from '../../../layout/modal';
-import { Alert } from '@repo/types/enums';
+import { LayoutModal } from '../../layout/modal';
+import { Alert } from '@repo/types';
 
 export function ModalDeleteAccount() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -22,9 +22,8 @@ export function ModalDeleteAccount() {
           props={{
             title: 'Account Erasure',
             close,
+            variant: Alert.DANGER,
           }}
-          variant={Alert.DANGER}
-          size={'xl'}
         >
           <Stack>
             <Stack gap={'xs'}>

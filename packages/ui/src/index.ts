@@ -70,6 +70,8 @@ export * from './layout/header/modal/ai';
 export * from './layout/intros/page';
 export * from './layout/intros/section';
 export * from './layout/auth';
+export * from './layout/auth/default';
+export * from './layout/auth/notify';
 export * from './layout/main';
 export * from './layout/modal';
 export * from './layout/page';
@@ -101,6 +103,7 @@ export * from './partial/cta/newsletter';
 export * from './partial/error/404';
 export * from './partial/error/500';
 export * from './partial/loading/main';
+export * from './partial/page/notify';
 export * from './partial/section/options';
 export * from './partial/user';
 

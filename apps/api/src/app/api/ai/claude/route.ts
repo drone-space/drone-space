@@ -1,4 +1,4 @@
-import anthropic from '@repo/libraries/anthropic';
+import { anthropic } from '@repo/ai';
 import { NextRequest, NextResponse } from 'next/server';
 import { MessageParam } from '@anthropic-ai/sdk/resources';
 import { unstable_cache } from 'next/cache';
@@ -15,7 +15,7 @@ const getCachedDocument = unstable_cache(
   {
     revalidate: 3600, // Revalidate every hour (in seconds)
     tags: ['document-content'],
-  }
+  },
 );
 
 export async function POST(req: NextRequest) {
@@ -42,14 +42,9 @@ export async function POST(req: NextRequest) {
     const readable = new ReadableStream({
       async start(controller) {
         for await (const chunk of stream) {
-          if (
-            chunk.type === 'content_block_delta' &&
-            chunk.delta.type === 'text_delta'
-          ) {
+          if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
             controller.enqueue(
-              encoder.encode(
-                `data: ${JSON.stringify({ content: chunk.delta.text })}\n\n`
-              )
+              encoder.encode(`data: ${JSON.stringify({ content: chunk.delta.text })}\n\n`),
             );
           }
         }
@@ -70,9 +65,6 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     console.error('---> route handler error (send prompt):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

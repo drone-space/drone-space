@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import PartialPageDashboardStudent from '@/components/partial/page/dashboard/student';
+import { LayoutPage } from '@repo/ui';
+import PartialPageDashboardStudent from '@learn/ui/partial/page/dashboard/student';
 
 const metaTitle = `Dashboard`;
 

@@ -1,4 +1,4 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -8,9 +8,9 @@ export async function GET(request: NextRequest) {
   try {
     const srpl = request.nextUrl.searchParams.get('srpl');
 
-    const alumniChallengerRecords = await prisma.alumniChallenger.findMany({
+    const alumniChallengerRecords = await db.alumniChallenger.findMany({
       where: !srpl ? undefined : { srpl: srpl },
-      orderBy: { created_at: 'desc' },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(

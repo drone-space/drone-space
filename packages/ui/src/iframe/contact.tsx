@@ -1,5 +1,5 @@
 import React from 'react';
-import { LOCATIONS } from '@repo/constants/app';
+import { LOCATIONS } from '@repo/constants';
 import { Box } from '@mantine/core';
 
 export function IFrameContact({ props }: { props?: { src?: string; height?: any } }) {

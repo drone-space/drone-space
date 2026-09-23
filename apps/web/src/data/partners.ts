@@ -1,4 +1,4 @@
-import { images } from '@repo/constants/images';
+import { images } from '@repo/constants';
 
 const partners = [
   {

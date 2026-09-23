@@ -1,13 +1,13 @@
 import { hasLength } from '@mantine/form';
-import { useQuizActions } from '../actions/quiz';
+import { useQuizActions } from '@repo/store';
 import { useFormBase } from '../form';
-import { QuizGet } from '@repo/types/models/quiz';
+import { QuizGet } from '@repo/types';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import { useStoreQuiz } from '@repo/store';
 import { useNotification } from '../notification';
-import { Variant } from '@repo/types/enums';
-import { Status } from '@repo/types/models/enums';
+import { Variant } from '@repo/types';
+import { Status } from '@repo/types';
 
 export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
   const router = useRouter();
@@ -26,10 +26,7 @@ export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
       status: params?.defaultValues?.status || Status.ACTIVE,
     },
     {
-      title: hasLength(
-        { min: 2, max: 48 },
-        'Between 2 and 48 characters required'
-      ),
+      title: hasLength({ min: 2, max: 48 }, 'Between 2 and 48 characters required'),
     },
     {
       // resetOnSuccess: true,
@@ -37,10 +34,7 @@ export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
       clientOnly: false,
 
       onSubmit: async (rawValues) => {
-        if (
-          rawValues.title &&
-          quizTitles?.includes(rawValues.title.trim().toLowerCase())
-        ) {
+        if (rawValues.title && quizTitles?.includes(rawValues.title.trim().toLowerCase())) {
           showNotification({
             title: 'Error',
             desc: 'A quiz with a similar title exists.',
@@ -50,7 +44,7 @@ export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
           return;
         }
 
-        if (!params?.defaultValues?.updated_at) {
+        if (!params?.defaultValues?.updatedAt) {
           const newQuiz = quizCreate(rawValues);
 
           if (!stay && newQuiz) {
@@ -70,7 +64,7 @@ export const useFormQuiz = (params?: { defaultValues?: Partial<QuizGet> }) => {
         form.reset();
         setStay(false);
       },
-    }
+    },
   );
 
   return {

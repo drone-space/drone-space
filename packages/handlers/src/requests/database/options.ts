@@ -1,4 +1,4 @@
-import { OptionCreate, OptionGet, OptionUpdate } from '@repo/types/models/option';
+import { OptionCreate, OptionGet, OptionUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'options';

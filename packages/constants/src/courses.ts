@@ -404,8 +404,6 @@ export const courses = {
   },
 };
 
-export default courses;
-
 export const courseList = [
   {
     image: images.training.rpl,

@@ -1,4 +1,4 @@
-import { QuestionCreate, QuestionGet, QuestionUpdate } from '@repo/types/models/question';
+import { QuestionCreate, QuestionGet, QuestionUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'questions';

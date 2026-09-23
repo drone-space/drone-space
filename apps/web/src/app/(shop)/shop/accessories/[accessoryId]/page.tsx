@@ -10,17 +10,17 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import accessories from '@repo/constants/accessories';
-import { linkify } from '@repo/utilities/url';
-import CarouselImage from '@/components/common/carousels/image';
-import IntroPage from '@repo/ui/layout/intros/page';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { accessories } from '@repo/constants';
+import { linkify } from '@repo/utils';
+import CarouselImage from '@web/ui/common/carousels/image';
+import { LayoutIntroPage } from '@repo/ui';
 import { typeParams } from './layout';
 import { IconArrowRightDashed } from '@tabler/icons-react';
 import classes from './drone.module.css';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import { images } from '@repo/constants/images';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { images } from '@repo/constants';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -45,7 +45,7 @@ export default async function AccessoryDetails({ params }: { params: Promise<typ
 
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: `Accessories`,
           title: product?.title.long || product?.title.short || 'Drone Accessories',

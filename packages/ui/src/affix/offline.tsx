@@ -4,7 +4,7 @@ import React from 'react';
 import { Affix, AffixBaseProps, Alert, Transition } from '@mantine/core';
 import { IconWifi, IconWifiOff } from '@tabler/icons-react';
 import { useNetwork } from '@mantine/hooks';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 
 export function AffixOffline({
   position = {

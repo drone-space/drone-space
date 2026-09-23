@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import PartialPageSrplsAdminView from '@/components/partial/page/srpls/admin/view';
+import { LayoutPage } from '@repo/ui';
+import PartialPageSrplsAdminView from '@learn/ui/partial/page/srpls/admin/view';
 
 const metaTitle = `SRPLs`;
 

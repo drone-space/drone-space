@@ -1,14 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Grid, GridCol, Tabs, TabsList, TabsPanel, TabsTab } from '@mantine/core';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import PartialGallery from '@/components/partial/gallery';
-import tabs from '@/data/tabs';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import PartialGallery from '@web/ui/partial/gallery';
+import tabs from '@web/data/tabs';
+import { getBaseUrl, images } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
 
 export const dynamic = 'force-static';
 
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/gallery`,
+    url: `${(await getBaseUrl()).WEB}/gallery`,
     type: 'website',
     images: [
       {
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
 export default async function Gallery() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Photos',
           title: 'Drone Space Gallery',
@@ -59,7 +58,7 @@ export default async function Gallery() {
             tab: { border: `2px solid var(--mantine-color-gray-4)` },
           }}
         >
-          <Grid component={TabsList} grow mb={'xl'} justify="center" gutter={'xs'}>
+          <Grid component={TabsList} grow mb={'xl'} justify="center" gap={'xs'}>
             <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
               <TabsTab w={'100%'} value="conference">
                 Conference

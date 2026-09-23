@@ -1,10 +1,10 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
+import { LayoutMain } from '@repo/ui';
 import { typeParams } from '../layout';
 import { Metadata } from 'next';
-import { AttemptGet } from '@repo/types/models/attempt';
-import { attemptsGet } from '@repo/handlers/requests/database/attempts';
-import { APP_NAME } from '@repo/constants/app';
+import { AttemptGet } from '@repo/types';
+import { attemptsGet } from '@repo/handlers';
+import { APP_NAME } from '@repo/constants';
 
 // export const generateMetadata = async ({
 //   params,
@@ -26,7 +26,7 @@ import { APP_NAME } from '@repo/constants/app';
 //   return {
 //     title: {
 //       default: metaTitle,
-//       template: `%s - Attempts - Admin - ${APP_NAME.LMS}`,
+//       template: `%s - Attempts - Admin - ${APP_NAME.LEARN}`,
 //     },
 //   };
 // };

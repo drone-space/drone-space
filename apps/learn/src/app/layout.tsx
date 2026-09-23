@@ -1,35 +1,25 @@
+import type { Metadata } from 'next';
+import { Montserrat, Geist_Mono, Nova_Mono } from 'next/font/google';
+import { APP_DESC, APP_NAME, DEFAULT_COLOR_SCHEME, getApiUrl } from '@repo/constants';
+import { createClientcloudbaseServer } from '@repo/cloudbase';
+import { getCookieServer, isProduction } from '@repo/utils';
+import { COOKIE_NAME } from '@repo/constants';
+import { ProviderMantine } from '@repo/ui';
+import { ProviderInitialize } from '@learn/ui/provider/initialize';
+import { ProviderSync } from '@learn/ui/provider/sync';
+import { ColorSchemeScript, MantineColorScheme, mantineHtmlProps } from '@mantine/core';
+import { getAppTheme } from '@repo/constants';
+import { getAppResolver } from '@learn/resolver';
+import { ColorScheme } from '@repo/types';
+
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
+// import '@mantine/carousel/styles.css';
 import '@mantine/notifications/styles.css';
 
 // custom styles
 import '../styles/globals.css';
-
-import type { Metadata } from 'next';
-import { Montserrat, Nova_Mono } from 'next/font/google';
-import {
-  Box,
-  ColorSchemeScript,
-  MantineColorScheme,
-  mantineHtmlProps,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
-import ProviderMantine from '@repo/ui/provider/mantine';
-import { mantine } from '@/assets/styles';
-import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
-import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { isProduction } from '@repo/utilities/misc';
-import ProviderStore from '@/components/provider/store';
-import ProviderSync from '@/components/provider/sync';
-import { createClient } from '@repo/libraries/supabase/server';
-import { getCookieServer } from '@repo/utilities/cookie-server';
-import { COOKIE_NAME } from '@repo/constants/names';
-import { SECTION_SPACING } from '@repo/constants/sizes';
-import { API_URL } from '@repo/constants/paths';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -43,8 +33,12 @@ const novaMono = Nova_Mono({
 });
 
 export const metadata: Metadata = {
-  title: COMPANY_NAME,
-  description: APP_DESC.LMS,
+  title: APP_NAME.LEARN,
+  description: APP_DESC.LEARN,
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function RootLayout({
@@ -54,7 +48,7 @@ export default async function RootLayout({
 }>) {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
-  const supabase = await createClient();
+  const supabase = await createClientcloudbaseServer();
   const { data: session } = await supabase.auth.getUser();
 
   // 1. Get the CALCULATED theme from middleware (not the 'auto' state)
@@ -62,23 +56,42 @@ export default async function RootLayout({
   const resolvedTheme = (theme || DEFAULT_COLOR_SCHEME) as MantineColorScheme;
 
   return (
-    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme={resolvedTheme}>
+    <html
+      lang="en"
+      {...mantineHtmlProps}
+      data-mantine-color-scheme={resolvedTheme}
+      className={`${montserrat.variable} ${novaMono.variable} h-full antialiased`}
+    >
       <head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+          viewport-fit="cover"
+        />
+
+        {/* General Web App Metadata */}
+        <meta name="application-name" content={APP_NAME.LEARN} />
+        <meta name="theme-color" content={'#CBB399'} />
+        <meta
+          name="background-color"
+          content={resolvedTheme == ColorScheme.LIGHT ? '#ffffff' : '#000000'}
+        />
 
         <ColorSchemeScript defaultColorScheme={resolvedTheme} />
       </head>
 
-      <body className={`${montserrat.variable} ${novaMono.variable}`}>
+      <body className="min-h-full flex flex-col">
         <ProviderMantine
           options={{ withNotifications: true }}
-          appThemeProps={{ styleSheets: { ...mantine } }}
           colorScheme={resolvedTheme}
+          theme={getAppTheme}
+          cssVariablesResolver={getAppResolver}
         >
-          <ProviderStore props={{ apiUrl: API_URL, sessionUser: session.user }}>
+          <ProviderInitialize props={{ baseUrl: await getApiUrl(), sessionUser: session.user }}>
             <ProviderSync>{children}</ProviderSync>
-          </ProviderStore>
+          </ProviderInitialize>
         </ProviderMantine>
 
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

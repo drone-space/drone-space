@@ -3,7 +3,7 @@
 import React from 'react';
 import { ActionIcon, Affix, Transition } from '@mantine/core';
 import { useHeadroom, useWindowScroll } from '@mantine/hooks';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import { IconChevronUp } from '@tabler/icons-react';
 
 export function AffixTop() {

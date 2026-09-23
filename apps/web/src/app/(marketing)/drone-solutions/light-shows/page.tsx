@@ -1,8 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import HeroShows from '@/components/layout/heros/shows';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import HeroShows from '@web/ui/layout/heros/shows';
 import {
   AspectRatio,
   Box,
@@ -20,22 +20,21 @@ import {
   Text,
   Title,
 } from '@mantine/core';
-import CardShowsAdvantages from '@/components/common/cards/shows/advantages';
-import CardShowsApplications from '@/components/common/cards/shows/applications';
-import AccordionShows from '@/components/common/accordions/shows';
-import CardShowsPrice from '@/components/common/cards/shows/price';
-import TableShows from '@/components/common/tables/shows';
-import ModalContactService from '@repo/ui/common/modals/contact/service';
-import CardShowsUnderstand from '@/components/common/cards/shows/understand';
+import CardShowsAdvantages from '@web/ui/common/cards/shows/advantages';
+import CardShowsApplications from '@web/ui/common/cards/shows/applications';
+import AccordionShows from '@web/ui/common/accordions/shows';
+import CardShowsPrice from '@web/ui/common/cards/shows/price';
+import TableShows from '@web/ui/common/tables/shows';
+import { ModalContactService } from '@repo/ui';
+import CardShowsUnderstand from '@web/ui/common/cards/shows/understand';
 import { IconCalendarPlus, IconChevronsRight, IconPhone } from '@tabler/icons-react';
-import { images } from '@repo/constants/images';
-import videos from '@repo/constants/videos';
-import shows from '@/data/shows';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import ImageDefault from '@repo/ui/common/images/default';
-import IntroSection from '@repo/ui/layout/intros/section';
-import { COMPANY_NAME, PHONES } from '@repo/constants/app';
+import { getBaseUrl, images } from '@repo/constants';
+import { videos } from '@repo/constants';
+import shows from '@web/data/shows';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { ImageDefault } from '@repo/ui';
+import { LayoutIntroSection } from '@repo/ui';
+import { COMPANY_NAME, PHONES } from '@repo/constants';
 
 export const dynamic = 'force-static';
 
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/light-shows`,
+    url: `${(await getBaseUrl()).WEB}/drone-solutions/light-shows`,
     type: 'website',
     images: [
       {
@@ -70,7 +69,7 @@ export default async function LighShow() {
       <HeroShows />
 
       <LayoutSection id="page-lightshow-intro" containerized={false} padded>
-        <Grid gutter={0}>
+        <Grid gap={0}>
           <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
             <ImageDefault
               src={images.shows.talk}
@@ -114,7 +113,7 @@ export default async function LighShow() {
         containerized={false}
         padded
       >
-        <Grid gutter={0}>
+        <Grid gap={0}>
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }} p={'xs'}>
             <ImageDefault
               src={images.shows.understanding}
@@ -143,7 +142,7 @@ export default async function LighShow() {
       </LayoutSection>
 
       <LayoutSection id="page-lightshow-video" containerized={false} padded>
-        <Grid gutter={0}>
+        <Grid gap={0}>
           <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
             <AspectRatio
               ratio={1920 / 1080}
@@ -204,7 +203,7 @@ export default async function LighShow() {
         bg={'var(--mantine-color-gray-1)'}
         padded
       >
-        <Grid gutter={0}>
+        <Grid gap={0}>
           <GridCol span={{ base: 12, md: 6 }} order={{ base: 1, md: 2 }} p={'xs'}>
             <ImageDefault
               src={images.shows.hny}
@@ -248,7 +247,7 @@ export default async function LighShow() {
       </LayoutSection>
 
       <LayoutSection id="page-lightshow-applications" shadowed containerized={'responsive'} padded>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Use Cases',
             title: 'Versatile Applications',
@@ -347,9 +346,9 @@ export default async function LighShow() {
       </LayoutSection>
 
       <LayoutSection id="page-lightshow-faq" containerized={'responsive'} padded>
-        <Grid gutter={{ base: 'xl', md: 'md' }}>
+        <Grid gap={{ base: 'xl', md: 'md' }}>
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 subTitle: `FAQ's`,
                 title: `Most Asked`,
@@ -368,7 +367,7 @@ export default async function LighShow() {
           </GridCol>
 
           <GridCol span={{ base: 12, md: 5.5 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 subTitle: `Cost`,
                 title: `Factors Affecting the Cost`,
@@ -388,7 +387,7 @@ export default async function LighShow() {
         bg={'var(--mantine-color-gray-1)'}
         padded
       >
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: `Pricing`,
             title: `Typical Pricing Ranges`,
@@ -425,7 +424,7 @@ export default async function LighShow() {
       </LayoutSection>
 
       <LayoutSection id="page-lightshow-timeline" containerized={'responsive'} padded>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: `Logistics`,
             title: `Project Timeline`,

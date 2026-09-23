@@ -1,6 +1,6 @@
 import React from 'react';
-import LayoutPage from '@repo/ui/layout/page';
-import PartialPageQuizzesStudentAttempt from '@/components/partial/page/quizzes/student/attempt';
+import { LayoutPage } from '@repo/ui';
+import PartialPageQuizzesStudentAttempt from '@learn/ui/partial/page/quizzes/student/attempt';
 import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
 

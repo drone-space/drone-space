@@ -1,8 +1,8 @@
 'use client';
 
-import { TimerDirection } from '@repo/types/enums';
-import { Timer } from '@repo/types/date-time';
-import { getTimeElapsed, getTimeRemaining } from '@repo/utilities/date-time';
+import { TimerDirection } from '@repo/types';
+import { Timer } from '@repo/types';
+import { getTimeElapsed, getTimeRemaining } from '@repo/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseTimerOptions {

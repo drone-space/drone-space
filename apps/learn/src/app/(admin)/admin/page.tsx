@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import { APP_NAME } from '@repo/constants/app';
+import { LayoutPage } from '@repo/ui';
+import { APP_NAME } from '@repo/constants';
 
 const metaTitle = `Dashboard`;
 

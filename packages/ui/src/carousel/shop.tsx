@@ -1,18 +1,18 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useRef } from 'react';
 import { Button, Group, Stack, Text, Title } from '@mantine/core';
 import { Carousel, CarouselSlide } from '@mantine/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import LayoutSection from '@repo/ui/layout/section';
-import { SECTION_SPACING } from '@repo/constants/sizes';
-import MoadlContactShop from '../modal/contact/shop';
+import { LayoutSection } from '@repo/ui';
+import { SECTION_SPACING } from '@repo/constants';
+import { ModalContactShop } from '../modal/contact/shop';
 import classes from './shop.module.css';
-import NextLink from '@repo/ui/common/anchor/next-link';
+import { AnchorNextLink } from '@repo/ui';
 
 export function CarouselShop({ props }: { props: { shopLinks: any[] } }) {
-  const autoplay = useRef(Autoplay({ delay: 4000 }));
+  const autoplay = useMemo(() => Autoplay({ delay: 4000 }), []);
 
   const slides = props.shopLinks.slice(0, props.shopLinks.length - 1).map((slide, index) => {
     function Layout({ props }: { props: any }) {
@@ -48,15 +48,15 @@ export function CarouselShop({ props }: { props: { shopLinks: any[] } }) {
               </Stack>
 
               <Group justify={'center'}>
-                <MoadlContactShop>
+                <ModalContactShop>
                   <Button color="sec.3">Inquire</Button>
-                </MoadlContactShop>
+                </ModalContactShop>
 
-                <NextLink href={props.link}>
+                <AnchorNextLink href={props.link}>
                   <Button variant="outline" color="white">
                     Learn More
                   </Button>
-                </NextLink>
+                </AnchorNextLink>
               </Group>
             </Stack>
           </LayoutSection>
@@ -78,9 +78,9 @@ export function CarouselShop({ props }: { props: { shopLinks: any[] } }) {
       emblaOptions={{ loop: true, slidesToScroll: 'auto' }}
       classNames={classes}
       slideSize={{ base: '100%', md: '50%' }}
-      plugins={[autoplay.current]}
-      // onMouseEnter={autoplay.current.stop}
-      // onMouseLeave={autoplay.current.reset}
+      plugins={[autoplay]}
+      // onMouseEnter={autoplay.stop}
+      // onMouseLeave={autoplay.reset}
     >
       {slides}
     </Carousel>

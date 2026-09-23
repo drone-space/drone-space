@@ -1,5 +1,5 @@
 import { Center, Tooltip, TooltipProps } from '@mantine/core';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 import { IconAlertTriangle } from '@tabler/icons-react';
 
 export function TooltipInputWarning({

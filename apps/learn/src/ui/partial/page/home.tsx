@@ -1,0 +1,161 @@
+'use client';
+
+import React from 'react';
+import { LayoutSection } from '@repo/ui';
+import {
+  Anchor,
+  Button,
+  Card,
+  Center,
+  Grid,
+  GridCol,
+  Group,
+  Paper,
+  Skeleton,
+  Stack,
+  Text,
+  ThemeIcon,
+  Title,
+} from '@mantine/core';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
+import { COMPANY_NAME } from '@repo/constants';
+import { ImageDefault } from '@repo/ui';
+import { AnchorNextLink } from '@repo/ui';
+import { images } from '@repo/constants';
+import { IconArrowRight, IconDashboard, IconPlus } from '@tabler/icons-react';
+import { useStoreQuiz } from '@repo/store';
+import { CardQuizHome } from '@repo/ui';
+import { Status } from '@repo/types';
+
+export default function Home() {
+  const quizzes = useStoreQuiz((s) => s.quizzes);
+  const quizzesActive = quizzes?.filter((qi) => qi.status == Status.ACTIVE);
+
+  return (
+    <LayoutSection id={'section-home'} containerized={'md'}>
+      <Stack gap={SECTION_SPACING} mih={'100vh'} py={SECTION_SPACING} justify="center">
+        <Group justify="center" ta={'center'}>
+          <AnchorNextLink href={'/admin'}>
+            <ImageDefault
+              src={images.brand.droneSpace.logo.landscape.default}
+              alt={COMPANY_NAME}
+              height={48}
+              width={320}
+              fit="contain"
+              radius={0}
+            />
+          </AnchorNextLink>
+        </Group>
+
+        <Stack align="center" ta={'center'}>
+          <Text c={'dimmed'} fz={'lg'}>
+            Welcome to {COMPANY_NAME} online learning.
+          </Text>
+
+          <Title order={1}>The #1 UTO Learning Platform</Title>
+
+          {/* <Text c={'dimmed'} fz={'lg'}>
+            Browse our content and test yourself.
+          </Text> */}
+        </Stack>
+
+        <Grid gap={'xl'} justify="center">
+          {quizzes === undefined ? (
+            <GridCol span={12}>
+              <Grid gap={'xl'}>
+                <GridCol span={{ md: 4 }}>
+                  <Skeleton h={198} w={'100%'} />
+                </GridCol>
+                <GridCol span={{ md: 4 }}>
+                  <Skeleton h={198} w={'100%'} />
+                </GridCol>
+                <GridCol span={{ md: 4 }}>
+                  <Skeleton h={198} w={'100%'} />
+                </GridCol>
+              </Grid>
+            </GridCol>
+          ) : !quizzesActive?.length ? (
+            <GridCol span={{ md: 4 }}>
+              <Paper
+                bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
+                p={'md'}
+              >
+                <Group justify="center" ta={'center'} fz={'sm'} c={'dimmed'}>
+                  <Text inherit>No quizzes found</Text>
+                </Group>
+              </Paper>
+            </GridCol>
+          ) : (
+            quizzesActive.map(
+              (qi, i) =>
+                i < 2 && (
+                  <GridCol key={qi.id} span={{ md: 4 }}>
+                    <CardQuizHome props={{ quiz: qi }} />
+                  </GridCol>
+                ),
+            )
+          )}
+
+          <GridCol span={{ md: 4 }} display={quizzes?.length ? undefined : 'none'}>
+            <Stack>
+              <AnchorNextLink href="/quizzes">
+                <Card
+                  bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
+                  withBorder
+                  p={{ base: 'md', md: 'lg' }}
+                  // mih={198 / 2}
+                >
+                  <Stack align="center" ta={'center'} fz={'sm'} justify="center" h={'100%'}>
+                    <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
+                      <IconArrowRight size={ICON_SIZE + 4} stroke={ICON_STROKE_WIDTH} />
+                    </ThemeIcon>
+
+                    <Text inherit>Browse more quizzes</Text>
+                  </Stack>
+                </Card>
+              </AnchorNextLink>
+
+              <AnchorNextLink href="/dashboard">
+                <Card
+                  bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
+                  withBorder
+                  p={{ base: 'md', md: 'lg' }}
+                  // mih={198 / 2}
+                >
+                  <Stack align="center" ta={'center'} fz={'sm'} justify="center" h={'100%'}>
+                    <ThemeIcon size={ICON_WRAPPER_SIZE + 4} color="sec.3">
+                      <IconDashboard size={ICON_SIZE + 4} stroke={ICON_STROKE_WIDTH} />
+                    </ThemeIcon>
+
+                    <Text inherit>Go to dashboard</Text>
+                  </Stack>
+                </Card>
+              </AnchorNextLink>
+            </Stack>
+          </GridCol>
+        </Grid>
+
+        {/* <Group gap={'xs'} justify="center">
+          <AnchorNextLink href="/quizzes">
+            <Button
+              rightSection={
+                <IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+            >
+              See Quizzes
+            </Button>
+          </AnchorNextLink>
+        </Group> */}
+
+        <Group justify="center" ta={'center'}>
+          <Text inherit c={'dimmed'}>
+            Back to main site:{' '}
+            <Anchor inherit href="https://dronespace.co.ke" target="_blank" underline="hover">
+              dronespace.co.ke
+            </Anchor>
+          </Text>
+        </Group>
+      </Stack>
+    </LayoutSection>
+  );
+}

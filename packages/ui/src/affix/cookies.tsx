@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { Affix, AffixBaseProps, Transition } from '@mantine/core';
-import CardCookies from '../card/cookies';
-import { getCookieClient } from '@repo/utilities/cookie-client';
-import { COOKIE_NAME } from '@repo/constants/names';
+import { CardCookies } from '../card/cookies';
+import { getCookieClient } from '@repo/utils';
+import { COOKIE_NAME } from '@repo/constants';
 
 export function AffixCookies({
   position = {

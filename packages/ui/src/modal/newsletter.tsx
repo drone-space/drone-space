@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { Modal } from '@mantine/core';
-import { getFromLocalStorage } from '@repo/utilities/storage';
-import { COOKIE_NAME, LOCAL_STORAGE_NAME } from '@repo/constants/names';
-import { getCookieClient, setCookieClient } from '@repo/utilities/cookie-client';
-import CtaNewsletter from '../../partial/cta/newsletter';
-// import { useStoreModal } from '@repo/libraries/zustand/stores/modals';
+import { getFromLocalStorage } from '@repo/utils';
+import { COOKIE_NAME, LOCAL_STORAGE_NAME } from '@repo/constants';
+import { getCookieClient, setCookieClient } from '@repo/utils';
+import { PartialCtaNewsletter } from '../partial/cta/newsletter';
+// import { useStoreModal } from '@repo/store';
 
 export function ModalNewsletter({
   options,
@@ -67,7 +67,7 @@ export function ModalNewsletter({
         }}
         size={'lg'}
       >
-        <CtaNewsletter close={close} />
+        <PartialCtaNewsletter close={close} />
       </Modal>
 
       {children && (

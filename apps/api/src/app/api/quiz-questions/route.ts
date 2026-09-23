@@ -1,6 +1,6 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { QuizQuestionGet } from '@repo/types/models/quiz-question';
+import { QuizQuestionGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   try {
     // const userId = request.nextUrl.searchParams.get('userId');
 
-    const quizQuestionRecords = await prisma.quizQuestion.findMany({
-      // where: !userId ? undefined : { profile_id: userId },
-      orderBy: { created_at: 'desc' },
+    const quizQuestionRecords = await db.quizQuestion.findMany({
+      // where: !userId ? undefined : { profileId: userId },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -36,29 +36,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.quizQuestion.deleteMany({
+      await db.quizQuestion.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = quizQuestion.map((quizQuestion) =>
-      prisma.quizQuestion.upsert({
+      db.quizQuestion.upsert({
         where: { id: quizQuestion.id },
         update: {
           ...quizQuestion,
-          updated_at: new Date(quizQuestion.updated_at),
+          updatedAt: new Date(quizQuestion.updatedAt),
         },
         create: {
           ...quizQuestion,
-          created_at: new Date(quizQuestion.created_at),
-          updated_at: new Date(quizQuestion.updated_at),
+          createdAt: new Date(quizQuestion.createdAt),
+          updatedAt: new Date(quizQuestion.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateQuizQuestions = await prisma.$transaction(operations);
+    const updateQuizQuestions = await db.$transaction(operations);
 
     return NextResponse.json(
       { items: updateQuizQuestions },

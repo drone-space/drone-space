@@ -1,20 +1,20 @@
 import React from 'react';
-import LayoutPage from '@repo/ui/layout/page';
+import { LayoutPage } from '@repo/ui';
 import { typeParams } from '../layout';
-import { PostRelations } from '@repo/types/models/post';
-import { extractUuidFromParam } from '@repo/utilities/url';
+import { PostRelations } from '@repo/types';
+import { extractUuidFromParam } from '@repo/utils';
 import { redirect } from 'next/navigation';
-import { linkify } from '@repo/utilities/url';
-import { postsGet } from '@repo/handlers/requests/database/posts';
-import PartialPageBlogDetail from '@/components/partial/page/blog-detail';
-import { API_URL } from '@repo/constants/paths';
+import { linkify } from '@repo/utils';
+import { postsGet } from '@repo/handlers';
+import PartialPageBlogDetail from '@web/ui/partial/page/blog-detail';
+import { getApiUrl } from '@repo/constants';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const { items: posts }: { items: PostRelations[] } = await postsGet({
-    apiUrl: API_URL,
+    apiUrl: await getApiUrl(),
   });
 
   if (posts == null) return [];

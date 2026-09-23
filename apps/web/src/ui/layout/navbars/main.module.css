@@ -1,0 +1,32 @@
+.link {
+  padding: 1.5rem 0.75rem;
+  font-size: var(--mantine-font-size-md);
+  color: inherit !important;
+  text-decoration: inherit !important;
+  transition: 0.25s color ease;
+  font-weight: 500;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .link:hover {
+    color: var(--mantine-color-sec-3) !important;
+  }
+}
+
+.linkAbsolute {
+  padding: 1.5rem 0.75rem;
+  font-size: var(--mantine-font-size-md);
+  color: var(--mantine-color-white) !important;
+  transition: 0.25s color ease;
+}
+
+@media (hover: hover) {
+  .linkAbsolute:hover {
+    color: var(--mantine-color-sec-3) !important;
+  }
+}
+
+.linkActive {
+  color: var(--mantine-color-sec-3);
+}

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import { Divider, List, ListItem, Text, Title } from '@mantine/core';
-import legal from '@/data/legal';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import legal from '@web/data/legal';
+import { getBaseUrl } from '@repo/constants';
+import { images } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
 
 export const dynamic = 'force-static';
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/legal/policy`,
+    url: `${(await getBaseUrl()).WEB}/legal/policy`,
     type: 'website',
     images: [
       {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default async function PrivacyPolicy() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: `Discretion`,
           title: 'Privacy Policy',

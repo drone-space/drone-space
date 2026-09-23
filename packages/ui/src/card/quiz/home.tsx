@@ -1,8 +1,8 @@
 'use client';
 
 import { Anchor, Card, Group, Stack, Text, Title, Tooltip } from '@mantine/core';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { QuizGet } from '@repo/types/models/quiz';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { QuizGet } from '@repo/types';
 import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';

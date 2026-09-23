@@ -5,7 +5,7 @@ import { createClientcloudbaseServer } from '@repo/cloudbase';
 import { profileCreateDb } from '@repo/handlers';
 import { segmentFullName, linkify } from '@repo/utils';
 import { AUTH_URLS } from '@repo/constants';
-import { sharedUserHandle } from '@repo/auth';
+import { linkSrplToProfile, sharedUserHandle } from '@repo/auth';
 
 export async function routeAuthCallbackOauth(request: Request) {
   const host = request.headers.get('host');
@@ -29,6 +29,7 @@ const authOauth = async (params: { searchParams: URLSearchParams }) => {
   const { searchParams } = params;
 
   const code = searchParams.get('code');
+  const srpl = searchParams.get('srpl');
 
   if (!code) {
     throw new Error('The link is broken');
@@ -48,9 +49,19 @@ const authOauth = async (params: { searchParams: URLSearchParams }) => {
     firstName: nameSegments.first,
     lastName: nameSegments.last,
     userName: linkify(data.user.email || ''),
+    phone: data.user.phone || '',
     email: data.user.email || '',
     avatar: data.user.user_metadata.avatar_url || '',
   });
+
+  if (srpl) {
+    const result = await linkSrplToProfile(srpl, profile);
+    if (result) {
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) throw signOutError;
+      throw new Error(result);
+    }
+  }
 
   await sharedUserHandle({ supabase, profile, existed });
 

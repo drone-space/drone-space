@@ -1,9 +1,9 @@
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutMain from '@repo/ui/layout/main';
+import { LayoutPage } from '@repo/ui';
+import { LayoutMain } from '@repo/ui';
 import React from 'react';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { COMPANY_NAME } from '@repo/constants';
 import { Metadata } from 'next';
-import PartialPageHome from '@/components/partial/page/home';
+import PartialPageHome from '@learn/ui/partial/page/home';
 
 export const metadata: Metadata = {
   title: `${COMPANY_NAME} - The Leading Drone Training Academy in Kenya`,

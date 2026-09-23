@@ -1,5 +1,5 @@
-import prisma from '@repo/libraries/prisma';
-import { ProfileGet } from '@repo/types/models/profile';
+import { db } from '@repo/db';
+import { ProfileGet } from '@repo/types';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -12,7 +12,7 @@ export async function GET(
   try {
     const { profileId } = await params;
 
-    const profileRecord = await prisma.profile.findUnique({
+    const profileRecord = await db.profile.findUnique({
       where: { id: profileId },
     });
 
@@ -35,7 +35,7 @@ export async function PUT(
 
     const profile: ProfileGet = await request.json();
 
-    const updateProfile = await prisma.profile.update({
+    const updateProfile = await db.profile.update({
       where: { id: profileId },
       data: profile,
     });

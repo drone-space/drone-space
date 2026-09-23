@@ -19,15 +19,15 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import { typeMenuNavbar } from '@repo/types/link';
+import { typeMenuNavbar } from '@repo/types';
 import classes from './navbar.module.css';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import CardMenu from '../card/menu';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { CardMenu } from '../card/menu';
 import { IconFileDownload } from '@tabler/icons-react';
-import ModalDownloadDocument from '../modal/download/document';
-import NextLink from '@repo/ui/common/anchor/next-link';
-import LayoutSection from '../../layout/section';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { ModalDownloadDocument } from '../modal/download/document';
+import { AnchorNextLink } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { COMPANY_NAME } from '@repo/constants';
 
 export function MenuNavbar({
   children,
@@ -49,7 +49,7 @@ export function MenuNavbar({
   const menuItems =
     subLinks &&
     subLinks.map((item, index) => (
-      <NextLink href={item.link} key={item.link}>
+      <AnchorNextLink href={item.link} key={item.link}>
         <MenuItem
           key={index}
           className={`${classes.item} ${pathname == item.link ? classes.itemActive : ''}`}
@@ -60,7 +60,7 @@ export function MenuNavbar({
         >
           {!item.desc ? <>{item.labelShort || item.label}</> : <CardMenu props={item} />}
         </MenuItem>
-      </NextLink>
+      </AnchorNextLink>
     ));
 
   return (
@@ -120,7 +120,7 @@ export function MenuNavbar({
                   </Title>
                 </Group> */}
 
-                <Grid gutter={'xs'}>
+                <Grid gap={'xs'}>
                   {menuItems.map((menuItem, index) => (
                     <GridCol key={index} span={{ base: 12, md: 4, lg: 3 }}>
                       {menuItem}

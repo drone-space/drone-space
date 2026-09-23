@@ -1,9 +1,9 @@
 import React from 'react';
 import { Anchor, Button, Divider, Group, Stack, Text } from '@mantine/core';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutSection } from '@repo/ui';
 import { IconMessageCirclePlus } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { useStoreConversation } from '@repo/store';
 
 const modelUrl = 'https://anthropic.com';
 

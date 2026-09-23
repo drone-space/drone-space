@@ -6,7 +6,7 @@ import { AUTH_URLS } from '@repo/constants';
 import { createClientcloudbaseServer } from '@repo/cloudbase';
 import { profileCreateDb } from '@repo/handlers';
 import { getEmailLocalPart, linkify } from '@repo/utils';
-import { sharedUserHandle } from '@repo/auth';
+import { linkSrplToProfile, sharedUserHandle } from '@repo/auth';
 
 export async function routeAuthCallbackEmail(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -38,6 +38,7 @@ const authEmail = async (params: { searchParams: URLSearchParams; baseUrl: strin
   const redirectUrl = searchParams.get('redirectUrl');
   const email = searchParams.get('email');
   const otp = searchParams.get('otp');
+  const srpl = searchParams.get('srpl');
 
   if (!email) throw new Error('Email is required');
   if (!otp) throw new Error('OTP is required');
@@ -70,6 +71,15 @@ const authEmail = async (params: { searchParams: URLSearchParams; baseUrl: strin
     firstName: nameFromEmail,
     userName: linkify(session.user?.email || ''),
   });
+
+  if (srpl) {
+    const result = await linkSrplToProfile(srpl, profile);
+    if (result) {
+      const { error: signOutError } = await supabase.auth.signOut();
+      if (signOutError) throw signOutError;
+      throw new Error(result);
+    }
+  }
 
   await sharedUserHandle({ supabase, profile, existed });
 

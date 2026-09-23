@@ -1,15 +1,15 @@
-import { capitalizeWords } from '@repo/utilities/string';
-import { validators } from '@repo/utilities/validation';
+import { capitalizeWords } from '@repo/utils';
+import { validators } from '@repo/utils';
 import { hasLength, UseFormReturnType } from '@mantine/form';
-import { handleInquiry } from '@repo/handlers/requests/email/inquiry';
-import { contactAdd } from '@repo/handlers/requests/contact';
-import { formValuesInitialInquiry, FormValuesInquiry, InquiryType } from '@repo/types/form';
+import { handleInquiry } from '@repo/handlers';
+import { contactAdd } from '@repo/handlers';
+import { formValuesInitialInquiry, FormValuesInquiry, InquiryType } from '@repo/types';
 import { useFormBase } from '../form';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import { useNotification } from '@repo/hooks/notification';
-import { downloadBrochure } from '@repo/handlers/downloaders/brochure';
-import { downloadProfile } from '@repo/handlers/downloaders/profile';
-import { Variant } from '@repo/types/enums';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+import { useNotification } from '@repo/hooks';
+import { downloadBrochure } from '@repo/handlers';
+import { downloadProfile } from '@repo/handlers';
+import { Variant } from '@repo/types';
 
 type UseFormEmailInquiryOptions = {
   saveEmailContact?: boolean;

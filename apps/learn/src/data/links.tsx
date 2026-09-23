@@ -13,10 +13,10 @@ import {
   IconStar,
   IconUser,
 } from '@tabler/icons-react';
-import { images } from '@repo/constants/images';
-import { AUTH_URLS } from '@repo/constants/paths';
-import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants/app';
-import { cleanPaths } from '@repo/utilities/array';
+import { images } from '@repo/constants';
+import { AUTH_URLS } from '@repo/constants';
+import { EMAILS, LOCATIONS, PHONES, SOCIALS } from '@repo/constants';
+import { cleanPaths } from '@repo/utils';
 
 export const navLinkItems = {
   activity: [
@@ -238,14 +238,9 @@ links.footer.map((li) => {
 
 export const unprotectedRoutes = [
   ...cleanPaths(
-    [
-      '/',
-      ...mainLinks,
-      ...subLinks,
-      ...footerLinks,
-      '/legal/terms',
-      '/legal/policy',
-    ].filter((l) => !l.startsWith('/#'))
+    ['/', ...mainLinks, ...subLinks, ...footerLinks, '/legal/terms', '/legal/policy'].filter(
+      (l) => !l.startsWith('/#'),
+    ),
   ),
 ];
 

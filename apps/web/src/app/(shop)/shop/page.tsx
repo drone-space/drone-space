@@ -1,7 +1,7 @@
 import React from 'react';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import CardShopFactor from '@/components/common/cards/shop/factor';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import CardShopFactor from '@web/ui/common/cards/shop/factor';
 import { Grid, GridCol } from '@mantine/core';
 import {
   IconDiscount2,
@@ -11,14 +11,14 @@ import {
   IconLayersIntersect,
   IconPhotoSensor3,
 } from '@tabler/icons-react';
-import IntroSection from '@repo/ui/layout/intros/section';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import { LayoutIntroSection } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
 import { Metadata } from 'next';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import IntroPage from '@repo/ui/layout/intros/page';
-import PartialDroneListing from '@/components/partial/drone-listing';
-import { SECTION_SPACING } from '@repo/constants/sizes';
+import { getBaseUrl } from '@repo/constants';
+import { images } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import PartialDroneListing from '@web/ui/partial/drone-listing';
+import { SECTION_SPACING } from '@repo/constants';
 
 export const dynamic = 'force-static';
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop`,
+    url: `${(await getBaseUrl()).WEB}/shop`,
     type: 'website',
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 export default async function Shop() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Shop',
           title: `Top Drones At ${APP_NAME.WEB}`,
@@ -61,7 +61,7 @@ export default async function Shop() {
       </LayoutSection>
 
       <LayoutSection id="page-shop-factors" padded bg={'var(--mantine-color-gray-1)'}>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Factors',
             title: 'Which Drone Should I Buy?',
@@ -71,7 +71,7 @@ export default async function Shop() {
           options={{ spacing: true }}
         />
 
-        <Grid mt={'xl'} gutter={'xl'}>
+        <Grid mt={'xl'} gap={'xl'}>
           {factors.map((factor, index) => (
             <GridCol key={index} span={{ base: 12, sm: 6 }}>
               <CardShopFactor data={factor} />

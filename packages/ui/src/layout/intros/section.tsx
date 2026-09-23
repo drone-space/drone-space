@@ -1,8 +1,8 @@
 'use client';
 
-import LayoutSection from '../section';
+import { LayoutSection } from '../section';
 import { Stack, Text, Title } from '@mantine/core';
-import { SECTION_SPACING } from '@repo/constants/sizes';
+import { SECTION_SPACING } from '@repo/constants';
 
 interface SectionHeaderProps {
   props: {

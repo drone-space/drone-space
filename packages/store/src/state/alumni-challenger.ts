@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { AlumniChallengerGet } from '@repo/types/models/alumni-challenger';
+import type { AlumniChallengerGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type AlumniChallengersValue = AlumniChallengerGet[] | null | undefined;

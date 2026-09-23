@@ -7,110 +7,49 @@ export const config: DBConfig = {
   name: linkify(COMPANY_NAME),
   version: 4,
   stores: [
-    // {
-    //   name: STORE_NAME.SETTINGS,
-    //   keyPath: 'id',
-    // },
     {
-      name: STORE_NAME.WORKSPACES,
-      keyPath: 'id',
-    },
-
-    // Pave
-    {
-      name: STORE_NAME.CALENDARS,
+      name: STORE_NAME.SETTINGS,
       keyPath: 'id',
     },
     {
-      name: STORE_NAME.EVENTS,
-      keyPath: 'id',
-    },
-
-    // Jot
-    {
-      name: STORE_NAME.NOTES,
+      name: STORE_NAME.CATEGORIES,
       keyPath: 'id',
     },
     {
-      name: STORE_NAME.LINKS,
-      keyPath: 'id',
-    },
-
-    // Stride
-    {
-      name: STORE_NAME.TASK_LISTS,
+      name: STORE_NAME.POSTS,
       keyPath: 'id',
     },
     {
-      name: STORE_NAME.RECURRING_RULES,
+      name: STORE_NAME.QUIZZES,
       keyPath: 'id',
     },
     {
-      name: STORE_NAME.TASKS,
+      name: STORE_NAME.QUIZ_QUESTIONS,
       keyPath: 'id',
     },
     {
-      name: STORE_NAME.REMINDERS,
+      name: STORE_NAME.QUESTIONS,
       keyPath: 'id',
     },
-    // {
-    //   name: STORE_NAME.VIEWS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.NOTIFICATIONS,
-    //   keyPath: 'id',
-    // },
-
-    // {
-    //   name: STORE_NAME.ACCOUNTS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.ACCOUNT_GROUPS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.BUDGETS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.TRANSACTIONS,
-    //   keyPath: 'id',
-    // },
-
-    // {
-    //   name: STORE_NAME.FOODS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.MEALS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.SERVINGS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.EATS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.MASSES,
-    //   keyPath: 'id',
-    // },
-
-    // {
-    //   name: STORE_NAME.CHATS,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.CHAT_MESSAGES,
-    //   keyPath: 'id',
-    // },
-    // {
-    //   name: STORE_NAME.CUSTOMIZATIONS,
-    //   keyPath: 'id',
-    // },
+    {
+      name: STORE_NAME.OPTIONS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.ATTEMPTS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.ANSWERS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.SRPLS,
+      keyPath: 'id',
+    },
+    {
+      name: STORE_NAME.ALUMNI_CHALLENGERS,
+      keyPath: 'id',
+    },
   ],
 };

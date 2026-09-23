@@ -1,0 +1,20 @@
+.footer {
+  background-color: var(--mantine-color-body);
+}
+
+.listItem {
+  text-align: start;
+}
+
+.link {
+  color: var(--mantine-color-gray-5);
+  font-weight: 500;
+  transition: 0.25s all ease;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .link:hover {
+    color: var(--mantine-color-sec-3);
+  }
+}

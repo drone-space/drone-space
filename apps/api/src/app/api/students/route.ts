@@ -1,14 +1,14 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { StudentGet } from '@repo/types/models/student';
+import { StudentGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
 
 export async function GET() {
   try {
-    const studentRecords = await prisma.student.findMany({
-      orderBy: { created_at: 'desc' },
+    const studentRecords = await db.student.findMany({
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -33,29 +33,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.student.deleteMany({
+      await db.student.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = students.map((student) =>
-      prisma.student.upsert({
+      db.student.upsert({
         where: { id: student.id },
         update: {
           ...student,
-          updated_at: new Date(student.updated_at),
+          updatedAt: new Date(student.updatedAt),
         },
         create: {
           ...student,
-          created_at: new Date(student.created_at),
-          updated_at: new Date(student.updated_at),
+          createdAt: new Date(student.createdAt),
+          updatedAt: new Date(student.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateStudents = await prisma.$transaction(operations);
+    const updateStudents = await db.$transaction(operations);
 
     return NextResponse.json(
       { items: updateStudents },

@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { Grid, GridCol, Select, Textarea } from '@mantine/core';
-import CommonForm from '../common/form';
-import FinePrint from '../common/fine-print';
-import CommonFooter from '../common/footer';
-import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { products } from '@repo/constants/products';
-import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
-import { FormValuesInquiry } from '@repo/types/form';
+import { FormCommonForm } from '../common/form';
+import { FormCommonFinePrint } from '../common/fine-print';
+import { FormCommonFooter } from '../common/footer';
+import { ICON_STROKE_WIDTH } from '@repo/constants';
+import { products } from '@repo/constants';
+import { useFormEmailInquiry } from '@repo/hooks';
+import { FormValuesInquiry } from '@repo/types';
 
 export function FormInquiryProduct({
   props,
@@ -34,8 +34,8 @@ export function FormInquiryProduct({
 
   return (
     <form onSubmit={form.onSubmit(() => handleSubmit())} noValidate>
-      <Grid gutter={'xs'}>
-        <CommonForm props={{ form }} />
+      <Grid gap={'xs'}>
+        <FormCommonForm props={{ form: form as any }} />
 
         {currentProduct?.kit.basic && currentProduct?.kit.flyMore && (
           <GridCol span={12}>
@@ -76,11 +76,11 @@ export function FormInquiryProduct({
         </GridCol>
 
         <GridCol span={12}>
-          <FinePrint />
+          <FormCommonFinePrint />
         </GridCol>
 
         <GridCol span={12}>
-          <CommonFooter props={{ submitted }} />
+          <FormCommonFooter props={{ submitted }} />
         </GridCol>
       </Grid>
     </form>

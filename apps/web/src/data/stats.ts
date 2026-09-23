@@ -1,4 +1,4 @@
-import { ABOUT_STATS } from '@repo/constants/app';
+import { ABOUT_STATS } from '@repo/constants';
 
 const stats = [
   {

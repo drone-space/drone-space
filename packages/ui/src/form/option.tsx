@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useFormOption } from '@repo/hooks/form/option';
+import { useFormOption } from '@repo/hooks';
 import { Button, Checkbox, Grid, GridCol, Group, Switch, Textarea, TextInput } from '@mantine/core';
-import { OptionGet } from '@repo/types/models/option';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
+import { OptionGet } from '@repo/types';
+import { useStoreOption } from '@repo/store';
 
 export function FormOption({
   props,
@@ -20,7 +20,7 @@ export function FormOption({
   const option = options?.find((qi) => qi.id == props?.optionId);
 
   const { form, handleSubmit, submitted } = useFormOption({
-    defaultValues: { ...option, question_id: props?.questionId },
+    defaultValues: { ...option, questionId: props?.questionId },
   });
 
   return (
@@ -69,7 +69,7 @@ export function FormOption({
             </Button>
 
             <Button type="submit" loading={submitted} size="xs">
-              {!!option?.updated_at ? 'Update' : 'Create'}
+              {!!option?.updatedAt ? 'Update' : 'Create'}
             </Button>
           </Group>
         </GridCol>

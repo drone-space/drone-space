@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { COOKIE_NAME } from '@repo/constants/names';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { COOKIE_NAME } from '@repo/constants';
 import { Alert, Text, Transition } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
-import { getCookieClient, setCookieClient } from '@repo/utilities/cookie-client';
+import { getCookieClient, setCookieClient } from '@repo/utils';
 
 export function AlertRadioTelephony() {
   const [opened, setOpened] = useState(false);

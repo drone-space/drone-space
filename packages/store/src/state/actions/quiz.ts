@@ -1,8 +1,8 @@
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { QuizGet } from '@repo/types/models/quiz';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
+import { useStoreQuiz } from '../../state/quiz';
+import { useStoreSession } from '../../state/session';
+import { QuizGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
 
 export const useQuizActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -20,11 +20,11 @@ export const useQuizActions = () => {
       id: params.id || id,
       title: params.title || 'New Quiz',
       description: params.description || '',
-      pass_threshold: params.pass_threshold || 70,
+      passThreshold: params.passThreshold || 70,
       status: params.status || Status.ACTIVE,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addQuiz(newQuiz);
@@ -39,9 +39,9 @@ export const useQuizActions = () => {
 
     const newQuiz: QuizGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateQuiz(newQuiz);
@@ -56,9 +56,9 @@ export const useQuizActions = () => {
 
     deleteQuiz({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

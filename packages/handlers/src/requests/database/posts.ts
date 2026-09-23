@@ -1,4 +1,4 @@
-import { PostCreate, PostGet, PostUpdate } from '@repo/types/models/post';
+import { PostCreate, PostGet, PostUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'posts';

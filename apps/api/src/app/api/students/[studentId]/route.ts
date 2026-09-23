@@ -1,4 +1,4 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ export async function GET(
   try {
     const { studentId } = await params;
 
-    const studentRecord = await prisma.student.findUnique({
+    const studentRecord = await db.student.findUnique({
       where: { id: studentId },
     });
 

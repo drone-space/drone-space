@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { SrplGet } from '@repo/types/models/srpl';
+import type { SrplGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type SrplsValue = SrplGet[] | null | undefined;
@@ -45,9 +45,7 @@ export const useStoreSrpl = create<SrplState>((set) => ({
 
   updateSrpl: (data) => {
     set((state) => ({
-      srpls:
-        state.srpls?.map((i) => (i.id === data.id ? { ...data } : i)) ??
-        undefined,
+      srpls: state.srpls?.map((i) => (i.id === data.id ? { ...data } : i)) ?? undefined,
     }));
   },
 

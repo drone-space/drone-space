@@ -1,6 +1,6 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { PostGet } from '@repo/types/models/post';
+import { PostGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   try {
     const userId = request.nextUrl.searchParams.get('userId');
 
-    const postRecords = await prisma.post.findMany({
-      where: !userId ? undefined : { profile_id: userId },
-      orderBy: { created_at: 'desc' },
+    const postRecords = await db.post.findMany({
+      where: !userId ? undefined : { profileId: userId },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -36,29 +36,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.post.deleteMany({
+      await db.post.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = posts.map((post) =>
-      prisma.post.upsert({
+      db.post.upsert({
         where: { id: post.id },
         update: {
           ...post,
-          updated_at: new Date(post.updated_at),
+          updatedAt: new Date(post.updatedAt),
         },
         create: {
           ...post,
-          created_at: new Date(post.created_at),
-          updated_at: new Date(post.updated_at),
+          createdAt: new Date(post.createdAt),
+          updatedAt: new Date(post.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updatePosts = await prisma.$transaction(operations);
+    const updatePosts = await db.$transaction(operations);
 
     return NextResponse.json({ items: updatePosts }, { status: 200, statusText: 'Posts Updated' });
   } catch (error) {

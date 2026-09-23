@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 import { Button, Grid, GridCol } from '@mantine/core';
-import { capitalizeWords } from '@repo/utilities/string';
-import ImageDefault from '@repo/ui/common/images/default';
-import { AUTH_URLS } from '@repo/constants/paths';
-import { PARAM_NAME } from '@repo/constants/names';
-import { getUrlParam } from '@repo/utilities/url';
-import { icons } from '@repo/constants/icons';
-import { createClient } from '@repo/libraries/supabase/client';
+import { capitalizeWords } from '@repo/utils';
+import { ImageDefault } from '../image/default';
+import { AUTH_URLS } from '@repo/constants';
+import { PARAM_NAME } from '@repo/constants';
+import { getUrlParam } from '@repo/utils';
+import { icons } from '@repo/constants';
+import { createClientcloudbaseClient } from '@repo/cloudbase';
 
 export function ButtonAuthProviders({ props }: { props: { baseUrl: string } }) {
-  const supabase = createClient();
+  const supabase = createClientcloudbaseClient();
 
   const [loading, setLoading] = useState('');
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './audio.module.css';
-import { useVisualizer } from '@repo/hooks/visualizer';
+import { useVisualizer } from '@repo/hooks';
 
 export function IndicatorAudio({
   props,

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { CategoryGet } from '@repo/types/models/category';
+import type { CategoryGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type CategoriesValue = CategoryGet[] | null | undefined;

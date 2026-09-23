@@ -1,13 +1,13 @@
 'use client';
 
-import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants';
 import { ActionIcon, Button, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutSection } from '@repo/ui';
 import classes from './conference.module.css';
-import { images } from '@repo/constants/images';
+import { images } from '@repo/constants';
 import { IconExternalLink, IconX } from '@tabler/icons-react';
-import ImageDefault from '@repo/ui/common/images/default';
+import { ImageDefault } from '@repo/ui';
 
 export function PartialCtaConference({ close }: { close?: () => void }) {
   return (

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { AttemptGet } from '@repo/types/models/attempt';
+import type { AttemptGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type AttemptsValue = AttemptGet[] | null | undefined;

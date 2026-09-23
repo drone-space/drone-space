@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import PartialPageQuestionsAdminView from '@/components/partial/page/questions/admin/view';
+import { LayoutPage } from '@repo/ui';
+import PartialPageQuestionsAdminView from '@learn/ui/partial/page/questions/admin/view';
 
 const metaTitle = `Questions`;
 

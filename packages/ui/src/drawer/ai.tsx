@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Drawer, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useFormAi } from '@repo/hooks/form/ai';
-import HeaderModalAI from '../../layout/header/modal/ai';
-import LayoutMainAI from '../../layout/bodies/ai';
-import FooterModalAI from '../../layout/footers/modal/ai';
-import LayoutSection from '@repo/ui/layout/section';
-import FormAi from '../../form/ai';
-import { useTTS } from '@repo/hooks/tts';
-import { useSTT } from '@repo/hooks/stt';
-import OverlayAIVoice from '../../overlays/ai-voice';
+import { useFormAi } from '@repo/hooks';
+import { LayoutHeaderModalAi } from '@repo/ui';
+import { LayoutBodyAI } from '@repo/ui';
+import { LayoutFooterModalAi } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { FormAi } from '@repo/ui';
+import { useTTS } from '@repo/hooks';
+import { useSTT } from '@repo/hooks';
+import { OverlayAiVoice } from '@repo/ui';
 
 export function DrawerAi({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -61,9 +61,9 @@ export function DrawerAi({ children }: { children: React.ReactNode }) {
         position="right"
         padding={0}
       >
-        <HeaderModalAI onClose={handleClose} />
+        <LayoutHeaderModalAi onClose={handleClose} />
 
-        <LayoutMainAI
+        <LayoutBodyAI
           opened={opened}
           form={form}
           submitted={submitted}
@@ -99,9 +99,9 @@ export function DrawerAi({ children }: { children: React.ReactNode }) {
           />
         </LayoutSection>
 
-        <FooterModalAI resetConversation={resetConversation} />
+        <LayoutFooterModalAi resetConversation={resetConversation} />
 
-        <OverlayAIVoice
+        <OverlayAiVoice
           props={{
             listening,
             voiceMode,

@@ -3,6 +3,7 @@ export * from './buses/modal';
 export * from './contexts/item-edit';
 export * from './contexts/scroll';
 
+export * from './form/account/profile';
 export * from './form/ai';
 export * from './form/alumni';
 export * from './form/auth';

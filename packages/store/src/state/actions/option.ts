@@ -1,8 +1,8 @@
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { OptionGet } from '@repo/types/models/option';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
+import { useStoreOption } from '../../state/option';
+import { useStoreSession } from '../../state/session';
+import { OptionGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
 
 export const useOptionActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -13,7 +13,7 @@ export const useOptionActions = () => {
   const optionCreate = (params: Partial<OptionGet>) => {
     if (!session) return;
 
-    if (!params.question_id) {
+    if (!params.questionId) {
       console.error('Question id must be provided.');
       return;
     }
@@ -25,11 +25,11 @@ export const useOptionActions = () => {
       id: params.id || id,
       content: params.content || 'New option',
       correct: params.correct || false,
-      question_id: params.question_id,
+      questionId: params.questionId,
       status: params.status || Status.ACTIVE,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addOption(newOption);
@@ -42,9 +42,9 @@ export const useOptionActions = () => {
 
     const newOption: OptionGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateOption(newOption);
@@ -57,9 +57,9 @@ export const useOptionActions = () => {
 
     deleteOption({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

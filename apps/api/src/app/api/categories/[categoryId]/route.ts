@@ -1,4 +1,4 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -11,7 +11,7 @@ export async function GET(
   try {
     const { categoryId } = await params;
 
-    const categoryRecord = await prisma.category.findUnique({
+    const categoryRecord = await db.category.findUnique({
       where: { id: categoryId },
 
       include: {
@@ -25,7 +25,7 @@ export async function GET(
             profile: true,
           },
 
-          orderBy: { created_at: 'desc' },
+          orderBy: { createdAt: 'desc' },
         },
       },
     });

@@ -1,4 +1,4 @@
-import resend from './resend';
+import { resend } from './resend';
 import { isProduction } from '@repo/utils';
 import { FormValuesInquiry } from '@repo/types';
 import { COMPANY_NAME, EMAILS } from '@repo/constants';
@@ -48,8 +48,10 @@ const emailSendBase = async (options: SendEmailOptions) => {
 export const emailSendInquiry = async (params: FormValuesInquiry) => {
   if (!EMAILS.INFO) throw new Error('Missing INFO email');
 
+  const fullName = `${params.fname || ''} ${params.lname || ''}`;
+
   emailSendBase({
-    fromName: params.name,
+    fromName: fullName,
     to: EMAILS.INFO,
     replyTo: params.email,
     fromType: 'delivery',
@@ -57,9 +59,9 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
       id: 'inquiry-1',
       variables: {
         MESSAGE_PREVIEW: params.message,
-        SUBJECT: `${params.subject} (From ${params.name})`,
+        SUBJECT: `${params.subject} (From ${fullName})`,
         MESSAGE: params.message,
-        NAME: params.name,
+        NAME: fullName,
         PHONE: params.phone,
         SOURCE_SITE: params.appName,
       },

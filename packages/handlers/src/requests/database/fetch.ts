@@ -1,4 +1,4 @@
-import { HEADERS } from '@repo/constants/other';
+import { HEADERS } from '@repo/constants';
 
 export const apiCall = async (
   endpoint: string,

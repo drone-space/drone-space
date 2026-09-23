@@ -14,14 +14,16 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@mantine/form": "^9.4.2",
-    "@mantine/hooks": "^9.4.2",
-    "@mantine/notifications": "^9.4.2",
+    "@mantine/form": "^9.6.2",
+    "@mantine/hooks": "^9.6.2",
+    "@mantine/notifications": "^9.6.2",
+    "@repo/cloudbase": "workspace:*",
     "@repo/constants": "workspace:*",
     "@repo/types": "workspace:*",
     "@repo/handlers": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/store": "workspace:*",
+    "next": "16.2.10",
     "dayjs": "^1.11.21",
     "react": "19.2.4",
     "react-dom": "19.2.4"

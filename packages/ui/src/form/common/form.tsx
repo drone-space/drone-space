@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid, GridCol, TextInput } from '@mantine/core';
-import TooltipInputInfo from '@repo/ui/common/tooltips/input/info';
-import { FormEmailInquiry } from '@repo/hooks/form/inquiry';
+import { TooltipInputInfo } from '@repo/ui';
+import { FormEmailInquiry } from '@repo/hooks';
 
 export function FormCommonForm({ props }: { props: { form: FormEmailInquiry } }) {
   return (
     <GridCol span={12} pt={'xs'}>
-      <Grid gutter={'xs'}>
+      <Grid gap={'xs'}>
         <GridCol span={{ base: 12, md: 6 }}>
           <TextInput
             required

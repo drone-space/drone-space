@@ -1,18 +1,17 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { Grid, GridCol } from '@mantine/core';
-import IntroSection from '@repo/ui/layout/intros/section';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import CardPricingBasic from '@/components/common/cards/pricing/basic';
-import AccordionFaq from '@/components/common/accordions/faq';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { courseList, courses } from '@repo/constants/courses';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
+import { LayoutIntroSection } from '@repo/ui';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import CardPricingBasic from '@web/ui/common/cards/pricing/basic';
+import AccordionFaq from '@web/ui/common/accordions/faq';
+import { LayoutIntroPage } from '@repo/ui';
+import { courseList, courses, getBaseUrl } from '@repo/constants';
+import { images } from '@repo/constants';
 import { GetLayout } from '../../faq/page';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import CtaMain from '@/components/partial/cta/main';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+import CtaMain from '@web/ui/partial/cta/main';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/pricing`,
+    url: `${(await getBaseUrl()).WEB}/drone-training/pricing`,
     type: 'website',
     images: [
       {
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
 export default async function Pricing() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Pricing',
           title: 'Course Pricing',
@@ -78,7 +77,7 @@ export default async function Pricing() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: `FAQ's`,
                   title: `Frequently Asked Questions`,

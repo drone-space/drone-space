@@ -1,8 +1,8 @@
-import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { QuizQuestionGet } from '@repo/types/models/quiz-question';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
+import { useStoreQuizQuestion } from '../../state/quiz-question';
+import { useStoreSession } from '../../state/session';
+import { QuizQuestionGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
 
 export const useQuizQuestionActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -13,12 +13,12 @@ export const useQuizQuestionActions = () => {
   const quizQuestionCreate = (params: Partial<QuizQuestionGet>) => {
     if (!session) return;
 
-    if (!params.quiz_id) {
+    if (!params.quizId) {
       console.error('Quiz id must be provided.');
       return;
     }
 
-    if (!params.question_id) {
+    if (!params.questionId) {
       console.error('Question id must be provided.');
       return;
     }
@@ -28,12 +28,12 @@ export const useQuizQuestionActions = () => {
 
     const newQuizQuestion: QuizQuestionGet = {
       id: params.id || id,
-      quiz_id: params.quiz_id,
-      question_id: params.question_id,
+      quizId: params.quizId,
+      questionId: params.questionId,
       status: params.status || Status.ACTIVE,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addQuizQuestion(newQuizQuestion);
@@ -46,9 +46,9 @@ export const useQuizQuestionActions = () => {
 
     const newQuizQuestion: QuizQuestionGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateQuizQuestion(newQuizQuestion);
@@ -61,9 +61,9 @@ export const useQuizQuestionActions = () => {
 
     deleteQuizQuestion({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

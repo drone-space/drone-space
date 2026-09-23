@@ -13,18 +13,18 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import { AttemptGet } from '@repo/types/models/attempt';
-import { getRegionalDate } from '@repo/utilities/date-time';
-import { capitalizeWords } from '@repo/utilities/string';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { useStoreQuiz } from '@repo/store';
+import { AttemptGet } from '@repo/types';
+import { getRegionalDate } from '@repo/utils';
+import { capitalizeWords } from '@repo/utils';
 import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
-import { useQuizStats } from '@repo/hooks/quiz';
-import BadgeStatus from '../../../badge/status';
-import BadgeResult from '../../../badge/result';
-import { Status } from '@repo/types/models/enums';
+import { useQuizStats } from '@repo/hooks';
+import {BadgeStatus} from '../../../badge/status';
+import {BadgeResult} from '../../../badge/result';
+import { Status } from '@repo/types';
 
 export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet } }) {
   const { completeStats, quizzes, metaStats, quiz } = useQuizStats({

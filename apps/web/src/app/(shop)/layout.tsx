@@ -1,12 +1,12 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
-import NavbarMain from '@/components/layout/navbars/main';
-import FooterMain from '@/components/layout/footers/main';
-import ModalFeatureDrone from '@/components/common/modals/feature-drone';
-// import AffixNavbar from '@repo/ui/common/affixi/navbar';
-import AffixAi from '@repo/ui/common/affixi/ai';
-import AlertShipment from '@repo/ui/common/alerts/shipment';
-// import AffixAi from '@/components/common/affixi/ai';
+import { LayoutMain } from '@repo/ui';
+import NavbarMain from '@web/ui/layout/navbars/main';
+import FooterMain from '@web/ui/layout/footers/main';
+import ModalFeatureDrone from '@web/ui/common/modals/feature-drone';
+// import AffixNavbar from '@repo/ui';
+import { AffixAi } from '@repo/ui';
+import { AlertShipment } from '@repo/ui';
+// import AffixAi from '@web/ui/common/affixi/ai';
 
 export default async function LayoutShop({
   children, // will be a page or nested layout

@@ -1,9 +1,9 @@
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { QuestionGet } from '@repo/types/models/question';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
+import { useStoreQuestion } from '../../state/question';
+import { useStoreSession } from '../../state/session';
+import { QuestionGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
+import { useStoreOption } from '../../state/option';
 
 export const useQuestionActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -25,9 +25,9 @@ export const useQuestionActions = () => {
       content: params.content || 'New question',
       explanation: params.explanation || '',
       status: params.status || Status.ACTIVE,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addQuestion(newQuestion);
@@ -42,9 +42,9 @@ export const useQuestionActions = () => {
 
     const newQuestion: QuestionGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateQuestion(newQuestion);
@@ -58,25 +58,25 @@ export const useQuestionActions = () => {
     // mark current question options as deleted
     setDeletedOptions(
       options
-        ?.filter((oi) => oi.question_id == params.id)
+        ?.filter((oi) => oi.questionId == params.id)
         .map((oi2) => {
           return {
             ...oi2,
-            sync_status: SyncStatus.DELETED,
-            created_at: new Date(params.created_at).toISOString() as any,
-            updated_at: new Date(now).toISOString() as any,
+            syncStatus: SyncStatus.DELETED,
+            createdAt: new Date(params.createdAt).toISOString() as any,
+            updatedAt: new Date(now).toISOString() as any,
           };
-        })
+        }),
     );
 
     // remove question options from state
-    setOptions(options?.filter((oi) => oi.question_id != params.id));
+    setOptions(options?.filter((oi) => oi.questionId != params.id));
 
     deleteQuestion({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

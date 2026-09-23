@@ -1,22 +1,26 @@
-// All packages except `@mantine/hooks` require styles imports
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
-import '@mantine/notifications/styles.css';
-
-// custom styles
-import '../styles/globals.css';
-
 import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
-import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
-import ProviderMantine from '@repo/ui/provider/mantine';
-import ProviderStore from '@/components/provider/store';
-import { mantine } from '@/assets/styles';
-import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
-import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
+import { APP_DESC, APP_NAME, getApiUrl } from '@repo/constants';
+import { ProviderMantine } from '@repo/ui';
+import { ProviderInitialize } from '@web/ui/provider/initialize';
+import { ColorSchemeScript, MantineColorScheme, mantineHtmlProps } from '@mantine/core';
+import { getAppTheme } from '@repo/constants';
+import { getAppResolver } from '@web/resolver';
+import { ColorScheme } from '@repo/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { isProduction } from '@repo/utilities/misc';
-import { API_URL } from '@repo/constants/paths';
+import { isProduction } from '@repo/utils';
+
+import './globals.css';
+
+// Import styles of packages that you've installed.
+// All packages except `@mantine/hooks` require styles imports
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/carousel/styles.css';
+import { createClientcloudbaseServer } from '@repo/cloudbase';
+// import '@mantine/dates/styles.css';
+// // ‼️ import schedule styles after core and dates package styles
+// import '@mantine/schedule/styles.css';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -30,7 +34,7 @@ const novaMono = Nova_Mono({
 });
 
 export const metadata: Metadata = {
-  title: COMPANY_NAME,
+  title: APP_NAME.WEB,
   description: APP_DESC.WEB,
 };
 
@@ -39,24 +43,39 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const resolvedTheme = ColorScheme.DARK as MantineColorScheme;
+
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
   return (
-    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}>
+    <html
+      lang="en"
+      {...mantineHtmlProps}
+      data-mantine-color-scheme={resolvedTheme}
+      className={`${montserrat.variable} ${novaMono.variable} h-full antialiased`}
+    >
       <head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <ColorSchemeScript defaultColorScheme={DEFAULT_COLOR_SCHEME} />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+          viewport-fit="cover"
+        />
+
+        <ColorSchemeScript defaultColorScheme={resolvedTheme} />
       </head>
 
-      <body className={`${montserrat.variable} ${novaMono.variable}`}>
+      <body className="min-h-full flex flex-col">
         <ProviderMantine
           options={{ withNotifications: true }}
-          appThemeProps={{ styleSheets: { ...mantine } }}
-          colorScheme={DEFAULT_COLOR_SCHEME}
+          colorScheme={resolvedTheme}
+          theme={getAppTheme}
+          cssVariablesResolver={getAppResolver}
         >
-          <ProviderStore props={{ apiUrl: API_URL }}>{children}</ProviderStore>
+          <ProviderInitialize props={{ baseUrl: await getApiUrl(), sessionUser: null }}>
+            {children}
+          </ProviderInitialize>
         </ProviderMantine>
 
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

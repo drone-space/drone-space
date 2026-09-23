@@ -1,13 +1,13 @@
-import { Variant } from '@repo/types/enums';
-import { validators } from '@repo/utilities/validation';
-import { contactAdd } from '@repo/handlers/requests/contact';
+import { Variant } from '@repo/types';
+import { validators } from '@repo/utils';
+import { contactAdd } from '@repo/handlers';
 import { useFormBase } from '../form';
-import { useNotification } from '@repo/hooks/notification';
+import { useNotification } from '@repo/hooks';
 import { hasLength } from '@mantine/form';
-import { alumniChallengeSubmit } from '@repo/handlers/requests/alumni';
-import { AlumniChallengerGet } from '@repo/types/models/alumni-challenger';
-import { generateUUID } from '@repo/utilities/generators';
-import { Status, SyncStatus } from '@repo/types/models/enums';
+import { alumniChallengeSubmit } from '@repo/handlers';
+import { AlumniChallengerGet } from '@repo/types';
+import { generateUUID } from '@repo/utils';
+import { Status, SyncStatus } from '@repo/types';
 import { useRouter } from 'next/navigation';
 
 export type FormValues = {
@@ -52,12 +52,12 @@ export const useFormAlumni = (params: {
           lname: (rawValues.lname || '').trim().toLowerCase(),
           email: (rawValues.email || '').trim().toLowerCase(),
           phone: (rawValues.phone || '').trim().toLowerCase(),
-          created_at: new Date(rawValues.created_at || now),
-          updated_at: new Date(rawValues.updated_at || now),
-          answer_option: params.answerOption,
+          createdAt: new Date(rawValues.createdAt || now),
+          updatedAt: new Date(rawValues.updatedAt || now),
+          answerOption: params.answerOption,
 
           status: Status.ACTIVE,
-          sync_status: SyncStatus.SYNCED,
+          syncStatus: SyncStatus.SYNCED,
         };
 
         const response = await alumniChallengeSubmit(cleanValues);

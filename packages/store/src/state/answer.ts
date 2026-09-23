@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { AnswerGet } from '@repo/types/models/answer';
+import type { AnswerGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type AnswersValue = AnswerGet[] | null | undefined;

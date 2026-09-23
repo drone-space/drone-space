@@ -13,12 +13,12 @@ import {
   TextInput,
   Textarea,
 } from '@mantine/core';
-import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
-import TooltipInputInfo from '@repo/ui/common/tooltips/input/info';
-import AnchorNextLink from '@repo/ui/common/anchor/next-link';
+import { useFormEmailInquiry } from '@repo/hooks';
+import { TooltipInputInfo } from '@repo/ui';
+import { AnchorNextLink } from '@repo/ui';
 import Link from 'next/link';
 import { IconSend } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 
 export function FormContact({
   props,

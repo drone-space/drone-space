@@ -43,7 +43,7 @@ export const resolveHost = (
     }
 
     // SAFE SWAP: Swap the current project prefix with the target project name
-    // e.g. "hostname-atlas-git-fix..." -> "hostname-api-git-fix..."
+    // e.g. "hostname-learn-git-fix..." -> "hostname-api-git-fix..."
     const pattern = new RegExp(`^${SHARED_VERCEL_SUBSTRING}-[a-z0-9]+`);
     return currentHost.replace(pattern, projectName);
   }
@@ -83,16 +83,17 @@ export const HOSTNAME_WEB = resolveHost(
   process.env.NEXT_PUBLIC_HOST_WEB_DEV,
   `${SHARED_VERCEL_SUBSTRING}-web`,
 );
-export const HOSTNAME_ATLAS = resolveHost(
-  process.env.NEXT_PUBLIC_HOST_ATLAS_PROD,
-  process.env.NEXT_PUBLIC_HOST_ATLAS_DEV,
-  `${SHARED_VERCEL_SUBSTRING}-atlas`,
+export const HOSTNAME_LEARN = resolveHost(
+  process.env.NEXT_PUBLIC_HOST_LEARN_PROD,
+  process.env.NEXT_PUBLIC_HOST_LEARN_DEV,
+  `${SHARED_VERCEL_SUBSTRING}-learn`,
 );
 
 export const BASE_URL = {
   API: `${getUrlPrefix(HOSTNAME_API)}${HOSTNAME_API}`,
   WEB: `${getUrlPrefix(HOSTNAME_WEB)}${HOSTNAME_WEB}`,
-  ATLAS: `${getUrlPrefix(HOSTNAME_ATLAS)}${HOSTNAME_ATLAS}`,
+  LEARN: `${getUrlPrefix(HOSTNAME_LEARN)}${HOSTNAME_LEARN}`,
+  CONFERENCE: process.env.NEXT_PUBLIC_HOST_AI_CONFERENCE,
 };
 
 const API_URL = `${BASE_URL.API}/api`;

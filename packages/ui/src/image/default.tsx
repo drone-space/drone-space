@@ -2,7 +2,7 @@
 
 import NextImage, { ImageProps as NextImageProps } from 'next/image';
 import { Image, Center, ImageProps, MantineStyleProps } from '@mantine/core';
-import { getFallbackSrc } from '@repo/utilities/misc';
+import { getFallbackSrc } from '@repo/utils';
 
 type DefaultImageProps = {
   src: string;

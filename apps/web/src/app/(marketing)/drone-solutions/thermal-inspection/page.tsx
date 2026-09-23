@@ -1,22 +1,21 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import { Grid, GridCol, Text, Button } from '@mantine/core';
-import ModalContactService from '@repo/ui/common/modals/contact/service';
+import { ModalContactService } from '@repo/ui';
 import { IconMessage } from '@tabler/icons-react';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import IntroSection from '@repo/ui/layout/intros/section';
-import ImageDefault from '@repo/ui/common/images/default';
-import { images } from '@repo/constants/images';
-import { linkify } from '@repo/utilities/url';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { COMPANY_NAME } from '@repo/constants/app';
-import services from '@/data/services';
+import { getBaseUrl, ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { LayoutIntroSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import { images } from '@repo/constants';
+import { linkify } from '@repo/utils';
+import { LayoutIntroPage } from '@repo/ui';
+import { COMPANY_NAME } from '@repo/constants';
+import services from '@web/data/services';
 import { GetLayout } from '../../faq/page';
-import AccordionFaq from '@/components/common/accordions/faq';
-import CtaMain from '@/components/partial/cta/main';
+import AccordionFaq from '@web/ui/common/accordions/faq';
+import CtaMain from '@web/ui/partial/cta/main';
 
 const service = services.find((c) => c.title == services[3].title);
 
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: service?.metaTitle,
     description: service?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/${service?.title}`,
+    url: `${(await getBaseUrl()).WEB}/drone-solutions/${service?.title}`,
     type: 'website',
     images: [
       {
@@ -44,7 +43,7 @@ export default async function Service() {
 
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Drone Services',
           title: service.title || '',
@@ -54,9 +53,9 @@ export default async function Service() {
       />
 
       <LayoutSection id={linkify(service.title)} padded>
-        <Grid gutter={'xl'}>
+        <Grid gap={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={2}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 title: 'Thermal Inspection',
                 desc: `Our thermal inspection services leverage advanced drone technology to provide detailed thermal imaging and analysis for a variety of applications. We specialize in identifying anomalies and potential issues in solar panels, landfills, dumpsites, geothermal sites, and power lines. Our high-resolution thermal data enables early detection of problems, facilitating timely maintenance and preventing costly failures.`,
@@ -112,7 +111,7 @@ export default async function Service() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: `FAQ's`,
                   title: `Frequently Asked Questions`,

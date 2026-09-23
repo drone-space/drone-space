@@ -1,12 +1,12 @@
 import React from 'react';
-import Error404 from '@repo/ui/partial/errors/404';
-import ProviderMantine from '@repo/ui/provider/mantine';
-import { mantine } from '@/data/styles';
+import { getAppResolver } from '@api/resolver';
+import { getAppTheme } from '@repo/constants';
+import { PartialError404, ProviderMantine } from '@repo/ui';
 
 export default function NotFound() {
   return (
-    <ProviderMantine appThemeProps={{ styleSheets: { ...mantine } }}>
-      <Error404 />
+    <ProviderMantine theme={getAppTheme} cssVariablesResolver={getAppResolver}>
+      <PartialError404 />
     </ProviderMantine>
   );
 }

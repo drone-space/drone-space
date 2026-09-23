@@ -1,11 +1,10 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
+import { LayoutMain } from '@repo/ui';
 import { typeParams } from '../layout';
 import { Metadata } from 'next';
-import { SrplGet } from '@repo/types/models/srpl';
-import { srplsGet } from '@repo/handlers/requests/database/srpls';
-import { APP_NAME } from '@repo/constants/app';
-import { API_URL } from '@repo/constants/paths';
+import { SrplGet } from '@repo/types';
+import { srplsGet } from '@repo/handlers';
+import { APP_NAME, getApiUrl } from '@repo/constants';
 
 export const generateMetadata = async ({
   params,
@@ -13,7 +12,7 @@ export const generateMetadata = async ({
   params: Promise<typeParams>;
 }): Promise<Metadata> => {
   const { items: srpls }: { items: SrplGet[] } = await srplsGet({
-    apiUrl: API_URL,
+    apiUrl: await getApiUrl(),
   });
 
   if (srpls == null) {
@@ -29,7 +28,7 @@ export const generateMetadata = async ({
   return {
     title: {
       default: metaTitle,
-      template: `%s - SRPLs - Admin - ${APP_NAME.LMS}`,
+      template: `%s - SRPLs - Admin - ${APP_NAME.LEARN}`,
     },
   };
 };

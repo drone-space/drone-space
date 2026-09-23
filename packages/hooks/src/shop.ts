@@ -1,7 +1,7 @@
-import { getUrlParam, setUrlParam } from '@repo/utilities/url';
+import { getUrlParam, setUrlParam } from '@repo/utils';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSortArray } from '@repo/hooks/sort';
-import { usePaginate } from '@repo/hooks/paginate';
+import { useSortArray } from '@repo/hooks';
+import { usePaginate } from '@repo/hooks';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export enum Layout {
@@ -81,7 +81,7 @@ export const useShopListing = (list: any[]) => {
         router.push(`${pathname}?${current.toString()}`, { scroll: false });
       }
     },
-    [router, pathname, searchParams]
+    [router, pathname, searchParams],
   );
 
   // ----------------------------
@@ -110,14 +110,7 @@ export const useShopListing = (list: any[]) => {
     }
 
     return result;
-  }, [
-    list,
-    params.search,
-    params.category,
-    params.minPrice,
-    params.maxPrice,
-    minMaxPrices,
-  ]);
+  }, [list, params.search, params.category, params.minPrice, params.maxPrice, minMaxPrices]);
 
   // ----------------------------
   // Sorting
@@ -132,8 +125,10 @@ export const useShopListing = (list: any[]) => {
   // ----------------------------
   // Pagination
   // ----------------------------
-  const { items, activePage, setActivePage, totalPages, pageRange } =
-    usePaginate(sortedList, Number(params.listSize || 9));
+  const { items, activePage, setActivePage, totalPages, pageRange } = usePaginate(
+    sortedList,
+    Number(params.listSize || 9),
+  );
 
   // Reset page when search changes
   useEffect(() => {
@@ -163,20 +158,18 @@ const filterCategory = (items: any[], params: ShopParams) =>
 
 const filterSearch = (items: any[], params: ShopParams) =>
   items.filter((item) =>
-    item.title.long.toLowerCase().includes(params?.search?.toLowerCase() ?? '')
+    item.title.long.toLowerCase().includes(params?.search?.toLowerCase() ?? ''),
   );
 
 const filterPriceRange = (
   items: any[],
   params: ShopParams,
-  prices: { min: number; max: number }
+  prices: { min: number; max: number },
 ) => {
   const min = Number(params.minPrice) || prices.min;
   const max = Number(params.maxPrice) || prices.max;
 
-  return items.filter(
-    (item) => item.price.former >= min && item.price.former <= max
-  );
+  return items.filter((item) => item.price.former >= min && item.price.former <= max);
 };
 
 const getMinMax = (numbers: number[]): { min: number; max: number } => {
@@ -184,8 +177,8 @@ const getMinMax = (numbers: number[]): { min: number; max: number } => {
     throw new Error('Array must not be empty');
   }
 
-  let min = numbers[0];
-  let max = numbers[0];
+  let min = numbers[0]!;
+  let max = numbers[0]!;
 
   for (const num of numbers) {
     if (num < min) min = num;

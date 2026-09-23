@@ -1,8 +1,8 @@
-import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { AnswerGet } from '@repo/types/models/answer';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
+import { useStoreAnswer } from '../../state/answer';
+import { useStoreSession } from '../../state/session';
+import { AnswerGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
 
 export const useAnswerActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -13,17 +13,17 @@ export const useAnswerActions = () => {
   const answerCreate = (params: Partial<AnswerGet>) => {
     if (!session) return;
 
-    if (!params.attempt_id) {
+    if (!params.attemptId) {
       console.error('Attempt id must be provided.');
       return;
     }
 
-    if (!params.question_id) {
+    if (!params.questionId) {
       console.error('Question id must be provided.');
       return;
     }
 
-    if (!params.option_id) {
+    if (!params.optionId) {
       console.error('Option id must be provided.');
       return;
     }
@@ -33,13 +33,13 @@ export const useAnswerActions = () => {
 
     const newAnswer: AnswerGet = {
       id: params.id || id,
-      attempt_id: params.attempt_id,
-      question_id: params.question_id,
-      option_id: params.option_id,
+      attemptId: params.attemptId,
+      questionId: params.questionId,
+      optionId: params.optionId,
       status: params.status || Status.ACTIVE,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addAnswer(newAnswer);
@@ -52,9 +52,9 @@ export const useAnswerActions = () => {
 
     const newAnswer: AnswerGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateAnswer(newAnswer);
@@ -67,9 +67,9 @@ export const useAnswerActions = () => {
 
     deleteAnswer({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

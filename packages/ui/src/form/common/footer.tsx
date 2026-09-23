@@ -1,4 +1,4 @@
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 import { Button, Group } from '@mantine/core';
 import { IconSend } from '@tabler/icons-react';
 import React from 'react';

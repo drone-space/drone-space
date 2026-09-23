@@ -1,4 +1,4 @@
-import { ColorScheme } from '@repo/types/enums';
+import { ColorScheme } from '@repo/types';
 
 export const DEFAULT_COLOR_SCHEME: ColorScheme = ColorScheme.LIGHT;
 

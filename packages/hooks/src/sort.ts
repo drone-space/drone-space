@@ -1,6 +1,6 @@
-import { Order } from '@repo/types/enums';
+import { Order } from '@repo/types';
 import { useState } from 'react';
-import { sortArray } from '@repo/utilities/array';
+import { sortArray } from '@repo/utils';
 
 /**
  * Hook to handle sorting of an array in React state.

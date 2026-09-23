@@ -1,26 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateSession } from '@repo/libraries/supabase/middleware';
-import { getColorScheme, setCorsHeaders } from '@repo/utilities/middeware';
-import { CROSS_ORIGINS } from '@repo/constants/hosts';
-import { BASE_URL_CLIENT } from '@repo/constants/paths';
+import { updateSession } from '@repo/cloudbase';
+import { getColorScheme, setCorsHeaders } from '@repo/utils';
+import { getBaseUrl } from '@repo/constants';
 
 export async function proxy(request: NextRequest) {
   // Handle preflight
   if (request.method === 'OPTIONS') {
     const response = NextResponse.json({}, { status: 200 });
-    setCorsHeaders({ crossOrigins: CROSS_ORIGINS, request, response });
+    setCorsHeaders({ request, response });
     return response;
   }
 
   let response = NextResponse.next({ request });
 
   // Set CORS headers for the response
-  setCorsHeaders({ crossOrigins: CROSS_ORIGINS, request, response });
+  setCorsHeaders({ request, response });
 
   // Update the session in the response
-  response = await updateSession(request, response, BASE_URL_CLIENT.LMS);
+  response = await updateSession(request, response, (await getBaseUrl()).LEARN);
 
   response = getColorScheme(request, response);
+
+  // Disable SEO/indexing globally for all responses passing through middleware
+  response.headers.set('X-Robots-Tag', 'noindex, nofollow');
 
   return response;
 }
@@ -34,6 +36,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|pdf)$).*)',
   ],
 };

@@ -1,27 +1,27 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
-import ModalContactTraining from '@repo/ui/common/modals/contact/training';
+import { ModalContactTraining } from '@repo/ui';
 import { IconArrowRightDashed, IconMessage, IconSchool } from '@tabler/icons-react';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
 import {
+  getBaseUrl,
   ICON_SIZE,
   ICON_STROKE_WIDTH,
   ICON_WRAPPER_SIZE,
   SECTION_SPACING,
-} from '@repo/constants/sizes';
-import IntroSection from '@repo/ui/layout/intros/section';
-import ImageDefault from '@repo/ui/common/images/default';
-import { images } from '@repo/constants/images';
-import { linkify } from '@repo/utilities/url';
-import { courseList } from '@repo/constants/courses';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { COMPANY_NAME } from '@repo/constants/app';
+} from '@repo/constants';
+import { LayoutIntroSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import { images } from '@repo/constants';
+import { linkify } from '@repo/utils';
+import { courseList } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { COMPANY_NAME } from '@repo/constants';
 import { GetLayout } from '../../faq/page';
-import AccordionFaq from '@/components/common/accordions/faq';
-import CtaMain from '@/components/partial/cta/main';
+import AccordionFaq from '@web/ui/common/accordions/faq';
+import CtaMain from '@web/ui/partial/cta/main';
 
 const course = courseList.find((c) => c.title == courseList[4].title);
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: course?.title,
     description: course?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training/${course?.title}`,
+    url: `${(await getBaseUrl()).WEB}/drone-training/${course?.title}`,
     type: 'website',
     images: [
       {
@@ -49,7 +49,7 @@ export default async function Course() {
 
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Training Courses',
           title: course.title || '',
@@ -59,9 +59,9 @@ export default async function Course() {
       />
 
       <LayoutSection id={linkify(course.title)} padded>
-        <Grid gutter={'xl'}>
+        <Grid gap={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 subTitle: 'Who Is This For?',
                 title: course.titleFull || course.title,
@@ -141,7 +141,7 @@ export default async function Course() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: `FAQ's`,
                   title: `Frequently Asked Questions`,

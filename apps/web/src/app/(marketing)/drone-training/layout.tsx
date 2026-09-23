@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutMain from '@repo/ui/layout/main';
-import { APP_NAME } from '@repo/constants/app';
+import { LayoutMain } from '@repo/ui';
+import { APP_NAME } from '@repo/constants';
 
 export type typeParams = Promise<{
   courseTitle: string;

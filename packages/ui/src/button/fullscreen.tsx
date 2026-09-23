@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useFullscreen } from '@mantine/hooks';
+import { useFullscreenDocument } from '@mantine/hooks';
 import { ActionIcon, Group, Tooltip } from '@mantine/core';
 import { IconArrowsMaximize, IconArrowsMinimize } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 
 export function ButtonFullscreen() {
-  const { toggle, fullscreen } = useFullscreen();
+  const { toggle, fullscreen } = useFullscreenDocument();
 
   const buttonProps = {
     icon: fullscreen ? IconArrowsMinimize : IconArrowsMaximize,

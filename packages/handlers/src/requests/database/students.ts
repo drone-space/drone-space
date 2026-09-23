@@ -1,4 +1,4 @@
-import { StudentCreate, StudentGet, StudentUpdate } from '@repo/types/models/student';
+import { StudentCreate, StudentGet, StudentUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'students';

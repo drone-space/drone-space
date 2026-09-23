@@ -1,5 +1,5 @@
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { Variant } from '@repo/types/enums';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { Variant } from '@repo/types';
 import { IconCheck, IconExclamationMark, IconInfoCircle, IconX } from '@tabler/icons-react';
 
 export function IconNotification({ variant }: { variant: Variant }) {

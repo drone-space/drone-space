@@ -10,8 +10,8 @@ import {
   IconLayoutSidebarRightExpand,
 } from '@tabler/icons-react';
 import { ActionIcon, Group, Tooltip } from '@mantine/core';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import { useStoreAppShell } from '@repo/libraries/zustand/stores/shell';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { useStoreAppShell } from '@repo/store';
 
 export function ButtonAppshellNavbar() {
   // ATOMIC: Only re-renders when this specific boolean changes

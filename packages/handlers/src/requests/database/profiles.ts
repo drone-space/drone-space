@@ -1,4 +1,4 @@
-import { ProfileCreate, ProfileGet, ProfileUpdate } from '@repo/types/models/profile';
+import { ProfileCreate, ProfileGet, ProfileUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'profiles';

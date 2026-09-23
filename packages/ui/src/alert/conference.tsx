@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { COOKIE_NAME } from '@repo/constants/names';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { COOKIE_NAME } from '@repo/constants';
 import { Alert, Text, Transition } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
-import { APP_NAME } from '@repo/constants/app';
-import { getCookieClient, setCookieClient } from '@repo/utilities/cookie-client';
-import ModalConference from '../modal/conference';
+import { APP_NAME } from '@repo/constants';
+import { getCookieClient, setCookieClient } from '@repo/utils';
+import { ModalConference } from '../modal/conference';
 
 export function AlertConference() {
   const [opened, setOpened] = useState(false);

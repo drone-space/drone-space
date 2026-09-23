@@ -1,17 +1,21 @@
+import type { Metadata } from 'next';
+import { Montserrat, Nova_Mono } from 'next/font/google';
+import { APP_DESC, APP_NAME } from '@repo/constants';
+import { ProviderMantine } from '@repo/ui';
+import { ColorSchemeScript, MantineColorScheme, mantineHtmlProps } from '@mantine/core';
+import { getAppTheme } from '@repo/constants';
+import { getAppResolver } from '@api/resolver';
+import { ColorScheme } from '@repo/types';
+
+import './globals.css';
+
+// Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
-
-// custom styles
-import '../styles/globals.css';
-
-import type { Metadata } from 'next';
-import { Montserrat, Nova_Mono } from 'next/font/google';
-import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
-import ProviderMantine from '@repo/ui/provider/mantine';
-import { APP_DESC, COMPANY_NAME } from '@repo/constants/app';
-import { DEFAULT_COLOR_SCHEME } from '@repo/constants/other';
-import { mantine } from '@/data/styles';
+// import '@mantine/dates/styles.css';
+// // ‼️ import schedule styles after core and dates package styles
+// import '@mantine/schedule/styles.css';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -25,31 +29,42 @@ const novaMono = Nova_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${COMPANY_NAME} - API Engine`,
-  description: APP_DESC.WEB,
+  title: APP_NAME.API,
+  description: APP_DESC.API,
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const resolvedTheme = ColorScheme.DARK as MantineColorScheme;
+
   return (
-    <html lang="en" {...mantineHtmlProps} data-mantine-color-scheme={DEFAULT_COLOR_SCHEME}>
+    <html
+      lang="en"
+      {...mantineHtmlProps}
+      data-mantine-color-scheme={resolvedTheme}
+      className={`${montserrat.variable} ${novaMono.variable} h-full antialiased`}
+    >
       <head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* <meta name="description" content={''} /> */}
 
-        <title>{COMPANY_NAME}</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+          viewport-fit="cover"
+        />
 
-        <ColorSchemeScript defaultColorScheme={DEFAULT_COLOR_SCHEME} />
+        <ColorSchemeScript defaultColorScheme={resolvedTheme} />
       </head>
 
-      <body className={`${montserrat.variable} ${novaMono.variable}`}>
+      <body className="min-h-full flex flex-col">
         <ProviderMantine
-          appThemeProps={{ styleSheets: { ...mantine } }}
           options={{ withNotifications: true }}
+          colorScheme={resolvedTheme}
+          theme={getAppTheme}
+          cssVariablesResolver={getAppResolver}
         >
           {children}
         </ProviderMantine>

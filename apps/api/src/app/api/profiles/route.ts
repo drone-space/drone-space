@@ -1,5 +1,5 @@
-import prisma from '@repo/libraries/prisma';
-import { ProfileGet } from '@repo/types/models/profile';
+import { db } from '@repo/db';
+import { ProfileGet } from '@repo/types';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const profileRecords = await prisma.profile.findMany();
+    const profileRecords = await db.profile.findMany();
 
     return NextResponse.json(
       { items: profileRecords },
@@ -26,29 +26,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.profile.deleteMany({
+      await db.profile.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = profiles.map((profile) =>
-      prisma.profile.upsert({
+      db.profile.upsert({
         where: { id: profile.id },
         update: {
           ...profile,
-          updated_at: new Date(profile.updated_at),
+          updatedAt: new Date(profile.updatedAt),
         },
         create: {
           ...profile,
-          created_at: new Date(profile.created_at),
-          updated_at: new Date(profile.updated_at),
+          createdAt: new Date(profile.createdAt),
+          updatedAt: new Date(profile.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateProfiles = await prisma.$transaction(operations);
+    const updateProfiles = await db.$transaction(operations);
 
     return NextResponse.json(
       { items: updateProfiles },

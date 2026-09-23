@@ -1,4 +1,4 @@
-import { textToSpeech } from '@repo/services/api/tts';
+import { textToSpeech } from '@repo/handlers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
@@ -21,9 +21,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('---> route handler error (get text speech):', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

@@ -1,4 +1,4 @@
-import { AttemptCreate, AttemptGet, AttemptUpdate } from '@repo/types/models/attempt';
+import { AttemptCreate, AttemptGet, AttemptUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'attempts';

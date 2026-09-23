@@ -1,10 +1,10 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
-// import AffixNavbar from '@repo/ui/common/affixi/navbar';
-import AffixAi from '@repo/ui/common/affixi/ai';
-import HeaderMain from '@/components/layout/headers/main';
-import NavbarMain from '@/components/layout/navbars/main';
-import FooterMain from '@/components/layout/footers/main';
+import { LayoutMain } from '@repo/ui';
+// import AffixNavbar from '@repo/ui';
+import { AffixAi } from '@repo/ui';
+import HeaderMain from '@web/ui/layout/headers/main';
+import NavbarMain from '@web/ui/layout/navbars/main';
+import FooterMain from '@web/ui/layout/footers/main';
 
 export default async function LayoutMarketing({
   children, // will be a page or nested layout

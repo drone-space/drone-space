@@ -1,13 +1,13 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
-import AppshellStudent from '@/components/layout/appshell/student';
+import { LayoutMain } from '@repo/ui';
+import AppshellStudent from '@learn/ui/layout/appshell/student';
 import { Metadata } from 'next';
-import { APP_NAME } from '@repo/constants/app';
+import { APP_NAME } from '@repo/constants';
 
 export const metadata: Metadata = {
   title: {
     default: 'Student Portal',
-    template: `%s - Student Portal - ${APP_NAME.LMS}`,
+    template: `%s - Student Portal - ${APP_NAME.LEARN}`,
   },
 };
 

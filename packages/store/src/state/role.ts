@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Role } from '@repo/types/models/enums';
+import { Role } from '@repo/types';
 
 export type RoleValue = Role | null | undefined;
 

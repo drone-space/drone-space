@@ -1,9 +1,9 @@
-import { API_URL } from '@repo/constants/paths';
-import { AlumniChallengerGet } from '@repo/types/models/alumni-challenger';
+import { getClientApiUrl } from '@repo/constants';
+import { AlumniChallengerGet } from '@repo/types';
 
 export const alumniChallengeSubmit = async (params: Partial<AlumniChallengerGet>) => {
   try {
-    const response = await fetch(`${API_URL}/alumni-challengers/${params.srpl}`, {
+    const response = await fetch(`${getClientApiUrl()}/alumni-challengers/${params.srpl}`, {
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

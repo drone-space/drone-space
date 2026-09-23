@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useFormQuiz } from '@repo/hooks/form/quiz';
+import { useFormQuiz } from '@repo/hooks';
 import { Button, Checkbox, Grid, GridCol, Group, Select, Textarea, TextInput } from '@mantine/core';
-import { QuizGet } from '@repo/types/models/quiz';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import { capitalizeWords } from '@repo/utilities/string';
-import { Status } from '@repo/types/models/enums';
+import { QuizGet } from '@repo/types';
+import { useStoreQuiz } from '@repo/store';
+import { capitalizeWords } from '@repo/utils';
+import { Status } from '@repo/types';
 
 export function FormQuiz({ props }: { props?: { quizId?: string } }) {
   const quizzes = useStoreQuiz((s) => s.quizzes);
@@ -51,7 +51,7 @@ export function FormQuiz({ props }: { props?: { quizId?: string } }) {
 
         <GridCol span={{ base: 12 }}>
           <Checkbox
-            label={`Stay on this page after ${!!quiz?.updated_at ? 'updating' : 'creating'} quiz.`}
+            label={`Stay on this page after ${!!quiz?.updatedAt ? 'updating' : 'creating'} quiz.`}
             checked={stay}
             onChange={(event) => setStay(event.currentTarget.checked)}
           />
@@ -82,7 +82,7 @@ export function FormQuiz({ props }: { props?: { quizId?: string } }) {
         <GridCol span={{ base: 12 }}>
           <Group mt={'xl'}>
             <Button type="submit" loading={submitted}>
-              {!!quiz?.updated_at ? 'Update' : 'Create'}
+              {!!quiz?.updatedAt ? 'Update' : 'Create'}
             </Button>
           </Group>
         </GridCol>

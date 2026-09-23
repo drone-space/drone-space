@@ -33,14 +33,14 @@ import {
   IconUserEdit,
   IconX,
 } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import { colors } from '@repo/constants/colors';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { colors } from '@repo/constants';
 import Link from 'next/link';
-import { AUTH_URLS } from '@repo/constants/paths';
-import { ColorScheme } from '@repo/types/enums';
-import { capitalizeWords } from '@repo/utilities/string';
-import { useFormUserProfile } from '@repo/hooks/form/account/profile';
-import AvatarMain from '../avatars/main';
+import { AUTH_URLS } from '@repo/constants';
+import { ColorScheme } from '@repo/types';
+import { capitalizeWords } from '@repo/utils';
+import { useFormUserProfile } from '@repo/hooks';
+import { AvatarUser } from '../avatar/user';
 import { useMediaQuery } from '@mantine/hooks';
 
 export function TabsUser({ props }: { props?: { close?: () => void } }) {
@@ -204,9 +204,9 @@ function App() {
             size="xs"
             disabled
             w={120}
-            value={colors[0].value}
+            value={colors[0].colorName}
             data={colors.map((ci) => {
-              return { label: ci.label, value: ci.value };
+              return { label: ci.label, value: ci.colorName };
             })}
           />
         </TooltipDisabled>
@@ -252,7 +252,7 @@ function UserEdit() {
             aria-label="Username"
             size="xs"
             variant="unstyled"
-            {...form.getInputProps('user_name')}
+            {...form.getInputProps('userName')}
             styles={{
               error: { textAlign: 'end' },
               input: {
@@ -275,7 +275,7 @@ function UserEdit() {
                 Set avatar
               </Button>
             </TooltipDisabled>
-            <AvatarMain size={32} />
+            <AvatarUser size={32} />
           </Group>
         </Group>
 

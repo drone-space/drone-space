@@ -1,5 +1,5 @@
-import prisma from '@repo/libraries/prisma';
-import { SrplGet } from '@repo/types/models/srpl';
+import { db } from '@repo/db';
+import { SrplGet } from '@repo/types';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const srplRecords = await prisma.srpl.findMany();
+    const srplRecords = await db.srpl.findMany();
 
     return NextResponse.json(
       { items: srplRecords },
@@ -25,29 +25,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.srpl.deleteMany({
+      await db.srpl.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = srpls.map((srpl) =>
-      prisma.srpl.upsert({
+      db.srpl.upsert({
         where: { id: srpl.id },
         update: {
           ...srpl,
-          updated_at: new Date(srpl.updated_at),
+          updatedAt: new Date(srpl.updatedAt),
         },
         create: {
           ...srpl,
-          created_at: new Date(srpl.created_at),
-          updated_at: new Date(srpl.updated_at),
+          createdAt: new Date(srpl.createdAt),
+          updatedAt: new Date(srpl.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateSrpls = await prisma.$transaction(operations);
+    const updateSrpls = await db.$transaction(operations);
 
     return NextResponse.json({ items: updateSrpls }, { status: 200, statusText: 'Srpls Updated' });
   } catch (error) {

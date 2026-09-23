@@ -1,10 +1,10 @@
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { BASE_URL } from './paths-client';
+import { getBaseUrl } from './paths-server';
 
 const iconUrl = `https://img.icons8.com`;
 const baseUrl = {
   droneSpace: `/images`,
-  // droneSpace: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`,
-  conference: `${PRODUCTION_BASE_URL_CLIENT_WEB.CONFERENCE}/images`,
+  conference: `${BASE_URL.CONFERENCE}/images`,
 };
 
 export const images = {
@@ -526,9 +526,7 @@ export const images = {
             },
           },
           t50: {
-            drone: [
-              `${baseUrl.droneSpace}/products/drones/dji/agras/t50/drone/drone-front.webp`,
-            ],
+            drone: [`${baseUrl.droneSpace}/products/drones/dji/agras/t50/drone/drone-front.webp`],
             kit: {
               basic: `${baseUrl.droneSpace}/products/drones/dji/agras/t50/image-2.webp`,
               flyMore: null,

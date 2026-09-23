@@ -1,6 +1,6 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { AlumniChallengerGet } from '@repo/types/models/alumni-challenger';
+import { AlumniChallengerGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   try {
     const srpl = request.nextUrl.searchParams.get('srpl');
 
-    const alumniChallengerRecord = await prisma.alumniChallenger.findMany({
+    const alumniChallengerRecord = await db.alumniChallenger.findMany({
       where: !srpl ? undefined : { srpl: srpl },
-      orderBy: { created_at: 'desc' },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -33,7 +33,7 @@ export async function POST(
 
     const alumniChallenger: AlumniChallengerGet = await request.json();
 
-    const alumniChallengerExists = await prisma.alumniChallenger.findUnique({
+    const alumniChallengerExists = await db.alumniChallenger.findUnique({
       where: { srpl },
     });
 
@@ -44,11 +44,11 @@ export async function POST(
       );
     }
 
-    const createAlumniChallenger = await prisma.alumniChallenger.create({
+    const createAlumniChallenger = await db.alumniChallenger.create({
       data: {
         ...alumniChallenger,
-        created_at: new Date(alumniChallenger.created_at),
-        updated_at: new Date(alumniChallenger.updated_at),
+        createdAt: new Date(alumniChallenger.createdAt),
+        updatedAt: new Date(alumniChallenger.updatedAt),
       },
     });
 
@@ -68,12 +68,12 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const { alumniChallenger }: { alumniChallenger: AlumniChallengerGet } = await request.json();
 
-    const updateAlumniChallenger = await prisma.alumniChallenger.update({
+    const updateAlumniChallenger = await db.alumniChallenger.update({
       where: { srpl },
       data: {
         ...alumniChallenger,
-        created_at: new Date(alumniChallenger.created_at),
-        updated_at: new Date(alumniChallenger.updated_at),
+        createdAt: new Date(alumniChallenger.createdAt),
+        updatedAt: new Date(alumniChallenger.updatedAt),
       },
     });
 

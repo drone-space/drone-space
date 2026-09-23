@@ -13,12 +13,11 @@ import {
   MenuProps,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { navLinkItems } from '@repo/constants/links';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import PartialUser from '../../partial/user';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
+import { PartialUser } from '@repo/ui';
 import classes from './user.module.css';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import NextLink from '@repo/ui/common/anchor/next-link';
+import { useStoreSession } from '@repo/store';
+import { AnchorNextLink } from '@repo/ui';
 
 export function MenuUser({ children, ...restProps }: { children: React.ReactNode } & MenuProps) {
   const { session } = useStoreSession();
@@ -56,7 +55,7 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
         <MenuLabel>Activity</MenuLabel>
 
         {navLinkItems.user.activity.map((item) => (
-          <NextLink href={item.link}>
+          <AnchorNextLink href={item.link}>
             <MenuItem
               key={item.label}
               leftSection={
@@ -68,7 +67,7 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
             >
               {item.label}
             </MenuItem>
-          </NextLink>
+          </AnchorNextLink>
         ))} */}
 
         {/* <MenuDivider mb={0} />
@@ -76,7 +75,7 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
         <MenuLabel>Account</MenuLabel>
 
         {navLinkItems.user.account.map((item) => (
-          <NextLink key={item.label} href={item.link}>
+          <AnchorNextLink key={item.label} href={item.link}>
             <MenuItem
               leftSection={
                 <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -85,7 +84,7 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
             >
               {item.label}
             </MenuItem>
-          </NextLink>
+          </AnchorNextLink>
         ))} */}
 
         {/* <MenuDivider mb={0} />
@@ -93,7 +92,7 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
         <MenuLabel>Support</MenuLabel>
 
         {navLinkItems.user.support.map((item) => (
-          <NextLink key={item.label} href={item.link}>
+          <AnchorNextLink key={item.label} href={item.link}>
             <MenuItem
               leftSection={
                 <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -102,21 +101,21 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
             >
               {item.label}
             </MenuItem>
-          </NextLink>
+          </AnchorNextLink>
         ))} */}
 
-        <MenuDivider mb={0} />
+        {/* <MenuDivider mb={0} />
 
         {navLinkItems.user.danger.map((item) => (
-          <NextLink key={item.label} href={item.link}>
+          <AnchorNextLink key={item.label} href={item.link}>
             <MenuItem
               leftSection={<item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               className={classes.itemDanger}
             >
               {item.label}
             </MenuItem>
-          </NextLink>
-        ))}
+          </AnchorNextLink>
+        ))} */}
       </MenuDropdown>
     </Menu>
   );

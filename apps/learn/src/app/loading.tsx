@@ -1,12 +1,12 @@
 import React from 'react';
-import LoadingMain from '@repo/ui/partial/loading/main';
-import ProviderMantine from '@repo/ui/provider/mantine';
-import { mantine } from '@/data/styles';
+import { getAppResolver } from '@learn/resolver';
+import { getAppTheme } from '@repo/constants';
+import { PartialLoadingMain, ProviderMantine } from '@repo/ui';
 
 export default function Loading() {
   return (
-    <ProviderMantine appThemeProps={{ styleSheets: { ...mantine } }}>
-      <LoadingMain />
+    <ProviderMantine theme={getAppTheme} cssVariablesResolver={getAppResolver}>
+      <PartialLoadingMain />
     </ProviderMantine>
   );
 }

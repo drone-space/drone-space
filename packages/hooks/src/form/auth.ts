@@ -11,6 +11,7 @@ import { WEEK } from '@repo/constants';
 
 type FormValuesAuth = {
   email: string;
+  srpl?: string;
   remember: boolean;
   otp?: string;
 };
@@ -21,21 +22,25 @@ export const useFormAuth = (params: { action: AuthAction; baseUrl: string }) => 
   const [resent, setResent] = useState(false);
 
   const { form, submitted, handleSubmit } = useFormBase<FormValuesAuth>(
-    { email: '', otp: '', remember: false },
-    { email: (value) => validators.email(value.trim()) },
+    { email: '', srpl: '', otp: '', remember: false },
+    {
+      email: (value) => validators.email(value.trim()),
+      srpl: (value) => !((value || '').trim().length > 0),
+    },
     {
       resetOnSuccess: false,
       hideSuccessNotification: true,
 
       onSubmit: async (rawValues, options) => {
         const email = rawValues.email.trim().toLowerCase();
+        const srpl = rawValues.srpl?.trim();
         const otp = rawValues.otp?.trim();
 
         if (!otp || options?.resent) {
           setError(undefined);
 
           const response = await signIn({
-            formData: { email },
+            formData: { email, srpl },
             options: { action: params.action },
             apiUrl: `${params.baseUrl}/api`,
           });

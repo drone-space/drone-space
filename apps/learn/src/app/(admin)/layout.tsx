@@ -1,16 +1,16 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
-import AppshellAdmin from '@/components/layout/appshell/admin';
+import { LayoutMain } from '@repo/ui';
+import AppshellAdmin from '@learn/ui/layout/appshell/admin';
 import { Metadata } from 'next';
-import { APP_NAME } from '@repo/constants/app';
+import { APP_NAME } from '@repo/constants';
 import { Box, Stack, Text, Title } from '@mantine/core';
-import { SECTION_SPACING } from '@repo/constants/sizes';
-import LayoutSection from '@repo/ui/layout/section';
+import { SECTION_SPACING } from '@repo/constants';
+import { LayoutSection } from '@repo/ui';
 
 export const metadata: Metadata = {
   title: {
     default: 'Dashboard',
-    template: `%s - Admin - ${APP_NAME.LMS}`,
+    template: `%s - Admin - ${APP_NAME.LEARN}`,
   },
 };
 

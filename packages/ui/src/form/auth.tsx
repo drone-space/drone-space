@@ -19,11 +19,11 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core';
-import AuthProviders from '../button/auth-providers';
-import { useFormAuth } from '@repo/hooks/form/auth';
-import { AuthAction } from '@repo/types/enums';
-import NextLink from '@repo/ui/common/anchor/next-link';
-import { AUTH_URLS } from '@repo/constants/paths';
+import { ButtonAuthProviders } from '@repo/ui';
+import { useFormAuth } from '@repo/hooks';
+import { AuthAction } from '@repo/types';
+import { AnchorNextLink } from '@repo/ui';
+import { AUTH_URLS } from '@repo/constants';
 import {
   IconBackspace,
   IconCursorText,
@@ -33,11 +33,11 @@ import {
   IconPassword,
   IconX,
 } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import { setCookieClient } from '@repo/utilities/cookie-client';
-import { COOKIE_NAME, LOCAL_STORAGE_NAME, PARAM_NAME } from '@repo/constants/names';
-import { getUrlParam } from '@repo/utilities/url';
-import { getFromLocalStorage } from '@repo/utilities/storage';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { setCookieClient } from '@repo/utils';
+import { COOKIE_NAME, LOCAL_STORAGE_NAME, PARAM_NAME } from '@repo/constants';
+import { getUrlParam } from '@repo/utils';
+import { getFromLocalStorage } from '@repo/utils';
 
 export function FormAuth({
   action,
@@ -257,7 +257,7 @@ export function FormAuth({
       {/* {action == AuthAction.SIGN_IN ? (
         <Text fz={'xs'} ta={'center'}>
           Don&apos;t have an account?{' '}
-          <NextLink
+          <AnchorNextLink
             inherit
             fw={500}
             href={AUTH_URLS.SIGN_UP}
@@ -269,12 +269,12 @@ export function FormAuth({
             }}
           >
             Sign Up
-          </NextLink>
+          </AnchorNextLink>
         </Text>
       ) : (
         <Text fz={'xs'} ta={'center'}>
           Already have an account?{' '}
-          <NextLink
+          <AnchorNextLink
             inherit
             fw={500}
             href={AUTH_URLS.SIGN_IN}
@@ -286,7 +286,7 @@ export function FormAuth({
             }}
           >
             Sign In
-          </NextLink>
+          </AnchorNextLink>
         </Text>
       )} */}
 

@@ -2,7 +2,7 @@
   "extends": "@repo/config/tsconfig/next.base.json",
   "compilerOptions": {
     "paths": {
-      "@atlas/*": ["./src/*"]
+      "@learn/*": ["./src/*"]
     }
   },
   "include": [

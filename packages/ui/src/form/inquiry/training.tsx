@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { Grid, GridCol, Textarea } from '@mantine/core';
-import CommonForm from '../common/form';
-import FinePrint from '../common/fine-print';
-import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
-import CommonFooter from '../common/footer';
-import { ICON_STROKE_WIDTH } from '@repo/constants/sizes';
-import { FormValuesInquiry } from '@repo/types/form';
+import { FormCommonForm } from '../common/form';
+import { FormCommonFinePrint } from '../common/fine-print';
+import { FormCommonFooter } from '../common/footer';
+import { useFormEmailInquiry } from '@repo/hooks';
+import { ICON_STROKE_WIDTH } from '@repo/constants';
+import { FormValuesInquiry } from '@repo/types';
 
 export function FormInquiryTraining({
   props,
@@ -22,7 +22,7 @@ export function FormInquiryTraining({
   return (
     <form onSubmit={form.onSubmit(() => handleSubmit())} noValidate>
       <Grid>
-        <CommonForm props={{ form }} />
+        <FormCommonForm props={{ form: form as any }} />
 
         <GridCol span={12}>
           <Textarea
@@ -40,11 +40,11 @@ export function FormInquiryTraining({
         </GridCol>
 
         <GridCol span={12}>
-          <FinePrint />
+          <FormCommonFinePrint />
         </GridCol>
 
         <GridCol span={12}>
-          <CommonFooter props={{ submitted }} />
+          <FormCommonFooter props={{ submitted }} />
         </GridCol>
       </Grid>
     </form>

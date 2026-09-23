@@ -1,6 +1,6 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { CategoryGet } from '@repo/types/models/category';
+import { CategoryGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   try {
     // const userId = request.nextUrl.searchParams.get('userId');
 
-    const categoryRecords = await prisma.category.findMany({
-      // where: !userId ? undefined : { profile_id: userId },
-      orderBy: { created_at: 'desc' },
+    const categoryRecords = await db.category.findMany({
+      // where: !userId ? undefined : { profileId: userId },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -36,29 +36,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.category.deleteMany({
+      await db.category.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = categories.map((category) =>
-      prisma.category.upsert({
+      db.category.upsert({
         where: { id: category.id },
         update: {
           ...category,
-          updated_at: new Date(category.updated_at),
+          updatedAt: new Date(category.updatedAt),
         },
         create: {
           ...category,
-          created_at: new Date(category.created_at),
-          updated_at: new Date(category.updated_at),
+          createdAt: new Date(category.createdAt),
+          updatedAt: new Date(category.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateCategories = await prisma.$transaction(operations);
+    const updateCategories = await db.$transaction(operations);
 
     return NextResponse.json(
       { items: updateCategories },

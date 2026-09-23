@@ -1,19 +1,18 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import { Grid, GridCol, Text, ThemeIcon, Group } from '@mantine/core';
 import { IconArrowRightDashed } from '@tabler/icons-react';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import IntroSection from '@repo/ui/layout/intros/section';
-import ImageDefault from '@repo/ui/common/images/default';
-import { images } from '@repo/constants/images';
-import CardCourse from '@/components/common/cards/training/course';
-import { courseList } from '@repo/constants/courses';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import CtaMain from '@/components/partial/cta/main';
+import { getBaseUrl, ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { LayoutIntroSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import { images } from '@repo/constants';
+import CardCourse from '@web/ui/common/cards/training/course';
+import { courseList } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+import CtaMain from '@web/ui/partial/cta/main';
 
 export const dynamic = 'force-static';
 
@@ -26,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-training`,
+    url: `${(await getBaseUrl()).WEB}/drone-training`,
     type: 'website',
     images: [
       {
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
 export default async function DroneTraining() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Drone School',
           title: 'Drone Training',
@@ -52,9 +51,9 @@ export default async function DroneTraining() {
       />
 
       <LayoutSection id="our-story" padded bg={'var(--mantine-color-gray-1)'}>
-        <Grid gutter={'xl'}>
+        <Grid gap={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 title: 'Drone Training School',
               }}
@@ -101,7 +100,7 @@ export default async function DroneTraining() {
       </LayoutSection>
 
       <LayoutSection id="course-list" padded>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Learning Paths',
             title: 'Our Drone Training Courses',

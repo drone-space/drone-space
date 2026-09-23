@@ -1,5 +1,4 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
 
 export default async function LayoutAuth({
   children, // will be a page or nested layout
@@ -7,8 +6,8 @@ export default async function LayoutAuth({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutMain>
+    <div>
       <main>{children}</main>
-    </LayoutMain>
+    </div>
   );
 }

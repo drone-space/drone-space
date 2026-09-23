@@ -1,8 +1,8 @@
-import { useStoreCategory } from '@repo/libraries/zustand/stores/category';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { CategoryGet } from '@repo/types/models/category';
-import { CategoryType, Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
+import { useStoreCategory } from '../../state/category';
+import { useStoreSession } from '../../state/session';
+import { CategoryGet } from '@repo/types';
+import { CategoryType, Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
 
 export const useCategoryActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -21,9 +21,9 @@ export const useCategoryActions = () => {
       title: params.title || 'New Project',
       type: params.type || CategoryType.BLOG,
       status: params.status || Status.ACTIVE,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addCategory(newCategory);
@@ -36,9 +36,9 @@ export const useCategoryActions = () => {
 
     const newCategory: CategoryGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateCategory(newCategory);
@@ -51,9 +51,9 @@ export const useCategoryActions = () => {
 
     deleteCategory({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

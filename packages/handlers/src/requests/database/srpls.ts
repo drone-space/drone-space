@@ -1,4 +1,4 @@
-import { SrplCreate, SrplGet, SrplUpdate } from '@repo/types/models/srpl';
+import { SrplCreate, SrplGet, SrplUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'srpls';

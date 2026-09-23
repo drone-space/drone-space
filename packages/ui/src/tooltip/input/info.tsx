@@ -1,6 +1,6 @@
 import { Center, Tooltip, TooltipProps } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 
 export function TooltipInputInfo({
   props,

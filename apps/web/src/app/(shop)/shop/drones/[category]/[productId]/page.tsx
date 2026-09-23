@@ -23,11 +23,11 @@ import {
   ThemeIcon,
   Title,
 } from '@mantine/core';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import ModalContactShop from '@repo/ui/common/modals/contact/shop';
-import CardShopAccessory from '@/components/common/cards/shop/accessory';
-import CarouselImage from '@/components/common/carousels/image';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import {ModalContactShop} from '@repo/ui';
+import CardShopAccessory from '@web/ui/common/cards/shop/accessory';
+import CarouselImage from '@web/ui/common/carousels/image';
 import { typeParams } from '../layout';
 import {
   IconArrowRightDashed,
@@ -38,18 +38,13 @@ import {
   IconTruckDelivery,
 } from '@tabler/icons-react';
 import classes from './drone.module.css';
-import { linkify } from '@repo/utilities/url';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import ImageDefault from '@repo/ui/common/images/default';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { images } from '@repo/constants/images';
+import { linkify } from '@repo/utils';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
+import { ImageDefault } from '@repo/ui';
+import { LayoutIntroPage } from '@repo/ui';
+import { images } from '@repo/constants';
 import classesBadge from './page.module.css';
-import { products } from '@repo/constants/products';
+import { products } from '@repo/constants';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -78,7 +73,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
 
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: `${product?.category} Drones`,
           title: product?.title.long || product?.title.short || 'Drone Shop',
@@ -87,7 +82,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
       />
 
       <LayoutSection id="drone-category-intro" padded bg={'var(--mantine-color-gray-1)'}>
-        <Grid gutter={{ base: 32, lg: 64 }}>
+        <Grid gap={{ base: 32, lg: 64 }}>
           <GridCol span={{ base: 12, sm: 5.5 }} className={classes.card}>
             <Box pos={'sticky'} top={64}>
               {product?.images && <CarouselImage data={product.images} />}
@@ -342,7 +337,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
       <LayoutSection id="drone-category-specs" padded shadowed>
         <Tabs defaultValue={product?.kit?.basic ? 'basic' : 'other'}>
           <TabsList fw={500}>
-            <Grid gutter={0} w={'100%'}>
+            <Grid gap={0} w={'100%'}>
               {product?.kit?.basic && (
                 <GridCol
                   span={{
@@ -494,7 +489,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
                         {product?.kit?.flyMore ? 'Basic Kit' : 'Box Contents'}
                       </Title>
 
-                      <Grid gutter={'xs'} mt={'xl'}>
+                      <Grid gap={'xs'} mt={'xl'}>
                         {product?.kit.basic.contents.map((item, index) => (
                           <GridCol key={index} span={{ md: 12 }}>
                             <Text fz={{ md: 'sm' }}>
@@ -629,7 +624,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
                         {product?.title.short} Fly More Kit
                       </Title>
 
-                      <Grid mt={'xl'} gutter={'xs'}>
+                      <Grid mt={'xl'} gap={'xs'}>
                         {kitContents.map((item, index) => (
                           <GridCol key={index} span={{ md: 12 }}>
                             <Text fz={{ md: 'sm' }}>
@@ -716,7 +711,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
                       {product?.title.short} Intelligent Flight Battery
                     </Title>
 
-                    <Grid mt={'xl'} gutter={'xs'}>
+                    <Grid mt={'xl'} gap={'xs'}>
                       {product?.accessories?.battery?.specs.map(
                         (item, index) => (
                           <GridCol key={index} span={{ md: 12 }}>

@@ -11,14 +11,19 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@mantine/core": "^9.4.2",
-    "@mantine/notifications": "^9.4.2",
-    "@repo/components": "workspace:*",
+    "@mantine/core": "^9.6.2",
+    "@mantine/notifications": "^9.6.2",
+    "@repo/auth": "workspace:*",
+    "@repo/ai": "workspace:*",
+    "@repo/cloudbase": "workspace:*",
     "@repo/constants": "workspace:*",
     "@repo/db": "workspace:*",
+    "@repo/email": "workspace:*",
     "@repo/handlers": "workspace:*",
+    "@repo/store": "workspace:*",
     "@repo/types": "workspace:*",
-    "@repo/utilities": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@tabler/icons-react": "^3.44.0",
     "@anthropic-ai/sdk": "^0.78.0",
     "next": "16.2.10",
@@ -36,7 +41,7 @@
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "prisma": "6.17.1",
+    "prisma": "^7.8.0",
     "sass-embedded": "^1.89.0",
     "typescript": "^5"
   }

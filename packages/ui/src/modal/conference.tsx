@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { Modal } from '@mantine/core';
-import { COOKIE_NAME } from '@repo/constants/names';
-import { setCookieClient } from '@repo/utilities/cookie-client';
-import CtaConference from '../../partial/cta/conference';
+import { COOKIE_NAME } from '@repo/constants';
+import { setCookieClient } from '@repo/utils';
+import { PartialCtaConference } from '../partial/cta/conference';
 
 export function ModalConference({ children }: { children?: React.ReactNode }) {
   const [opened, setOpened] = useState(false);
@@ -33,7 +33,7 @@ export function ModalConference({ children }: { children?: React.ReactNode }) {
         }}
         size={'xl'}
       >
-        <CtaConference close={close} />
+        <PartialCtaConference close={close} />
       </Modal>
 
       {children && (

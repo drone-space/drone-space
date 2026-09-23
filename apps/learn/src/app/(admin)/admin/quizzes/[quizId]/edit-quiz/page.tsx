@@ -1,9 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
+import { LayoutPage } from '@repo/ui';
 import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
-import PartialPageQuizzesAdminEdit from '@/components/partial/page/quizzes/admin/edit';
+import PartialPageQuizzesAdminEdit from '@learn/ui/partial/page/quizzes/admin/edit';
 
 const metaTitle = `Edit Quiz`;
 

@@ -1,5 +1,5 @@
-import prisma from '@repo/libraries/prisma';
-import { SrplGet } from '@repo/types/models/srpl';
+import { db } from '@repo/db';
+import { SrplGet } from '@repo/types';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -12,7 +12,7 @@ export async function GET(
   try {
     const { srplId } = await params;
 
-    const srplRecord = await prisma.srpl.findUnique({
+    const srplRecord = await db.srpl.findUnique({
       where: { id: srplId },
     });
 
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
   try {
     const srpl: SrplGet = await request.json();
 
-    const resolvedSrpl = await prisma.$transaction(async (tx) => {
+    const resolvedSrpl = await db.$transaction(async (tx) => {
       const existingSrpl = await tx.srpl.findUnique({
         where: { srplNumber: srpl.srplNumber },
       });
@@ -39,8 +39,8 @@ export async function POST(request: NextRequest) {
       const newSrpl = await tx.srpl.create({
         data: {
           ...srpl,
-          created_at: new Date(srpl.created_at),
-          updated_at: new Date(srpl.updated_at),
+          createdAt: new Date(srpl.createdAt),
+          updatedAt: new Date(srpl.updatedAt),
         },
       });
 
@@ -63,7 +63,7 @@ export async function PUT(
 
     const srpl: SrplGet = await request.json();
 
-    const updateSrpl = await prisma.srpl.update({
+    const updateSrpl = await db.srpl.update({
       where: { id: srplId },
       data: srpl,
     });

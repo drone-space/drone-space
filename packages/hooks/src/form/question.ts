@@ -1,12 +1,12 @@
 import { hasLength } from '@mantine/form';
-import { useQuestionActions } from '../actions/question';
+import { useQuestionActions } from '@repo/store';
 import { useFormBase } from '../form';
-import { QuestionGet } from '@repo/types/models/question';
+import { QuestionGet } from '@repo/types';
 import { useState } from 'react';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
-import { Variant } from '@repo/types/enums';
+import { useStoreQuestion } from '@repo/store';
+import { Variant } from '@repo/types';
 import { useNotification } from '../notification';
-import { useQuizQuestionActions } from '../actions/quiz-question';
+import { useQuizQuestionActions } from '@repo/store';
 
 export const useFormQuestion = (params?: {
   defaultValues?: Partial<QuestionGet>;
@@ -25,10 +25,7 @@ export const useFormQuestion = (params?: {
       content: params?.defaultValues?.content || '',
     },
     {
-      content: hasLength(
-        { min: 2, max: 2048 },
-        'Between 2 and 2048 characters required'
-      ),
+      content: hasLength({ min: 2, max: 2048 }, 'Between 2 and 2048 characters required'),
     },
     {
       resetOnSuccess: false,
@@ -44,8 +41,7 @@ export const useFormQuestion = (params?: {
           .getState()
           .questions?.some(
             (qi) =>
-              qi.content.toLowerCase() === trimmedContent &&
-              qi.id !== params?.defaultValues?.id
+              qi.content.toLowerCase() === trimmedContent && qi.id !== params?.defaultValues?.id,
           );
 
         if (rawValues.content && isDuplicate) {
@@ -68,7 +64,7 @@ export const useFormQuestion = (params?: {
           return;
         }
 
-        if (!params?.defaultValues?.updated_at) {
+        if (!params?.defaultValues?.updatedAt) {
           // --- 1. Creating a Brand New Question ---
           // Create the question record globally
           const newQuestion = questionCreate(rawValues);
@@ -76,8 +72,8 @@ export const useFormQuestion = (params?: {
           // Link it to the current quiz immediately via the join table
           if (newQuestion?.id && params?.options.quizId) {
             quizQuestionCreate({
-              quiz_id: params.options.quizId,
-              question_id: newQuestion.id,
+              quizId: params.options.quizId,
+              questionId: newQuestion.id,
             });
           }
 
@@ -96,7 +92,7 @@ export const useFormQuestion = (params?: {
           form.reset();
         }
       },
-    }
+    },
   );
 
   return {

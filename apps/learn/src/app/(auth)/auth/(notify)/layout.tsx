@@ -1,7 +1,7 @@
 import React from 'react';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { COMPANY_NAME } from '@repo/constants';
 import { Metadata } from 'next';
-import LayoutAuthNotify from '@repo/ui/layout/auth/notify';
+import { LayoutAuthNotify } from '@repo/ui';
 
 export const metadata: Metadata = {
   title: {

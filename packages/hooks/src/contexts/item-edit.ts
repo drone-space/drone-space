@@ -1,4 +1,4 @@
-import { useItemEdit } from '../../../../../meridian-byte/packages/hooks/src/edit';
+import { useItemEdit } from '../edit';
 import { createContext, useContext } from 'react';
 
 type ItemEditContextType = ReturnType<typeof useItemEdit> | null;

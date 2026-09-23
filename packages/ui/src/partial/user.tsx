@@ -1,8 +1,8 @@
 'use client';
 
 import { Flex, Skeleton, Stack, Text, Title } from '@mantine/core';
-import AvatarMain from '@repo/ui/common/avatars/main';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
+import { AvatarUser } from '../avatar/user';
+import { useStoreSession } from '@repo/store';
 
 export function PartialUser({ options }: { options?: { withoutAvatar?: boolean } }) {
   const session = useStoreSession((s) => s.session);
@@ -18,7 +18,7 @@ export function PartialUser({ options }: { options?: { withoutAvatar?: boolean }
       gap={'xs'}
       w={'100%'}
     >
-      {!options?.withoutAvatar && <AvatarMain />}
+      {!options?.withoutAvatar && <AvatarUser />}
 
       <Stack gap={session === undefined ? 5 : 0}>
         {session === undefined ? (

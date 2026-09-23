@@ -18,16 +18,16 @@ import {
   // useWindowScroll
 } from '@mantine/hooks';
 import { usePathname } from 'next/navigation';
-import { images } from '@repo/constants/images';
+import { images } from '@repo/constants';
 import classes from './ai.module.css';
-import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@repo/constants/names';
-import { getFromLocalStorage } from '@repo/utilities/storage';
-import ImageDefault from '@repo/ui/common/images/default';
-import DrawerAi from '../drawer/ai';
-import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import { LOCAL_STORAGE_NAME, SESSION_STORAGE_NAME } from '@repo/constants';
+import { getFromLocalStorage } from '@repo/utils';
+import { ImageDefault } from '@repo/ui';
+import { DrawerAi } from '../drawer/ai';
+import { useStoreConversation } from '@repo/store';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import { IconX } from '@tabler/icons-react';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { COMPANY_NAME } from '@repo/constants';
 
 export function AffixAi() {
   const pathname = usePathname();

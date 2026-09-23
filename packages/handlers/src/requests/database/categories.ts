@@ -1,4 +1,4 @@
-import { CategoryCreate, CategoryGet, CategoryUpdate } from '@repo/types/models/category';
+import { CategoryCreate, CategoryGet, CategoryUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'categories';

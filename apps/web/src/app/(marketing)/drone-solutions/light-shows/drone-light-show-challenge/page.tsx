@@ -1,9 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { images } from '@repo/constants/images';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { COMPANY_NAME } from '@repo/constants/app';
-import PartialLightShowChallenge from '@/components/partial/page/light-show-challenge';
+import { getBaseUrl, images } from '@repo/constants';
+import { COMPANY_NAME } from '@repo/constants';
+import PartialLightShowChallenge from '@web/ui/partial/page/light-show-challenge';
 
 export const dynamic = 'force-static';
 
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/light-shows/drone-light-show-challenge`,
+    url: `${(await getBaseUrl()).WEB}/drone-solutions/light-shows/drone-light-show-challenge`,
     type: 'website',
     images: [
       {

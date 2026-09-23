@@ -1,42 +1,31 @@
-// app/sitemap.xml/route.ts
 import { NextResponse } from 'next/server';
-import { API_URL, PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { sitemapRoutes } from '@/data/links';
-import { PostRelations } from '@repo/types/models/post';
-import { postsGet } from '@repo/handlers/requests/database/posts';
-// import accessories from '@/data/accessories';
-import { linkify } from '@repo/utilities/url';
-import { products } from '@repo/constants/products';
+import { sitemapRoutes } from '@web/data/links';
+import { PostRelations } from '@repo/types';
+import { postsGet } from '@repo/handlers';
+// import accessories from '@web/data/accessories';
+import { linkify } from '@repo/utils';
+import { getApiUrl, products } from '@repo/constants';
+import { getBaseUrl } from '@repo/constants';
 
 export const dynamic = 'force-static';
 
 export async function GET() {
   const today = new Date().toISOString().split('T')[0];
-  const beginningOfYear = new Date(new Date().getFullYear(), 0, 1)
-    .toISOString()
-    .split('T')[0];
+  const beginningOfYear = new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
 
-  // --- STATIC ROUTES ---
-  const staticRoutes = ['', ...sitemapRoutes].map((route) => ({
-    loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}${route}`,
-    lastmod: today,
-    changefreq: 'weekly',
-    priority: route === '' ? 1 : 0.8,
-  }));
+  const baseUrl = (await getBaseUrl()).WEB;
 
-  // --- POSTS ---
+  // --- POST ROUTES ---
   let postRoutes: any[] = [];
-
   try {
     const { items: posts }: { items: PostRelations[] } = await postsGet({
-      apiUrl: API_URL,
+      apiUrl: await getApiUrl(),
     });
+
     if (posts) {
       postRoutes = posts.map((post) => ({
-        loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/blog/${linkify(
-          post.title
-        )}-${post.id}`,
-        lastmod: post.updated_at,
+        loc: `${baseUrl}/blog/${linkify(post.title)}-${post.id}`,
+        lastmod: post.updatedAt,
         changefreq: 'weekly',
         priority: 0.5,
       }));
@@ -44,16 +33,6 @@ export async function GET() {
   } catch (e) {
     console.error('Posts fetch error:', e);
   }
-
-  // // --- ACCESSORIES ---
-  // const accessoryRoutes = accessories.map((acc) => ({
-  //   loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/accessories/${linkify(
-  //     acc.title.long
-  //   )}`,
-  //   lastmod: beginningOfYear,
-  //   changefreq: 'weekly',
-  //   priority: 0.5,
-  // }));
 
   // --- PRODUCT ROUTES BY CATEGORY ---
   const productRoutes = [
@@ -68,23 +47,29 @@ export async function GET() {
       products
         .filter((p) => p.category === key)
         .map((p) => ({
-          loc: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/drones/${base}/${linkify(
-            p.title.long
-          )}`,
+          loc: `${baseUrl}/shop/drones/${base}/${linkify(p.title.long)}`,
           lastmod: beginningOfYear,
           changefreq: 'weekly',
           priority: 0.5,
-        }))
+        })),
     )
     .flat();
 
-  // --- MERGE ALL ROUTES ---
-  const allRoutes = [
-    ...staticRoutes,
-    ...postRoutes,
-    // ...accessoryRoutes,
-    ...productRoutes,
+  // --- STATIC ROUTES (Strings mapped to Objects) ---
+  const rawStaticRoutes = [
+    '', // homepage
+    ...sitemapRoutes,
   ];
+
+  const staticRoutes = rawStaticRoutes.map((route) => ({
+    loc: `${baseUrl}${route}`,
+    lastmod: today,
+    changefreq: 'weekly',
+    priority: route === '' ? 1 : 0.8,
+  }));
+
+  // --- MERGE ALL ALREADY-FORMATTED ROUTES ---
+  const allRoutes = [...staticRoutes, ...postRoutes, ...productRoutes];
 
   // --- CONVERT TO XML ---
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useFormSrpl } from '@repo/hooks/form/srpl';
+import { useFormSrpl } from '@repo/hooks';
 import { Button, Checkbox, Grid, GridCol, Group, Select, Textarea, TextInput } from '@mantine/core';
-import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
-import { capitalizeWords } from '@repo/utilities/string';
-import { Status } from '@repo/types/models/enums';
+import { useStoreSrpl } from '@repo/store';
+import { capitalizeWords } from '@repo/utils';
+import { Status } from '@repo/types';
 
 export function FormSrpl({ props }: { props?: { srplId?: string } }) {
   const srpls = useStoreSrpl((s) => s.srpls);
@@ -62,7 +62,7 @@ export function FormSrpl({ props }: { props?: { srplId?: string } }) {
 
         <GridCol span={{ base: 12 }}>
           <Checkbox
-            label={`Stay on this page after ${!!srpl?.updated_at ? 'updating' : 'creating'} srpl.`}
+            label={`Stay on this page after ${!!srpl?.updatedAt ? 'updating' : 'creating'} srpl.`}
             checked={stay}
             onChange={(event) => setStay(event.currentTarget.checked)}
           />
@@ -71,7 +71,7 @@ export function FormSrpl({ props }: { props?: { srplId?: string } }) {
         <GridCol span={{ base: 12 }}>
           <Group mt={'xl'}>
             <Button type="submit" loading={submitted}>
-              {!!srpl?.updated_at ? 'Update' : 'Create'}
+              {!!srpl?.updatedAt ? 'Update' : 'Create'}
             </Button>
           </Group>
         </GridCol>

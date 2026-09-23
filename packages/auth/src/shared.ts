@@ -1,7 +1,8 @@
 import { COMPANY_NAME } from '@repo/constants';
 import { ProfileGet } from '@repo/types';
 import { emailSendOnboarding, emailContactAdd } from '@repo/email';
-import { isProduction } from '@repo/utils';
+import { isProduction, segmentFullName } from '@repo/utils';
+import { db } from '@repo/db';
 
 export const sharedUserHandle = async (props: {
   supabase: any;
@@ -21,7 +22,7 @@ export const sharedUserHandle = async (props: {
       name,
       full_name: name,
       avatar_url: profile?.avatar,
-      userName: profile?.userName,
+      user_name: profile?.userName,
     },
   });
 
@@ -35,7 +36,73 @@ export const sharedUserHandle = async (props: {
         appName: COMPANY_NAME,
       });
 
-      await emailContactAdd({ email: userData.email, name: userData.user_metadata.name }, false);
+      const segmentName = segmentFullName(userData.user_metadata.name);
+
+      await emailContactAdd(
+        { email: userData.email, fname: segmentName.first, lname: segmentName.last },
+        false,
+      );
     }
   }
+};
+
+export const findSrplRecord = async (srpl: string, email: string) => {
+  return await db.$transaction(async (tx) => {
+    const existingSrpl = await tx.srpl.findUnique({
+      where: { srplNumber: srpl },
+    });
+
+    if (!existingSrpl) {
+      return "The SRPL you provided doesn't exist in our records.";
+    }
+
+    const existingProfile = await tx.profile.findUnique({
+      where: { email },
+    });
+
+    if (!existingProfile) {
+      return;
+    }
+
+    if (!existingSrpl.profileId) {
+      await tx.srpl.update({
+        where: { srplNumber: srpl },
+        data: { profileId: existingProfile.id },
+      });
+    } else {
+      // If profileId is present, but it's linked to a different profile
+      if (existingSrpl.profileId !== existingProfile.id) {
+        return 'This SRPL is already linked to another profile.';
+      }
+    }
+
+    return;
+  });
+};
+
+export const linkSrplToProfile = async (srpl: string, profile: ProfileGet) => {
+  return await db.$transaction(async (tx) => {
+    const existingSrpl = await tx.srpl.findUnique({
+      where: { srplNumber: srpl },
+    });
+
+    if (!existingSrpl) {
+      console.error("The SRPL provided doesn't exist in our records.");
+      return;
+    }
+
+    if (!existingSrpl.profileId) {
+      await tx.srpl.update({
+        where: { srplNumber: srpl },
+        data: { profileId: profile.id },
+      });
+    } else {
+      // If profileId is present, but it's linked to a different profile
+      if (existingSrpl.profileId !== profile.id) {
+        return 'This SRPL is already linked to another profile.';
+      }
+    }
+
+    return;
+  });
 };

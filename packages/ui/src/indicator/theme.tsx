@@ -9,10 +9,10 @@ import {
   Tooltip,
   useMantineColorScheme,
 } from '@mantine/core';
-import { ColorScheme } from '@repo/types/enums';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import { ColorScheme } from '@repo/types';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import { IconDeviceDesktop, IconMoon, IconSun } from '@tabler/icons-react';
-import { capitalizeWord } from '@repo/utilities/string';
+import { capitalizeWord } from '@repo/utils';
 
 export function IndicatorTheme() {
   const [mounted, setMounted] = useState(false);

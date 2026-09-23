@@ -1,12 +1,11 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutMain from '@repo/ui/layout/main';
-import { linkify } from '@repo/utilities/url';
-import { products } from '@repo/constants/products';
+import { LayoutMain } from '@repo/ui';
+import { linkify } from '@repo/utils';
+import { getBaseUrl, products } from '@repo/constants';
 import { typeParams } from '../layout';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { images } from '@repo/constants';
+import { COMPANY_NAME } from '@repo/constants';
 
 export const generateMetadata = async ({
   params,
@@ -21,7 +20,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: product?.title.long,
       // description: metaDesc,
-      url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/drones/${linkify(product?.category || '')}/${linkify(product?.title.long || '')}`,
+      url: `${(await getBaseUrl()).WEB}/shop/drones/${linkify(product?.category || '')}/${linkify(product?.title.long || '')}`,
       type: 'website',
       images: [
         {

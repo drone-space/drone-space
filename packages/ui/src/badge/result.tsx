@@ -1,8 +1,8 @@
 'use client';
 
 import { Badge } from '@mantine/core';
-import { Status as EnumStatus } from '@repo/types/models/enums';
-import { capitalizeWords } from '@repo/utilities/string';
+import { Status as EnumStatus } from '@repo/types';
+import { capitalizeWords } from '@repo/utils';
 import React from 'react';
 
 export function BadgeResult({ props }: { props: { pass: boolean } }) {

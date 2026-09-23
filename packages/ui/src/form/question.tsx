@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { useFormQuestion } from '@repo/hooks/form/question';
+import { useFormQuestion } from '@repo/hooks';
 import {
   Button,
   Card,
@@ -13,12 +13,12 @@ import {
   Textarea,
   TextInput,
 } from '@mantine/core';
-import { QuestionGet } from '@repo/types/models/question';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
-import SectionOptions from '../partial/section/options';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
-import { OptionGet } from '@repo/types/models/option';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
+import { QuestionGet } from '@repo/types';
+import { useStoreQuestion } from '@repo/store';
+import { PartialSectionOptions } from '../partial/section/options';
+import { useStoreOption } from '@repo/store';
+import { OptionGet } from '@repo/types';
+import { useStoreQuiz } from '@repo/store';
 import { useRouter } from 'next/navigation';
 
 export function FormQuestion({
@@ -46,7 +46,7 @@ export function FormQuestion({
   });
 
   const optionsStore = useStoreOption((s) => s.options);
-  const optionsQuestion = optionsStore?.filter((oi) => oi.question_id == form.values.id);
+  const optionsQuestion = optionsStore?.filter((oi) => oi.questionId == form.values.id);
 
   const handleComplete = () => {
     if (!stay) {
@@ -121,7 +121,7 @@ export function FormQuestion({
             <GridCol span={{ base: 12 }}>
               <Checkbox
                 mt={'xs'}
-                label={`Stay on this page after ${!!props?.question?.updated_at ? 'updating' : 'creating'} quiz.`}
+                label={`Stay on this page after ${!!props?.question?.updatedAt ? 'updating' : 'creating'} quiz.`}
                 checked={stay}
                 onChange={(event) => setStay(event.currentTarget.checked)}
               />
@@ -150,7 +150,7 @@ export function FormQuestion({
                 loading={submitted}
                 display={!options?.inline && form.values.id ? 'none' : undefined}
               >
-                {!!props?.question?.updated_at ? 'Update' : 'Create'}
+                {!!props?.question?.updatedAt ? 'Update' : 'Create'}
               </Button>
             </Group>
           </GridCol>
@@ -160,7 +160,7 @@ export function FormQuestion({
       {!options?.inline && form.values.id && (
         <GridCol span={{ base: 12 }}>
           <Card withBorder>
-            <SectionOptions
+            <PartialSectionOptions
               props={{
                 questionId: form.values.id,
                 questionOptions: optionsQuestion || [],

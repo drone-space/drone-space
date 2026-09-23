@@ -1,0 +1,19 @@
+.card {
+  height: 100%;
+}
+
+@media (min-width: 75em) {
+  .card {
+    padding: var(--mantine-spacing-xl);
+  }
+}
+
+.list {
+  font-size: var(--mantine-font-size-xs);
+}
+
+@media (min-width: 75em) {
+  .list {
+    font-size: var(--mantine-font-size-sm);
+  }
+}

@@ -3,9 +3,9 @@
 import React from 'react';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import LayoutModal from '../../../layout/modal';
-import FormInquiryService from '../../../form/inquiry/service';
-import { FormValuesInquiry } from '@repo/types/form';
+import { LayoutModal } from '../../layout/modal';
+import { FormInquiryService } from '../../form/inquiry/service';
+import { FormValuesInquiry } from '@repo/types';
 
 export function ModalContactService({
   props,

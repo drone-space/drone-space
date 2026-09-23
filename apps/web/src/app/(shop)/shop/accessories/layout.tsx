@@ -1,9 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutMain from '@repo/ui/layout/main';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import { LayoutMain } from '@repo/ui';
+import { getBaseUrl, images } from '@repo/constants';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
 
 const metaTitle = `Drone Accessories`;
 
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     // description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/accessories`,
+    url: `${(await getBaseUrl()).WEB}/shop/accessories`,
     type: 'website',
     images: [
       {

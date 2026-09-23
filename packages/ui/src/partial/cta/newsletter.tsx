@@ -1,15 +1,15 @@
 'use client';
 
-import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants';
 import { ActionIcon, Button, Group, Overlay, Stack, Text, Title } from '@mantine/core';
 import React from 'react';
-import FormNewsletter from '../../form/newsletter';
-import LayoutSection from '@repo/ui/layout/section';
+import { FormNewsletter } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import classes from './newsletter.module.css';
-import { images } from '@repo/constants/images';
+import { images } from '@repo/constants';
 import { IconFileDownload, IconX } from '@tabler/icons-react';
-import ModalDownloadDocument from '../../common/modals/download/document';
-import { useCloseAllModals } from '@repo/hooks/buses/modal';
+import { ModalDownloadDocument } from '@repo/ui';
+import { useCloseAllModals } from '@repo/hooks';
 
 export function PartialCtaNewsletter({ close }: { close?: () => void }) {
   const handleClose = () => {

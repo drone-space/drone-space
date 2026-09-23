@@ -1,16 +1,16 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
-// import AffixNavbar from '@repo/ui/common/affixi/navbar';
-// import AffixAi from '@repo/ui/common/affixi/ai';
-import HeaderMain from '@/components/layout/headers/main';
-import NavbarMain from '@/components/layout/navbars/main';
-import FooterMain from '@/components/layout/footers/main';
+import { LayoutMain } from '@repo/ui';
+// import AffixNavbar from '@repo/ui';
+// import AffixAi from '@repo/ui';
+import HeaderMain from '@web/ui/layout/headers/main';
+import NavbarMain from '@web/ui/layout/navbars/main';
+import FooterMain from '@web/ui/layout/footers/main';
 import { Metadata } from 'next';
-import { APP_NAME } from '@repo/constants/app';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { images } from '@repo/constants/images';
-import CtaHome from '@/components/partial/cta/main';
-import AsideBlogMain from '@/components/layout/asides/blog/main';
+import { APP_NAME } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { images } from '@repo/constants';
+import CtaHome from '@web/ui/partial/cta/main';
+import AsideBlogMain from '@web/ui/layout/asides/blog/main';
 
 export type typeParams = Promise<{
   'postTitle-postId': string;
@@ -30,7 +30,7 @@ export default async function LayoutBlog({
       header={<HeaderMain />}
       nav={<NavbarMain options={{ border: true }} />}
       hero={
-        <IntroPage
+        <LayoutIntroPage
           props={{
             path: 'News',
             title: 'Insights on Drone Training & Technology',

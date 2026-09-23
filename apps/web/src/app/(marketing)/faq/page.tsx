@@ -1,15 +1,14 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import IntroPage from '@repo/ui/layout/intros/page';
-import AccordionFaq, { faqs } from '@/components/common/accordions/faq';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { SECTION_SPACING } from '@repo/constants/sizes';
-import { images } from '@repo/constants/images';
-import IntroSection from '@repo/ui/layout/intros/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { LayoutIntroPage } from '@repo/ui';
+import AccordionFaq, { faqs } from '@web/ui/common/accordions/faq';
+import { getBaseUrl, SECTION_SPACING } from '@repo/constants';
+import { images } from '@repo/constants';
+import { LayoutIntroSection } from '@repo/ui';
 import { Grid, GridCol } from '@mantine/core';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
 
 export const dynamic = 'force-static';
 
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/faq`,
+    url: `${(await getBaseUrl()).WEB}/faq`,
     type: 'website',
     images: [
       {
@@ -39,7 +38,7 @@ export const metadata: Metadata = {
 export default async function Faq() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: `Q & A`,
           title: 'Frequently Asked Questions',
@@ -52,7 +51,7 @@ export default async function Faq() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: 'FAQ',
                   title: faqs.training.title,
@@ -72,7 +71,7 @@ export default async function Faq() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: 'FAQ',
                   title: faqs.shop.title,
@@ -91,7 +90,7 @@ export default async function Faq() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: 'FAQ',
                   title: faqs.general.title,
@@ -110,7 +109,7 @@ export default async function Faq() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: 'FAQ',
                   title: faqs.considerations.title,
@@ -136,7 +135,7 @@ export function GetLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Grid gutter={'xl'}>
+    <Grid gap={'xl'}>
       <GridCol span={{ md: 4.5 }}>
         <div style={{ position: 'sticky', top: SECTION_SPACING * 1.5 }}>{props.header}</div>
       </GridCol>

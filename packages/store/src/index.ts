@@ -13,7 +13,6 @@ export * from './state/actions/quiz-question';
 export * from './state/actions/quiz';
 export * from './state/actions/srpl';
 
-export * from './state/initialize/active-item';
 export * from './state/initialize/app-data';
 export * from './state/initialize/appshell';
 export * from './state/initialize/session';

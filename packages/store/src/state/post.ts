@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { PostGet } from '@repo/types/models/post';
+import type { PostGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type PostsValue = PostGet[] | null | undefined;

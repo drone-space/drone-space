@@ -1,9 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
+import { LayoutPage } from '@repo/ui';
 import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
-import PartialPageSrplsAdminEdit from '@/components/partial/page/srpls/admin/edit';
+import PartialPageSrplsAdminEdit from '@learn/ui/partial/page/srpls/admin/edit';
 
 const metaTitle = `Edit SRPL`;
 

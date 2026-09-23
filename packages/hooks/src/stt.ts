@@ -18,20 +18,19 @@ declare global {
   }
 
   interface SpeechRecognitionEvent extends Event {
-    resultIndex: number;
-    results: SpeechRecognitionResultList;
+    readonly resultIndex: number;
+    readonly results: SpeechRecognitionResultList;
   }
 }
 
+export {}; // Ensure this file is treated as a module if needed
+
 export const useSTT = (params?: {
-  form?: FormAIType;
+  form?: any;
   handleSubmit?: (suVa?: any, noVa?: boolean) => Promise<any>;
   onAutoStop?: () => void;
   voiceMode?: boolean;
-  streamSpeech?: (input: {
-    text: string;
-    onPlaybackEnd?: () => void;
-  }) => Promise<void>;
+  streamSpeech?: (input: { text: string; onPlaybackEnd?: () => void }) => Promise<void>;
   listening: boolean;
   setListening: Dispatch<SetStateAction<boolean>>;
 }) => {
@@ -41,9 +40,7 @@ export const useSTT = (params?: {
   const analyserRef = useRef<AnalyserNode | null>(null);
 
   // ✅ Always a Uint8Array<ArrayBuffer> (empty until startListening)
-  const dataArrayRef = useRef<Uint8Array<ArrayBuffer>>(
-    new Uint8Array(new ArrayBuffer(0))
-  );
+  const dataArrayRef = useRef<Uint8Array<ArrayBuffer>>(new Uint8Array(new ArrayBuffer(0)));
 
   const volumeRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
@@ -52,11 +49,9 @@ export const useSTT = (params?: {
   const silenceThresholdRef = useRef(0.1);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !('webkitSpeechRecognition' in window))
-      return;
+    if (typeof window === 'undefined' || !('webkitSpeechRecognition' in window)) return;
 
-    const SpeechRecognition =
-      window.webkitSpeechRecognition || window.SpeechRecognition;
+    const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     const recognition = new SpeechRecognition();
 
     recognition.continuous = true;
@@ -68,6 +63,10 @@ export const useSTT = (params?: {
 
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         const result = event.results[i];
+
+        // Guard against undefined results
+        if (!result || !result[0]) continue;
+
         const transcript = result[0].transcript;
 
         if (result.isFinal) {
@@ -88,9 +87,7 @@ export const useSTT = (params?: {
     if (!analyserRef.current) return;
 
     analyserRef.current.getByteFrequencyData(dataArrayRef.current);
-    const avg =
-      dataArrayRef.current.reduce((a, b) => a + b, 0) /
-      dataArrayRef.current.length;
+    const avg = dataArrayRef.current.reduce((a, b) => a + b, 0) / dataArrayRef.current.length;
     const normalizedVolume = avg / 255;
     volumeRef.current = normalizedVolume;
 

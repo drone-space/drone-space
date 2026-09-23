@@ -1,15 +1,16 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import { NotifyError as PartialNotifyError } from '@repo/ui/partial/page/notify';
-import { BASE_URL_CLIENT } from '@repo/constants/paths';
+import { PartialPageNotifyError } from '@repo/ui';
+import { getBaseUrl } from '@repo/constants';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = { title: 'Authentication Error' };
 
-export default function Error() {
+export default async function Error() {
   return (
-    <LayoutPage>
-      <PartialNotifyError props={{ baseUrl: BASE_URL_CLIENT.LMS }} />
-    </LayoutPage>
+    <div>
+      <PartialPageNotifyError props={{ baseUrl: (await getBaseUrl()).LEARN }} />
+    </div>
   );
 }

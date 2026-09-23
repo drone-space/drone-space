@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, Group, Indicator, Text } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 
 export function IndicatorOffer() {
   return (

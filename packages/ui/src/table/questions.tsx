@@ -17,45 +17,40 @@ import {
   TableTr,
   Text,
 } from '@mantine/core';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
-import { getRegionalDate } from '@repo/utilities/date-time';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { useStoreQuestion } from '@repo/store';
+import { getRegionalDate } from '@repo/utils';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { IconEdit } from '@tabler/icons-react';
-import NextLink from '../anchor/next-link';
-import BadgeStatus from '../badge/status';
-import { sortArray } from '@repo/utilities/array';
-import { Order } from '@repo/types/enums';
-import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { AnchorNextLink } from '../anchor/next-link';
+import {BadgeStatus} from '../badge/status';
+import { sortArray } from '@repo/utils';
+import { Order } from '@repo/types';
+import { useStoreQuizQuestion } from '@repo/store';
 
 export function TableQuestions() {
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
 
-  const rows = sortArray(questions || [], (i) => i.created_at, Order.DESCENDING).map((qi) => {
+  const rows = sortArray(questions || [], (i) => i.createdAt, Order.DESCENDING).map((qi) => {
     let quizIds: string[] = [];
 
     const quizQuestionsForQuestion = (quizQuestions || []).filter(
-      (qqfq) => qqfq.question_id == qi.id,
+      (qqfq) => qqfq.questionId == qi.id,
     );
 
     quizQuestionsForQuestion.map((qqfq) => {
-      if (quizIds.includes(qqfq.quiz_id)) {
+      if (quizIds.includes(qqfq.quizId)) {
         return;
       } else {
-        quizIds.push(qqfq.quiz_id);
+        quizIds.push(qqfq.quizId);
       }
     });
 
-    const created = getRegionalDate(qi.created_at, {
+    const created = getRegionalDate(qi.createdAt, {
       // locale: 'en-GB',
       // format: 'numeric',
     });
-    const updated = getRegionalDate(qi.updated_at, {
+    const updated = getRegionalDate(qi.updatedAt, {
       // locale: 'en-GB',
       // format: 'numeric',
     });
@@ -86,11 +81,11 @@ export function TableQuestions() {
 
         <TableTd w={WIDTHS.ACTIONS}>
           <Group justify="end" gap={'xs'}>
-            <NextLink href={`/admin/questions/${qi.id}/edit-question`}>
+            <AnchorNextLink href={`/admin/questions/${qi.id}/edit-question`}>
               <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
-            </NextLink>
+            </AnchorNextLink>
           </Group>
         </TableTd>
       </TableTr>
@@ -125,9 +120,9 @@ export function TableQuestions() {
               <Stack align="center" ta={'center'} my={SECTION_SPACING * 2}>
                 <Text c={'dimmed'}>No questions found</Text>
 
-                <NextLink href="/admin/questions/new-question">
+                <AnchorNextLink href="/admin/questions/new-question">
                   <Button size={'xs'}>Create Question</Button>
-                </NextLink>
+                </AnchorNextLink>
               </Stack>
             </TableTd>
           </TableTr>

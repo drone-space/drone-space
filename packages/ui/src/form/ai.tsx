@@ -4,16 +4,16 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { ActionIcon, Button, Group, Stack, Textarea } from '@mantine/core';
 import { IconArrowUp, IconBrandTelegram } from '@tabler/icons-react';
 import { getHotkeyHandler } from '@mantine/hooks';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import { FormAIType } from '@repo/hooks/form/ai';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { FormAIType } from '@repo/hooks';
 import classes from './ai.module.css';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { COMPANY_NAME } from '@repo/constants';
 
 export function FormAi({
   props,
 }: {
   props: {
-    form: FormAIType;
+    form: any;
     submitted: boolean;
     handleSubmit: () => void;
     voiceMode: boolean;

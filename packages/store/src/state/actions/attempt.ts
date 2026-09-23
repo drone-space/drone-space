@@ -1,8 +1,8 @@
-import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { AttemptGet } from '@repo/types/models/attempt';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
+import { useStoreAttempt } from '../../state/attempt';
+import { useStoreSession } from '../../state/session';
+import { AttemptGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
 
 export const useAttemptActions = () => {
   const session = useStoreSession((s) => s.session);
@@ -13,7 +13,7 @@ export const useAttemptActions = () => {
   const attemptCreate = (params: Partial<AttemptGet>) => {
     if (!session) return;
 
-    if (!params.quiz_id) {
+    if (!params.quizId) {
       console.error('Quiz id must be provided.');
       return;
     }
@@ -23,12 +23,12 @@ export const useAttemptActions = () => {
 
     const newAttempt: AttemptGet = {
       id: params.id || id,
-      profile_id: params.profile_id || session.id,
-      quiz_id: params.quiz_id,
+      profileId: params.profileId || session.id,
+      quizId: params.quizId,
       status: params.status || Status.INTRO,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at || now).toISOString() as any,
-      updated_at: new Date(params.updated_at || now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt || now).toISOString() as any,
+      updatedAt: new Date(params.updatedAt || now).toISOString() as any,
     };
 
     addAttempt(newAttempt);
@@ -43,9 +43,9 @@ export const useAttemptActions = () => {
 
     const newAttempt: AttemptGet = {
       ...params,
-      sync_status: SyncStatus.PENDING,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.PENDING,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     };
 
     updateAttempt(newAttempt);
@@ -60,9 +60,9 @@ export const useAttemptActions = () => {
 
     deleteAttempt({
       ...params,
-      sync_status: SyncStatus.DELETED,
-      created_at: new Date(params.created_at).toISOString() as any,
-      updated_at: new Date(now).toISOString() as any,
+      syncStatus: SyncStatus.DELETED,
+      createdAt: new Date(params.createdAt).toISOString() as any,
+      updatedAt: new Date(now).toISOString() as any,
     });
   };
 

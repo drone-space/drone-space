@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Turn } from '@repo/types/ai';
+import { Turn } from '@repo/types';
 
 export type ConversationValue = Turn[];
 

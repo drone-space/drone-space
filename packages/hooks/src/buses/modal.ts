@@ -1,4 +1,4 @@
-import { CLOSE_ALL, modalBus } from '@repo/utilities/buses/modal';
+import { CLOSE_ALL, modalBus } from '@repo/utils';
 import { useEffect } from 'react';
 
 export function useCloseAllModals(onClose: () => void, id?: string) {

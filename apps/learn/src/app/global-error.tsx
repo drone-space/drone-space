@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-import Error500 from '@repo/ui/partial/errors/500';
-import ProviderMantine from '@repo/ui/provider/mantine';
-import { mantine } from '@/data/styles';
+import { PartialError500, ProviderMantine } from '@repo/ui';
+import { getAppTheme } from '@repo/constants';
+import { getAppResolver } from '@learn/resolver';
 
 export default function GlobalError({ reset }: { reset: () => void }) {
   return (
     <html>
       <body>
-        <ProviderMantine appThemeProps={{ styleSheets: { ...mantine } }}>
-          <Error500 reset={reset} />
+        <ProviderMantine theme={getAppTheme} cssVariablesResolver={getAppResolver}>
+          <PartialError500 reset={reset} />
         </ProviderMantine>
       </body>
     </html>

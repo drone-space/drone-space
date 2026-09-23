@@ -24,6 +24,7 @@ export const LOCAL_STORAGE_NAME = {
 };
 
 export const SESSION_STORAGE_NAME = {
+  VIEW: 'view',
   AI_COUNT: 'ai-count',
 };
 

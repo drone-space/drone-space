@@ -34,17 +34,17 @@ export async function getBaseUrl() {
     hostHeader,
   );
 
-  const HOST_ATLAS = resolveHost(
-    process.env.NEXT_PUBLIC_HOST_ATLAS_PROD,
-    process.env.NEXT_PUBLIC_HOST_ATLAS_DEV,
-    `${SHARED_VERCEL_SUBSTRING}-atlas`,
+  const HOST_LEARN = resolveHost(
+    process.env.NEXT_PUBLIC_HOST_LEARN_PROD,
+    process.env.NEXT_PUBLIC_HOST_LEARN_DEV,
+    `${SHARED_VERCEL_SUBSTRING}-learn`,
     hostHeader,
   );
 
   return {
     API: `${getUrlPrefix(HOST_API)}${HOST_API}`,
     WEB: `${getUrlPrefix(HOST_WEB)}${HOST_WEB}`,
-    ATLAS: `${getUrlPrefix(HOST_ATLAS)}${HOST_ATLAS}`,
+    LEARN: `${getUrlPrefix(HOST_LEARN)}${HOST_LEARN}`,
   };
 }
 

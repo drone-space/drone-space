@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Grid, GridCol } from '@mantine/core';
-import CommonForm from '../common/form';
-import FinePrint from '../common/fine-print';
-import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
-import CommonFooter from '../common/footer';
+import { FormCommonForm } from '../common/form';
+import { FormCommonFinePrint } from '../common/fine-print';
+import { FormCommonFooter } from '../common/footer';
+import { useFormEmailInquiry } from '@repo/hooks';
 
 export function FormInquiryCallback({ props }: { props: { close?: () => void } }) {
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
@@ -19,14 +19,14 @@ export function FormInquiryCallback({ props }: { props: { close?: () => void } }
   return (
     <form onSubmit={form.onSubmit(() => handleSubmit())} noValidate>
       <Grid>
-        <CommonForm props={{ form }} />
+        <FormCommonForm props={{ form: form as any }} />
 
         <GridCol span={12}>
-          <FinePrint />
+          <FormCommonFinePrint />
         </GridCol>
 
         <GridCol span={12}>
-          <CommonFooter props={{ submitted, label: 'Request' }} />
+          <FormCommonFooter props={{ submitted, label: 'Request' }} />
         </GridCol>
       </Grid>
     </form>

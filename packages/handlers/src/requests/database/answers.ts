@@ -1,4 +1,4 @@
-import { AnswerCreate, AnswerGet, AnswerUpdate } from '@repo/types/models/answer';
+import { AnswerCreate, AnswerGet, AnswerUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'answers';

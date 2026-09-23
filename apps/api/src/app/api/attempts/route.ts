@@ -1,6 +1,6 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { AttemptGet } from '@repo/types/models/attempt';
+import { AttemptGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   try {
     const userId = request.nextUrl.searchParams.get('userId');
 
-    const attemptRecords = await prisma.attempt.findMany({
-      where: !userId ? undefined : { profile_id: userId },
-      orderBy: { created_at: 'desc' },
+    const attemptRecords = await db.attempt.findMany({
+      where: !userId ? undefined : { profileId: userId },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -36,29 +36,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.attempt.deleteMany({
+      await db.attempt.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = attempts.map((attempt) =>
-      prisma.attempt.upsert({
+      db.attempt.upsert({
         where: { id: attempt.id },
         update: {
           ...attempt,
-          updated_at: new Date(attempt.updated_at),
+          updatedAt: new Date(attempt.updatedAt),
         },
         create: {
           ...attempt,
-          created_at: new Date(attempt.created_at),
-          updated_at: new Date(attempt.updated_at),
+          createdAt: new Date(attempt.createdAt),
+          updatedAt: new Date(attempt.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateAttempts = await prisma.$transaction(operations);
+    const updateAttempts = await db.$transaction(operations);
 
     return NextResponse.json(
       { items: updateAttempts },

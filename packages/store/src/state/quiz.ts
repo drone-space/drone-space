@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { QuizGet } from '@repo/types/models/quiz';
+import type { QuizGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type QuizzesValue = QuizGet[] | null | undefined;

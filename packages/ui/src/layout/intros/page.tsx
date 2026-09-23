@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import LayoutSection from '../section';
+import { LayoutSection } from '../section';
 import { usePathname } from 'next/navigation';
 import { Container, Stack, Text, Title } from '@mantine/core';
-import { crumbify } from '@repo/utilities/url';
-import { SECTION_SPACING } from '@repo/constants/sizes';
+import { crumbify } from '@repo/utils';
+import { SECTION_SPACING } from '@repo/constants';
 
 interface PageHeaderProps {
   props: {

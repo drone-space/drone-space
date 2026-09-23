@@ -1,9 +1,9 @@
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutMain from '@repo/ui/layout/main';
-import AffixNavbar from '@repo/ui/common/affixi/navbar';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutMain } from '@repo/ui';
+import { AffixNavbar } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import React from 'react';
-import HeroHome from '@/components/layout/heros/home';
+import HeroHome from '@web/ui/layout/heros/home';
 import {
   Anchor,
   Button,
@@ -15,7 +15,7 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import ModalDownloadDocument from '@repo/ui/common/modals/download/document';
+import { ModalDownloadDocument } from '@repo/ui';
 import {
   IconArrowRight,
   IconCalendarEvent,
@@ -28,30 +28,30 @@ import {
   IconSchool,
   IconShoppingCart,
 } from '@tabler/icons-react';
-import ModalContactCallback from '@repo/ui/common/modals/contact/callback';
-import ModalContactTraining from '@repo/ui/common/modals/contact/training';
-import services from '@/data/services';
-import CardService from '@/components/common/cards/service';
-import { shuffleArray } from '@repo/utilities/array';
-import { products } from '@repo/constants/products';
-import CardShopDroneMain from '@/components/common/cards/shop/drones/main';
-import partners from '@/data/partners';
-import CardPartner from '@/components/common/cards/partner';
-import CardWhy from '@/components/common/cards/why';
-import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants/sizes';
-import IntroSection from '@repo/ui/layout/intros/section';
-import { ABOUT_STATS, COMPANY_NAME } from '@repo/constants/app';
-import AlertKCAAUpdate from '@repo/ui/common/alerts/kcaa-update';
-import CtaMain from '@/components/partial/cta/main';
-import NextLink from '@repo/ui/common/anchor/next-link';
+import { ModalContactCallback } from '@repo/ui';
+import { ModalContactTraining } from '@repo/ui';
+import services from '@web/data/services';
+import CardService from '@web/ui/common/cards/service';
+import { shuffleArray } from '@repo/utils';
+import { products } from '@repo/constants';
+import CardShopDroneMain from '@web/ui/common/cards/shop/drones/main';
+import partners from '@web/data/partners';
+import CardPartner from '@web/ui/common/cards/partner';
+import CardWhy from '@web/ui/common/cards/why';
+import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants';
+import { LayoutIntroSection } from '@repo/ui';
+import { ABOUT_STATS, COMPANY_NAME } from '@repo/constants';
+import { AlertRadioTelephony } from '@repo/ui';
+import CtaMain from '@web/ui/partial/cta/main';
+import { AnchorNextLink } from '@repo/ui';
 import { Metadata } from 'next';
-import AffixAi from '@repo/ui/common/affixi/ai';
-import { courseList } from '@repo/constants/courses';
-import CardCourse from '@/components/common/cards/training/course';
-import CarouselPartners from '@/components/common/carousels/partners';
-import HeaderMain from '@/components/layout/headers/main';
-import NavbarMain from '@/components/layout/navbars/main';
-import FooterMain from '@/components/layout/footers/main';
+import { AffixAi } from '@repo/ui';
+import { courseList } from '@repo/constants';
+import CardCourse from '@web/ui/common/cards/training/course';
+import CarouselPartners from '@web/ui/common/carousels/partners';
+import HeaderMain from '@web/ui/layout/headers/main';
+import NavbarMain from '@web/ui/layout/navbars/main';
+import FooterMain from '@web/ui/layout/footers/main';
 
 export const metadata: Metadata = {
   title: `${COMPANY_NAME} - The Leading Drone Training Academy in Kenya`,
@@ -65,7 +65,7 @@ export default function Home() {
       <CarouselPartners data={partners} />
 
       <LayoutSection id="home-cta1" padded={SECTION_SPACING / 2} bg={'var(--mantine-color-pri-9)'}>
-        <Grid gutter={{ base: 'md', md: 'xl' }} justify="center">
+        <Grid gap={{ base: 'md', md: 'xl' }} justify="center">
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
             <ModalDownloadDocument props={{ type: 'brochure' }}>
               <Button h={'100%'} fullWidth variant="gradient">
@@ -113,7 +113,7 @@ export default function Home() {
           </GridCol>
 
           <GridCol span={{ base: 12, xs: 6, sm: 3 }}>
-            <NextLink href={'/shop'}>
+            <AnchorNextLink href={'/shop'}>
               <Button h={'100%'} fullWidth variant="gradient">
                 <Stack align="center" py={SECTION_SPACING / 2} c={'sec.4'}>
                   <IconShoppingCart size={ICON_SIZE * 2.5} stroke={ICON_STROKE_WIDTH} />
@@ -122,13 +122,13 @@ export default function Home() {
                   </Text>
                 </Stack>
               </Button>
-            </NextLink>
+            </AnchorNextLink>
           </GridCol>
         </Grid>
       </LayoutSection>
 
       <LayoutSection id="home-training" padded containerized={'responsive'}>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Training',
             title: 'Our Training Courses',
@@ -138,7 +138,7 @@ export default function Home() {
         />
 
         <Stack gap={SECTION_SPACING}>
-          <Grid justify="center" gutter={'xl'}>
+          <Grid justify="center" gap={'xl'}>
             {courseList
               .filter((ci) => !ci.title.toLowerCase().includes('telephony'))
               .map(
@@ -156,7 +156,7 @@ export default function Home() {
           </Group>
 
           <Group justify="center">
-            <NextLink href={'/drone-training'}>
+            <AnchorNextLink href={'/drone-training'}>
               <Button
                 color="pri"
                 variant={'light'}
@@ -164,7 +164,7 @@ export default function Home() {
               >
                 See more courses
               </Button>
-            </NextLink>
+            </AnchorNextLink>
           </Group>
         </Stack>
       </LayoutSection>
@@ -175,7 +175,7 @@ export default function Home() {
         containerized={'responsive'}
         bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'}
       >
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Services',
             title: 'Our Drone Solutions',
@@ -201,7 +201,7 @@ export default function Home() {
           </Group> */}
 
           {/* <Group justify="center">
-            <NextLink href={'/drone-solutions'}>
+            <AnchorNextLink href={'/drone-solutions'}>
               <Button
                 color="pri"
                 variant={'light'}
@@ -211,13 +211,13 @@ export default function Home() {
               >
                 See more drone solutions
               </Button>
-            </NextLink>
+            </AnchorNextLink>
           </Group> */}
         </Stack>
       </LayoutSection>
 
       <LayoutSection id="home-products" padded containerized={'responsive'}>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Shop',
             title: 'Our Products',
@@ -252,7 +252,7 @@ export default function Home() {
           </Group>
 
           <Group justify="center">
-            <NextLink href={'/shop'}>
+            <AnchorNextLink href={'/shop'}>
               <Button
                 color="pri"
                 variant={'light'}
@@ -260,7 +260,7 @@ export default function Home() {
               >
                 See more drones & categories
               </Button>
-            </NextLink>
+            </AnchorNextLink>
           </Group>
         </Stack>
       </LayoutSection>
@@ -271,7 +271,7 @@ export default function Home() {
         containerized={'responsive'}
         bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-gray-1))'}
       >
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Merits',
             title: 'Why Choose Us',
@@ -303,7 +303,7 @@ async function HomeLayout({ children }: { children: React.ReactNode }) {
     <LayoutMain
       header={
         <>
-          <AlertKCAAUpdate />
+          <AlertRadioTelephony />
           <HeaderMain />
         </>
       }

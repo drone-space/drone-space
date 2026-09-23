@@ -1,7 +1,7 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { SyncStatus } from '@repo/types/models/enums';
-import { STORE_NAME } from '@repo/constants/names';
+import { SyncStatus } from '@repo/types';
+import { STORE_NAME } from '@repo/constants';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -22,54 +22,54 @@ export async function GET(request: NextRequest) {
     // This maps the URL string to the actual Prisma call
     const queryMap: Record<string, () => any> = {
       [STORE_NAME.CATEGORIES]: () =>
-        prisma.category.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.category.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.POSTS]: () =>
-        prisma.post.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.post.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.QUIZZES]: () =>
-        prisma.quiz.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.quiz.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.QUESTIONS]: () =>
-        prisma.question.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.question.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.QUIZ_QUESTIONS]: () =>
-        prisma.quizQuestion.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.quizQuestion.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.OPTIONS]: () =>
-        prisma.option.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.option.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.ATTEMPTS]: () =>
-        prisma.attempt.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.attempt.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.ANSWERS]: () =>
-        prisma.answer.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.answer.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.SRPLS]: () =>
-        prisma.srpl.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.srpl.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
       [STORE_NAME.ALUMNI_CHALLENGERS]: () =>
-        prisma.alumniChallenger.findMany({
-          // where: { profile_id: userId },
-          orderBy: { created_at: 'desc' },
+        db.alumniChallenger.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
         }),
     };
 
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
       .map((key) => queryMap[key]());
 
     // 3. Execute the transaction
-    const results = await prisma.$transaction(activeQueries);
+    const results = await db.$transaction(activeQueries);
 
     // 5. Format into a clean object: { tasks: [...], categories: [...] }
     // Map the results back to their keys
@@ -102,16 +102,16 @@ export async function GET(request: NextRequest) {
 }
 
 const PRISMA_MODEL_MAP: Record<string, any> = {
-  [STORE_NAME.CATEGORIES]: prisma.category,
-  [STORE_NAME.POSTS]: prisma.post,
-  [STORE_NAME.QUIZZES]: prisma.quiz,
-  [STORE_NAME.QUESTIONS]: prisma.question,
-  [STORE_NAME.QUIZ_QUESTIONS]: prisma.quizQuestion,
-  [STORE_NAME.OPTIONS]: prisma.option,
-  [STORE_NAME.ATTEMPTS]: prisma.attempt,
-  [STORE_NAME.ANSWERS]: prisma.answer,
-  [STORE_NAME.SRPLS]: prisma.srpl,
-  [STORE_NAME.ALUMNI_CHALLENGERS]: prisma.alumniChallenger,
+  [STORE_NAME.CATEGORIES]: db.category,
+  [STORE_NAME.POSTS]: db.post,
+  [STORE_NAME.QUIZZES]: db.quiz,
+  [STORE_NAME.QUESTIONS]: db.question,
+  [STORE_NAME.QUIZ_QUESTIONS]: db.quizQuestion,
+  [STORE_NAME.OPTIONS]: db.option,
+  [STORE_NAME.ATTEMPTS]: db.attempt,
+  [STORE_NAME.ANSWERS]: db.answer,
+  [STORE_NAME.SRPLS]: db.srpl,
+  [STORE_NAME.ALUMNI_CHALLENGERS]: db.alumniChallenger,
 };
 
 const SYNC_PRIORITY: Record<string, number> = {
@@ -163,8 +163,8 @@ export async function POST(request: NextRequest) {
           model.updateMany({
             where: { id: { in: deletedIds } },
             data: {
-              sync_status: SyncStatus.DELETED, // Ensure this matches your SyncStatus enum string
-              updated_at: new Date(), // Critical: must be "now" to override other devices
+              syncStatus: SyncStatus.DELETED, // Ensure this matches your SyncStatus enum string
+              updatedAt: new Date(), // Critical: must be "now" to override other devices
             },
           }),
         );
@@ -176,12 +176,12 @@ export async function POST(request: NextRequest) {
           where: { id: item.id },
           update: {
             ...item,
-            updated_at: new Date(item.updated_at),
+            updatedAt: new Date(item.updatedAt),
           },
           create: {
             ...item,
-            created_at: new Date(item.created_at),
-            updated_at: new Date(item.updated_at),
+            createdAt: new Date(item.createdAt),
+            updatedAt: new Date(item.updatedAt),
           },
         }),
       );
@@ -191,7 +191,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Execute everything in ONE transaction
-    const flatResults = await prisma.$transaction(allOperations);
+    const flatResults = await db.$transaction(allOperations);
 
     // Map the flat results back to the store keys
     const responsePayload = requestedStores.reduce(

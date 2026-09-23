@@ -1,0 +1,14 @@
+.navbar {
+  background-color: rgba(133, 220, 215, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.hero {
+  position: relative;
+}

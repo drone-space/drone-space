@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Button, Group, Title } from '@mantine/core';
-import LayoutSection from '@repo/ui/layout/section';
-import ImageDefault from '@repo/ui/common/images/default';
-import { images } from '@repo/constants/images';
+import { LayoutSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import { images } from '@repo/constants';
 
 export function LayoutHeaderModalAi({ onClose }: { onClose: () => void }) {
   return (

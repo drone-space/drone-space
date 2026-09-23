@@ -1,7 +1,7 @@
 'use client';
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import FormQuiz from '@repo/ui/form/quiz';
+import { FormQuiz } from '@repo/ui';
 import {
   ActionIcon,
   Alert,
@@ -26,16 +26,11 @@ import {
   ThemeIcon,
   Tooltip,
 } from '@mantine/core';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import FormQuestion from '@repo/ui/form/question';
-import FormOption from '@repo/ui/form/option';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { useStoreQuiz } from '@repo/store';
+import { FormQuestion } from '@repo/ui';
+import { FormOption } from '@repo/ui';
+import { useStoreQuestion } from '@repo/store';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import {
   IconAlertTriangle,
   IconCircleMinus,
@@ -46,20 +41,20 @@ import {
   IconTrash,
   IconX,
 } from '@tabler/icons-react';
-import { QuestionGet } from '@repo/types/models/question';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
-import { OptionGet } from '@repo/types/models/option';
-import { sortArray } from '@repo/utilities/array';
-import { Order } from '@repo/types/enums';
-import { useQuestionActions } from '@repo/hooks/actions/question';
-import ModalConfirm from '@repo/ui/common/modals/confirm';
-import { useOptionActions } from '@repo/hooks/actions/option';
+import { QuestionGet } from '@repo/types';
+import { useStoreOption } from '@repo/store';
+import { OptionGet } from '@repo/types';
+import { sortArray } from '@repo/utils';
+import { Order } from '@repo/types';
+import { useQuestionActions } from '@repo/store';
+import { ModalConfirm } from '@repo/ui';
+import { useOptionActions } from '@repo/store';
 import { useRouter } from 'next/navigation';
-import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
-import { QuizQuestionGet } from '@repo/types/models/quiz-question';
-import { Status, SyncStatus } from '@repo/types/models/enums';
-import { generateUUID } from '@repo/utilities/generators';
-import { useQuizQuestionActions } from '@repo/hooks/actions/quiz-question';
+import { useStoreQuizQuestion } from '@repo/store';
+import { QuizQuestionGet } from '@repo/types';
+import { Status, SyncStatus } from '@repo/types';
+import { generateUUID } from '@repo/utils';
+import { useQuizQuestionActions } from '@repo/store';
 
 export function PartialSectionOptions({
   props,
@@ -88,21 +83,19 @@ export function PartialSectionOptions({
           </Stack>
         ) : (
           <Stack gap={'xs'}>
-            {sortArray(props.questionOptions, (i) => i.created_at, Order.ASCENDING)?.map(
-              (oi, i) => (
-                <div key={oi.id}>
-                  <CardOption
-                    props={{
-                      index: i + 1,
-                      option: oi,
-                      edit,
-                      setEdit,
-                      questionId: props.questionId,
-                    }}
-                  />
-                </div>
-              ),
-            )}
+            {sortArray(props.questionOptions, (i) => i.createdAt, Order.ASCENDING)?.map((oi, i) => (
+              <div key={oi.id}>
+                <CardOption
+                  props={{
+                    index: i + 1,
+                    option: oi,
+                    edit,
+                    setEdit,
+                    questionId: props.questionId,
+                  }}
+                />
+              </div>
+            ))}
 
             <Box display={optionLimitReached ? undefined : 'none'}>
               <Stack>

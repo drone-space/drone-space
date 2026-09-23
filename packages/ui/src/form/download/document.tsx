@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Grid, GridCol } from '@mantine/core';
-import CommonFinePrint from '../common/fine-print';
-import CommonForm from '../common/form';
-import CommonFooter from '../common/footer';
-import { useFormEmailInquiry } from '@repo/hooks/form/inquiry';
+import { FormCommonForm } from '../common/form';
+import { FormCommonFinePrint } from '../common/fine-print';
+import { FormCommonFooter } from '../common/footer';
+import { useFormEmailInquiry } from '@repo/hooks';
 
 export function FormDownloadDocument({
   props,
@@ -24,14 +24,14 @@ export function FormDownloadDocument({
   return (
     <form onSubmit={form.onSubmit(() => handleSubmit())} noValidate>
       <Grid>
-        <CommonForm props={{ form }} />
+        <FormCommonForm props={{ form: form as any }} />
 
         <GridCol span={12}>
-          <CommonFinePrint />
+          <FormCommonFinePrint />
         </GridCol>
 
         <GridCol span={12}>
-          <CommonFooter props={{ submitted, label: 'Download' }} />
+          <FormCommonFooter props={{ submitted, label: 'Download' }} />
         </GridCol>
       </Grid>
     </form>

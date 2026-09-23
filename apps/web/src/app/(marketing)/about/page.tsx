@@ -1,26 +1,25 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import { Anchor, AspectRatio, Divider, Flex, Grid, GridCol, Text } from '@mantine/core';
-import { images } from '@repo/constants/images';
-import videos from '@repo/constants/videos';
-import CardStat from '@/components/common/cards/stat';
-import stats from '@/data/stats';
-import { SECTION_SPACING } from '@repo/constants/sizes';
-import { API_URL, PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import CarouselTestimonials from '@/components/common/carousels/testimonials';
-import { shuffleArray } from '@repo/utilities/array';
-import IntroSection from '@repo/ui/layout/intros/section';
-import ImageDefault from '@repo/ui/common/images/default';
-import TabSpacesHub from '@/components/common/tabs/spaces-hub';
-// import CardTeamMain from '@/components/common/cards/team/main';
-// import { team } from '@/data/team';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import { StudentGet } from '@repo/types/models/student';
-import { studentsGet } from '@repo/handlers/requests/database/students';
-import CtaMain from '@/components/partial/cta/main';
+import { getBaseUrl, images } from '@repo/constants';
+import { videos } from '@repo/constants';
+import CardStat from '@web/ui/common/cards/stat';
+import stats from '@web/data/stats';
+import { SECTION_SPACING } from '@repo/constants';
+import CarouselTestimonials from '@web/ui/common/carousels/testimonials';
+import { shuffleArray } from '@repo/utils';
+import { LayoutIntroSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import TabSpacesHub from '@web/ui/common/tabs/spaces-hub';
+// import CardTeamMain from '@web/ui/common/cards/team/main';
+// import { team } from '@web/data/team';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+import { StudentGet } from '@repo/types';
+import { studentsGet } from '@repo/handlers';
+import CtaMain from '@web/ui/partial/cta/main';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/about`,
+    url: `${(await getBaseUrl()).WEB}/about`,
     type: 'website',
     images: [
       {
@@ -50,12 +49,12 @@ export const metadata: Metadata = {
 
 export default async function About() {
   const { items: students }: { items: StudentGet[] | null } = await studentsGet({
-    apiUrl: API_URL,
+    apiUrl: (await getBaseUrl()).WEB,
   });
 
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: `Who We Are`,
           title: 'About Drone Space',
@@ -65,7 +64,7 @@ export default async function About() {
       />
 
       <LayoutSection id="our-story" padded>
-        <Grid gutter={{ base: 'xl', md: 48 }}>
+        <Grid gap={{ base: 'xl', md: 48 }}>
           <GridCol span={{ base: 12, md: 6 }}>
             <AspectRatio ratio={1920 / 1080} h={'100%'}>
               <iframe
@@ -103,7 +102,7 @@ export default async function About() {
           </GridCol>
 
           <GridCol span={{ base: 12, md: 6 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 subTitle: 'Legitimacy',
                 title: 'Approved Unmanned Aircraft Systems Training Organization',
@@ -146,7 +145,7 @@ export default async function About() {
         bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
         c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
       >
-        <Grid justify="center" gutter={0}>
+        <Grid justify="center" gap={0}>
           {stats.map((stat, index) => (
             <GridCol key={index} span={{ base: 12, xs: 4, md: 'auto' }}>
               <CardStat data={stat} />
@@ -156,9 +155,9 @@ export default async function About() {
       </LayoutSection>
 
       <LayoutSection id="mission-vision" padded>
-        <Grid align="center" gutter={'xl'}>
+        <Grid align="center" gap={'xl'}>
           <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2, sm: 1 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 subTitle: 'Our',
                 title: 'Mission',
@@ -190,10 +189,10 @@ export default async function About() {
           </GridCol>
         </Grid>
 
-        <Grid align="center" gutter={'xl'} mt={SECTION_SPACING}>
+        <Grid align="center" gap={'xl'} mt={SECTION_SPACING}>
           <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2 }}>
             <Flex direction={'column'} align={{ md: 'end' }}>
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: 'Our',
                   title: 'Vision',
@@ -229,7 +228,7 @@ export default async function About() {
       </LayoutSection>
 
       {/* <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Our Team',
             title: 'Meet The Team',
@@ -264,7 +263,7 @@ export default async function About() {
       </LayoutSection> */}
 
       <LayoutSection id="spaces-and-hub" padded bg={'var(--mantine-color-gray-1)'}>
-        <IntroSection
+        <LayoutIntroSection
           props={{
             subTitle: 'Spaces & Hub',
             title: 'Drone Spaces & Hub Mission',
@@ -278,7 +277,7 @@ export default async function About() {
 
       {students != null && (
         <LayoutSection id="testimonials" padded>
-          <IntroSection
+          <LayoutIntroSection
             props={{
               subTitle: 'Testimonials',
               title: 'What Our Clients Say',

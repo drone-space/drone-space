@@ -1,11 +1,10 @@
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutMain from '@repo/ui/layout/main';
-import PartialPageHome from '@/components/partial/page/home';
+import { LayoutMain } from '@repo/ui';
+import PageHome from '@api/ui/page/home';
 
 export default function Home() {
   return (
     <HomeLayout>
-      <PartialPageHome />
+      <PageHome />
     </HomeLayout>
   );
 }
@@ -13,9 +12,9 @@ export default function Home() {
 async function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
     <LayoutMain>
-      <LayoutPage>
+      <div>
         <main>{children}</main>
-      </LayoutPage>
+      </div>
     </LayoutMain>
   );
 }

@@ -1,6 +1,6 @@
 const baseUrl = `${process.env.NEXT_PUBLIC_IMAGEKIT_URL}/videos`;
 
-const videos = {
+export const videos = {
   hero: {
     home: {
       video1: `${baseUrl}/hero/home/video-1.mp4`,
@@ -12,5 +12,3 @@ const videos = {
 
   video1: `${baseUrl}/video-1.mp4`,
 };
-
-export default videos;

@@ -1,19 +1,19 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import IntroSection from '@repo/ui/layout/intros/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { LayoutIntroSection } from '@repo/ui';
 import { Anchor, Card, Grid, GridCol, Stack, Text, Title } from '@mantine/core';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { SECTION_SPACING } from '@repo/constants/sizes';
-import IframeContact from '@repo/ui/common/iframes/contact';
-import { images } from '@repo/constants/images';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { APP_NAME, COMPANY_NAME, EMAILS, LOCATIONS, PHONES } from '@repo/constants/app';
-import FormContact from '@repo/ui/form/contact';
-import NextLink from '@repo/ui/common/anchor/next-link';
-import ImageDefault from '@repo/ui/common/images/default';
-import TabsContact from '@/components/common/tabs/contact';
+import { getBaseUrl } from '@repo/constants';
+import { SECTION_SPACING } from '@repo/constants';
+import { IFrameContact } from '@repo/ui';
+import { images } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME, EMAILS, LOCATIONS, PHONES } from '@repo/constants';
+import { FormContact } from '@repo/ui';
+import { AnchorNextLink } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import TabsContact from '@web/ui/common/tabs/contact';
 
 export const dynamic = 'force-static';
 
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/contact`,
+    url: `${(await getBaseUrl()).WEB}/contact`,
     type: 'website',
     images: [
       {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 export default async function Contact() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Reach Out',
           title: 'Contact Us',

@@ -15,29 +15,24 @@ import {
   TableTr,
   Text,
 } from '@mantine/core';
-import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
-import { getRegionalDate } from '@repo/utilities/date-time';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { useStoreSrpl } from '@repo/store';
+import { getRegionalDate } from '@repo/utils';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { IconEdit } from '@tabler/icons-react';
-import NextLink from '../anchor/next-link';
-import BadgeStatus from '../badge/status';
-import { sortArray } from '@repo/utilities/array';
-import { Order } from '@repo/types/enums';
+import { AnchorNextLink } from '../anchor/next-link';
+import { BadgeStatus } from '../badge/status';
+import { sortArray } from '@repo/utils';
+import { Order } from '@repo/types';
 
 export function TableSrpls() {
   const srpls = useStoreSrpl((s) => s.srpls);
 
-  const rows = sortArray(srpls || [], (i) => i.created_at, Order.DESCENDING).map((qi) => {
-    const created = getRegionalDate(qi.created_at, {
+  const rows = sortArray(srpls || [], (i) => i.createdAt, Order.DESCENDING).map((qi) => {
+    const created = getRegionalDate(qi.createdAt, {
       // locale: 'en-GB',
       // format: 'numeric',
     });
-    const updated = getRegionalDate(qi.updated_at, {
+    const updated = getRegionalDate(qi.updatedAt, {
       // locale: 'en-GB',
       // format: 'numeric',
     });
@@ -64,11 +59,11 @@ export function TableSrpls() {
 
         <TableTd w={WIDTHS.ACTIONS}>
           <Group justify="end" gap={'xs'}>
-            <NextLink href={`/admin/srpls/${qi.id}/edit-srpl`}>
+            <AnchorNextLink href={`/admin/srpls/${qi.id}/edit-srpl`}>
               <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
-            </NextLink>
+            </AnchorNextLink>
           </Group>
         </TableTd>
       </TableTr>
@@ -103,9 +98,9 @@ export function TableSrpls() {
               <Stack align="center" ta={'center'} my={SECTION_SPACING * 2}>
                 <Text c={'dimmed'}>No SRPLs found</Text>
 
-                <NextLink href="/admin/srpls/new-srpl">
+                <AnchorNextLink href="/admin/srpls/new-srpl">
                   <Button size={'xs'}>Create SRPL</Button>
-                </NextLink>
+                </AnchorNextLink>
               </Stack>
             </TableTd>
           </TableTr>

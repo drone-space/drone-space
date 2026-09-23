@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
 import {
   Grid,
   GridCol,
@@ -14,20 +14,19 @@ import {
   Button,
   Stack,
 } from '@mantine/core';
-import ModalContactService from '@repo/ui/common/modals/contact/service';
+import { ModalContactService } from '@repo/ui';
 import { IconArrowRightDashed, IconMessage } from '@tabler/icons-react';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
-import IntroSection from '@repo/ui/layout/intros/section';
-import ImageDefault from '@repo/ui/common/images/default';
-import { images } from '@repo/constants/images';
-import { linkify } from '@repo/utilities/url';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { COMPANY_NAME } from '@repo/constants/app';
-import services from '@/data/services';
+import { getBaseUrl, ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { LayoutIntroSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import { images } from '@repo/constants';
+import { linkify } from '@repo/utils';
+import { LayoutIntroPage } from '@repo/ui';
+import { COMPANY_NAME } from '@repo/constants';
+import services from '@web/data/services';
 import { GetLayout } from '../../faq/page';
-import AccordionFaq from '@/components/common/accordions/faq';
-import CtaMain from '@/components/partial/cta/main';
+import AccordionFaq from '@web/ui/common/accordions/faq';
+import CtaMain from '@web/ui/partial/cta/main';
 
 const service = services.find((c) => c.title == services[2].title);
 
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: service?.metaTitle,
     description: service?.linkDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/drone-solutions/${service?.title}`,
+    url: `${(await getBaseUrl()).WEB}/drone-solutions/${service?.title}`,
     type: 'website',
     images: [
       {
@@ -55,7 +54,7 @@ export default async function Service() {
 
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Drone Services',
           title: service.title || '',
@@ -65,9 +64,9 @@ export default async function Service() {
       />
 
       <LayoutSection id={linkify(service.title)} padded>
-        <Grid gutter={'xl'}>
+        <Grid gap={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 6.5 }} order={{ base: 2, md: 1 }}>
-            <IntroSection
+            <LayoutIntroSection
               props={{
                 title: 'Drone Mapping & Survey',
                 desc: `We specialize in creating detailed maps, 3D models, and orthomosaics that empower informed decision­making in land surveying, construction, agriculture, environmental monitoring, and more.`,
@@ -125,7 +124,7 @@ export default async function Service() {
         <GetLayout
           props={{
             header: (
-              <IntroSection
+              <LayoutIntroSection
                 props={{
                   subTitle: `FAQ's`,
                   title: `Frequently Asked Questions`,

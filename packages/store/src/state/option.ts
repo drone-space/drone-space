@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { OptionGet } from '@repo/types/models/option';
+import type { OptionGet } from '@repo/types';
 import { hasChanges } from '@repo/utils';
 
 export type OptionsValue = OptionGet[] | null | undefined;

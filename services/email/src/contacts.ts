@@ -1,4 +1,4 @@
-import resend from './resend';
+import { resend } from './resend';
 import { emailSendOnboardNewsletter } from './send';
 import { FormValuesInquiry } from '@repo/types';
 import { segmentFullName } from '@repo/utils';
@@ -9,7 +9,9 @@ export const emailContactAdd = async (formData: Partial<FormValuesInquiry>, noti
       throw new Error('Email is required');
     }
 
-    const nameSegments = segmentFullName(formData.name || '');
+    const fullName = `${formData.fname || ''} ${formData.lname || ''}`;
+
+    const nameSegments = segmentFullName(fullName.trim() || '');
 
     const contactCreate = await resend.contacts.create({
       email: formData.email,

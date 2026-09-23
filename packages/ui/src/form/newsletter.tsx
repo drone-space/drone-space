@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Box, Button, Grid, GridCol, TextInput } from '@mantine/core';
-import { useFormNewsletter } from '@repo/hooks/form/newsletter';
-import TooltipInputInfo from '@repo/ui/common/tooltips/input/info';
+import { useFormNewsletter } from '@repo/hooks';
+import { TooltipInputInfo } from '@repo/ui';
 import classes from './newsletter.module.css';
 
 export function FormNewsletter() {
@@ -11,7 +11,7 @@ export function FormNewsletter() {
 
   return (
     <Box component="form" onSubmit={form.onSubmit(() => handleSubmit())} noValidate>
-      <Grid gutter={{ base: 'xs', xs: 0 }}>
+      <Grid gap={{ base: 'xs', xs: 0 }}>
         <GridCol span={{ base: 12, xs: 8 }}>
           <TextInput
             required

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Metadata } from 'next';
-import LayoutPage from '@repo/ui/layout/page';
-import LayoutSection from '@repo/ui/layout/section';
-import CardShopDroneAccessory from '@/components/common/cards/shop/accessory';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import CardShopDroneAccessory from '@web/ui/common/cards/shop/accessory';
 import { Grid, GridCol } from '@mantine/core';
-import accessories from '@repo/constants/accessories';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import IntroPage from '@repo/ui/layout/intros/page';
-import { COMPANY_NAME } from '@repo/constants/app';
+import { accessories, getBaseUrl } from '@repo/constants';
+import { images } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { COMPANY_NAME } from '@repo/constants';
 
 export const dynamic = 'force-static';
 // export const revalidate = 3600;
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/shop/accessories`,
+    url: `${(await getBaseUrl()).WEB}/shop/accessories`,
     type: 'website',
     images: [
       {
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
 export default async function Accessories() {
   return (
     <LayoutPage>
-      <IntroPage
+      <LayoutIntroPage
         props={{
           path: 'Shop',
           title: 'Drone Accessories',

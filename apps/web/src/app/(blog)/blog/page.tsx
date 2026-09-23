@@ -1,10 +1,9 @@
 import React from 'react';
-import LayoutPage from '@repo/ui/layout/page';
+import { LayoutPage } from '@repo/ui';
 import { Metadata } from 'next';
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
-import { images } from '@repo/constants/images';
-import { APP_NAME, COMPANY_NAME } from '@repo/constants/app';
-import PartialPageBlog from '@/components/partial/page/blog';
+import { getBaseUrl, images } from '@repo/constants';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+import PartialPageBlog from '@web/ui/partial/page/blog';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: metaTitle,
     description: metaDesc,
-    url: `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/blog`,
+    url: `${(await getBaseUrl()).WEB}/blog`,
     type: 'website',
     images: [
       {

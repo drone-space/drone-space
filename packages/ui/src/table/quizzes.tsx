@@ -17,36 +17,31 @@ import {
   TableTr,
   Text,
 } from '@mantine/core';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import { getRegionalDate } from '@repo/utilities/date-time';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
+import { useStoreQuiz } from '@repo/store';
+import { getRegionalDate } from '@repo/utils';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { IconEdit } from '@tabler/icons-react';
-import NextLink from '../anchor/next-link';
-import BadgeStatus from '../badge/status';
-import { sortArray } from '@repo/utilities/array';
-import { Order } from '@repo/types/enums';
-import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
+import { AnchorNextLink } from '../anchor/next-link';
+import { BadgeStatus } from '../badge/status';
+import { sortArray } from '@repo/utils';
+import { Order } from '@repo/types';
+import { useStoreQuizQuestion } from '@repo/store';
 
 export function TableQuizzes() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
 
-  const rows = sortArray(quizzes || [], (i) => i.created_at, Order.DESCENDING).map((qi) => {
-    const created = getRegionalDate(qi.created_at, {
+  const rows = sortArray(quizzes || [], (i) => i.createdAt, Order.DESCENDING).map((qi) => {
+    const created = getRegionalDate(qi.createdAt, {
       // locale: 'en-GB',
       // format: 'numeric',
     });
-    const updated = getRegionalDate(qi.updated_at, {
+    const updated = getRegionalDate(qi.updatedAt, {
       // locale: 'en-GB',
       // format: 'numeric',
     });
 
-    const quizQuestionsQuiz = quizQuestions?.filter((qq) => qq.quiz_id == qi.id);
+    const quizQuestionsQuiz = quizQuestions?.filter((qq) => qq.quizId == qi.id);
 
     return (
       <TableTr key={qi.id}>
@@ -70,11 +65,11 @@ export function TableQuizzes() {
 
         <TableTd w={WIDTHS.ACTIONS}>
           <Group justify="end" gap={'xs'}>
-            <NextLink href={`/admin/quizzes/${qi.id}/edit-quiz`}>
+            <AnchorNextLink href={`/admin/quizzes/${qi.id}/edit-quiz`}>
               <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
-            </NextLink>
+            </AnchorNextLink>
           </Group>
         </TableTd>
       </TableTr>
@@ -109,9 +104,9 @@ export function TableQuizzes() {
               <Stack align="center" ta={'center'} my={SECTION_SPACING * 2}>
                 <Text c={'dimmed'}>No quizzes found</Text>
 
-                <NextLink href="/admin/quizzes/new-quiz">
+                <AnchorNextLink href="/admin/quizzes/new-quiz">
                   <Button size={'xs'}>Create Quiz</Button>
-                </NextLink>
+                </AnchorNextLink>
               </Stack>
             </TableTd>
           </TableTr>

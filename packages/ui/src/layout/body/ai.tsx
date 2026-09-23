@@ -12,13 +12,13 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useClipboard, useScrollIntoView } from '@mantine/hooks';
-import LayoutSection from '@repo/ui/layout/section';
-import { FormAIType } from '@repo/hooks/form/ai';
-import { MarkdownComponent } from '../../wrapper/markdown';
+import { LayoutSection } from '@repo/ui';
+import { FormAIType } from '@repo/hooks';
+import { WrapperMarkdown } from '../../wrapper/markdown';
 import classes from './ai.module.css';
-import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
+import { useStoreConversation } from '@repo/store';
 import { IconCheck, IconCopy } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants/sizes';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 
 // Sample questions data
 const sampleQuestions = [
@@ -40,7 +40,7 @@ export function LayoutBodyAI({
   liveReply,
 }: {
   opened: boolean;
-  form: FormAIType;
+  form: any;
   submitted: boolean;
   handleSubmit: (sv?: any, nv?: boolean) => void;
   updated: boolean;
@@ -100,7 +100,7 @@ export function LayoutBodyAI({
         mih={isLast && !submitted ? '30vh' : undefined}
         className={classes.assistant}
       >
-        <MarkdownComponent markdown={content} />
+        <WrapperMarkdown markdown={content} />
 
         <Group gap={5} className={classes.assistantActions}>
           <Tooltip label="Copy" withArrow fz={'xs'} color="pri">
@@ -213,7 +213,7 @@ export function LayoutBodyAI({
 // Welcome message component
 function WelcomeMessage() {
   return (
-    <MarkdownComponent
+    <WrapperMarkdown
       markdown={"Hi, I'm Hekima. Ask me anything you wish to know about the company."}
     />
   );

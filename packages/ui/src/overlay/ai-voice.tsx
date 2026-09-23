@@ -1,14 +1,9 @@
 import { ActionIcon, Box, Center, Group, Stack, Tooltip, Transition } from '@mantine/core';
 import React from 'react';
-import IndicatorAudio from '../indicator/audio';
+import { IndicatorAudio } from '../indicator/audio';
 import { IconMicrophone, IconMicrophoneOff, IconX } from '@tabler/icons-react';
-import {
-  ICON_SIZE,
-  ICON_STROKE_WIDTH,
-  ICON_WRAPPER_SIZE,
-  SECTION_SPACING,
-} from '@repo/constants/sizes';
-import AvatarAI from '../common/avatars/ai';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
+import { AvatarAI } from '../avatar/ai';
 
 export function OverlayAiVoice({
   props,

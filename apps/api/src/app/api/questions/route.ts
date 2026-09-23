@@ -1,6 +1,6 @@
-import prisma from '@repo/libraries/prisma';
+import { db } from '@repo/db';
 import { NextRequest, NextResponse } from 'next/server';
-import { QuestionGet } from '@repo/types/models/question';
+import { QuestionGet } from '@repo/types';
 
 export const dynamic = 'force-dynamic';
 // export const revalidate = 3600;
@@ -9,9 +9,9 @@ export async function GET(request: NextRequest) {
   try {
     // const userId = request.nextUrl.searchParams.get('userId');
 
-    const questionRecords = await prisma.question.findMany({
-      // where: !userId ? undefined : { profile_id: userId },
-      orderBy: { created_at: 'desc' },
+    const questionRecords = await db.question.findMany({
+      // where: !userId ? undefined : { profileId: userId },
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json(
@@ -36,29 +36,29 @@ export async function PUT(request: NextRequest) {
 
     // First handle explicit deletions if any exist
     if (deletedIds?.length) {
-      await prisma.question.deleteMany({
+      await db.question.deleteMany({
         where: { id: { in: deletedIds } },
       });
     }
 
     // Prepare upsert operations
     const operations = questions.map((question) =>
-      prisma.question.upsert({
+      db.question.upsert({
         where: { id: question.id },
         update: {
           ...question,
-          updated_at: new Date(question.updated_at),
+          updatedAt: new Date(question.updatedAt),
         },
         create: {
           ...question,
-          created_at: new Date(question.created_at),
-          updated_at: new Date(question.updated_at),
+          createdAt: new Date(question.createdAt),
+          updatedAt: new Date(question.updatedAt),
         },
       }),
     );
 
     // Run all operations in one transaction
-    const updateQuestions = await prisma.$transaction(operations);
+    const updateQuestions = await db.$transaction(operations);
 
     return NextResponse.json(
       { items: updateQuestions },

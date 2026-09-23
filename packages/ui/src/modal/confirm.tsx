@@ -3,10 +3,10 @@
 import React from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Button, Group, Modal, Text } from '@mantine/core';
-import LayoutModal from '../../layout/modal';
-import { Alert, Variant } from '@repo/types/enums';
-import { useStoreActiveItems } from '@repo/libraries/zustand/stores/active-items';
-import { useNotification } from '@repo/hooks/notification';
+import { LayoutModal } from '../layout/modal';
+import { Alert, Variant } from '@repo/types';
+import { useStoreActiveItems } from '@repo/store';
+import { useNotification } from '@repo/hooks';
 
 export type ConfirmProps = {
   title?: string;
@@ -54,8 +54,8 @@ export function ModalConfirm({
           props={{
             title: workingConfirm?.title || 'Confirm Action',
             close: handleClose,
+            variant: workingConfirm?.variant || Alert.WARNING,
           }}
-          variant={workingConfirm?.variant || Alert.WARNING}
         >
           <div>
             <Text>{workingConfirm?.desc || 'Are you sure you want to proceed?'}</Text>

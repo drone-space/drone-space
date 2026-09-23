@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Box, Button, Grid, GridCol, TextInput } from '@mantine/core';
-import { useFormAlumni } from '@repo/hooks/form/alumni';
-import TooltipInputInfo from '@repo/ui/common/tooltips/input/info';
+import { useFormAlumni } from '@repo/hooks';
+import { TooltipInputInfo } from '@repo/ui';
 
 export function FormAlumni(params: {
   answerOption: string;

@@ -1,4 +1,4 @@
-import { QuizCreate, QuizGet, QuizUpdate } from '@repo/types/models/quiz';
+import { QuizCreate, QuizGet, QuizUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'quizzes';

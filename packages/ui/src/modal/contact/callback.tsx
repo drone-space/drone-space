@@ -3,8 +3,8 @@
 import React from 'react';
 import { Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import LayoutModal from '../../../layout/modal';
-import FormInquiryCallback from '../../../form/inquiry/callback';
+import { LayoutModal } from '../../layout/modal';
+import { FormInquiryCallback } from '../../form/inquiry/callback';
 
 export function ModalContactCallback({ children }: { children: React.ReactNode }) {
   const [opened, { open, close }] = useDisclosure(false);

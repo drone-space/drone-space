@@ -1,7 +1,7 @@
 import React from 'react';
-import LayoutMain from '@repo/ui/layout/main';
+import { LayoutMain } from '@repo/ui';
 import { Metadata } from 'next';
-import { APP_NAME } from '@repo/constants/app';
+import { APP_NAME } from '@repo/constants';
 
 export type typeParams = Promise<{
   quizId: string;
@@ -11,7 +11,7 @@ export type typeParams = Promise<{
 export const metadata: Metadata = {
   title: {
     default: 'Quizzes',
-    template: `%s - Quizzes - Student Portal - ${APP_NAME.LMS}`,
+    template: `%s - Quizzes - Student Portal - ${APP_NAME.LEARN}`,
   },
 };
 

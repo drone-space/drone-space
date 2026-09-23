@@ -73,11 +73,12 @@ const authEmail = async (params: { searchParams: URLSearchParams; baseUrl: strin
   });
 
   if (srpl) {
-    const result = await linkSrplToProfile(srpl, profile);
-    if (result) {
+    const { success, error } = await linkSrplToProfile(srpl, profile);
+
+    if (!success) {
       const { error: signOutError } = await supabase.auth.signOut();
       if (signOutError) throw signOutError;
-      throw new Error(result);
+      throw new Error(error);
     }
   }
 

@@ -47,62 +47,66 @@ export const sharedUserHandle = async (props: {
 };
 
 export const findSrplRecord = async (srpl: string, email: string) => {
-  return await db.$transaction(async (tx) => {
-    const existingSrpl = await tx.srpl.findUnique({
-      where: { srplNumber: srpl },
-    });
-
-    if (!existingSrpl) {
-      return "The ID/Passport Number you provided doesn't exist in our records.";
-    }
-
-    const existingProfile = await tx.profile.findUnique({
-      where: { email },
-    });
-
-    if (!existingProfile) {
-      return;
-    }
-
-    if (!existingSrpl.profileId) {
-      await tx.srpl.update({
-        where: { srplNumber: srpl },
-        data: { profileId: existingProfile.id },
-      });
-    } else {
-      // If profileId is present, but it's linked to a different profile
-      if (existingSrpl.profileId !== existingProfile.id) {
-        return 'This ID/Passport Number is already linked to another profile.';
-      }
-    }
-
-    return;
+  const existingSrpl = await db.srpl.findUnique({
+    where: { srplNumber: srpl },
   });
+
+  if (!existingSrpl) {
+    return "The ID/Passport Number you provided doesn't exist in our records.";
+  }
+
+  // 1. If already linked to another profile
+  if (existingSrpl.profileId) {
+    const existingProfile = await db.profile.findUnique({
+      where: { id: existingSrpl.profileId },
+    });
+
+    if (existingProfile?.email !== email) {
+      return 'This ID/Passport Number is already linked to another account.';
+    }
+  }
+
+  // 2. If not yet linked, check if a profile with the given email exists to link them
+  const profileToLink = await db.profile.findUnique({
+    where: { email },
+  });
+
+  if (profileToLink) {
+    await db.srpl.update({
+      where: { srplNumber: srpl },
+      data: { profileId: profileToLink.id },
+    });
+  }
 };
 
 export const linkSrplToProfile = async (srpl: string, profile: ProfileGet) => {
-  return await db.$transaction(async (tx) => {
-    const existingSrpl = await tx.srpl.findUnique({
-      where: { srplNumber: srpl },
-    });
-
-    if (!existingSrpl) {
-      console.error("The ID/Passport Number provided doesn't exist in our records.");
-      return;
-    }
-
-    if (!existingSrpl.profileId) {
-      await tx.srpl.update({
-        where: { srplNumber: srpl },
-        data: { profileId: profile.id },
-      });
-    } else {
-      // If profileId is present, but it's linked to a different profile
-      if (existingSrpl.profileId !== profile.id) {
-        return 'This ID/Passport Number is already linked to another profile.';
-      }
-    }
-
-    return;
+  const existingSrpl = await db.srpl.findUnique({
+    where: { srplNumber: srpl },
   });
+
+  // 1. Guard: Record doesn't exist
+  if (!existingSrpl) {
+    return {
+      success: false,
+      error: "The ID/Passport Number provided doesn't exist in our records.",
+    };
+  }
+
+  // 2. Guard: Already linked to a DIFFERENT profile
+  if (existingSrpl.profileId && existingSrpl.profileId !== profile.id) {
+    return {
+      success: false,
+      error: 'This ID/Passport Number is already linked to another account.',
+    };
+  }
+
+  // 3. Link if not already linked
+  if (!existingSrpl.profileId) {
+    await db.srpl.update({
+      where: { srplNumber: srpl },
+      data: { profileId: profile.id },
+    });
+  }
+
+  return { success: true };
 };

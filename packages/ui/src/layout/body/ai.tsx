@@ -276,8 +276,8 @@ function UserMessage({ content }: { content: string }) {
   return (
     <Stack align="end" my={'sm'} gap={5} className={classes.user}>
       <Paper
-        bg={'var(--mantine-color-pri-light)'}
-        c={'var(--mantine-color-pri-9)'}
+        bg={'var(--mantine-color-pri-9)'}
+        c={'var(--mantine-color-white)'}
         px={'xs'}
         maw={'80%'}
         py={5}

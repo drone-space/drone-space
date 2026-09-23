@@ -34,7 +34,7 @@
   border-radius: var(--mantine-radius-lg);
   border-bottom: 0px solid inherit;
   box-shadow: var(--mantine-shadow-xs);
-  border: 1px solid light-dark(var(--mantine-color-pri-light), var(--mantine-color-pri-light));
+  border: 1px solid light-dark(var(--mantine-color-sec-light), var(--mantine-color-sec-light));
   overflow: hidden;
 }
 

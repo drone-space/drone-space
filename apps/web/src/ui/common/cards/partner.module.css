@@ -1,5 +1,5 @@
 .card {
-  border: 1px solid var(--mantine-color-pri-light);
+  border: 1px solid var(--mantine-color-sec-light);
   border-radius: var(--mantine-radius-lg);
   background-color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
   height: 100%;

@@ -12,7 +12,7 @@ export function BadgeResult({ props }: { props: { pass: boolean } }) {
   };
 
   return (
-    <Badge color={`${badgeProps.color}.6`} variant="light">
+    <Badge color={`${badgeProps.color}`} variant="light">
       {capitalizeWords(badgeProps.label)}
     </Badge>
   );

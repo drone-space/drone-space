@@ -26,7 +26,7 @@ export function LayoutHeaderModalAi({ onClose }: { onClose: () => void }) {
         </Group>
 
         <Group>
-          <Button size="xs" color="dark" variant="light" onClick={onClose}>
+          <Button size="xs" color="gray" variant="light" onClick={onClose}>
             Hide Chat
           </Button>
         </Group>

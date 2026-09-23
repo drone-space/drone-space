@@ -66,7 +66,7 @@ export function TableQuizzes() {
         <TableTd w={WIDTHS.ACTIONS}>
           <Group justify="end" gap={'xs'}>
             <AnchorNextLink href={`/admin/quizzes/${qi.id}/edit-quiz`}>
-              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
+              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color="gray">
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
             </AnchorNextLink>

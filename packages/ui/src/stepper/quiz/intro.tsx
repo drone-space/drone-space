@@ -186,7 +186,7 @@ export function StepperQuizIntro({
 
         <StepperCompleted>
           <Stack mih={'50vh'} justify="center" align="center" ta={'center'} gap={SECTION_SPACING}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} variant="light" radius={999}>
+            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} color="sec" variant="light" radius={999}>
               <IconCheck size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
 
@@ -201,8 +201,8 @@ export function StepperQuizIntro({
 
       <Group justify="center" mt="xl">
         <Button
-          color="dark"
-          variant="light"
+          color="gray"
+          variant="outline"
           miw={120}
           onClick={() => {
             if (active > 0) {

@@ -51,15 +51,15 @@ export default function Admin({ children }: { children: React.ReactNode }) {
         collapsed: { mobile: true, desktop: !navbarActive },
       }}
     >
-      <AppShellHeader bg={'gray.0'}>
+      <AppShellHeader>
         <Header />
       </AppShellHeader>
 
-      <AppShellNavbar bg={'gray.0'}>
+      <AppShellNavbar>
         <Navbar />
       </AppShellNavbar>
 
-      <AppShellMain>
+      <AppShellMain bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}>
         <ScrollArea h={`calc(100vh - ${APPSHELL.HEADER.HEIGHT}px)`} scrollbars={'y'}>
           <Box
             mih={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + 61.7 + 1}px)`}
@@ -174,6 +174,7 @@ function Navbar() {
               href={nli.link}
               label={nli.label}
               active={active}
+              color="gray"
               leftSection={<nli.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               styles={{
                 root: {

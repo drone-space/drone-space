@@ -25,7 +25,7 @@ import {
   IconClockDown,
   IconReportAnalytics,
 } from '@tabler/icons-react';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { colors, ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import { useStoreQuiz } from '@repo/store';
 import { useStoreAttempt } from '@repo/store';
 import { useStoreSession } from '@repo/store';
@@ -251,8 +251,8 @@ function CardStat({
             <ThemeIcon
               size={ICON_WRAPPER_SIZE * 2}
               radius={999}
-              color={`${props.color}.6`}
-              variant="light"
+              color={!props.color ? 'dark' : `${props.color}.6`}
+              // variant="light"
             >
               <props.icon size={ICON_SIZE * 1.5} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
@@ -262,7 +262,7 @@ function CardStat({
             component="span"
             fz={{ base: '1.5rem', md: '2rem' }}
             fw={'bold'}
-            c={`${props.color}.6`}
+            c={!props.color ? undefined : `${props.color}.6`}
           >
             {props.stat || 0}
           </Text>

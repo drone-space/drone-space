@@ -32,7 +32,7 @@ export function ButtonAppshellNavbar() {
         <Group>
           <ActionIcon
             variant="subtle"
-            color="dark"
+            color="gray"
             aria-label={label}
             size={ICON_WRAPPER_SIZE}
             onClick={toggleNavbarChild}

@@ -68,7 +68,9 @@ export default function Student({ children }: { children: React.ReactNode }) {
         <Navbar />
       </AppShellNavbar>
 
-      <AppShellMain bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}>
+      <AppShellMain
+      // bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
+      >
         <ScrollArea h={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT}px)`} scrollbars={'y'}>
           <Box mih={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT + 61.7 + 1}px)`}>
             <LayoutSection id={'content-app-student'} padded>
@@ -167,6 +169,7 @@ function Navbar() {
           component={Link}
           href={'/'}
           label={'Back Home'}
+          color="gray"
           leftSection={<IconChevronLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           styles={{
             root: {
@@ -184,6 +187,7 @@ function Navbar() {
               component={Link}
               href={nli.link}
               label={nli.label}
+              color="gray"
               active={active}
               leftSection={<nli.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               styles={{

@@ -188,7 +188,7 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
           <Stack>
             <Alert
               title="Rules Reminder"
-              color="blue.6"
+              color="blue"
               variant="light"
               icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
@@ -266,7 +266,7 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
                   >
                     <Button
                       fullWidth
-                      color="red.6"
+                      color="red"
                       variant="light"
                       leftSection={<IconDoorExit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                     >

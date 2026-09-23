@@ -76,7 +76,7 @@ export function TabsUser({ props }: { props?: { close?: () => void } }) {
             radius={'sm'}
             variant="subtle"
             onClick={props?.close}
-            color="dark"
+            color="gray"
           >
             <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
           </ActionIcon>
@@ -271,7 +271,7 @@ function UserEdit() {
 
           <Group justify="end" gap={'xs'}>
             <TooltipDisabled>
-              <Button size="xs" color="dark" variant="default" disabled>
+              <Button size="xs" color="gray" variant="default" disabled>
                 Set avatar
               </Button>
             </TooltipDisabled>
@@ -288,7 +288,7 @@ function UserEdit() {
                 <Group justify="end" gap={'xs'}>
                   <Button
                     size="xs"
-                    color="dark"
+                    color="gray"
                     variant="light"
                     disabled={submitted}
                     onClick={() => {
@@ -325,7 +325,7 @@ function Data() {
         <Text fz={'sm'}>Shared links</Text>
 
         <TooltipDisabled>
-          <Button size="xs" color="dark" variant="default" disabled>
+          <Button size="xs" color="gray" variant="default" disabled>
             Manage
           </Button>
         </TooltipDisabled>
@@ -352,7 +352,7 @@ function Data() {
         <Text fz={'sm'}>Export data</Text>
 
         <TooltipDisabled>
-          <Button size="xs" color="dark" variant="default" disabled>
+          <Button size="xs" color="gray" variant="default" disabled>
             Export
           </Button>
         </TooltipDisabled>
@@ -367,7 +367,7 @@ function Account() {
       <Group justify="space-between">
         <Text fz={'sm'}>Email</Text>
 
-        <Button size="compact-sm" color="dark" variant="transparent" fw={'normal'}>
+        <Button size="compact-sm" color="gray" variant="transparent" fw={'normal'}>
           {'work.kevon@gmail.com'}
         </Button>
       </Group>

@@ -22,8 +22,8 @@ import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 import { useQuizStats } from '@repo/hooks';
-import {BadgeStatus} from '../../../badge/status';
-import {BadgeResult} from '../../../badge/result';
+import { BadgeStatus } from '../../../badge/status';
+import { BadgeResult } from '../../../badge/result';
 import { Status } from '@repo/types';
 
 export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet } }) {
@@ -84,7 +84,7 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
                 <Text
                   component="span"
                   inherit
-                  c={`${completeStats.passed ? 'green' : 'red'}.6`}
+                  c={`${completeStats.passed ? 'green' : 'red'}`}
                   fw={'bold'}
                 >
                   <NumberFormatter value={completeStats.score} />%
@@ -97,7 +97,7 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
                   display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
                 >
                   Correct:{' '}
-                  <Text component="span" inherit c={'green.6'} fw={'bold'}>
+                  <Text component="span" inherit c={'green'} fw={'bold'}>
                     <NumberFormatter value={completeStats.questions.correct} />
                   </Text>
                 </Text>
@@ -109,7 +109,7 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
                   display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
                 >
                   Wrong:{' '}
-                  <Text component="span" inherit c={'red.6'} fw={'bold'}>
+                  <Text component="span" inherit c={'red'} fw={'bold'}>
                     <NumberFormatter value={completeStats.questions.wrong} />
                   </Text>
                 </Text>

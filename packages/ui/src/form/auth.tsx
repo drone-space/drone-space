@@ -103,7 +103,7 @@ export function FormAuth({
                 }}
                 disabled={!!messageAuth}
                 leftSection={
-                  <ThemeIcon color="dark" variant="transparent" size={ICON_WRAPPER_SIZE}>
+                  <ThemeIcon color="gray" variant="transparent" size={ICON_WRAPPER_SIZE}>
                     <IconMail size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                   </ThemeIcon>
                 }
@@ -147,7 +147,7 @@ export function FormAuth({
                 }}
                 disabled={!!messageAuth}
                 leftSection={
-                  <ThemeIcon color="dark" variant="transparent" size={ICON_WRAPPER_SIZE}>
+                  <ThemeIcon color="gray" variant="transparent" size={ICON_WRAPPER_SIZE}>
                     <IconCursorText size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                   </ThemeIcon>
                 }
@@ -181,7 +181,7 @@ export function FormAuth({
                       error: { textAlign: 'center' },
                     }}
                     leftSection={
-                      <ThemeIcon color="dark" variant="transparent" size={ICON_WRAPPER_SIZE}>
+                      <ThemeIcon color="gray" variant="transparent" size={ICON_WRAPPER_SIZE}>
                         <IconPassword size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
                     }

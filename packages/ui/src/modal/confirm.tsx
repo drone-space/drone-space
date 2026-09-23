@@ -63,7 +63,7 @@ export function ModalConfirm({
 
           <Group justify="end" mt={'md'}>
             <Button
-              color="dark"
+              color="gray"
               variant="light"
               onClick={() => {
                 if (workingConfirm?.onCancel) workingConfirm.onCancel();

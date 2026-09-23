@@ -63,7 +63,7 @@ export default function AttemptComplete({ props }: { props: { attemptId: string 
       <AnchorNextLink href="/dashboard">
         <Button
           fullWidth
-          color="dark"
+          color="gray"
           variant="light"
           leftSection={<IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           onClick={() => {
@@ -92,7 +92,7 @@ export default function AttemptComplete({ props }: { props: { attemptId: string 
         <AnchorNextLink href={`/quizzes/${quiz?.id}`}>
           <Button
             fullWidth
-            color="dark"
+            color="gray"
             variant="outline"
             leftSection={<IconReload size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           >
@@ -112,7 +112,7 @@ export default function AttemptComplete({ props }: { props: { attemptId: string 
           justify="center"
         >
           <Stack align="center" ta={'center'}>
-            <Badge variant="light" color="dark">
+            <Badge variant="light" color="gray">
               {quiz?.title}
             </Badge>
 

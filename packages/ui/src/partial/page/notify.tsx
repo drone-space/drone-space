@@ -71,6 +71,7 @@ export const PartialPageNotifySignOut = ({ props }: { props: { baseUrl: string }
           <Button
             component={Link}
             href="/"
+            color="gray"
             variant="light"
             rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           >

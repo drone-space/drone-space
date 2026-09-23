@@ -35,27 +35,14 @@ export function AvatarUser({ size }: { size?: number }) {
           </Button>
         </WrapperActionSignIn>
       ) : (
-        <Button
-          size="xs"
-          fullWidth
-          variant="subtle"
-          color="gray"
-          leftSection={
-            <Avatar
-              src={session.user_metadata.avatar_url || null}
-              name={session.user_metadata.name || 'User'}
-              color={'initials'}
-              size={ICON_SIZE}
-            >
-              {initialize(session.user_metadata.name || 'User')}
-            </Avatar>
-          }
-          justify="start"
-          pl={5}
-          radius={0}
+        <Avatar
+          src={session.user_metadata.avatar_url || null}
+          name={session.user_metadata.name || 'User'}
+          color={'initials'}
+          size={size}
         >
-          {session.user_metadata.name || session.email}
-        </Button>
+          {initialize(session.user_metadata.name || 'User')}
+        </Avatar>
       )}
     </Group>
   );

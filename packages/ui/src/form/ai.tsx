@@ -42,7 +42,7 @@ export function FormAi({
           required
           placeholder={`Ask Hekima about ${COMPANY_NAME}`}
           autosize
-          minRows={2}
+          minRows={1}
           maxRows={4}
           {...props.form.getInputProps('content')}
           onKeyDown={getHotkeyHandler([

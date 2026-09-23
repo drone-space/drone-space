@@ -1,8 +1,8 @@
 .input {
-  border-color: transparent;
-  background-color: transparent;
+  border-color: transparent !important;
+  background-color: transparent !important;
   /* font-size: var(--mantine-font-size-xs); */
-  padding: 0;
-  padding-right: var(--mantine-spacing-xs);
-  border-radius: 0;
+  padding: 0 !important;
+  padding-right: var(--mantine-spacing-xs) !important;
+  border-radius: 0 !important;
 }

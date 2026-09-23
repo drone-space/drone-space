@@ -4,7 +4,7 @@ import { typeParams } from '../layout';
 import { Metadata } from 'next';
 import { QuizGet } from '@repo/types';
 import { quizzesGet } from '@repo/handlers';
-import { APP_NAME, getBaseUrl } from '@repo/constants';
+import { APP_NAME, getApiUrl, getBaseUrl } from '@repo/constants';
 
 export const generateMetadata = async ({
   params,
@@ -12,7 +12,7 @@ export const generateMetadata = async ({
   params: Promise<typeParams>;
 }): Promise<Metadata> => {
   const { items: quizzes }: { items: QuizGet[] } = await quizzesGet({
-    apiUrl: (await getBaseUrl()).LEARN,
+    apiUrl: await getApiUrl(),
   });
 
   if (quizzes == null) {

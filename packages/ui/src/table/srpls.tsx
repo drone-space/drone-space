@@ -96,10 +96,10 @@ export function TableSrpls() {
           <TableTr>
             <TableTd colSpan={10}>
               <Stack align="center" ta={'center'} my={SECTION_SPACING * 2}>
-                <Text c={'dimmed'}>No SRPLs found</Text>
+                <Text c={'dimmed'}>No ID's/Passport Numbers found</Text>
 
                 <AnchorNextLink href="/admin/srpls/new-srpl">
-                  <Button size={'xs'}>Create SRPL</Button>
+                  <Button size={'xs'}>Create ID/Passport Number</Button>
                 </AnchorNextLink>
               </Stack>
             </TableTd>

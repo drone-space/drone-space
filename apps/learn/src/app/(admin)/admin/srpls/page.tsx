@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { LayoutPage } from '@repo/ui';
 import PartialPageSrplsAdminView from '@learn/ui/partial/page/srpls/admin/view';
 
-const metaTitle = `SRPLs`;
+const metaTitle = `ID's/Passport Numbers`;
 
 export const metadata: Metadata = {
   title: metaTitle,

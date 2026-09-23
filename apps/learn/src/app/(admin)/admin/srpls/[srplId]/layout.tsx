@@ -16,7 +16,7 @@ export const generateMetadata = async ({
   });
 
   if (srpls == null) {
-    console.error('x--> SRPLs not found');
+    console.error("x--> ID's/Passport Numbers not found");
   }
 
   const srplId = (await params).srplId;
@@ -28,7 +28,7 @@ export const generateMetadata = async ({
   return {
     title: {
       default: metaTitle,
-      template: `%s - SRPLs - Admin - ${APP_NAME.LEARN}`,
+      template: `%s - ID's/Passport Numbers - Admin - ${APP_NAME.LEARN}`,
     },
   };
 };

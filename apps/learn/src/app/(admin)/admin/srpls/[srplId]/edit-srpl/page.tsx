@@ -5,7 +5,7 @@ import { typeParams } from '../../layout';
 import { redirect } from 'next/navigation';
 import PartialPageSrplsAdminEdit from '@learn/ui/partial/page/srpls/admin/edit';
 
-const metaTitle = `Edit SRPL`;
+const metaTitle = `Edit ID/Passport Number`;
 
 export const metadata: Metadata = {
   title: metaTitle,

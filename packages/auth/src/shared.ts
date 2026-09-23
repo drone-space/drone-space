@@ -53,7 +53,7 @@ export const findSrplRecord = async (srpl: string, email: string) => {
     });
 
     if (!existingSrpl) {
-      return "The SRPL you provided doesn't exist in our records.";
+      return "The ID/Passport Number you provided doesn't exist in our records.";
     }
 
     const existingProfile = await tx.profile.findUnique({
@@ -72,7 +72,7 @@ export const findSrplRecord = async (srpl: string, email: string) => {
     } else {
       // If profileId is present, but it's linked to a different profile
       if (existingSrpl.profileId !== existingProfile.id) {
-        return 'This SRPL is already linked to another profile.';
+        return 'This ID/Passport Number is already linked to another profile.';
       }
     }
 
@@ -87,7 +87,7 @@ export const linkSrplToProfile = async (srpl: string, profile: ProfileGet) => {
     });
 
     if (!existingSrpl) {
-      console.error("The SRPL provided doesn't exist in our records.");
+      console.error("The ID/Passport Number provided doesn't exist in our records.");
       return;
     }
 
@@ -99,7 +99,7 @@ export const linkSrplToProfile = async (srpl: string, profile: ProfileGet) => {
     } else {
       // If profileId is present, but it's linked to a different profile
       if (existingSrpl.profileId !== profile.id) {
-        return 'This SRPL is already linked to another profile.';
+        return 'This ID/Passport Number is already linked to another profile.';
       }
     }
 

@@ -145,7 +145,7 @@ const navlinksAdmin = [
   },
   {
     link: '/admin/srpls',
-    label: 'SRPLs',
+    label: "ID's/Passport Numbers",
     icon: IconIdBadge,
   },
 ];

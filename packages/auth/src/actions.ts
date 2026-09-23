@@ -2,6 +2,7 @@
 
 import { createClientcloudbaseServer } from '@repo/cloudbase';
 import { AuthAction, SignIn } from '@repo/types';
+import { findSrplRecord } from './shared';
 
 type SignInReturn = {
   error?: string;
@@ -10,6 +11,12 @@ type SignInReturn = {
 
 export const signIn = async (params: SignIn): Promise<SignInReturn> => {
   try {
+    if (params.formData.srpl) {
+      const result = await findSrplRecord(params.formData.srpl, params.formData.email);
+
+      if (result) return { error: result };
+    }
+
     const supabase = await createClientcloudbaseServer();
 
     const { error: signInError } = await supabase.auth.signInWithOtp({

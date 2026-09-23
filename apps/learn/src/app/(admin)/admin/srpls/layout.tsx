@@ -9,8 +9,8 @@ export type typeParams = Promise<{
 
 export const metadata: Metadata = {
   title: {
-    default: 'SRPLs',
-    template: `%s - SRPLs - Admin - ${APP_NAME.LEARN}`,
+    default: "ID's/Passport Numbers",
+    template: `%s - ID's/Passport Numbers - Admin - ${APP_NAME.LEARN}`,
   },
 };
 

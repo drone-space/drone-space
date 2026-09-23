@@ -41,7 +41,7 @@ export const useFormSrpl = (params?: { defaultValues?: Partial<SrplGet> }) => {
         ) {
           showNotification({
             title: 'Error',
-            desc: 'An SRPL with that number already exists.',
+            desc: 'That ID/Passport Number already exists.',
             variant: Variant.FAILED,
           });
 

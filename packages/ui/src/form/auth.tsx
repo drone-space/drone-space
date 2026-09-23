@@ -134,8 +134,8 @@ export function FormAuth({
             <GridCol span={{ base: 12, sm: 12 }}>
               <TextInput
                 required
-                aria-label="SRPL"
-                placeholder="SRPL Number"
+                aria-label="ID/Passport Number"
+                placeholder="ID/Passport Number"
                 variant="filled"
                 styles={{
                   input: {

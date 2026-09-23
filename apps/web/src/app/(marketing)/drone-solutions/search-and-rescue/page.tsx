@@ -17,6 +17,8 @@ import { GetLayout } from '../../faq/page';
 import AccordionFaq from '@web/ui/common/accordions/faq';
 import CtaMain from '@web/ui/partial/cta/main';
 
+export const dynamic = 'force-static';
+
 const service = services.find((c) => c.title == services[4].title);
 
 export async function generateMetadata(): Promise<Metadata> {

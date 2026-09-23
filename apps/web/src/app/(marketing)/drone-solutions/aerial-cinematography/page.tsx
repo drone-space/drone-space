@@ -29,6 +29,8 @@ import AccordionFaq from '@web/ui/common/accordions/faq';
 import CtaMain from '@web/ui/partial/cta/main';
 import { redirect } from 'next/navigation';
 
+export const dynamic = 'force-static';
+
 const service = services.find((c) => c.title == services[0].title);
 
 export async function generateMetadata(): Promise<Metadata> {

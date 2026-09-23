@@ -40,6 +40,8 @@ import AccordionFaq from '@web/ui/common/accordions/faq';
 import CtaMain from '@web/ui/partial/cta/main';
 import { AnchorNextLink } from '@repo/ui';
 
+export const dynamic = 'force-static';
+
 const course = courseList.find((c) => c.title == courseList[0].title);
 
 export async function generateMetadata(): Promise<Metadata> {

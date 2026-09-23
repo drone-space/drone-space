@@ -16,13 +16,10 @@ export async function proxy(request: NextRequest) {
   // Set CORS headers for the response
   setCorsHeaders({ request, response });
 
-  // Update the session in the response
-  response = await updateSession(request, response, (await getBaseUrl()).WEB);
+  // // Update the session in the response
+  // response = await updateSession(request, response, (await getBaseUrl()).WEB);
 
   response = getColorScheme(request, response);
-
-  // Disable SEO/indexing globally for all responses passing through middleware
-  response.headers.set('X-Robots-Tag', 'noindex, nofollow');
 
   return response;
 }

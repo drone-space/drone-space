@@ -61,12 +61,18 @@ export async function GET() {
     ...sitemapRoutes,
   ];
 
-  const staticRoutes = rawStaticRoutes.map((route) => ({
-    loc: `${baseUrl}${route}`,
-    lastmod: today,
-    changefreq: 'weekly',
-    priority: route === '' ? 1 : 0.8,
-  }));
+  const staticRoutes = rawStaticRoutes
+    .filter(isCleanRoute)
+    .filter(
+      (route) =>
+        !route.startsWith('http') && !route.startsWith('mailto:') && !route.startsWith('tel:'),
+    )
+    .map((route) => ({
+      loc: `${baseUrl}${route}`,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: route === '' ? 1 : 0.8,
+    }));
 
   // --- MERGE ALL ALREADY-FORMATTED ROUTES ---
   const allRoutes = [...staticRoutes, ...postRoutes, ...productRoutes];
@@ -101,3 +107,5 @@ function escapeXml(str: string) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
 }
+
+const isCleanRoute = (route: string) => !route.includes('?');

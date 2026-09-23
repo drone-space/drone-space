@@ -1,18 +1,17 @@
-import { useStoreAnswer } from '@repo/libraries/zustand/stores/answer';
-import { useStoreAttempt } from '@repo/libraries/zustand/stores/attempt';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
-import { useStoreQuestion } from '@repo/libraries/zustand/stores/question';
-import { useStoreQuizQuestion } from '@repo/libraries/zustand/stores/quiz-question';
-import { useStoreQuiz } from '@repo/libraries/zustand/stores/quiz';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { Status } from '@repo/types/models/enums';
-import { getRegionalDate } from '@repo/utilities/date-time';
-import { QuestionGet } from '@repo/types/models/question';
+'use client';
 
-export const useQuizStats = (params: {
-  quizId?: string;
-  attemptId?: string;
-}) => {
+import { useStoreAnswer } from '@repo/store';
+import { useStoreAttempt } from '@repo/store';
+import { useStoreOption } from '@repo/store';
+import { useStoreQuestion } from '@repo/store';
+import { useStoreQuizQuestion } from '@repo/store';
+import { useStoreQuiz } from '@repo/store';
+import { useStoreSession } from '@repo/store';
+import { Status } from '@repo/types';
+import { getRegionalDate } from '@repo/utils';
+import { QuestionGet } from '@repo/types';
+
+export const useQuizStats = (params: { quizId?: string; attemptId?: string }) => {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
@@ -22,21 +21,17 @@ export const useQuizStats = (params: {
   const answers = useStoreAnswer((s) => s.answers);
 
   // --- 1. FILTER BASICS & LOOKUP BRIDGES ---
-  const userAttempts = attempts?.filter((ai) => ai.profile_id === session?.id);
+  const userAttempts = attempts?.filter((ai) => ai.profileId === session?.id);
   const attempt = userAttempts?.find((ai) => ai.id === params.attemptId);
 
   const quiz = quizzes?.find((qi) => {
     if (params.quizId) return qi.id === params.quizId;
-    return qi.id === attempt?.quiz_id;
+    return qi.id === attempt?.quizId;
   });
 
-  const dateAttempted = !attempt?.created_at
-    ? undefined
-    : getRegionalDate(attempt.created_at);
+  const dateAttempted = !attempt?.createdAt ? undefined : getRegionalDate(attempt.createdAt);
 
-  const quizQuestionsQuiz = quizQuestions?.filter(
-    (qqi) => qqi.quiz_id === quiz?.id
-  );
+  const quizQuestionsQuiz = quizQuestions?.filter((qqi) => qqi.quizId === quiz?.id);
 
   // 🔥 PERFORMANCE FIX: Build Map indexes once for instant constant-time lookups
   const questionMap = new Map(questions?.map((q) => [q.id, q]) || []);
@@ -45,22 +40,21 @@ export const useQuizStats = (params: {
   // Map out the true, unique Question rows for this quiz cleanly
   const quizQuestionsQuizQuestions =
     quizQuestionsQuiz
-      ?.map((qqqi) => questionMap.get(qqqi.question_id))
+      ?.map((qqqi) => questionMap.get(qqqi.questionId))
       .filter((q): q is QuestionGet => !!q) || [];
 
-  const thresholdPass = quiz?.pass_threshold ?? 0;
+  const thresholdPass = quiz?.passThreshold ?? 0;
   const totalQuestionsInQuiz = quizQuestionsQuiz?.length || 1;
 
   // --- 2. OPTIMIZED SCORE COMPUTER ---
   // Uses index lookup maps to completely eliminate array scanning loops
   const getAttemptScore = (currAttemptId: string): number => {
-    const currentAttemptAnswers =
-      answers?.filter((an) => an.attempt_id === currAttemptId) || [];
+    const currentAttemptAnswers = answers?.filter((an) => an.attemptId === currAttemptId) || [];
     if (currentAttemptAnswers.length === 0) return 0;
 
     const correctCount = currentAttemptAnswers.filter((aai) => {
       // Instant O(1) retrieval instead of tracking down an array row via .find()
-      const answerOption = optionsMap.get(aai.option_id);
+      const answerOption = optionsMap.get(aai.optionId);
       return answerOption?.correct;
     }).length;
 
@@ -68,11 +62,10 @@ export const useQuizStats = (params: {
   };
 
   // --- 3. SINGLE ATTEMPT STATS ---
-  const attemptAnswers =
-    answers?.filter((ai) => ai.attempt_id === params.attemptId) || [];
+  const attemptAnswers = answers?.filter((ai) => ai.attemptId === params.attemptId) || [];
 
   const correctAnswers = attemptAnswers.filter((aai) => {
-    const answerOption = optionsMap.get(aai.option_id);
+    const answerOption = optionsMap.get(aai.optionId);
     return answerOption?.correct;
   });
 
@@ -95,9 +88,7 @@ export const useQuizStats = (params: {
 
   // --- 4. META / AGGREGATE STATS ---
   const quizAttempts =
-    userAttempts?.filter(
-      (ai) => ai.quiz_id === quiz?.id && ai.status === Status.COMPLETE
-    ) || [];
+    userAttempts?.filter((ai) => ai.quizId === quiz?.id && ai.status === Status.COMPLETE) || [];
 
   const quizPasses = quizAttempts.filter((ai) => {
     const historicalScore = getAttemptScore(ai.id);
@@ -112,8 +103,7 @@ export const useQuizStats = (params: {
     timesAttempted: attemptsQuiz,
     timesPassed: passesQuiz,
     timesFailed: attemptsQuiz - passesQuiz,
-    successRate:
-      attemptsQuiz > 0 ? Math.floor((passesQuiz / attemptsQuiz) * 100) : 0,
+    successRate: attemptsQuiz > 0 ? Math.floor((passesQuiz / attemptsQuiz) * 100) : 0,
     totalQuestions: questionsTotal,
   };
 

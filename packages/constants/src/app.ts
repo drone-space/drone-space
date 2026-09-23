@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 export const COMPANY_NAME = 'Drone Space';
 export const COMPANY_DESCRIPTION =
   'Drone Space is the leading provider of drone training and drone services in Kenya and East Africa. The company offers comprehensive drone license training courses designed to educate and equip professionals with the skills and knowledge to safely and effectively operate drones commercially. The courses are designed to meet international standards and provide students with hands-on experience and practical knowledge of drone operations.';
@@ -79,13 +72,15 @@ export const ABOUT_STATS = {
 };
 
 export const APP_NAME = {
+  API: `${COMPANY_NAME} API`,
   SHOP: `${COMPANY_NAME} Shop`,
-  LMS: `${COMPANY_NAME} Learn`,
+  LEARN: `${COMPANY_NAME} Learn`,
   WEB: COMPANY_NAME,
 };
 
 export const APP_DESC = {
-  LMS: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
+  API: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
+  LEARN: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
   SHOP: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
   WEB: COMPANY_DESCRIPTION,
 };

@@ -1,0 +1,26 @@
+.content {
+  border-radius: var(--mantine-radius-lg);
+  overflow: hidden;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .content:hover .control {
+    opacity: 0.75;
+  }
+}
+
+.body {
+  padding: 0;
+}
+
+.control {
+  transition: 0.25s all ease;
+  opacity: 0;
+  background-color: var(--mantine-color-pri-9);
+  color: var(--mantine-color-sec-3);
+}
+
+.indicator {
+  background-color: var(--mantine-color-pri-9);
+}

@@ -1,0 +1,296 @@
+import React from 'react';
+import { Metadata } from 'next';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { Anchor, AspectRatio, Divider, Flex, Grid, GridCol, Text } from '@mantine/core';
+import { getApiUrl, getBaseUrl, images } from '@repo/constants';
+import CardStat from '@web/ui/common/cards/stat';
+import stats from '@web/data/stats';
+import { SECTION_SPACING } from '@repo/constants';
+import CarouselTestimonials from '@web/ui/common/carousels/testimonials';
+import { LayoutIntroSection } from '@repo/ui';
+import { ImageDefault } from '@repo/ui';
+import TabSpacesHub from '@web/ui/common/tabs/spaces-hub';
+// import CardTeamMain from '@web/ui/common/cards/team/main';
+// import { team } from '@web/data/team';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+import { StudentGet } from '@repo/types';
+import { studentsGet } from '@repo/handlers';
+import CtaMain from '@web/ui/partial/cta/main';
+
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
+const metaTitle = `About ${APP_NAME.WEB} - Kenya's Leading Drone Training Academy`;
+const metaDesc =
+  'Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya with top-notch training and innovative drone solutions.';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
+    title: metaTitle,
+    description: metaDesc,
+    metadataBase: new URL(baseUrl.WEB),
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/about`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
+
+export default async function About() {
+  const { items }: { items: StudentGet[] } = await studentsGet({ apiUrl: await getApiUrl() });
+
+  return (
+    <LayoutPage>
+      <LayoutIntroPage
+        props={{
+          path: `Who We Are`,
+          title: 'About Drone Space',
+          desc: `Learn more about Drone Space, our mission, and how we empower drone enthusiasts in Kenya`,
+          bg: images.web.hero.light,
+        }}
+      />
+
+      <LayoutSection id="our-story" padded>
+        <Grid gap={{ base: 'xl', md: 48 }}>
+          <GridCol span={{ base: 12, md: 6 }}>
+            <AspectRatio ratio={1920 / 1080} h={'100%'}>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/1HOfFPQurpQ"
+                title="Drone Space Kenya - Unmanned Training Organization (UTO)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{
+                  borderWidth: 0,
+                  borderRadius: 'var(--mantine-radius-lg)',
+                  overflow: 'hidden',
+                }}
+              ></iframe>
+
+              {/* <video
+                width="100%"
+                height="100%"
+                controls
+                autoPlay
+                loop
+                muted
+                style={{
+                  borderRadius: 'var(--mantine-radius-lg)',
+                  overflow: 'hidden',
+                }}
+                poster={images.gallery.airfield.image1}
+              >
+                <source src={videos.video1} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video> */}
+            </AspectRatio>
+          </GridCol>
+
+          <GridCol span={{ base: 12, md: 6 }}>
+            <LayoutIntroSection
+              props={{
+                subTitle: 'Legitimacy',
+                title: 'Approved Unmanned Aircraft Systems Training Organization',
+              }}
+              options={{ alignment: 'start' }}
+            />
+
+            <Text mt={'xl'}>
+              {APP_NAME.WEB} is one of the first certified UTO, ROC and Drone distributors in Kenya.
+              Established in 2018, {APP_NAME.WEB} is approved and certified by{' '}
+              <Anchor inherit underline="hover" href="https://kcaa.or.ke/" target="_blank">
+                Kenya Civil Aviation Authority (KCAA)
+              </Anchor>{' '}
+              to offer Remote Pilot License (RPL) course in multi-rotor and fixed wing, RPL
+              instructor rating and soon Beyond Visual Line of Sight (BVLOS) rating. The Academy
+              provides Kenya&apos;s highest quality drone training with a simple yet comprehensive
+              model for corporate clients, government agencies, public safety departments, and
+              individuals.
+            </Text>
+
+            <Text mt={'xs'}>
+              {APP_NAME.WEB} is a holder of Remote Operator&apos;s Certificate (ROC) approved by
+              KCAA to conduct drone operations in search and rescue, power lines inspection,
+              agricultural spraying, photography and cinematography, solar inspection, runway
+              calibration among other operations.
+            </Text>
+
+            <Text mt={'xs'}>
+              {APP_NAME.WEB} is also a certified distributor and a reseller of Unmanned Aircraft
+              Vehicles/drones. {APP_NAME.WEB} is one of the few approved importers of UAS into Kenya
+              having supplied the United Nations-WFP, Museums of Kenya and Ericson&apos;s
+            </Text>
+          </GridCol>
+        </Grid>
+      </LayoutSection>
+
+      <LayoutSection
+        id="stats"
+        padded={24}
+        bg={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+        c={'light-dark(var(--mantine-color-white),var(--mantine-color-white))'}
+      >
+        <Grid justify="center" gap={0}>
+          {stats.map((stat, index) => (
+            <GridCol key={index} span={{ base: 12, xs: 4, md: 'auto' }}>
+              <CardStat data={stat} />
+            </GridCol>
+          ))}
+        </Grid>
+      </LayoutSection>
+
+      <LayoutSection id="mission-vision" padded>
+        <Grid align="center" gap={'xl'}>
+          <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2, sm: 1 }}>
+            <LayoutIntroSection
+              props={{
+                subTitle: 'Our',
+                title: 'Mission',
+              }}
+              options={{ alignment: 'start' }}
+            />
+
+            <Divider
+              w={{ md: '20%' }}
+              size={2}
+              color="sec.3"
+              mt={{ base: 'xs', md: 'xl' }}
+              visibleFrom="sm"
+            />
+
+            <Text mt={{ base: 'xs', md: 'xl' }}>
+              Our mission is to be the preferred drone training and commercial operations
+              organization for Government, corporates, and industry sector by providing quality,
+              high standards, and reliable services.
+            </Text>
+          </GridCol>
+          <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1, sm: 2 }}>
+            <ImageDefault
+              src={'https://cdn.pixabay.com/photo/2023/08/13/17/54/drone-8188144_1280.jpg'}
+              alt={'Mission'}
+              height={{ base: 240, xs: 320, md: 280 }}
+              mode="grid"
+            />
+          </GridCol>
+        </Grid>
+
+        <Grid align="center" gap={'xl'} mt={SECTION_SPACING}>
+          <GridCol span={{ base: 12, sm: 7 }} order={{ base: 2 }}>
+            <Flex direction={'column'} align={{ md: 'end' }}>
+              <LayoutIntroSection
+                props={{
+                  subTitle: 'Our',
+                  title: 'Vision',
+                }}
+                options={{ alignment: { base: 'start', md: 'end' } }}
+              />
+
+              <Divider
+                w={{ md: '20%' }}
+                size={2}
+                color="sec.3"
+                mt={{ base: 'xs', md: 'xl' }}
+                visibleFrom="sm"
+              />
+
+              <Text mt={{ base: 'xs', md: 'xl' }} ta={{ base: 'start', md: 'end' }}>
+                Our long-term vision is to contribute and empower to the ever-growing youth in Kenya
+                by equipping them with the drone technology skill and realization of economic
+                prosperity for young entrepreneurs who in turn would be able to make a living
+                through entrepreneurship.
+              </Text>
+            </Flex>
+          </GridCol>
+          <GridCol span={{ base: 12, sm: 5 }} order={{ base: 1 }}>
+            <ImageDefault
+              src={'https://cdn.pixabay.com/photo/2016/11/29/02/07/drone-1866742_1280.jpg'}
+              alt={'Mission'}
+              height={{ base: 240, xs: 320, md: 280 }}
+              mode="grid"
+            />
+          </GridCol>
+        </Grid>
+      </LayoutSection>
+
+      {/* <LayoutSection id="team" padded bg={'var(--mantine-color-gray-1)'}>
+        <LayoutIntroSection
+          props={{
+            subTitle: 'Our Team',
+            title: 'Meet The Team',
+            desc: `Our team is dedicated to delivering exceptional results and pushing boundaries. Get to know the people who bring our vision to life, one step at a time.`,
+          }}
+          options={{ spacing: true }}
+        />
+
+        <Grid justify="center">
+          {team.map(
+            (item, index) =>
+              item.type == 'INTERNAL' && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 3 }}>
+                  <CardTeamMain data={item} />
+                </GridCol>
+              )
+          )}
+
+          <GridCol span={12}>
+            <Divider my={SECTION_SPACING / 2} label={'Advisory Board'} />
+          </GridCol>
+
+          {team.map(
+            (item, index) =>
+              item.type == 'BOARD' && (
+                <GridCol key={index} span={{ base: 12, xs: 6, md: 4, lg: 3 }}>
+                  <CardTeamMain data={item} />
+                </GridCol>
+              )
+          )}
+        </Grid>
+      </LayoutSection> */}
+
+      <LayoutSection id="spaces-and-hub" padded bg={'var(--mantine-color-gray-1)'}>
+        <LayoutIntroSection
+          props={{
+            subTitle: 'Spaces & Hub',
+            title: 'Drone Spaces & Hub Mission',
+            desc: 'The Drone Spaces & Hub will strive to strengthen and accelerate development in technology and innovation through creation of platforms that will enable job creation and entrepreneurship.',
+          }}
+          options={{ spacing: true }}
+        />
+
+        <TabSpacesHub />
+      </LayoutSection>
+
+      <LayoutSection id="testimonials" padded>
+        <LayoutIntroSection
+          props={{
+            subTitle: 'Testimonials',
+            title: 'What Our Clients Say',
+            desc: `At ${APP_NAME.WEB}, we take pride in delivering exceptional
+            results that exceed expectations. Take a moment to hear directly from the people who
+            matter most: our valued clients.`,
+          }}
+          options={{ spacing: true }}
+        />
+
+        <CarouselTestimonials students={items} />
+      </LayoutSection>
+      <CtaMain />
+    </LayoutPage>
+  );
+}

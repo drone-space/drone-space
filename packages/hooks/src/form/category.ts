@@ -1,11 +1,11 @@
-import { hasLength } from '@mantine/form';
-import { useCategoryActions } from '../actions/category';
-import { useFormBase } from '../form';
-import { CategoryGet } from '@repo/types/models/category';
+'use client';
 
-export const useFormCategory = (params?: {
-  defaultValues?: Partial<CategoryGet>;
-}) => {
+import { hasLength } from '@mantine/form';
+import { useCategoryActions } from '@repo/store';
+import { useFormBase } from '../form';
+import { CategoryGet } from '@repo/types';
+
+export const useFormCategory = (params?: { defaultValues?: Partial<CategoryGet> }) => {
   const { categoryCreate, categoryUpdate } = useCategoryActions();
 
   const { form, submitted, handleSubmit } = useFormBase<Partial<CategoryGet>>(
@@ -13,10 +13,7 @@ export const useFormCategory = (params?: {
       title: params?.defaultValues?.title || '',
     },
     {
-      title: hasLength(
-        { min: 2, max: 48 },
-        'Between 2 and 48 characters required'
-      ),
+      title: hasLength({ min: 2, max: 48 }, 'Between 2 and 48 characters required'),
     },
     {
       resetOnSuccess: true,
@@ -24,7 +21,7 @@ export const useFormCategory = (params?: {
       clientOnly: false,
 
       onSubmit: async (rawValues) => {
-        if (!params?.defaultValues?.updated_at) {
+        if (!params?.defaultValues?.updatedAt) {
           categoryCreate(rawValues);
         } else {
           categoryUpdate({
@@ -33,7 +30,7 @@ export const useFormCategory = (params?: {
           } as CategoryGet);
         }
       },
-    }
+    },
   );
 
   return {

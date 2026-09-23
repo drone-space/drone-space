@@ -1,8 +1,6 @@
 import { images } from './images';
-import accessories from './accessories';
-// import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { accessories } from './accessories';
 
-// const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/images`;
 const baseUrl = `/images`;
 
 export const products = [
@@ -298,9 +296,7 @@ export const products = [
       },
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Mavic 4 Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Mavic 4 Series Battery'),
       other: null,
     },
     category: 'camera',
@@ -733,22 +729,12 @@ export const products = [
     accessories: {
       battery: accessories.find((a) => a.title.short == 'Agras Series Battery'),
       other: [
-        accessories.find(
-          (a) => a.title.short == 'Intelligent Flight Battery (DB1560)'
-        ),
-        accessories.find(
-          (a) => a.title.short == 'T50 C10000 Intelligent Charger'
-        ),
-        accessories.find(
-          (a) => a.title.short == 'Agras Series Spreading System'
-        ),
-        accessories.find(
-          (a) => a.title.short == 'Agras Series Generator (D14000iE)'
-        ),
+        accessories.find((a) => a.title.short == 'Intelligent Flight Battery (DB1560)'),
+        accessories.find((a) => a.title.short == 'T50 C10000 Intelligent Charger'),
+        accessories.find((a) => a.title.short == 'Agras Series Spreading System'),
+        accessories.find((a) => a.title.short == 'Agras Series Generator (D14000iE)'),
         accessories.find((a) => a.title.short == 'T50 Charging Cable'),
-        accessories.find(
-          (a) => a.title.short == 'Intelligent Flight Battery (WB37)'
-        ),
+        accessories.find((a) => a.title.short == 'Intelligent Flight Battery (WB37)'),
       ].filter((i) => i != undefined),
     },
     category: 'agriculture',
@@ -1133,13 +1119,11 @@ export const products = [
           desc: '23 m/s',
         },
         {
-          label:
-            'Max Flight Altitude (2110s propellers, takeoff weight ≤ 7.4 kg)',
+          label: 'Max Flight Altitude (2110s propellers, takeoff weight ≤ 7.4 kg)',
           desc: '5000 m',
         },
         {
-          label:
-            'Max Flight Altitude (2112 propellers, takeoff weight ≤ 7.2 kg)',
+          label: 'Max Flight Altitude (2112 propellers, takeoff weight ≤ 7.2 kg)',
           desc: '7000 m',
         },
         {
@@ -1227,9 +1211,9 @@ export const products = [
     },
     accessories: {
       battery: accessories.find((a) => a.title.short == 'Matrice 350 Battery'),
-      other: [
-        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
-      ].filter((i) => i != undefined),
+      other: [accessories.find((a) => a.title.short == 'Mobile Station and Tripod')].filter(
+        (i) => i != undefined,
+      ),
     },
     category: 'mapping',
     available: true,
@@ -1557,9 +1541,7 @@ export const products = [
       },
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Mavic 3 Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Mavic 3 Series Battery'),
       other: null,
     },
     category: 'mapping',
@@ -1697,12 +1679,10 @@ export const products = [
       flyMore: null,
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Mavic 3 Series Battery'
+      battery: accessories.find((a) => a.title.short == 'Mavic 3 Series Battery'),
+      other: [accessories.find((a) => a.title.short == 'Mobile Station and Tripod')].filter(
+        (i) => i != undefined,
       ),
-      other: [
-        accessories.find((a) => a.title.short == 'Mobile Station and Tripod'),
-      ].filter((i) => i != undefined),
     },
     category: 'enterprise',
     available: false,
@@ -1861,9 +1841,7 @@ export const products = [
       },
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Mavic 3 Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Mavic 3 Series Battery'),
       other: null,
     },
     category: 'enterprise',
@@ -2087,8 +2065,7 @@ export const products = [
           desc: '18 km',
         },
         {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          label: 'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
           desc: '25 km',
         },
         {
@@ -2217,8 +2194,7 @@ export const products = [
     new: false,
     iframe: {
       src: 'https://www.youtube.com/embed/jRzpagPx6uY',
-      title:
-        'Meet DJI Mini 5 Pro - All-In-One 1-Inch Large CMOS Mini Camera Drone',
+      title: 'Meet DJI Mini 5 Pro - All-In-One 1-Inch Large CMOS Mini Camera Drone',
     },
     releaseDate: new Date('2025-09-01'),
   },
@@ -2263,8 +2239,7 @@ export const products = [
           desc: '18 km',
         },
         {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          label: 'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
           desc: '25 km',
         },
         {
@@ -2431,8 +2406,7 @@ export const products = [
           desc: '18 km',
         },
         {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          label: 'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
           desc: '25 km',
         },
         {
@@ -2524,9 +2498,7 @@ export const products = [
       flyMore: null,
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Matrice 4 Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Matrice 4 Series Battery'),
       other: null,
     },
     category: 'enterprise',
@@ -2581,8 +2553,7 @@ export const products = [
           desc: '18 km',
         },
         {
-          label:
-            'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
+          label: 'Flight Distance (Intelligent Battery Plus, 43.2 kph, no wind)',
           desc: '25 km',
         },
         {
@@ -2674,9 +2645,7 @@ export const products = [
       flyMore: null,
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Matrice 4 Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Matrice 4 Series Battery'),
       other: null,
     },
     category: 'enterprise',
@@ -3094,9 +3063,7 @@ export const products = [
       flyMore: null,
     },
     accessories: {
-      battery: accessories.find(
-        (a) => a.title.short == 'Matrice Series Battery'
-      ),
+      battery: accessories.find((a) => a.title.short == 'Matrice Series Battery'),
       other: null,
     },
     category: 'enterprise',

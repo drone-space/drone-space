@@ -13,7 +13,7 @@ import {
   IconUserEdit,
 } from '@tabler/icons-react';
 import { AUTH_URLS } from './paths';
-import { Link } from '@repo/types/link';
+import { Link } from '@repo/types';
 
 export const navLinkItems = {
   user: {

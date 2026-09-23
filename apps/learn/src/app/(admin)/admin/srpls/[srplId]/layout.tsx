@@ -1,0 +1,42 @@
+import React from 'react';
+import { LayoutMain } from '@repo/ui';
+import { typeParams } from '../layout';
+import { Metadata } from 'next';
+import { SrplGet } from '@repo/types';
+import { srplsGet } from '@repo/handlers';
+import { APP_NAME, getApiUrl } from '@repo/constants';
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<typeParams>;
+}): Promise<Metadata> => {
+  const { items: srpls }: { items: SrplGet[] } = await srplsGet({
+    apiUrl: await getApiUrl(),
+  });
+
+  if (srpls == null) {
+    console.error("x--> ID's/Passport Numbers not found");
+  }
+
+  const srplId = (await params).srplId;
+
+  const srpl = srpls.find((p) => p.id == srplId);
+
+  const metaTitle = `${srpl?.srplNumber}`;
+
+  return {
+    title: {
+      default: metaTitle,
+      template: `%s - ID's/Passport Numbers - Admin - ${APP_NAME.LEARN}`,
+    },
+  };
+};
+
+export default function LayoutSrpl({
+  children, // will be a page or nested layout
+}: {
+  children: React.ReactNode;
+}) {
+  return <LayoutMain>{children}</LayoutMain>;
+}

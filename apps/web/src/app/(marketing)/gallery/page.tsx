@@ -1,0 +1,177 @@
+import React from 'react';
+import { Metadata } from 'next';
+import { Grid, GridCol, Tabs, TabsList, TabsPanel, TabsTab } from '@mantine/core';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import PartialGallery from '@web/ui/partial/gallery';
+import tabs from '@web/data/tabs';
+import { getBaseUrl, images } from '@repo/constants';
+import { LayoutIntroPage } from '@repo/ui';
+import { APP_NAME, COMPANY_NAME } from '@repo/constants';
+
+export const dynamic = 'force-static';
+
+const metaTitle = `${APP_NAME.WEB} Gallery - Showcasing Our Training & Aerial Services`;
+const metaDesc =
+  'Explore stunning visuals from our drone training programs, aerial light shows, and other services. See Drone Space in action!';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = await getBaseUrl();
+
+  return {
+    title: metaTitle,
+    description: metaDesc,
+    metadataBase: new URL(baseUrl.WEB),
+    openGraph: {
+      title: metaTitle,
+      description: metaDesc,
+      url: `${baseUrl.WEB}/gallery`,
+      type: 'website',
+      images: [
+        {
+          url: images.brand.droneSpace.logo.potrait.meta,
+          width: 1200,
+          height: 1200,
+          alt: COMPANY_NAME,
+        },
+      ],
+    },
+  };
+}
+
+export default async function Gallery() {
+  return (
+    <LayoutPage>
+      <LayoutIntroPage
+        props={{
+          path: 'Photos',
+          title: 'Drone Space Gallery',
+          desc: `Explore stunning visuals from our drone training graduations, aerial light shows, and other services.`,
+          bg: images.web.hero.light,
+        }}
+      />
+
+      <LayoutSection
+        id="page-gallery"
+        padded
+        // bg={'var(--mantine-color-gray-1)'}
+      >
+        <Tabs
+          defaultValue={'conference'}
+          variant="pills"
+          styles={{
+            tab: { border: `2px solid var(--mantine-color-gray-4)` },
+          }}
+        >
+          <Grid component={TabsList} grow mb={'xl'} justify="center" gap={'xs'}>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="conference">
+                Conference
+              </TabsTab>
+            </GridCol>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="expo">
+                Expo
+              </TabsTab>
+            </GridCol>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="hackathon">
+                Hackathon
+              </TabsTab>
+            </GridCol>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="graduation">
+                Graduation
+              </TabsTab>
+            </GridCol>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="innovation">
+                Innovation
+              </TabsTab>
+            </GridCol>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="projects">
+                Projects
+              </TabsTab>
+            </GridCol>
+            <GridCol span={{ base: 6, xs: 4, sm: 'auto' }}>
+              <TabsTab w={'100%'} value="airfield">
+                Airfield
+              </TabsTab>
+            </GridCol>
+          </Grid>
+
+          <TabsPanel value="conference">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.conference.yr2024.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+
+          <TabsPanel value="expo">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.expo.yr2024.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+
+          <TabsPanel value="hackathon">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.hackathon.yr2024.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+
+          <TabsPanel value="graduation">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.graduation.yr2022.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+
+          <TabsPanel value="innovation">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.innovation.jamuhuri.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+
+          <TabsPanel value="projects">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.projects.project.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+
+          <TabsPanel value="airfield">
+            <PartialGallery
+              props={{
+                list: tabs.gallery.airfield.map((i) => {
+                  return { image: i };
+                }),
+              }}
+            />
+          </TabsPanel>
+        </Tabs>
+      </LayoutSection>
+    </LayoutPage>
+  );
+}

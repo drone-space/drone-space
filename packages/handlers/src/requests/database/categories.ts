@@ -1,11 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import { CategoryCreate, CategoryGet, CategoryUpdate } from '@repo/types/models/category';
+import { CategoryCreate, CategoryGet, CategoryUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'categories';
@@ -20,7 +13,7 @@ let currentController: AbortController | null = null;
 export const categoriesUpdate = async (
   apiUrl: string,
   categories: CategoryGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
@@ -31,7 +24,7 @@ export const categoriesUpdate = async (
       'PUT',
       apiUrl,
       { categories, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

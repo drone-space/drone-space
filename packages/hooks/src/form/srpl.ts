@@ -1,13 +1,15 @@
+'use client';
+
 import { hasLength } from '@mantine/form';
-import { useSrplActions } from '../actions/srpl';
+import { useSrplActions } from '@repo/store';
 import { useFormBase } from '../form';
-import { SrplGet } from '@repo/types/models/srpl';
+import { SrplGet } from '@repo/types';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useStoreSrpl } from '@repo/libraries/zustand/stores/srpl';
+import { useStoreSrpl } from '@repo/store';
 import { useNotification } from '../notification';
-import { Variant } from '@repo/types/enums';
-import { Status } from '@repo/types/models/enums';
+import { Variant } from '@repo/types';
+import { Status } from '@repo/types';
 
 export const useFormSrpl = (params?: { defaultValues?: Partial<SrplGet> }) => {
   const router = useRouter();
@@ -25,10 +27,7 @@ export const useFormSrpl = (params?: { defaultValues?: Partial<SrplGet> }) => {
       status: params?.defaultValues?.status || Status.ACTIVE,
     },
     {
-      srplNumber: hasLength(
-        { min: 2, max: 48 },
-        'Between 2 and 48 characters required'
-      ),
+      srplNumber: hasLength({ min: 2, max: 48 }, 'Between 2 and 48 characters required'),
     },
     {
       // resetOnSuccess: true,
@@ -42,14 +41,14 @@ export const useFormSrpl = (params?: { defaultValues?: Partial<SrplGet> }) => {
         ) {
           showNotification({
             title: 'Error',
-            desc: 'An SRPL with that number already exists.',
+            desc: 'That ID/Passport Number already exists.',
             variant: Variant.FAILED,
           });
 
           return;
         }
 
-        if (!params?.defaultValues?.updated_at) {
+        if (!params?.defaultValues?.updatedAt) {
           const newSrpl = srplCreate(rawValues);
 
           if (!stay && newSrpl) {
@@ -69,7 +68,7 @@ export const useFormSrpl = (params?: { defaultValues?: Partial<SrplGet> }) => {
         form.reset();
         setStay(false);
       },
-    }
+    },
   );
 
   return {

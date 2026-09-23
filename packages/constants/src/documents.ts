@@ -1,12 +1,10 @@
-import { PRODUCTION_BASE_URL_CLIENT_WEB } from '@repo/constants/paths';
+import { BASE_URL } from './paths-client';
 
-const baseUrl = `${PRODUCTION_BASE_URL_CLIENT_WEB.DEFAULT}/documents`;
+const baseUrl = `${BASE_URL.WEB}/documents`;
 
-const documents = {
+export const documents = {
   droneSpace: {
     brochure: `${baseUrl}/drone-space/brochure.pdf`,
     profile: `${baseUrl}/drone-space/profile.pdf`,
   },
 };
-
-export default documents;

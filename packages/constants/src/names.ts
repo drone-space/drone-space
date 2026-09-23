@@ -1,10 +1,3 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 export const COOKIE_NAME = {
   USER_ROLE: 'user.role',
   APP_SHELL: 'appshell',
@@ -31,6 +24,7 @@ export const LOCAL_STORAGE_NAME = {
 };
 
 export const SESSION_STORAGE_NAME = {
+  VIEW: 'view',
   AI_COUNT: 'ai-count',
 };
 
@@ -61,4 +55,5 @@ export const STORE_NAME = {
   ANSWERS: 'answers',
   SRPLS: 'srpls',
   ALUMNI_CHALLENGERS: 'alumni-challengers',
+  STUDENTS: 'students',
 };

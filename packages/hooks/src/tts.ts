@@ -1,18 +1,17 @@
-import { Variant } from '@repo/types/enums';
-import { textToSpeech } from '@repo/handlers/requests/tts';
+'use client';
+
+import { Variant } from '@repo/types';
+import { textToSpeech } from '@repo/handlers';
 import { useRef, useState } from 'react';
-import { useNotification } from '@repo/hooks/notification';
-import { playAudioStream } from '@repo/libraries/wrappers/tts';
+import { useNotification } from '@repo/hooks';
+import { playAudioStream } from '@repo/utils';
 
 export const useTTS = () => {
   const [fetching, setFetching] = useState(false);
   const volumeRef = useRef(0);
   const { showNotification } = useNotification();
 
-  const handleFetch = async (params: {
-    text: string;
-    onPlaybackEnd?: () => void;
-  }) => {
+  const handleFetch = async (params: { text: string; onPlaybackEnd?: () => void }) => {
     try {
       setFetching(true);
 

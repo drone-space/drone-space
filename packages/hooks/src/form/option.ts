@@ -1,15 +1,15 @@
-import { hasLength } from '@mantine/form';
-import { useOptionActions } from '../actions/option';
-import { useFormBase } from '../form';
-import { OptionGet } from '@repo/types/models/option';
-import { useState } from 'react';
-import { useStoreOption } from '@repo/libraries/zustand/stores/option';
-import { useNotification } from '../notification';
-import { Variant } from '@repo/types/enums';
+'use client';
 
-export const useFormOption = (params?: {
-  defaultValues?: Partial<OptionGet>;
-}) => {
+import { hasLength } from '@mantine/form';
+import { useOptionActions } from '@repo/store';
+import { useFormBase } from '../form';
+import { OptionGet } from '@repo/types';
+import { useState } from 'react';
+import { useStoreOption } from '@repo/store';
+import { useNotification } from '../notification';
+import { Variant } from '@repo/types';
+
+export const useFormOption = (params?: { defaultValues?: Partial<OptionGet> }) => {
   const { optionCreate, optionUpdate } = useOptionActions();
   const [stay, setStay] = useState(false);
   const options = useStoreOption((s) => s.options);
@@ -18,16 +18,11 @@ export const useFormOption = (params?: {
   const { form, submitted, handleSubmit } = useFormBase<Partial<OptionGet>>(
     {
       content: params?.defaultValues?.content || '',
-      question_id: params?.defaultValues?.question_id || '',
-      correct: params?.defaultValues?.correct
-        ? params?.defaultValues?.correct
-        : false,
+      questionId: params?.defaultValues?.questionId || '',
+      correct: params?.defaultValues?.correct ? params?.defaultValues?.correct : false,
     },
     {
-      content: hasLength(
-        { min: 1, max: 2048 },
-        'Between 1 and 2048 characters required'
-      ),
+      content: hasLength({ min: 1, max: 2048 }, 'Between 1 and 2048 characters required'),
     },
     {
       // resetOnSuccess: true,
@@ -39,12 +34,11 @@ export const useFormOption = (params?: {
           ?.filter(
             (oi) =>
               // find all that match current option's content
-              oi.content.toLowerCase() ==
-                rawValues?.content?.trim().toLowerCase() &&
+              oi.content.toLowerCase() == rawValues?.content?.trim().toLowerCase() &&
               // exclude current option
               oi.id != params?.defaultValues?.id &&
               // include only those from current question
-              oi.question_id == params?.defaultValues?.question_id
+              oi.questionId == params?.defaultValues?.questionId,
           )
           .map((sq) => sq.content);
 
@@ -58,7 +52,7 @@ export const useFormOption = (params?: {
           return;
         }
 
-        if (!params?.defaultValues?.updated_at) {
+        if (!params?.defaultValues?.updatedAt) {
           optionCreate(rawValues);
         } else {
           optionUpdate({
@@ -70,7 +64,7 @@ export const useFormOption = (params?: {
         form.reset();
         setStay(false);
       },
-    }
+    },
   );
 
   return {

@@ -1,8 +1,8 @@
-import { API_URL } from '@repo/constants/paths';
+import { getClientApiUrl } from '@repo/constants';
 
 export const textToSpeech = async (params: { text: string }) => {
   try {
-    const response = await fetch(`${API_URL}/tts`, {
+    const response = await fetch(`${getClientApiUrl()}/tts`, {
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

@@ -1,11 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import { PostCreate, PostGet, PostUpdate } from '@repo/types/models/post';
+import { PostCreate, PostGet, PostUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'posts';
@@ -17,11 +10,7 @@ export const postsGet = (params: { apiUrl: string; userId?: string }) => {
 
 let currentController: AbortController | null = null;
 
-export const postsUpdate = async (
-  apiUrl: string,
-  posts: PostGet[],
-  deletedIds?: string[]
-) => {
+export const postsUpdate = async (apiUrl: string, posts: PostGet[], deletedIds?: string[]) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
 
@@ -31,7 +20,7 @@ export const postsUpdate = async (
       'PUT',
       apiUrl,
       { posts, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

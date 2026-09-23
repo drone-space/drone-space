@@ -1,0 +1,51 @@
+.card {
+  background-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9)) !important;
+  color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: 0.25s all ease;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: var(--mantine-shadow-sm);
+  }
+
+  .card:hover .image {
+    transform: scale(1.1);
+  }
+
+  .card:hover .title {
+    color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3)) !important;
+  }
+}
+
+.imageContainer {
+  overflow: hidden;
+}
+
+.image {
+  transition: 0.25s all ease;
+  transform: scale(1.05);
+}
+
+.title {
+  transition: 0.25s all ease;
+  color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
+}
+
+.desc {
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}

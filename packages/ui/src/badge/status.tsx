@@ -1,0 +1,40 @@
+'use client';
+
+import { Badge } from '@mantine/core';
+import { Status as EnumStatus } from '@repo/types';
+import { capitalizeWords } from '@repo/utils';
+import React from 'react';
+
+export function BadgeStatus({ props }: { props: { status: string } }) {
+  let badgeProps = { color: '', label: props.status };
+
+  switch (props.status) {
+    case EnumStatus.ACTIVE:
+      badgeProps = { ...badgeProps, color: 'green' };
+      break;
+    case EnumStatus.INACTIVE:
+      badgeProps = { ...badgeProps, color: 'yellow' };
+      break;
+    case EnumStatus.DRAFT:
+      badgeProps = { ...badgeProps, color: 'dark' };
+      break;
+    case EnumStatus.ABANDONED:
+      badgeProps = { ...badgeProps, color: 'yellow' };
+      break;
+    case EnumStatus.COMPLETE:
+      badgeProps = { ...badgeProps, color: 'blue' };
+      break;
+    case EnumStatus.INTRO:
+      badgeProps = { ...badgeProps, color: 'dark', label: 'Incomplete' };
+      break;
+
+    default:
+      break;
+  }
+
+  return (
+    <Badge color={`${badgeProps.color}`} variant="light">
+      {capitalizeWords(badgeProps.label)}
+    </Badge>
+  );
+}

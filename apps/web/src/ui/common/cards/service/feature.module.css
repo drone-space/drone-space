@@ -1,0 +1,19 @@
+.card {
+  background-color: light-dark(var(--mantine-color-pri-9), var(--mantine-color-pri-9)) !important;
+  color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
+  box-shadow: var(--mantine-shadow-sm);
+  border-radius: var(--mantine-radius-lg);
+  transition: 0.25s all ease;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .card:hover .title {
+    color: light-dark(var(--mantine-color-sec-3), var(--mantine-color-sec-3)) !important;
+  }
+}
+
+.title {
+  transition: 0.25s all ease;
+  color: light-dark(var(--mantine-color-white), var(--mantine-color-white)) !important;
+}

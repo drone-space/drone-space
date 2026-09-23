@@ -1,0 +1,124 @@
+'use client';
+
+import React from 'react';
+import {
+  Menu,
+  MenuDivider,
+  MenuDropdown,
+  MenuItem,
+  MenuTarget,
+  MenuLabel,
+  Stack,
+  Box,
+  MenuProps,
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import { ICON_SIZE, ICON_STROKE_WIDTH, navLinkItems } from '@repo/constants';
+import { PartialUser } from '@repo/ui';
+import classes from './user.module.css';
+import { useStoreSession } from '@repo/store';
+import { AnchorNextLink } from '@repo/ui';
+
+export function MenuUser({ children, ...restProps }: { children: React.ReactNode } & MenuProps) {
+  const { session } = useStoreSession();
+
+  const mobile = useMediaQuery('(max-width: 48em)');
+  const desktop = useMediaQuery('(min-width: 62em)');
+
+  return (
+    <Menu
+      position={'bottom-end'}
+      width={mobile ? 200 : 240}
+      trigger="click-hover"
+      openDelay={50}
+      closeDelay={50}
+      classNames={classes}
+      opened={desktop ? undefined : false}
+      transitionProps={{ transition: 'pop-top-right' }}
+      withArrow
+      arrowOffset={16}
+      disabled={!session}
+      styles={{ dropdown: { overflow: 'hidden', padding: 0 } }}
+      {...restProps}
+    >
+      <MenuTarget>
+        <div className={classes.target}>{children}</div>
+      </MenuTarget>
+
+      <MenuDropdown>
+        <Box p={'md'}>
+          <PartialUser options={{ withoutAvatar: true }} />
+        </Box>
+
+        {/* <MenuDivider mb={0} />
+
+        <MenuLabel>Activity</MenuLabel>
+
+        {navLinkItems.user.activity.map((item) => (
+          <AnchorNextLink href={item.link}>
+            <MenuItem
+              key={item.label}
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={
+                matchesPath(item.link) ? classes.itemActive : classes.item
+              }
+            >
+              {item.label}
+            </MenuItem>
+          </AnchorNextLink>
+        ))} */}
+
+        {/* <MenuDivider mb={0} />
+
+        <MenuLabel>Account</MenuLabel>
+
+        {navLinkItems.user.account.map((item) => (
+          <AnchorNextLink key={item.label} href={item.link}>
+            <MenuItem
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={classes.item}
+            >
+              {item.label}
+            </MenuItem>
+          </AnchorNextLink>
+        ))} */}
+
+        {/* <MenuDivider mb={0} />
+
+        <MenuLabel>Support</MenuLabel>
+
+        {navLinkItems.user.support.map((item) => (
+          <AnchorNextLink key={item.label} href={item.link}>
+            <MenuItem
+              leftSection={
+                <item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              }
+              className={classes.item}
+            >
+              {item.label}
+            </MenuItem>
+          </AnchorNextLink>
+        ))} */}
+
+        <MenuDivider mb={0} />
+
+        {navLinkItems.user.danger.map((item) => (
+          <AnchorNextLink key={item.label} href={item.link}>
+            <MenuItem
+              leftSection={<item.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+              className={classes.itemDanger}
+              color="red"
+              style={{ borderRadius: 0 }}
+            >
+              {item.label}
+            </MenuItem>
+          </AnchorNextLink>
+        ))}
+      </MenuDropdown>
+    </Menu>
+  );
+}

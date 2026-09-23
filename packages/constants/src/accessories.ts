@@ -2,7 +2,7 @@ import { images } from './images';
 
 const baseUrl = `/images`;
 
-const accessories = [
+export const accessories = [
   {
     category: '',
     images: images.products.drones.dji.avata.avata2.accessories.battery,
@@ -366,9 +366,7 @@ const accessories = [
 
   {
     category: '',
-    images: [
-      `${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`,
-    ],
+    images: [`${baseUrl}/products/drones/dji/matrice/matrice350/box/wb37-battery.webp`],
     title: {
       long: 'Intelligent Flight Battery (WB37)',
       short: 'Intelligent Flight Battery (WB37)',
@@ -379,9 +377,7 @@ const accessories = [
 
   {
     category: '',
-    images: [
-      `${baseUrl}/products/drones/dji/agras/t50/box/charging-cable.webp`,
-    ],
+    images: [`${baseUrl}/products/drones/dji/agras/t50/box/charging-cable.webp`],
     title: {
       long: 'T50 Charging Cable',
       short: 'T50 Charging Cable',
@@ -1112,5 +1108,3 @@ const accessories = [
   //   price: null,
   // },
 ];
-
-export default accessories;

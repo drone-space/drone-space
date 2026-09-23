@@ -1,0 +1,29 @@
+.control {
+  transition: 0.25s all ease;
+  background-color: var(--mantine-color-gray-2);
+}
+
+/* Equivalent to Mantine's @include mantine.hover */
+@media (hover: hover) {
+  .control:hover {
+    background-color: var(--mantine-color-gray-1);
+  }
+}
+
+.label {
+  transition: 0.25s all ease;
+  color: var(--mantine-color-pri-9);
+  font-weight: 600;
+}
+
+.icon {
+  transition: 0.25s all ease;
+}
+
+.item {
+}
+
+.content {
+  padding-top: var(--mantine-spacing-md);
+  padding-bottom: var(--mantine-spacing-xl);
+}

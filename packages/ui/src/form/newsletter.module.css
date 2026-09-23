@@ -1,0 +1,14 @@
+@media (min-width: 36em) {
+  .input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    min-width: 320px;
+  }
+}
+
+@media (min-width: 36em) {
+  .button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

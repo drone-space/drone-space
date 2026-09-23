@@ -1,0 +1,47 @@
+'use client';
+
+import React from 'react';
+import { Box, Grid, GridCol, Loader, Stack, Text, ThemeIcon } from '@mantine/core';
+import HeaderAppContent from '@learn/ui/layout/headers/app-content';
+import { CardAttemptStudentView } from '@repo/ui';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
+import { IconX } from '@tabler/icons-react';
+import { useStoreAttempt } from '@repo/store';
+import { useStoreSession } from '@repo/store';
+
+export default function Many() {
+  const attempts = useStoreAttempt((s) => s.attempts);
+  const session = useStoreSession((s) => s.session);
+  const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
+
+  return (
+    <div>
+      <HeaderAppContent />
+
+      <Box mt={'md'}>
+        {attempts === undefined ? (
+          <Stack>
+            <Loader size={'xs'} />
+            <Text inherit c={'dimmed'} fz={'sm'}>
+              Fetching attempts.
+            </Text>
+          </Stack>
+        ) : !userAttempts?.length ? (
+          <Stack>
+            <Text inherit c={'dimmed'} fz={'sm'}>
+              No attempts found. Attempts will appear here when you take quizzes.
+            </Text>
+          </Stack>
+        ) : (
+          <Grid gap={'xl'}>
+            {userAttempts.map((ai) => (
+              <GridCol key={ai.id} span={{ base: 12, sm: 6 }}>
+                <CardAttemptStudentView props={{ attempt: ai }} />
+              </GridCol>
+            ))}
+          </Grid>
+        )}
+      </Box>
+    </div>
+  );
+}

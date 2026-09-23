@@ -1,4 +1,4 @@
-import documents from '@repo/constants/documents';
+import { documents } from '@repo/constants';
 
 export const downloadBrochure = () => {
   try {

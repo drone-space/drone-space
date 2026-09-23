@@ -1,0 +1,26 @@
+import { db } from '@repo/db';
+import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+// export const revalidate = 3600;
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ studentId: string }> },
+) {
+  try {
+    const { studentId } = await params;
+
+    const studentRecord = await db.student.findUnique({
+      where: { id: studentId },
+    });
+
+    return NextResponse.json(
+      { item: studentRecord },
+      { status: 200, statusText: 'Student Retrieved' },
+    );
+  } catch (error) {
+    console.error('---> route handler error (get student):', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}

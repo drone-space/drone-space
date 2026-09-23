@@ -1,0 +1,825 @@
+import React from 'react';
+import {
+  Anchor,
+  Alert,
+  Badge,
+  Box,
+  Button,
+  Card,
+  Center,
+  Divider,
+  Flex,
+  Grid,
+  GridCol,
+  Group,
+  NumberFormatter,
+  Spoiler,
+  Stack,
+  Tabs,
+  TabsList,
+  TabsPanel,
+  TabsTab,
+  Text,
+  ThemeIcon,
+  Title,
+} from '@mantine/core';
+import { LayoutPage } from '@repo/ui';
+import { LayoutSection } from '@repo/ui';
+import { ModalContactShop } from '@repo/ui';
+import CardShopAccessory from '@web/ui/common/cards/shop/accessory';
+import CarouselImage from '@web/ui/common/carousels/image';
+import { typeParams } from '../layout';
+import {
+  IconArrowRightDashed,
+  IconCirclePlus,
+  IconCube,
+  IconCubePlus,
+  IconInfoCircle,
+  IconTruckDelivery,
+} from '@tabler/icons-react';
+import classes from './drone.module.css';
+import { linkify } from '@repo/utils';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
+import { ImageDefault } from '@repo/ui';
+import { LayoutIntroPage } from '@repo/ui';
+import { images } from '@repo/constants';
+import classesBadge from './page.module.css';
+import { products } from '@repo/constants';
+
+export const dynamic = 'force-static';
+// export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  // const { items: productsFetched, error } = await productsGet();
+  const { items: productsFetched }: { items: any } = { items: products };
+
+  // if (error) throw error;
+  if (productsFetched == null) return [];
+
+  return productsFetched.map((p: any) => ({
+    category: p.category,
+    // productId: `${linkify(p.title.long)}-${p.id}`,
+    productId: `${linkify(p.title.long)}`,
+  }));
+}
+
+export default async function DroneDetail({ params }: { params: Promise<typeParams> }) {
+  const id = (await params).productId;
+  const product = products.find((p) => linkify(p.title.long) == id);
+  const kitContents = mergeKitContents(
+    product?.kit?.basic.contents || [],
+    product?.kit?.flyMore?.contents || [],
+  );
+
+  return (
+    <LayoutPage>
+      <LayoutIntroPage
+        props={{
+          path: `${product?.category} Drones`,
+          title: product?.title.long || product?.title.short || 'Drone Shop',
+          bg: images.web.hero.light,
+        }}
+      />
+
+      <LayoutSection id="drone-category-intro" padded bg={'var(--mantine-color-gray-1)'}>
+        <Grid gap={{ base: 32, lg: 64 }}>
+          <GridCol span={{ base: 12, sm: 5.5 }} className={classes.card}>
+            <Box pos={'sticky'} top={64}>
+              {product?.images && <CarouselImage data={product.images} />}
+            </Box>
+          </GridCol>
+
+          <GridCol span={{ sm: 6.5 }}>
+            <Group gap={'xs'} mt={'md'}>
+              {product?.new && <Badge className={classesBadge.badge}>New Arrival</Badge>}
+
+              {product?.available == false && <Badge color="yellow">Currently Unavailable</Badge>}
+
+              {product?.kit?.flyMore?.price?.latter && (
+                <Badge size={'md'} color={'red'}>
+                  On Sale
+                </Badge>
+              )}
+            </Group>
+
+            <Stack gap={'xl'} mt={'md'}>
+              <div>
+                <Flex
+                  direction={{ base: 'column', md: 'row' }}
+                  align={{ md: 'center' }}
+                  gap={{ base: 'xs', md: 'xl' }}
+                  mt={'md'}
+                >
+                  <Text>
+                    Kes.{' '}
+                    <Text
+                      component="span"
+                      inherit
+                      fw={500}
+                      c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+                      fz={{ md: 'xl' }}
+                    >
+                      {product?.price ? (
+                        <NumberFormatter value={product?.price.former} thousandSeparator />
+                      ) : (
+                        'TBD'
+                      )}
+                    </Text>{' '}
+                    {product?.kit?.flyMore && (
+                      <Text component="sup" inherit fz={'xs'}>
+                        (basic kit)
+                      </Text>
+                    )}
+                  </Text>
+                  {product?.price && product?.kit?.flyMore && (
+                    <>
+                      <Divider orientation="vertical" visibleFrom="xs" color="sec.3" />
+
+                      <Text>
+                        Kes.{' '}
+                        <Text
+                          component="span"
+                          inherit
+                          fw={500}
+                          c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+                          fz={{ md: 'xl' }}
+                        >
+                          <NumberFormatter
+                            value={product.price.former + product.kit.flyMore.price.former}
+                            thousandSeparator
+                          />
+                        </Text>{' '}
+                        <Text component="sup" inherit fz={'xs'}>
+                          (fly more kit)
+                        </Text>
+                      </Text>
+                    </>
+                  )}
+                </Flex>
+
+                {product?.additionalCosts && (
+                  <Group gap={5} mt={5} c={'dimmed'} align="start" wrap="nowrap">
+                    <Group mt={4}>
+                      <IconInfoCircle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                    </Group>
+
+                    <Spoiler
+                      maxHeight={0}
+                      showLabel={
+                        <Anchor fz={'sm'} c={'dimmed'} underline="hover" m={0}>
+                          View additional costs
+                        </Anchor>
+                      }
+                      hideLabel={
+                        <Anchor fz={'sm'} c={'dimmed'} underline="hover" m={0}>
+                          Hide
+                        </Anchor>
+                      }
+                    >
+                      <Text inherit fz={'sm'}>
+                        Shipping Cost:{' '}
+                        <Text component="span" inherit fz={'md'}>
+                          Kes.{' '}
+                          <Text component="span" inherit fw={500}>
+                            <NumberFormatter
+                              value={product.additionalCosts.shipping}
+                              thousandSeparator
+                            />
+                          </Text>
+                        </Text>
+                      </Text>
+                    </Spoiler>
+                  </Group>
+                )}
+              </div>
+
+              <div>
+                <Text fz={'sm'}>
+                  Import Permits:{' '}
+                  <Text component="span" inherit fw={500}>
+                    Kes.{' '}
+                    <Text component="span" inherit tt={'uppercase'}>
+                      3,000
+                    </Text>{' '}
+                    <Text component="sup" inherit fz={'xs'}>
+                      (included in price)
+                    </Text>
+                  </Text>
+                </Text>
+
+                <Text fz={'sm'} mt={'xs'}>
+                  Facilitiation Fee:{' '}
+                  <Text component="span" inherit fw={500}>
+                    Kes.{' '}
+                    <Text component="span" inherit tt={'uppercase'}>
+                      18,000
+                    </Text>{' '}
+                    <Text component="sup" inherit fz={'xs'}>
+                      (included in price)
+                    </Text>
+                  </Text>
+                </Text>
+              </div>
+
+              <div>
+                {!product?.model && (
+                  <Text mt={'xs'}>
+                    Vendor:{' '}
+                    <Text component="span" inherit fw={500} tt={'uppercase'}>
+                      {product?.brand}
+                    </Text>
+                  </Text>
+                )}
+
+                <Text mt={'xs'}>
+                  Make:{' '}
+                  <Text component="span" inherit fw={500} tt={'capitalize'}>
+                    {product?.make}
+                  </Text>
+                </Text>
+
+                {product?.model && (
+                  <Text mt={'xs'}>
+                    Model:{' '}
+                    <Text component="span" inherit fw={500} tt={'capitalize'}>
+                      {product?.model}
+                    </Text>
+                  </Text>
+                )}
+              </div>
+            </Stack>
+
+            {product?.specs.desc && (
+              <>
+                <Divider mt={'xl'} />
+
+                <Text mt={'xl'} fz={'sm'}>
+                  {product?.specs.desc}
+                </Text>
+              </>
+            )}
+
+            {product?.iframe && (
+              <Box mt={'xl'}>
+                <iframe
+                  width="100%"
+                  height="400"
+                  src={product.iframe.src}
+                  title={product.iframe.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  style={{
+                    borderWidth: 0,
+                    borderRadius: 'var(--mantine-radius-lg)',
+                    overflow: 'hidden',
+                  }}
+                ></iframe>
+              </Box>
+            )}
+
+            <Divider
+              label={
+                <Text
+                  component="span"
+                  inherit
+                  c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+                >
+                  Specification Overview
+                </Text>
+              }
+              labelPosition="left"
+              mt={'xl'}
+            />
+
+            {typeof product?.specs.intro == 'string' ? (
+              <Text my={'xl'}>{product.specs.intro}</Text>
+            ) : (
+              <Grid my={'xl'}>
+                {product?.specs.intro &&
+                  product?.specs.intro.map((spec, index) => (
+                    <GridCol key={index} span={{ base: 12 }}>
+                      <Group gap={'xs'}>
+                        <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} color="sec.3" c={'pri.9'}>
+                          <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+                        </ThemeIcon>
+
+                        <Text fz={{ base: 'xs', lg: 'sm' }}>{spec}</Text>
+                      </Group>
+                    </GridCol>
+                  ))}
+              </Grid>
+            )}
+          </GridCol>
+        </Grid>
+
+        <Group justify="center" mt={SECTION_SPACING / 2}>
+          <ModalContactShop
+            props={{
+              initialValues: {
+                subject: `${product?.title.short} Drone Purchase Inquiry`,
+                message: `I'd like to order the ${product?.title.long}.`,
+              },
+            }}
+          >
+            <Button
+              miw={{ base: 240, sm: 480 }}
+              color="pri"
+              // variant="light"
+              leftSection={<IconTruckDelivery size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+            >
+              Order the {product?.title.short ? product.title.short : product?.title.long}
+            </Button>
+          </ModalContactShop>
+        </Group>
+      </LayoutSection>
+
+      <LayoutSection id="drone-category-specs" padded shadowed>
+        <Tabs defaultValue={product?.kit?.basic ? 'basic' : 'other'}>
+          <TabsList fw={500}>
+            <Grid gap={0} w={'100%'}>
+              {product?.kit?.basic && (
+                <GridCol
+                  span={{
+                    base: 6,
+                    xs: product?.kit?.flyMore || product?.accessories?.other ? 6 : 12,
+                  }}
+                >
+                  <TabsTab w={'100%'} value="basic">
+                    <Stack align="center">
+                      <IconCube
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                      />
+
+                      {product.kit.flyMore ? 'Basic Kit' : 'In the box'}
+                    </Stack>
+                  </TabsTab>
+                </GridCol>
+              )}
+
+              {product?.kit?.flyMore && (
+                <GridCol span={{ base: 6, xs: 6 }}>
+                  <TabsTab w={'100%'} value="flyMore">
+                    <Stack align="center">
+                      <IconCubePlus
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                      />
+
+                      <span>Fly More Kit</span>
+                    </Stack>
+                  </TabsTab>
+                </GridCol>
+              )}
+
+              {/* {product?.accessories?.battery && (
+                <GridCol span={{ base: 6 }}>
+                  <TabsTab
+                    w={'100%'}
+                    value="battery"
+                      >
+                      <Group align="center">
+                      <IconBattery3
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                      />
+
+                    <span>
+                    Intelligent Battery
+                    </span>
+                    </Group>
+                  </TabsTab>
+                </GridCol>
+              )} */}
+
+              {product?.accessories?.other && (
+                <GridCol
+                  span={{
+                    base: product?.kit?.flyMore ? 12 : 6,
+                    xs: 6,
+                  }}
+                >
+                  <TabsTab w={'100%'} value="other">
+                    <Stack align="center">
+                      <IconCubePlus
+                        size={ICON_SIZE}
+                        stroke={ICON_STROKE_WIDTH}
+                        color="light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))"
+                      />
+
+                      <span>Accessories (Extras)</span>
+                    </Stack>
+                  </TabsTab>
+                </GridCol>
+              )}
+            </Grid>
+          </TabsList>
+
+          {product?.kit?.basic && (
+            <TabsPanel value="basic">
+              <LayoutSection
+                id="drone-category-specs-contents"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
+                <Grid>
+                  <GridCol span={{ base: 12, md: 6 }} order={{ base: 3, md: 1 }}>
+                    <Grid>
+                      {product?.kit.basic.contents.map((item, index) => (
+                        <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
+                          <Card withBorder bg={'var(--mantine-color-body)'} padding={0}>
+                            <ImageDefault
+                              src={item.image}
+                              alt={item.item}
+                              loading="lazy"
+                              height={{
+                                base: 120,
+                                xs: 240,
+                                sm: 160,
+                                md: 180,
+                              }}
+                            />
+                          </Card>
+
+                          <Text fz={{ md: 'xs', lg: 'sm' }} ta={'center'} mt={'md'}>
+                            <Text component="span" inherit fw={500}>
+                              x{item.qty}
+                            </Text>{' '}
+                            - {item.item}
+                          </Text>
+                        </GridCol>
+                      ))}
+                    </Grid>
+                  </GridCol>
+
+                  <GridCol span={{ md: 1 }} order={2} visibleFrom="md">
+                    <Center h={'100%'}>
+                      <Divider orientation="vertical" />
+                    </Center>
+                  </GridCol>
+
+                  <GridCol span={12} order={2} hiddenFrom="md">
+                    <Divider my={'xl'} />
+                  </GridCol>
+
+                  <GridCol span={{ base: 12, md: 5 }} order={{ base: 1, md: 3 }}>
+                    {product?.kit?.basic.image === null ? null : (
+                      <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
+                        <ImageDefault
+                          src={
+                            product?.kit?.basic.image
+                              ? product?.kit.basic.image
+                              : product?.images[0] || ''
+                          }
+                          alt={`${product.title.long || ''} box contents`}
+                          fit={'contain'}
+                          loading="lazy"
+                          height={{ base: 320, xs: 400, md: 320, lg: 360 }}
+                        />
+                      </Card>
+                    )}
+
+                    <Box pos={'sticky'} top={64}>
+                      <Title order={3} fz={{ md: 'xl' }}>
+                        {product?.title.short}{' '}
+                        {product?.kit?.flyMore ? 'Basic Kit' : 'Box Contents'}
+                      </Title>
+
+                      <Grid gap={'xs'} mt={'xl'}>
+                        {product?.kit.basic.contents.map((item, index) => (
+                          <GridCol key={index} span={{ md: 12 }}>
+                            <Text fz={{ md: 'sm' }}>
+                              <Text component="span" inherit fw={500}>
+                                x{item.qty}
+                              </Text>{' '}
+                              - {item.item}
+                            </Text>
+                          </GridCol>
+                        ))}
+
+                        {product.kit.basic.otherContents &&
+                          product.kit.basic.otherContents.map((oi) => (
+                            <GridCol key={oi} span={{ md: 12 }}>
+                              <Text fz={{ md: 'sm' }}>{oi}</Text>
+                            </GridCol>
+                          ))}
+                      </Grid>
+
+                      <Text mt={'xl'}>
+                        Kes.{' '}
+                        <Text
+                          component="span"
+                          inherit
+                          fw={500}
+                          c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+                          fz={{ md: 'xl' }}
+                        >
+                          {product.price ? (
+                            <NumberFormatter value={product.price.former} thousandSeparator />
+                          ) : (
+                            'TBD'
+                          )}
+                        </Text>
+                      </Text>
+
+                      {product?.additionalCosts && (
+                        <Group gap={5} mt={5} c={'dimmed'} align="start" wrap="nowrap">
+                          <Group mt={2}>
+                            <IconInfoCircle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                          </Group>
+
+                          <Text inherit fz={'sm'}>
+                            <Text component="span" inherit fw={500}>
+                              Additional Costs:
+                            </Text>
+                            <br />
+                            Shipping Cost:{' '}
+                            <Text component="span" inherit fz={'md'}>
+                              Kes.{' '}
+                              <Text component="span" inherit fw={500}>
+                                <NumberFormatter
+                                  value={product.additionalCosts.shipping}
+                                  thousandSeparator
+                                />
+                              </Text>
+                            </Text>
+                          </Text>
+                        </Group>
+                      )}
+                    </Box>
+                  </GridCol>
+                </Grid>
+              </LayoutSection>
+            </TabsPanel>
+          )}
+
+          {product?.kit?.flyMore && (
+            <TabsPanel value="flyMore">
+              <LayoutSection
+                id="drone-category-specs-flymore"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
+                <Grid>
+                  <GridCol span={{ base: 12, md: 6 }} order={{ base: 3, md: 1 }}>
+                    <Grid>
+                      {kitContents.map((item, index) => (
+                        <GridCol key={index} span={{ base: 6, sm: 4, md: 4 }}>
+                          <Card withBorder bg={'var(--mantine-color-body)'}>
+                            <ImageDefault
+                              src={item.image}
+                              alt={item.item}
+                              loading="lazy"
+                              height={{
+                                base: 120,
+                                xs: 240,
+                                sm: 160,
+                                md: 120,
+                                lg: 160,
+                              }}
+                            />
+                          </Card>
+
+                          <Text fz={{ md: 'xs', lg: 'sm' }} ta={'center'} mt={'xl'}>
+                            <Text component="span" inherit fw={500}>
+                              x{item.qty}
+                            </Text>{' '}
+                            - {item.item}
+                          </Text>
+                        </GridCol>
+                      ))}
+                    </Grid>
+                  </GridCol>
+
+                  <GridCol span={{ md: 1 }} order={2} visibleFrom="md">
+                    <Center h={'100%'}>
+                      <Divider orientation="vertical" />
+                    </Center>
+                  </GridCol>
+
+                  <GridCol span={12} order={2} hiddenFrom="md">
+                    <Divider my={'xl'} />
+                  </GridCol>
+
+                  <GridCol span={{ base: 12, md: 5 }} order={{ base: 1, md: 3 }}>
+                    <Card withBorder bg={'var(--mantine-color-body)'} mb={64}>
+                      <ImageDefault
+                        src={
+                          product?.kit?.flyMore.image
+                            ? product?.kit.flyMore.image
+                            : product?.images[0] || ''
+                        }
+                        alt={'Specs'}
+                        loading="lazy"
+                        height={{ base: 320, xs: 400, md: 320, lg: 360 }}
+                      />
+                    </Card>
+
+                    <Box pos={'sticky'} top={64}>
+                      <Title order={3} fz={{ md: 'xl' }}>
+                        {product?.title.short} Fly More Kit
+                      </Title>
+
+                      <Grid mt={'xl'} gap={'xs'}>
+                        {kitContents.map((item, index) => (
+                          <GridCol key={index} span={{ md: 12 }}>
+                            <Text fz={{ md: 'sm' }}>
+                              <Text component="span" inherit fw={500}>
+                                x{item.qty}
+                              </Text>{' '}
+                              - {item.item}
+                            </Text>
+                          </GridCol>
+                        ))}
+                      </Grid>
+
+                      {product.price && (
+                        <Text inherit mt={'xl'}>
+                          Kes.{' '}
+                          <Text
+                            component="span"
+                            inherit
+                            fw={500}
+                            c={'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'}
+                            fz={{ md: 'xl' }}
+                          >
+                            <NumberFormatter
+                              value={
+                                product.price.former +
+                                (product.kit.flyMore.price.latter ||
+                                  product.kit.flyMore.price.former)
+                              }
+                              thousandSeparator
+                            />
+                          </Text>{' '}
+                          {product.kit.flyMore.price.latter && (
+                            <>
+                              <Text component="sup" inherit fz={'sm'} td={'line-through'}>
+                                <NumberFormatter
+                                  value={product.price.former + product.kit.flyMore.price.former}
+                                  thousandSeparator
+                                />{' '}
+                              </Text>{' '}
+                              <Text component="span" inherit fz={'sm'} c={'green'} fw={500}>
+                                (
+                                {
+                                  // calculate % discount
+                                  (
+                                    (1 -
+                                      (product.price.former + product.kit.flyMore.price.latter) /
+                                        (product.price.former + product.kit.flyMore.price.former)) *
+                                    100
+                                  ).toFixed(1)
+                                }
+                                % off )
+                              </Text>
+                            </>
+                          )}
+                        </Text>
+                      )}
+                    </Box>
+                  </GridCol>
+                </Grid>
+              </LayoutSection>
+            </TabsPanel>
+          )}
+
+          {/* {product?.accessories?.battery && (
+            <TabsPanel value="battery">
+              <LayoutSection
+                id="drone-category-specs-battery"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
+                <Grid>
+                  <GridCol span={{ md: 5 }}>
+                    <CarouselImage data={product.accessories.battery.images} />
+                  </GridCol>
+
+                  <GridCol span={{ md: 1 }}>
+                    <Center h={'100%'}>
+                      <Divider orientation="vertical" />
+                    </Center>
+                  </GridCol>
+
+                  <GridCol span={{ md: 6 }}>
+                    <Title order={3} fz={{ md: 'xl' }}>
+                      {product?.title.short} Intelligent Flight Battery
+                    </Title>
+
+                    <Grid mt={'xl'} gap={'xs'}>
+                      {product?.accessories?.battery?.specs.map(
+                        (item, index) => (
+                          <GridCol key={index} span={{ md: 12 }}>
+                            <Group gap={'xs'}>
+                              <ThemeIcon
+                                size={ICON_WRAPPER_SIZE / 1.5}
+                                color="sec.3"
+                                c={'pri.9'}
+                                visibleFrom="xs"
+                              >
+                                <IconArrowRightDashed
+                                  size={ICON_SIZE / 1.5}
+                                  stroke={ICON_STROKE_WIDTH}
+                                />
+                              </ThemeIcon>
+
+                              <Text fz={{ md: 'sm' }}>
+                                <Text component="span" inherit fw={500}>
+                                  {item.label}
+                                </Text>
+                                : {item.desc}
+                              </Text>
+                            </Group>
+                          </GridCol>
+                        )
+                      )}
+                    </Grid>
+
+                    <Text mt={'xl'}>
+                      Kes.{' '}
+                      <Text
+                        component="span"
+                        inherit
+                        fw={500}
+                        c={
+                          'light-dark(var(--mantine-color-pri-9),var(--mantine-color-pri-9))'
+                        }
+                        fz={{ md: 'xl' }}
+                      >
+                        {product?.accessories.battery.price?.former ? (
+                          <NumberFormatter
+                            value={product.accessories.battery.price.former}
+                            thousandSeparator
+                          />
+                        ) : (
+                          'TBD'
+                        )}
+                      </Text>
+                    </Text>
+                  </GridCol>
+                </Grid>
+              </LayoutSection>
+            </TabsPanel>
+          )} */}
+
+          {product?.accessories?.other && (
+            <TabsPanel value="other">
+              <LayoutSection
+                id="drone-category-specs-other"
+                mt={SECTION_SPACING / 2}
+                containerized={false}
+              >
+                <Alert
+                  variant="light"
+                  color="blue"
+                  title="Note"
+                  icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+                >
+                  The following accessories/extras are not included in the {product.title.short} box
+                  by default. They come separately and are therefore{' '}
+                  <Text component={'span'} inherit fw={500}>
+                    charged separately
+                  </Text>
+                  . The prices for each are incuded below.
+                </Alert>
+
+                <Grid mt={'xl'}>
+                  {product.accessories.other.map((accessory, index) => (
+                    <GridCol key={index} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
+                      {accessory && <CardShopAccessory data={accessory} />}
+                    </GridCol>
+                  ))}
+                </Grid>
+              </LayoutSection>
+            </TabsPanel>
+          )}
+        </Tabs>
+      </LayoutSection>
+    </LayoutPage>
+  );
+}
+
+function mergeKitContents(basicContents: any[], flyMoreContents: any[]) {
+  const mergedMap = new Map();
+
+  const allContents = basicContents.concat(flyMoreContents);
+
+  allContents.forEach(({ qty, item, image }) => {
+    if (mergedMap.has(item)) {
+      const existing = mergedMap.get(item);
+      mergedMap.set(item, {
+        ...existing,
+        qty: existing.qty + qty,
+      });
+    } else {
+      mergedMap.set(item, { qty, item, image });
+    }
+  });
+
+  return Array.from(mergedMap.values());
+}

@@ -1,15 +1,4 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
-import {
-  OptionCreate,
-  OptionGet,
-  OptionUpdate,
-} from '@repo/types/models/option';
+import { OptionCreate, OptionGet, OptionUpdate } from '@repo/types';
 import { apiCall } from './fetch';
 
 const segment = 'options';
@@ -24,7 +13,7 @@ let currentController: AbortController | null = null;
 export const optionsUpdate = async (
   apiUrl: string,
   options: OptionGet[],
-  deletedIds?: string[]
+  deletedIds?: string[],
 ) => {
   if (currentController) currentController.abort();
   currentController = new AbortController();
@@ -35,7 +24,7 @@ export const optionsUpdate = async (
       'PUT',
       apiUrl,
       { options, deletedIds },
-      currentController.signal
+      currentController.signal,
     );
   } finally {
     currentController = null;

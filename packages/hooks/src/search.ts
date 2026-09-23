@@ -1,5 +1,7 @@
-import { Order } from '@repo/types/enums';
-import { sortArray } from '@repo/utilities/array';
+"use client";
+
+import { Order } from '@repo/types';
+import { sortArray } from '@repo/utils';
 
 export const useSearchCriteria = (params: {
   searchValue: string;
@@ -14,7 +16,7 @@ export const useSearchCriteria = (params: {
 
     const searchTerm = searchValue.trim().toLowerCase();
 
-    const notesSorted = sortArray(list, (i) => i.created_at, Order.DESCENDING);
+    const notesSorted = sortArray(list, (i) => i.createdAt, Order.DESCENDING);
 
     const listFiltered = notesSorted
       ?.filter((n) => n.title.toLowerCase().includes(searchTerm))

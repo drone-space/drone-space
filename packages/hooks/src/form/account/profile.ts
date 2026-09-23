@@ -6,15 +6,15 @@
  */
 
 import { hasLength } from '@mantine/form';
-import { capitalizeWords, segmentFullName } from '@repo/utilities/string';
-import { createClient } from '@repo/libraries/supabase/client';
-import { profileUpdate } from '@repo/handlers/requests/database/profiles';
+import { capitalizeWords, segmentFullName } from '@repo/utils';
+import { createClientcloudbaseClient } from '@repo/cloudbase';
+import { profileUpdate } from '@repo/handlers';
 import { useFormBase } from '../../form';
-import { useStoreSession } from '@repo/libraries/zustand/stores/session';
-import { API_URL } from '@repo/constants/paths';
+import { useStoreSession } from '@repo/store';
+import { getClientApiUrl } from '@repo/constants';
 
 export const useFormUserProfile = () => {
-  const supabase = createClient();
+  const supabase = createClientcloudbaseClient();
 
   const session = useStoreSession((s) => s.session);
   const setSession = useStoreSession((s) => s.setSession);
@@ -46,12 +46,10 @@ export const useFormUserProfile = () => {
           userName: rawValues.user_name.trim(),
         };
 
-        const response = await profileUpdate(API_URL, {
+        const response = await profileUpdate(getClientApiUrl(), {
           customized: true,
           id: session.id,
-          first_name: cleanValues.firstName,
-          last_name: cleanValues.lastName,
-          user_name: cleanValues.userName,
+          ...cleanValues,
         });
 
         if (!response) throw new Error('No response from server');
@@ -88,7 +86,7 @@ export const useFormUserProfile = () => {
       onError: (error) => {
         console.error('Profile update error:', error);
       },
-    }
+    },
   );
 
   return { form, submitted, handleSubmit, session };

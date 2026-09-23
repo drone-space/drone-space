@@ -1,0 +1,14 @@
+.header {
+}
+
+.link {
+  color: var(--mantine-color-white);
+  transition: 0.25s all ease;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .link:hover {
+    color: var(--mantine-color-sec-3);
+  }
+}

@@ -1,20 +1,15 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
+'use client';
 
-import { Variant } from '@repo/types/enums';
-import { validators } from '@repo/utilities/validation';
-import { contactAdd } from '@repo/handlers/requests/contact';
+import { Variant } from '@repo/types';
+import { validators } from '@repo/utils';
+import { contactAdd } from '@repo/handlers';
 import { useFormBase } from '../form';
-import { useNotification } from '@repo/hooks/notification';
+import { useNotification } from '@repo/hooks';
 import { hasLength } from '@mantine/form';
-import { alumniChallengeSubmit } from '@repo/handlers/requests/alumni';
-import { AlumniChallengerGet } from '@repo/types/models/alumni-challenger';
-import { generateUUID } from '@repo/utilities/generators';
-import { Status, SyncStatus } from '@repo/types/models/enums';
+import { alumniChallengeSubmit } from '@repo/handlers';
+import { AlumniChallengerGet } from '@repo/types';
+import { generateUUID } from '@repo/utils';
+import { Status, SyncStatus } from '@repo/types';
 import { useRouter } from 'next/navigation';
 
 export type FormValues = {
@@ -34,9 +29,7 @@ export const useFormAlumni = (params: {
 
   const router = useRouter();
 
-  const { form, submitted, handleSubmit } = useFormBase<
-    Partial<AlumniChallengerGet>
-  >(
+  const { form, submitted, handleSubmit } = useFormBase<Partial<AlumniChallengerGet>>(
     { srpl: '', fname: '', lname: '', email: '', phone: '' },
     {
       srpl: (value) =>
@@ -61,12 +54,12 @@ export const useFormAlumni = (params: {
           lname: (rawValues.lname || '').trim().toLowerCase(),
           email: (rawValues.email || '').trim().toLowerCase(),
           phone: (rawValues.phone || '').trim().toLowerCase(),
-          created_at: new Date(rawValues.created_at || now),
-          updated_at: new Date(rawValues.updated_at || now),
-          answer_option: params.answerOption,
+          createdAt: new Date(rawValues.createdAt || now),
+          updatedAt: new Date(rawValues.updatedAt || now),
+          answerOption: params.answerOption,
 
           status: Status.ACTIVE,
-          sync_status: SyncStatus.SYNCED,
+          syncStatus: SyncStatus.SYNCED,
         };
 
         const response = await alumniChallengeSubmit(cleanValues);
@@ -99,7 +92,7 @@ export const useFormAlumni = (params: {
       onError: (error) => {
         console.error('Submission error:', error);
       },
-    }
+    },
   );
 
   return { form, submitted, handleSubmit };

@@ -1,4 +1,4 @@
-import { Prisma, Question } from '@repo/db/generated/prisma/client.js';
+import { Prisma, Question } from '@repo/db';
 
 // Type for creating a item (without id and relations)
 export type QuestionCreate = Prisma.QuestionCreateInput;

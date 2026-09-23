@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useMemo, useRef } from 'react';
 
 const BAR_COUNT = 31;
@@ -9,10 +11,7 @@ export const useVisualizer = (params: {
   const barsRef = useRef<HTMLDivElement[]>([]);
 
   const noise = useMemo(() => {
-    return Array.from(
-      { length: params.bars || BAR_COUNT },
-      () => Math.random() * 2 * Math.PI
-    );
+    return Array.from({ length: params.bars || BAR_COUNT }, () => Math.random() * 2 * Math.PI);
   }, []);
 
   useEffect(() => {
@@ -22,8 +21,7 @@ export const useVisualizer = (params: {
       const volume = params.volumeRef.current;
 
       barsRef.current.forEach((bar, i) => {
-        const scale =
-          0.3 + volume * 1.5 + Math.sin(volume * 10 + noise[i]) * 0.5;
+        const scale = 0.3 + volume * 1.5 + Math.sin(volume * 10 + (noise[i] ?? 0)) * 0.5;
 
         const height = `${Math.max(20, scale * 100)}%`;
         bar.style.height = height;

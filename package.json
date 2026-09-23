@@ -1,20 +1,43 @@
 {
-  "name": "next-mono",
+  "name": "repo-root",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "format": "prettier --write .",
-    "check-format": "prettier --check .",
     "lint": "turbo run lint",
-    "check-types": "turbo run check-types"
+    "check-types": "turbo run check-types",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @repo/db generate",
+    "db:migrate:dev": "pnpm --filter @repo/db migrate:dev",
+    "db:migrate:deploy": "pnpm --filter @repo/db migrate:deploy",
+    "db:push": "pnpm --filter @repo/db push",
+    "db:studio": "pnpm --filter @repo/db studio",
+    "db:seed": "pnpm --filter @repo/db seed",
+    "api:dev": "pnpm --filter api dev",
+    "api:build": "pnpm --filter api build",
+    "api:start": "pnpm --filter api start",
+    "api:lint": "pnpm --filter api lint",
+    "api:check-types": "pnpm --filter api check-types",
+    "web:dev": "pnpm --filter web dev",
+    "web:build": "pnpm --filter web build",
+    "web:start": "pnpm --filter web start",
+    "web:lint": "pnpm --filter web lint",
+    "web:check-types": "pnpm --filter web check-types",
+    "learn:dev": "pnpm --filter learn dev",
+    "learn:build": "pnpm --filter learn build",
+    "learn:start": "pnpm --filter learn start",
+    "learn:lint": "pnpm --filter learn lint",
+    "learn:check-types": "pnpm --filter learn check-types"
   },
   "devDependencies": {
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.8",
-    "typescript": "5.9.2"
+    "turbo": "^2.1.3",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@9.12.0",
   "engines": {
     "node": ">=18"
   }

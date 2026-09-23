@@ -1,15 +1,7 @@
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
+import { getClientApiUrl, HEADERS } from '@repo/constants';
+import { FormValuesInquiry } from '@repo/types';
 
-import { API_URL } from '@repo/constants/paths';
-import { HEADERS } from '@repo/constants/other';
-import { FormValuesInquiry } from '@repo/types/form';
-
-const baseRequestUrl = `${API_URL}/inquiry`;
+const baseRequestUrl = `${getClientApiUrl()}/inquiry`;
 
 export const handleInquiry = async (formData: FormValuesInquiry) => {
   try {

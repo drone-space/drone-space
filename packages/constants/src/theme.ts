@@ -1,12 +1,5 @@
 'use client';
 
-/**
- * @template-source next-template
- * @template-sync auto
- * @description This file originates from the base template repository.
- * Do not modify unless you intend to backport changes to the template.
- */
-
 import {
   Anchor,
   Container,
@@ -26,8 +19,8 @@ import {
   Tooltip,
   virtualColor,
 } from '@mantine/core';
-import cx from 'clsx';
 import { ICON_STROKE_WIDTH } from './sizes';
+// import cx from 'clsx';
 
 export type AppThemeProps = {
   theme?: MantineThemeOverride;
@@ -39,19 +32,26 @@ export type AppThemeProps = {
 };
 
 export const getAppTheme = (params?: AppThemeProps) => {
-  const componentContainer = {
-    Container: Container.extend({
-      defaultProps: {
-        mx: 'auto',
-      },
-
-      classNames: (_: unknown, { size }: { size?: unknown }) => ({
-        root: cx({
-          [params?.styleSheets?.container.root]: size === 'responsive',
-        }),
-      }),
+  const componentAnchor = {
+    Anchor: Anchor.extend({
+      defaultProps: { underline: 'never' },
+      // classNames: params?.styleSheets?.anchor,
     }),
   };
+
+  // const componentContainer = {
+  //   Container: Container.extend({
+  //     defaultProps: {
+  //       mx: 'auto',
+  //     },
+
+  //     classNames: (_: unknown, { size }: { size?: unknown }) => ({
+  //       root: cx({
+  //         [params?.styleSheets?.container.root]: size === 'responsive',
+  //       }),
+  //     }),
+  //   }),
+  // };
 
   const componentNotification = {
     Notification: Notification.extend({
@@ -59,27 +59,27 @@ export const getAppTheme = (params?: AppThemeProps) => {
     }),
   };
 
-  const componentModal = {
-    Modal: Modal.extend({
-      classNames: params?.styleSheets?.modal,
-      defaultProps: {
-        transitionProps: {
-          duration: 150,
-          transition: 'fade',
-        },
-        overlayProps: {
-          backgroundOpacity: 0.5,
-          blur: 3,
-        },
-      },
-    }),
-  };
+  // const componentModal = {
+  //   Modal: Modal.extend({
+  //     classNames: params?.styleSheets?.modal,
+  //     defaultProps: {
+  //       transitionProps: {
+  //         duration: 150,
+  //         transition: 'fade',
+  //       },
+  //       overlayProps: {
+  //         backgroundOpacity: 0.5,
+  //         blur: 3,
+  //       },
+  //     },
+  //   }),
+  // };
 
-  const componentsWithStyles = {
-    ...(params?.styleSheets?.container ? componentContainer : {}),
-    ...(params?.styleSheets?.notification ? componentNotification : {}),
-    ...(params?.styleSheets?.modal ? componentModal : {}),
-  };
+  // const componentsWithStyles = {
+  //   ...(params?.styleSheets?.container ? componentContainer : {}),
+  //   ...(params?.styleSheets?.notification ? componentNotification : {}),
+  //   ...(params?.styleSheets?.modal ? componentModal : {}),
+  // };
 
   const baseTheme: MantineThemeOverride = {
     colors: {
@@ -141,17 +141,17 @@ export const getAppTheme = (params?: AppThemeProps) => {
     },
 
     components: {
-      Container: Container.extend({
-        defaultProps: {
-          mx: 'auto',
-        },
+      // Container: Container.extend({
+      //   defaultProps: {
+      //     mx: 'auto',
+      //   },
 
-        classNames: (_: unknown, { size }: { size?: unknown }) => ({
-          root: cx({
-            [params?.styleSheets?.container.root]: size === 'responsive',
-          }),
-        }),
-      }),
+      //   classNames: (_: unknown, { size }: { size?: unknown }) => ({
+      //     root: cx({
+      //       [params?.styleSheets?.container.root]: size === 'responsive',
+      //     }),
+      //   }),
+      // }),
 
       Anchor: Anchor.extend({
         defaultProps: { underline: 'never' },
@@ -233,7 +233,7 @@ export const getAppTheme = (params?: AppThemeProps) => {
         },
       }),
 
-      ...componentsWithStyles,
+      // ...componentsWithStyles,
     },
   };
 

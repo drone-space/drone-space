@@ -1,22 +1,21 @@
+'use client';
+
 import { useState } from 'react';
 import { useForm, UseFormReturnType } from '@mantine/form';
-import { getClaudeResponse } from '@repo/handlers/requests/ai';
-import { useNotification } from '@repo/hooks/notification';
-import { LOCAL_STORAGE_NAME } from '@repo/constants/names';
+import { getClaudeResponse } from '@repo/handlers';
+import { useNotification } from '@repo/hooks';
+import { LOCAL_STORAGE_NAME } from '@repo/constants';
 import { useNetwork } from '@mantine/hooks';
-import { saveToLocalStorage } from '@repo/utilities/storage';
-import { Variant } from '@repo/types/enums';
-import { parseSSEStream } from '@repo/libraries/wrappers/text';
-import { useStoreConversation } from '@repo/libraries/zustand/stores/conversation';
+import { saveToLocalStorage } from '@repo/utils';
+import { Variant } from '@repo/types';
+import { parseSSEStream } from '@repo/utils';
+import { useStoreConversation } from '@repo/store';
 
-export type FormAIType = UseFormReturnType<
-  { content: string },
-  (values: { content: string }) => { content: string }
->;
+export type FormAIValues = { content: string };
 
-export const useFormAi = (params?: {
-  defaultValues?: Partial<FormAIType['values']>;
-}) => {
+export type FormAIType = UseFormReturnType<FormAIValues, (values: FormAIValues) => FormAIValues>;
+
+export const useFormAi = (params?: { defaultValues?: Partial<FormAIType['values']> }) => {
   const [submitted, setSubmitted] = useState(false);
   const { conversation, setConversation } = useStoreConversation();
   const networkStatus = useNetwork();
@@ -46,10 +45,7 @@ export const useFormAi = (params?: {
     let content = parseValues();
 
     if (submitedValue) {
-      content =
-        typeof submitedValue === 'string'
-          ? submitedValue
-          : submitedValue?.content;
+      content = typeof submitedValue === 'string' ? submitedValue : submitedValue?.content;
     }
 
     // Always sync the form for consistency
@@ -86,7 +82,7 @@ export const useFormAi = (params?: {
           saveToLocalStorage(LOCAL_STORAGE_NAME.AI, updatedConversation);
           setLiveReply(''); // clear temporary once persisted
           form.reset();
-        }
+        },
       );
 
       return assistantReply;

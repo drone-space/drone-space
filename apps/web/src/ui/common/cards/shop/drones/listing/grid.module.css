@@ -1,0 +1,61 @@
+.card {
+  height: 100%;
+  border-width: 2px !important;
+}
+
+/* Replicates Mantine's hover mixin */
+@media (hover: hover) {
+  .card:hover .image {
+    transform: scale(1.05);
+  }
+
+  .card:hover .overlayContent {
+    opacity: 0;
+  }
+}
+
+.pulse {
+  border-color: var(--mantine-color-pri-9);
+  animation: borderPulse 3s infinite ease-in-out;
+}
+
+@keyframes borderPulse {
+  0%,
+  100% {
+    border-color: var(--mantine-color-sec-3);
+  }
+  50% {
+    border-color: var(--mantine-color-pri-9);
+  }
+}
+
+.imageSection {
+  background-color: var(--mantine-color-white);
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--mantine-spacing-md);
+  overflow: hidden;
+}
+
+.overlayContent {
+  transition: 0.25s all ease;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.imageContainer {
+  overflow: hidden;
+  max-height: 240px;
+}
+
+.image {
+  transition: 0.25s all ease;
+  transform: scale(0.95);
+}

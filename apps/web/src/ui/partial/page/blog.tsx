@@ -16,17 +16,17 @@ import {
   ThemeIcon,
 } from '@mantine/core';
 import { sortArray } from '@repo/utils';
-import { Order } from '@repo/types';
+import { Order, PostGet } from '@repo/types';
 import CardBlogMain from '@web/ui/common/cards/blog/main';
 import { IconCircleX } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { usePaginate } from '@repo/hooks';
 import { prependZeros } from '@repo/utils';
 import { useRouter } from 'next/navigation';
+import { postsGet } from '@repo/handlers';
 
-export default function Blog() {
+export default function Blog({ posts }: { posts: PostGet[] }) {
   const router = useRouter();
-  const { posts } = useStorePost();
 
   const { items, activePage, setActivePage, totalPages, pageRange } = usePaginate(
     sortArray(posts || [], (i) => i.createdAt, Order.DESCENDING),

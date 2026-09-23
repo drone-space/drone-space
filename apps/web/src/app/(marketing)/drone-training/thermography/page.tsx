@@ -33,6 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: course?.title,
     description: course?.linkDesc,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: course?.title,
       description: course?.linkDesc,

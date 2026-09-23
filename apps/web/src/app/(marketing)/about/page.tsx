@@ -3,13 +3,11 @@ import { Metadata } from 'next';
 import { LayoutPage } from '@repo/ui';
 import { LayoutSection } from '@repo/ui';
 import { Anchor, AspectRatio, Divider, Flex, Grid, GridCol, Text } from '@mantine/core';
-import { getBaseUrl, images } from '@repo/constants';
-import { videos } from '@repo/constants';
+import { getApiUrl, getBaseUrl, images } from '@repo/constants';
 import CardStat from '@web/ui/common/cards/stat';
 import stats from '@web/data/stats';
 import { SECTION_SPACING } from '@repo/constants';
 import CarouselTestimonials from '@web/ui/common/carousels/testimonials';
-import { shuffleArray } from '@repo/utils';
 import { LayoutIntroSection } from '@repo/ui';
 import { ImageDefault } from '@repo/ui';
 import TabSpacesHub from '@web/ui/common/tabs/spaces-hub';
@@ -34,6 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metaTitle,
     description: metaDesc,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: metaTitle,
       description: metaDesc,
@@ -52,6 +51,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function About() {
+  const { items }: { items: StudentGet[] } = await studentsGet({ apiUrl: await getApiUrl() });
+
   return (
     <LayoutPage>
       <LayoutIntroPage
@@ -287,7 +288,7 @@ export default async function About() {
           options={{ spacing: true }}
         />
 
-        <CarouselTestimonials />
+        <CarouselTestimonials students={items} />
       </LayoutSection>
       <CtaMain />
     </LayoutPage>

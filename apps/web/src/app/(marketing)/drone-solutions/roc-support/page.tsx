@@ -38,6 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: service?.metaTitle,
     description: service?.linkDesc,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: service?.metaTitle,
       description: service?.linkDesc,

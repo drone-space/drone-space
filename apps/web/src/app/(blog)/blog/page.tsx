@@ -1,9 +1,11 @@
 import React from 'react';
 import { LayoutPage } from '@repo/ui';
 import { Metadata } from 'next';
-import { getBaseUrl, images } from '@repo/constants';
+import { getApiUrl, getBaseUrl, images } from '@repo/constants';
 import { APP_NAME, COMPANY_NAME } from '@repo/constants';
 import PartialPageBlog from '@web/ui/partial/page/blog';
+import { PostGet } from '@repo/types';
+import { postsGet } from '@repo/handlers';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -17,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metaTitle,
     description: metaDesc,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: metaTitle,
       description: metaDesc,
@@ -35,9 +38,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Blog() {
+  const { items }: { items: PostGet[] } = await postsGet({ apiUrl: await getApiUrl() });
+
   return (
     <LayoutPage>
-      <PartialPageBlog />
+      <PartialPageBlog posts={items} />
     </LayoutPage>
   );
 }

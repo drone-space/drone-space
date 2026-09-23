@@ -1,26 +1,29 @@
-'use client';
-
 import React from 'react';
 import { LayoutSection } from '@repo/ui';
 import { LayoutIntroSection } from '@repo/ui';
-import { BASE_URL, SECTION_SPACING } from '@repo/constants';
+import { BASE_URL, getApiUrl, SECTION_SPACING } from '@repo/constants';
 import { ImageDefault } from '@repo/ui';
-import { linkify, processUrl } from '@repo/utils';
-import { Anchor, Box, Group, Skeleton, Stack, Text, Tooltip } from '@mantine/core';
+import { processUrl } from '@repo/utils';
+import { Box, Group, Stack, Text, Tooltip } from '@mantine/core';
 import { getRegionalDate } from '@repo/utils';
 import { COMPANY_NAME } from '@repo/constants';
-import { useStorePost } from '@repo/store';
-import { useStoreCategory } from '@repo/store';
 import { ParserHtml } from '@repo/ui';
+import { CategoryGet, PostGet } from '@repo/types';
+import { categoriesGet, postsGet } from '@repo/handlers';
+import { redirect } from 'next/navigation';
 
-export default function BlogDetail({ props }: { props: { postId: string } }) {
-  const posts = useStorePost((s) => s.posts);
-  const post = posts?.find((pi) => pi.id == props.postId);
-  const categories = useStoreCategory((s) => s.categories);
+export default async function BlogDetail({ postId }: { postId: string }) {
+  const apiUrl = await getApiUrl();
 
-  const categoryCurrent = categories?.find((ci) => ci.id == post?.categoryId);
+  const { items: posts }: { items: PostGet[] } = await postsGet({ apiUrl: apiUrl });
+  const post = posts?.find((pi) => pi.id == postId);
 
-  const pathCategory = `/blog/categories/${linkify(categoryCurrent?.title || '')}-${categoryCurrent?.id}`;
+  const { items: categories }: { items: CategoryGet[] } = await categoriesGet({ apiUrl: apiUrl });
+  const category = categories?.find((ci) => ci.id == post?.categoryId);
+
+  if (!post) redirect('/not-found');
+
+  // const pathCategory = `/blog/categories/${linkify(categoryCurrent?.title || '')}-${categoryCurrent?.id}`;
 
   const processedImage = processUrl(post?.image || '', BASE_URL.WEB);
 
@@ -29,12 +32,7 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
       <Stack gap={SECTION_SPACING / 2}>
         <Stack>
           <Box>
-            {posts === undefined ? (
-              <Stack gap={'sm'}>
-                <Skeleton h={24} w={'100%'} />
-                <Skeleton h={24} w={'70%'} />
-              </Stack>
-            ) : !post ? null : (
+            {!post ? null : (
               <Box maw={{ md: '80%' }}>
                 <LayoutIntroSection
                   props={{
@@ -47,10 +45,8 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
           </Box>
 
           <Group c={'dimmed'} fz={'sm'} mih={21.7}>
-            <Group visibleFrom="xs">
-              {categories === undefined ? (
-                <Skeleton h={18} w={140} />
-              ) : !categoryCurrent ? null : (
+            {!category ? null : (
+              <Group visibleFrom="xs">
                 <Tooltip label={'Category'}>
                   <Text
                     // href={pathCategory}
@@ -59,17 +55,15 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
                     style={{ cursor: 'pointer' }}
                     fw={500}
                   >
-                    {categoryCurrent.title}
+                    {category.title}
                   </Text>
                 </Tooltip>
-              )}
 
-              <>|</>
-            </Group>
+                <>|</>
+              </Group>
+            )}
 
-            {posts === undefined ? (
-              <Skeleton h={18} w={160} />
-            ) : !post ? null : (
+            {!post ? null : (
               <Text inherit>
                 Last Updated:{' '}
                 <Tooltip label={'Last Updated'}>
@@ -98,9 +92,7 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
         </Stack>
 
         <div>
-          {posts === undefined ? (
-            <Skeleton h={{ base: 300, xs: 400, md: 360, lg: 420 }} />
-          ) : !post ? null : (
+          {!post ? null : (
             <ImageDefault
               src={processedImage}
               alt={post.title}
@@ -110,16 +102,7 @@ export default function BlogDetail({ props }: { props: { postId: string } }) {
         </div>
 
         <Box mih={'50vh'}>
-          {posts === undefined ? (
-            <Stack gap={'xs'}>
-              <Skeleton h={16} w={'100%'} />
-              <Skeleton h={16} w={'100%'} />
-              <Skeleton h={16} w={'70%'} />
-              <Skeleton h={16} w={'70%'} />
-              <Skeleton h={16} w={'50%'} />
-              <Skeleton h={16} w={'50%'} />
-            </Stack>
-          ) : !post ? null : (
+          {!post ? null : (
             <div id={'html-parser-blog'}>
               <ParserHtml props={{ html: post.content }} />
             </div>

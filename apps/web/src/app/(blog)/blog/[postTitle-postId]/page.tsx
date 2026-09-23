@@ -31,7 +31,7 @@ export default async function Post({ params }: { params: Promise<typeParams> }) 
 
   return (
     <LayoutPage>
-      <PartialPageBlogDetail props={{ postId }} />
+      <PartialPageBlogDetail postId={postId} />
     </LayoutPage>
   );
 }

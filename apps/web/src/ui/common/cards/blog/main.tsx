@@ -73,7 +73,7 @@ export default function Main({ post }: { post: PostGet }) {
             {categories === undefined ? (
               <Skeleton w={120} h={24} />
             ) : !categoryCurrent ? null : (
-              <Box visibleFrom="xs">
+              <Group visibleFrom="xs">
                 <Tooltip label={'Category'}>
                   <Text
                     // href={pathCategory}
@@ -87,7 +87,7 @@ export default function Main({ post }: { post: PostGet }) {
                 </Tooltip>
 
                 <>|</>
-              </Box>
+              </Group>
             )}
 
             <Tooltip label={'Date Published'}>

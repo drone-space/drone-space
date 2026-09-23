@@ -10,8 +10,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { StudentGet } from '@repo/types';
 import { useStoreStudent } from '@repo/store';
 
-export default function Testimonials() {
-  const students = useStoreStudent((s) => s.students);
+export default function Testimonials({ students }: { students: StudentGet[] }) {
   const autoplay = useMemo(() => Autoplay({ delay: 4000 }), []);
   const desktop = useMediaQuery('(min-width: 62em)');
   const desktopLg = useMediaQuery('(min-width: 75em)');

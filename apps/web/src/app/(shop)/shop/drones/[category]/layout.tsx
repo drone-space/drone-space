@@ -22,15 +22,18 @@ export const generateMetadata = async ({
 
   const metaTitle = `${capitalizeWords(product?.category || 'Category')} Drones`;
 
+  const baseUrl = await getBaseUrl();
+
   return {
     title: {
       default: metaTitle,
       template: `%s - ${metaTitle} - ${COMPANY_NAME} Kenya`,
     },
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: metaTitle,
       // description: metaDesc,
-      url: `${(await getBaseUrl()).WEB}/shop/drones/${linkify(product?.category || '')}`,
+      url: `${baseUrl.WEB}/shop/drones/${linkify(product?.category || '')}`,
       type: 'website',
       images: [
         {

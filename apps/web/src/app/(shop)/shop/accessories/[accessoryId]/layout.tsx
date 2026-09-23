@@ -21,12 +21,15 @@ export const generateMetadata = async ({
 
   const metaTitle = product?.title.long;
 
+  const baseUrl = await getBaseUrl();
+
   return {
     title: metaTitle,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: metaTitle,
       // description: metaDesc,
-      url: `${(await getBaseUrl()).WEB}/shop/accessories/${linkify(product?.title.long || '')}`,
+      url: `${baseUrl.WEB}/shop/accessories/${linkify(product?.title.long || '')}`,
       type: 'website',
       images: [
         {

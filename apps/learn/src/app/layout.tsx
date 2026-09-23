@@ -18,7 +18,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 
 // custom styles
-import '../styles/globals.css';
+import './globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const montserrat = Montserrat({

@@ -7,17 +7,15 @@ export async function getBaseUrl() {
   let hostHeader: string | null = null;
 
   try {
-    // Attempt to read headers (works in Dynamic Server Components & Route Handlers)
     const headersList = await headers();
     hostHeader = headersList.get('x-forwarded-host') || headersList.get('host');
   } catch {
-    // Silently caught during static generation (e.g. force-static, generateStaticParams)
-    console.log('[INFO] -- In static server environment: Cannot read headers');
-    hostHeader = null;
+    // Expected during static generation (e.g. force-static, generateStaticParams, ISR)
   }
 
-  if (!hostHeader) {
-    console.log('[INFO] -- host not found in headers: Falling back to .env hosts');
+  // Only log if you are in a runtime dynamic context where a host SHOULD exist but didn't
+  if (!hostHeader && process.env.NODE_ENV === 'development' && false) {
+    console.log('[INFO] -- Static context: Falling back to .env hosts');
   }
 
   const HOST_API = resolveHost(

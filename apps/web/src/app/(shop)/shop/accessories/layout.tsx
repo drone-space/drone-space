@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
       default: `Drone Accessories`,
       template: `%s - ${metaTitle} - ${APP_NAME.WEB} Kenya`,
     },
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: metaTitle,
       // description: metaDesc,

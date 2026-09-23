@@ -15,12 +15,15 @@ export const generateMetadata = async ({
   const id = (await params).productId;
   const product = products.find((p) => linkify(p.title.long) == id);
 
+  const baseUrl = await getBaseUrl();
+
   return {
     title: product?.title.long,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: product?.title.long,
       // description: metaDesc,
-      url: `${(await getBaseUrl()).WEB}/shop/drones/${linkify(product?.category || '')}/${linkify(product?.title.long || '')}`,
+      url: `${baseUrl.WEB}/shop/drones/${linkify(product?.category || '')}/${linkify(product?.title.long || '')}`,
       type: 'website',
       images: [
         {

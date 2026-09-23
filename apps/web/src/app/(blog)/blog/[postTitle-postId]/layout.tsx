@@ -27,13 +27,16 @@ export const generateMetadata = async ({
 
   const metaTitle = `${post?.title}`;
 
+  const baseUrl = await getBaseUrl();
+
   return {
     title: metaTitle,
     description: post?.excerpt,
+    metadataBase: new URL(baseUrl.WEB),
     openGraph: {
       title: metaTitle,
       description: post?.excerpt,
-      url: `${(await getBaseUrl()).WEB}/blog/${linkify(post?.title || '')}-${post?.id}`,
+      url: `${baseUrl.WEB}/blog/${linkify(post?.title || '')}-${post?.id}`,
       type: 'website',
       images: [
         {

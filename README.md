@@ -49,8 +49,7 @@ Goals:
 /apps
   /web        → marketing site
   /api        → backend (route handlers, services composition)
-  /academy    → LMS
-  /shop       → e-commerce
+  /learn      → LMS
 
 /packages
   /db         → Prisma schema + client

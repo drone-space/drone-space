@@ -67,7 +67,9 @@ export function CardQuestionWithAnswer({
               Explanation:
             </Text>
 
-            <Text inherit>{question?.explanation}</Text>
+            <Text inherit>
+              {question?.explanation || 'No explanation was provided for this question.'}
+            </Text>
           </Stack>
         </CardSection>
       </Stack>

@@ -130,19 +130,21 @@ export function FormQuestion({
 
           <GridCol span={{ base: 12 }}>
             <Group mt={'xs'}>
-              <Button
-                disabled={submitted}
-                size="xs"
-                color="gray"
-                variant="light"
-                display={!options?.inline && form.values.id ? 'none' : undefined}
-                onClick={() => {
-                  if (props?.onSubmit) props.onSubmit();
-                  if (props?.setAddFromExisting) props.setAddFromExisting(false);
-                }}
-              >
-                Cancel
-              </Button>
+              {props?.onSubmit && (
+                <Button
+                  disabled={submitted}
+                  size="xs"
+                  color="gray"
+                  variant="light"
+                  display={!options?.inline && form.values.id ? 'none' : undefined}
+                  onClick={() => {
+                    if (props?.onSubmit) props.onSubmit();
+                    if (props?.setAddFromExisting) props.setAddFromExisting(false);
+                  }}
+                >
+                  Cancel
+                </Button>
+              )}
 
               <Button
                 size="xs"

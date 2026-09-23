@@ -22,7 +22,7 @@ import { getRegionalDate } from '@repo/utils';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { IconEdit } from '@tabler/icons-react';
 import { AnchorNextLink } from '../anchor/next-link';
-import {BadgeStatus} from '../badge/status';
+import { BadgeStatus } from '../badge/status';
 import { sortArray } from '@repo/utils';
 import { Order } from '@repo/types';
 import { useStoreQuizQuestion } from '@repo/store';
@@ -80,13 +80,13 @@ export function TableQuestions() {
         </TableTd>
 
         <TableTd w={WIDTHS.ACTIONS}>
-          <Group justify="end" gap={'xs'}>
+          {/* <Group justify="end" gap={'xs'}>
             <AnchorNextLink href={`/admin/questions/${qi.id}/edit-question`}>
-              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle">
+              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color='gray'>
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
             </AnchorNextLink>
-          </Group>
+          </Group> */}
         </TableTd>
       </TableTr>
     );

@@ -6,6 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { LayoutModal } from '../../layout/modal';
 import { FormInquiryTraining } from '../../form/inquiry/training';
 import { FormValuesInquiry } from '@repo/types';
+import { APP_NAME } from '@repo/constants';
 
 export function ModalContactTraining({
   props,
@@ -26,6 +27,7 @@ export function ModalContactTraining({
               initialValues: {
                 ...props?.initialValues,
                 subject: props?.initialValues?.subject || 'Drone Training Inquiry',
+                appName: APP_NAME.WEB,
               },
             }}
           />

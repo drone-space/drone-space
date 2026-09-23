@@ -48,10 +48,6 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const { items: students }: { items: StudentGet[] | null } = await studentsGet({
-    apiUrl: (await getBaseUrl()).WEB,
-  });
-
   return (
     <LayoutPage>
       <LayoutIntroPage
@@ -275,23 +271,20 @@ export default async function About() {
         <TabSpacesHub />
       </LayoutSection>
 
-      {students != null && (
-        <LayoutSection id="testimonials" padded>
-          <LayoutIntroSection
-            props={{
-              subTitle: 'Testimonials',
-              title: 'What Our Clients Say',
-              desc: `At ${APP_NAME.WEB}, we take pride in delivering exceptional
-              results that exceed expectations. Take a moment to hear directly from the people who
-              matter most: our valued clients.`,
-            }}
-            options={{ spacing: true }}
-          />
+      <LayoutSection id="testimonials" padded>
+        <LayoutIntroSection
+          props={{
+            subTitle: 'Testimonials',
+            title: 'What Our Clients Say',
+            desc: `At ${APP_NAME.WEB}, we take pride in delivering exceptional
+            results that exceed expectations. Take a moment to hear directly from the people who
+            matter most: our valued clients.`,
+          }}
+          options={{ spacing: true }}
+        />
 
-          <CarouselTestimonials props={shuffleArray(students)} />
-        </LayoutSection>
-      )}
-
+        <CarouselTestimonials />
+      </LayoutSection>
       <CtaMain />
     </LayoutPage>
   );

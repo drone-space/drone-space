@@ -11,6 +11,19 @@ import { APP_NAME } from '@repo/constants';
 export function AlertShipment() {
   const [opened, setOpened] = useState(false);
 
+  useEffect(() => {
+    const shipment = getCookieClient(COOKIE_NAME.SHIPMENT);
+    if (shipment) return;
+
+    // Defer setting state to the next browser animation frame to avoid
+    // triggering "setState synchronously within an effect" while staying hydration-safe.
+    const handle = requestAnimationFrame(() => {
+      setOpened(true);
+    });
+
+    return () => cancelAnimationFrame(handle);
+  }, []);
+
   const close = () => {
     setCookieClient(COOKIE_NAME.SHIPMENT, true, {
       expiryInSeconds: 60 * 60 * 24 * 7,
@@ -20,13 +33,6 @@ export function AlertShipment() {
 
     setOpened(false);
   };
-
-  useEffect(() => {
-    const subRejected = getCookieClient(COOKIE_NAME.SHIPMENT);
-    if (subRejected && subRejected == 'true') return;
-
-    setOpened(true);
-  }, []);
 
   return (
     <Transition mounted={opened} transition="fade-down" duration={250} timingFunction="ease">

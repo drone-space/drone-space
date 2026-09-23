@@ -6,6 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { LayoutModal } from '../../layout/modal';
 import { FormInquiryService } from '../../form/inquiry/service';
 import { FormValuesInquiry } from '@repo/types';
+import { APP_NAME } from '@repo/constants';
 
 export function ModalContactService({
   props,
@@ -26,6 +27,7 @@ export function ModalContactService({
               initialValues: {
                 ...props?.initialValues,
                 subject: props?.initialValues?.subject || 'Drone Services Inquiry',
+                appName: APP_NAME.WEB,
               },
             }}
           />

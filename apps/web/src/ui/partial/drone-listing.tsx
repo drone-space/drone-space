@@ -129,6 +129,7 @@ export default function DroneListing() {
               ) : searchValue.length ? (
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE - 4}
+                  color="gray"
                   variant="subtle"
                   onClick={() => {
                     setSearchValue('');
@@ -257,7 +258,7 @@ export default function DroneListing() {
           <Group>
             <ActionIcon
               size={ICON_WRAPPER_SIZE}
-              color={!params.layout ? 'pri' : params.layout === Layout.GRID ? 'pri' : 'gray'} // highlight active
+              color={!params.layout ? 'pri' : params.layout === Layout.GRID ? 'sec' : 'gray'} // highlight active
               variant={
                 !params.layout ? 'light' : params.layout === Layout.GRID ? 'light' : 'subtle'
               }
@@ -269,7 +270,7 @@ export default function DroneListing() {
 
             <ActionIcon
               size={ICON_WRAPPER_SIZE}
-              color={params.layout === Layout.LIST ? 'pri' : 'gray'}
+              color={params.layout === Layout.LIST ? 'sec' : 'gray'}
               variant={params.layout === Layout.LIST ? 'light' : 'subtle'}
               onClick={() => updateParams({ layout: Layout.LIST })}
               visibleFrom="sm"

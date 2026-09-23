@@ -28,6 +28,7 @@ export default function Grid({ data }: { data: typeDrone }) {
       style={{ borderWidth: ICON_STROKE_WIDTH }}
       shadow={'xs'}
       h={'100%'}
+      pt={0}
     >
       <Stack justify="space-between" h={'100%'}>
         <div>

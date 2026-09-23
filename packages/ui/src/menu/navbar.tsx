@@ -41,6 +41,7 @@ export function MenuNavbar({
   cta?: React.ReactNode;
 }) {
   const [opened, setOpened] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const pathname = usePathname();
 
@@ -66,6 +67,9 @@ export function MenuNavbar({
   return (
     <Menu
       onChange={setOpened}
+      closeOnClickOutside={false}
+      closeOnEscape={false}
+      trapFocus={false}
       width="100vw"
       trigger="click-hover"
       offset={0}

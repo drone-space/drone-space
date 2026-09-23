@@ -158,7 +158,7 @@ export default function Home() {
           <Group justify="center">
             <AnchorNextLink href={'/drone-training'}>
               <Button
-                color="pri"
+                color="gray"
                 variant={'light'}
                 rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >
@@ -254,7 +254,7 @@ export default function Home() {
           <Group justify="center">
             <AnchorNextLink href={'/shop'}>
               <Button
-                color="pri"
+                color="gray"
                 variant={'light'}
                 rightSection={<IconArrowRight size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               >

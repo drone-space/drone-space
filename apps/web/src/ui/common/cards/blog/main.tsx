@@ -29,7 +29,7 @@ export default function Main({ post }: { post: PostGet }) {
   const categoryCurrent = categories?.find((ci) => ci.id == post.categoryId);
 
   const pathPost = `/blog/${linkify(post.title)}-${post.id}`;
-  const pathCategory = `/blog/categories/${linkify(categoryCurrent?.title || '')}-${categoryCurrent?.id}`;
+  // const pathCategory = `/blog/categories/${linkify(categoryCurrent?.title || '')}-${categoryCurrent?.id}`;
 
   return (
     <Card className={classes.card} h={'100%'} padding={0} radius={0} pb={SECTION_SPACING / 2}>
@@ -70,10 +70,10 @@ export default function Main({ post }: { post: PostGet }) {
           <Text lineClamp={3}>{post.excerpt}</Text>
 
           <Group c={'dimmed'} fz={'sm'}>
-            <Group visibleFrom="xs">
-              {categories === undefined ? (
-                <Skeleton w={80} />
-              ) : !categoryCurrent ? null : (
+            {categories === undefined ? (
+              <Skeleton w={120} h={24} />
+            ) : !categoryCurrent ? null : (
+              <Box visibleFrom="xs">
                 <Tooltip label={'Category'}>
                   <Text
                     // href={pathCategory}
@@ -85,10 +85,10 @@ export default function Main({ post }: { post: PostGet }) {
                     {categoryCurrent.title}
                   </Text>
                 </Tooltip>
-              )}
 
-              <>|</>
-            </Group>
+                <>|</>
+              </Box>
+            )}
 
             <Tooltip label={'Date Published'}>
               <Text inherit style={{ cursor: 'pointer' }}>

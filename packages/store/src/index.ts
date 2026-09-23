@@ -31,6 +31,7 @@ export * from './state/quiz-question';
 export * from './state/quiz';
 export * from './state/role';
 export * from './state/session';
+export * from './state/student';
 export * from './state/srpl';
 export * from './state/sync-status';
 

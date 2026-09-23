@@ -84,7 +84,9 @@ export default function Main({ options }: { options?: { absolute?: boolean; bord
 
             <Group gap={'xs'}>
               <ModalContactCallback>
-                <Button variant="light">Get a Quote</Button>
+                <Button variant="light" color="sec">
+                  Get a Quote
+                </Button>
               </ModalContactCallback>
 
               <ModalContactTraining

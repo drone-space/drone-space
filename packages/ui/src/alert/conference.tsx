@@ -23,10 +23,15 @@ export function AlertConference() {
   };
 
   useEffect(() => {
-    const subRejected = getCookieClient(COOKIE_NAME.CONFERENCE);
-    if (subRejected && subRejected == 'true') return;
+    const conference = getCookieClient(COOKIE_NAME.CONFERENCE);
+    if (conference) return;
 
-    setOpened(true);
+    // Defers state update to the next animation frame
+    const handle = requestAnimationFrame(() => {
+      setOpened(true);
+    });
+
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   return (

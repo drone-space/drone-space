@@ -13,7 +13,15 @@ export default function FeatureDrone({
   options?: { auto?: boolean };
   children?: React.ReactNode;
 }) {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(() => {
+    // Respect auto option if provided
+    if (options?.auto === false) return false;
+
+    const featDroneSeen = getCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN);
+
+    // If seen (truthy), it should NOT be opened initially
+    return !featDroneSeen;
+  });
 
   const close = () => {
     setCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN, true, {
@@ -25,17 +33,6 @@ export default function FeatureDrone({
     setOpened(false);
   };
 
-  useEffect(() => {
-    if (options?.auto == false) return;
-
-    const featDroneSeen = getCookieClient(COOKIE_NAME.FEAT_DRONE_SEEN);
-
-    // Check if it's truthy (handles both boolean true or legacy string 'true')
-    if (featDroneSeen) return;
-
-    setOpened(true);
-  }, []);
-
   return (
     <>
       <Modal
@@ -43,11 +40,7 @@ export default function FeatureDrone({
         onClose={close}
         centered
         withCloseButton={false}
-        styles={{
-          content: {
-            padding: 0,
-          },
-        }}
+        padding={0}
         size={'xl'}
       >
         <CtaFeatured close={close} />

@@ -60,6 +60,8 @@ export const useFormEmailInquiry = (
       hideSuccessNotification: true,
 
       onSubmit: async (rawValues) => {
+        const values = normalizeFormValues(rawValues);
+
         // handle download
         if (options?.document) {
           setTimeout(() => {
@@ -80,12 +82,14 @@ export const useFormEmailInquiry = (
 
           form.reset();
 
+          const addContact = await contactAdd(values);
+          if (!addContact.ok) console.error('Failed to add email contact');
+
           // close modal if exists
           if (options.close) options.close();
+
           return;
         }
-
-        const values = normalizeFormValues(rawValues);
 
         // --- send the inquiry ---
         const response = await handleInquiry(values);

@@ -21,10 +21,15 @@ export function AlertRadioTelephony() {
   };
 
   useEffect(() => {
-    const subRejected = getCookieClient(COOKIE_NAME.KCAA_UPDATE);
-    if (subRejected && subRejected == 'true') return;
+    const kcaaUpdate = getCookieClient(COOKIE_NAME.KCAA_UPDATE);
+    if (kcaaUpdate) return;
 
-    setOpened(true);
+    // Defer the state update to the next frame to avoid synchronous effect state calls
+    const handle = requestAnimationFrame(() => {
+      setOpened(true);
+    });
+
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   return (

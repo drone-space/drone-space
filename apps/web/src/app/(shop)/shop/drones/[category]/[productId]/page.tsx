@@ -25,7 +25,7 @@ import {
 } from '@mantine/core';
 import { LayoutPage } from '@repo/ui';
 import { LayoutSection } from '@repo/ui';
-import {ModalContactShop} from '@repo/ui';
+import { ModalContactShop } from '@repo/ui';
 import CardShopAccessory from '@web/ui/common/cards/shop/accessory';
 import CarouselImage from '@web/ui/common/carousels/image';
 import { typeParams } from '../layout';
@@ -324,8 +324,8 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
           >
             <Button
               miw={{ base: 240, sm: 480 }}
-              variant="light"
-              color="gray"
+              color="pri"
+              // variant="light"
               leftSection={<IconTruckDelivery size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               Order the {product?.title.short ? product.title.short : product?.title.long}

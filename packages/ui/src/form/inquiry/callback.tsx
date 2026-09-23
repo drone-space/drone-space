@@ -6,12 +6,14 @@ import { FormCommonForm } from '../common/form';
 import { FormCommonFinePrint } from '../common/fine-print';
 import { FormCommonFooter } from '../common/footer';
 import { useFormEmailInquiry } from '@repo/hooks';
+import { APP_NAME } from '@repo/constants';
 
 export function FormInquiryCallback({ props }: { props: { close?: () => void } }) {
   const { form, handleSubmit, submitted } = useFormEmailInquiry(
     {
       subject: 'Callback Request',
       message: 'Please call me back as soon as convenitently possible.',
+      appName: APP_NAME.WEB,
     },
     { type: 'general', close: props.close, noMessage: true },
   );

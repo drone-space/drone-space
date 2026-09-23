@@ -10,7 +10,7 @@
   left: 50% !important;
   transform: translateX(-50%) !important; /* Centers the 100% div relative to the screen */
 
-  border-radius: 0;
+  border-radius: 0 !important;
   padding: var(--mantine-spacing-xl) 0 !important;
 }
 

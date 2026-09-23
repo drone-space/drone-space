@@ -6,6 +6,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { FormInquiryProduct } from '../../form/inquiry/product';
 import { LayoutModal } from '../../layout/modal';
 import { FormValuesInquiry } from '@repo/types';
+import { APP_NAME } from '@repo/constants';
 
 export function ModalContactShop({
   props,
@@ -26,6 +27,7 @@ export function ModalContactShop({
               initialValues: {
                 ...props?.initialValues,
                 subject: props?.initialValues?.subject || 'Drone Purchase Inquiry',
+                appName: APP_NAME.WEB,
               },
             }}
           />

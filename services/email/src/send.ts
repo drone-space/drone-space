@@ -56,21 +56,23 @@ export const emailSendInquiry = async (params: FormValuesInquiry) => {
     replyTo: params.email,
     fromType: 'delivery',
     template: {
-      id: 'inquiry-1',
+      id: 'inquiry',
       variables: {
         MESSAGE_PREVIEW: params.message,
         SUBJECT: `${params.subject} (From ${fullName})`,
         MESSAGE: params.message,
+        COMPANY_NAME: params.company,
         NAME: fullName,
         PHONE: params.phone,
         SOURCE_SITE: params.appName,
+        KIT: params.kit,
       },
     },
   });
 };
 
 export const emailSendOnboardNewsletter = async (params: { to: string; appName: string }) =>
-  emailSendBase({ to: params.to, template: { id: 'onboarding-newsletter' } });
+  emailSendBase({ to: params.to, template: { id: 'onboard-newsletter' } });
 
 export const emailSendOnboarding = async (params: {
   to: string;

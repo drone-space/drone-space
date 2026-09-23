@@ -8,13 +8,15 @@ import classes from './testimonials.module.css';
 import CardTestimonial from '@web/ui/common/cards/testimonial';
 import { useMediaQuery } from '@mantine/hooks';
 import { StudentGet } from '@repo/types';
+import { useStoreStudent } from '@repo/store';
 
-export default function Testimonials({ props }: { props: StudentGet[] }) {
+export default function Testimonials() {
+  const students = useStoreStudent((s) => s.students);
   const autoplay = useMemo(() => Autoplay({ delay: 4000 }), []);
   const desktop = useMediaQuery('(min-width: 62em)');
   const desktopLg = useMediaQuery('(min-width: 75em)');
 
-  const slides = props.map((client, index) => (
+  const slides = (students || []).map((client, index) => (
     <CarouselSlide key={index} px={'xs'} pb={'xs'}>
       <CardTestimonial props={client} />
     </CarouselSlide>

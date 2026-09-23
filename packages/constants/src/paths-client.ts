@@ -1,4 +1,4 @@
-export const SHARED_VERCEL_SUBSTRING = 'meridianbyte';
+export const SHARED_VERCEL_SUBSTRING = 'drone-space';
 const VERCEL_TEAM_SLUG = `${SHARED_VERCEL_SUBSTRING}-team`;
 
 const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV;
@@ -93,6 +93,7 @@ export const BASE_URL = {
   API: `${getUrlPrefix(HOSTNAME_API)}${HOSTNAME_API}`,
   WEB: `${getUrlPrefix(HOSTNAME_WEB)}${HOSTNAME_WEB}`,
   LEARN: `${getUrlPrefix(HOSTNAME_LEARN)}${HOSTNAME_LEARN}`,
+
   CONFERENCE: process.env.NEXT_PUBLIC_HOST_AI_CONFERENCE,
 };
 

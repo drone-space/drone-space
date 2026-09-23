@@ -71,6 +71,11 @@ export async function GET(request: NextRequest) {
           // where: { profileId: userId },
           orderBy: { createdAt: 'desc' },
         }),
+      [STORE_NAME.STUDENTS]: () =>
+        db.student.findMany({
+          // where: { profileId: userId },
+          orderBy: { createdAt: 'desc' },
+        }),
     };
 
     // 3. Filter the map to only include requested stores
@@ -112,6 +117,7 @@ const PRISMA_MODEL_MAP: Record<string, any> = {
   [STORE_NAME.ANSWERS]: db.answer,
   [STORE_NAME.SRPLS]: db.srpl,
   [STORE_NAME.ALUMNI_CHALLENGERS]: db.alumniChallenger,
+  [STORE_NAME.STUDENTS]: db.student,
 };
 
 const SYNC_PRIORITY: Record<string, number> = {
@@ -125,6 +131,7 @@ const SYNC_PRIORITY: Record<string, number> = {
   [STORE_NAME.ANSWERS]: 8,
   [STORE_NAME.SRPLS]: 9,
   [STORE_NAME.ALUMNI_CHALLENGERS]: 9,
+  [STORE_NAME.STUDENTS]: 10,
 };
 
 export async function POST(request: NextRequest) {

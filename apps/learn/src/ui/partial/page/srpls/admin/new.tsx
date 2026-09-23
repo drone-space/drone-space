@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FormQuiz } from '@repo/ui';
+import { FormSrpl } from '@repo/ui';
 import { Fieldset, Grid, GridCol } from '@mantine/core';
 import HeaderAppContent from '@learn/ui/layout/headers/app-content';
 
@@ -12,8 +12,8 @@ export default function New() {
 
       <Grid>
         <GridCol span={{ base: 12, md: 7 }}>
-          <Fieldset legend="Quiz Details">
-            <FormQuiz />
+          <Fieldset legend="ID/Passport Number Details">
+            <FormSrpl />
           </Fieldset>
         </GridCol>
 

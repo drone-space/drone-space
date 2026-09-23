@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { LayoutPage } from '@repo/ui';
-import PartialPageSrplsAdminNew from '@learn/ui/partial/page/quizzes/admin/new';
+import PartialPageSrplsAdminNew from '@learn/ui/partial/page/srpls/admin/new';
 
 const metaTitle = `New ID/Passport Number`;
 

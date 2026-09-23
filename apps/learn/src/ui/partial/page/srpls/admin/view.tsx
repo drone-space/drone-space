@@ -15,7 +15,7 @@ export default function View() {
         <div></div>
 
         <div>
-          <AnchorNextLink href={'/admin/srpls/new-quiz'}>
+          <AnchorNextLink href={'/admin/srpls/new-srpl'}>
             <Button>New ID/Passport Number</Button>
           </AnchorNextLink>
         </div>

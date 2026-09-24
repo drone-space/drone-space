@@ -74,13 +74,14 @@ export const ABOUT_STATS = {
 export const APP_NAME = {
   API: `${COMPANY_NAME} API`,
   SHOP: `${COMPANY_NAME} Shop`,
-  LEARN: `${COMPANY_NAME} Learn`,
+  LEARN: `${COMPANY_NAME} Academy`,
   WEB: COMPANY_NAME,
 };
 
 export const APP_DESC = {
-  API: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
-  LEARN: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
-  SHOP: 'A lightweight and optimized Next.js template for building fast, SEO-friendly websites.',
+  API: 'Central backend service for API route handling, service composition, and database orchestration across all platforms.',
+  LEARN:
+    'Learning Management System (LMS) powering the Drone Space academy platform and educational experiences.',
+  SHOP: 'E-commerce platform for Drone Space products, gear, and merchandise management.',
   WEB: COMPANY_DESCRIPTION,
 };

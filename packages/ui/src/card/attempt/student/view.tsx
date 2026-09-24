@@ -31,18 +31,18 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
     attemptId: props.attempt.id,
   });
 
+  const completionPercentage = (completeStats.questions.total / metaStats.totalQuestions) * 100;
+
   return (
-    <Card bg={'var(--mantine-color-body)'} withBorder p={{ base: 'md', md: 'lg' }}>
+    <Card bg={'var(--mantine-color-body)'} withBorder p={{ base: 'md', md: 'lg' }} h={'100%'}>
       <div>
-        <Group
-          justify={'end'}
-          display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
-        >
+        <Group justify={'end'} mih={30}>
           <Anchor
             component={Link}
             href={`/attempts/${props.attempt.id}`}
             underline="hover"
             c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}
+            display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
           >
             <Button
               size="xs"
@@ -87,16 +87,14 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
           </Group>
 
           <Group>
-            <Text inherit display={props.attempt.status != Status.COMPLETE ? undefined : 'none'}>
-              <Text component="span" inherit fw={'bold'}>
-                <NumberFormatter
-                  value={Math.floor(
-                    (completeStats.questions.total / metaStats.totalQuestions) * 100,
-                  )}
-                />
+            {completionPercentage && (
+              <Text inherit display={props.attempt.status != Status.COMPLETE ? undefined : 'none'}>
+                <Text component="span" inherit fw={'bold'}>
+                  <NumberFormatter value={Math.floor(completionPercentage)} />
+                </Text>
+                % complete
               </Text>
-              % complete
-            </Text>
+            )}
 
             <Text inherit display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}>
               Score:{' '}

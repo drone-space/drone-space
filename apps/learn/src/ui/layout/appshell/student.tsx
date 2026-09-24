@@ -22,7 +22,7 @@ import {
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { useStoreAppShell, useStoreProfile } from '@repo/store';
 import { useStoreSyncStatus } from '@repo/store';
-import { ButtonAppshellNavbar } from '@repo/ui';
+import { ButtonAppshellNavbar, ButtonFullscreen } from '@repo/ui';
 import { MenuUser } from '@repo/ui';
 import { AnchorNextLink } from '@repo/ui';
 import { COMPANY_NAME } from '@repo/constants';
@@ -261,6 +261,7 @@ function Footer() {
       <Group gap={'xs'} justify="space-between">
         <IndicatorNetworkStatus props={{ syncStatus }} />
         <IndicatorTheme />
+        <ButtonFullscreen />
 
         <Box hiddenFrom="md" style={{ overflow: 'hidden' }}>
           <MenuUser transitionProps={{ transition: 'pop-top-right' }} position={'bottom-end'}>

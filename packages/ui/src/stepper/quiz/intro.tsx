@@ -44,6 +44,7 @@ export function StepperQuizIntro({
     setIntro: Dispatch<SetStateAction<boolean>>;
   };
 }) {
+  const tablet = useMediaQuery('(min-width: 48em)');
   const desktop = useMediaQuery('(min-width: 62em)');
   const router = useRouter();
 
@@ -74,7 +75,7 @@ export function StepperQuizIntro({
     {
       icon: IconInfoCircle,
       title: 'Quiz Info',
-      desc: 'Confirm quiz identification',
+      desc: 'Confirm quiz details',
       content: (
         <Stack maw={{ md: '70%' }} mt={'xl'}>
           <Title order={3}>You&apos;re Attempting {quiz?.title}</Title>
@@ -165,7 +166,7 @@ export function StepperQuizIntro({
       <Stepper
         active={active}
         onStepClick={setActive}
-        // orientation={!desktop ? 'vertical' : 'horizontal'}
+        labelPosition={desktop ? undefined : 'bottom'}
       >
         {steps.map((si) => (
           <StepperStep
@@ -174,8 +175,14 @@ export function StepperQuizIntro({
             description={si.desc}
             icon={<si.icon size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             styles={{
-              stepLabel: { display: desktop ? undefined : 'none' },
-              stepDescription: { display: desktop ? undefined : 'none' },
+              stepLabel: {
+                // fontSize: 'var(--mantine-font-size-sm)',
+                display: tablet ? undefined : 'none',
+              },
+              stepDescription: {
+                // fontSize: 'var(--mantine-font-size-sm)',
+                display: tablet ? undefined : 'none',
+              },
             }}
           >
             <Stack mih={'50vh'} justify="center" align="center" ta={'center'}>
@@ -185,8 +192,8 @@ export function StepperQuizIntro({
         ))}
 
         <StepperCompleted>
-          <Stack mih={'50vh'} justify="center" align="center" ta={'center'} gap={SECTION_SPACING}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} color="sec" variant="light" radius={999}>
+          <Stack mih={'50vh'} justify="center" align="center" ta={'center'} gap={'xl'}>
+            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} color="pri" variant="outline" radius={999}>
               <IconCheck size={ICON_SIZE * 2} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
 

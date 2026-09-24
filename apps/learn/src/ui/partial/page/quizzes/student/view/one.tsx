@@ -47,8 +47,8 @@ export default function One({ props }: { props: { quizId: string } }) {
     <div>
       <HeaderAppContent props={{ title: quiz?.title }} />
 
-      <Grid gap={'xl'}>
-        <GridCol span={{ base: 12, md: 8 }}>
+      <Grid>
+        <GridCol span={{ base: 12, md: navbarChild ? 7 : 8, lg: navbarChild ? 8 : 9 }}>
           <Stack gap={'xl'} pr={{ md: 'xl' }}>
             {quizzes === undefined ? (
               <Stack gap={5} mih={74.4}>
@@ -57,7 +57,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                 <Skeleton h={16} w={'50%'} />
               </Stack>
             ) : (
-              <Group maw={{ md: '80%' }}>
+              <Group>
                 <Text>{quiz?.description}</Text>
               </Group>
             )}
@@ -80,7 +80,7 @@ export default function One({ props }: { props: { quizId: string } }) {
           </Stack>
         </GridCol>
 
-        <GridCol span={{ base: 12, md: 4 }}>
+        <GridCol span={{ base: 12, md: navbarChild ? 5 : 4, lg: navbarChild ? 4 : 3 }}>
           <Stack pos={'sticky'} top={SECTION_SPACING}>
             <Card bg={'var(--mantine-color-body)'} withBorder>
               <CardSection

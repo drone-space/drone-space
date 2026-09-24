@@ -7,6 +7,7 @@ import {
   Button,
   Card,
   Center,
+  Flex,
   Grid,
   GridCol,
   Group,
@@ -60,7 +61,7 @@ export default function Home() {
         </Stack>
 
         <Grid gap={'xl'} justify="center">
-          {quizzes === undefined ? (
+          {/* {quizzes === undefined ? (
             <GridCol span={12}>
               <Grid gap={'xl'}>
                 <GridCol span={{ md: 4 }}>
@@ -94,10 +95,15 @@ export default function Home() {
                   </GridCol>
                 ),
             )
-          )}
+          )} */}
 
           <GridCol span={{ md: 4 }} display={quizzes?.length ? undefined : 'none'}>
-            <Stack>
+            <Flex
+              gap={'md'}
+              direction={{ base: 'column', xs: 'row' }}
+              justify={'center'}
+              align={{ xs: 'center' }}
+            >
               <AnchorNextLink href="/quizzes">
                 <Card
                   bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
@@ -110,7 +116,7 @@ export default function Home() {
                       <IconArrowRight size={ICON_SIZE + 4} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
 
-                    <Text inherit>Browse more quizzes</Text>
+                    <Text inherit>Browse Quizzes</Text>
                   </Stack>
                 </Card>
               </AnchorNextLink>
@@ -131,7 +137,7 @@ export default function Home() {
                   </Stack>
                 </Card>
               </AnchorNextLink>
-            </Stack>
+            </Flex>
           </GridCol>
         </Grid>
 
@@ -149,8 +155,8 @@ export default function Home() {
 
         <Group justify="center" ta={'center'}>
           <Text inherit c={'dimmed'}>
-            Back to main site:{' '}
-            <Anchor inherit href="https://dronespace.co.ke" target="_blank" underline="hover">
+            Go to main site:{' '}
+            <Anchor inherit href="https://dronespace.co.ke" target="_blank" underline="always">
               dronespace.co.ke
             </Anchor>
           </Text>

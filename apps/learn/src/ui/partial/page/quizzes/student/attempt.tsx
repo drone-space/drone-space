@@ -128,7 +128,15 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
     <StepperQuizIntro props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }} />
   ) : (
     <Grid gap={'xl'}>
-      <GridCol span={{ base: 12, md: 8 }} order={{ base: 2, md: 1 }}>
+      <GridCol
+        span={{
+          base: 12,
+          md: navbarChild ? 12 : 8,
+          lg: navbarChild ? 7 : 8,
+          xl: navbarChild ? 8 : 8.5,
+        }}
+        order={{ base: 2, md: 1 }}
+      >
         <Stack gap={'xl'}>
           <Group justify="space-between" align="end">
             <LayoutIntroSection
@@ -183,7 +191,11 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
         </Stack>
       </GridCol>
 
-      <GridCol span={{ base: 12, md: 4 }} order={{ base: 1, md: 2 }}>
+      <GridCol
+        span={{ base: 12, md: 4, lg: navbarChild ? 5 : 4, xl: navbarChild ? 4 : 3.5 }}
+        order={{ base: 1, md: 2 }}
+        display={{ md: navbarChild ? 'none' : undefined, lg: 'block' }}
+      >
         <Box pos={!desktop ? undefined : 'sticky'} top={SECTION_SPACING}>
           <Stack>
             <Alert

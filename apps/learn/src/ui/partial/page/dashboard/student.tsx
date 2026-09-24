@@ -26,7 +26,7 @@ import {
   IconReportAnalytics,
 } from '@tabler/icons-react';
 import { colors, ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
-import { useStoreQuiz } from '@repo/store';
+import { useStoreAppShell, useStoreQuiz } from '@repo/store';
 import { useStoreAttempt } from '@repo/store';
 import { useStoreSession } from '@repo/store';
 import { CardAttemptStudentView } from '@repo/ui';
@@ -135,6 +135,8 @@ export default function Student() {
 
   const loading = quizzes === undefined || attempts === undefined || session === undefined;
 
+  const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
+
   return (
     <div>
       <LayoutIntroSection
@@ -145,8 +147,8 @@ export default function Student() {
         options={{ alignment: 'start', spacing: true }}
       />
 
-      <Grid gap={'xl'}>
-        <GridCol span={{ base: 12, md: 7.5 }}>
+      <Grid>
+        <GridCol span={{ base: 12, md: navbarActive ? 6 : 7.5, xl: 7.5 }}>
           <Card bg={'var(--mantine-color-body)'} withBorder>
             {loading ? (
               <Stack mih={500} p={'md'}>
@@ -156,9 +158,12 @@ export default function Student() {
                 </Text>
               </Stack>
             ) : (
-              <Grid gap={'xl'}>
+              <Grid>
                 {stats.attempts.map((si) => (
-                  <GridCol key={si.title} span={{ base: 12, md: 6 }}>
+                  <GridCol
+                    key={si.title}
+                    span={{ base: 12, xs: 6, md: navbarActive ? 12 : 6, xl: 6 }}
+                  >
                     <CardStat props={si} />
                   </GridCol>
                 ))}
@@ -167,7 +172,7 @@ export default function Student() {
           </Card>
         </GridCol>
 
-        <GridCol span={{ base: 12, md: 4.5 }}>
+        <GridCol span={{ base: 12, md: navbarActive ? 6 : 4.5, xl: 4.5 }}>
           <Card bg={'var(--mantine-color-body)'} withBorder>
             {loading ? (
               <Stack mih={500} p={'md'}>
@@ -179,7 +184,7 @@ export default function Student() {
             ) : (
               <Grid gap={'xl'}>
                 {stats.time.map((si) => (
-                  <GridCol key={si.title} span={{ base: 12 }}>
+                  <GridCol key={si.title} span={{ base: 12, xs: 6, md: 12 }}>
                     <CardStat props={si} />
                   </GridCol>
                 ))}
@@ -188,7 +193,7 @@ export default function Student() {
           </Card>
         </GridCol>
 
-        <GridCol span={{ base: 12, md: 6 }}>
+        <GridCol span={{ base: 12, md: navbarActive ? 9 : 7, lg: navbarActive ? 7 : 6 }}>
           <Card bg={'var(--mantine-color-body)'} withBorder>
             <Stack>
               <Title order={2} fz={'xl'}>

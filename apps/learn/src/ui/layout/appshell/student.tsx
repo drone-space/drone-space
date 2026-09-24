@@ -39,28 +39,31 @@ import {
   IconFileText,
   IconHome,
   IconReportAnalytics,
+  IconUserKey,
 } from '@tabler/icons-react';
 import { useStoreSession } from '@repo/store';
 import { LayoutSection } from '@repo/ui';
 import { IndicatorTheme } from '@repo/ui';
 
 export default function Student({ children }: { children: React.ReactNode }) {
-  const desktop = useMediaQuery('(min-width: 62em)');
+  // const desktop = useMediaQuery('(min-width: 62em)');
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
 
   return (
     <AppShell
       // layout="alt"
       // withBorder={false}
-      header={desktop ? undefined : { height: APPSHELL.HEADER.HEIGHT }}
-      footer={!desktop ? undefined : { height: APPSHELL.FOOTER.HEIGHT }}
+      header={{ height: APPSHELL.HEADER.HEIGHT }}
+      // footer={!desktop ? undefined : { height: APPSHELL.FOOTER.HEIGHT }}
       navbar={{
         width: APPSHELL.NAVBAR.WIDTH,
         breakpoint: 'md',
         collapsed: { mobile: !navbarActive, desktop: !navbarActive },
       }}
     >
-      <AppShellHeader hiddenFrom="md">
+      <AppShellHeader
+      // hiddenFrom="md"
+      >
         <Footer />
       </AppShellHeader>
 
@@ -80,9 +83,9 @@ export default function Student({ children }: { children: React.ReactNode }) {
         </ScrollArea>
       </AppShellMain>
 
-      <AppShellFooter visibleFrom="md">
+      {/* <AppShellFooter visibleFrom="md">
         <Footer />
-      </AppShellFooter>
+      </AppShellFooter> */}
     </AppShell>
   );
 }
@@ -127,42 +130,44 @@ const navlinksStudent = [
 function Navbar() {
   const pathname = usePathname();
   const session = useStoreSession((s) => s.session);
-  const mobile = useMediaQuery('(max-width: 36em)');
+  const desktop = useMediaQuery('(min-width: 62em)');
   const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
   const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
   return (
-    <Box p={'sm'}>
-      <Paper
-        bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))'}
-        p={5}
-        withBorder
-      >
-        <Group>
-          <MenuUser transitionProps={{ transition: 'pop-top-left' }} position={'bottom-start'}>
-            <Group gap={'xs'}>
-              <AvatarUser
-                size={
-                  ICON_WRAPPER_SIZE
-                  //  + 4
-                }
-              />
+    <Box p={'sm'} mih={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + 1}px)`}>
+      <Box visibleFrom="md">
+        <MenuUser transitionProps={{ transition: 'pop-top-left' }} position={'bottom-start'}>
+          <Paper
+            bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7))'}
+            p={5}
+            withBorder
+          >
+            <Group>
+              <Group gap={'xs'}>
+                <AvatarUser
+                  size={
+                    ICON_WRAPPER_SIZE
+                    //  + 4
+                  }
+                />
 
-              <Stack gap={0}>
-                <Title order={2} fz={'sm'} fw={500} lineClamp={1}>
-                  {session?.user_metadata.name}
-                </Title>
+                <Stack gap={0}>
+                  <Title order={2} fz={'sm'} fw={500} lineClamp={1}>
+                    {session?.user_metadata.name}
+                  </Title>
 
-                {/* <Text fz={'xs'} c={'dimmed'} lineClamp={1}>
+                  {/* <Text fz={'xs'} c={'dimmed'} lineClamp={1}>
                   {session?.user_metadata.email}
                 </Text> */}
-              </Stack>
+                </Stack>
+              </Group>
             </Group>
-          </MenuUser>
-        </Group>
-      </Paper>
+          </Paper>
+        </MenuUser>
 
-      <Divider my={'xs'} />
+        <Divider my={'xs'} />
+      </Box>
 
       <Stack gap={2}>
         <NavLink
@@ -196,7 +201,7 @@ function Navbar() {
                 },
               }}
               onClick={() => {
-                if (mobile) {
+                if (!desktop) {
                   if (navbarActive) toggleNavbarChild();
                 }
               }}
@@ -212,12 +217,19 @@ function Footer() {
   const syncStatus = useStoreSyncStatus((s) => s.syncStatus);
 
   return (
-    <Group gap={'xs'} px={'sm'} h={'100%'}>
+    <Group gap={'xs'} px={'sm'} h={'100%'} justify="space-between">
       <ButtonAppshellNavbar />
 
-      <IndicatorTheme />
+      <Group gap={'xs'} justify="space-between">
+        <IndicatorNetworkStatus props={{ syncStatus }} />
+        <IndicatorTheme />
 
-      <IndicatorNetworkStatus props={{ syncStatus }} />
+        <Box hiddenFrom="md" style={{ overflow: 'hidden' }}>
+          <MenuUser transitionProps={{ transition: 'pop-top-right' }} position={'bottom-end'}>
+            <AvatarUser size={ICON_WRAPPER_SIZE} />
+          </MenuUser>
+        </Box>
+      </Group>
     </Group>
   );
 }

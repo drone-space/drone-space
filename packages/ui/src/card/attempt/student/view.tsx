@@ -33,123 +33,120 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
 
   return (
     <Card bg={'var(--mantine-color-body)'} withBorder p={{ base: 'md', md: 'lg' }}>
-      <Grid>
-        <GridCol span={10}>
-          <Stack>
-            <Group mb={'md'}>
-              <Tooltip label={quiz?.title} position="top-start" arrowOffset={16}>
-                <Title order={2} fz={'lg'} lineClamp={1}>
-                  {quiz?.title}
-                </Title>
-              </Tooltip>
-            </Group>
-
-            <Group>
-              <Group gap={5}>
-                <Text component="span" inherit>
-                  Status:
-                </Text>
-
-                <BadgeStatus props={{ status: props.attempt.status }} />
-              </Group>
-
-              {props.attempt.status == Status.COMPLETE && (
-                <Group gap={5}>
-                  <Text component="span" inherit>
-                    Result:
-                  </Text>
-                  <BadgeResult
-                    props={{
-                      pass: completeStats.passed,
-                    }}
-                  />
-                </Group>
-              )}
-            </Group>
-
-            <Group>
-              <Text inherit display={props.attempt.status != Status.COMPLETE ? undefined : 'none'}>
-                <Text component="span" inherit fw={'bold'}>
-                  <NumberFormatter
-                    value={Math.floor(
-                      (completeStats.questions.total / metaStats.totalQuestions) * 100,
-                    )}
-                  />
-                </Text>
-                % complete
-              </Text>
-
-              <Text inherit display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}>
-                Score:{' '}
-                <Text
-                  component="span"
-                  inherit
-                  c={`${completeStats.passed ? 'green' : 'red'}`}
-                  fw={'bold'}
-                >
-                  <NumberFormatter value={completeStats.score} />%
-                </Text>{' '}
-                (
-                <Text
-                  component="span"
-                  fz={'sm'}
-                  inherit
-                  display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
-                >
-                  Correct:{' '}
-                  <Text component="span" inherit c={'green'} fw={'bold'}>
-                    <NumberFormatter value={completeStats.questions.correct} />
-                  </Text>
-                </Text>
-                ,{' '}
-                <Text
-                  component="span"
-                  fz={'sm'}
-                  inherit
-                  display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
-                >
-                  Wrong:{' '}
-                  <Text component="span" inherit c={'red'} fw={'bold'}>
-                    <NumberFormatter value={completeStats.questions.wrong} />
-                  </Text>
-                </Text>
-                )
-              </Text>
-            </Group>
-
-            <Group fz={'sm'} c={'dimmed'}>
-              <Text inherit>
-                Attempted on:{' '}
-                <Text component={'span'} inherit fw={500}>
-                  {completeStats.dateAttempted?.date},{' '}
-                  {(completeStats.dateAttempted?.time || '').toUpperCase()}
-                </Text>
-              </Text>
-            </Group>
-          </Stack>
-        </GridCol>
-
-        <GridCol span={2}>
-          <Group
-            justify={'end'}
-            display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
+      <div>
+        <Group
+          justify={'end'}
+          display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
+        >
+          <Anchor
+            component={Link}
+            href={`/attempts/${props.attempt.id}`}
+            underline="hover"
+            c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}
           >
-            <Anchor
-              component={Link}
-              href={`/attempts/${props.attempt.id}`}
-              underline="hover"
-              c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}
+            <Button
+              size="xs"
+              rightSection={<IconArrowRight size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />}
             >
-              <Button
-                size="xs"
-                rightSection={<IconArrowRight size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />}
-              >
-                Review
-              </Button>
-            </Anchor>
+              Review
+            </Button>
+          </Anchor>
+        </Group>
+
+        <Stack>
+          <Group>
+            <Tooltip label={quiz?.title} position="top-start" arrowOffset={16}>
+              <Title order={2} fz={'lg'} lineClamp={1}>
+                {quiz?.title}
+              </Title>
+            </Tooltip>
           </Group>
-        </GridCol>
-      </Grid>
+
+          <Group>
+            <Group gap={5} align="start">
+              <Text component="span" inherit fz={'sm'}>
+                Status:
+              </Text>
+
+              <BadgeStatus props={{ status: props.attempt.status }} />
+            </Group>
+
+            {props.attempt.status == Status.COMPLETE && (
+              <Group gap={5} align="start">
+                <Text component="span" inherit fz={'sm'}>
+                  Result:
+                </Text>
+
+                <BadgeResult
+                  props={{
+                    pass: completeStats.passed,
+                  }}
+                />
+              </Group>
+            )}
+          </Group>
+
+          <Group>
+            <Text inherit display={props.attempt.status != Status.COMPLETE ? undefined : 'none'}>
+              <Text component="span" inherit fw={'bold'}>
+                <NumberFormatter
+                  value={Math.floor(
+                    (completeStats.questions.total / metaStats.totalQuestions) * 100,
+                  )}
+                />
+              </Text>
+              % complete
+            </Text>
+
+            <Text inherit display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}>
+              Score:{' '}
+              <Text
+                component="span"
+                inherit
+                c={`${completeStats.passed ? 'green' : 'red'}`}
+                fw={'bold'}
+              >
+                <NumberFormatter value={completeStats.score} />%
+              </Text>{' '}
+              <Text component="br" hiddenFrom="xs" />(
+              <Text
+                component="span"
+                fz={'sm'}
+                inherit
+                display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
+              >
+                Correct:{' '}
+                <Text component="span" inherit c={'green'} fw={'bold'}>
+                  <NumberFormatter value={completeStats.questions.correct} />
+                </Text>
+              </Text>
+              ,{' '}
+              <Text
+                component="span"
+                fz={'sm'}
+                inherit
+                display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
+              >
+                Wrong:{' '}
+                <Text component="span" inherit c={'red'} fw={'bold'}>
+                  <NumberFormatter value={completeStats.questions.wrong} />
+                </Text>
+              </Text>
+              )
+            </Text>
+          </Group>
+
+          <Group fz={'sm'} c={'dimmed'}>
+            <Text inherit>
+              Attempted on: <Text component="br" hiddenFrom="xs" />
+              <Text component={'span'} inherit fw={500}>
+                {completeStats.dateAttempted?.date},{' '}
+                {(completeStats.dateAttempted?.time || '').toUpperCase()}
+              </Text>
+            </Text>
+          </Group>
+        </Stack>
+      </div>
     </Card>
   );
 }

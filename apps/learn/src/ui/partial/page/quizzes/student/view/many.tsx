@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Button, Grid, GridCol, Group, Loader, Stack, Text, ThemeIcon } from '@mantine/core';
 import HeaderAppContent from '@learn/ui/layout/headers/app-content';
 import { CardQuizStudentView } from '@repo/ui';
-import { useStoreQuiz } from '@repo/store';
+import { useStoreAppShell, useStoreQuiz } from '@repo/store';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { IconX } from '@tabler/icons-react';
 import { Status } from '@repo/types';
@@ -12,6 +12,7 @@ import { Status } from '@repo/types';
 export default function Many() {
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quizzesActive = quizzes?.filter((qi) => qi.status == Status.ACTIVE);
+  const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
 
   return (
     <div>
@@ -34,7 +35,15 @@ export default function Many() {
         ) : (
           <Grid gap={'xl'}>
             {quizzesActive.map((qi) => (
-              <GridCol key={qi.id} span={{ base: 12, sm: 6, xl: 4 }}>
+              <GridCol
+                key={qi.id}
+                span={{
+                  base: 12,
+                  sm: 6,
+                  md: navbarActive ? 6 : 4,
+                  lg: navbarActive ? 4 : 3,
+                }}
+              >
                 <CardQuizStudentView props={{ quiz: qi }} />
               </GridCol>
             ))}

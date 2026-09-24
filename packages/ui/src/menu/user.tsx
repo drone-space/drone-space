@@ -33,7 +33,7 @@ export function MenuUser({ children, ...restProps }: { children: React.ReactNode
       openDelay={50}
       closeDelay={50}
       classNames={classes}
-      opened={desktop ? undefined : false}
+      opened={undefined}
       transitionProps={{ transition: 'pop-top-right' }}
       withArrow
       arrowOffset={16}

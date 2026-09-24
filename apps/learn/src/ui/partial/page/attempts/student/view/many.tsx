@@ -6,13 +6,14 @@ import HeaderAppContent from '@learn/ui/layout/headers/app-content';
 import { CardAttemptStudentView } from '@repo/ui';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { IconX } from '@tabler/icons-react';
-import { useStoreAttempt } from '@repo/store';
+import { useStoreAppShell, useStoreAttempt } from '@repo/store';
 import { useStoreSession } from '@repo/store';
 
 export default function Many() {
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
   const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
+  const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
 
   return (
     <div>
@@ -35,7 +36,7 @@ export default function Many() {
         ) : (
           <Grid gap={'xl'}>
             {userAttempts.map((ai) => (
-              <GridCol key={ai.id} span={{ base: 12, sm: 6 }}>
+              <GridCol key={ai.id} span={{ base: 12, sm: 6, lg: navbarActive ? 6 : 4 }}>
                 <CardAttemptStudentView props={{ attempt: ai }} />
               </GridCol>
             ))}

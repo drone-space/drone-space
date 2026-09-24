@@ -132,7 +132,12 @@ export function PartialPageNotifySection({
             {title}
           </Title>
 
-          <Stack mih={24.8 * 2}>
+          <Flex
+            direction="column"
+            align={{ base: 'center', md: 'start' }}
+            gap={'md'}
+            mih={24.8 * 2}
+          >
             {subtitle && <Text ta={{ base: 'center', md: 'start' }}>{subtitle}</Text>}
 
             {message && (
@@ -168,7 +173,7 @@ export function PartialPageNotifySection({
                 </Button>
               </Group>
             )}
-          </Stack>
+          </Flex>
         </Stack>
 
         {actions && <Group>{actions}</Group>}

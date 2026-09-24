@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { StepperQuizIntro } from '@repo/ui';
 import {
   Alert,
@@ -110,19 +110,25 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
 
   const loading = quizzes === undefined || questions === undefined || quizQuestions === undefined;
 
-  const shuffledQuestions = useMemo(() => {
-    if (!quizzes || !questions || !quizQuestionsQuiz) return [];
+  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionGet[]>([]);
+  const isShuffled = useRef(false);
 
-    // O(M) operation to build the map once
+  useEffect(() => {
+    // 1. Wait until stores have actually loaded data
+    if (!questions?.length || !quizQuestionsQuiz?.length) return;
+
+    // 2. Prevent re-shuffling if we already shuffled for this session
+    if (isShuffled.current) return;
+
     const questionMap = new Map(questions.map((q) => [q.id, q]));
 
-    // O(N) operation to map the questions directly by key
     const mappedQuestions = quizQuestionsQuiz
       .map((qqqi) => questionMap.get(qqqi.questionId))
       .filter((q): q is QuestionGet => Boolean(q));
 
-    return shuffleArray(mappedQuestions);
-  }, [quizzes, questions, quizQuestionsQuiz]);
+    setShuffledQuestions(shuffleArray(mappedQuestions));
+    isShuffled.current = true;
+  }, [questions, quizQuestionsQuiz]);
 
   return attempt?.status == Status.INTRO && intro ? (
     <StepperQuizIntro props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }} />

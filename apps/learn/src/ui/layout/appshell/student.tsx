@@ -45,10 +45,12 @@ import { useStoreSession } from '@repo/store';
 import { LayoutSection } from '@repo/ui';
 import { IndicatorTheme } from '@repo/ui';
 import { Role } from '@repo/types';
+import { useScrollArea } from '@repo/hooks';
 
 export default function Student({ children }: { children: React.ReactNode }) {
   // const desktop = useMediaQuery('(min-width: 62em)');
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
+  const { viewportRef } = useScrollArea();
 
   return (
     <AppShell
@@ -75,7 +77,11 @@ export default function Student({ children }: { children: React.ReactNode }) {
       <AppShellMain
       // bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
       >
-        <ScrollArea h={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT}px)`} scrollbars={'y'}>
+        <ScrollArea
+          h={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT}px)`}
+          scrollbars={'y'}
+          viewportRef={viewportRef}
+        >
           <Box mih={`calc(100vh - ${APPSHELL.FOOTER.HEIGHT + 61.7 + 1}px)`}>
             <LayoutSection id={'content-app-student'} padded>
               {children}

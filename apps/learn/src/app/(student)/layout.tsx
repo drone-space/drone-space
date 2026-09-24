@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { APP_NAME } from '@repo/constants';
 import { isProduction } from '@repo/utils';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { ScrollProvider } from '@repo/hooks';
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +23,9 @@ export default async function LayoutStudent({
 
   return (
     <LayoutMain>
-      <AppshellStudent>{children}</AppshellStudent>
+      <ScrollProvider>
+        <AppshellStudent>{children}</AppshellStudent>
+      </ScrollProvider>
 
       {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
     </LayoutMain>

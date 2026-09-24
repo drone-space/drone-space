@@ -16,6 +16,7 @@ import {
   ListItem,
   Loader,
   NumberFormatter,
+  Pagination,
   Paper,
   Radio,
   RadioGroup,
@@ -27,7 +28,7 @@ import {
 } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants';
 import { useStoreQuiz } from '@repo/store';
-import { useTimer } from '@repo/hooks';
+import { usePaginate, useScrollArea, useTimer } from '@repo/hooks';
 import { TimerDirection, Variant } from '@repo/types';
 import { prependZeros } from '@repo/utils';
 import { useStoreQuestion } from '@repo/store';
@@ -49,10 +50,12 @@ import { LayoutIntroSection } from '@repo/ui';
 import { shuffleArray } from '@repo/utils';
 import { useStoreQuizQuestion } from '@repo/store';
 import { useStoreAppShell } from '@repo/store';
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQuery, useWindowScroll } from '@mantine/hooks';
 
 export default function Attempt({ props }: { props: { quizId: string; attemptId: string } }) {
   const desktop = useMediaQuery('(min-width: 62em)');
+
+  const { scrollToTop } = useScrollArea();
 
   const router = useRouter();
   const [intro, setIntro] = useState(true);
@@ -130,6 +133,13 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
     isShuffled.current = true;
   }, [questions, quizQuestionsQuiz]);
 
+  const { items, totalPages, activePage, setActivePage } = usePaginate(shuffledQuestions, DIVISOR);
+
+  const handlePageChange = (page: number) => {
+    setActivePage(page);
+    scrollToTop({ top: 0, behavior: 'smooth' });
+  };
+
   return attempt?.status == Status.INTRO && intro ? (
     <StepperQuizIntro props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }} />
   ) : (
@@ -166,7 +176,7 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
                 </Text>
               </Stack>
             ) : (
-              shuffledQuestions.map((qqi, i) => (
+              items.map((qqi, i) => (
                 <div key={`${qqi.id}-${i}`}>
                   {i > 0 && <Divider my={'xl'} />}
                   <CardQuestion props={{ question: qqi, attemptId: props.attemptId }} />
@@ -178,6 +188,15 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
           <Divider />
 
           <Group>
+            <Pagination
+              size={'sm'}
+              value={activePage}
+              onChange={handlePageChange}
+              total={totalPages}
+            />
+          </Group>
+
+          <Group justify="end">
             <Tooltip
               label={!attemptAnswers?.length ? 'No questions answered yet.' : 'Submit answers.'}
             >
@@ -302,6 +321,8 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
     </Grid>
   );
 }
+
+const DIVISOR = 10;
 
 function CardQuestion({ props }: { props: { question: QuestionGet; attemptId: string } }) {
   // Extract options from store

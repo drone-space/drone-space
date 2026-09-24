@@ -1,13 +1,12 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { useScrollArea } from './contexts/scroll';
-import { CSSProperties } from 'react';
 
 type UseScrollOptions = {
-  threshold?: number; // default 100px
-  scrolledStyles?: CSSProperties; // optional styles when scrolled
-  defaultStyles?: CSSProperties; // optional base styles
+  threshold?: number;
+  scrolledStyles?: CSSProperties;
+  defaultStyles?: CSSProperties;
 };
 
 export const useScroll = ({
@@ -15,36 +14,26 @@ export const useScroll = ({
   scrolledStyles,
   defaultStyles,
 }: UseScrollOptions = {}) => {
-  const viewportRef = useScrollArea();
+  const { viewportRef, scrollToTop } = useScrollArea();
   const [hasScrolled, setHasScrolled] = useState(false);
 
-  // Track scroll position and update boolean
   useEffect(() => {
     const el = viewportRef.current;
     if (!el) return;
 
-    let last = false;
-
     const handleScroll = () => {
-      const scrolled = el.scrollTop > threshold;
-      if (scrolled !== last) {
-        last = scrolled;
-        setHasScrolled(scrolled);
-      }
+      setHasScrolled(el.scrollTop > threshold);
     };
 
-    // Initialize state
-    handleScroll();
-
-    el.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    el.addEventListener('scroll', handleScroll, { passive: true });
     return () => el.removeEventListener('scroll', handleScroll);
   }, [viewportRef, threshold]);
 
-  // Compute styles reactively but without extra state
   const styles = useMemo(() => {
     if (!scrolledStyles && !defaultStyles) return {};
     return hasScrolled ? (scrolledStyles ?? {}) : (defaultStyles ?? {});
   }, [hasScrolled, scrolledStyles, defaultStyles]);
 
-  return { hasScrolled, styles, viewportRef };
+  return { hasScrolled, styles, viewportRef, scrollToTop };
 };

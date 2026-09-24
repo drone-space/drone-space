@@ -3,10 +3,9 @@
 import React from 'react';
 import { LayoutSection } from '@repo/ui';
 import { Anchor, Group, Loader, Paper, Stack, Text, ThemeIcon, Title } from '@mantine/core';
-import { useStorePost } from '@repo/store';
 import CardBlogSide from '@web/ui/common/cards/blog/side';
 import { sortArray } from '@repo/utils';
-import { Order } from '@repo/types';
+import { Order, PostGet } from '@repo/types';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
 import { SOCIALS } from '@repo/constants';
 import {
@@ -20,8 +19,7 @@ import {
 import { extractUuidFromParam } from '@repo/utils';
 import { usePathname } from 'next/navigation';
 
-export default function Main() {
-  const { posts } = useStorePost();
+export default function Main({ posts }: { posts: PostGet[] }) {
   const pathname = usePathname();
   const postId = extractUuidFromParam(pathname);
 

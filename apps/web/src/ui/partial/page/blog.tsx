@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useStorePost } from '@repo/store';
 import { LayoutSection } from '@repo/ui';
 import {
   Center,

@@ -6,11 +6,13 @@ import HeaderMain from '@web/ui/layout/headers/main';
 import NavbarMain from '@web/ui/layout/navbars/main';
 import FooterMain from '@web/ui/layout/footers/main';
 import { Metadata } from 'next';
-import { APP_NAME } from '@repo/constants';
+import { APP_NAME, getApiUrl } from '@repo/constants';
 import { LayoutIntroPage } from '@repo/ui';
 import { images } from '@repo/constants';
 import CtaHome from '@web/ui/partial/cta/main';
 import AsideBlogMain from '@web/ui/layout/asides/blog/main';
+import { PostGet } from '@repo/types';
+import { postsGet } from '@repo/handlers';
 
 export type typeParams = Promise<{
   'postTitle-postId': string;
@@ -25,6 +27,8 @@ export default async function LayoutBlog({
 }: {
   children: React.ReactNode;
 }) {
+  const { items }: { items: PostGet[] } = await postsGet({ apiUrl: await getApiUrl() });
+
   return (
     <LayoutMain
       header={<HeaderMain />}
@@ -41,7 +45,7 @@ export default async function LayoutBlog({
       }
       aside={{
         gap: 48,
-        right: { width: { md: 30, lg: 30 }, component: <AsideBlogMain /> },
+        right: { width: { md: 30, lg: 30 }, component: <AsideBlogMain posts={items} /> },
       }}
       footer={
         <>

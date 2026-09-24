@@ -234,7 +234,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                             {/* Changed conditional check to look at available items */}
                             {!questionsAvailableToAdd.length ? (
                               <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
-                                <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
+                                <ThemeIcon size={ICON_WRAPPER_SIZE} variant="outline">
                                   <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                                 </ThemeIcon>
                                 <Text inherit c={'dimmed'}>
@@ -315,7 +315,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                     </Stack>
                   ) : !quizQuestionsQuiz.length ? (
                     <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
-                      <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
+                      <ThemeIcon size={ICON_WRAPPER_SIZE} variant="outline">
                         <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
                       <Text inherit c={'dimmed'}>
@@ -338,7 +338,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                               setEdit={setEdit}
                               quizId={props.quizId}
                               question={question}
-                              questionOptions={optionsMap.get(question.id)}
+                              questionOptions={optionsMap.get(question.id) || []}
                             />
                           </div>
                         );
@@ -430,6 +430,7 @@ const CardQuestion = memo(function CardQuestion({
               <Tooltip label={'Edit question content.'}>
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE - 4}
+                  color="gray"
                   variant={active.content ? 'light' : 'subtle'}
                   onClick={() =>
                     setEdit &&
@@ -446,6 +447,7 @@ const CardQuestion = memo(function CardQuestion({
               <Tooltip label={'Add/edit question options.'}>
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE - 4}
+                  color="gray"
                   variant={active.options ? 'light' : 'subtle'}
                   onClick={() =>
                     setEdit &&
@@ -462,7 +464,7 @@ const CardQuestion = memo(function CardQuestion({
               <Tooltip label={'Remove question from quiz.'}>
                 <Group>
                   <ActionIcon
-                    color="red.6"
+                    color="red"
                     size={ICON_WRAPPER_SIZE - 4}
                     variant={'subtle'}
                     onClick={() => {
@@ -491,7 +493,7 @@ const CardQuestion = memo(function CardQuestion({
                 (questionOptions || []).length < 4 && (
                   <Tooltip label={'4 question options are required.'}>
                     <Group>
-                      <ThemeIcon color="yellow.6" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
+                      <ThemeIcon color="yellow" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
                         <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                       </ThemeIcon>
                     </Group>
@@ -502,7 +504,7 @@ const CardQuestion = memo(function CardQuestion({
               {!question.explanation && (
                 <Tooltip label={'Missing answer explanation.'}>
                   <Group>
-                    <ThemeIcon color="yellow.6" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
+                    <ThemeIcon color="yellow" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
                       <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
                   </Group>
@@ -526,7 +528,7 @@ const CardQuestion = memo(function CardQuestion({
                   >
                     <Group>
                       <ActionIcon
-                        color="red.6"
+                        color="red"
                         size={ICON_WRAPPER_SIZE - 4}
                         variant={'subtle'}
                         onClick={() =>

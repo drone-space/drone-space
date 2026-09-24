@@ -74,7 +74,7 @@ export function PartialSectionOptions({
       <Box mih={140}>
         {!props.questionOptions?.length ? (
           <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE} variant="light">
+            <ThemeIcon size={ICON_WRAPPER_SIZE} variant="outline">
               <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
             </ThemeIcon>
             <Text inherit c={'dimmed'}>
@@ -106,7 +106,7 @@ export function PartialSectionOptions({
                 <Box display={!hasCorrectOption ? undefined : 'none'}>
                   <Alert
                     variant="light"
-                    color="yellow.6"
+                    color="yellow"
                     title="Warning"
                     icon={<IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                   >
@@ -117,7 +117,7 @@ export function PartialSectionOptions({
                 <Box display={allCorrect ? undefined : 'none'}>
                   <Alert
                     variant="light"
-                    color="yellow.6"
+                    color="yellow"
                     title="Warning"
                     icon={<IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
                   >

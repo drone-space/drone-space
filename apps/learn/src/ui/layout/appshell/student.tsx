@@ -184,6 +184,11 @@ function Navbar() {
               borderRadius: 'var(--mantine-radius-xl)',
             },
           }}
+          onClick={() => {
+            if (!desktop) {
+              if (navbarActive) toggleNavbarChild();
+            }
+          }}
         />
 
         {navlinksStudent.map((nli) => {
@@ -212,7 +217,7 @@ function Navbar() {
           );
         })}
 
-        {profile && (profile.role !=Role.STUDENT) && (
+        {profile && profile.role != Role.STUDENT && (
           <>
             <Divider my={'xs'} />
 
@@ -226,6 +231,11 @@ function Navbar() {
                 root: {
                   borderRadius: 'var(--mantine-radius-xl)',
                 },
+              }}
+              onClick={() => {
+                if (!desktop) {
+                  if (navbarActive) toggleNavbarChild();
+                }
               }}
             />
           </>

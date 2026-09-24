@@ -20,7 +20,7 @@ import {
   Transition,
 } from '@mantine/core';
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
-import { useStoreAppShell } from '@repo/store';
+import { useStoreAppShell, useStoreProfile } from '@repo/store';
 import { useStoreSyncStatus } from '@repo/store';
 import { ButtonAppshellNavbar } from '@repo/ui';
 import { MenuUser } from '@repo/ui';
@@ -44,6 +44,7 @@ import {
 import { useStoreSession } from '@repo/store';
 import { LayoutSection } from '@repo/ui';
 import { IndicatorTheme } from '@repo/ui';
+import { Role } from '@repo/types';
 
 export default function Student({ children }: { children: React.ReactNode }) {
   // const desktop = useMediaQuery('(min-width: 62em)');
@@ -133,6 +134,8 @@ function Navbar() {
   const desktop = useMediaQuery('(min-width: 62em)');
   const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
   const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
+  const profiles = useStoreProfile((s) => s.profiles);
+  const profile = profiles?.find((pi) => pi.id == session?.id);
 
   return (
     <Box p={'sm'} mih={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + 1}px)`}>
@@ -208,6 +211,25 @@ function Navbar() {
             />
           );
         })}
+
+        {profile && (profile.role !=Role.STUDENT) && (
+          <>
+            <Divider my={'xs'} />
+
+            <NavLink
+              component={Link}
+              href={'/admin'}
+              label={'Admin'}
+              color="gray"
+              leftSection={<IconUserKey size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+              styles={{
+                root: {
+                  borderRadius: 'var(--mantine-radius-xl)',
+                },
+              }}
+            />
+          </>
+        )}
       </Stack>
     </Box>
   );

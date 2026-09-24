@@ -1,7 +1,9 @@
 export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
   DEV = 'DEV',
+  STUDENT = 'STUDENT',
+  INSTRUCTOR = 'INSTRUCTOR',
+  CONTENT_MANAGER = 'CONTENT_MANAGER',
+  ADMIN = 'ADMIN',
 }
 
 export enum Status {

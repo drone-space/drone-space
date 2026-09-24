@@ -18,6 +18,7 @@ import { useStoreQuizQuestion } from '../quiz-question';
 import { useStoreSrpl } from '../srpl';
 import { useStoreAlumniChallenger } from '../alumni-challenger';
 import { useStoreStudent } from '../student';
+import { useStoreProfile } from '../profile';
 
 const mergeItems = async (
   dataStore: string,
@@ -196,6 +197,11 @@ export const LOAD_STORES: Record<string, LoadStoreConfig> = {
     useStoreHook: useStoreStudent,
     setState: (store, items) => store.setStudents(items),
   },
+  [STORE_NAME.PROFILES]: {
+    dataStore: STORE_NAME.PROFILES,
+    useStoreHook: useStoreProfile,
+    setState: (store, items) => store.setProfiles(items),
+  },
 } as const;
 
 type LoadStoreKey = keyof typeof LOAD_STORES;
@@ -220,6 +226,7 @@ export const useLoadAppData = (options: {
     [STORE_NAME.SRPLS]: useStoreSrpl(),
     [STORE_NAME.ALUMNI_CHALLENGERS]: useStoreAlumniChallenger(),
     [STORE_NAME.STUDENTS]: useStoreStudent(),
+    [STORE_NAME.PROFILES]: useStoreProfile(),
   };
 
   useEffect(() => {

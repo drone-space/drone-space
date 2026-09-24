@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
   try {
     const userId = request.nextUrl.searchParams.get('userId');
     const stores = request.nextUrl.searchParams.get('stores');
+    const sourceSite = request.nextUrl.searchParams.get('sourceSite');
 
     if (!userId) {
       return NextResponse.json({ error: 'User ID is required' }, { status: 400 });
@@ -76,6 +77,11 @@ export async function GET(request: NextRequest) {
           // where: { profileId: userId },
           orderBy: { createdAt: 'desc' },
         }),
+      [STORE_NAME.PROFILES]: () =>
+        db.profile.findMany({
+          where: { id: sourceSite != 'learn' ? undefined : userId },
+          orderBy: { createdAt: 'desc' },
+        }),
     };
 
     // 3. Filter the map to only include requested stores
@@ -118,20 +124,22 @@ const PRISMA_MODEL_MAP: Record<string, any> = {
   [STORE_NAME.SRPLS]: db.srpl,
   [STORE_NAME.ALUMNI_CHALLENGERS]: db.alumniChallenger,
   [STORE_NAME.STUDENTS]: db.student,
+  [STORE_NAME.PROFILES]: db.profile,
 };
 
 const SYNC_PRIORITY: Record<string, number> = {
   [STORE_NAME.CATEGORIES]: 1,
   [STORE_NAME.POSTS]: 2,
-  [STORE_NAME.QUIZZES]: 3,
-  [STORE_NAME.QUESTIONS]: 4,
-  [STORE_NAME.QUIZ_QUESTIONS]: 5,
-  [STORE_NAME.OPTIONS]: 6,
-  [STORE_NAME.ATTEMPTS]: 7,
-  [STORE_NAME.ANSWERS]: 8,
-  [STORE_NAME.SRPLS]: 9,
-  [STORE_NAME.ALUMNI_CHALLENGERS]: 9,
-  [STORE_NAME.STUDENTS]: 10,
+  [STORE_NAME.PROFILES]: 3,
+  [STORE_NAME.QUIZZES]: 4,
+  [STORE_NAME.QUESTIONS]: 5,
+  [STORE_NAME.QUIZ_QUESTIONS]: 6,
+  [STORE_NAME.OPTIONS]: 7,
+  [STORE_NAME.ATTEMPTS]: 8,
+  [STORE_NAME.ANSWERS]: 9,
+  [STORE_NAME.SRPLS]: 10,
+  [STORE_NAME.ALUMNI_CHALLENGERS]: 11,
+  [STORE_NAME.STUDENTS]: 12,
 };
 
 export async function POST(request: NextRequest) {

@@ -56,4 +56,5 @@ export const STORE_NAME = {
   SRPLS: 'srpls',
   ALUMNI_CHALLENGERS: 'alumni-challengers',
   STUDENTS: 'students',
+  PROFILES: 'profiles',
 };

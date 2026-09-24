@@ -21,9 +21,11 @@ datasource db {
 // enums
 
 enum Role {
-  USER
-  ADMIN
   DEV
+  STUDENT
+  INSTRUCTOR
+  CONTENT_MANAGER
+  ADMIN
 }
 
 enum Status {
@@ -64,7 +66,7 @@ model Profile {
   avatar     String?
   phone      String?
   customized Boolean @default(false)
-  role       Role    @default(USER)
+  role       Role    @default(STUDENT)
 
   srpl     Srpl?
   posts    Post[]

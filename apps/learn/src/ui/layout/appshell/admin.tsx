@@ -7,16 +7,18 @@ import {
   AppShellNavbar,
   Box,
   Burger,
+  Center,
   Divider,
   Group,
+  Loader,
   NavLink,
   ScrollArea,
   ScrollAreaAutosize,
   Stack,
   Transition,
 } from '@mantine/core';
-import { useStoreAppShell } from '@repo/store';
-import { ButtonAppshellNavbar } from '@repo/ui';
+import { useStoreAppShell, useStoreProfile, useStoreSession } from '@repo/store';
+import { ButtonAppshellNavbar, LoaderMain } from '@repo/ui';
 import { ImageDefault } from '@repo/ui';
 import { images } from '@repo/constants';
 import { COMPANY_NAME } from '@repo/constants';
@@ -28,7 +30,7 @@ import {
   IconQuestionMark,
   IconReportAnalytics,
 } from '@tabler/icons-react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import Link from 'next/link';
 import FooterMain from '@learn/ui/layout/footer/admin';
@@ -36,9 +38,22 @@ import { useStoreSyncStatus } from '@repo/store';
 import { IndicatorNetworkStatus } from '@repo/ui';
 import { AvatarUser } from '@repo/ui';
 import { MenuUser } from '@repo/ui';
+import { useEffect } from 'react';
+import { Role } from '@repo/types';
 
 export default function Admin({ children }: { children: React.ReactNode }) {
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
+
+  const { isAuthorized, isLoading } = useAdminGuard();
+
+  // Prevent flash of admin UI or data fetching while loading/redirecting
+  if (isLoading || !isAuthorized) {
+    return (
+      <Center mih={'100vh'}>
+        <Loader />
+      </Center>
+    ); // Or your custom loading spinner / skeleton
+  }
 
   return (
     <AppShell
@@ -72,6 +87,29 @@ export default function Admin({ children }: { children: React.ReactNode }) {
       </AppShellMain>
     </AppShell>
   );
+}
+
+function useAdminGuard() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const session = useStoreSession((s) => s.session);
+  const profiles = useStoreProfile((s) => s.profiles);
+  const profile = profiles?.find((pi) => pi.id === session?.id);
+
+  const isLoaded = profiles !== undefined && profiles !== null;
+  const isAllowed = profile?.role != Role.STUDENT;
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    // If profile is missing or user is not an admin, redirect immediately
+    if (!profile || !isAllowed) {
+      router.replace('/');
+    }
+  }, [isLoaded, profile, isAllowed, pathname, router]);
+
+  return { isAuthorized: isLoaded && isAllowed, isLoading: !isLoaded };
 }
 
 const APPSHELL = {

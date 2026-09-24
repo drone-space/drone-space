@@ -46,4 +46,5 @@ const STORES_TO_LOAD = {
   [STORE_NAME.ATTEMPTS]: true,
   [STORE_NAME.ANSWERS]: true,
   [STORE_NAME.SRPLS]: true,
+  [STORE_NAME.PROFILES]: true,
 };

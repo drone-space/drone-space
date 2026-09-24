@@ -26,6 +26,7 @@ export * from './state/category';
 export * from './state/conversation';
 export * from './state/option';
 export * from './state/post';
+export * from './state/profile';
 export * from './state/question';
 export * from './state/quiz-question';
 export * from './state/quiz';

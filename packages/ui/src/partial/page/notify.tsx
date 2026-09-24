@@ -97,7 +97,8 @@ export const PartialPageNotifySignedOut = () => {
           <Button
             component={Link}
             href={AUTH_URLS.SIGN_IN}
-            variant="light"
+            color="pri"
+            // variant="light"
             leftSection={<IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           >
             Sign Back In

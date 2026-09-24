@@ -1,6 +1,6 @@
 .spinner {
-  border: 2px solid var(--mantine-color-gray-light);
-  border-top: 2px solid var(--mantine-color-pri-9);
+  border: 2px solid var(--mantine-color-gray-light) !important;
+  border-top: 2px solid light-dark(var(--mantine-color-pri-9), var(--mantine-color-sec-3)) !important;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

@@ -84,11 +84,11 @@ export default function Student() {
     return currentScore < thresholdPass;
   });
 
-  const quizzesToday = attemptsComplete?.filter((aci) => {
+  const quizzesToday = userAttempts?.filter((aci) => {
     return isToday(aci.createdAt);
   });
 
-  const quizzesThisWeek = attemptsComplete?.filter((aci) => {
+  const quizzesThisWeek = userAttempts?.filter((aci) => {
     return isThisWeek(aci.createdAt);
   });
 
@@ -96,7 +96,7 @@ export default function Student() {
     attempts: [
       {
         icon: IconReportAnalytics,
-        stat: attemptsComplete?.length,
+        stat: userAttempts?.length,
         title: 'Quizzes Taken',
         desc: 'Total attempts on quizzes.',
       },

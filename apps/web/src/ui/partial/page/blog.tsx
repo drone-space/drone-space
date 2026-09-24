@@ -28,8 +28,17 @@ import { postsGet } from '@repo/handlers';
 export default function Blog({ posts }: { posts: PostGet[] }) {
   const router = useRouter();
 
+  const sortedPosts = sortArray(
+    posts || [],
+    (i) => {
+      const dateVal = i?.createdAt ? new Date(i.createdAt).getTime() : 0;
+      return isNaN(dateVal) ? 0 : dateVal;
+    },
+    Order.DESCENDING,
+  );
+
   const { items, activePage, setActivePage, totalPages, pageRange } = usePaginate(
-    sortArray(posts || [], (i) => i.createdAt, Order.DESCENDING),
+    sortedPosts,
     Number(3),
   );
 

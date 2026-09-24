@@ -69,7 +69,7 @@ export default async function BlogDetail({ postId }: { postId: string }) {
                 <Tooltip label={'Last Updated'}>
                   <Text component="span" inherit fw={500} style={{ cursor: 'pointer' }}>
                     {
-                      getRegionalDate(post?.updatedAt, {
+                      getRegionalDate(post.updatedAt, {
                         locale: 'en-GB',
                         format: 'short',
                       }).date

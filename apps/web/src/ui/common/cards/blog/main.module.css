@@ -5,7 +5,7 @@
 /* Replicates Mantine's hover mixin */
 @media (hover: hover) {
   .image:hover .overlay {
-    opacity: 0;
+    opacity: 0 !important;
   }
 }
 
@@ -17,7 +17,7 @@
   right: 0;
   bottom: 0;
   border-radius: 0;
-  padding: var(--mantine-spacing-md);
+  padding: var(--mantine-spacing-md) !important;
   background-color: rgba(0, 0, 0, 0.25);
   transition: 0.25s all ease;
 }

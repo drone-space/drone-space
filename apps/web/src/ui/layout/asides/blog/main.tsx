@@ -2,18 +2,7 @@
 
 import React from 'react';
 import { LayoutSection } from '@repo/ui';
-import {
-  Anchor,
-  Button,
-  Card,
-  Group,
-  Loader,
-  Paper,
-  Stack,
-  Text,
-  ThemeIcon,
-  Title,
-} from '@mantine/core';
+import { Anchor, Group, Loader, Paper, Stack, Text, ThemeIcon, Title } from '@mantine/core';
 import { useStorePost } from '@repo/store';
 import CardBlogSide from '@web/ui/common/cards/blog/side';
 import { sortArray } from '@repo/utils';
@@ -35,7 +24,17 @@ export default function Main() {
   const { posts } = useStorePost();
   const pathname = usePathname();
   const postId = extractUuidFromParam(pathname);
+
   const filteredPosts = (posts || []).filter((pi) => pi.id != postId);
+
+  const sortedPosts = sortArray(
+    filteredPosts,
+    (i) => {
+      const dateVal = i?.createdAt ? new Date(i.createdAt).getTime() : 0;
+      return isNaN(dateVal) ? 0 : dateVal;
+    },
+    Order.DESCENDING,
+  );
 
   return (
     <LayoutSection
@@ -71,9 +70,7 @@ export default function Main() {
             </Stack>
           ) : (
             <Stack gap={'xl'}>
-              {sortArray(filteredPosts, (i) => i.createdAt, Order.DESCENDING).map(
-                (pi, i) => i < 3 && <CardBlogSide key={pi.id} props={pi} />,
-              )}
+              {sortedPosts.map((pi, i) => i < 3 && <CardBlogSide key={pi.id} props={pi} />)}
             </Stack>
           )}
         </Stack>

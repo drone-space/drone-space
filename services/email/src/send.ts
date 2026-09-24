@@ -47,12 +47,13 @@ const emailSendBase = async (options: SendEmailOptions) => {
 
 export const emailSendInquiry = async (params: FormValuesInquiry) => {
   if (!EMAILS.INFO) throw new Error('Missing INFO email');
+  if (!EMAILS.TRAINING) throw new Error('Missing TRAINING email');
 
   const fullName = `${params.fname || ''} ${params.lname || ''}`;
 
   emailSendBase({
     fromName: fullName,
-    to: EMAILS.INFO,
+    to: params.type == 'training' ? EMAILS.TRAINING : EMAILS.INFO,
     replyTo: params.email,
     fromType: 'delivery',
     template: {

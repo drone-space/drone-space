@@ -32,7 +32,7 @@ export function FormContact({
       subject: props?.subject,
       message: props?.message,
     },
-    { close: options?.close },
+    { type: 'general', close: options?.close },
   );
 
   return (

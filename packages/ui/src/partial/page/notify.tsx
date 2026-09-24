@@ -9,6 +9,7 @@ import { WrapperActionSignOut } from '@repo/ui';
 import { getUrlParam } from '@repo/utils';
 import { config } from '@repo/store';
 import { AUTH_URLS } from '@repo/constants';
+import { useRouter } from 'next/navigation';
 
 type NotifySectionProps = {
   id: string;
@@ -121,6 +122,8 @@ export function PartialPageNotifySection({
   titleBold = false,
   baseUrl,
 }: NotifySectionProps) {
+  const router = useRouter();
+
   return (
     <Container>
       <Flex direction="column" align={{ base: 'center', md: 'start' }} gap="xl">
@@ -151,6 +154,18 @@ export function PartialPageNotifySection({
                 >
                   <Button>Try Again</Button>
                 </WrapperActionSignOut>
+              </Group>
+            )}
+
+            {message?.includes('expired or is invalid') && (
+              <Group mt={'md'}>
+                <Button
+                  onClick={() => {
+                    router.back();
+                  }}
+                >
+                  Try Again
+                </Button>
               </Group>
             )}
           </Stack>

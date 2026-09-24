@@ -241,6 +241,10 @@ export function FormAuth({
                             const redirectUrl = encodeURIComponent(redirect);
                             const callbackUrl = `${baseUrl}/api/auth/callback/email?email=${formValues.email.trim()}&otp=${formValues.otp.trim()}&redirectUrl=${redirectUrl}&baseUrl=${baseUrl}&srpl=${formAuth.values.srpl?.trim()}`;
                             window.location.href = callbackUrl;
+
+                            setTimeout(() => {
+                              setRedirecting(false);
+                            }, 2000);
                           }
                         }}
                       >

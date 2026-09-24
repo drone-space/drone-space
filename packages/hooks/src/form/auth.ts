@@ -51,9 +51,9 @@ export const useFormAuth = (params: { action: AuthAction; baseUrl: string }) => 
             setError(result.data.error);
           } else {
             setMessage(result.data.message);
-            setCookieClient(COOKIE_NAME.AUTH.EMAIL, email, {
-              expiryInSeconds: WEEK,
-            });
+            // setCookieClient(COOKIE_NAME.AUTH.EMAIL, email, {
+            //   expiryInSeconds: WEEK,
+            // });
           }
 
           if (options?.resent) setResent(false);

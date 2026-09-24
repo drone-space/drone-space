@@ -97,7 +97,7 @@ export default function Home() {
             )
           )} */}
 
-          <GridCol span={{ md: 4 }} display={quizzes?.length ? undefined : 'none'}>
+          <GridCol span={{ md: 4 }}>
             <Flex
               gap={'md'}
               direction={{ base: 'column', xs: 'row' }}

@@ -42,7 +42,7 @@ export function FormQuestion({
 
   const { form, handleSubmit, submitted, stay, setStay } = useFormQuestion({
     defaultValues: { ...props?.question },
-    options: { quizId: quizId || props?.quizId },
+    options: { quizId: quizId || props?.quizId, inline: options?.inline },
   });
 
   const optionsStore = useStoreOption((s) => s.options);

@@ -1,12 +1,9 @@
 import type { Metadata } from 'next';
 import { Montserrat, Geist_Mono, Nova_Mono } from 'next/font/google';
-import { APP_DESC, APP_NAME, DEFAULT_COLOR_SCHEME, getApiUrl } from '@repo/constants';
-import { createClientcloudbaseServer } from '@repo/cloudbase';
+import { APP_DESC, APP_NAME, DEFAULT_COLOR_SCHEME } from '@repo/constants';
 import { getCookieServer, isProduction } from '@repo/utils';
 import { COOKIE_NAME } from '@repo/constants';
 import { ProviderMantine } from '@repo/ui';
-import { ProviderInitialize } from '@learn/ui/provider/initialize';
-import { ProviderSync } from '@learn/ui/provider/sync';
 import { ColorSchemeScript, MantineColorScheme, mantineHtmlProps } from '@mantine/core';
 import { getAppTheme } from '@repo/constants';
 import { getAppResolver } from '@learn/resolver';
@@ -46,9 +43,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClientcloudbaseServer();
-  const { data: session } = await supabase.auth.getUser();
-
   // 1. Get the CALCULATED theme from middleware (not the 'auto' state)
   const theme = (await getCookieServer(COOKIE_NAME.COLOR_SCHEME)) || DEFAULT_COLOR_SCHEME;
   const resolvedTheme = (theme || DEFAULT_COLOR_SCHEME) as MantineColorScheme;
@@ -106,9 +100,7 @@ export default async function RootLayout({
           theme={getAppTheme}
           cssVariablesResolver={getAppResolver}
         >
-          <ProviderInitialize props={{ baseUrl: await getApiUrl(), sessionUser: session.user }}>
-            <ProviderSync>{children}</ProviderSync>
-          </ProviderInitialize>
+          {children}
         </ProviderMantine>
       </body>
     </html>

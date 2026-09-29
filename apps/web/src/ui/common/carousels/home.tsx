@@ -46,7 +46,7 @@ export default function Home() {
 
   const sortedData = sortArray(data, (i) => i.dates[0], Order.ASCENDING);
 
-  const rplExamDates = [new Date(2026, 8, 7), new Date(2026, 8, 28)];
+  const rplExamDates = [new Date(2026, 9, 12)];
 
   const filteredData = [
     ...filterItems({
@@ -123,10 +123,10 @@ export default function Home() {
       ),
       dates: [
         // intake date (s)
-        new Date(2026, 8, 7),
-        new Date(2026, 8, 14),
-        new Date(2026, 8, 21),
-        new Date(2026, 8, 28),
+        new Date(2026, 9, 5),
+        new Date(2026, 9, 12),
+        new Date(2026, 9, 19),
+        new Date(2026, 9, 26),
       ],
       price: {
         former: 160000,

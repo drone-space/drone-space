@@ -91,7 +91,7 @@ export function FormAuth({
               <TextInput
                 required
                 aria-label="Email"
-                placeholder="john@example.com"
+                placeholder="Email Address"
                 variant="filled"
                 styles={{
                   input: {

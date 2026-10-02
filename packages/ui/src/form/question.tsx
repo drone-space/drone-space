@@ -163,10 +163,8 @@ export function FormQuestion({
         <GridCol span={{ base: 12 }}>
           <Card withBorder>
             <PartialSectionOptions
-              props={{
-                questionId: form.values.id,
-                questionOptions: optionsQuestion || [],
-              }}
+              questionId={form.values.id}
+              questionOptions={optionsQuestion || []}
             />
           </Card>
         </GridCol>

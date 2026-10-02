@@ -172,7 +172,7 @@ export function FormQuestion({
         </GridCol>
       )}
 
-      {!options?.inline && form.values.id && (optionsQuestion || []).length == 4 && (
+      {!options?.inline && form.values.id && (optionsQuestion || []).length == 3 && (
         <Group mt={'xs'}>
           <Button size="xs" onClick={handleComplete}>
             Done

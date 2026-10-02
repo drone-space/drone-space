@@ -490,8 +490,8 @@ const CardQuestion = memo(function CardQuestion({
               {questionOptions === undefined ? (
                 <Skeleton h={ICON_WRAPPER_SIZE - 4} w={ICON_WRAPPER_SIZE - 4} />
               ) : (
-                (questionOptions || []).length < 4 && (
-                  <Tooltip label={'4 question options are required.'}>
+                (questionOptions || []).length < 3 && (
+                  <Tooltip label={'At least 3 question options are required.'}>
                     <Group>
                       <ThemeIcon color="yellow" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
                         <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />

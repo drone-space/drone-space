@@ -384,6 +384,8 @@ const CardQuestion = memo(function CardQuestion({
     if (quizQuestion) quizQuestionDelete(quizQuestion);
   }, [quizQuestion, quizQuestionDelete]);
 
+  const hasCorrectOption = !!questionOptions?.find((qo) => !!qo.correct);
+
   return (
     <Fieldset
       p={'md'}
@@ -463,15 +465,29 @@ const CardQuestion = memo(function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {((questionOptions || []).length < 3 || !question.explanation) && (
-                <Divider orientation="vertical" mx={'xs'} />
-              )}
+              {((questionOptions || []).length < 3 ||
+                !hasCorrectOption ||
+                !question.explanation) && <Divider orientation="vertical" mx={'xs'} />}
 
               {questionOptions === undefined ? (
                 <Skeleton h={ICON_WRAPPER_SIZE - 4} w={ICON_WRAPPER_SIZE - 4} />
               ) : (
                 (questionOptions || []).length < 3 && (
                   <Tooltip label={'At least 3 question options are required.'}>
+                    <Group>
+                      <ThemeIcon color="yellow" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
+                        <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                      </ThemeIcon>
+                    </Group>
+                  </Tooltip>
+                )
+              )}
+
+              {questionOptions === undefined ? (
+                <Skeleton h={ICON_WRAPPER_SIZE - 4} w={ICON_WRAPPER_SIZE - 4} />
+              ) : (
+                !hasCorrectOption && (
+                  <Tooltip label={'At least 1 correct question option is required.'}>
                     <Group>
                       <ThemeIcon color="yellow" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
                         <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />

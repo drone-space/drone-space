@@ -483,7 +483,7 @@ const CardQuestion = memo(function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {(questionOptions || []).length < 4 && !question.explanation && (
+              {(questionOptions || []).length < 3 && !question.explanation && (
                 <Divider orientation="vertical" mx={'xs'} />
               )}
 

@@ -214,6 +214,7 @@ const CardOption = memo(function CardOption({
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE - 4}
                   variant={active.content ? 'light' : 'subtle'}
+                  color="gray"
                   onClick={() =>
                     props.setEdit && props.setEdit(!active.content ? props.option.id : '')
                   }
@@ -252,7 +253,7 @@ const CardOption = memo(function CardOption({
 
             <Group>
               {props.option.correct && (
-                <Badge size="xs" variant="light" color="green.6">
+                <Badge size="xs" variant="light" color="green">
                   Correct
                 </Badge>
               )}

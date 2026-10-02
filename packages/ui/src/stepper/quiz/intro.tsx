@@ -119,10 +119,9 @@ export function StepperQuizIntro({
       content: (
         <Stack maw={{ md: '80%' }} mt={'xl'}>
           <Text inherit>
-            This quiz contains multiple choice questions only. Each question has exactly 4 options.
-            Only one option can be selected per question. There is a limited amount of time to
-            complete the quiz. Time alocated depends on total number of questions in the quiz, and
-            their difficulty.
+            This quiz contains multiple choice questions only. Each question has exactly multiple
+            options. There is a limited amount of time to complete the quiz. Time alocated depends
+            on total number of questions in the quiz, and their difficulty.
           </Text>
 
           <Text inherit fz={'sm'} c={'dimmed'} mt={'xl'}>

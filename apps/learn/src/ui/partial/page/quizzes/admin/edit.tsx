@@ -60,11 +60,14 @@ import { generateUUID } from '@repo/utils';
 import { useQuizQuestionActions } from '@repo/store';
 import InputSearch from '@learn/ui/input/search';
 
+// 1. Move static objects OUTSIDE the component so their reference never changes
+const SELECT_OPTIONS = { select: true };
+const EMPTY_ARRAY: any[] = [];
+
 type EditProps = { content: string; options: string };
 
 export default function Edit({ props }: { props: { quizId: string } }) {
   const router = useRouter();
-
   const quizzes = useStoreQuiz((s) => s.quizzes);
   const quiz = quizzes?.find((qi) => qi.id == props.quizId);
 
@@ -82,10 +85,10 @@ export default function Edit({ props }: { props: { quizId: string } }) {
   const questions = useStoreQuestion((s) => s.questions);
   const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
   const setQuizQuestions = useStoreQuizQuestion((s) => s.setQuizQuestions);
-
   const [questionIds, setQuestionIds] = useState<string[]>([]);
+  const [search, setSearch] = useState('');
+  const [addFromExisting, setAddFromExisting] = useState(false);
 
-  // 1. Filter bridge items for this quiz
   const quizQuestionsQuiz = useMemo(() => {
     return sortArray(
       quizQuestions?.filter((qqqi) => qqqi.quizId === props.quizId) || [],
@@ -94,32 +97,23 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     );
   }, [quizQuestions, props.quizId]);
 
-  // 🔥 PERFORMANCE FIX: Build a hash-map lookup for questions
   const questionsMap = useMemo(() => {
     return new Map(questions?.map((q) => [q.id, q]) || []);
   }, [questions]);
 
-  // 2. Extract question IDs currently assigned to this quiz
   const activeQuizQuestionIds = useMemo(() => {
     return new Set(quizQuestionsQuiz.map((qq) => qq.questionId));
   }, [quizQuestionsQuiz]);
 
-  const [search, setSearch] = useState('');
-
-  // 🔥 THE FIX: Filter the GLOBAL questions store for items NOT in the active quiz set
   const questionsAvailableToAdd = useMemo(() => {
     const availableQuestions = questions?.filter((q) => !activeQuizQuestionIds.has(q.id)) || [];
-
-    const availableQuestionsSearch = availableQuestions.filter((aqs) =>
+    return availableQuestions.filter((aqs) =>
       aqs.content.trim().toLowerCase().includes(search.trim().toLocaleLowerCase()),
     );
-
-    return availableQuestionsSearch;
   }, [questions, activeQuizQuestionIds, search]);
 
   const handleAddExistingQuestion = () => {
     const now = new Date();
-
     const newQuizQuestions: QuizQuestionGet[] = questionIds.map((qi) => ({
       id: generateUUID(),
       questionId: qi,
@@ -131,27 +125,18 @@ export default function Edit({ props }: { props: { quizId: string } }) {
     }));
 
     setQuizQuestions([...(quizQuestions || []), ...newQuizQuestions]);
-    setQuestionIds([]); // Clear the selections checkbox pool
-    setAdd(false); // Close the selection area safely
+    setQuestionIds([]);
+    setAdd(false);
   };
 
-  const [addFromExisting, setAddFromExisting] = useState(false);
-
   const options = useStoreOption((s) => s.options);
-
   const optionsMap = useMemo(() => {
     const map = new Map<string, OptionGet[]>();
-
     for (const option of options ?? []) {
       const list = map.get(option.questionId);
-
-      if (list) {
-        list.push(option);
-      } else {
-        map.set(option.questionId, [option]);
-      }
+      if (list) list.push(option);
+      else map.set(option.questionId, [option]);
     }
-
     return map;
   }, [options]);
 
@@ -246,9 +231,11 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                                 <div key={question.id}>
                                   <CardQuestion
                                     question={question}
-                                    questionOptions={optionsMap.get(question.id)}
-                                    options={{ select: true }}
-                                    edit={edit}
+                                    questionOptions={optionsMap.get(question.id) || EMPTY_ARRAY}
+                                    options={SELECT_OPTIONS}
+                                    // Passing primitives guarantees O(1) DOM diffs when `edit` state changes
+                                    isEditingContent={edit.content === question.id}
+                                    isEditingOptions={edit.options === question.id}
                                     setEdit={setEdit}
                                     checked={questionIds.includes(question.id)}
                                     onToggle={handleToggleQuestion}
@@ -325,20 +312,21 @@ export default function Edit({ props }: { props: { quizId: string } }) {
                   ) : (
                     <Stack gap={'xs'}>
                       {quizQuestionsQuiz.map((qqqi, i) => {
-                        // O(1) Instant map lookup replaces old .find() loop
                         const question = questionsMap.get(qqqi.questionId);
-
                         if (!question) return null;
 
                         return (
                           <div key={qqqi.id}>
                             <CardQuestion
                               index={i + 1}
-                              edit={edit}
+                              // Pass the bridge item directly to avoid the child needing global state
+                              quizQuestion={qqqi}
+                              isEditingContent={edit.content === question.id}
+                              isEditingOptions={edit.options === question.id}
                               setEdit={setEdit}
                               quizId={props.quizId}
                               question={question}
-                              questionOptions={optionsMap.get(question.id) || []}
+                              questionOptions={optionsMap.get(question.id) || EMPTY_ARRAY}
                             />
                           </div>
                         );
@@ -357,48 +345,43 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
 type CardQuestionProps = {
   index?: number;
-  edit?: EditProps;
-  setEdit?: (i: EditProps) => any;
+  isEditingContent?: boolean;
+  isEditingOptions?: boolean;
+  setEdit?: (i: EditProps) => void;
   checked?: boolean;
-  onToggle?: (i: any) => void;
+  onToggle?: (i: string) => void;
   quizId?: string;
+  quizQuestion?: QuizQuestionGet; // Passed from parent
   question: QuestionGet;
-  questionOptions: OptionsValue;
+  questionOptions: OptionGet[];
   options?: { select?: boolean };
 };
 
 const CardQuestion = memo(function CardQuestion({
   index,
-  edit,
+  isEditingContent,
+  isEditingOptions,
   setEdit,
   checked,
   onToggle,
   quizId,
+  quizQuestion,
   question,
   questionOptions,
   options,
 }: CardQuestionProps) {
-  const active = {
-    content: edit?.content == question.id,
-    options: edit?.options == question.id,
-  };
-
   const displayProps = {
-    iconEdit: active.content ? IconX : IconEdit,
-    iconOptions: active.options ? IconX : IconList,
+    iconEdit: isEditingContent ? IconX : IconEdit,
+    iconOptions: isEditingOptions ? IconX : IconList,
   };
 
   const { questionDelete } = useQuestionActions();
-  const quizQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
   const { quizQuestionDelete } = useQuizQuestionActions();
 
-  const handleRemoveQuestionFromQuiz = () => {
-    const quizQuestion = quizQuestions?.find(
-      (qqi) => qqi.questionId == question.id && qqi.quizId == quizId,
-    );
-
+  const handleRemoveQuestionFromQuiz = useCallback(() => {
+    // We rely on the parent passing this, completely bypassing the massive global array
     if (quizQuestion) quizQuestionDelete(quizQuestion);
-  };
+  }, [quizQuestion, quizQuestionDelete]);
 
   return (
     <Fieldset
@@ -429,15 +412,10 @@ const CardQuestion = memo(function CardQuestion({
             <Group gap={5}>
               <Tooltip label={'Edit question content.'}>
                 <ActionIcon
-                  size={ICON_WRAPPER_SIZE - 4}
-                  color="gray"
-                  variant={active.content ? 'light' : 'subtle'}
+                  variant={isEditingContent ? 'light' : 'subtle'}
                   onClick={() =>
                     setEdit &&
-                    setEdit({
-                      options: '',
-                      content: !active.content ? question.id : '',
-                    })
+                    setEdit({ options: '', content: !isEditingContent ? question.id : '' })
                   }
                 >
                   <displayProps.iconEdit size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
@@ -448,12 +426,12 @@ const CardQuestion = memo(function CardQuestion({
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE - 4}
                   color="gray"
-                  variant={active.options ? 'light' : 'subtle'}
+                  variant={isEditingOptions ? 'light' : 'subtle'}
                   onClick={() =>
                     setEdit &&
                     setEdit({
                       content: '',
-                      options: !active.options ? question.id : '',
+                      options: !isEditingOptions ? question.id : '',
                     })
                   }
                 >
@@ -483,7 +461,7 @@ const CardQuestion = memo(function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {(questionOptions || []).length < 3 && !question.explanation && (
+              {(questionOptions || []).length <= 3 && !question.explanation && (
                 <Divider orientation="vertical" mx={'xs'} />
               )}
 
@@ -549,7 +527,7 @@ const CardQuestion = memo(function CardQuestion({
           </Group>
         </Stack>
 
-        {active.content && (
+        {isEditingContent && (
           <FormQuestion
             options={{ inline: true }}
             props={{
@@ -561,13 +539,8 @@ const CardQuestion = memo(function CardQuestion({
           />
         )}
 
-        <Box display={active.options ? undefined : 'none'}>
-          <PartialSectionOptions
-            props={{
-              questionId: question.id,
-              questionOptions: questionOptions || [],
-            }}
-          />
+        <Box display={isEditingOptions ? undefined : 'none'}>
+          <PartialSectionOptions questionId={question.id} questionOptions={questionOptions} />
         </Box>
       </Stack>
     </Fieldset>

@@ -56,23 +56,25 @@ import { Status, SyncStatus } from '@repo/types';
 import { generateUUID } from '@repo/utils';
 import { useQuizQuestionActions } from '@repo/store';
 
-export function PartialSectionOptions({
-  props,
+export const PartialSectionOptions = memo(function PartialSectionOptions({
+  questionId,
+  questionOptions,
 }: {
-  props: { questionId: string; questionOptions: OptionGet[] };
+  questionId: string;
+  questionOptions: OptionGet[];
 }) {
   const [add, setAdd] = useState(false);
   const [edit, setEdit] = useState('');
 
   const maxOptions = 4;
-  const optionLimitReached = (props.questionOptions || []).length >= maxOptions;
-  const hasCorrectOption = !!props.questionOptions?.find((qo) => !!qo.correct);
-  const allCorrect = !props.questionOptions?.find((qo) => !qo.correct);
+  const optionLimitReached = questionOptions.length >= maxOptions;
+  const hasCorrectOption = !!questionOptions?.find((qo) => !!qo.correct);
+  const allCorrect = questionOptions.length > 0 && !questionOptions?.find((qo) => !qo.correct);
 
   return (
     <Stack gap={'md'}>
       <Box mih={140}>
-        {!props.questionOptions?.length ? (
+        {!questionOptions?.length ? (
           <Stack align="center" ta={'center'} py={'xl'} fz={'sm'}>
             <ThemeIcon size={ICON_WRAPPER_SIZE} variant="outline">
               <IconX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
@@ -83,21 +85,20 @@ export function PartialSectionOptions({
           </Stack>
         ) : (
           <Stack gap={'xs'}>
-            {sortArray(props.questionOptions, (i) => i.createdAt, Order.ASCENDING)?.map((oi, i) => (
+            {sortArray(questionOptions, (i) => i.createdAt, Order.ASCENDING)?.map((oi, i) => (
               <div key={oi.id}>
+                {/* Flatten props so React can diff them properly */}
                 <CardOption
-                  props={{
-                    index: i + 1,
-                    option: oi,
-                    edit,
-                    setEdit,
-                    questionId: props.questionId,
-                  }}
+                  index={i + 1}
+                  option={oi}
+                  isEditing={edit === oi.id}
+                  setEdit={setEdit}
+                  questionId={questionId}
                 />
               </div>
             ))}
 
-            <Box display={props.questionOptions.length >= 3 ? undefined : 'none'}>
+            <Box display={questionOptions.length >= 3 ? undefined : 'none'}>
               <Stack>
                 <Text
                   display={optionLimitReached ? undefined : 'none'}
@@ -161,7 +162,7 @@ export function PartialSectionOptions({
           >
             <FormOption
               props={{
-                questionId: props.questionId,
+                questionId: questionId,
                 onSubmit: () => {
                   setAdd(false);
                   setEdit('');
@@ -173,53 +174,46 @@ export function PartialSectionOptions({
       </Box>
     </Stack>
   );
-}
+});
+
+type CardOptionProps = {
+  index: number;
+  isEditing: boolean;
+  setEdit: (i: string) => void;
+  questionId: string;
+  option: OptionGet;
+};
 
 const CardOption = memo(function CardOption({
-  props,
-}: {
-  props: {
-    index?: number;
-    edit?: string;
-    setEdit?: (i: string) => any;
-    questionId?: string;
-    option: OptionGet;
-  };
-}) {
+  index,
+  isEditing,
+  setEdit,
+  questionId,
+  option,
+}: CardOptionProps) {
   const { optionDelete } = useOptionActions();
-
-  const active = {
-    content: props.edit == props.option.id,
-  };
-
-  const displayProps = {
-    iconEdit: active.content ? IconX : IconEdit,
-  };
+  const iconEdit = { icon: isEditing ? IconX : IconEdit };
 
   return (
     <Fieldset
       p={'md'}
-      legend={`Option ${props.index || ''}`}
+      legend={`Option ${index || ''}`}
       styles={{ legend: { color: 'var(--mantine-color-gray-6)' } }}
     >
       <Stack>
         <Stack gap={'xs'}>
           <div>
-            <Text>{props.option.content}</Text>
+            <Text>{option.content}</Text>
           </div>
 
           <Group justify="space-between">
             <Group gap={5}>
               <Tooltip label={'Edit option content.'}>
                 <ActionIcon
-                  size={ICON_WRAPPER_SIZE - 4}
-                  variant={active.content ? 'light' : 'subtle'}
-                  color="gray"
-                  onClick={() =>
-                    props.setEdit && props.setEdit(!active.content ? props.option.id : '')
-                  }
+                  variant={isEditing ? 'light' : 'subtle'}
+                  onClick={() => setEdit && setEdit(!isEditing ? option.id : '')}
                 >
-                  <displayProps.iconEdit size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                  <iconEdit.icon size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                 </ActionIcon>
               </Tooltip>
 
@@ -228,9 +222,9 @@ const CardOption = memo(function CardOption({
                   <ModalConfirm
                     props={{
                       onConfirm: () => {
-                        if (props.setEdit) props.setEdit('');
+                        if (setEdit) setEdit('');
 
-                        optionDelete(props.option);
+                        optionDelete(option);
                       },
                       title: 'Delete question option',
                       desc: 'This action is irreversible. Proceed?',
@@ -241,7 +235,7 @@ const CardOption = memo(function CardOption({
                         color="red.6"
                         size={ICON_WRAPPER_SIZE - 4}
                         variant={'subtle'}
-                        onClick={() => props.setEdit && props.setEdit('')}
+                        onClick={() => setEdit && setEdit('')}
                       >
                         <IconTrash size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                       </ActionIcon>
@@ -252,7 +246,7 @@ const CardOption = memo(function CardOption({
             </Group>
 
             <Group>
-              {props.option.correct && (
+              {option.correct && (
                 <Badge size="xs" variant="light" color="green">
                   Correct
                 </Badge>
@@ -261,12 +255,12 @@ const CardOption = memo(function CardOption({
           </Group>
         </Stack>
 
-        {active.content && (
+        {isEditing && (
           <FormOption
             props={{
-              optionId: props.option.id,
-              questionId: props.questionId,
-              onSubmit: () => props.setEdit && props.setEdit(''),
+              optionId: option.id,
+              questionId: questionId,
+              onSubmit: () => setEdit && setEdit(''),
             }}
           />
         )}

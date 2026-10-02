@@ -38,6 +38,7 @@ import {
   IconCircleMinus,
   IconCopyX,
   IconEdit,
+  IconInfoTriangle,
   IconList,
   IconTextPlus,
   IconTrash,
@@ -413,6 +414,7 @@ const CardQuestion = memo(function CardQuestion({
               <Tooltip label={'Edit question content.'}>
                 <ActionIcon
                   variant={isEditingContent ? 'light' : 'subtle'}
+                  color="gray"
                   onClick={() =>
                     setEdit &&
                     setEdit({ options: '', content: !isEditingContent ? question.id : '' })
@@ -461,7 +463,7 @@ const CardQuestion = memo(function CardQuestion({
                 </Group>
               </Tooltip>
 
-              {(questionOptions || []).length <= 3 && !question.explanation && (
+              {((questionOptions || []).length < 3 || !question.explanation) && (
                 <Divider orientation="vertical" mx={'xs'} />
               )}
 
@@ -480,10 +482,10 @@ const CardQuestion = memo(function CardQuestion({
               )}
 
               {!question.explanation && (
-                <Tooltip label={'Missing answer explanation.'}>
+                <Tooltip label={'Recommended to add answer explanation.'}>
                   <Group>
-                    <ThemeIcon color="yellow" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
-                      <IconAlertTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                    <ThemeIcon color="blue" size={ICON_WRAPPER_SIZE - 4} variant={'subtle'}>
+                      <IconInfoTriangle size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
                     </ThemeIcon>
                   </Group>
                 </Tooltip>

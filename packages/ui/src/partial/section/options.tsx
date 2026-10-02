@@ -211,6 +211,7 @@ const CardOption = memo(function CardOption({
               <Tooltip label={'Edit option content.'}>
                 <ActionIcon
                   variant={isEditing ? 'light' : 'subtle'}
+                  color="gray"
                   onClick={() => setEdit && setEdit(!isEditing ? option.id : '')}
                 >
                   <iconEdit.icon size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />

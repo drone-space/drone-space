@@ -97,9 +97,15 @@ export function PartialSectionOptions({
               </div>
             ))}
 
-            <Box display={optionLimitReached ? undefined : 'none'}>
+            <Box display={props.questionOptions.length >= 3 ? undefined : 'none'}>
               <Stack>
-                <Text inherit c={'dimmed'} fz={'xs'} ta={'center'}>
+                <Text
+                  display={optionLimitReached ? undefined : 'none'}
+                  inherit
+                  c={'dimmed'}
+                  fz={'xs'}
+                  ta={'center'}
+                >
                   Max of {maxOptions} question options reached.
                 </Text>
 

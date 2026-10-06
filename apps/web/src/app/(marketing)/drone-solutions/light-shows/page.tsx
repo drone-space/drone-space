@@ -150,8 +150,8 @@ export default async function LighShow() {
         <Grid gap={0}>
           <GridCol span={{ base: 12, md: 6 }} p={'xs'}>
             <AspectRatio
-              ratio={1920 / 1080}
-              h={'100%'}
+              // ratio={1920 / 1080}
+              h={560}
               style={{
                 overflow: 'hidden',
                 borderRadius: 'var(--mantine-radius-lg)',

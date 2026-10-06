@@ -3,7 +3,18 @@
 import React from 'react';
 import { LayoutSection } from '@repo/ui';
 import classes from './shows.module.css';
-import { AspectRatio, Button, Card, Grid, GridCol, Group, Stack, Text, Title } from '@mantine/core';
+import {
+  AspectRatio,
+  Button,
+  Card,
+  Grid,
+  GridCol,
+  Group,
+  Overlay,
+  Stack,
+  Text,
+  Title,
+} from '@mantine/core';
 import { videos } from '@repo/constants';
 import shows from '@web/data/shows';
 import { SECTION_SPACING } from '@repo/constants';
@@ -21,25 +32,22 @@ export default function Shows() {
 
   return (
     <div className={classes.hero}>
+      <Overlay backgroundOpacity={0.2} style={{ zIndex: 1 }} />
+
       <div className={classes.underlay}>
         <AspectRatio ratio={1920 / 1080} h={'100%'}>
-          <video
-            // controls={false}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            // poster={images.gallery.innovation.jamuhuri.yr2020.image9}
-            height={'100%'}
-          >
+          <video autoPlay muted loop playsInline preload="auto" height={'100%'}>
             <source src={videos.hero.lightShow.video1} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </AspectRatio>
       </div>
 
-      <LayoutSection id="layout-hero-shows" padded={SECTION_SPACING * 2}>
+      <LayoutSection
+        id="layout-hero-shows"
+        padded={SECTION_SPACING * 2}
+        style={{ position: 'relative', zIndex: 2 }}
+      >
         <Stack gap={48} align="center">
           <Stack gap={'xs'} align="center">
             <Title

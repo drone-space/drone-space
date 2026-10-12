@@ -115,6 +115,7 @@ export * from './spinner/app';
 
 export * from './stepper/quiz/intro';
 
+export * from './table/attempts';
 export * from './table/questions';
 export * from './table/quizzes';
 export * from './table/srpls';

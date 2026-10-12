@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
         }),
       [STORE_NAME.PROFILES]: () =>
         db.profile.findMany({
-          where: { id: sourceSite != 'learn' ? undefined : userId },
+          // where: { id: sourceSite != 'learn' ? undefined : userId },
           orderBy: { createdAt: 'desc' },
         }),
     };

@@ -9,15 +9,19 @@ import { useStoreQuestion } from '@repo/store';
 import { Variant } from '@repo/types';
 import { useNotification } from '../notification';
 import { useQuizQuestionActions } from '@repo/store';
+import { useRouter } from 'next/navigation';
 
 export const useFormQuestion = (params?: {
   defaultValues?: Partial<QuestionGet>;
-  options: { quizId?: string; inline?: boolean }; // newly added because it's no longer in defaultValues (i'll pass it manually)
+  options: { quizId?: string; inline?: boolean; stay?: boolean };
 }) => {
+  const router = useRouter();
   const { questionCreate, questionUpdate } = useQuestionActions();
   // 🔥 NEW ACTION: You need your action hook for creating the join table row
   const { quizQuestionCreate } = useQuizQuestionActions();
-  const [stay, setStay] = useState(!params?.options.inline ? true : false);
+  const [stay, setStay] = useState(
+    !params?.defaultValues?.updatedAt ? !params?.options.inline : (params?.options.stay ?? false),
+  );
   const { showNotification } = useNotification();
 
   const { form, submitted, handleSubmit } = useFormBase<Partial<QuestionGet>>(
@@ -90,6 +94,10 @@ export const useFormQuestion = (params?: {
             ...params?.defaultValues,
             ...rawValues,
           } as QuestionGet);
+
+          if (!stay) {
+            router.push(`/admin/questions`);
+          }
 
           form.reset();
         }

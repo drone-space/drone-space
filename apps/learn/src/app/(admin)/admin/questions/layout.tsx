@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { APP_NAME } from '@repo/constants';
 
 export type typeParams = Promise<{
-  quizId: string;
+  questionId: string;
 }>;
 
 export const metadata: Metadata = {

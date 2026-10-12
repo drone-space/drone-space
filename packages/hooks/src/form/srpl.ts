@@ -49,20 +49,16 @@ export const useFormSrpl = (params?: { defaultValues?: Partial<SrplGet> }) => {
         }
 
         if (!params?.defaultValues?.updatedAt) {
-          const newSrpl = srplCreate(rawValues);
-
-          if (!stay && newSrpl) {
-            router.push(`/admin/srpls/${newSrpl.id}/edit-srpl`);
-          }
+          srplCreate(rawValues);
         } else {
-          const newSrpl = srplUpdate({
+          srplUpdate({
             ...params?.defaultValues,
             ...rawValues,
           } as SrplGet);
+        }
 
-          if (!stay && newSrpl) {
-            router.push(`/admin/srpls`);
-          }
+        if (!stay) {
+          router.push(`/admin/srpls`);
         }
 
         form.reset();

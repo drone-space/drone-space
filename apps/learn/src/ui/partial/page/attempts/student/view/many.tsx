@@ -12,7 +12,8 @@ import { Order } from '@repo/types';
 export default function Many() {
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
-  const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
+  const activeAttempts = attempts?.filter((ai) => ai.status != 'INTRO');
+  const userAttempts = activeAttempts?.filter((ai) => ai.profileId == session?.id);
   const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
 
   return (

@@ -25,7 +25,7 @@ export function BadgeStatus({ props }: { props: { status: string } }) {
       badgeProps = { ...badgeProps, color: 'blue' };
       break;
     case EnumStatus.INTRO:
-      badgeProps = { ...badgeProps, color: 'dark', label: 'Incomplete' };
+      badgeProps = { ...badgeProps, color: 'dark', label: 'Not Started' };
       break;
 
     default:

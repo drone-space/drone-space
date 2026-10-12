@@ -82,7 +82,8 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
   };
 
   // --- 4. META / AGGREGATE STATS ---
-  const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
+  const activeAttempts = attempts?.filter((ai) => ai.status != 'INTRO');
+  const userAttempts = activeAttempts?.filter((ai) => ai.profileId == session?.id);
   const quizAttempts =
     userAttempts?.filter((ai) => ai.quizId === quiz?.id && ai.status === Status.COMPLETE) || [];
 

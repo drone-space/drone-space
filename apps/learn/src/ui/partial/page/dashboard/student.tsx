@@ -1,41 +1,25 @@
 'use client';
 
-import {
-  Anchor,
-  Card,
-  Grid,
-  GridCol,
-  Group,
-  Loader,
-  Stack,
-  Text,
-  ThemeIcon,
-  Title,
-} from '@mantine/core';
+import { Card, Grid, GridCol, Group, Loader, Stack, Text, ThemeIcon, Title } from '@mantine/core';
 import React from 'react';
 import { LayoutIntroSection } from '@repo/ui';
 import {
   Icon,
-  IconArrowDown,
   IconArrowDownRight,
-  IconArrowUp,
   IconArrowUpRight,
   IconCalendarEvent,
   IconCalendarWeek,
-  IconClockDown,
   IconReportAnalytics,
 } from '@tabler/icons-react';
-import { colors, ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
+import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import { useStoreAppShell, useStoreQuiz } from '@repo/store';
 import { useStoreAttempt } from '@repo/store';
 import { useStoreSession } from '@repo/store';
 import { CardAttemptStudentView } from '@repo/ui';
 import { sortArray } from '@repo/utils';
 import { Order } from '@repo/types';
-import { AnchorNextLink } from '@repo/ui';
 import { Status } from '@repo/types';
 import { isThisWeek, isToday } from '@repo/utils';
-import { useStoreQuestion } from '@repo/store';
 import { useStoreOption } from '@repo/store';
 import { useStoreAnswer } from '@repo/store';
 import { useStoreQuizQuestion } from '@repo/store';
@@ -48,7 +32,8 @@ export default function Student() {
   const options = useStoreOption((s) => s.options);
   const answers = useStoreAnswer((s) => s.answers);
 
-  const userAttempts = attempts?.filter((ai) => ai.profileId === session?.id);
+  const activeAttempts = attempts?.filter((ai) => ai.status != 'INTRO');
+  const userAttempts = activeAttempts?.filter((ai) => ai.profileId === session?.id);
   const attemptsComplete = userAttempts?.filter((aci) => aci.status === Status.COMPLETE);
 
   // --- HELPER TO COMPUTE SCORE FOR A SPECIFIC ATTEMPT ---
@@ -215,7 +200,7 @@ export default function Student() {
                 </Stack>
               ) : (
                 <Grid>
-                  {sortArray(attemptsComplete || [], (i) => i.createdAt, Order.DESCENDING)?.map(
+                  {sortArray(userAttempts || [], (i) => i.createdAt, Order.DESCENDING)?.map(
                     (ai, i) =>
                       i < 3 && (
                         <GridCol key={ai.id} span={12}>

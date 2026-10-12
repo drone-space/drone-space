@@ -60,9 +60,7 @@ export function StepperQuizIntro({
   const quizQuestionsQuiz = quizQuestions?.filter((qqqi) => qqqi.quizId == quiz?.id);
   const attempts = useStoreAttempt((s) => s.attempts);
   const session = useStoreSession((s) => s.session);
-  const userAttempts = attempts?.filter(
-    (ai) => ai.profileId == session?.id && ai.status == Status.COMPLETE,
-  );
+  const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
   const attempt = userAttempts?.find((ai) => ai.id == props.attemptId);
   const attemptsQuiz = attempts?.filter(
     (aqi) =>
@@ -209,6 +207,7 @@ export function StepperQuizIntro({
         <Button
           color="gray"
           variant="outline"
+          display={active > 0 ? undefined : 'none'}
           miw={120}
           onClick={() => {
             if (active > 0) {

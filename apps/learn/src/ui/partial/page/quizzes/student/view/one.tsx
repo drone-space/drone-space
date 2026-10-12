@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import {
+  Alert,
   Button,
   Card,
   CardSection,
@@ -19,15 +20,18 @@ import {
 import HeaderAppContent from '@learn/ui/layout/headers/app-content';
 import { ICON_SIZE, ICON_STROKE_WIDTH, SECTION_SPACING } from '@repo/constants';
 import { useRouter } from 'next/navigation';
-import { AnchorNextLink } from '@repo/ui';
-import { useAttemptActions } from '@repo/store';
+import { useAttemptActions, useStoreAttempt, useStoreSession } from '@repo/store';
 import { useStoreAppShell } from '@repo/store';
-import { QuestionGet } from '@repo/types';
-import { useQuizStats } from '@repo/hooks';
-import { IconSchool } from '@tabler/icons-react';
+import { AttemptGet, QuestionGet, Status, Variant } from '@repo/types';
+import { useNotification, useQuizStats } from '@repo/hooks';
+import { IconAlertTriangle, IconInfoCircle, IconSchool } from '@tabler/icons-react';
+import { getCurrentWeekRange } from '@repo/utils';
 
 export default function One({ props }: { props: { quizId: string } }) {
   const router = useRouter();
+  const attempts = useStoreAttempt((s) => s.attempts);
+  const session = useStoreSession((s) => s.session);
+  const { showNotification } = useNotification();
 
   const { metaStats, quizzes, quiz, quizQuestions, quizQuestionsQuizQuestions } = useQuizStats({
     quizId: props.quizId,
@@ -43,12 +47,56 @@ export default function One({ props }: { props: { quizId: string } }) {
     if (!quiz) router.replace('/not-found');
   }, [quizzes]);
 
+  const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
+  const quizAttempts = userAttempts?.filter((ai) => ai.quizId == props.quizId);
+  const countedAttempts = quizAttempts?.filter((qi) => {
+    const isInProgress = qi.status == Status.IN_PROGRESS;
+    const isComplete = qi.status == Status.COMPLETE;
+    const isCanceled = qi.status == Status.ABANDONED;
+    return isInProgress || isComplete || isCanceled;
+  });
+  const userAttemptsInProgress = quizAttempts?.filter((qi) => qi.status == Status.IN_PROGRESS);
+
+  const handleStartResume = () => {
+    if (!session) return;
+
+    const blockStart = hasExceededWeeklyLimit(countedAttempts || []);
+
+    if (blockStart) {
+      showNotification({
+        variant: Variant.FAILED,
+        title: 'Attempt Limit Reached',
+        desc: `Quizes can only be attempted a maximum of ${MAXIMUM_ATTEMPTS} times a week.`,
+      });
+
+      return;
+    }
+
+    let resolvedAttempt: AttemptGet | null = null;
+
+    if (userAttemptsInProgress?.length) {
+      // resume existing
+      resolvedAttempt = userAttemptsInProgress[0];
+    } else {
+      // create new
+      const newAttempt = attemptCreate({ quizId: props.quizId });
+      if (newAttempt) resolvedAttempt = newAttempt;
+    }
+
+    if (resolvedAttempt) {
+      // close nav if open
+      if (navbarChild) toggleNavbarChild();
+      // route to quiz
+      router.push(`/quizzes/${props.quizId}/${resolvedAttempt.id}`);
+    }
+  };
+
   return (
     <div>
       <HeaderAppContent props={{ title: quiz?.title }} />
 
       <Grid>
-        <GridCol span={{ base: 12, md: navbarChild ? 7 : 8, lg: navbarChild ? 8 : 9 }}>
+        <GridCol span={{ base: 12, md: navbarChild ? 7 : 8, lg: navbarChild ? 7.5 : 8.5 }}>
           <Stack gap={'xl'} pr={{ md: 'xl' }}>
             {quizzes === undefined ? (
               <Stack gap={5} mih={74.4}>
@@ -61,6 +109,15 @@ export default function One({ props }: { props: { quizId: string } }) {
                 <Text>{quiz?.description}</Text>
               </Group>
             )}
+
+            <Alert
+              color="yellow"
+              icon={<IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+              title="Warning"
+            >
+              Quizzes can only be attempted a maximum of{' '}
+              <strong style={{ fontWeight: 500 }}>{MAXIMUM_ATTEMPTS} times a week</strong>.
+            </Alert>
 
             <Stack gap={'md'}>
               <Title order={3} fz={'md'} fw={500}>
@@ -80,7 +137,7 @@ export default function One({ props }: { props: { quizId: string } }) {
           </Stack>
         </GridCol>
 
-        <GridCol span={{ base: 12, md: navbarChild ? 5 : 4, lg: navbarChild ? 4 : 3 }}>
+        <GridCol span={{ base: 12, md: navbarChild ? 5 : 4, lg: navbarChild ? 4.5 : 3.5 }}>
           <Stack pos={'sticky'} top={SECTION_SPACING}>
             <Card bg={'var(--mantine-color-body)'} withBorder>
               <CardSection
@@ -122,44 +179,68 @@ export default function One({ props }: { props: { quizId: string } }) {
 
                   <Divider />
 
-                  <Group justify="space-between">
+                  <div>
                     <Text inherit fz={'sm'}>
                       Attempts:
                     </Text>
-                    <Text inherit ta={'end'} fw={500}>
-                      <NumberFormatter value={metaStats.timesAttempted} />
-                    </Text>
-                  </Group>
+
+                    <Group justify="space-between" fz={'xs'} c={'dimmed'}>
+                      <Text inherit>By you:</Text>
+                      <Text inherit ta={'end'} fw={500} fz={'sm'}>
+                        <NumberFormatter value={metaStats.timesAttempted} />
+                      </Text>
+                    </Group>
+
+                    <Group justify="space-between" fz={'xs'} c={'dimmed'}>
+                      <Text inherit>Everyone:</Text>
+                      <Text inherit ta={'end'} fw={500} fz={'sm'}>
+                        <NumberFormatter value={metaStats.timesAttemptedAll} />
+                      </Text>
+                    </Group>
+                  </div>
+
+                  <Alert
+                    icon={<IconInfoCircle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+                    color="blue"
+                    p={'xs'}
+                  >
+                    <strong>{MAXIMUM_ATTEMPTS - (countedAttempts?.length || 0)}</strong> attempts
+                    remaining this week.
+                  </Alert>
 
                   <Divider />
 
-                  <Group justify="space-between" align="start">
+                  <div>
                     <Text inherit fz={'sm'}>
                       Passes/Fails:
                     </Text>
 
-                    <Stack gap={0} align="end" ta={'end'}>
-                      <Text inherit>
-                        <Text component="span" inherit fw={500} c={'green.6'}>
-                          <NumberFormatter value={metaStats.timesPassed} />
-                        </Text>{' '}
-                        /{' '}
-                        <Text component="span" inherit fw={500} c={'red.6'}>
-                          <NumberFormatter value={metaStats.timesFailed} />
-                        </Text>
-                      </Text>
+                    <Group justify="space-between" align="start" fz={'xs'} c={'dimmed'}>
+                      <Text inherit>Everyone:</Text>
 
-                      {!metaStats.successRate ? null : (
-                        <Text inherit fz={'sm'} c={'dimmed'}>
-                          (Success rate:{' '}
-                          <Text component="span" inherit fw={500}>
-                            {metaStats.successRate}%
+                      <Stack gap={0} align="end" ta={'end'}>
+                        <Text inherit fz={'sm'}>
+                          <Text component="span" inherit fw={500} c={'green.6'}>
+                            <NumberFormatter value={metaStats.timesPassedAll} />
+                          </Text>{' '}
+                          /{' '}
+                          <Text component="span" inherit fw={500} c={'red.6'}>
+                            <NumberFormatter value={metaStats.timesFailedAll} />
                           </Text>
-                          )
                         </Text>
-                      )}
-                    </Stack>
-                  </Group>
+
+                        {!metaStats.successRate ? null : (
+                          <Text inherit fz={'sm'} c={'dimmed'}>
+                            (Success rate:{' '}
+                            <Text component="span" inherit fw={500}>
+                              {metaStats.successRate}%
+                            </Text>
+                            )
+                          </Text>
+                        )}
+                      </Stack>
+                    </Group>
+                  </div>
                 </Stack>
               </CardSection>
             </Card>
@@ -168,16 +249,9 @@ export default function One({ props }: { props: { quizId: string } }) {
               <Button
                 fullWidth
                 leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
-                onClick={() => {
-                  const newAttempt = attemptCreate({ quizId: props.quizId });
-
-                  if (newAttempt) {
-                    if (navbarChild) toggleNavbarChild();
-                    router.push(`/quizzes/${props.quizId}/${newAttempt.id}`);
-                  }
-                }}
+                onClick={handleStartResume}
               >
-                Start Quiz
+                {userAttemptsInProgress?.length ? 'Resume' : 'Start'} Quiz
               </Button>
             </Group>
           </Stack>
@@ -186,6 +260,8 @@ export default function One({ props }: { props: { quizId: string } }) {
     </div>
   );
 }
+
+const MAXIMUM_ATTEMPTS = 3;
 
 function CardQuestion({ props }: { props: { question: QuestionGet } }) {
   return (
@@ -196,3 +272,15 @@ function CardQuestion({ props }: { props: { question: QuestionGet } }) {
     </Card>
   );
 }
+
+const hasExceededWeeklyLimit = (attempts: AttemptGet[], maxAttempts = MAXIMUM_ATTEMPTS) => {
+  const { monday, sunday } = getCurrentWeekRange();
+
+  // Filter attempts for this student, this quiz, and within the current week
+  const weeklyAttempts = attempts.filter((attempt) => {
+    const attemptDate = new Date(attempt.createdAt);
+    return attemptDate >= monday && attemptDate <= sunday;
+  });
+
+  return weeklyAttempts.length >= maxAttempts;
+};

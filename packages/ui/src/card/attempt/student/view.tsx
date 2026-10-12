@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
-import { useStoreQuiz } from '@repo/store';
+import { useStoreAppShell, useStoreQuiz } from '@repo/store';
 import { AttemptGet } from '@repo/types';
 import { getRegionalDate } from '@repo/utils';
 import { capitalizeWords } from '@repo/utils';
@@ -25,6 +25,8 @@ import { useQuizStats } from '@repo/hooks';
 import { BadgeStatus } from '../../../badge/status';
 import { BadgeResult } from '../../../badge/result';
 import { Status } from '@repo/types';
+import { useMediaQuery } from '@mantine/hooks';
+import { useRouter } from 'next/navigation';
 
 export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet } }) {
   const { completeStats, metaStats, quiz } = useQuizStats({
@@ -33,24 +35,50 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
 
   const completionPercentage = (completeStats.questions.total / metaStats.totalQuestions) * 100;
 
+  const router = useRouter();
+  const desktop = useMediaQuery('(min-width: 62em)');
+  const navbarChild = useStoreAppShell((s) => s.appshell?.child.navbar);
+  const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
+
+  const handleResume = () => {
+    if (desktop) {
+      if (navbarChild) {
+        toggleNavbarChild();
+      }
+    }
+
+    router.replace(`/quizzes/${props.attempt.quizId}/${props.attempt.id}`);
+  };
+
   return (
     <Card bg={'var(--mantine-color-body)'} withBorder p={{ base: 'md', md: 'lg' }} h={'100%'}>
       <div>
         <Group justify={'end'} mih={30}>
-          <Anchor
-            component={Link}
-            href={`/attempts/${props.attempt.id}`}
-            underline="hover"
-            c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}
-            display={props.attempt.status == Status.COMPLETE ? undefined : 'none'}
-          >
+          {props.attempt.status == Status.COMPLETE && (
+            <Anchor
+              component={Link}
+              href={`/attempts/${props.attempt.id}`}
+              underline="hover"
+              c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}
+            >
+              <Button
+                size="xs"
+                rightSection={<IconArrowRight size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />}
+              >
+                Review
+              </Button>
+            </Anchor>
+          )}
+
+          {props.attempt.status == Status.IN_PROGRESS && (
             <Button
               size="xs"
               rightSection={<IconArrowRight size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />}
+              onClick={handleResume}
             >
-              Review
+              Continue
             </Button>
-          </Anchor>
+          )}
         </Group>
 
         <Stack>

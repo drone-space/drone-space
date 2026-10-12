@@ -76,7 +76,10 @@ export function StepperQuizIntro({
       desc: 'Confirm quiz details',
       content: (
         <Stack maw={{ md: '70%' }} mt={'xl'}>
-          <Title order={3}>You&apos;re Attempting {quiz?.title}</Title>
+          <Title order={3}>
+            You&apos;re Attempting: <br />
+            {quiz?.title}
+          </Title>
           <Text inherit>{quiz?.description}</Text>
 
           <Flex
@@ -97,7 +100,7 @@ export function StepperQuizIntro({
             </Text>
 
             <Text inherit>
-              Times attempted (By You):{' '}
+              Attempts (by you):{' '}
               <Text component="span" inherit fw={500} c={'primary'}>
                 <NumberFormatter value={attemptsQuiz?.length} />
               </Text>

@@ -18,6 +18,7 @@ import {
   NumberFormatter,
   Pagination,
   Paper,
+  Progress,
   Radio,
   RadioGroup,
   Skeleton,
@@ -36,7 +37,7 @@ import { QuestionGet } from '@repo/types';
 import { useStoreOption } from '@repo/store';
 import { useStoreAnswer } from '@repo/store';
 import { OptionGet } from '@repo/types';
-import { IconDoorExit, IconInfoCircle } from '@tabler/icons-react';
+import { IconDoorExit, IconInfoCircle, IconPlayerPause } from '@tabler/icons-react';
 import { useAnswerActions } from '@repo/store';
 import { useOptionActions } from '@repo/store';
 import { useAttemptActions } from '@repo/store';
@@ -53,6 +54,8 @@ import { useStoreAppShell } from '@repo/store';
 import { useMediaQuery, useWindowScroll } from '@mantine/hooks';
 
 export default function Attempt({ props }: { props: { quizId: string; attemptId: string } }) {
+  const mobile = useMediaQuery('(min-width: 36em)');
+  const tablet = useMediaQuery('(min-width: 48em)');
   const desktop = useMediaQuery('(min-width: 62em)');
 
   const { scrollToTop } = useScrollArea();
@@ -97,6 +100,20 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
     router.replace(`/quizzes/${props.quizId}/${props.attemptId}/complete`);
   };
 
+  const handlePause = () => {
+    if (!attempt) return;
+
+    // attemptUpdate({ ...attempt, status: Status.IN_PROGRESS });
+
+    if (desktop) {
+      if (!navbarChild) {
+        toggleNavbarChild();
+      }
+    }
+
+    router.replace(`/dashboard`);
+  };
+
   const handleQuit = () => {
     if (!attempt) return;
 
@@ -137,13 +154,36 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
 
   const handlePageChange = (page: number) => {
     setActivePage(page);
-    scrollToTop({ top: 0, behavior: 'smooth' });
+    scrollToTop({ top: desktop ? 0 : tablet ? 600 : 680, behavior: 'smooth' });
   };
+
+  const completionPercentageValue = Math.floor(
+    ((attemptAnswers?.length || 0) / (quizQuestionsQuiz?.length || 0)) * 100,
+  );
 
   return attempt?.status == Status.INTRO && intro ? (
     <StepperQuizIntro props={{ quizId: props.quizId, setIntro, attemptId: props.attemptId }} />
   ) : (
     <Grid gap={'xl'}>
+      <GridCol span={12} style={{ position: 'sticky', top: 0, zIndex: 1 }}>
+        <Box
+          // pt={'xs'}
+          bg={'var(--mantine-color-body)'}
+        >
+          <Paper
+            // p={'5'}
+            bg={'light-dark(var(--mantine-color-green-light), var(--mantine-color-green-light))'}
+          >
+            <Progress
+              value={completionPercentageValue}
+              size={4}
+              color="green"
+              styles={{ root: { backgroundColor: 'var(--mantine-color-green-light)' } }}
+            />
+          </Paper>
+        </Box>
+      </GridCol>
+
       <GridCol
         span={{
           base: 12,
@@ -279,11 +319,7 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
                     <Text inherit ta={'end'} fw={500}>
                       <NumberFormatter value={attemptAnswers?.length || 0} />/
                       <NumberFormatter value={quizQuestionsQuiz?.length || 0} /> (
-                      <NumberFormatter
-                        value={Math.floor(
-                          ((attemptAnswers?.length || 0) / (quizQuestionsQuiz?.length || 0)) * 100,
-                        )}
-                      />
+                      <NumberFormatter value={completionPercentageValue} />
                       %)
                     </Text>
                   )}
@@ -291,7 +327,28 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
               </Stack>
             </Card>
 
-            <Group grow>
+            <Stack>
+              <Tooltip label={'Stop here and come back later.'}>
+                <div>
+                  <ModalConfirm
+                    props={{
+                      title: 'Pause Quiz',
+                      desc: 'Are you sure you want to pause the quiz? You can return later.',
+                      onConfirm: handlePause,
+                    }}
+                  >
+                    <Button
+                      fullWidth
+                      // color="red"
+                      // variant="light"
+                      leftSection={<IconPlayerPause size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+                    >
+                      Pause
+                    </Button>
+                  </ModalConfirm>
+                </div>
+              </Tooltip>
+
               <Tooltip label={'Abandon quiz and all your progress.'}>
                 <div>
                   <ModalConfirm
@@ -312,7 +369,7 @@ export default function Attempt({ props }: { props: { quizId: string; attemptId:
                   </ModalConfirm>
                 </div>
               </Tooltip>
-            </Group>
+            </Stack>
           </Stack>
         </Box>
 

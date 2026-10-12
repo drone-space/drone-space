@@ -83,6 +83,19 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
 
   // --- 4. META / AGGREGATE STATS ---
   const activeAttempts = attempts?.filter((ai) => ai.status != 'INTRO');
+  const quizAttemptsAll =
+    attempts?.filter((ai) => ai.quizId === quiz?.id && ai.status === Status.COMPLETE) || [];
+
+  const quizPassesAll = quizAttemptsAll.filter((ai) => {
+    const historicalScore = getAttemptScore(ai.id);
+    return historicalScore >= thresholdPass;
+  });
+
+  const quizFailsAll = quizAttemptsAll.filter((ai) => {
+    const historicalScore = getAttemptScore(ai.id);
+    return historicalScore < thresholdPass;
+  });
+
   const userAttempts = activeAttempts?.filter((ai) => ai.profileId == session?.id);
   const quizAttempts =
     userAttempts?.filter((ai) => ai.quizId === quiz?.id && ai.status === Status.COMPLETE) || [];
@@ -92,15 +105,27 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
     return historicalScore >= thresholdPass;
   });
 
+  const quizFails = quizAttempts.filter((ai) => {
+    const historicalScore = getAttemptScore(ai.id);
+    return historicalScore < thresholdPass;
+  });
+
   const attemptsQuiz = quizAttempts.length;
+  const attemptsQuizAll = quizAttemptsAll.length;
   const passesQuiz = quizPasses.length;
+  const passesQuizAll = quizPassesAll.length;
+  const failsQuiz = quizFails.length;
+  const failsQuizAll = quizFailsAll.length;
   const questionsTotal = quizQuestionsQuiz?.length || 0;
 
   const metaStats = {
     timesAttempted: attemptsQuiz,
+    timesAttemptedAll: attemptsQuizAll,
     timesPassed: passesQuiz,
-    timesFailed: attemptsQuiz - passesQuiz,
-    successRate: attemptsQuiz > 0 ? Math.floor((passesQuiz / attemptsQuiz) * 100) : 0,
+    timesPassedAll: passesQuizAll,
+    timesFailed: failsQuiz,
+    timesFailedAll: failsQuizAll,
+    successRate: attemptsQuizAll > 0 ? Math.floor((passesQuizAll / attemptsQuizAll) * 100) : 0,
     totalQuestions: questionsTotal,
   };
 

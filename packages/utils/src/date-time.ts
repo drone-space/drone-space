@@ -562,3 +562,20 @@ export const isThisWeek = (date: Date | string, startOnMonday = false): boolean 
     targetDate.getTime() >= startOfWeek.getTime() && targetDate.getTime() <= endOfWeek.getTime()
   );
 };
+
+export const getCurrentWeekRange = (date = new Date()) => {
+  const d = new Date(date);
+  const day = d.getDay();
+
+  // Calculate difference to Monday (if Sunday, day is 0, so treat as 7)
+  const diffToMonday = d.getDate() - day + (day === 0 ? -6 : 1);
+
+  const monday = new Date(d.setDate(diffToMonday));
+  monday.setHours(0, 0, 0, 0); // Start of Monday
+
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999); // End of Sunday
+
+  return { monday, sunday };
+};

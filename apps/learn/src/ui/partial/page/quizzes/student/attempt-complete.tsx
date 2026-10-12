@@ -156,7 +156,12 @@ export default function AttemptComplete({ props }: { props: { attemptId: string 
           </Stack>
 
           <Stack align="center" ta={'center'}>
-            <ThemeIcon size={ICON_WRAPPER_SIZE * 3} variant="light" color={'dark'} radius={999}>
+            <ThemeIcon
+              size={ICON_WRAPPER_SIZE * 3}
+              // variant="light"
+              color={completeStats.passed ? 'green.6' : 'red.6'}
+              radius={999}
+            >
               <IconPercentage size={ICON_SIZE * 2} stroke={1} />
             </ThemeIcon>
 
@@ -176,7 +181,12 @@ export default function AttemptComplete({ props }: { props: { attemptId: string 
           {actionComponent}
         </Stack>
 
-        <LayoutSection id={'correct-answers'} padded display={showCorrect ? undefined : 'none'}>
+        <LayoutSection
+          id={'correct-answers'}
+          containerized={false}
+          padded
+          display={showCorrect ? undefined : 'none'}
+        >
           <LayoutIntroSection
             props={{
               title: 'Correct Answers',

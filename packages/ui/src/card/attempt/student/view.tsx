@@ -47,7 +47,7 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
       }
     }
 
-    router.replace(`/quizzes/${props.attempt.quizId}/${props.attempt.id}`);
+    router.push(`/quizzes/${props.attempt.quizId}/${props.attempt.id}`);
   };
 
   return (

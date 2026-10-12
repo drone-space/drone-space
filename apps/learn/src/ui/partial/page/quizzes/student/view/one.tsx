@@ -57,16 +57,15 @@ export default function One({ props }: { props: { quizId: string } }) {
   });
   const userAttemptsInProgress = quizAttempts?.filter((qi) => qi.status == Status.IN_PROGRESS);
 
+  const weeklyLimit = hasExceededWeeklyLimit(countedAttempts || []);
+
   const handleStartResume = () => {
     if (!session) return;
-
-    const blockStart = hasExceededWeeklyLimit(countedAttempts || []);
-
-    if (blockStart) {
+    if (weeklyLimit.hasExceeded) {
       showNotification({
         variant: Variant.FAILED,
         title: 'Attempt Limit Reached',
-        desc: `Quizes can only be attempted a maximum of ${MAXIMUM_ATTEMPTS} times a week.`,
+        desc: `Quizes can only be attempted a maximum number of ${MAXIMUM_ATTEMPTS} times a week.`,
       });
 
       return;
@@ -115,7 +114,7 @@ export default function One({ props }: { props: { quizId: string } }) {
               icon={<IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
               title="Warning"
             >
-              Quizzes can only be attempted a maximum of{' '}
+              Quizzes can only be attempted a maximum number of{' '}
               <strong style={{ fontWeight: 500 }}>{MAXIMUM_ATTEMPTS} times a week</strong>.
             </Alert>
 
@@ -204,7 +203,7 @@ export default function One({ props }: { props: { quizId: string } }) {
                     color="blue"
                     p={'xs'}
                   >
-                    <strong>{MAXIMUM_ATTEMPTS - (countedAttempts?.length || 0)}</strong> attempts
+                    <strong>{MAXIMUM_ATTEMPTS - weeklyLimit.attemptsThisWeek}</strong> attempts
                     remaining this week.
                   </Alert>
 
@@ -282,5 +281,8 @@ const hasExceededWeeklyLimit = (attempts: AttemptGet[], maxAttempts = MAXIMUM_AT
     return attemptDate >= monday && attemptDate <= sunday;
   });
 
-  return weeklyAttempts.length >= maxAttempts;
+  return {
+    hasExceeded: weeklyAttempts.length >= maxAttempts,
+    attemptsThisWeek: weeklyAttempts.length,
+  };
 };

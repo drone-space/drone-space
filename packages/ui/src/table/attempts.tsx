@@ -44,18 +44,18 @@ export function TableAttempts() {
     : attempts?.filter((ai) => ai.profileId == profileId);
 
   const { items, activePage, setActivePage, totalPages, pageRange } = usePaginate(
-    resolvedAttempts || [],
-    20,
+    sortArray(resolvedAttempts || [], (i) => i.createdAt, Order.DESCENDING) || [],
+    10,
   );
 
-  const rows = sortArray(items || [], (i) => i.createdAt, Order.DESCENDING).map((ai) => {
+  const rows = items.map((ai) => {
     return <AttemptRow key={ai.id} attempt={ai} onDelete={attemptDelete} />;
   });
 
   return (
     <Stack>
       <Card bg={'var(--mantine-color-gray-1)'}>
-        <Group justify="end">
+        <Group>
           <Select
             aria-label="Filter by user"
             placeholder="Filter by user"
@@ -213,7 +213,7 @@ function AttemptRow({ attempt: ai, onDelete }: AttemptRowProps) {
             props={{
               variant: Alert.DANGER,
               title: 'Delete Quiz Attempt',
-              desc: 'Are you sure you want to delete this quiz attempt? This action is irreversible.',
+              desc: 'Are you sure you want to delete this attempt? This action is irreversible.',
               onConfirm: () => {
                 onDelete(ai);
               },

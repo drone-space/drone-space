@@ -59,7 +59,7 @@ import { QuizQuestionGet } from '@repo/types';
 import { Status, SyncStatus } from '@repo/types';
 import { generateUUID } from '@repo/utils';
 import { useQuizQuestionActions } from '@repo/store';
-import InputSearch from '@learn/ui/input/search';
+import { InputSearch } from '@repo/ui';
 
 // 1. Move static objects OUTSIDE the component so their reference never changes
 const SELECT_OPTIONS = { select: true };
@@ -149,7 +149,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
 
   return (
     <Box mb={SECTION_SPACING}>
-      <HeaderAppContent props={{ title: !quiz ? undefined : `Edit ${quiz.title}` }} />
+      <HeaderAppContent props={{ title: !quiz ? undefined : `${quiz.title}` }} />
 
       <Grid>
         <GridCol span={{ base: 12, xl: 5 }} order={{ xl: 2 }}>

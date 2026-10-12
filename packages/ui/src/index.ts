@@ -64,6 +64,8 @@ export * from './indicator/network-status';
 export * from './indicator/offer';
 export * from './indicator/theme';
 
+export * from './input/search';
+
 export * from './layout/body/ai';
 export * from './layout/footer/modal/ai';
 export * from './layout/header/modal/ai';

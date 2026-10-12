@@ -14,7 +14,7 @@ import {
   TextInput,
 } from '@mantine/core';
 import { QuestionGet } from '@repo/types';
-import { useStoreQuestion } from '@repo/store';
+import { useStoreQuestion, useStoreQuizQuestion } from '@repo/store';
 import { PartialSectionOptions } from '../partial/section/options';
 import { useStoreOption } from '@repo/store';
 import { OptionGet } from '@repo/types';
@@ -25,8 +25,9 @@ export function FormQuestion({
   props,
   options,
 }: {
-  options?: { inline?: boolean };
+  options?: { inline?: boolean; stay?: boolean };
   props?: {
+    questionId?: string;
     quizId?: string;
     question?: QuestionGet;
     onSubmit?: () => void;
@@ -36,13 +37,20 @@ export function FormQuestion({
 }) {
   const router = useRouter();
 
-  const [quizId, setQuizId] = useState<string | null>('');
-
+  const questions = useStoreQuestion((s) => s.questions);
+  const question = questions?.find((qi) => qi.id == props?.questionId);
+  const quezQuestions = useStoreQuizQuestion((s) => s.quizQuestions);
+  const quizQuestion = quezQuestions?.find(
+    (qqi) => qqi.questionId == props?.questionId || qqi.quizId == props?.quizId,
+  );
   const quizzes = useStoreQuiz((s) => s.quizzes);
+  const quiz = quizzes?.find((qi) => qi.id == props?.quizId);
+
+  const [quizId, setQuizId] = useState<string | null>(quiz?.id || quizQuestion?.quizId || '');
 
   const { form, handleSubmit, submitted, stay, setStay } = useFormQuestion({
-    defaultValues: { ...props?.question },
-    options: { quizId: quizId || props?.quizId, inline: options?.inline },
+    defaultValues: { ...(props?.question || question) },
+    options: { quizId: quizId || props?.quizId, inline: options?.inline, stay: options?.stay },
   });
 
   const optionsStore = useStoreOption((s) => s.options);
@@ -77,7 +85,7 @@ export function FormQuestion({
               autosize
               minRows={1}
               maxRows={8}
-              disabled={!options?.inline && !!form.values.id}
+              disabled={!options?.inline && !!form.values.id && stay}
             />
           </GridCol>
 
@@ -92,7 +100,7 @@ export function FormQuestion({
               autosize
               minRows={2}
               maxRows={8}
-              disabled={!options?.inline && !!form.values.id}
+              disabled={!options?.inline && !!form.values.id && stay}
             />
           </GridCol>
 
@@ -106,7 +114,7 @@ export function FormQuestion({
                 searchable
                 value={quizId}
                 onChange={setQuizId}
-                disabled={!!form.values.id}
+                disabled={!!form.values.id && stay}
                 data={(quizzes || []).map((qi) => {
                   return {
                     label: qi.title,
@@ -159,7 +167,7 @@ export function FormQuestion({
         </Grid>
       </form>
 
-      {!options?.inline && form.values.id && (
+      {!options?.inline && form.values.id && stay && (
         <GridCol span={{ base: 12 }}>
           <Card withBorder>
             <PartialSectionOptions
@@ -170,10 +178,18 @@ export function FormQuestion({
         </GridCol>
       )}
 
-      {!options?.inline && form.values.id && (optionsQuestion || []).length >= 3 && (
+      {!options?.inline && !props?.questionId && (
         <Group mt={'xs'}>
           <Button size="xs" onClick={handleComplete}>
             Done
+          </Button>
+        </Group>
+      )}
+
+      {!!props?.questionId && (
+        <Group mt={'xs'}>
+          <Button size="xs" onClick={() => handleSubmit()}>
+            Update
           </Button>
         </Group>
       )}

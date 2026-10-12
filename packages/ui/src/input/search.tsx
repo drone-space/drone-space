@@ -1,18 +1,19 @@
 'use client';
 
-import { Loader, TextInput } from '@mantine/core';
+import { Loader, TextInput, TextInputProps } from '@mantine/core';
 import { useDebouncedCallback, useDebouncedState } from '@mantine/hooks';
 import { ICON_SIZE, ICON_STROKE_WIDTH } from '@repo/constants';
 import { IconSearch } from '@tabler/icons-react';
 import React, { useEffect, useState } from 'react';
 
-export default function Search({
+export function InputSearch({
   state,
   setState,
+  ...restProps
 }: {
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
-}) {
+} & TextInputProps) {
   const [loading, setLoading] = useState(false);
   const [localState, setLocalState] = useState(state);
 
@@ -38,6 +39,7 @@ export default function Search({
         onChange={(event) => setLocalState(event.currentTarget.value)}
         size="sm"
         w={'100%'}
+        {...restProps}
       />
     </>
   );

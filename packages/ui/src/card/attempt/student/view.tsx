@@ -27,7 +27,7 @@ import { BadgeResult } from '../../../badge/result';
 import { Status } from '@repo/types';
 
 export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet } }) {
-  const { completeStats, quizzes, metaStats, quiz } = useQuizStats({
+  const { completeStats, metaStats, quiz } = useQuizStats({
     attemptId: props.attempt.id,
   });
 

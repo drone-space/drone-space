@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { Box, Grid, GridCol, Loader, Stack, Text, ThemeIcon } from '@mantine/core';
+import { Box, Grid, GridCol, Loader, Stack, Text } from '@mantine/core';
 import HeaderAppContent from '@learn/ui/layout/headers/app-content';
 import { CardAttemptStudentView } from '@repo/ui';
-import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE, SECTION_SPACING } from '@repo/constants';
-import { IconX } from '@tabler/icons-react';
 import { useStoreAppShell, useStoreAttempt } from '@repo/store';
 import { useStoreSession } from '@repo/store';
+import { sortArray } from '@repo/utils';
+import { Order } from '@repo/types';
 
 export default function Many() {
   const attempts = useStoreAttempt((s) => s.attempts);
@@ -35,7 +35,7 @@ export default function Many() {
           </Stack>
         ) : (
           <Grid gap={'xl'}>
-            {userAttempts.map((ai) => (
+            {sortArray(userAttempts, (i) => i.createdAt, Order.DESCENDING).map((ai) => (
               <GridCol key={ai.id} span={{ base: 12, sm: 6, lg: navbarActive ? 6 : 4 }}>
                 <CardAttemptStudentView props={{ attempt: ai }} />
               </GridCol>

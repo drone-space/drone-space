@@ -20,13 +20,10 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
   const options = useStoreOption((s) => s.options);
   const answers = useStoreAnswer((s) => s.answers);
 
-  // --- 1. FILTER BASICS & LOOKUP BRIDGES ---
-  const userAttempts = attempts?.filter((ai) => ai.profileId === session?.id);
-  const attempt = userAttempts?.find((ai) => ai.id === params.attemptId);
+  const attempt = attempts?.find((ai) => ai.id === params.attemptId);
 
   const quiz = quizzes?.find((qi) => {
-    if (params.quizId) return qi.id === params.quizId;
-    return qi.id === attempt?.quizId;
+    return qi.id == params.quizId || qi.id == attempt?.quizId;
   });
 
   const dateAttempted = !attempt?.createdAt ? undefined : getRegionalDate(attempt.createdAt);
@@ -46,7 +43,6 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
   const thresholdPass = quiz?.passThreshold ?? 0;
   const totalQuestionsInQuiz = quizQuestionsQuiz?.length || 1;
 
-  // --- 2. OPTIMIZED SCORE COMPUTER ---
   // Uses index lookup maps to completely eliminate array scanning loops
   const getAttemptScore = (currAttemptId: string): number => {
     const currentAttemptAnswers = answers?.filter((an) => an.attemptId === currAttemptId) || [];
@@ -61,7 +57,6 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
     return Math.round((correctCount / totalQuestionsInQuiz) * 100);
   };
 
-  // --- 3. SINGLE ATTEMPT STATS ---
   const attemptAnswers = answers?.filter((ai) => ai.attemptId === params.attemptId) || [];
 
   const correctAnswers = attemptAnswers.filter((aai) => {
@@ -87,6 +82,7 @@ export const useQuizStats = (params: { quizId?: string; attemptId?: string }) =>
   };
 
   // --- 4. META / AGGREGATE STATS ---
+  const userAttempts = attempts?.filter((ai) => ai.profileId == session?.id);
   const quizAttempts =
     userAttempts?.filter((ai) => ai.quizId === quiz?.id && ai.status === Status.COMPLETE) || [];
 

@@ -31,7 +31,7 @@ export default function Many() {
         ) : !userAttempts?.length ? (
           <Stack>
             <Text inherit c={'dimmed'} fz={'sm'}>
-              No attempts found. Attempts will appear here when you take quizzes.
+              Attempts will appear here when you take quizzes.
             </Text>
           </Stack>
         ) : (

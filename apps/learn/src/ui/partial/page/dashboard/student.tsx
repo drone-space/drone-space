@@ -192,10 +192,10 @@ export default function Student() {
                     Fetching analytics data.
                   </Text>
                 </Stack>
-              ) : !attempts?.length ? (
-                <Stack mih={500}>
+              ) : !userAttempts?.length ? (
+                <Stack mih={200}>
                   <Text c={'dimmed'} fz={'sm'}>
-                    No attempts found. Attempts will appear here when you take quizzes.
+                    Attempts will appear here when you take quizzes.
                   </Text>
                 </Stack>
               ) : (

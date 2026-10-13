@@ -9,7 +9,10 @@ import {
   IconArrowUpRight,
   IconCalendarEvent,
   IconCalendarWeek,
+  IconCircleCheck,
+  IconCircleX,
   IconReportAnalytics,
+  IconSchool,
 } from '@tabler/icons-react';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
 import { useStoreAppShell, useStoreQuiz } from '@repo/store';
@@ -80,20 +83,20 @@ export default function Student() {
   const stats = {
     attempts: [
       {
-        icon: IconReportAnalytics,
+        icon: IconSchool,
         stat: userAttempts?.length,
         title: 'Quizzes Taken',
         desc: 'Total attempts on quizzes.',
       },
       {
-        icon: IconArrowUpRight,
+        icon: IconCircleCheck,
         stat: quizzesPassed?.length,
         title: 'Quizzes Passed',
         color: 'green',
         desc: 'Passed attempts on quizzes.',
       },
       {
-        icon: IconArrowDownRight,
+        icon: IconCircleX,
         stat: quizzesFailed?.length,
         title: 'Quizzes Failed',
         color: 'red',

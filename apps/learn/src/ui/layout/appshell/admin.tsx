@@ -2,6 +2,7 @@
 
 import {
   AppShell,
+  AppShellFooter,
   AppShellHeader,
   AppShellMain,
   AppShellNavbar,
@@ -18,7 +19,7 @@ import {
   Transition,
 } from '@mantine/core';
 import { useStoreAppShell, useStoreProfile, useStoreSession } from '@repo/store';
-import { ButtonAppshellNavbar, LoaderMain } from '@repo/ui';
+import { ButtonAppshellNavbar, ButtonFullscreen, IndicatorTheme, LoaderMain } from '@repo/ui';
 import { ImageDefault } from '@repo/ui';
 import { images } from '@repo/constants';
 import { COMPANY_NAME } from '@repo/constants';
@@ -29,6 +30,7 @@ import {
   IconIdBadge,
   IconQuestionMark,
   IconReportAnalytics,
+  IconUser,
 } from '@tabler/icons-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ICON_SIZE, ICON_STROKE_WIDTH, ICON_WRAPPER_SIZE } from '@repo/constants';
@@ -40,6 +42,7 @@ import { AvatarUser } from '@repo/ui';
 import { MenuUser } from '@repo/ui';
 import { useEffect } from 'react';
 import { Role } from '@repo/types';
+import { useMediaQuery } from '@mantine/hooks';
 
 export default function Admin({ children }: { children: React.ReactNode }) {
   const navbarActive = useStoreAppShell((s) => s.appshell?.child?.navbar);
@@ -60,6 +63,7 @@ export default function Admin({ children }: { children: React.ReactNode }) {
       layout="alt"
       // withBorder={false}
       header={{ height: APPSHELL.HEADER.HEIGHT }}
+      footer={{ height: APPSHELL.FOOTER.HEIGHT }}
       navbar={{
         width: APPSHELL.NAVBAR.WIDTH,
         breakpoint: 'sm',
@@ -74,17 +78,21 @@ export default function Admin({ children }: { children: React.ReactNode }) {
         <Navbar />
       </AppShellNavbar>
 
-      <AppShellMain bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}>
-        <ScrollArea h={`calc(100vh - ${APPSHELL.HEADER.HEIGHT}px)`} scrollbars={'y'}>
-          <Box
-            mih={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + 61.7 + 1}px)`}
-            p={{ base: 'sm', md: 'xl' }}
-          >
+      <AppShellMain>
+        <ScrollArea
+          h={`calc(100vh - ${APPSHELL.HEADER.HEIGHT + APPSHELL.FOOTER.HEIGHT}px)`}
+          scrollbars={'y'}
+          bg={'light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9))'}
+        >
+          <Box p={'xs'} pr={'md'}>
             {children}
           </Box>
-          <FooterMain />
         </ScrollArea>
       </AppShellMain>
+
+      <AppShellFooter>
+        <FooterMain />
+      </AppShellFooter>
     </AppShell>
   );
 }
@@ -114,6 +122,7 @@ function useAdminGuard() {
 
 const APPSHELL = {
   HEADER: { HEIGHT: 60 },
+  FOOTER: { HEIGHT: 60 },
   NAVBAR: { WIDTH: 300 },
 };
 
@@ -143,7 +152,7 @@ function Header() {
               <Group>
                 <ButtonAppshellNavbar />
 
-                <div>{brandImage}</div>
+                {/* <div>{brandImage}</div> */}
               </Group>
             </div>
           )}
@@ -152,6 +161,11 @@ function Header() {
 
       <Group justify="end">
         <IndicatorNetworkStatus props={{ syncStatus }} />
+        <IndicatorTheme />
+        <ButtonFullscreen />
+
+        {/* <Divider orientation="vertical" my={'auto'} h={24} /> */}
+
         <MenuUser>
           <AvatarUser size={ICON_WRAPPER_SIZE + 4} />
         </MenuUser>
@@ -190,13 +204,16 @@ const navlinksAdmin = [
 
 function Navbar() {
   const pathname = usePathname();
+  const desktop = useMediaQuery('(min-width: 62em)');
+  const navbarActive = useStoreAppShell((s) => s.appshell?.child.navbar);
+  const toggleNavbarChild = useStoreAppShell((s) => s.toggleNavbarChild);
 
   return (
     <div>
       <Group h={APPSHELL.HEADER.HEIGHT - 1} p={'sm'}>
         <ButtonAppshellNavbar />
 
-        <div>{brandImage}</div>
+        {/* <div>{brandImage}</div> */}
       </Group>
 
       <Divider />
@@ -222,6 +239,30 @@ function Navbar() {
             />
           );
         })}
+
+        {
+          <>
+            <Divider my={'xs'} />
+
+            <NavLink
+              component={Link}
+              href={'/dashboard'}
+              label={'Student Area'}
+              color="gray"
+              leftSection={<IconUser size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+              styles={{
+                root: {
+                  borderRadius: 'var(--mantine-radius-xl)',
+                },
+              }}
+              onClick={() => {
+                if (!desktop) {
+                  if (navbarActive) toggleNavbarChild();
+                }
+              }}
+            />
+          </>
+        }
       </Stack>
     </div>
   );

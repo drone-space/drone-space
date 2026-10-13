@@ -178,7 +178,7 @@ export function FormQuestion({
         </GridCol>
       )}
 
-      {!options?.inline && !props?.questionId && (
+      {!options?.inline && !props?.questionId && !!props?.question?.updatedAt && (
         <Group mt={'xs'}>
           <Button size="xs" onClick={handleComplete}>
             Done

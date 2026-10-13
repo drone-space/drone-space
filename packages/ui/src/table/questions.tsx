@@ -99,7 +99,7 @@ export function TableQuestions() {
         <TableTd w={WIDTHS.ACTIONS}>
           <Group justify="end" gap={'xs'}>
             <AnchorNextLink href={`/admin/questions/${qi.id}/edit-question`}>
-              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color="gray">
+              <ActionIcon size={ICON_WRAPPER_SIZE} variant="light" color="gray">
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
             </AnchorNextLink>
@@ -115,7 +115,7 @@ export function TableQuestions() {
               }}
             >
               <Tooltip label={'Delete question'}>
-                <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color="red">
+                <ActionIcon size={ICON_WRAPPER_SIZE} variant="light" color="red">
                   <IconTrash size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 </ActionIcon>
               </Tooltip>
@@ -128,7 +128,7 @@ export function TableQuestions() {
 
   return (
     <Stack>
-      <Card bg={'var(--mantine-color-gray-1)'}>
+      <Card bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'} withBorder>
         <Group>
           <InputSearch state={search} setState={setSearch} w={320} placeholder="Search by title" />
         </Group>
@@ -173,7 +173,7 @@ export function TableQuestions() {
         </TableTbody>
       </Table>
 
-      <Card bg={'var(--mantine-color-gray-1)'}>
+      <Card bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'} withBorder>
         <Group justify="space-between" align="end">
           <Group fz={'sm'} c={'dimmed'}>
             <Text inherit>

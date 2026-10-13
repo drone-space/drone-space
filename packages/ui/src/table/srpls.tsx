@@ -87,7 +87,7 @@ export function TableSrpls() {
         <TableTd w={WIDTHS.ACTIONS}>
           <Group justify="end" gap={'xs'}>
             <AnchorNextLink href={`/admin/srpls/${srpli.id}/edit-srpl`}>
-              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color="gray">
+              <ActionIcon size={ICON_WRAPPER_SIZE} variant="light" color="gray">
                 <IconEdit size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
             </AnchorNextLink>
@@ -103,7 +103,7 @@ export function TableSrpls() {
               }}
             >
               <Tooltip label={'Delete pasport/ID number'}>
-                <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color="red">
+                <ActionIcon size={ICON_WRAPPER_SIZE} variant="light" color="red">
                   <IconTrash size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
                 </ActionIcon>
               </Tooltip>
@@ -116,7 +116,7 @@ export function TableSrpls() {
 
   return (
     <Stack>
-      <Card bg={'var(--mantine-color-gray-1)'}>
+      <Card bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'} withBorder>
         <Group>
           <InputSearch state={search} setState={setSearch} w={320} placeholder="Search by title" />
         </Group>
@@ -161,7 +161,7 @@ export function TableSrpls() {
         </TableTbody>
       </Table>
 
-      <Card bg={'var(--mantine-color-gray-1)'}>
+      <Card bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'} withBorder>
         <Group justify="space-between" align="end">
           <Group fz={'sm'} c={'dimmed'}>
             <Text inherit>

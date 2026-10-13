@@ -29,22 +29,26 @@ import { sortArray } from '@repo/utils';
 import { Alert, AttemptGet, Order, Status } from '@repo/types';
 import { usePaginate, useQuizStats } from '@repo/hooks';
 import { BadgeResult } from '../badge/result';
-import { IconFilter, IconTrash } from '@tabler/icons-react';
+import { IconFilter, IconFilterX, IconTrash } from '@tabler/icons-react';
 import { ModalConfirm } from '../modal/confirm';
 
 export function TableAttempts() {
   const attempts = useStoreAttempt((s) => s.attempts);
   const { attemptDelete } = useAttemptActions();
+  const quizzes = useStoreQuiz((s) => s.quizzes);
 
   const [profileId, setProfileId] = useState<string | null>('');
+  const [quizId, setQuizId] = useState<string | null>('');
 
   const profiles = useStoreProfile((s) => s.profiles);
-  const resolvedAttempts = !profileId?.trim()
-    ? attempts
-    : attempts?.filter((ai) => ai.profileId == profileId);
+  const filteredAttempts = attempts?.filter((ai) => {
+    const filterProfile = !profileId ? true : ai.profileId == profileId;
+    const filterQuiz = !quizId ? true : ai.quizId == quizId;
+    return filterProfile && filterQuiz;
+  });
 
   const { items, activePage, setActivePage, totalPages, pageRange } = usePaginate(
-    sortArray(resolvedAttempts || [], (i) => i.createdAt, Order.DESCENDING) || [],
+    sortArray(filteredAttempts || [], (i) => i.createdAt, Order.DESCENDING) || [],
     10,
   );
 
@@ -54,27 +58,69 @@ export function TableAttempts() {
 
   return (
     <Stack>
-      <Card bg={'var(--mantine-color-gray-1)'}>
-        <Group>
-          <Select
-            aria-label="Filter by user"
-            placeholder="Filter by user"
-            data={(profiles || []).map((pi) => {
-              return { label: pi.email, value: pi.id };
-            })}
-            value={profileId}
-            onChange={setProfileId}
-            leftSection={<IconFilter size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
-            size="sm"
-            w={280}
-            clearable
-            clearSectionMode="clear"
-            searchable
-            nothingFoundMessage="No user found..."
-            checkIconPosition="right"
-            allowDeselect={false}
-            limit={10}
-          />
+      <Card bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'} withBorder>
+        <Group justify="space-between" wrap="nowrap">
+          <Group>
+            <Select
+              aria-label="Filter by quiz"
+              placeholder="Filter by quiz"
+              data={[
+                { label: '', value: '' },
+                ...(quizzes || []).map((pi) => {
+                  return { label: pi.title, value: pi.id };
+                }),
+              ]}
+              value={quizId}
+              onChange={setQuizId}
+              leftSection={<IconFilter size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+              size="xs"
+              w={240}
+              clearable
+              clearSectionMode="clear"
+              searchable
+              nothingFoundMessage="No quiz found..."
+              checkIconPosition="right"
+              allowDeselect={false}
+              limit={10}
+            />
+
+            <Select
+              aria-label="Filter by user"
+              placeholder="Filter by user"
+              data={[
+                { label: '', value: '' },
+                ...(profiles || []).map((pi) => {
+                  return { label: pi.email, value: pi.id };
+                }),
+              ]}
+              value={profileId}
+              onChange={setProfileId}
+              leftSection={<IconFilter size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
+              size="xs"
+              w={240}
+              clearable
+              clearSectionMode="clear"
+              searchable
+              nothingFoundMessage="No user found..."
+              checkIconPosition="right"
+              allowDeselect={false}
+              limit={10}
+            />
+          </Group>
+
+          <Group justify="end">
+            <Tooltip
+              label={'Clear all filters'}
+              onClick={() => {
+                setProfileId('');
+                setQuizId('');
+              }}
+            >
+              <ActionIcon color="red" variant="light">
+                <IconFilterX size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
+              </ActionIcon>
+            </Tooltip>
+          </Group>
         </Group>
       </Card>
 
@@ -117,11 +163,11 @@ export function TableAttempts() {
         </TableTbody>
       </Table>
 
-      <Card bg={'var(--mantine-color-gray-1)'}>
+      <Card bg={'light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8))'} withBorder>
         <Group justify="space-between" align="end">
           <Group fz={'sm'} c={'dimmed'}>
             <Text inherit>
-              Showing: {pageRange?.from} to {pageRange?.to} of {resolvedAttempts?.length}
+              Showing: {pageRange?.from} to {pageRange?.to} of {filteredAttempts?.length}
             </Text>
           </Group>
 
@@ -220,7 +266,7 @@ function AttemptRow({ attempt: ai, onDelete }: AttemptRowProps) {
             }}
           >
             <Tooltip label={'Delete Attempt'}>
-              <ActionIcon size={ICON_WRAPPER_SIZE} variant="subtle" color="red">
+              <ActionIcon size={ICON_WRAPPER_SIZE} variant="light" color="red">
                 <IconTrash size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />
               </ActionIcon>
             </Tooltip>

@@ -148,7 +148,7 @@ export default function Edit({ props }: { props: { quizId: string } }) {
   }, []);
 
   return (
-    <Box mb={SECTION_SPACING}>
+    <Box>
       <HeaderAppContent props={{ title: !quiz ? undefined : `${quiz.title}` }} />
 
       <Grid>
@@ -415,7 +415,7 @@ const CardQuestion = memo(function CardQuestion({
             <Group gap={5}>
               <Tooltip label={'Edit question content.'}>
                 <ActionIcon
-                  variant={isEditingContent ? 'light' : 'subtle'}
+                  variant={isEditingContent ? 'filled' : 'light'}
                   color="gray"
                   onClick={() =>
                     setEdit &&
@@ -430,7 +430,7 @@ const CardQuestion = memo(function CardQuestion({
                 <ActionIcon
                   size={ICON_WRAPPER_SIZE - 4}
                   color="gray"
-                  variant={isEditingOptions ? 'light' : 'subtle'}
+                  variant={isEditingOptions ? 'filled' : 'light'}
                   onClick={() =>
                     setEdit &&
                     setEdit({
@@ -443,27 +443,30 @@ const CardQuestion = memo(function CardQuestion({
                 </ActionIcon>
               </Tooltip>
 
-              <Tooltip label={'Remove question from quiz.'}>
-                <Group>
-                  <ActionIcon
-                    color="red"
-                    size={ICON_WRAPPER_SIZE - 4}
-                    variant={'subtle'}
-                    onClick={() => {
-                      handleRemoveQuestionFromQuiz();
+              <ModalConfirm
+                props={{
+                  onConfirm: () => {
+                    handleRemoveQuestionFromQuiz();
 
-                      if (setEdit) {
-                        setEdit({
-                          content: '',
-                          options: '',
-                        });
-                      }
-                    }}
-                  >
-                    <IconCircleMinus size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
-                  </ActionIcon>
-                </Group>
-              </Tooltip>
+                    if (setEdit) {
+                      setEdit({
+                        content: '',
+                        options: '',
+                      });
+                    }
+                  },
+                  title: 'Remove question from quiz',
+                  desc: 'Are you sure? This action is irreversible.',
+                }}
+              >
+                <Tooltip label={'Remove question from quiz.'}>
+                  <Group>
+                    <ActionIcon color="red" size={ICON_WRAPPER_SIZE - 4} variant={'light'}>
+                      <IconCircleMinus size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />
+                    </ActionIcon>
+                  </Group>
+                </Tooltip>
+              </ModalConfirm>
 
               {((questionOptions || []).length < 3 ||
                 !hasCorrectOption ||
@@ -526,7 +529,7 @@ const CardQuestion = memo(function CardQuestion({
                       <ActionIcon
                         color="red"
                         size={ICON_WRAPPER_SIZE - 4}
-                        variant={'subtle'}
+                        variant={'light'}
                         onClick={() =>
                           setEdit &&
                           setEdit({

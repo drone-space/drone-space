@@ -210,7 +210,7 @@ const CardOption = memo(function CardOption({
             <Group gap={5}>
               <Tooltip label={'Edit option content.'}>
                 <ActionIcon
-                  variant={isEditing ? 'light' : 'subtle'}
+                  variant={isEditing ? 'filled' : 'light'}
                   color="gray"
                   onClick={() => setEdit && setEdit(!isEditing ? option.id : '')}
                 >
@@ -233,9 +233,9 @@ const CardOption = memo(function CardOption({
                   >
                     <Group>
                       <ActionIcon
-                        color="red.6"
+                        color="red"
                         size={ICON_WRAPPER_SIZE - 4}
-                        variant={'subtle'}
+                        variant={'light'}
                         onClick={() => setEdit && setEdit('')}
                       >
                         <IconTrash size={ICON_SIZE - 4} stroke={ICON_STROKE_WIDTH} />

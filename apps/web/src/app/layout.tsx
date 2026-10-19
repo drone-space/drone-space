@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   description: APP_DESC.WEB,
 };
 
+export const dynamic = 'force-static';
+export const revalidate = 3600;
+
 export default async function RootLayout({
   children,
 }: Readonly<{

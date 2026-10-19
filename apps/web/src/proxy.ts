@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { updateSession } from '@repo/cloudbase';
-import { getColorScheme, setCorsHeaders } from '@repo/utils';
-import { getBaseUrl } from '@repo/constants';
+import { conditionalRedirect, getColorScheme, setCorsHeaders } from '@repo/utils';
+import { getBaseUrl, staticRedirects } from '@repo/constants';
 
 export async function proxy(request: NextRequest) {
   // Handle preflight
@@ -9,6 +9,15 @@ export async function proxy(request: NextRequest) {
     const response = NextResponse.json({}, { status: 200 });
     setCorsHeaders({ request, response });
     return response;
+  }
+
+  // Handle static redirects (like /index -> /)
+  const pathname = request.nextUrl.pathname;
+  const target = staticRedirects[pathname as keyof typeof staticRedirects];
+  const redirectResponse = conditionalRedirect(!!target, target!, request, { permanent: true });
+  if (redirectResponse) {
+    setCorsHeaders({ request, response: redirectResponse });
+    return redirectResponse;
   }
 
   let response = NextResponse.next({ request });

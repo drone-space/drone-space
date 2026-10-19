@@ -1,5 +1,6 @@
 export const staticRedirects = {
   '/about/contact': '/contact',
+  '/index': '/',
 };
 
 export const dynamicRedirects = [

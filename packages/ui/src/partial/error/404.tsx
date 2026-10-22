@@ -22,6 +22,7 @@ export function PartialError404() {
         <Group justify="center" mt={'md'}>
           <Button
             component={Link}
+            prefetch={false}
             href={'/'}
             leftSection={<IconArrowLeft size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
           >

@@ -382,6 +382,7 @@ function Account() {
           color="red.6"
           variant="light"
           component={Link}
+          prefetch={false}
           href={AUTH_URLS.SIGN_OUT}
           leftSection={<IconLogout2 size={ICON_SIZE - 6} stroke={ICON_STROKE_WIDTH} />}
         >

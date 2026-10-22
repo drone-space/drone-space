@@ -57,6 +57,7 @@ export function CardAttemptStudentView({ props }: { props: { attempt: AttemptGet
           {props.attempt.status == Status.COMPLETE && (
             <Anchor
               component={Link}
+              prefetch={false}
               href={`/attempts/${props.attempt.id}`}
               underline="hover"
               c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}

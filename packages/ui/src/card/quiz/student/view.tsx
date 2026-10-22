@@ -30,6 +30,7 @@ export function CardQuizStudentView({ props }: { props: { quiz: QuizGet } }) {
         <Group mt={'md'}>
           <Anchor
             component={Link}
+            prefetch={false}
             href={`/quizzes/${props.quiz.id}`}
             underline="hover"
             c={'light-dark(var(--mantine-color-text), var(--mantine-color-dark-0))'}

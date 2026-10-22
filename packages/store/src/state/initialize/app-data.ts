@@ -247,6 +247,7 @@ export const useLoadAppData = (options: {
 
         const res = await fetch(
           `${options.apiUrl}/app-data?userId=${session.id}&sourceSite=${options.sourceSite}&stores=${storeQuery}`,
+          { next: { revalidate: 3600 } },
         );
 
         if (!res.ok) {

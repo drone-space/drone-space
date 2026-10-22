@@ -4,6 +4,7 @@ import { FormValuesInquiry } from '@repo/types';
 export const contactAdd = async (params: Partial<FormValuesInquiry>) => {
   try {
     const response = await fetch(`${getClientApiUrl()}/email-contacts`, {
+      next: { revalidate: 3600 },
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

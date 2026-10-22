@@ -20,7 +20,7 @@ import { studentsGet } from '@repo/handlers';
 import CtaMain from '@web/ui/partial/cta/main';
 
 export const dynamic = 'force-static';
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 const metaTitle = `About ${APP_NAME.WEB} - Kenya's Leading Drone Training Academy`;
 const metaDesc =

@@ -31,7 +31,7 @@ export function CardQuizHome({ props }: { props: { quiz: QuizGet } }) {
         </Group>
 
         <Group mt={'md'}>
-          <Anchor component={Link} href={`/quizzes/${props.quiz.id}`} underline="hover">
+          <Anchor component={Link} prefetch={false} href={`/quizzes/${props.quiz.id}`} underline="hover">
             <Group gap={5}>
               <Text inherit fz={'sm'} lineClamp={3}>
                 Learn more

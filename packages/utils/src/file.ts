@@ -18,7 +18,7 @@ export const getFileSize = async (
         return urlSizeCache.get(fileOrUrl)!;
       }
 
-      const response = await fetch(fileOrUrl, { method: 'HEAD' });
+      const response = await fetch(fileOrUrl, { next: { revalidate: 3600 }, method: 'HEAD' });
       if (!response.ok) {
         console.warn(`Unable to fetch headers for ${fileOrUrl}: ${response.status}`);
         return 0;

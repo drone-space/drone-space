@@ -14,7 +14,7 @@ export function AnchorNextLink({
   children: React.ReactNode;
 } & AnchorProps) {
   return (
-    <Anchor component={Link} href={href} onClick={onClick} {...restProps}>
+    <Anchor component={Link} href={href} prefetch={false} onClick={onClick} {...restProps}>
       {children}
     </Anchor>
   );

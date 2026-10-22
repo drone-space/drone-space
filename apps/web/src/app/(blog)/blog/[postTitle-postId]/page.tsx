@@ -10,7 +10,7 @@ import PartialPageBlogDetail from '@web/ui/partial/page/blog-detail';
 import { getApiUrl } from '@repo/constants';
 
 export const dynamic = 'force-static';
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const { items: posts }: { items: PostRelations[] } = await postsGet({

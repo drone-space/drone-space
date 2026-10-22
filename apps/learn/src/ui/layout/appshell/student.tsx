@@ -181,6 +181,7 @@ function Navbar() {
       <Stack gap={2}>
         <NavLink
           component={Link}
+          prefetch={false}
           href={'/'}
           label={'Back Home'}
           color="gray"
@@ -204,6 +205,7 @@ function Navbar() {
             <NavLink
               key={nli.link}
               component={Link}
+              prefetch={false}
               href={nli.link}
               label={nli.label}
               color="gray"
@@ -229,6 +231,7 @@ function Navbar() {
 
             <NavLink
               component={Link}
+              prefetch={false}
               href={'/admin'}
               label={'Admin'}
               color="gray"

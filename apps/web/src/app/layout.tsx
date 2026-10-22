@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Montserrat, Nova_Mono } from 'next/font/google';
-import { APP_DESC, APP_NAME, getApiUrl } from '@repo/constants';
+import { APP_DESC, APP_NAME } from '@repo/constants';
 import { ProviderMantine } from '@repo/ui';
 import { ProviderInitialize } from '@web/ui/provider/initialize';
 import { ColorSchemeScript, MantineColorScheme, mantineHtmlProps } from '@mantine/core';
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = 'force-static';
-export const revalidate = 3600;
+// export const revalidate = 3600;
 
 export default async function RootLayout({
   children,
@@ -75,9 +75,7 @@ export default async function RootLayout({
           theme={getAppTheme}
           cssVariablesResolver={getAppResolver}
         >
-          <ProviderInitialize props={{ baseUrl: await getApiUrl(), sessionUser: null }}>
-            {children}
-          </ProviderInitialize>
+          <ProviderInitialize props={{ sessionUser: null }}>{children}</ProviderInitialize>
         </ProviderMantine>
 
         {isProduction() && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}

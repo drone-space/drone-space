@@ -13,6 +13,7 @@ export const apiCall = async (
 
   try {
     const response = await fetch(url, {
+      next: { revalidate: 3600 },
       method,
       headers,
       body: hasBody ? JSON.stringify(body) : undefined,

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { updateSession } from '@repo/cloudbase';
 import { conditionalRedirect, getColorScheme, setCorsHeaders } from '@repo/utils';
-import { getBaseUrl, staticRedirects } from '@repo/constants';
+import { staticRedirects } from '@repo/constants';
 
 export async function proxy(request: NextRequest) {
   // Handle preflight

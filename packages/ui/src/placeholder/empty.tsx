@@ -20,7 +20,7 @@ export function PlaceholderEmpty({
 
         <div>
           {!children ? (
-            <Button size="xs" component={Link} href={'/'}>
+            <Button size="xs" component={Link} prefetch={false} href={'/'}>
               Go To Home Page
             </Button>
           ) : (

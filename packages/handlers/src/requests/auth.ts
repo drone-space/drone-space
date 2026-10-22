@@ -4,6 +4,7 @@ import { SignIn, SignOut } from '@repo/types';
 export const signIn = async (params: SignIn & { apiUrl: string }) => {
   try {
     const response = await fetch(`${params.apiUrl + AUTH_URLS.SIGN_IN}`, {
+      next: { revalidate: 3600 },
       method: 'POST',
       body: JSON.stringify(params),
       headers: {
@@ -22,6 +23,7 @@ export const signIn = async (params: SignIn & { apiUrl: string }) => {
 export const signOut = async (params: SignOut) => {
   try {
     const response = await fetch(`${params.options.baseUrl}/api${AUTH_URLS.SIGN_OUT}`, {
+      next: { revalidate: 3600 },
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

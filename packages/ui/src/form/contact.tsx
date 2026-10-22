@@ -135,6 +135,7 @@ export function FormContact({
             <Button
               disabled={submitted}
               component={Link}
+              prefetch={false}
               href={'/faq'}
               color="gray"
               variant="light"

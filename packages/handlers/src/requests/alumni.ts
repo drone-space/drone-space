@@ -4,6 +4,7 @@ import { AlumniChallengerGet } from '@repo/types';
 export const alumniChallengeSubmit = async (params: Partial<AlumniChallengerGet>) => {
   try {
     const response = await fetch(`${getClientApiUrl()}/alumni-challengers/${params.srpl}`, {
+      next: { revalidate: 3600 },
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

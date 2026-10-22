@@ -3,6 +3,7 @@ import { getClientApiUrl } from '@repo/constants';
 export const textToSpeech = async (params: { text: string }) => {
   try {
     const response = await fetch(`${getClientApiUrl()}/tts`, {
+      next: { revalidate: 3600 },
       method: 'POST',
       body: JSON.stringify(params),
       headers: {

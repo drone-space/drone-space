@@ -7,7 +7,7 @@ const documentUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/p
 
 const getCachedDocument = unstable_cache(
   async () => {
-    const response = await fetch(documentUrl);
+    const response = await fetch(documentUrl, { next: { revalidate: 3600 } });
     if (!response.ok) throw new Error('Failed fetch');
     return response.text();
   },

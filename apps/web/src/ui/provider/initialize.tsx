@@ -4,14 +4,14 @@ import React from 'react';
 import { useAppshellInitialize, useLoadAppData, useSessionStore } from '@repo/store';
 import { UserObject } from '@repo/types';
 import { AppShellValue } from '@repo/store';
-import { STORE_NAME } from '@repo/constants';
+import { getClientApiUrl, STORE_NAME } from '@repo/constants';
 
 export function ProviderInitialize({
   props,
   children,
 }: {
   props: {
-    baseUrl: string;
+    baseUrl?: string;
     sessionUser: UserObject | null;
     cookie?: AppShellValue;
   };
@@ -28,7 +28,7 @@ export function ProviderInitialize({
 
   useLoadAppData({
     sourceSite: 'web',
-    apiUrl: props.baseUrl,
+    apiUrl: props.baseUrl || getClientApiUrl(),
     clientOnly: false,
     storesToLoad: STORES_TO_LOAD,
   });

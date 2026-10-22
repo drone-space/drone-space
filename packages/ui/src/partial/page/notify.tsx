@@ -71,6 +71,7 @@ export const PartialPageNotifySignOut = ({ props }: { props: { baseUrl: string }
 
           <Button
             component={Link}
+            prefetch={false}
             href="/"
             color="gray"
             variant="light"
@@ -97,6 +98,7 @@ export const PartialPageNotifySignedOut = () => {
         <>
           <Button
             component={Link}
+            prefetch={false}
             href={AUTH_URLS.SIGN_IN}
             color="pri"
             // variant="light"

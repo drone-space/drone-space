@@ -33,6 +33,7 @@ export function DrawerNavbarMain({
         <NavLink
           key={`${index}-${subLink.link}`}
           component={Link}
+          prefetch={false}
           href={subLink.link}
           label={subLink.labelShort || subLink.label}
           active={matchesPath(subLink.link)}
@@ -45,6 +46,7 @@ export function DrawerNavbarMain({
     return !subLinks ? (
       <NavLink
         component={Link}
+        prefetch={false}
         key={index}
         href={link.link}
         label={link.label}
@@ -67,6 +69,7 @@ export function DrawerNavbarMain({
       <NavLink
         key={`${index}-${link.link}`}
         component={Link}
+        prefetch={false}
         href={link.link}
         label={link.label}
         active={matchesPath(link.link)}

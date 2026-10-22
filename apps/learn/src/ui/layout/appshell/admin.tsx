@@ -226,6 +226,7 @@ function Navbar() {
             <NavLink
               key={nli.link}
               component={Link}
+              prefetch={false}
               href={nli.link}
               label={nli.label}
               active={active}
@@ -246,6 +247,7 @@ function Navbar() {
 
             <NavLink
               component={Link}
+              prefetch={false}
               href={'/dashboard'}
               label={'Student Area'}
               color="gray"

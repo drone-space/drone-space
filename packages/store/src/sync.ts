@@ -330,7 +330,6 @@ export const syncToServerDBMerged = async (
     if (activeStores.length === 0) return;
 
     const response = await fetch(`${options.apiUrl}/app-data?stores=${activeStores.join(',')}`, {
-      next: { revalidate: 3600 },
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(finalPayload),

@@ -11,7 +11,7 @@ export const handleInquiry = async (formData: FormValuesInquiry) => {
       body: JSON.stringify(formData),
     });
 
-    const response = await fetch(request, { next: { revalidate: 3600 } });
+    const response = await fetch(request);
 
     return response;
   } catch (error) {

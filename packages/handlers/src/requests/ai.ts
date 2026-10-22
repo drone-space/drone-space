@@ -6,7 +6,6 @@ export const getClaudeResponse = async (params: {
   conversation: Turn[];
 }): Promise<Response> => {
   const response = await fetch(`${getClientApiUrl()}/ai/claude`, {
-    next: { revalidate: 3600 },
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify([...params.conversation, { role: 'user', content: params.content }]),

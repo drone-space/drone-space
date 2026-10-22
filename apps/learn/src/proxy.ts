@@ -11,6 +11,15 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
+  // // Handle static redirects (like /index -> /)
+  // const pathname = request.nextUrl.pathname;
+  // const target = staticRedirects[pathname as keyof typeof staticRedirects];
+  // const redirectResponse = conditionalRedirect(!!target, target!, request, { permanent: true });
+  // if (redirectResponse) {
+  //   setCorsHeaders({ request, response: redirectResponse });
+  //   return redirectResponse;
+  // }
+
   let response = NextResponse.next({ request });
 
   // Set CORS headers for the response

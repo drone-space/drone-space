@@ -112,9 +112,9 @@ export default function One({ props }: { props: { quizId: string } }) {
             <Alert
               color="yellow"
               icon={<IconAlertTriangle size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
-              title="Warning"
+              title="Note"
             >
-              Quizzes can only be attempted a maximum number of{' '}
+              This quiz can be attempted a maximum number of{' '}
               <strong style={{ fontWeight: 500 }}>{MAXIMUM_ATTEMPTS} times a week</strong>.
             </Alert>
 

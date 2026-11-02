@@ -253,7 +253,7 @@ export const courses = {
         },
         price: {
           discount: null,
-          full: 70000,
+          full: 99000,
         },
         priceFeatures: null,
         desc: 'The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.',
@@ -441,7 +441,7 @@ export const courseList = [
     image: images.training.agriSpray,
     linkDesc: 'Comprehensive training in agricultural drone spraying.',
     title: 'Agricultural Spraying',
-    desc: `Drone Space Kenya offers a comprehensive 8-day Agricultural Spraying Course combining 3 days of theory and 5 days of practical training. The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.`,
+    desc: `Drone Space Kenya offers a comprehensive 5 day Agricultural Spraying Course combining 2 days of theory and 3 days of practical training. The course equips participants with the skills to operate agricultural drones safely and effectively for precision spraying.`,
   },
   {
     image: images.training.bvlos,

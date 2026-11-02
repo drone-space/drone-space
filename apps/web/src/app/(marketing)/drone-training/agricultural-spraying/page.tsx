@@ -85,8 +85,8 @@ export default async function Course() {
 
                 <Stack gap={'xl'}>
                   <Text mt={'md'}>
-                    Drone Space Kenya offers a comprehensive 8-day Agricultural Spraying Course
-                    combining 3 days of theory and 5 days of practical training. The course equips
+                    Drone Space Kenya offers a comprehensive 5 day Agricultural Spraying Course
+                    combining 2 days of theory and 3 days of practical training. The course equips
                     participants with the skills to operate agricultural drones safely and
                     effectively for precision spraying.
                   </Text>
@@ -145,7 +145,7 @@ export default async function Course() {
 
                 <Stack gap={'xs'}>
                   <Title order={4} fz={'md'} c={'var(--mantine-color-sec-3)'}>
-                    Theory (Days 1–3):
+                    Theory (Days 1–2):
                   </Title>
 
                   <div>
@@ -163,7 +163,7 @@ export default async function Course() {
 
                 <Stack gap={'xs'}>
                   <Title order={4} fz={'md'} c={'var(--mantine-color-sec-3)'}>
-                    Practicals (Days 4–8):
+                    Practicals (Days 3–5):
                   </Title>
 
                   <div>

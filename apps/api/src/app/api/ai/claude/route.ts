@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       model: process.env.NEXT_ANTHROPIC_MODEL_NAME!,
       max_tokens: 1024,
       temperature: 0.2,
-      messages: [messages[messages.length - 1]],
+      messages: messages,
       system: [
         {
           type: 'text',

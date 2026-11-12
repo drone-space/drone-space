@@ -81,19 +81,19 @@ const loadInitialData = async (params: {
     const db = await openDatabase(config);
     let clientItems: any[] = (await db.get(dataStore)) || [];
 
-    // 1. Attach profileId for offline-created items if session exists
-    if (session?.id) {
-      clientItems = clientItems.map((i) => {
-        // Only set profileId if the property already exists on the object
-        if (Object.hasOwn(i, 'profileId')) {
-          return {
-            ...i,
-            profileId: i.profileId || session.id,
-          };
-        }
-        return i;
-      });
-    }
+    // // 1. Attach profileId for offline-created items if session exists
+    // if (session?.id) {
+    //   clientItems = clientItems.map((i) => {
+    //     // Only set profileId if the property already exists on the object
+    //     if (Object.hasOwn(i, 'profileId')) {
+    //       return {
+    //         ...i,
+    //         profileId: i.profileId || session.id,
+    //       };
+    //     }
+    //     return i;
+    //   });
+    // }
 
     let combinedItems: any[] = [];
 

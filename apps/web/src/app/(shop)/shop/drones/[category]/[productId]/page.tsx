@@ -335,7 +335,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
                 {product?.specs?.intro &&
                   product.specs.intro.map((spec, index) => (
                     <GridCol key={index} span={{ base: 12 }}>
-                      <Group gap={'xs'}>
+                      <Group gap={'xs'} wrap="nowrap" align="start">
                         <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} color="sec.3" c={'pri.9'}>
                           <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
                         </ThemeIcon>
@@ -409,7 +409,7 @@ export default async function DroneDetail({ params }: { params: Promise<typePara
               leftSection={<IconTruckDelivery size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               {isEquipment
-                ? `Contact Us About ${product?.title.short || product?.title.long}`
+                ? `Inquire ${product?.title.short || product?.title.long}`
                 : `Order the ${product?.title.short ? product.title.short : product?.title.long}`}
             </Button>
           </ModalContactShop>

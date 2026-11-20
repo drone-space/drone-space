@@ -482,6 +482,11 @@ export const images = {
   },
 
   products: {
+    equipment: {
+      lsjm: {
+        item: [`${baseUrl.droneSpace}/products/equipment/lsjm/item/lsjm-front.webp`],
+      },
+    },
     drones: {
       autel: {
         evo2: {

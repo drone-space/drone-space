@@ -105,9 +105,9 @@ export default function Grid({ data }: { data: typeDrone }) {
 
           <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
             <Text fz={'sm'} mih={58}>
-              {!data.price ? (
-                <Text component="span" inherit>
-                  Price Undisclosed
+              {data.contactForPrice || typeof data.price?.former !== 'number' ? (
+                <Text component="span" inherit fz={'md'} fw={'bold'} c={'pri'}>
+                  Contact Us
                 </Text>
               ) : (
                 <>
@@ -125,7 +125,7 @@ export default function Grid({ data }: { data: typeDrone }) {
                   </Text>
 
                   {data.kit?.flyMore && (
-                    <Text fz={'sm'} component="span">
+                    <Text fz={'sm'} component={'span'}>
                       <Text component="span" inherit>
                         Kes.
                       </Text>{' '}

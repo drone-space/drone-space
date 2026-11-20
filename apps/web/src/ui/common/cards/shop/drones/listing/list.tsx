@@ -112,9 +112,9 @@ export default function List({ data }: { data: typeDrone }) {
 
             <Stack gap={0} fz={'sm'} mt={'xs'} mih={21.7 * 2}>
               <Text fz={'sm'} mih={58}>
-                {!data.price ? (
-                  <Text component="span" inherit>
-                    Price Undisclosed
+                {data.contactForPrice || typeof data.price?.former !== 'number' ? (
+                  <Text component="span" inherit fz={'md'} fw={'bold'} c={'pri'}>
+                    Contact Us
                   </Text>
                 ) : (
                   <>

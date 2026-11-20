@@ -176,31 +176,53 @@ export default function DroneListing() {
                   <Skeleton h={21.7} />
                 </>
               ) : (
-                catList.map((cl) => (
-                  <Anchor
-                    key={cl.categoryName}
-                    fz={{ base: 'xs', lg: 'sm' }}
-                    underline="hover"
-                    onClick={() => {
-                      const current = new URLSearchParams(searchParams.toString());
-                      current.set('category', cl.category);
+                (() => {
+                  const equipmentSlugs = ['thermography', 'inspection-rescue', 'field-equipment'];
+                  const droneCategories = catList.filter(
+                    (cl) => !equipmentSlugs.includes(cl.category),
+                  );
+                  const equipmentCategories = catList.filter((cl) =>
+                    equipmentSlugs.includes(cl.category),
+                  );
 
-                      router.push(`${pathname}?${current.toString()}#listing`, {
-                        scroll: false,
-                      });
-                    }}
-                  >
-                    <Group justify="space-between">
-                      <Text component="span" inherit>
-                        {capitalizeWords(`${cl.categoryName}`)}
-                      </Text>
+                  const renderCategoryAnchor = (cl: (typeof catList)[number]) => (
+                    <Anchor
+                      key={cl.categoryName}
+                      fz={{ base: 'xs', lg: 'sm' }}
+                      underline="hover"
+                      onClick={() => {
+                        const current = new URLSearchParams(searchParams.toString());
+                        current.set('category', cl.category);
 
-                      <Text component="span" inherit fz={'xs'}>
-                        ({cl.count})
-                      </Text>
-                    </Group>
-                  </Anchor>
-                ))
+                        router.push(`${pathname}?${current.toString()}#listing`, {
+                          scroll: false,
+                        });
+                      }}
+                    >
+                      <Group justify="space-between">
+                        <Text component="span" inherit>
+                          {capitalizeWords(`${cl.categoryName}`)}
+                        </Text>
+
+                        <Text component="span" inherit fz={'xs'}>
+                          ({cl.count})
+                        </Text>
+                      </Group>
+                    </Anchor>
+                  );
+
+                  return (
+                    <>
+                      {droneCategories.map(renderCategoryAnchor)}
+
+                      {droneCategories.length > 0 && equipmentCategories.length > 0 && (
+                        <Divider my={4} />
+                      )}
+
+                      {equipmentCategories.map(renderCategoryAnchor)}
+                    </>
+                  );
+                })()
               )}
             </Stack>
           </Card>
@@ -440,6 +462,8 @@ const getCatName = (catName: string) => {
       return 'Agriculture & Precision Farming';
     case 'upcoming':
       return 'Upcoming Releases';
+    case 'field-equipment':
+      return 'Field Equipment';
     default:
       return 'All';
   }

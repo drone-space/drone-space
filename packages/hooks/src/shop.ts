@@ -89,8 +89,15 @@ export const useShopListing = (list: any[]) => {
   // ----------------------------
   // Min / Max Prices
   // ----------------------------
+  // ----------------------------
+  // Min / Max Prices
+  // ----------------------------
   const minMaxPrices = useMemo(() => {
-    return getMinMax(list.filter((li) => li.price).map((l) => l.price.former));
+    const validPrices = list
+      .filter((li) => typeof li?.price?.former === 'number')
+      .map((l) => l.price.former as number);
+
+    return validPrices.length ? getMinMax(validPrices) : { min: 0, max: 0 };
   }, [list]);
 
   // ----------------------------
@@ -171,7 +178,10 @@ const filterPriceRange = (
   const min = Number(params.minPrice) || prices.min;
   const max = Number(params.maxPrice) || prices.max;
 
-  return items.filter((item) => item.price.former >= min && item.price.former <= max);
+  return items.filter((item) => {
+    if (typeof item?.price?.former !== 'number') return true;
+    return item.price.former >= min && item.price.former <= max;
+  });
 };
 
 const getMinMax = (numbers: number[]): { min: number; max: number } => {

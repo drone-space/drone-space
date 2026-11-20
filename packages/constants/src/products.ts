@@ -766,8 +766,14 @@ export const products = [
         'Wireless Multi-Node Sensor Telemetry',
         'Real-Time Noise Filtering & Signal Processing',
         'Ruggedized IP67 Field-Ready Housing',
+        'Detects human presence and subtle body movements through dense barriers',
+        'Identifies vital signs, including breathing and heartbeat activity',
+        'Detects trapped or buried survivors in disaster-affected areas',
+        'Filters environmental and structural noise for improved detection accuracy',
+        'Supports search-and-rescue operations and post-disaster structural assessment',
+        'Enables subsurface anomaly detection',
       ],
-      desc: 'The Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment) is engineered for search-and-rescue, post-disaster structural assessment, and subsurface anomaly detection. By pairing UWB radar with multi-channel micro-seismic sensors, operators can detect subtle human vibrations and vital signs through dense barriers while filtering out environmental and structural noise.',
+      desc: 'The Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment) is engineered for search-and-rescue, post-disaster structural assessment, and subsurface anomaly detection. By combining UWB radar and multi-channel micro-seismic sensing technology, operators can detect subtle human vibrations and vital signs through dense barriers while filtering out environmental and structural noise.',
       aircraft: [
         {
           label: 'Detection Technology',

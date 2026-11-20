@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { LayoutPage } from '@repo/ui';
 import { LayoutSection } from '@repo/ui';
-import { Grid, GridCol, Text, ThemeIcon, Group, Button, Box } from '@mantine/core';
+import { Grid, GridCol, Text, ThemeIcon, Group, Button, Box, Divider } from '@mantine/core';
 import { ModalContactTraining } from '@repo/ui';
 import { IconArrowRightDashed, IconMessage, IconSchool } from '@tabler/icons-react';
 import {
@@ -63,6 +63,15 @@ export default async function Course() {
     'Real-Time Filtering: Distinguishes human respiration, heartbeat, and micro-movements from ambient structural noise.',
     'Wireless Sensor Array: Deployable seismic nodes communicate wirelessly with a ruggedized host terminal.',
     'Thermal & Diagnostic Synergy: Complements thermal imaging workflows for structural and rescue assessments.',
+  ];
+
+  const aditionalCapabilities = [
+    'Detects human presence and subtle body movements through dense barriers.',
+    'Identifies vital signs, including breathing and heartbeat activity.',
+    'Detects trapped or buried survivors in disaster-affected areas.',
+    'Filters environmental and structural noise for improved detection accuracy.',
+    'Supports search-and-rescue operations and post-disaster structural assessment.',
+    'Enables subsurface anomaly detection.',
   ];
 
   return (
@@ -159,9 +168,14 @@ export default async function Course() {
       </LayoutSection>
 
       <LayoutSection id="thermography-equipment" padded bg={'var(--mantine-color-gray-0)'}>
-        <Grid gap={'xl'} align="center">
+        <Grid gap={'xl'}>
           <GridCol span={{ base: 12, md: 6, lg: 5.5 }}>
-            <Box w={{ base: '100%', xs: '70%', md: '100%' }} mx={'auto'}>
+            <Box
+              w={{ base: '100%', xs: '70%', md: '100%' }}
+              mx={'auto'}
+              pos={'sticky'}
+              top={SECTION_SPACING / 2}
+            >
               <ImageDefault
                 src={lsjEquipmentUrl}
                 alt={'Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment)'}
@@ -181,11 +195,11 @@ export default async function Course() {
             />
 
             <Text mt={'lg'}>
-              The LSJ-M (9A Equipment) combines Ultra-Wideband (UWB) radar technology with
-              high-sensitivity micro-seismic sensors to detect subtle vibrations, breathing, and
-              movement through dense barriers such as concrete, rubble, and soil. Paired with
-              thermal and diagnostic inspection workflows, it supports search-and-rescue, structural
-              assessment, and subsurface investigations.
+              The LSJ-M (9A Equipment) combines UWB radar and multi-channel micro-seismic sensing
+              technology to detect subtle vibrations, breathing, and movement through dense barriers
+              such as concrete, rubble, and soil. Paired with thermal and diagnostic inspection
+              workflows, it supports search-and-rescue, structural assessment, and subsurface
+              investigations.
             </Text>
 
             {lsjCapabilities.map((item, index) => {
@@ -198,14 +212,38 @@ export default async function Course() {
                   </ThemeIcon>
 
                   <Text fz={'sm'}>
-                    {' '}
                     <strong>{contentSlipt[0]}</strong>: {contentSlipt[1]}
                   </Text>
                 </Group>
               );
             })}
 
-            <Group mt={'xl'}>
+            <Divider
+              my={'lg'}
+              label={'Additional capabilities'}
+              labelPosition="left"
+              styles={{ label: { fontSize: 'var(--mantine-font-size-sm)' } }}
+            />
+
+            {aditionalCapabilities.map((item, index) => {
+              return (
+                <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                  <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                    <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+                  </ThemeIcon>
+
+                  <Text fz={'sm'}>{item}</Text>
+                </Group>
+              );
+            })}
+
+            <Group mt={'lg'}>
+              <Text inherit fz={'md'} c={'dimmed'}>
+                *Compatible with DJI M350 & DJI FlyCart 30 Drones
+              </Text>
+            </Group>
+
+            <Group mt={'lg'}>
               <ModalContactTraining
                 props={{
                   initialValues: {

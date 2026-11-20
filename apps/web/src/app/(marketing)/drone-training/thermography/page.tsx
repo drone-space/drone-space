@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { LayoutPage } from '@repo/ui';
 import { LayoutSection } from '@repo/ui';
-import { Grid, GridCol, Text, ThemeIcon, Group, Button } from '@mantine/core';
+import { Grid, GridCol, Text, ThemeIcon, Group, Button, Box } from '@mantine/core';
 import { ModalContactTraining } from '@repo/ui';
 import { IconArrowRightDashed, IconMessage, IconSchool } from '@tabler/icons-react';
 import {
@@ -53,6 +53,17 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Course() {
   if (!course) throw new Error('Course not foud');
+
+  const lsjEquipmentUrl =
+    'https://shopcdnalpha.grainajz.com/category/53385/1277/917d4ab5da7c3856ce7c9af39a16ddb3/%E9%9B%B7%E8%BE%BE3.jpg';
+
+  const lsjCapabilities = [
+    'Hybrid Detection: Combines Ultra-Wideband (UWB) radar wall-penetration with multi-channel micro-seismic sensors.',
+    'Deep Penetration: Detects vital signs and subtle vibrations through dense collapse debris, concrete, and soil.',
+    'Real-Time Filtering: Distinguishes human respiration, heartbeat, and micro-movements from ambient structural noise.',
+    'Wireless Sensor Array: Deployable seismic nodes communicate wirelessly with a ruggedized host terminal.',
+    'Thermal & Diagnostic Synergy: Complements thermal imaging workflows for structural and rescue assessments.',
+  ];
 
   return (
     <LayoutPage>
@@ -120,11 +131,11 @@ export default async function Course() {
           mt={SECTION_SPACING / 2}
           px={{ md: SECTION_SPACING }}
         >
-          Upon completion, students will receive an internationally recognized Levell Thermography
+          Upon completion, students will receive an internationally recognized Level I Thermography
           Certification, which can enhance their career prospects and credibility in the industry.
         </Text>
 
-        <Group justify="center">
+        <Group justify="center" gap="md" mt="xl">
           <ModalContactTraining
             props={{
               initialValues: {
@@ -134,14 +145,81 @@ export default async function Course() {
             }}
           >
             <Button
-              mt={'xl'}
               variant="gradient"
               leftSection={<IconSchool size={ICON_SIZE} stroke={ICON_STROKE_WIDTH} />}
             >
               Enroll For Thermography
             </Button>
           </ModalContactTraining>
+
+          <Button component="a" href="#thermography-equipment" variant="outline">
+            Thermography Equipment
+          </Button>
         </Group>
+      </LayoutSection>
+
+      <LayoutSection id="thermography-equipment" padded bg={'var(--mantine-color-gray-0)'}>
+        <Grid gap={'xl'} align="center">
+          <GridCol span={{ base: 12, md: 6, lg: 5.5 }}>
+            <Box w={{ base: '100%', xs: '70%', md: '100%' }} mx={'auto'}>
+              <ImageDefault
+                src={lsjEquipmentUrl}
+                alt={'Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment)'}
+                height={{ base: 400, xs: 480, sm: 600 }}
+                mode="grid"
+              />
+            </Box>
+          </GridCol>
+
+          <GridCol span={{ base: 12, md: 6, lg: 6.5 }}>
+            <LayoutIntroSection
+              props={{
+                subTitle: 'Thermography Equipment',
+                title: 'Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment)',
+              }}
+              options={{ alignment: 'start' }}
+            />
+
+            <Text mt={'lg'}>
+              The LSJ-M (9A Equipment) combines Ultra-Wideband (UWB) radar technology with
+              high-sensitivity micro-seismic sensors to detect subtle vibrations, breathing, and
+              movement through dense barriers such as concrete, rubble, and soil. Paired with
+              thermal and diagnostic inspection workflows, it supports search-and-rescue, structural
+              assessment, and subsurface investigations.
+            </Text>
+
+            {lsjCapabilities.map((item, index) => {
+              const contentSlipt = item.split(':');
+
+              return (
+                <Group key={index} gap={'xs'} wrap="nowrap" align="start" mt={'md'}>
+                  <ThemeIcon size={ICON_WRAPPER_SIZE / 1.5} mt={2} color="sec.3" c={'pri.9'}>
+                    <IconArrowRightDashed size={ICON_SIZE / 1.5} stroke={ICON_STROKE_WIDTH} />
+                  </ThemeIcon>
+
+                  <Text fz={'sm'}>
+                    {' '}
+                    <strong>{contentSlipt[0]}</strong>: {contentSlipt[1]}
+                  </Text>
+                </Group>
+              );
+            })}
+
+            <Group mt={'xl'}>
+              <ModalContactTraining
+                props={{
+                  initialValues: {
+                    subject: 'LSJ-M (9A Equipment) Inquiry',
+                    message:
+                      'Hello, I would like more details and pricing information for the Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment).',
+                  },
+                }}
+              >
+                <Button>Inquire About LSJ-M Equipment</Button>
+              </ModalContactTraining>
+            </Group>
+          </GridCol>
+        </Grid>
       </LayoutSection>
 
       <LayoutSection id="pricing-training-faq" padded bg={'var(--mantine-color-gray-1)'}>

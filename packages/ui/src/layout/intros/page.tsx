@@ -60,6 +60,7 @@ export function LayoutIntroPage({ props, options }: PageHeaderProps) {
               order={1}
               ta={alignment}
               maw={options?.alignment ? { base: '100%', md: '70%' } : undefined}
+              fz={{ base: '1.25rem', sm: '1.5rem', md: 'var(--mantine-h1-font-size)' }}
             >
               {props.title}
             </Title>

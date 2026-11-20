@@ -104,7 +104,7 @@ export default function Accessory({ data }: { data: typeAccessory }) {
               <>
                 Kes.{' '}
                 <Text component="span" inherit fw={500} c={'var(--mantine-color-sec-3)'}>
-                  <NumberFormatter value={data.price.former} thousandSeparator />
+                  <NumberFormatter value={data.price.former || 0} thousandSeparator />
                 </Text>
               </>
             )}

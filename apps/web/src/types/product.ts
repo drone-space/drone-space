@@ -4,7 +4,7 @@ interface typeTitle {
 }
 
 interface typePrice {
-  former?: number;
+  former?: number | null;
   latter?: number | null;
 }
 
@@ -31,7 +31,7 @@ export interface typeDrone {
   kit: {
     basic: {
       image?: string | null;
-      contents: { qty: number; item: string; image: string }[];
+      contents: { qty: number; item: string; image: string | null }[];
       otherContents?: string[];
     };
     flyMore: {

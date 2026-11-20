@@ -26,6 +26,7 @@ export interface typeDrone {
     aircraft: { label: string; desc: string }[];
     camera?: { label: string; desc: string }[];
   };
+  contactForPrice?: boolean;
   price: typePrice | null;
   kit: {
     basic: {

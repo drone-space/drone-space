@@ -750,6 +750,95 @@ export const products = [
     releaseDate: new Date('2024-09-01'),
   },
 
+  {
+    images: images.products.equipment.lsjm.item,
+    title: {
+      long: 'Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment)',
+      short: 'LSJ-M (9A) Life Detector',
+    },
+    tag: 'Multi-Modal Radar & Micro-Seismic Detection',
+    desc: 'Combines Ultra-Wideband (UWB) radar and wireless micro-seismic sensors to detect vital signs and subtle vibrations through concrete, rubble, and soil.',
+    specs: {
+      intro: [
+        'Ultra-Wideband (UWB) Radar + Micro-Seismic Array',
+        'Detects Breathing, Heartbeat & Micro-Movement',
+        'Deep Penetration Through Concrete & Rubble',
+        'Wireless Multi-Node Sensor Telemetry',
+        'Real-Time Noise Filtering & Signal Processing',
+        'Ruggedized IP67 Field-Ready Housing',
+      ],
+      desc: 'The Micro-Seismic Sensor / Radar Life Detector LSJ-M (9A Equipment) is engineered for search-and-rescue, post-disaster structural assessment, and subsurface anomaly detection. By pairing UWB radar with multi-channel micro-seismic sensors, operators can detect subtle human vibrations and vital signs through dense barriers while filtering out environmental and structural noise.',
+      aircraft: [
+        {
+          label: 'Detection Technology',
+          desc: 'UWB Radar + Multi-Channel Micro-Seismic Sensors',
+        },
+        {
+          label: 'Target Signals',
+          desc: 'Respiration, heartbeat, and micro-movement',
+        },
+        {
+          label: 'Typical Applications',
+          desc: 'Search & rescue, structural collapse, subsurface inspection',
+        },
+        {
+          label: 'Telemetry',
+          desc: 'Wireless sensor nodes to central host terminal',
+        },
+        {
+          label: 'Field Durability',
+          desc: 'Ruggedized enclosure for demanding environments',
+        },
+      ],
+    },
+    price: {
+      former: null,
+      latter: null,
+    },
+    contactForPrice: true,
+    kit: {
+      basic: {
+        image: null,
+        contents: [
+          {
+            qty: 1,
+            item: 'LSJ-M Control & Display Terminal',
+            image: null,
+          },
+          {
+            qty: 1,
+            item: 'Radar Detection Transceiver Unit',
+            image: null,
+          },
+          {
+            qty: 1,
+            item: 'Wireless Micro-Seismic Sensor Array',
+            image: null,
+          },
+          {
+            qty: 1,
+            item: 'Heavy-Duty Field Transport Case',
+            image: null,
+          },
+        ],
+        otherContents: ['Charging & power accessories', 'User documentation'],
+      },
+      flyMore: null,
+    },
+    accessories: {
+      battery: null,
+      other: [],
+    },
+    category: 'field-equipment',
+    available: true,
+    brand: 'LSJ',
+    make: 'LSJ-M',
+    model: '9A',
+    new: true,
+    iframe: null,
+    releaseDate: new Date('2025-01-01'),
+  },
+
   // {
   //   images: images.products.drones.dji.agras.t100.drone,
   //   title: {

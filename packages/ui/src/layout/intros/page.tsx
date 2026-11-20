@@ -66,7 +66,7 @@ export function LayoutIntroPage({ props, options }: PageHeaderProps) {
             </Title>
 
             {props.desc && (
-              <Text ta={alignment} fz="xl">
+              <Text ta={alignment} fz={{ base: 'md', sm: 'xl' }}>
                 {props.desc}
               </Text>
             )}
